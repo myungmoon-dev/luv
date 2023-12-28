@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
+    "build:client": "turbo run build --filter=client",
     "dev": "turbo dev",
+    "dev:client": "turbo run dev --filter=client",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
