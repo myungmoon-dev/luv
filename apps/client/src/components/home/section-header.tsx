@@ -1,8 +1,8 @@
-interface IProps {
+interface ISectionHeaderProps {
   text: string;
 }
 
-export default function text({ text }: IProps) {
+export default function SectionHeader({ text }: ISectionHeaderProps) {
   return (
     <div className="flex justify-center items-center gap-3 w-full">
       <div className="flex-1 h-[2px] bg-[#dfc7c7] rounded-lg" />
