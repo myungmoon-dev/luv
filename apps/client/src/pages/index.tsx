@@ -13,15 +13,16 @@ export default function Home() {
       <div>
         {/* banner */}
         <Banner
-          date="2023. 12. 14"
+          preachDate="2023. 12. 14"
           preachBibleContent="이사야 9장 6-7절"
           preachTitle="놀라운 그 이름"
-          img="/images/pastor_edit.jpeg"
+          imgSrc="/images/pastor_edit.jpeg"
+          imgAlt="pastor"
         />
         {/* 2,3 sections */}
         <div className="grid grid-rows-2 sm:p-10 md:p-16 gap-10">
           {/* 2 section */}
-          <Section propsClassName="justify-start items-center">
+          <Section className="justify-start items-center">
             {/* header 표어 */}
             <SectionHeader text="2024 명문 표어" />
             {/* title 표어 */}
