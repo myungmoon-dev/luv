@@ -1,23 +1,24 @@
 import Image from "next/image";
 
 interface IBannerProps {
-  img: string;
-  date: string;
+  imgSrc: string;
+  imgAlt: string;
+  preachDate: string;
   preachTitle: string;
   preachBibleContent: string;
 }
 
-export default function Banner({ img, date, preachBibleContent, preachTitle }: IBannerProps) {
+export default function Banner({ imgSrc, imgAlt, preachDate, preachBibleContent, preachTitle }: IBannerProps) {
   return (
     <div className="h-[94vh] bg-gray-200 flex items-center justify-center relative">
       <div className="relative w-full h-full">
         {/* 배너 이미지 */}
-        <Image src={img} className="object-cover w-full h-full" layout="fill" objectFit="cover" alt="pastor" />
+        <Image src={imgSrc} className="object-cover" layout="fill" alt={imgAlt} />
         {/* 배너 설교 텍스트 */}
         <div className="absolute top-1/2 left-[5%] text-black flex flex-col gap-1 lg:gap-3 z-20">
           {/* 설교 날짜 및 설교본문 */}
           <div className="flex gap-3 xl:gap-5 font-light text-2xl xl:text-4xl">
-            <span>{date}</span>
+            <span>{preachDate}</span>
             <span> | </span>
             <span>{preachTitle}</span>
           </div>
