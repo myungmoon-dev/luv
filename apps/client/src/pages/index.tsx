@@ -16,8 +16,7 @@ export default function Home() {
           preachDate="2023. 12. 14"
           preachBibleContent="이사야 9장 6-7절"
           preachTitle="놀라운 그 이름"
-          imgSrc="/images/pastor_edit.jpeg"
-          imgAlt="pastor"
+          img="/images/pastor_edit.jpeg"
         />
         {/* 2,3 sections */}
         <div className="grid grid-rows-2 sm:p-10 md:p-16 gap-10">
