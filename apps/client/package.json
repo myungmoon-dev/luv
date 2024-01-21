@@ -12,7 +12,8 @@
     "@repo/ui": "workspace:*",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.4"
+    "next": "14.0.4",
+    "ui": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5",
