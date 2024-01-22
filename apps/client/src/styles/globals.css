@@ -4,6 +4,13 @@
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
 
+@font-face {
+  font-family: "HSBombaram3_Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Regular.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
 * {
   font-family: "Pretendard";
 }
