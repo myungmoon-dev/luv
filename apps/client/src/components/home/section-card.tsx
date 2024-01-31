@@ -9,10 +9,10 @@ interface ISectionCardProps {
 export default function SectionCard({ firstText, secondText, img }: ISectionCardProps) {
   return (
     <div className="flex flex-col justify-center gap-3 xl:gap-7">
-      <div className="h-[90px] xl:h-[200px] relative bg-gray-200 p-4 rounded-xl overflow-clip">
+      <div className="relative h-[90px] overflow-clip rounded-xl bg-gray-200 p-4 xl:h-[200px]">
         <Image src={`/images/${img}`} layout="fill" objectFit="cover" alt="balance" />
       </div>
-      <span className="text-center text-sm xl:text-lg text-gray-700">
+      <span className="text-center text-sm text-gray-700 xl:text-lg">
         {firstText} <br />
         {secondText}
       </span>
