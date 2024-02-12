@@ -14,7 +14,7 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus }:
   return (
     <div>
       <Banner image={bannerImage} title={title} description={bannerDescription} innerMenus={innerMenus} />
-      {children}
+      <main className="px-24 py-32">{children}</main>
       <Footer />
     </div>
   );
