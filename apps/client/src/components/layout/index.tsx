@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 
-import Footer from "./footer";
-import { Banner } from "ui";
+import { Banner, Footer } from "ui";
 
 interface LayoutProps {
   children: ReactNode;
