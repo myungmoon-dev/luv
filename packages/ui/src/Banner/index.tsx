@@ -1,3 +1,5 @@
+import { Header } from "..";
+
 interface BannerProps {
   image: string;
   title: string;
@@ -19,6 +21,7 @@ export const Banner = ({ description, image, title, innerMenus }: BannerProps) =
         {/* FIXME: Chip 컴포넌트 만들어지면 적용 */}
         {innerMenus?.map((menu) => <div key={menu.label}>{menu.label}</div>)}
       </div>
+      <Header />
     </div>
   );
 };

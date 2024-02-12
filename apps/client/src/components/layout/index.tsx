@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 
 import Footer from "./footer";
-import { Banner, Header } from "ui";
+import { Banner } from "ui";
 
 interface LayoutProps {
   children: ReactNode;
@@ -15,7 +15,6 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus }:
   return (
     <div>
       <Banner image={bannerImage} title={title} description={bannerDescription} innerMenus={innerMenus} />
-      <Header />
       {children}
       <Footer />
     </div>
