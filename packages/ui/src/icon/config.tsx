@@ -1,4 +1,5 @@
 import { CursorType } from "../types/cursor";
+import HamburgerIcon from "./assets/Hamburger";
 import CrossIcon from "./assets/cross";
 
 export type IconCursorType = `cursor-${CursorType}`;
@@ -20,4 +21,5 @@ export const widthSize: Record<IconSizeType, `w-[${string}]`> = {
 
 export const icons = {
   Cross: (props: IIconProps) => <CrossIcon {...props} />,
+  Hamburger: (props: IIconProps) => <HamburgerIcon {...props} />,
 };
