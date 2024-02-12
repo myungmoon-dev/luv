@@ -9,7 +9,13 @@ import Layout from "@/components/layout";
 
 export default function Home() {
   return (
-    <Layout>
+    // FIXME: 임시 기본 값 설정
+    <Layout
+      bannerImage="/images/pastor.jpg"
+      title="섬기는 분들"
+      bannerDescription="교회여! 일어나 세상으로 흘러가라"
+      innerMenus={[{ label: "원로 목사", path: "/" }]}
+    >
       <div>
         {/* banner */}
         <Banner
