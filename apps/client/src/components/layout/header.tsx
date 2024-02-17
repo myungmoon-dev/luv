@@ -5,11 +5,11 @@ const Header = () => {
   const menus = ["교회소개", "섬기는 분들", "설교말씀", "교회양육", "교육부서", "성도의 교제"];
 
   return (
-    <header className="z-10 h-[75px] w-full flex justify-between items-center bg-black bg-opacity-40 px-5 lg:px-48 fixed">
+    <header className="fixed z-10 flex h-[75px] w-full items-center justify-between bg-black bg-opacity-40 px-5 lg:px-48">
       <Image src="https://www.myungmoon.or.kr/img/body/logo.png" width={150} height={50} alt="myungmoon" />
       <nav className="flex items-center gap-5 lg:gap-10">
         {menus.map((menu) => (
-          <span key={menu} className="text-white font-semibold text-sm">
+          <span key={menu} className="text-sm font-semibold text-white">
             {menu}
           </span>
         ))}
@@ -20,7 +20,7 @@ const Header = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 text-white"
+            className="h-6 w-6 text-white"
           >
             <path
               strokeLinecap="round"

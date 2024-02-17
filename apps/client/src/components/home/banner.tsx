@@ -9,30 +9,30 @@ interface IBannerProps {
 
 export default function Banner({ img, preachDate, preachBibleContent, preachTitle }: IBannerProps) {
   return (
-    <div className="h-[94vh] bg-gray-200 flex items-center justify-center relative">
-      <div className="relative w-full h-full">
+    <div className="relative flex h-[94vh] items-center justify-center bg-gray-200">
+      <div className="relative h-full w-full">
         {/* 배너 이미지 */}
         <Image src={img} className="object-cover" layout="fill" alt="banner" />
         {/* 배너 설교 텍스트 */}
-        <div className="absolute top-1/2 left-[5%] text-black flex flex-col gap-1 lg:gap-3 z-20">
+        <div className="absolute left-[5%] top-1/2 z-20 flex flex-col gap-1 text-black lg:gap-3">
           {/* 설교 날짜 및 설교본문 */}
-          <div className="flex gap-3 xl:gap-5 font-light text-2xl xl:text-4xl">
+          <div className="flex gap-3 text-2xl font-light xl:gap-5 xl:text-4xl">
             <span>{preachDate}</span>
             <span> | </span>
             <span>{preachTitle}</span>
           </div>
           {/* 설교제목 */}
-          <h1 className="font-bold text-4xl xl:text-6xl">{preachBibleContent}</h1>
+          <h1 className="text-4xl font-bold xl:text-6xl">{preachBibleContent}</h1>
         </div>
         {/* 유튜브 로고 */}
-        <div className="z-[1] w-14 h-10 right-10 xl:right-26 bottom-10 absolute flex justify-center bg-[#ff4242] p-2 rounded-xl">
+        <div className="xl:right-26 absolute bottom-10 right-10 z-[1] flex h-10 w-14 justify-center rounded-xl bg-[#ff4242] p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={2}
             stroke="white"
-            className="w-6 h-6 fill-white"
+            className="h-6 w-6 fill-white"
           >
             <path
               strokeLinecap="round"
