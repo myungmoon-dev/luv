@@ -168,12 +168,21 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.2.3
+      autoprefixer:
+        specifier: ^10.0.1
+        version: 10.4.16(postcss@8.4.31)
       eslint:
         specifier: ^8.53.0
         version: 8.53.0
+      postcss:
+        specifier: ^8
+        version: 8.4.31
       react:
         specifier: ^18.2.0
         version: 18.2.0
+      tailwindcss:
+        specifier: ^3.3.0
+        version: 3.4.0
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
