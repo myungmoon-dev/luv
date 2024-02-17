@@ -4,8 +4,8 @@ import Section from "@/components/home/section";
 import SectionCard from "@/components/home/section-card";
 import SectionContact from "@/components/home/section-contact";
 import SectionDirection from "@/components/home/section-direction";
-import SectionHeader from "@/components/home/section-header";
 import Layout from "@/components/layout";
+import { Chip } from "ui";
 
 export default function Home() {
   return (
@@ -25,11 +25,11 @@ export default function Home() {
           img="/images/pastor_edit.jpeg"
         />
         {/* 2,3 sections */}
-        <div className="grid grid-rows-2 gap-10 sm:p-10 md:p-16">
+        <div className="grid grid-rows-2 gap-10 sm:py-10 md:py-16">
           {/* 2 section */}
           <Section className="items-center justify-start">
             {/* header 표어 */}
-            <SectionHeader text="2024 명문 표어" />
+            <Chip text="2024 명문 표어" hasLine />
             {/* title 표어 */}
             <h2 className="text-center font-HSBombaram3 text-2xl xl:text-3xl">"교회여! 일어나 세상으로 흘러가라!"</h2>
             {/* contents 표어 */}
@@ -48,7 +48,7 @@ export default function Home() {
               ))}
             </div>
             {/* header 주보 */}
-            <SectionHeader text="주보" />
+            <Chip text="주보" hasLine />
             {/* contents 주보 */}
             <div className="mb-10 grid h-full grid-cols-4 justify-items-center gap-10">
               {Array(4)
@@ -61,7 +61,7 @@ export default function Home() {
           {/* 3 section */}
           <Section>
             {/* header 오시는 길 */}
-            <SectionHeader text="오시는 길" />
+            <Chip text="오시는 길" hasLine />
             {/* contents 오시는 길 */}
             <div className="mb-10 grid h-1/2 w-full grid-cols-2 gap-3">
               {/* 1. 독산동 비전채플 */}
@@ -74,7 +74,7 @@ export default function Home() {
             </div>
 
             {/* header CONTACT */}
-            <SectionHeader text="CONTACT" />
+            <Chip text="CONTACT" hasLine />
             {/* content CONTACT */}
             <div className="flex h-[200px] w-full items-center justify-around align-middle">
               {/* 대표 전화번호 */}
