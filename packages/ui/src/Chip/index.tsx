@@ -1,4 +1,5 @@
 import { cva, VariantProps } from "class-variance-authority";
+import { cn } from "../utils/twMerge";
 
 export const ChipVariants = cva(
   `
@@ -7,9 +8,12 @@ export const ChipVariants = cva(
   {
     variants: {
       color: {
-        default: "bg-[#dfc7c7]",
-        selected: "bg-[#892122]",
-        red: "bg-white",
+        default: "bg-[#dfc7c7] text-white",
+        red: "bg-white text-[#892122]",
+      },
+      selected: {
+        select: "",
+        unselect: "",
       },
       // FIXME: sm,lg,xl 임시 값
       size: {
@@ -22,15 +26,13 @@ export const ChipVariants = cva(
     defaultVariants: {
       color: "default",
       size: "md",
+      selected: "unselect",
     },
     compoundVariants: [
       {
-        color: ["default", "selected"],
-        className: "text-white",
-      },
-      {
         color: "red",
-        className: "text-[#892122]",
+        selected: "select",
+        className: "bg-[#892122] text-white",
       },
     ],
   }
@@ -39,6 +41,8 @@ export const ChipVariants = cva(
 interface ChipProps extends VariantProps<typeof ChipVariants> {
   text: string;
 }
-export const Chip = ({ color, size, text }: ChipProps) => {
-  return <div className={ChipVariants({ color, size })}>{text}</div>;
+export const Chip = ({ color, size, text, selected }: ChipProps) => {
+  return (
+    <div className={cn(ChipVariants({ color, size, selected }))}>{text}</div>
+  );
 };

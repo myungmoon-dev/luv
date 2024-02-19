@@ -1,10 +1,13 @@
 import { Chip, Line } from "..";
+import { cn } from "../utils/twMerge";
 
 interface ISectionHeaderProps {
   text: string;
   hasLine?: boolean;
-  color?: "red" | "selected";
+  color?: "red";
   size?: "sm" | "md" | "lg" | "xl";
+  selected?: boolean;
+  className?: string;
 }
 
 export const SectionHeader = ({
@@ -12,11 +15,18 @@ export const SectionHeader = ({
   hasLine,
   color,
   size,
+  selected,
+  className,
 }: ISectionHeaderProps) => {
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className={cn(`flex w-full items-center justify-center ${className}`)}>
       {hasLine && <Line />}
-      <Chip text={text} color={color} size={size} />
+      <Chip
+        text={text}
+        color={color}
+        size={size}
+        selected={selected ? "select" : "unselect"}
+      />
       {hasLine && <Line />}
     </div>
   );
