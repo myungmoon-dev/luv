@@ -19,7 +19,7 @@ export const SectionHeader = ({
   className,
 }: ISectionHeaderProps) => {
   return (
-    <div className={cn(`flex w-full items-center justify-center ${className}`)}>
+    <div className={cn("flex w-full items-center justify-center", className)}>
       {hasLine && <Line />}
       <Chip
         text={text}
