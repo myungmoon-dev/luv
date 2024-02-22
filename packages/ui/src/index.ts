@@ -7,5 +7,7 @@ import { Footer } from "./Footer";
 import { Chip } from "./Chip";
 import { Line } from "./Line";
 import { SectionHeader } from "./SectionHeader";
+import { Card } from "./Card";
+import { cn } from "./utils/twMerge";
 
-export { Icon, Header, Banner, Footer, Chip, Line, SectionHeader };
+export { Icon, Header, Banner, Footer, Chip, Line, SectionHeader, Card, cn };
