@@ -2,8 +2,8 @@ import { Header } from "..";
 
 interface BannerProps {
   image: string;
-  title: string;
-  description: string;
+  title?: string;
+  description?: string;
   innerMenus?: { label: string; path: string }[];
 }
 
@@ -17,7 +17,7 @@ export const Banner = ({ description, image, title, innerMenus }: BannerProps) =
           <h1 className="text-2xl font-bold">{title}</h1>
           <p className="font-thin">{description}</p>
         </div>
-        <hr className="w-full" />
+        {title && <hr className="w-full" />}
         {/* FIXME: Chip 컴포넌트 만들어지면 적용 */}
         {innerMenus?.map((menu) => <div key={menu.label}>{menu.label}</div>)}
       </div>
