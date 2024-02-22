@@ -2,7 +2,7 @@ import { CursorType } from "../types/cursor";
 import HamburgerIcon from "./assets/Hamburger";
 import CrossIcon from "./assets/cross";
 
-export type IconCursorType = `cursor-${CursorType}`;
+export type IconCursorType = `ui-cursor-${CursorType}`;
 
 export type IconNameType = keyof typeof icons;
 
@@ -13,10 +13,10 @@ export interface IIconProps {
   strokeColor?: string;
 }
 
-export const widthSize: Record<IconSizeType, `w-[${string}]`> = {
-  sm: "w-[16px]",
-  md: "w-[20px]",
-  lg: "w-[24px]",
+export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
+  sm: "ui-w-[16px]",
+  md: "ui-w-[20px]",
+  lg: "ui-w-[24px]",
 };
 
 export const icons = {

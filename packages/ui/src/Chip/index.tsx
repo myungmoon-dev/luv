@@ -3,13 +3,13 @@ import { cn } from "../utils/twMerge";
 
 export const ChipVariants = cva(
   `
-  flex-shrink-0 text-center font-semibold rounded-[2.2rem]
+  ui-flex-shrink-0 ui-text-center ui-font-semibold ui-rounded-[2.2rem]
   `,
   {
     variants: {
       color: {
-        default: "bg-[#dfc7c7] text-white",
-        red: "bg-white text-[#892122]",
+        default: "ui-bg-[#dfc7c7] ui-text-white",
+        red: "ui-bg-white ui-text-[#892122]",
       },
       selected: {
         select: "",
@@ -17,10 +17,10 @@ export const ChipVariants = cva(
       },
       // FIXME: sm,lg,xl 임시 값
       size: {
-        sm: "p-[0.6rem] px-7 text-lg",
-        md: "p-[0.6rem] px-7 text-2xl",
-        lg: "p-[0.8rem] px-10 text-4xl",
-        xl: "p-[0.9rem] px-11 text-5xl",
+        sm: "ui-p-[0.6rem] ui-px-7 ui-text-lg",
+        md: "ui-p-[0.6rem] ui-px-7 ui-text-2xl",
+        lg: "ui-p-[0.8rem] ui-px-10 ui-text-4xl",
+        xl: "ui-p-[0.9rem] ui-px-11 ui-text-5xl",
       },
     },
     defaultVariants: {
@@ -32,7 +32,7 @@ export const ChipVariants = cva(
       {
         color: "red",
         selected: "select",
-        className: "bg-[#892122] text-white",
+        className: "ui-bg-[#892122] ui-text-white",
       },
     ],
   }
@@ -42,7 +42,5 @@ interface ChipProps extends VariantProps<typeof ChipVariants> {
   text: string;
 }
 export const Chip = ({ color, size, text, selected }: ChipProps) => {
-  return (
-    <div className={cn(ChipVariants({ color, size, selected }))}>{text}</div>
-  );
+  return <div className={cn(ChipVariants({ color, size, selected }))}>{text}</div>;
 };

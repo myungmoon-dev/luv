@@ -6,5 +6,5 @@ interface ICardProps {
 }
 
 export const Card = ({ children, className }: ICardProps) => {
-  return <div className={`${className} rounded-lg`}>{children}</div>;
+  return <div className={`${className} ui-rounded-lg`}>{children}</div>;
 };

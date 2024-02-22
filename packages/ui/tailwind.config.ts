@@ -21,5 +21,6 @@ const config: Config = {
     },
   },
   plugins: [],
+  prefix: "ui-",
 };
 export default config;
