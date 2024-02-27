@@ -10,23 +10,11 @@ interface ISectionHeaderProps {
   className?: string;
 }
 
-export const SectionHeader = ({
-  text,
-  hasLine,
-  color,
-  size,
-  selected,
-  className,
-}: ISectionHeaderProps) => {
+export const SectionHeader = ({ text, hasLine, color, size, selected, className }: ISectionHeaderProps) => {
   return (
-    <div className={cn("flex w-full items-center justify-center", className)}>
+    <div className={cn("ui-flex ui-w-full ui-items-center ui-justify-center", className)}>
       {hasLine && <Line />}
-      <Chip
-        text={text}
-        color={color}
-        size={size}
-        selected={selected ? "select" : "unselect"}
-      />
+      <Chip text={text} color={color} size={size} selected={selected ? "select" : "unselect"} />
       {hasLine && <Line />}
     </div>
   );

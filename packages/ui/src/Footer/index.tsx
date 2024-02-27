@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
-    <footer className="bg-pink-100 h-[250px] flex px-24 pt-14">
-      <img src="https://www.myungmoon.or.kr/img/body/logo.png" className="w-[180px] h-[35px]" alt="myungmoon" />
+    <footer className="ui-bg-pink-100 ui-h-[250px] ui-flex ui-px-24 ui-pt-14">
+      <img src="https://www.myungmoon.or.kr/img/body/logo.png" className="ui-w-[180px] ui-h-[35px]" alt="myungmoon" />
     </footer>
   );
 };

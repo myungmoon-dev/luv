@@ -14,7 +14,7 @@ export const Icon = ({
   size,
   strokeColor = "black",
   backgroundColor,
-  cursor = "cursor-auto",
+  cursor = "ui-cursor-auto",
   onClick,
 }: IIconPropsType) => {
   const IconComponent = icons[name as IconNameType];
