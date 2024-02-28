@@ -7,10 +7,10 @@
     "db:gen": "prisma generate",
     "db:push": "prisma db push --skip-generate"
   },
-  "dependencies": {
-    "@prisma/client": "^5.10.2"
-  },
   "devDependencies": {
     "prisma": "^5.10.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.2"
   }
 }
