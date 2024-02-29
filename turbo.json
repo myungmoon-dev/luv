@@ -12,6 +12,12 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "db:gen": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
     }
   }
 }
