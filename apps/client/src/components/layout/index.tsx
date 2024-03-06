@@ -4,16 +4,23 @@ import { Banner, Footer } from "ui";
 
 interface LayoutProps {
   children: ReactNode;
-  bannerImage: string;
+  bannerImage?: string;
+  bannerVideo?: string;
   title?: string;
   bannerDescription?: string;
   innerMenus?: { label: string; path: string }[];
 }
 
-const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus }: LayoutProps) => {
+const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, bannerVideo }: LayoutProps) => {
   return (
     <div>
-      <Banner image={bannerImage} title={title} description={bannerDescription} innerMenus={innerMenus} />
+      <Banner
+        image={bannerImage}
+        video={bannerVideo}
+        title={title}
+        description={bannerDescription}
+        innerMenus={innerMenus}
+      />
       <div className="px-24 py-32 lg:px-48">{children}</div>
       <Footer />
     </div>
