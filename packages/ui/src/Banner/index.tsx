@@ -1,4 +1,4 @@
-import { Header } from "..";
+import { Chip, Header } from "..";
 
 interface BannerProps {
   image?: string;
@@ -6,9 +6,19 @@ interface BannerProps {
   title?: string;
   description?: string;
   innerMenus?: { label: string; path: string }[];
+  pathname?: string;
+  onClickChip: (path: string) => void;
 }
 
-export const Banner = ({ description, image, title, innerMenus, video }: BannerProps) => {
+export const Banner = ({
+  description,
+  image,
+  title,
+  innerMenus,
+  video,
+  pathname,
+  onClickChip,
+}: BannerProps) => {
   return (
     <div className="ui-relative ui-h-[750px]">
       {image ? (
@@ -32,7 +42,17 @@ export const Banner = ({ description, image, title, innerMenus, video }: BannerP
         </div>
         {title && <hr className="ui-w-full" />}
         {/* FIXME: Chip 컴포넌트 만들어지면 적용 */}
-        {innerMenus?.map((menu) => <div key={menu.label}>{menu.label}</div>)}
+        <div className="flex gap-4">
+          {innerMenus?.map((menu) => (
+            <Chip
+              onClick={() => onClickChip(menu.path)}
+              selected={pathname === menu.path}
+              text={menu.label}
+              size="sm"
+              key={menu.label}
+            />
+          ))}
+        </div>
       </div>
       <Header />
     </div>
