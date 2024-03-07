@@ -7,34 +7,74 @@
 generator client {
   provider = "prisma-client-js"
   output = "../generated/client"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
 
+
+// TODO: .env 파일의 위치는 client 폴더에 위치
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
+// ✅ FIXME: 유저 임시 생성
+model User {
+  id          Int         @id    @default(autoincrement())
+  role        ROLE               @default(ADMIN)
+  name        String
+  phone       String?            @unique
+  email       String?            @unique
+  createdAt   DateTime           @default(now())
+  upadatedAt  DateTime           @updatedAt  
+  posts       Post[]
+  bulletins   Bulletin[]
+}
+
 // ✅ 작성글
 model Post {
-  id Int @id @default(autoincrement())
-  title String
-  content String
-  wrtier String // 유저 모델과 연결
-  userId Int
-  views Int @default(0)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  // 이미지, 동영상, 썸네일
+  id          Int         @id    @default(autoincrement())
+  title       String
+  content     String
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  views       Int                @default(0)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+  // FIXME: 이미지, 동영상, 썸네일
+
+  @@index([userId])
 }
 
 // ✅ 주보
 model Bulletin {
-  id Int @id @default(autoincrement())
-  date String
-  image String
-  writer String // 유저 모델과 연결
-  userId Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          Int         @id   @default(autoincrement())
+  date        String
+  source      String
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      Int
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@index([userId])
+}
+
+// ✅ 링크 (ex. 유튜브/비디오/이미지 등)
+model Link {
+  id          Int         @id   @default(autoincrement())
+  type        LINKTYPE
+  source      String
+  description String
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+}
+
+enum ROLE {
+  USER
+  ADMIN
+}
+enum LINKTYPE {
+  YOUTUBE
+  IMG
+  VIDEO
 }
