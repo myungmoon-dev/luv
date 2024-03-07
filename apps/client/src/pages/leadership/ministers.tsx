@@ -1,6 +1,7 @@
 import React from "react";
 
 import Layout from "@/components/layout";
+import { leadershipInnerMenus } from "@/constants/innerMenus/leadership";
 
 const LeadershipMinistersPage = () => {
   return (
@@ -8,12 +9,7 @@ const LeadershipMinistersPage = () => {
       title="교역자"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"
-      innerMenus={[
-        { label: "원로 목사", path: "/leadership/senior" },
-        { label: "담임 목사", path: "/leadership/lead" },
-        { label: "교역자", path: "/leadership/ministers" },
-        { label: "장로", path: "/leadership/elders" },
-      ]}
+      innerMenus={leadershipInnerMenus}
     >
       <div>LeadershipMinistersPage</div>
     </Layout>
