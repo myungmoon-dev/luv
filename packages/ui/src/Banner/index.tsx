@@ -7,13 +7,14 @@ interface BannerProps {
   description?: string;
   innerMenus?: { label: string; path: string }[];
   pathname?: string;
+  push: (url: string) => void;
   onClickChip: (path: string) => void;
 }
 
-export const Banner = ({ description, image, title, innerMenus, video, pathname, onClickChip }: BannerProps) => {
+export const Banner = ({ description, image, title, innerMenus, video, pathname, onClickChip, push }: BannerProps) => {
   return (
     <div className="ui-relative ui-h-[750px]">
-      <Header />
+      <Header push={push} />
       <div className="absolute ui-top-0">
         {image ? (
           <>

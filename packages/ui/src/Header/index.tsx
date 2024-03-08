@@ -4,8 +4,19 @@ import { useEffect, useState } from "react";
 import { Icon } from "..";
 import { cn } from "../utils/twMerge";
 
-export const Header = () => {
-  const menus = ["교회소개", "섬기는 분들", "설교말씀", "교회양육", "교육부서", "성도의 교제"];
+interface IHeaderProps {
+  push: (url: string) => void;
+}
+
+export const Header = ({ push }: IHeaderProps) => {
+  const menus: { label: string; path: string }[] = [
+    { label: "교회소개", path: "/about" },
+    { label: "섬기는 분들", path: "/leadership/elders/" },
+    { label: "설교말씀", path: "/sermons/sunday-3" },
+    { label: "교회양육", path: "/discipleship" },
+    { label: "교육부서", path: "/education/young-adults2" },
+    { label: "성도의 교제", path: "/fellowship/news" },
+  ];
 
   const [isScrolled, setScrolled] = useState(false);
 
@@ -36,8 +47,12 @@ export const Header = () => {
           <nav className="ui-flex ui-items-center ui-gap-5 lg:ui-gap-7">
             <div className="ui-flex ui-gap-3 lg:ui-gap-5">
               {menus.map((menu) => (
-                <button key={menu} className="ui-text-pink-200 ui-font-semibold text-sm">
-                  {menu}
+                <button
+                  onClick={() => push(menu.path)}
+                  key={menu.path}
+                  className="ui-text-pink-200 ui-font-semibold text-sm"
+                >
+                  {menu.label}
                 </button>
               ))}
             </div>
