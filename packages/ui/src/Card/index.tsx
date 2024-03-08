@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 
 interface ICardProps {
   className?: string;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Card = ({ children, className }: ICardProps) => {
