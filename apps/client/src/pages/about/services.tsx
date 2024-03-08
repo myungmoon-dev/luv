@@ -2,6 +2,7 @@ import React from "react";
 
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
+import NotPrepared from "@/components/layout/notPrepared";
 
 const AboutServicesPage = () => {
   return (
@@ -11,7 +12,7 @@ const AboutServicesPage = () => {
       bannerImage="/images/balance.jpg"
       innerMenus={aboutInnerMenus}
     >
-      <div>AboutServicesPage</div>
+      <NotPrepared />
     </Layout>
   );
 };
