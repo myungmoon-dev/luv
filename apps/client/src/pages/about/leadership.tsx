@@ -1,19 +1,18 @@
-import React from "react";
-
 import Layout from "@/components/layout";
+import React from "react";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 
-const VisionChapelPage = () => {
+const LeadershipPage = () => {
   return (
     <Layout
-      title="비전채플 예배당"
+      title="섬기는 분들"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"
       innerMenus={aboutInnerMenus}
     >
-      <div>VisionChapelPage</div>
+      <div>vision</div>
     </Layout>
   );
 };
 
-export default VisionChapelPage;
+export default LeadershipPage;

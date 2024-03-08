@@ -6,7 +6,7 @@ import { educationInnerMenus } from "@/constants/innerMenus/education";
 const EducationMiddlePage = () => {
   return (
     <Layout
-      title="중드부"
+      title="중등부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"
       innerMenus={educationInnerMenus}

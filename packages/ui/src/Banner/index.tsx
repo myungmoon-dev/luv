@@ -15,7 +15,7 @@ export const Banner = ({ description, image, title, innerMenus, video, pathname,
   return (
     <div className="ui-relative ui-h-[750px]">
       <Header push={push} />
-      <div className="absolute ui-top-0">
+      <div className="absolute ui-w-full ui-top-0">
         {image ? (
           <>
             <img src={image} className="ui-h-[750px] ui-w-full ui-object-cover" />
