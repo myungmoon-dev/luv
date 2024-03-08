@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { aboutInnerMenus } from "@/constants/innerMenus/About";
+import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import React from "react";
 
 const AboutIndexPage = () => {
