@@ -11,11 +11,10 @@ interface IHeaderProps {
 export const Header = ({ push }: IHeaderProps) => {
   const menus: { label: string; path: string }[] = [
     { label: "교회소개", path: "/about" },
-    { label: "섬기는 분들", path: "/leadership/elders/" },
-    { label: "설교말씀", path: "/sermons/sunday-3" },
+    { label: "설교•찬양", path: "/sermons/sunday-3" },
+    { label: "다음세대", path: "/education/youth-adults2" },
+    { label: "주보•소식", path: "/news/bulletins" },
     { label: "교회양육", path: "/discipleship" },
-    { label: "교육부서", path: "/education/young-adults2" },
-    { label: "성도의 교제", path: "/fellowship/news" },
   ];
 
   const [isScrolled, setScrolled] = useState(false);
