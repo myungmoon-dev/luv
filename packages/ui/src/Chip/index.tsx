@@ -1,19 +1,19 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "../utils/twMerge";
+import { HTMLAttributes } from "react";
 
 export const ChipVariants = cva(
   `
-  ui-flex-shrink-0 ui-text-center ui-font-semibold ui-rounded-[2.2rem]
+  ui-flex-shrink-0 ui-text-center ui-font-semibold ui-rounded-[2.2rem] ui-cursor-pointer
   `,
   {
     variants: {
       color: {
-        default: "ui-bg-[#dfc7c7] ui-text-white",
-        red: "ui-bg-white ui-text-[#892122]",
+        pink: "",
       },
       selected: {
-        select: "",
-        unselect: "",
+        true: "",
+        false: "",
       },
       // FIXME: sm,lg,xl 임시 값
       size: {
@@ -24,23 +24,32 @@ export const ChipVariants = cva(
       },
     },
     defaultVariants: {
-      color: "default",
+      color: "pink",
       size: "md",
-      selected: "unselect",
+      selected: false,
     },
     compoundVariants: [
       {
-        color: "red",
-        selected: "select",
-        className: "ui-bg-[#892122] ui-text-white",
+        color: "pink",
+        selected: true,
+        className: "ui-bg-[#dfc7c7] ui-text-white",
+      },
+      {
+        color: "pink",
+        selected: false,
+        className: "ui-bg-white ui-text-[#892122]",
       },
     ],
   }
 );
 
-interface ChipProps extends VariantProps<typeof ChipVariants> {
+interface ChipProps extends VariantProps<typeof ChipVariants>, Omit<HTMLAttributes<HTMLDivElement>, "color"> {
   text: string;
 }
-export const Chip = ({ color, size, text, selected }: ChipProps) => {
-  return <div className={cn(ChipVariants({ color, size, selected }))}>{text}</div>;
+export const Chip = ({ color, size, text, selected, className, ...props }: ChipProps) => {
+  return (
+    <div className={cn(ChipVariants({ color, size, selected }), className)} {...props}>
+      {text}
+    </div>
+  );
 };
