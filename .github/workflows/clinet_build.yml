@@ -20,10 +20,5 @@ jobs:
           npm install -g pnpm
           pnpm install
 
-      - name: Generate prisma database
-        run: |
-          cd packages/database
-          pnpm run db:gen
-
       - name: Build
         run: pnpm build:client
