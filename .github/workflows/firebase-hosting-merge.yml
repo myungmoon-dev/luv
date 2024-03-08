@@ -14,7 +14,7 @@ jobs:
       - run: |
           npm install -g pnpm
           pnpm install
-          pnpm build
+          pnpm build:client
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
