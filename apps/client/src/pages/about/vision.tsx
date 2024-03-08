@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
 import React from "react";
-import { aboutInnerMenus } from "@/constants/innerMenus/About";
+import { aboutInnerMenus } from "@/constants/innerMenus/about";
 
 const AboutVisionPage = () => {
   return (

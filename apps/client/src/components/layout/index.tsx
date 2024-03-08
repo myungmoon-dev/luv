@@ -25,6 +25,7 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, b
         innerMenus={innerMenus}
         pathname={asPath}
         onClickChip={push}
+        push={push}
       />
       <div className="px-24 py-32 lg:px-48">{children}</div>
       <Footer />

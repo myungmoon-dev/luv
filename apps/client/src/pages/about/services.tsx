@@ -1,7 +1,7 @@
 import React from "react";
 
 import Layout from "@/components/layout";
-import { aboutInnerMenus } from "@/constants/innerMenus/About";
+import { aboutInnerMenus } from "@/constants/innerMenus/about";
 
 const AboutServicesPage = () => {
   return (
