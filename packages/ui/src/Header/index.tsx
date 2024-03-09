@@ -34,7 +34,12 @@ export const Header = ({ push }: IHeaderProps) => {
   }, []);
 
   return (
-    <header className={cn("ui-z-10 ui-sticky -ui-top-8 ui-pt-8", isScrolled ? "ui-px-0" : "ui-px-10")}>
+    <header
+      className={cn(
+        "ui-z-10",
+        isScrolled ? "ui-sticky ui-top-0 ui-px-0" : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-10"
+      )}
+    >
       <div
         className={cn(
           "ui-h-[60px] ui-bg-white ui-w-full ui-shadow-lg",
