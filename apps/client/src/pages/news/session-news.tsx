@@ -1,4 +1,5 @@
 import Layout from "@/components/layout";
+import NotPrepared from "@/components/layout/notPrepared";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
 import React from "react";
 
@@ -10,7 +11,7 @@ const SessionNewsPage = () => {
       bannerImage="/images/balance.jpg"
       innerMenus={newsInnerMenus}
     >
-      <div>SessionNewsPage</div>
+      <NotPrepared />
     </Layout>
   );
 };

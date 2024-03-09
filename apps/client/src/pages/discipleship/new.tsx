@@ -2,6 +2,7 @@ import React from "react";
 
 import Layout from "@/components/layout";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
+import NotPrepared from "@/components/layout/notPrepared";
 
 const DiscipleshipNewPage = () => {
   return (
@@ -11,7 +12,7 @@ const DiscipleshipNewPage = () => {
       bannerImage="/images/balance.jpg"
       innerMenus={discipleshipInnerMenus}
     >
-      <div>DiscipleshipNewPage</div>
+      <NotPrepared />
     </Layout>
   );
 };
