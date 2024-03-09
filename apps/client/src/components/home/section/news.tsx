@@ -14,7 +14,7 @@ const MOCK_WEEKLY_NEWS = [
 const NewsSection = () => {
   return (
     <Section title="교회 소식">
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
           {MOCK_WEEKLY_NEWS.map((news, idx) => (
             <div className="mt-4 flex flex-col gap-1" key={news.date}>
@@ -28,14 +28,13 @@ const NewsSection = () => {
                   N
                 </span>
                 <p>{news.title}</p>
-                <p className="text-gray-300">{news.date}</p>
-                <p>관리자</p>
+                <p className="text-sm text-gray-400">{news.date}</p>
               </div>
               <hr className="border-t-2 border-gray-100" />
             </div>
           ))}
         </div>
-        <Card className="flex items-center justify-center bg-gray-100">주보 미리보기</Card>
+        <Card className="flex h-[300px] items-center justify-center bg-gray-100 sm:h-auto">주보 미리보기</Card>
       </div>
     </Section>
   );

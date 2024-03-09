@@ -11,7 +11,16 @@ interface BannerProps {
   onClickChip: (path: string) => void;
 }
 
-export const Banner = ({ description, image, title, innerMenus, video, pathname, onClickChip, push }: BannerProps) => {
+export const Banner = ({
+  description,
+  image,
+  title,
+  innerMenus,
+  video,
+  pathname,
+  onClickChip,
+  push,
+}: BannerProps) => {
   return (
     <div className="ui-w-full ui-relative">
       {image ? (
@@ -25,7 +34,7 @@ export const Banner = ({ description, image, title, innerMenus, video, pathname,
           autoPlay={true}
           muted={true}
           loop={true}
-          className="ui-w-full ui-h-[750px] ui-object-cover"
+          className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
       )}
       <div className="ui-absolute ui-flex ui-flex-col ui-gap-5 ui-items-center ui-px-24 ui-w-full ui-bottom-[100px] ui-left-1/2 -ui-translate-x-1/2 ui-text-white">

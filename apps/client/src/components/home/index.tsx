@@ -7,7 +7,7 @@ import NewsSection from "./section/news";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-y-10">
       <WordsSection />
       <NewsSection />
       <AlbumSection />

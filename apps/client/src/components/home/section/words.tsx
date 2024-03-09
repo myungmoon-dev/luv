@@ -6,11 +6,11 @@ import Section from ".";
 const WordsSection = () => {
   return (
     <Section title="생명의 말씀">
-      <div className="flex gap-5">
-        <Card className="relative h-[300px] w-[70%] lg:h-[450px]">
+      <div className="flex flex-col gap-5 sm:flex-row">
+        <Card className="relative h-[300px] w-[100%] sm:w-[70%] lg:h-[450px]">
           <Image src="/images/some.jpg" alt="some" fill className="rounded-lg object-cover" />
         </Card>
-        <Card className="relative h-[300px] w-[30%] lg:h-[450px]">
+        <Card className="relative h-[300px] w-[100%] sm:w-[30%] lg:h-[450px]">
           <Image src="/images/some.jpg" alt="some" fill className="rounded-lg object-cover" />
         </Card>
       </div>
