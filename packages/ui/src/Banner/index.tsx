@@ -44,7 +44,7 @@ export const Banner = ({
         </div>
         {title && <hr className="ui-w-full" />}
         {/* FIXME: Chip 컴포넌트 만들어지면 적용 */}
-        <div className="flex gap-4">
+        <div className="ui-place-items-center ui-grid ui-grid-cols-1 sm:ui-grid-cols-3 lg:ui-grid-cols-6 ui-gap-4 ui-place-content-center">
           {innerMenus?.map((menu) => (
             <Chip
               onClick={() => onClickChip(menu.path)}
