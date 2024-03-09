@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
 
-import { Banner, Footer } from "ui";
+import { Banner, Footer, Header } from "ui";
 
 interface LayoutProps {
   children: ReactNode;
@@ -16,7 +16,8 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, b
   const { asPath, push } = useRouter();
 
   return (
-    <div>
+    <main className="relative">
+      <Header push={push} />
       <Banner
         image={bannerImage}
         video={bannerVideo}
@@ -29,7 +30,7 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, b
       />
       <div className="px-24 py-32 lg:px-48">{children}</div>
       <Footer />
-    </div>
+    </main>
   );
 };
 
