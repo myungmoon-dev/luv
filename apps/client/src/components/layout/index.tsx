@@ -27,7 +27,7 @@ const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, b
         onClickChip={push}
         push={push}
       />
-      <div className="px-24 py-32 lg:px-48">{children}</div>
+      <div className="px-4 sm:px-24 sm:py-32 lg:px-48">{children}</div>
       <Footer />
     </div>
   );
