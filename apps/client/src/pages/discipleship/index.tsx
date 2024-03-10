@@ -7,6 +7,7 @@ import NotPrepared from "@/components/layout/notPrepared";
 const DiscipleshipIndexPage = () => {
   return (
     <Layout
+      pageTitle="전체 안내"
       title="전체 안내"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"

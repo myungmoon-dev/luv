@@ -7,6 +7,7 @@ import NotPrepared from "@/components/layout/notPrepared";
 const EducationYoungAdults2Page = () => {
   return (
     <Layout
+      pageTitle="2청년"
       title="2청년"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"

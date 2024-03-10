@@ -7,6 +7,7 @@ import NotPrepared from "@/components/layout/notPrepared";
 const EducationHighPage = () => {
   return (
     <Layout
+      pageTitle="고등부"
       title="고등부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"
