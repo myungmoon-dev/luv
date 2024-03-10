@@ -5,6 +5,7 @@ import React from "react";
 const AboutIndexPage = () => {
   return (
     <Layout
+      pageTitle="교회소개"
       title="교회소개"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"

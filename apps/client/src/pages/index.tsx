@@ -3,7 +3,7 @@ import Layout from "@/components/layout";
 
 export default function Home() {
   return (
-    <Layout bannerVideo="/videos/banner.mp4">
+    <Layout pageTitle="메인" bannerVideo="/videos/banner.mp4">
       <HomePage />
     </Layout>
   );

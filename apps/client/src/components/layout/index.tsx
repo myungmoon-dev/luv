@@ -11,19 +11,28 @@ interface LayoutProps {
   title?: string;
   bannerDescription?: string;
   innerMenus?: { label: string; path: string }[];
+  pageTitle: string;
 }
 
-const Layout = ({ children, bannerDescription, bannerImage, title, innerMenus, bannerVideo }: LayoutProps) => {
+const Layout = ({
+  children,
+  bannerDescription,
+  bannerImage,
+  title,
+  pageTitle,
+  innerMenus,
+  bannerVideo,
+}: LayoutProps) => {
   const { asPath, push } = useRouter();
 
   return (
     <>
       <Head>
-        <title>{`${title} | 명문교회`}</title>
-        <meta name="title" content={`${title} | 명문교회`} />
+        <title>{`${pageTitle} | 명문교회`}</title>
+        <meta name="title" content={`${pageTitle} | 명문교회`} />
         <meta name="keywords" content="명문교회, 대한예수교장로회 합동, 김지혁 목사, 이덕진 목사" />
         <meta name="description" content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!" />
-        <meta property="og:title" content={`${title} | BDACS`} />
+        <meta property="og:title" content={`${pageTitle} | BDACS`} />
         <meta property="og:url" content="https://myungmoon.or.kr/" />
         <meta property="og:description" content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!" />
         <meta property="og:image" content="https://myungmoon.or.kr/images/Logo.png" />
