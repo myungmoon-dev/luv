@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "ui";
 import Section from ".";
-import YoutubeVideo from "@/components/youtube-video";
+import YoutubeVideo from "@/components/youtubeVideo";
 
 const WordsSection = () => {
   return (
