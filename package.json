@@ -7,7 +7,7 @@
     "build:admin": "turbo run build --filter=admin",
     "dev": "turbo dev",
     "dev:client": "dotenv -- turbo run dev --filter=client",
-    "dev:admin": "turbo run dev --filter=admin",
+    "dev:admin": "dotenv -- turbo run dev --filter=admin",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
