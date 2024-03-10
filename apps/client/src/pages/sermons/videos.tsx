@@ -7,6 +7,7 @@ import NotPrepared from "@/components/layout/notPrepared";
 const VideosPage = () => {
   return (
     <Layout
+      pageTitle="명문영상"
       title="명문영상"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"

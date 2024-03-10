@@ -17,6 +17,7 @@ const fetcher = ({ method, url }: IFetcher) =>
     },
   }).then((res) => res.json());
 
+
 const WordsSection = () => {
   const [livelink, setLivelink] = useState("");
 

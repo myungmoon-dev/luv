@@ -1,7 +1,7 @@
 import { throttle } from "lodash";
 
 import { useEffect, useState } from "react";
-import { Icon } from "..";
+import { Drawer, Icon } from "..";
 import { cn } from "../utils/twMerge";
 
 interface IHeaderProps {
@@ -18,6 +18,7 @@ export const Header = ({ push }: IHeaderProps) => {
   ];
 
   const [isScrolled, setScrolled] = useState(false);
+  const [isOpenDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
     const updateScroll = throttle(() => {
@@ -75,7 +76,31 @@ export const Header = ({ push }: IHeaderProps) => {
                 </button>
               ))}
             </div>
-            <Icon name="Hamburger" size="md" strokeColor="#892122" />
+            <Icon
+              name="Hamburger"
+              cursor="ui-cursor-pointer"
+              size="md"
+              strokeColor="#892122"
+              onClick={() => setOpenDrawer(true)}
+            />
+            <Drawer
+              open={isOpenDrawer}
+              onClose={() => setOpenDrawer(false)}
+              className="ui-flex ui-flex-col ui-justify-between ui-items-center ui-px-2 ui-pt-10 ui-pb-5"
+            >
+              <div className="ui-flex ui-flex-col ui-gap-2 ui-w-full">
+                {menus.map((menu) => (
+                  <button
+                    className="hover:ui-text-pink-200 ui-text-black ui-w-full ui-text-end ui-text-xl"
+                    onClick={() => push(menu.path)}
+                    key={menu.path}
+                  >
+                    {menu.label}
+                  </button>
+                ))}
+              </div>
+              <img src="/images/Logo.png" alt="myungmoon" width={100} height={50} />
+            </Drawer>
           </nav>
         </div>
       </div>

@@ -7,6 +7,7 @@ import NotPrepared from "@/components/layout/notPrepared";
 const DiscipleshipNewlywedsPage = () => {
   return (
     <Layout
+      pageTitle="신혼가정"
       title="신혼가정"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/balance.jpg"
