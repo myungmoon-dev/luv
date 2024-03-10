@@ -11,7 +11,16 @@ interface BannerProps {
   onClickChip: (path: string) => void;
 }
 
-export const Banner = ({ description, image, title, innerMenus, video, pathname, onClickChip, push }: BannerProps) => {
+export const Banner = ({
+  description,
+  image,
+  title,
+  innerMenus,
+  video,
+  pathname,
+  onClickChip,
+  push,
+}: BannerProps) => {
   return (
     <div className="ui-w-full ui-relative">
       {image ? (
@@ -25,7 +34,7 @@ export const Banner = ({ description, image, title, innerMenus, video, pathname,
           autoPlay={true}
           muted={true}
           loop={true}
-          className="ui-w-full ui-h-[750px] ui-object-cover"
+          className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
       )}
       <div className="ui-absolute ui-flex ui-flex-col ui-gap-5 ui-items-center ui-px-24 ui-w-full ui-bottom-[100px] ui-left-1/2 -ui-translate-x-1/2 ui-text-white">
@@ -35,7 +44,7 @@ export const Banner = ({ description, image, title, innerMenus, video, pathname,
         </div>
         {title && <hr className="ui-w-full" />}
         {/* FIXME: Chip 컴포넌트 만들어지면 적용 */}
-        <div className="flex gap-4">
+        <div className="ui-place-items-center ui-grid ui-grid-cols-1 sm:ui-grid-cols-3 lg:ui-grid-cols-6 ui-gap-4 ui-place-content-center">
           {innerMenus?.map((menu) => (
             <Chip
               onClick={() => onClickChip(menu.path)}

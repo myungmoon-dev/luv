@@ -7,9 +7,9 @@ import Section from ".";
 const AlbumSection = () => {
   return (
     <Section title="명문 앨범">
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-3">
         <div className="flex flex-col items-center gap-4">
-          <p>주일 스케치</p>
+          <p className="font-bold">주일 스케치</p>
           <Card className="relative h-[180px] w-full lg:h-[235px]">
             <Image src="/images/sketch_1.jpg" alt="sketch_1" fill className="rounded-lg object-cover" />
           </Card>
@@ -18,7 +18,7 @@ const AlbumSection = () => {
           </Card>
         </div>
         <div className="flex flex-col items-center gap-4">
-          <p>다음 세대</p>
+          <p className="font-bold">다음 세대</p>
           <Card className="relative h-[180px] w-full lg:h-[235px]">
             <Image src="/images/sketch_3.jpg" alt="sketch_3" fill className="rounded-lg object-cover" />
           </Card>

@@ -17,7 +17,8 @@ export const ChipVariants = cva(
       },
       // FIXME: sm,lg,xl 임시 값
       size: {
-        sm: "ui-p-[0.6rem] ui-px-7 ui-text-lg",
+        xs: "ui-p-[0.5rem] ui-px-5 ui-text-md",
+        sm: "ui-p-[0.6rem] ui-px-5 ui-text-lg",
         md: "ui-p-[0.6rem] ui-px-7 ui-text-2xl",
         lg: "ui-p-[0.8rem] ui-px-10 ui-text-4xl",
         xl: "ui-p-[0.9rem] ui-px-11 ui-text-5xl",
@@ -43,12 +44,24 @@ export const ChipVariants = cva(
   }
 );
 
-interface ChipProps extends VariantProps<typeof ChipVariants>, Omit<HTMLAttributes<HTMLDivElement>, "color"> {
+interface ChipProps
+  extends VariantProps<typeof ChipVariants>,
+    Omit<HTMLAttributes<HTMLDivElement>, "color"> {
   text: string;
 }
-export const Chip = ({ color, size, text, selected, className, ...props }: ChipProps) => {
+export const Chip = ({
+  color,
+  size,
+  text,
+  selected,
+  className,
+  ...props
+}: ChipProps) => {
   return (
-    <div className={cn(ChipVariants({ color, size, selected }), className)} {...props}>
+    <div
+      className={cn(ChipVariants({ color, size, selected }), className)}
+      {...props}
+    >
       {text}
     </div>
   );
