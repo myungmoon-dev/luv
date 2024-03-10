@@ -1,7 +1,7 @@
 import { throttle } from "lodash";
 
 import { useEffect, useState } from "react";
-import { Icon } from "..";
+import { Drawer, Icon } from "..";
 import { cn } from "../utils/twMerge";
 
 interface IHeaderProps {
@@ -18,6 +18,7 @@ export const Header = ({ push }: IHeaderProps) => {
   ];
 
   const [isScrolled, setScrolled] = useState(false);
+  const [isOpenDrawer, setOpenDrawer] = useState(false);
 
   useEffect(() => {
     const updateScroll = throttle(() => {
@@ -37,24 +38,16 @@ export const Header = ({ push }: IHeaderProps) => {
     <header
       className={cn(
         "ui-z-10",
-        isScrolled
-          ? "ui-sticky ui-top-0 ui-px-0"
-          : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
+        isScrolled ? "ui-sticky ui-top-0 ui-px-0" : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
       )}
     >
       <div
         className={cn(
           "ui-h-[60px] ui-bg-white ui-w-full ui-shadow-lg",
-          isScrolled
-            ? "ui-px-8 md:ui-px-20"
-            : "ui-px-8 md:ui-px-10 ui-rounded-full"
+          isScrolled ? "ui-px-8 md:ui-px-20" : "ui-px-8 md:ui-px-10 ui-rounded-full"
         )}
       >
-        <div
-          className={cn(
-            "ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full"
-          )}
-        >
+        <div className={cn("ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full")}>
           <img
             onClick={() => push("/")}
             src="/images/Logo.png"
@@ -75,7 +68,31 @@ export const Header = ({ push }: IHeaderProps) => {
                 </button>
               ))}
             </div>
-            <Icon name="Hamburger" size="md" strokeColor="#892122" />
+            <Icon
+              name="Hamburger"
+              cursor="ui-cursor-pointer"
+              size="md"
+              strokeColor="#892122"
+              onClick={() => setOpenDrawer(true)}
+            />
+            <Drawer
+              open={isOpenDrawer}
+              onClose={() => setOpenDrawer(false)}
+              className="ui-flex ui-flex-col ui-justify-between ui-items-center ui-px-2 ui-pt-10 ui-pb-5"
+            >
+              <div className="ui-flex ui-flex-col ui-gap-2 ui-w-full">
+                {menus.map((menu) => (
+                  <button
+                    className="hover:ui-text-pink-200 ui-text-black ui-w-full ui-text-end ui-text-xl"
+                    onClick={() => push(menu.path)}
+                    key={menu.path}
+                  >
+                    {menu.label}
+                  </button>
+                ))}
+              </div>
+              <img src="/images/Logo.png" alt="myungmoon" width={100} height={50} />
+            </Drawer>
           </nav>
         </div>
       </div>
