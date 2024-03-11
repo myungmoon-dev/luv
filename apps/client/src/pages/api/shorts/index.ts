@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { getLiveLink, createLiveLink } from "firebase";
+import { getShorts, createShorts } from "firebase";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, body } = req;
@@ -7,14 +7,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (method) {
     case "GET":
-      const snapshot = await getLiveLink();
-      const livelink = snapshot.docs.map((doc) => doc.data().videoId);
+      const snapshot = await getShorts();
+      const shorts = snapshot.docs.map((doc) => doc.data().videoId);
 
       return res.status(200).json({
-        livelink,
+        shorts,
       });
     case "POST":
-      await createLiveLink({ videoId });
+      await createShorts({ videoId });
       return res.status(200).json({
         success: true,
       });
