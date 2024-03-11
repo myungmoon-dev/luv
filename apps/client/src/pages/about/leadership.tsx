@@ -10,7 +10,7 @@ const LeadershipPage = () => {
       pageTitle="섬기는 분들"
       title="섬기는 분들"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/balance.jpg"
+      bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
       <div className="flex flex-col gap-20">
@@ -18,7 +18,8 @@ const LeadershipPage = () => {
           <h3 className="text-3xl font-bold">원로목사</h3>
           <div className="flex flex-col gap-2">
             <Profile
-              description="명문교회 개척, 서울강남노회 증경노회장, GMS 명예선교사, 꿈을주는세계선교회 대표"
+              // FIXME: 명문교회 개척, 서울강남노회 증경노회장, GMS 명예선교사, 꿈을주는세계선교회 대표
+              description=""
               image="/images/leader/deok-jin.jpeg"
               name="이덕진"
             />
@@ -28,7 +29,8 @@ const LeadershipPage = () => {
           <h3 className="text-3xl font-bold">담임목사</h3>
           <div className="flex flex-col gap-2">
             <Profile
-              description="담임, 2청년부, 임직 - 2022년 12월"
+              // FIXME: 담임, 2청년부, 임직 - 2022년 12월
+              description=""
               image="/images/leader/ji-hyuk.jpeg"
               name="김지혁"
             />

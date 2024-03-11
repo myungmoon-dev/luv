@@ -8,7 +8,7 @@ const AboutIndexPage = () => {
       pageTitle="교회소개"
       title="교회소개"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/balance.jpg"
+      bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
       <div className="flex flex-col gap-5">
