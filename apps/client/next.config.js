@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [{ protocol: "https", hostname: "www.myungmoon.or.kr" }],
   },
   reactStrictMode: true,
-  transpilePackages: ["ui"],
+  transpilePackages: ["ui", "firebase"],
 };
 
 module.exports = nextConfig;
