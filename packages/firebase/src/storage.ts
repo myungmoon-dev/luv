@@ -1,5 +1,3 @@
-// Storage - FireStorage
-
 import { firebase } from "../firebase";
 import { getStorage } from "firebase/storage";
 

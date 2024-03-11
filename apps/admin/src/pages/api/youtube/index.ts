@@ -10,11 +10,11 @@ export default async function handler(
 
   switch (method) {
     case "GET":
-      const result = await getLiveLink();
-      const videoSrc = result.docs.map((doc) => doc.data().videoId);
+      const snapshot = await getLiveLink();
+      const livelink = snapshot.docs.map((doc) => doc.data().videoId);
 
       return res.status(200).json({
-        livelink: videoSrc,
+        livelink,
       });
     case "POST":
       await createLiveLink({ videoId });

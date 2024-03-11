@@ -5,26 +5,24 @@ import YoutubeVideo from "@/components/youtubeVideo";
 
 interface IFetcher {
   url: string;
-
   method: string;
 }
 
 const fetcher = ({ method, url }: IFetcher) =>
   fetch(url, {
-    method: method,
+    method,
     headers: {
       "Content-Type": "application/json",
     },
   }).then((res) => res.json());
-
 
 const WordsSection = () => {
   const [livelink, setLivelink] = useState("");
 
   const fetchLivelink = async () => {
     try {
-      const result = await fetcher({ url: "/api/youtube", method: "GET" });
-      setLivelink(result.livelink);
+      const fromDB = await fetcher({ url: "/api/youtube", method: "GET" });
+      setLivelink(fromDB.livelink);
 
       console.log(livelink);
     } catch (error) {

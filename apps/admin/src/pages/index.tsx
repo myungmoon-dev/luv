@@ -12,7 +12,7 @@ interface IFetcher {
 
 const fetcher = ({ method, url, data }: IFetcher) =>
   fetch(url, {
-    method: method,
+    method,
     headers: {
       "Content-Type": "application/json",
     },
