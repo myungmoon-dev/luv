@@ -7,19 +7,19 @@ import axios from "axios";
 const WordsSection = () => {
   const [livelink, setLivelink] = useState("");
 
-  const fetchLivelink = async () => {
-    try {
-      const {
-        data: { livelink },
-      } = await axios.get("api/youtube");
-      setLivelink(livelink[0]);
-    } catch (error) {
-      // FIXME: Handle errors here
-    }
+  const getLivelink = async () => {
+    await axios
+      .get("api/youtube")
+      .then(({ data: { livelink } }) => {
+        setLivelink(livelink[0]);
+      })
+      .catch((e) => {
+        // FIXME: Handle errors here
+      });
   };
 
   useEffect(() => {
-    fetchLivelink();
+    getLivelink();
   }, []);
   return (
     <Section title="생명의 말씀">
