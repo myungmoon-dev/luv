@@ -11,34 +11,35 @@ const KakaoMap = ({ address }: KakaoMapProp) => {
   const kakaoMapRef = useRef<HTMLInputElement>(null);
 
   const onLoadKakaoMap = () => {
-    const kakaoMapObject = window.kakao.maps;
+    const kakaoMapObject = window.kakao?.maps;
 
-    kakaoMapObject.load(async () => {
-      const options = {
-        center: new kakaoMapObject.LatLng(33.450701, 126.570667),
-        level: 4,
-      };
+    kakaoMapObject &&
+      kakaoMapObject.load(async () => {
+        const options = {
+          center: new kakaoMapObject.LatLng(33.450701, 126.570667),
+          level: 4,
+        };
 
-      const map = new kakaoMapObject.Map(kakaoMapRef.current, options);
-      const geocoder = new kakaoMapObject.services.Geocoder();
-      /* FIXME: 마커 커스텀이미지 
+        const map = new kakaoMapObject.Map(kakaoMapRef.current, options);
+        const geocoder = new kakaoMapObject.services.Geocoder();
+        /* FIXME: 마커 커스텀이미지 
       const markerSize = new kakaoMapObject.Size(28, 28);
       const markerImage = new kakaoMapObject.MarkerImage("/icons/location/marker.svg", markerSize);
       */
 
-      geocoder.addressSearch(address, (result: any, status: any) => {
-        if (status === kakaoMapObject.services.Status.OK) {
-          const coords = new kakaoMapObject.LatLng(result[0].y, result[0].x);
-          const marker = new kakaoMapObject.Marker({
-            map: map,
-            position: coords,
-            // FIXME: image: markerImage,
-          });
-          map.setCenter(coords);
-          marker.setMap(map);
-        }
+        geocoder.addressSearch(address, (result: any, status: any) => {
+          if (status === kakaoMapObject.services.Status.OK) {
+            const coords = new kakaoMapObject.LatLng(result[0].y, result[0].x);
+            const marker = new kakaoMapObject.Marker({
+              map: map,
+              position: coords,
+              // FIXME: image: markerImage,
+            });
+            map.setCenter(coords);
+            marker.setMap(map);
+          }
+        });
       });
-    });
   };
 
   useEffect(() => {
