@@ -44,9 +44,7 @@ export const Banner = ({
           </h1>
           <p className="ui-font-thin">{description}</p>
         </div>
-        {title && (
-          <hr className="ui-w-full [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]" />
-        )}
+        {title && <hr className="ui-w-full" />}
         <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center">
           {innerMenus?.map((menu) => (
             <Chip
