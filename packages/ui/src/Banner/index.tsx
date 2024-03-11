@@ -11,7 +11,16 @@ interface BannerProps {
   onClickChip: (path: string) => void;
 }
 
-export const Banner = ({ description, image, title, innerMenus, video, pathname, onClickChip, push }: BannerProps) => {
+export const Banner = ({
+  description,
+  image,
+  title,
+  innerMenus,
+  video,
+  pathname,
+  onClickChip,
+  push,
+}: BannerProps) => {
   return (
     <div className="ui-w-full ui-relative">
       {image ? (
@@ -30,10 +39,14 @@ export const Banner = ({ description, image, title, innerMenus, video, pathname,
       )}
       <div className="ui-absolute ui-flex ui-flex-col ui-gap-5 ui-items-center ui-px-8 md:ui-px-16 xl:ui-px-24 ui-w-full ui-bottom-[100px] ui-left-1/2 -ui-translate-x-1/2 ui-text-white">
         <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center">
-          <h1 className="ui-text-2xl ui-font-bold">{title}</h1>
+          <h1 className="ui-text-2xl ui-font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">
+            {title}
+          </h1>
           <p className="ui-font-thin">{description}</p>
         </div>
-        {title && <hr className="ui-w-full" />}
+        {title && (
+          <hr className="ui-w-full [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]" />
+        )}
         <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center">
           {innerMenus?.map((menu) => (
             <Chip

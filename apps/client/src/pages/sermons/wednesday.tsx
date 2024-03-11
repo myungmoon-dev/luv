@@ -10,7 +10,7 @@ const SermonsWednesdayPage = () => {
       pageTitle="수요 예배"
       title="수요 예배"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/balance.jpg"
+      bannerImage="/images/sermons.jpeg"
       innerMenus={sermonsInnerMenus}
     >
       <NotPrepared />
