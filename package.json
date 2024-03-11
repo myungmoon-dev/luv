@@ -1,5 +1,5 @@
 {
-  "name": "luv1",
+  "name": "luv",
   "private": true,
   "scripts": {
     "build": "turbo build",
