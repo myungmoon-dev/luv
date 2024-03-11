@@ -38,16 +38,24 @@ export const Header = ({ push }: IHeaderProps) => {
     <header
       className={cn(
         "ui-z-10",
-        isScrolled ? "ui-sticky ui-top-0 ui-px-0" : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
+        isScrolled
+          ? "ui-sticky ui-top-0 ui-px-0"
+          : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
       )}
     >
       <div
         className={cn(
           "ui-h-[60px] ui-bg-white ui-w-full ui-shadow-lg",
-          isScrolled ? "ui-px-8 md:ui-px-20" : "ui-px-8 md:ui-px-10 ui-rounded-full"
+          isScrolled
+            ? "ui-px-8 md:ui-px-20"
+            : "ui-px-8 md:ui-px-10 ui-rounded-full"
         )}
       >
-        <div className={cn("ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full")}>
+        <div
+          className={cn(
+            "ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full"
+          )}
+        >
           <img
             onClick={() => push("/")}
             src="/images/Logo.png"

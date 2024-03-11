@@ -1,7 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Section from ".";
-import { Card, Chip } from "ui";
-import Image from "next/image";
+import { Chip } from "ui";
 import KakaoMap from "../../kakaomap";
 
 const MapSection = () => {
