@@ -2,29 +2,17 @@ import React, { useEffect, useState } from "react";
 import { Card } from "ui";
 import Section from ".";
 import YoutubeVideo from "@/components/youtubeVideo";
-
-interface IFetcher {
-  url: string;
-  method: string;
-}
-
-const fetcher = ({ method, url }: IFetcher) =>
-  fetch(url, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-  }).then((res) => res.json());
+import axios from "axios";
 
 const WordsSection = () => {
   const [livelink, setLivelink] = useState("");
 
   const fetchLivelink = async () => {
     try {
-      const fromDB = await fetcher({ url: "/api/youtube", method: "GET" });
-      setLivelink(fromDB.livelink);
-
-      console.log(livelink);
+      const {
+        data: { livelink },
+      } = await axios.get("api/youtube");
+      setLivelink(livelink[0]);
     } catch (error) {
       // FIXME: Handle errors here
     }

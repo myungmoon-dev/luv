@@ -1,52 +1,35 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 interface IUrlForm {
   url: string;
 }
-interface IFetcher {
-  url: string;
-  data?: any;
-  method: string;
-}
-
-const fetcher = ({ method, url, data }: IFetcher) =>
-  fetch(url, {
-    method,
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  }).then((res) => res.json());
 
 export default function Home() {
   const { handleSubmit, register } = useForm<IUrlForm>();
   const [livelink, setLivelink] = useState("");
 
-  const fetchLivelink = async () => {
+  const getLiveLink = async () => {
     try {
-      const result = await fetcher({ url: "/api/youtube", method: "GET" });
-      setLivelink(result.livelink);
+      const {
+        data: { livelink },
+      } = await axios.get("api/youtube");
+      setLivelink(livelink[0]);
     } catch (error) {
       // FIXME: Handle errors here
     }
   };
 
   useEffect(() => {
-    fetchLivelink();
+    getLiveLink();
   }, []);
 
   const onSubmit = async ({ url }: IUrlForm) => {
     if (!confirm(`변경주소: ${url}`)) return;
     try {
       // API로 데이터 전송
-      await fetcher({
-        url: "/api/youtube",
-        method: "POST",
-        data: {
-          url,
-        },
-      });
+      await axios.post("api/youtube", { url });
       // 응답 처리
       alert("변경 되었습니다.");
     } catch (error) {

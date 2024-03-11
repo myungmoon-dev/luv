@@ -54,6 +54,9 @@ importers:
       autoprefixer:
         specifier: ^10.0.1
         version: 10.4.16(postcss@8.4.31)
+      axios:
+        specifier: ^1.6.7
+        version: 1.6.7
       eslint:
         specifier: ^8
         version: 8.54.0
