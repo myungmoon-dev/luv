@@ -1,42 +1,44 @@
-import {
-  useGetLivelink,
-  useGetShorts,
-  usePostLivelink,
-  usePostShorts,
-} from "@/query/youtube";
+import { useGetYoutubeLink, usePostYoutubeLink } from "@/query/youtube";
 import { useEffect } from "react";
 
 import { useForm } from "react-hook-form";
 
 interface IUrlForm {
-  livelink: string;
-  shorts: string;
+  youtubeLink: string;
+  liveLink: string;
+  shortsLink: string;
 }
 
 export default function Home() {
   const { handleSubmit, register, setValue } = useForm<IUrlForm>();
-  const { data: livelink } = useGetLivelink({
+  // FIXME: liveLink 추가해야 함
+  const { data: youtubeLink } = useGetYoutubeLink({
     apiUrl: "api/youtube",
+    type: "youtube",
   });
-  const { data: shorts } = useGetShorts({
-    apiUrl: "api/shorts",
-  });
-  const { mutateAsync: mutateLivelink } = usePostLivelink({
+  const { data: shortsLink } = useGetYoutubeLink({
     apiUrl: "api/youtube",
+    type: "shorts",
   });
-  const { mutateAsync: mutateShorts } = usePostShorts({
-    apiUrl: "api/shorts",
+  const { mutateAsync: mutateYoutube } = usePostYoutubeLink({
+    apiUrl: "api/youtube",
+    type: "youtube",
+  });
+  const { mutateAsync: mutateShorts } = usePostYoutubeLink({
+    apiUrl: "api/youtube",
+    type: "shorts",
   });
 
-  const onSubmit = async ({ livelink, shorts }: IUrlForm) => {
+  const onSubmit = async ({ shortsLink, youtubeLink }: IUrlForm) => {
     try {
       // API로 데이터 전송
-      await mutateLivelink({
-        data: livelink,
+      await mutateYoutube({
+        vid: youtubeLink,
       });
       await mutateShorts({
-        data: shorts,
+        vid: shortsLink,
       });
+
       // 응답 처리
       alert("변경 되었습니다.");
     } catch (error) {
@@ -45,11 +47,11 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (livelink && shorts) {
-      setValue("livelink", livelink);
-      setValue("shorts", shorts);
+    if (youtubeLink && shortsLink) {
+      setValue("youtubeLink", youtubeLink);
+      setValue("shortsLink", shortsLink);
     }
-  }, [livelink, shorts]);
+  }, [youtubeLink, shortsLink]);
 
   return (
     <main className="flex flex-col gap-20 justify-center items-center h-screen">
@@ -58,15 +60,15 @@ export default function Home() {
         <div className="flex justify-center items-center">
           <p>현재 주소:&nbsp;</p>
           <a
-            href={`https://www.youtube.com/embed/${livelink}`}
+            href={`https://www.youtube.com/embed/${youtubeLink}`}
             className="text-blue-500"
           >
-            {livelink}
+            {youtubeLink}
           </a>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4 ">
           <input
-            {...register("livelink")}
+            {...register("youtubeLink")}
             className="border rounded px-4 py-2 text-black"
           />
           <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
@@ -79,15 +81,15 @@ export default function Home() {
         <div className="flex justify-center items-center">
           <p>현재 주소:&nbsp;</p>
           <a
-            href={`https://www.youtube.com/embed/${shorts}`}
+            href={`https://www.youtube.com/embed/${shortsLink}`}
             className="text-blue-500"
           >
-            {shorts}
+            {shortsLink}
           </a>
         </div>
         <form onSubmit={handleSubmit(onSubmit)} className="mt-4">
           <input
-            {...register("shorts")}
+            {...register("shortsLink")}
             className="border rounded px-4 py-2 text-black"
           />
           <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">

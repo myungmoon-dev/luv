@@ -1,44 +1,40 @@
 import { api } from "@/api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-interface IYoutubeLinkProps {
+interface IQueryProps {
   apiUrl: string;
+  type: "youtube" | "shorts" | "live";
 }
-interface IYoutubeMutationProps {
-  data: string;
+interface IMutateProps {
+  vid: string;
 }
 
-export const useGetLivelink = ({ apiUrl }: IYoutubeLinkProps) => {
-  return useQuery("youtube", {
-    queryFn: async () => await api.get(apiUrl),
-    select: ({ data: { livelink } }) => livelink[0] as string,
+export const useGetYoutubeLink = ({ apiUrl, type }: IQueryProps) => {
+  return useQuery(type, {
+    queryFn: async () =>
+      await api.get(apiUrl, {
+        params: {
+          type,
+        },
+      }),
+    select: ({ data: { youtubeLink } }) => youtubeLink[0] as string,
   });
 };
 
-export const usePostLivelink = ({ apiUrl }: IYoutubeLinkProps) => {
+export const usePostYoutubeLink = ({ apiUrl, type }: IQueryProps) => {
   const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: async ({ data }: IYoutubeMutationProps) =>
-      await api.post(apiUrl, { url: data }),
-    onSuccess: () => queryClient.invalidateQueries("youtube"),
-    onError: (error) => console.error(error),
-  });
-};
-
-export const useGetShorts = ({ apiUrl }: IYoutubeLinkProps) => {
-  return useQuery("shorts", {
-    queryFn: async () => await api.get(apiUrl),
-    select: ({ data: { shorts } }) => shorts[0] as string,
-  });
-};
-export const usePostShorts = ({ apiUrl }: IYoutubeLinkProps) => {
-  const queryClient = useQueryClient();
-
-  return useMutation({
-    mutationFn: async ({ data }: IYoutubeMutationProps) =>
-      await api.post(apiUrl, { url: data }),
-    onSuccess: () => queryClient.invalidateQueries("shorts"),
+    mutationFn: async ({ vid }: IMutateProps) =>
+      await api.post(
+        apiUrl,
+        { vid },
+        {
+          params: {
+            type,
+          },
+        }
+      ),
+    onSuccess: () => queryClient.invalidateQueries(type),
     onError: (error) => console.error(error),
   });
 };
