@@ -139,6 +139,9 @@ importers:
       tailwindcss:
         specifier: ^3.3.0
         version: 3.4.0
+      type:
+        specifier: workspace:*
+        version: link:../../packages/type
       typescript:
         specifier: ^5
         version: 5.2.2
@@ -237,6 +240,18 @@ importers:
       '@types/react-dom':
         specifier: ^18.2.0
         version: 18.2.3
+      type:
+        specifier: workspace:*
+        version: link:../type
+
+  packages/type:
+    devDependencies:
+      '@repo/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@repo/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
 
   packages/typescript-config: {}
 
