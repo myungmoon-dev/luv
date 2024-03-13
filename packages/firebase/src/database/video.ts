@@ -1,15 +1,13 @@
-// Database - FireStore
-
 import {
-  getFirestore,
   addDoc,
   collection,
   query,
   orderBy,
   getDocs,
   limit,
+  getFirestore,
 } from "firebase/firestore";
-import { firebase } from "../firebase";
+import { firebase } from "../../firebase";
 
 export interface IGetYoutubeProps {
   videoType: string;
