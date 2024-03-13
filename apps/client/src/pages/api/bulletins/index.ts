@@ -7,7 +7,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (method) {
     case "GET":
       const bulletins = (await getBulletins()).docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-      console.log(bulletins);
       return res.status(200).json({
         bulletins,
       });

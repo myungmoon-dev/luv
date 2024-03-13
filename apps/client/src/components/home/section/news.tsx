@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card, cn } from "ui";
+import Modal from "react-modal";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import Section from ".";
 import { useGetBulletins } from "@/query/bulletin";
+import Image from "next/image";
+import { IBulletin } from "type";
+
+import "swiper/css";
 
 const NewsSection = () => {
   const { data } = useGetBulletins();
+  const [isOpenModal, setOpenModal] = useState(false);
+  const [selectedBulletin, setSelectedBulletin] = useState<IBulletin>();
+
+  const handleBulletinClick = (bulletin: IBulletin) => {
+    setSelectedBulletin(bulletin);
+    setOpenModal(true);
+  };
 
   return (
     <Section title="교회 소식">
@@ -13,7 +26,7 @@ const NewsSection = () => {
         <div>
           {data &&
             data.bulletins.map((bulletin, idx) => (
-              <div className="mt-4 flex flex-col gap-1" key={bulletin.id}>
+              <div onClick={() => handleBulletinClick(bulletin)} className="mt-4 flex flex-col gap-1" key={bulletin.id}>
                 <div className="flex justify-around">
                   <span
                     className={cn(
@@ -32,6 +45,20 @@ const NewsSection = () => {
         </div>
         <Card className="flex h-[300px] items-center justify-center bg-gray-100 sm:h-auto">주보 미리보기</Card>
       </div>
+      <Modal onRequestClose={() => setOpenModal(false)} isOpen={isOpenModal}>
+        {selectedBulletin && (
+          <div>
+            <h1>주보 | {selectedBulletin.title}</h1>
+            <Swiper>
+              {selectedBulletin.images.map((image) => (
+                <SwiperSlide key={image}>
+                  <Image src={image} alt="bulletin" width={600} height={300} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        )}
+      </Modal>
     </Section>
   );
 };
