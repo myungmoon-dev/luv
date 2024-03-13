@@ -5,6 +5,7 @@ interface IPostFetcherProps {
   type: YoutubeType;
 }
 // FIXME: types/youtube/response.ts로 빼야함
+export type YoutubeType = "youtube" | "shorts" | "live";
 interface IGetYoutubeResponse {
   youtubeLink: string[];
 }

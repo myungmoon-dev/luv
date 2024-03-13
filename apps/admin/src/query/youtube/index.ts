@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 
-import { fetcherGET, fetcherPOST } from "@/api/youtube";
+import { YoutubeType, fetcherGET, fetcherPOST } from "@/api/youtube";
 import youtubeKeys from "./keys";
 
 interface IMutationProps {
@@ -9,7 +9,7 @@ interface IMutationProps {
 
 export const useGetYoutubeLink = (type: YoutubeType) => {
   const queryKey = youtubeKeys[type]();
-  
+
   return useQuery({
     queryKey,
     queryFn: async () => await fetcherGET(type),
