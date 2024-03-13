@@ -15,16 +15,18 @@ export default async function handler(
 
   switch (method) {
     case "GET":
-      const snapshot = await getYoutubeLink({ videoType });
-      const youtubeLink = snapshot.docs.map((doc) => doc.data().videoId);
+      const youtubeLink = (await getYoutubeLink({ videoType })).docs.map(
+        (doc) => doc.data().videoId
+      );
 
       return res.status(200).json({
         youtubeLink,
       });
     case "POST":
       await createYoutubeLink({ videoId, videoType });
+
       return res.status(200).json({
-        success: true,
+        result: "success",
       });
     default:
       res.setHeader("Allow", ["GET", "POST"]);
