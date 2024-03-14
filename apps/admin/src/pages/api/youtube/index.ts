@@ -7,8 +7,7 @@ export default async function handler(
 ) {
   const {
     method,
-    body: { id },
-    query: { type },
+    query: { id, type },
   } = req;
   const videoId = id as string;
   const videoType = type as string;

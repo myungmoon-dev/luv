@@ -19,17 +19,11 @@ export const getYoutubeLink = async (type: YoutubeType) => {
 };
 
 export const postYoutubeLink = async ({ id, type }: IPostFetcherProps) => {
-  const { data } = await api.post<IPostYoutubeResponse>(
-    "/api/youtube",
-    {
+  const { data } = await api.post<IPostYoutubeResponse>("/api/youtube", {
+    params: {
       id,
       type,
     },
-    {
-      params: {
-        type,
-      },
-    }
-  );
+  });
   return data;
 };
