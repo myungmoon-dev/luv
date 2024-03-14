@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-
 import { useForm } from "react-hook-form";
 import { useGetYoutubeLink, usePostYoutubeLink } from "../query/youtube/index";
 
@@ -16,26 +15,29 @@ export default function Home() {
   const { data: shortsLink } = useGetYoutubeLink("shorts");
   const { data: liveLink } = useGetYoutubeLink("live");
 
-  const { mutateAsync: mutateYoutube } = usePostYoutubeLink("youtube");
-  const { mutateAsync: mutateShorts } = usePostYoutubeLink("shorts");
-  const { mutateAsync: mutateLive } = usePostYoutubeLink("live");
+  const { mutate: mutateYoutube } = usePostYoutubeLink("youtube");
+  const { mutate: mutateShorts } = usePostYoutubeLink("shorts");
+  const { mutate: mutateLive } = usePostYoutubeLink("live");
 
-  const onSubmit = async ({ shortsLink, youtubeLink }: IUrlForm) => {
+  const onSubmit = ({ shortsLink, youtubeLink }: IUrlForm) => {
     try {
       // API로 데이터 전송
-      const resYoutube = await mutateYoutube({
-        vid: youtubeLink,
-      });
-      const resShorts = await mutateShorts({
-        vid: shortsLink,
-      });
-
-      // 응답 처리
-      if (resYoutube && resShorts) {
-        alert("변경 되었습니다.");
-      } else {
-        alert("수정하지 못하였습니다.");
-      }
+      mutateYoutube(
+        {
+          id: youtubeLink,
+        },
+        {
+          onSuccess({ result }) {},
+        }
+      );
+      mutateShorts(
+        {
+          id: shortsLink,
+        },
+        {
+          onSuccess: ({ result }) => {},
+        }
+      );
     } catch (error) {
       console.error("API 요청 중 오류가 발생했습니다:", error);
     }
