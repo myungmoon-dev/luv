@@ -1,30 +1,29 @@
+import {
+  IGetYoutubeResponse,
+  IPostYoutubeResponse,
+} from "@/types/youtube/response";
 import { api } from ".";
 
+// FIXME: YoutubeType은 packages/types로 빼야함
+export type YoutubeType = "youtube" | "shorts" | "live";
 interface IPostFetcherProps {
-  vid: string;
+  id: string;
   type: YoutubeType;
 }
-// FIXME: types/youtube/response.ts로 빼야함
-export type YoutubeType = "youtube" | "shorts" | "live";
-interface IGetYoutubeResponse {
-  youtubeLink: string[];
-}
-interface IPostYoutubeResponse {
-  result: string;
-}
 
-export const fetcherGET = async (type: YoutubeType) => {
+export const getYoutubeLink = async (type: YoutubeType) => {
   const { data } = await api.get<IGetYoutubeResponse>("/api/youtube", {
     params: { type },
   });
   return data;
 };
 
-export const fetcherPOST = async ({ vid, type }: IPostFetcherProps) => {
+export const postYoutubeLink = async ({ id, type }: IPostFetcherProps) => {
   const { data } = await api.post<IPostYoutubeResponse>(
     "/api/youtube",
     {
-      vid,
+      id,
+      type,
     },
     {
       params: {
