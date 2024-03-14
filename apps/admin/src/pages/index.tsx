@@ -27,7 +27,7 @@ export default function Home() {
           id: youtubeLink,
         },
         {
-          onSuccess({ result }) {},
+          onSuccess: ({ result }) => {},
         }
       );
       mutateShorts(
