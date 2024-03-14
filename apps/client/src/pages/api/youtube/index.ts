@@ -1,13 +1,11 @@
+import { getYoutubeLink } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
-import { getYoutubeLink } from "firebase/src/database";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
-    body: { vid },
     query: { type },
   } = req;
-  const videoId = vid as string;
   const videoType = type as string;
 
   switch (method) {

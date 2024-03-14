@@ -5,15 +5,9 @@ import YoutubeVideo from "@/components/youtubeVideo";
 import { useGetYoutubeLink } from "@/query/youtube";
 
 const WordsSection = () => {
-  // FIXME: liveLink 추가해야 함
-  const { data: youtubeLink } = useGetYoutubeLink({
-    apiUrl: "api/youtube",
-    type: "youtube",
-  });
-  const { data: shortsLink } = useGetYoutubeLink({
-    apiUrl: "api/youtube",
-    type: "shorts",
-  });
+  const { data: youtubeLink } = useGetYoutubeLink("youtube");
+  const { data: shortsLink } = useGetYoutubeLink("shorts");
+  const { data: liveLink } = useGetYoutubeLink("live");
 
   return youtubeLink && shortsLink ? (
     <Section title="생명의 말씀">
