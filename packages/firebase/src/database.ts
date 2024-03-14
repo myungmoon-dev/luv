@@ -8,11 +8,18 @@ import {
   orderBy,
   getDocs,
   limit,
+  updateDoc,
 } from "firebase/firestore";
 import { firebase } from "../firebase";
+import { ref } from "firebase/storage";
+import { storage, uploadImg } from "./storage";
 
 interface IYoutubeProps {
   videoId: string;
+}
+interface IProps {
+  title: string;
+  file: File;
 }
 
 const database = getFirestore(firebase);
@@ -52,4 +59,16 @@ export const getShorts = async () => {
 
   const shorts = await getDocs(getQuery);
   return shorts;
+};
+
+export const createTest = async ({ title, file }: IProps) => {
+  const doc = await addDoc(collection(database, "test"), {
+    title,
+    createdAt: Date.now(),
+  });
+  const url = await uploadImg({ file });
+
+  updateDoc(doc, {
+    url,
+  });
 };
