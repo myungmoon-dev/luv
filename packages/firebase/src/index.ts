@@ -3,6 +3,7 @@ import {
   getLiveLink,
   createShorts,
   getShorts,
+  createTest,
 } from "./database";
 import { createBulletin, getBulletin } from "./storage";
 
@@ -13,4 +14,5 @@ export {
   getBulletin,
   createShorts,
   getShorts,
+  createTest,
 };
