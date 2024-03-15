@@ -1,4 +1,5 @@
 import { Chip } from "..";
+import Image from "next/image";
 
 interface BannerProps {
   image?: string;
@@ -25,10 +26,15 @@ export const Banner = ({
     <div className="ui-w-full ui-relative">
       {image ? (
         <>
-          <img
-            src={image}
-            className="sm:ui-h-[750px] ui-h-[550px] ui-w-full ui-object-cover"
-          />
+          <div className="ui-relative sm:ui-h-[750px] ui-h-[550px]">
+            <Image
+              src={image}
+              alt="배너 이미지"
+              className="ui-object-cover"
+              fill
+              priority
+            />
+          </div>
           <div className="ui-w-full ui-h-[200px] ui-bottom-0 ui-absolute ui-bg-gradient-to-b ui-from-transparent ui-to-white" />
         </>
       ) : (
