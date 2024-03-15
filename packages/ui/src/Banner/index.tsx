@@ -25,7 +25,10 @@ export const Banner = ({
     <div className="ui-w-full ui-relative">
       {image ? (
         <>
-          <img src={image} className="ui-h-[750px] ui-w-full ui-object-cover" />
+          <img
+            src={image}
+            className="sm:ui-h-[750px] ui-h-[550px] ui-w-full ui-object-cover"
+          />
           <div className="ui-w-full ui-h-[200px] ui-bottom-0 ui-absolute ui-bg-gradient-to-b ui-from-transparent ui-to-white" />
         </>
       ) : (
@@ -34,6 +37,7 @@ export const Banner = ({
           autoPlay={true}
           muted={true}
           loop={true}
+          playsInline
           className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
       )}
