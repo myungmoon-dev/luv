@@ -3,6 +3,7 @@ import {
   IPostYoutubeResponse,
 } from "@/types/youtube/response";
 import { api } from ".";
+import { headers } from "next/headers";
 
 // FIXME: YoutubeType은 packages/types로 빼야함
 export type YoutubeType = "youtube" | "shorts" | "live";
@@ -19,11 +20,12 @@ export const getYoutubeLink = async (type: YoutubeType) => {
 };
 
 export const postYoutubeLink = async ({ id, type }: IPostFetcherProps) => {
-  const { data } = await api.post<IPostYoutubeResponse>("/api/youtube", {
-    params: {
-      id,
-      type,
-    },
-  });
+  const { data } = await api.post<IPostYoutubeResponse>(
+    "/api/youtube",
+    {},
+    {
+      params: { id, type },
+    }
+  );
   return data;
 };
