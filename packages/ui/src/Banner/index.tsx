@@ -37,6 +37,7 @@ export const Banner = ({
           autoPlay={true}
           muted={true}
           loop={true}
+          playsInline
           className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
       )}
