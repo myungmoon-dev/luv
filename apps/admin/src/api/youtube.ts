@@ -3,7 +3,6 @@ import {
   IPostYoutubeResponse,
 } from "@/types/youtube/response";
 import { api } from ".";
-import { headers } from "next/headers";
 
 // FIXME: YoutubeType은 packages/types로 빼야함
 export type YoutubeType = "youtube" | "shorts" | "live";
