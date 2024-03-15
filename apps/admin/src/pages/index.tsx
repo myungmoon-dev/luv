@@ -1,4 +1,4 @@
-import YoutubeSection from "./components/youtube";
+import YoutubeSection from "../components/youtube";
 
 export default function Home() {
   return (
