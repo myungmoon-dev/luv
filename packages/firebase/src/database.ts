@@ -20,7 +20,6 @@ interface IPostYoutubeProps extends IGetYoutubeProps {
 
 const database = getFirestore(firebase);
 
-// TODO: 유튜브 아이디 추출함수 추가해야 함
 export const getYoutubeLink = async ({ videoType }: IGetYoutubeProps) => {
   const getQuery = query(
     collection(database, videoType),
