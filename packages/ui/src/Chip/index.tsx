@@ -9,27 +9,37 @@ export const ChipVariants = cva(
   {
     variants: {
       color: {
+        red: "",
         pink: "",
       },
       selected: {
         true: "",
         false: "",
       },
-      // FIXME: sm,lg,xl 임시 값
       size: {
-        xs: "ui-p-[0.5rem] ui-px-5 ui-text-md",
-        sm: "ui-p-[0.6rem] ui-px-5 ui-text-lg",
+        xs: "ui-p-[0.4rem] ui-px-5 ui-text-md",
+        sm: "ui-p-[0.5rem] ui-px-5 ui-text-lg",
         md: "ui-p-[0.6rem] ui-px-7 ui-text-2xl",
         lg: "ui-p-[0.8rem] ui-px-10 ui-text-4xl",
         xl: "ui-p-[0.9rem] ui-px-11 ui-text-5xl",
       },
     },
     defaultVariants: {
-      color: "pink",
+      color: "red",
       size: "md",
       selected: false,
     },
     compoundVariants: [
+      {
+        color: "red",
+        selected: true,
+        className: "ui-bg-[#892122] ui-text-white",
+      },
+      {
+        color: "red",
+        selected: false,
+        className: "ui-bg-white ui-text-[#892122]",
+      },
       {
         color: "pink",
         selected: true,
@@ -38,7 +48,7 @@ export const ChipVariants = cva(
       {
         color: "pink",
         selected: false,
-        className: "ui-bg-white ui-text-[#892122]",
+        className: "ui-bg-white ui-text-[#dfc7c7]",
       },
     ],
   }
