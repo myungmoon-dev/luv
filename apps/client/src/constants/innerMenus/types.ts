@@ -4,6 +4,6 @@ export interface IInnerMenu {
 }
 
 export interface IPastorType {
-  eng: string;
-  kor: string;
+  label: string;
+  type: string;
 }

@@ -17,8 +17,8 @@ export const aboutLeaderMenus: IInnerMenu[] = [
 ];
 
 export const pastorTypes: IPastorType[] = [
-  { eng: "senior", kor: "담임목사" },
-  { eng: "retired", kor: "원로목사" },
-  { eng: "associate", kor: "목사" },
-  { eng: "evangelist", kor: "전도사" },
+  { label: "senior", type: "담임목사" },
+  { label: "retired", type: "원로목사" },
+  { label: "associate", type: "목사" },
+  { label: "evangelist", type: "전도사" },
 ];
