@@ -89,7 +89,7 @@ const profiles = [
     description: "2023년 12월",
     image: "/images/leader/hwa-seon.jpeg",
     position: "영아부, 엄마QT학교",
-    pastor: "전도사",
+    pastor: "evangelist",
   },
 ];
 const ProfileList = ({ pastorType }: IProfileListProps) => {
@@ -106,7 +106,7 @@ const ProfileList = ({ pastorType }: IProfileListProps) => {
               description={profile.description}
               image={profile.image}
               alt={profile.name}
-              pastorType={profile.pastor}
+              type={profile.pastor}
             />
           );
         })}
