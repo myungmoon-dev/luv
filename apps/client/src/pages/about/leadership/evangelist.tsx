@@ -5,7 +5,7 @@ import { Chip } from "ui";
 import { useRouter } from "next/router";
 import ProfileList from "@/components/about/profileList";
 
-const LeadershipIndexPage = () => {
+const LeadershipEvangelistPage = () => {
   const { asPath, push } = useRouter();
   return (
     <Layout
@@ -30,10 +30,10 @@ const LeadershipIndexPage = () => {
             />
           ))}
         </div>
-        <ProfileList pastorType="senior" />
+        <ProfileList pastorType="evangelist" />
       </div>
     </Layout>
   );
 };
 
-export default LeadershipIndexPage;
+export default LeadershipEvangelistPage;
