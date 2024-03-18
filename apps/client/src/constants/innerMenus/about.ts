@@ -1,4 +1,4 @@
-import { IInnerMenu } from "./types";
+import { IInnerMenu, IPastorType } from "./types";
 
 export const aboutInnerMenus: IInnerMenu[] = [
   { label: "교회소개", path: "/about" },
@@ -11,7 +11,14 @@ export const aboutInnerMenus: IInnerMenu[] = [
 
 export const aboutLeaderMenus: IInnerMenu[] = [
   { label: "담임목사", path: "/about/leadership" },
-  { label: "원로목사", path: "/about/leadership/senior" },
+  { label: "원로목사", path: "/about/leadership/retired" },
   { label: "부목사", path: "/about/leadership/associate" },
-  { label: "전도사", path: "/aboutleadership//evangelist" },
+  { label: "전도사", path: "/about/leadership/evangelist" },
+];
+
+export const pastorTypes: IPastorType[] = [
+  { eng: "senior", kor: "담임목사" },
+  { eng: "retired", kor: "원로목사" },
+  { eng: "associate", kor: "목사" },
+  { eng: "evangelist", kor: "전도사" },
 ];
