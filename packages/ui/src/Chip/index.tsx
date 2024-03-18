@@ -25,7 +25,7 @@ export const ChipVariants = cva(
       },
     },
     defaultVariants: {
-      color: "red",
+      color: "pink",
       size: "md",
       selected: false,
     },
@@ -48,7 +48,7 @@ export const ChipVariants = cva(
       {
         color: "pink",
         selected: false,
-        className: "ui-bg-white ui-text-[#dfc7c7]",
+        className: "ui-bg-white ui-text-[#892122]",
       },
     ],
   }

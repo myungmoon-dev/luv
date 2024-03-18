@@ -54,6 +54,7 @@ export const Banner = ({
               selected={pathname === menu.path}
               text={menu.label}
               size="sm"
+              color="red"
               key={menu.label}
             />
           ))}
