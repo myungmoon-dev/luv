@@ -11,6 +11,7 @@ interface LayoutProps {
   title?: string;
   bannerDescription?: string;
   innerMenus?: { label: string; path: string }[];
+  detailMenus?: { label: string; path: string }[];
   pageTitle: string;
 }
 
@@ -21,6 +22,7 @@ const Layout = ({
   title,
   pageTitle,
   innerMenus,
+  detailMenus,
   bannerVideo,
 }: LayoutProps) => {
   const { asPath, push } = useRouter();
@@ -46,6 +48,7 @@ const Layout = ({
           title={title}
           description={bannerDescription}
           innerMenus={innerMenus}
+          detailMenus={detailMenus}
           pathname={asPath}
           onClickChip={push}
           push={push}
