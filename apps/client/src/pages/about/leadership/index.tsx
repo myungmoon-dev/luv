@@ -1,7 +1,9 @@
 import Layout from "@/components/layout";
 import React from "react";
-import { aboutInnerMenus } from "@/constants/innerMenus/about";
+import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 import Profile from "@/components/about/profile";
+import { Chip } from "ui";
+import { useRouter } from "next/router";
 
 // FIXME: profiles DB에 저장 /  position keyword로 변경해야 함 / 세부 탭 생성 해야 함
 const profiles = [
@@ -82,6 +84,7 @@ const profiles = [
 ];
 
 const LeadershipPage = () => {
+  const { asPath, push } = useRouter();
   return (
     <Layout
       pageTitle="섬기는 분들"
@@ -91,6 +94,19 @@ const LeadershipPage = () => {
       innerMenus={aboutInnerMenus}
     >
       <div className="flex w-full flex-col gap-20">
+        <div className="flex justify-center gap-4">
+          {aboutLeaderMenus.map((menu) => (
+            // FIXME: 디자인 수정해야함
+            <Chip
+              onClick={() => push(menu.path)}
+              selected={true}
+              text={menu.label}
+              size="xs"
+              color="pink"
+              key={menu.label}
+            />
+          ))}
+        </div>
         {profiles.map((profile, index) => {
           return (
             <Profile
