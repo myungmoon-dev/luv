@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
-
 import { Banner, Footer, Header } from "ui";
+import { BannerImageComponent } from "./bannerImage";
 
 interface LayoutProps {
   children: ReactNode;
@@ -41,7 +41,7 @@ const Layout = ({
       <main className="relative">
         <Header push={push} />
         <Banner
-          image={bannerImage}
+          image={bannerImage ? <BannerImageComponent image={bannerImage} /> : null}
           video={bannerVideo}
           title={title}
           description={bannerDescription}
