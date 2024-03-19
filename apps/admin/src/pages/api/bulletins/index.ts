@@ -1,3 +1,4 @@
+import axios from "axios";
 import { getBulletins, postBulletin, postBulletinImage } from "firebase";
 import { IncomingForm } from "formidable";
 import fs from "fs";
@@ -27,6 +28,18 @@ export default async function handler(
       });
 
     case "POST":
+      const {
+        data: {
+          result: { id, uploadURL },
+        },
+      } = await axios.post(`${process.env.CLOUDFLARE_REQ_URL}`, null, {
+        headers: {
+          ContentType: "application/json",
+          Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
+        },
+      });
+
+      return;
       const form = new IncomingForm();
 
       const result = form.parse(req, async (err, fields, files) => {

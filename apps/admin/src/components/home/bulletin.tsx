@@ -1,8 +1,6 @@
 import React from "react";
-
 import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
-
 import HomeSection from "./section";
 import { usePostBulletin } from "@/query/bulletin";
 
