@@ -6,9 +6,9 @@ import { database, collections } from ".";
 export const getBulletins = async () => {
   const getQuery = query(collection(database, collections.bulletin));
 
-  const liveLink = await getDocs(getQuery);
+  const snapshot = await getDocs(getQuery);
 
-  return liveLink;
+  return snapshot;
 };
 
 export const postBulletin = async (bulletin: IBulletinForm) => {

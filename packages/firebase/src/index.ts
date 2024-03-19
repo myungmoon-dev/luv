@@ -1,10 +1,16 @@
-import { createBulletin, getBulletin } from "./storage";
-import { getBulletins, createYoutubeLink, getYoutubeLink } from "./database";
+import { postBulletinImage } from "./storage";
+
+import {
+  getBulletins,
+  getYoutubeLink,
+  createYoutubeLink,
+  postBulletin,
+} from "./database";
 
 export {
-  createBulletin,
-  getBulletin,
-  getBulletins,
-  createYoutubeLink,
   getYoutubeLink,
+  createYoutubeLink,
+  getBulletins,
+  postBulletin,
+  postBulletinImage,
 };
