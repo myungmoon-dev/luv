@@ -18,6 +18,7 @@
   "devDependencies": {
     "@tanstack/react-query": "^5.18.0",
     "@tanstack/react-query-devtools": "^5.18.0",
+    "@types/formidable": "^3.4.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -25,8 +26,10 @@
     "axios": "^1.6.7",
     "eslint": "^8",
     "eslint-config-next": "14.1.2",
+    "formidable": "^3.5.1",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
+    "type": "workspace:*",
     "typescript": "^5"
   }
 }

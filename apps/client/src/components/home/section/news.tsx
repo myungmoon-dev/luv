@@ -1,23 +1,39 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { Card, cn } from "ui";
-import Modal from "react-modal";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { IBulletin } from "type";
 
 import Section from ".";
 import { useGetBulletins } from "@/query/bulletin";
-import Image from "next/image";
-import { IBulletin } from "type";
+import useModalStore from "@/store/modal";
 
-import "swiper/css";
+const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) => {
+  const [currentViewImage, setCurrentViewImage] = useState(0);
+
+  return (
+    <div className="flex flex-col gap-2">
+      <h1 className="text-lg">주보 | {selectedBulletin.title}</h1>
+      <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
+        <Image src={selectedBulletin.images[currentViewImage]} alt="bulletin" fill={true} />
+      </div>
+      <div className="flex justify-end gap-2">
+        <button onClick={() => setCurrentViewImage(0)} className="rounded-md bg-gray-500 px-2 py-1 text-white">
+          앞면
+        </button>
+        <button onClick={() => setCurrentViewImage(1)} className="rounded-md bg-gray-500 px-2 py-1 text-white">
+          뒷면
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const NewsSection = () => {
   const { data } = useGetBulletins();
-  const [isOpenModal, setOpenModal] = useState(false);
-  const [selectedBulletin, setSelectedBulletin] = useState<IBulletin>();
+  const open = useModalStore((state) => state.open);
 
   const handleBulletinClick = (bulletin: IBulletin) => {
-    setSelectedBulletin(bulletin);
-    setOpenModal(true);
+    open(<BulletinModal selectedBulletin={bulletin} />);
   };
 
   return (
@@ -45,20 +61,6 @@ const NewsSection = () => {
         </div>
         <Card className="flex h-[300px] items-center justify-center bg-gray-100 sm:h-auto">주보 미리보기</Card>
       </div>
-      <Modal onRequestClose={() => setOpenModal(false)} isOpen={isOpenModal}>
-        {selectedBulletin && (
-          <div>
-            <h1>주보 | {selectedBulletin.title}</h1>
-            <Swiper>
-              {selectedBulletin.images.map((image) => (
-                <SwiperSlide key={image}>
-                  <Image src={image} alt="bulletin" width={600} height={300} />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        )}
-      </Modal>
     </Section>
   );
 };
