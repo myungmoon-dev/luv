@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import React from "react";
-import DoubleQuote from "./../../../../../packages/ui/src/DoubleQuote/index";
+import { DoubleQuote } from "ui";
 
 const AboutIndexPage = () => {
   return (

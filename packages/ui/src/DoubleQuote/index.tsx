@@ -30,7 +30,8 @@ export const DoubleQuoteVariants = cva(`ui-font-bold`, {
 interface IDoubleQuoteProps
   extends VariantProps<typeof DoubleQuoteVariants>,
     Omit<HTMLAttributes<HTMLDivElement>, "color"> {}
-const DoubleQuote = ({
+
+export const DoubleQuote = ({
   color,
   size,
   className,
@@ -40,5 +41,3 @@ const DoubleQuote = ({
     <div className={cn(DoubleQuoteVariants({ color, size }), className)}>"</div>
   );
 };
-
-export default DoubleQuote;
