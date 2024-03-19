@@ -1,8 +1,8 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
-
 import { Banner, Footer, Header } from "ui";
+import { BannerImageComponent } from "./bannerImage";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,6 +11,7 @@ interface LayoutProps {
   title?: string;
   bannerDescription?: string;
   innerMenus?: { label: string; path: string }[];
+  detailMenus?: { label: string; path: string }[];
   pageTitle: string;
 }
 
@@ -21,6 +22,7 @@ const Layout = ({
   title,
   pageTitle,
   innerMenus,
+  detailMenus,
   bannerVideo,
 }: LayoutProps) => {
   const { asPath, push } = useRouter();
@@ -41,16 +43,17 @@ const Layout = ({
       <main className="relative">
         <Header push={push} />
         <Banner
-          image={bannerImage}
+          image={bannerImage ? <BannerImageComponent image={bannerImage} /> : null}
           video={bannerVideo}
           title={title}
           description={bannerDescription}
           innerMenus={innerMenus}
+          detailMenus={detailMenus}
           pathname={asPath}
           onClickChip={push}
           push={push}
         />
-        <div className="px-4 py-20 sm:px-24 sm:py-32 lg:px-48">{children}</div>
+        <div className="px-4 py-20 sm:px-12 sm:py-24 lg:px-48">{children}</div>
         <Footer push={push} />
       </main>
     </>

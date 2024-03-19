@@ -1,11 +1,13 @@
+import { ReactNode } from "react";
 import { Chip } from "..";
 
 interface BannerProps {
-  image?: string;
+  image?: ReactNode;
   video?: string;
   title?: string;
   description?: string;
   innerMenus?: { label: string; path: string }[];
+  detailMenus?: { label: string; path: string }[];
   pathname?: string;
   push: (url: string) => void;
   onClickChip: (path: string) => void;
@@ -16,6 +18,7 @@ export const Banner = ({
   image,
   title,
   innerMenus,
+  detailMenus,
   video,
   pathname,
   onClickChip,
@@ -25,10 +28,7 @@ export const Banner = ({
     <div className="ui-w-full ui-relative">
       {image ? (
         <>
-          <img
-            src={image}
-            className="sm:ui-h-[750px] ui-h-[550px] ui-w-full ui-object-cover"
-          />
+          {image}
           <div className="ui-w-full ui-h-[200px] ui-bottom-0 ui-absolute ui-bg-gradient-to-b ui-from-transparent ui-to-white" />
         </>
       ) : (
@@ -53,9 +53,16 @@ export const Banner = ({
           {innerMenus?.map((menu) => (
             <Chip
               onClick={() => onClickChip(menu.path)}
-              selected={pathname === menu.path}
+              selected={
+                pathname === menu.path ||
+                (detailMenus &&
+                  detailMenus.some(
+                    (detailMenu) => detailMenu.path === menu.path
+                  ))
+              }
               text={menu.label}
               size="sm"
+              color="red"
               key={menu.label}
             />
           ))}
