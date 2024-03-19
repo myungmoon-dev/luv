@@ -1,7 +1,7 @@
 import { getFirestore } from "firebase/firestore";
 import { firebase } from "../../firebase";
 
-import { createLiveLink, getLiveLink, createShorts, getShorts } from "./video";
+import { createYoutubeLink, getYoutubeLink } from "./video";
 
 import { getBulletins } from "./bulletin";
 
@@ -14,9 +14,7 @@ const collections = {
 export {
   database,
   collections,
-  createLiveLink,
-  createShorts,
-  getShorts,
+  createYoutubeLink,
+  getYoutubeLink,
   getBulletins,
-  getLiveLink,
 };

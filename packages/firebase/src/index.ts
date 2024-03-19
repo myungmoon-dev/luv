@@ -1,18 +1,10 @@
 import { createBulletin, getBulletin } from "./storage";
-import {
-  createLiveLink,
-  createShorts,
-  getBulletins,
-  getLiveLink,
-  getShorts,
-} from "./database";
+import { getBulletins, createYoutubeLink, getYoutubeLink } from "./database";
 
 export {
-  createLiveLink,
-  getLiveLink,
   createBulletin,
   getBulletin,
-  createShorts,
-  getShorts,
   getBulletins,
+  createYoutubeLink,
+  getYoutubeLink,
 };
