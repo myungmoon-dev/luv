@@ -28,21 +28,16 @@ export default async function handler(
           if (uploadURL) {
             const imgForm = new FormData();
 
-            const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
-            const images = twoArray.map(async (el, idx) => {
-              const title = fields[`image-${el}-name`]?.[0];
-              const image = files[`image-${el}-file`]?.[0];
+            if (fields.title && files.img) {
+              const title = fields.title[0];
+              const img = files.img[0];
+              const fileData = await fs.promises.readFile(img.filepath);
 
-              // fs를 사용하여 파일 데이터를 읽습니다.
-              const fileData = await fs.promises.readFile(
-                image?.filepath || ""
-              );
-              const blob = new Blob([fileData], { type: image!.mimetype! });
-              const file = new File([blob], image!.originalFilename!, {
-                type: image!.mimetype!,
+              const blob = new Blob([fileData], { type: img.mimetype! });
+              const file = new File([blob], img.originalFilename!, {
+                type: img.mimetype!,
               });
-              imgForm.append(`file${idx}`, file, title);
-            });
+            }
 
             const { data } = await axios.post(uploadURL, imgForm, {
               headers: {

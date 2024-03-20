@@ -28,18 +28,6 @@ export default async function handler(
       });
 
     case "POST":
-      const {
-        data: {
-          result: { id, uploadURL },
-        },
-      } = await axios.post(`${process.env.CLOUDFLARE_REQ_URL}`, null, {
-        headers: {
-          ContentType: "application/json",
-          Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
-        },
-      });
-
-      return;
       const form = new IncomingForm();
 
       const result = form.parse(req, async (err, fields, files) => {
@@ -47,24 +35,6 @@ export default async function handler(
 
         const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
 
-        // const images = twoArray.map(async (el) => {
-        //   const title = fields[`image-${el}-name`]?.[0];
-        //   const image = files[`image-${el}-file`]?.[0];
-
-        //   const fileData = await fs.promises.readFile(image?.filepath || "");
-
-        //   const blob = new Blob([fileData], { type: image?.mimetype! });
-        //   const file = new File([blob], image?.originalFilename!, {
-        //     type: image?.mimetype!,
-        //   });
-
-        //   const imageUrl = await postBulletinImage({
-        //     file: file,
-        //     name: title || "이미지",
-        //   });
-
-        //   return imageUrl;
-        // });
         const images = twoArray.map(async (el) => {
           const title = fields[`image-${el}-name`]?.[0];
           const image = files[`image-${el}-file`]?.[0];
