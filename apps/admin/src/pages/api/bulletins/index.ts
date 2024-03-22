@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getBulletins, postBulletin, postBulletinImage } from "firebase";
+import { getBulletins, postBulletin } from "firebase";
 import { IncomingForm } from "formidable";
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -34,22 +34,39 @@ export default async function handler(
         if (err) res.status(500).json({ result: err });
 
         const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
-
         const images = twoArray.map(async (el) => {
+          // 가상 폼 생성
+          const imgForm = new FormData();
+
+          // 변수 가져오기
           const title = fields[`image-${el}-name`]?.[0];
           const image = files[`image-${el}-file`]?.[0];
+          const uploadURL = fields.urls && fields.urls[el];
 
-          // fs를 사용하여 파일 데이터를 읽습니다.
+          // 사용자에게 받은 이미지파일 변환하여 가상파일 생성
           const fileData = await fs.promises.readFile(image?.filepath || "");
-
-          // fileData를 그대로 postBulletinImage에 전달합니다.
-          // 필요한 경우, 파일의 MIME 타입과 기타 메타데이터를 함께 전달할 수 있습니다.
-          const imageUrl = await postBulletinImage({
-            file: fileData,
-            name: title || "이미지",
+          const blob = new Blob([fileData], {
+            type: image?.mimetype ?? "image/png",
+          });
+          const file = new File([blob], title || "", {
+            type: image?.mimetype ?? "image/png",
           });
 
-          return imageUrl;
+          // 가상 폼에 가상파일 추가
+          imgForm.append("file", file);
+
+          // 가상파일 CloudFlare 업로드 및 결과로 이미지 경로 반환
+          const {
+            data: {
+              result: { id },
+            },
+          } = await axios.post(uploadURL || "", imgForm, {
+            headers: {
+              ContentType: "multipart/form-data",
+            },
+          });
+          // CloudFlare 이미지경로 반환
+          return `https://imagedelivery.net/${process.env.CLOUDFLARE_ACCOUNT_HASH}/${id}`;
         });
 
         // TODO: error 기능 추가
