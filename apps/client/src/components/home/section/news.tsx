@@ -14,7 +14,12 @@ const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) =>
     <div className="flex flex-col gap-2">
       <h1 className="text-lg">주보 | {selectedBulletin.title}</h1>
       <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
-        <Image src={selectedBulletin.images[currentViewImage]} alt="bulletin" fill={true} />
+        <Image
+          src={`${selectedBulletin.images[currentViewImage]}/bulletin`}
+          placeholder={`data:image/${selectedBulletin.images[currentViewImage]}/blur`}
+          alt="bulletin"
+          fill={true}
+        />
       </div>
       <div className="flex justify-end gap-2">
         <button onClick={() => setCurrentViewImage(0)} className="rounded-md bg-gray-500 px-2 py-1 text-white">

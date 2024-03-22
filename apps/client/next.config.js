@@ -4,6 +4,7 @@ const nextConfig = {
     remotePatterns: [
       { protocol: "https", hostname: "www.myungmoon.or.kr" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
+      { protocol: "https", hostname: "imagedelivery.net" },
     ],
   },
   reactStrictMode: true,
