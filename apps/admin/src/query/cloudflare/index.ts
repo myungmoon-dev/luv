@@ -1,26 +1,13 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import cloudflareKeys from "./keys";
-import { postCloudFlareConnect, postCloudFlareUpload } from "@/api/cloudflare";
+import { postCloudFlareConnect } from "@/api/cloudflare";
+import { ICloudFlareConnectProps } from "@/types/cloudflare/props";
 
-const usePostCloudFlareConnect = () => {
+const usePostCloudFlareConnect = ({ expireDate }: ICloudFlareConnectProps) => {
   return useQuery({
     queryKey: cloudflareKeys.connectInfo(),
-    queryFn: async () => await postCloudFlareConnect(),
+    queryFn: async () => await postCloudFlareConnect({ expireDate }),
   });
 };
 
-const usePostCloudFlareUpload = (images: FormData) => {
-  return useQuery({
-    queryKey: cloudflareKeys.uploadInfo(),
-    queryFn: async () => await postCloudFlareUpload(images),
-  });
-};
-
-const usePostCloudFlareUpload2 = () =>
-  useMutation({ mutationFn: postCloudFlareUpload });
-
-export {
-  usePostCloudFlareConnect,
-  usePostCloudFlareUpload,
-  usePostCloudFlareUpload2,
-};
+export { usePostCloudFlareConnect };

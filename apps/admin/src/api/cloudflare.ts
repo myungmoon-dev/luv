@@ -1,23 +1,13 @@
 import { IPostCloudflareResponse } from "@/types/cloudflare/response";
 import { api } from ".";
+import { ICloudFlareConnectProps } from "@/types/cloudflare/props";
 
-export const postCloudFlareConnect = async () => {
-  const { data } = await api.post<IPostCloudflareResponse>(
-    "/api/cloudflare",
-    null,
-    {
-      params: { type: "connect" },
-    }
-  );
-
-  return data;
-};
-
-export const postCloudFlareUpload = async (images: FormData) => {
-  const { data } = await api.post("/api/cloudflare/upload", images, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
+export const postCloudFlareConnect = async ({
+  expireDate,
+}: ICloudFlareConnectProps) => {
+  const { data } = await api.post<IPostCloudflareResponse>("/api/cloudflare", {
+    expireDate,
   });
+
   return data;
 };

@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
 import HomeSection from "./section";
 import { usePostBulletin } from "@/query/bulletin";
-import {
-  usePostCloudFlareConnect,
-  usePostCloudFlareUpload,
-  usePostCloudFlareUpload2,
-} from "@/query/cloudflare";
+import { usePostCloudFlareConnect } from "@/query/cloudflare";
 
 interface IBulletinImageListForm extends Omit<IBulletinImageForm, "images"> {
   images: FileList;
@@ -17,8 +13,12 @@ const BulletinSection = () => {
   const { register, handleSubmit } = useForm<IBulletinImageListForm>();
 
   const { mutate } = usePostBulletin();
-  const { refetch: fetchConnectInfo } = usePostCloudFlareConnect();
-  const { mutate: mutateUpload } = usePostCloudFlareUpload2();
+
+  const expireDate = new Date();
+  expireDate.setHours(expireDate.getHours() + 3);
+
+  const { data: cfData1, refetch: refetchCloudFlare } =
+    usePostCloudFlareConnect({ expireDate: expireDate.toISOString() });
 
   const onSubmit = async (data: IBulletinImageListForm) => {
     const formData = new FormData();
@@ -34,20 +34,11 @@ const BulletinSection = () => {
       formData.append(`image-${index}-name`, image.name);
     });
 
-    // CloudFlare DirectCreatorUpload 유효한 id/uploadURL 가져오기
-    const { data: connectInfo } = await fetchConnectInfo();
-    formData.append("uploadURL", connectInfo?.uploadURL as string);
+    // CloudFlare DirectCreatorUpload 유효한 uploadURL 가져오기
+    const { data: cfData2 } = await refetchCloudFlare();
+    formData.append("urls", cfData1?.uploadURL ?? "");
+    formData.append("urls", cfData2?.uploadURL ?? "");
 
-    const res = mutateUpload(formData, {
-      onSuccess(data, variables, context) {
-        console.log(data);
-      },
-    });
-    console.log("res: ", res);
-    console.log(connectInfo);
-
-    return;
-    // FIXME: 주보에 storage 제거해야 함
     mutate(formData, {
       onSuccess: (res) => console.log(res),
       onError: (err) => console.log(err),
