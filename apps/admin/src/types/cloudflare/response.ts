@@ -1,5 +1,4 @@
 export interface IPostCloudflareResponse {
-  success: string;
-  id: string;
+  success: boolean;
   uploadURL: string;
 }
