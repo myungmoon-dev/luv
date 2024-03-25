@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import Image from "next/image";
 import { Card, cn } from "ui";
 import { IBulletin } from "type";
 
 import Section from ".";
 import { useGetBulletins } from "@/query/bulletin";
 import useModalStore from "@/store/modal";
+import BlurImageComponent from "@/components/blurImage";
 
 const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) => {
   const [currentViewImage, setCurrentViewImage] = useState(0);
@@ -14,11 +14,11 @@ const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) =>
     <div className="flex flex-col gap-2">
       <h1 className="text-lg">주보 | {selectedBulletin.title}</h1>
       <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
-        <Image
-          src={`${selectedBulletin.images[currentViewImage]}/bulletin`}
-          placeholder={`data:image/${selectedBulletin.images[currentViewImage]}/blur`}
-          alt="bulletin"
-          fill={true}
+        <BlurImageComponent
+          img={`${selectedBulletin.images[currentViewImage]}/bulletin`}
+          blur={selectedBulletin.buffers[currentViewImage]}
+          alt={`${selectedBulletin.title}_${currentViewImage}`}
+          fill
         />
       </div>
       <div className="flex justify-end gap-2">
