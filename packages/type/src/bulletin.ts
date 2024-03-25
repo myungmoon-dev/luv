@@ -6,13 +6,14 @@ export interface IBulletin {
   date: string;
   title: string;
   images: string[];
+  buffers: string[];
 }
 
 export interface IBulletinForm {
   date: string;
   title: string;
   images: string[];
-  blurs: string[];
+  buffers: string[];
 }
 
 export interface IBulletinImageForm extends Omit<IBulletinForm, "images"> {

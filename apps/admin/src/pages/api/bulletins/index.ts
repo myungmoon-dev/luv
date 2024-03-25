@@ -58,7 +58,7 @@ export default async function handler(
 
         const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
 
-        const images = twoArray.map(async (el) => {
+        const promiseImages = twoArray.map(async (el) => {
           // 가상 폼 생성
           const imgForm = new FormData();
 
@@ -89,13 +89,17 @@ export default async function handler(
               ContentType: "multipart/form-data",
             },
           });
+
           // CloudFlare CDN 이미지경로 반환
           return `https://imagedelivery.net/${process.env.CLOUDFLARE_ACCOUNT_HASH}/${id}`;
         });
 
-        const blurs = images.map(async (image) => {
-          const { base64 } = await getBlurImage(await image);
-          return `data:image/png;base64,${base64}`;
+        const images = await Promise.all(promiseImages);
+
+        // CloudFlare 이미지를 base64로 변환
+        const buffers = images.map(async (image) => {
+          const { base64 } = await getBlurImage(`${image}/bulletin`);
+          return base64;
         });
 
         // TODO: error 기능 추가
@@ -105,8 +109,8 @@ export default async function handler(
         const result = await postBulletin({
           date: fields.date?.[0],
           title: fields.title?.[0],
-          images: await Promise.all(images),
-          blurs: await Promise.all(blurs),
+          images,
+          buffers: await Promise.all(buffers),
         });
 
         return result;
