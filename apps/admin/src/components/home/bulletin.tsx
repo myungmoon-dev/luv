@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
 import HomeSection from "./section";
 import { usePostBulletin } from "@/query/bulletin";
-import { usePostCloudFlareConnect } from "@/query/cloudflare";
 
 interface IBulletinImageListForm extends Omit<IBulletinImageForm, "images"> {
   images: FileList;
@@ -13,12 +12,6 @@ const BulletinSection = () => {
   const { register, handleSubmit } = useForm<IBulletinImageListForm>();
 
   const { mutate } = usePostBulletin();
-
-  const expireDate = new Date();
-  expireDate.setHours(expireDate.getHours() + 3);
-
-  const { data: cfData1, refetch: refetchCloudFlare } =
-    usePostCloudFlareConnect({ expireDate: expireDate.toISOString() });
 
   const onSubmit = async (data: IBulletinImageListForm) => {
     const formData = new FormData();
@@ -33,11 +26,6 @@ const BulletinSection = () => {
       formData.append(`image-${index}-file`, image);
       formData.append(`image-${index}-name`, image.name);
     });
-
-    // CloudFlare DirectCreatorUpload 유효한 uploadURL 가져오기
-    const { data: cfData2 } = await refetchCloudFlare();
-    formData.append("urls", cfData1?.uploadURL ?? "");
-    formData.append("urls", cfData2?.uploadURL ?? "");
 
     mutate(formData, {
       onSuccess: (res) => console.log(res),
@@ -56,20 +44,16 @@ const BulletinSection = () => {
           <p>날짜</p>
           <input
             className="text-black p-1"
-            {...(register("date"),
-            {
-              placeholder: "ex) 2021-01-01",
-            })}
+            {...register("date")}
+            placeholder="ex) 2021-01-01"
           />
         </label>
         <label className="flex items-center gap-2">
           <p>제목</p>
           <input
             className="text-black p-1"
-            {...(register("title"),
-            {
-              placeholder: "ex) 2021년 1월 첫째주",
-            })}
+            {...register("title")}
+            placeholder="ex) 2021년 1월 첫째주"
           />
         </label>
         <label className="">

@@ -1,3 +1,5 @@
+import { api } from "@/api";
+import { IPostCloudflareResponse } from "@/types/cloudflare/response";
 import axios from "axios";
 import { getBulletins, postBulletin } from "firebase";
 import { IncomingForm } from "formidable";
@@ -15,7 +17,10 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { method } = req;
+  const {
+    method,
+    headers: { origin },
+  } = req;
 
   switch (method) {
     case "GET":
@@ -28,12 +33,30 @@ export default async function handler(
       });
 
     case "POST":
-      const form = new IncomingForm();
+      // 3시간 유효기간 변수 설정
+      const expireDate = new Date();
+      expireDate.setHours(expireDate.getHours() + 3);
 
+      // CloudFlare DirectCreatorUpload 유효한 uploadURL 2개 가져오기
+      const apiResponses = await Promise.all(
+        Array(2)
+          .fill(null)
+          .map(() =>
+            api.post<IPostCloudflareResponse>(`${origin}/api/cloudflare`, {
+              expireDate: expireDate.toISOString(),
+            })
+          )
+      );
+      const uploadURLs = apiResponses.map(
+        (response) => response.data.uploadURL
+      );
+
+      const form = new IncomingForm();
       const result = form.parse(req, async (err, fields, files) => {
         if (err) res.status(500).json({ result: err });
 
         const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
+
         const images = twoArray.map(async (el) => {
           // 가상 폼 생성
           const imgForm = new FormData();
@@ -41,7 +64,7 @@ export default async function handler(
           // 변수 가져오기
           const title = fields[`image-${el}-name`]?.[0];
           const image = files[`image-${el}-file`]?.[0];
-          const uploadURL = fields.urls && fields.urls[el];
+          const uploadURL = uploadURLs[el];
 
           // 사용자에게 받은 이미지파일 변환하여 가상파일 생성
           const fileData = await fs.promises.readFile(image?.filepath || "");
@@ -65,7 +88,7 @@ export default async function handler(
               ContentType: "multipart/form-data",
             },
           });
-          // CloudFlare 이미지경로 반환
+          // CloudFlare CDN 이미지경로 반환
           return `https://imagedelivery.net/${process.env.CLOUDFLARE_ACCOUNT_HASH}/${id}`;
         });
 
