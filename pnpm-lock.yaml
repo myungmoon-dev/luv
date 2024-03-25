@@ -26,12 +26,18 @@ importers:
 
   apps/admin:
     dependencies:
+      '@plaiceholder/next':
+        specifier: ^3.0.0
+        version: 3.0.0(next@14.1.2)(plaiceholder@3.0.0)(sharp@0.33.2)
       firebase:
         specifier: workspace:*
         version: link:../../packages/firebase
       next:
         specifier: 14.1.2
         version: 14.1.2(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder:
+        specifier: ^3.0.0
+        version: 3.0.0(sharp@0.33.2)
       react:
         specifier: ^18
         version: 18.2.0
@@ -90,12 +96,18 @@ importers:
 
   apps/client:
     dependencies:
+      '@plaiceholder/next':
+        specifier: ^3.0.0
+        version: 3.0.0(next@14.0.4)(plaiceholder@3.0.0)(sharp@0.33.2)
       firebase:
         specifier: workspace:*
         version: link:../../packages/firebase
       next:
         specifier: 14.0.4
         version: 14.0.4(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder:
+        specifier: ^3.0.0
+        version: 3.0.0(sharp@0.33.2)
       react:
         specifier: ^18
         version: 18.2.0
@@ -1697,6 +1709,30 @@ packages:
       picocolors: 1.0.0
       tslib: 2.6.2
     dev: true
+
+  /@plaiceholder/next@3.0.0(next@14.0.4)(plaiceholder@3.0.0)(sharp@0.33.2):
+    resolution: {integrity: sha512-7UK/H1X64hwo2VaxOPKMXE+OY9IgmKLPsq/xKHZ+gU07oqQSfIWWIgpVVucMB3ZgVYah+68agR15BRuSxAuMHw==}
+    peerDependencies:
+      next: '>= 10.0.0'
+      plaiceholder: '>=3.0.0'
+      sharp: '>= 0.30.6'
+    dependencies:
+      next: 14.0.4(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder: 3.0.0(sharp@0.33.2)
+      sharp: 0.33.2
+    dev: false
+
+  /@plaiceholder/next@3.0.0(next@14.1.2)(plaiceholder@3.0.0)(sharp@0.33.2):
+    resolution: {integrity: sha512-7UK/H1X64hwo2VaxOPKMXE+OY9IgmKLPsq/xKHZ+gU07oqQSfIWWIgpVVucMB3ZgVYah+68agR15BRuSxAuMHw==}
+    peerDependencies:
+      next: '>= 10.0.0'
+      plaiceholder: '>=3.0.0'
+      sharp: '>= 0.30.6'
+    dependencies:
+      next: 14.1.2(react-dom@18.2.0)(react@18.2.0)
+      plaiceholder: 3.0.0(sharp@0.33.2)
+      sharp: 0.33.2
+    dev: false
 
   /@protobufjs/aspromise@1.1.2:
     resolution: {integrity: sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==}
@@ -5507,6 +5543,14 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
     dev: true
+
+  /plaiceholder@3.0.0(sharp@0.33.2):
+    resolution: {integrity: sha512-jwHxxHPnr1BwRzPCeZgEK2BMsEy2327sWynw3qb6XC/oGgGDUTPtR8pFxFQmNArhMBwhkUbUr5OPhhIJpCa8eQ==}
+    peerDependencies:
+      sharp: '>= 0.30.6'
+    dependencies:
+      sharp: 0.33.2
+    dev: false
 
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
