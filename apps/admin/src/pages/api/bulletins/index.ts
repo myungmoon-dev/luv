@@ -1,5 +1,6 @@
 import { api } from "@/api";
 import { IPostCloudflareResponse } from "@/types/cloudflare/response";
+import getBlurImage from "@/utils/getBlurImage";
 import axios from "axios";
 import { getBulletins, postBulletin } from "firebase";
 import { IncomingForm } from "formidable";
@@ -92,6 +93,11 @@ export default async function handler(
           return `https://imagedelivery.net/${process.env.CLOUDFLARE_ACCOUNT_HASH}/${id}`;
         });
 
+        const blurs = images.map(async (image) => {
+          const { base64 } = await getBlurImage(await image);
+          return `data:image/png;base64,${base64}`;
+        });
+
         // TODO: error 기능 추가
         if (!fields.date?.[0] || !fields.title?.[0])
           return new NextResponse("");
@@ -100,6 +106,7 @@ export default async function handler(
           date: fields.date?.[0],
           title: fields.title?.[0],
           images: await Promise.all(images),
+          blurs: await Promise.all(blurs),
         });
 
         return result;

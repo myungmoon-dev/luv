@@ -12,6 +12,7 @@ export interface IBulletinForm {
   date: string;
   title: string;
   images: string[];
+  blurs: string[];
 }
 
 export interface IBulletinImageForm extends Omit<IBulletinForm, "images"> {
