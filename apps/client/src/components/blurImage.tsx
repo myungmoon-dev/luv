@@ -1,18 +1,18 @@
+import { useGetBlurImage } from "@/query/blurImage";
 import Image from "next/image";
 
 interface IBlurImageProps {
   img: string;
-  blur: string;
   alt: string;
   fill?: boolean;
 }
 
-const BlurImageComponent = ({ img, alt, blur, fill = false }: IBlurImageProps) => {
-  return (
-    <>
-      <Image src={img} fill={fill} alt={alt} placeholder="blur" blurDataURL={blur} />
-    </>
-  );
+const BlurImageComponent = ({ img, alt, fill = false }: IBlurImageProps) => {
+  const { data } = useGetBlurImage({
+    img,
+  });
+
+  return <>{data && <Image src={img} fill={fill} alt={alt} placeholder="blur" blurDataURL={data.base64} />}</>;
 };
 
 export default BlurImageComponent;

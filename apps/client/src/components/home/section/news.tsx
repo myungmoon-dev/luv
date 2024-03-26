@@ -16,7 +16,6 @@ const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) =>
       <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
         <BlurImageComponent
           img={`${selectedBulletin.images[currentViewImage]}/bulletin`}
-          blur={selectedBulletin.buffers[currentViewImage]}
           alt={`${selectedBulletin.title}_${currentViewImage}`}
           fill
         />
@@ -69,5 +68,13 @@ const NewsSection = () => {
     </Section>
   );
 };
+
+export async function getServerSideProps() {
+  console.log("test입니다");
+
+  return {
+    props: {},
+  };
+}
 
 export default NewsSection;
