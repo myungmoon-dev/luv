@@ -69,12 +69,4 @@ const NewsSection = () => {
   );
 };
 
-export async function getServerSideProps() {
-  console.log("test입니다");
-
-  return {
-    props: {},
-  };
-}
-
 export default NewsSection;
