@@ -1,8 +1,6 @@
 import React from "react";
-
 import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
-
 import HomeSection from "./section";
 import { usePostBulletin } from "@/query/bulletin";
 
@@ -26,7 +24,6 @@ const BulletinSection = () => {
     formData.append("title", data.title);
     Array.from(data.images).forEach((image, index) => {
       formData.append(`image-${index}-file`, image);
-
       formData.append(`image-${index}-name`, image.name);
     });
 
@@ -39,16 +36,27 @@ const BulletinSection = () => {
 
   return (
     <HomeSection title="주보">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <label className="flex gap-2">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-3 justify-center items-center"
+      >
+        <label className="flex items-center gap-2">
           <p>날짜</p>
-          <input className="text-black" {...register("date")} />
+          <input
+            className="text-black p-1"
+            {...register("date")}
+            placeholder="ex) 2021-01-01"
+          />
         </label>
-        <label className="flex gap-2">
+        <label className="flex items-center gap-2">
           <p>제목</p>
-          <input className="text-black" {...register("title")} />
+          <input
+            className="text-black p-1"
+            {...register("title")}
+            placeholder="ex) 2021년 1월 첫째주"
+          />
         </label>
-        <label className="flex gap-2">
+        <label className="">
           <p>이미지</p>
           <input
             type="file"
@@ -57,7 +65,9 @@ const BulletinSection = () => {
             {...register("images")}
           />
         </label>
-        <button>추가하기</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
+          주보 추가하기
+        </button>
       </form>
     </HomeSection>
   );
