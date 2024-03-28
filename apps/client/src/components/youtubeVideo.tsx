@@ -1,12 +1,29 @@
+import { YoutubeType } from "@/api/youtube";
+import { useGetYoutubeLink } from "@/query/youtube";
 import React from "react";
+import { Spinner } from "ui";
 
 type YoutubeVideoProps = {
-  videoId: string;
+  type: YoutubeType;
 };
 
-const YoutubeVideo = ({ videoId }: YoutubeVideoProps) => {
+const YoutubeVideo = ({ type }: YoutubeVideoProps) => {
+  const { data, isLoading } = useGetYoutubeLink(type);
   return (
-    <iframe className="h-full w-full rounded-lg" src={`https://www.youtube.com/embed/${videoId}`} allowFullScreen />
+    <>
+      {isLoading ? (
+        <div className="absolute inset-0 flex items-center justify-center bg-transparent">
+          <Spinner loading={isLoading} />
+        </div>
+      ) : (
+        <iframe
+          className="h-full w-full rounded-lg"
+          src={`https://www.youtube.com/embed/${data}`}
+          allowFullScreen
+          loading="lazy"
+        />
+      )}
+    </>
   );
 };
 

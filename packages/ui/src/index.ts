@@ -11,6 +11,7 @@ import { SectionHeader } from "./SectionHeader";
 import { Card } from "./Card";
 import { cn } from "./utils/twMerge";
 import { Drawer } from "./Drawer";
+import { Spinner } from "./Spinner";
 
 export {
   Icon,
@@ -24,4 +25,5 @@ export {
   Card,
   cn,
   Drawer,
+  Spinner,
 };
