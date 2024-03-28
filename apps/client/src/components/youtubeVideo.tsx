@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { YoutubeType } from "@/api/youtube";
+import { useGetYoutubeLink } from "@/query/youtube";
+import React from "react";
 import { Spinner } from "ui";
 
 type YoutubeVideoProps = {
-  videoId: string | undefined;
+  type: YoutubeType;
 };
 
-const YoutubeVideo = ({ videoId }: YoutubeVideoProps) => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
+const YoutubeVideo = ({ type }: YoutubeVideoProps) => {
+  const { data, isLoading } = useGetYoutubeLink(type);
 
   return (
     <>
@@ -21,10 +19,9 @@ const YoutubeVideo = ({ videoId }: YoutubeVideoProps) => {
       ) : (
         <iframe
           className="h-full w-full rounded-lg"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={`https://www.youtube.com/embed/${data}`}
           allowFullScreen
           loading="lazy"
-          onLoad={() => setIsLoading(false)}
         />
       )}
     </>
