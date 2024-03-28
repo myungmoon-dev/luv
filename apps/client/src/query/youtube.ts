@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import youtubeKeys from "./youtube/keys";
 import { YoutubeType, getYoutubeLink } from "@/api/youtube";
 
