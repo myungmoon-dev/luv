@@ -6,6 +6,7 @@ export const DoubleQuoteVariants = cva(`ui-font-bold`, {
   variants: {
     color: {
       pink: "",
+      red: "",
     },
     size: {
       sm: "ui-text-2xl sm:ui-text-4xl md:ui-text-6xl",
@@ -15,10 +16,15 @@ export const DoubleQuoteVariants = cva(`ui-font-bold`, {
     },
   },
   defaultVariants: {
-    color: "pink",
+    color: "red",
     size: "md",
   },
   compoundVariants: [
+    {
+      color: "red",
+      size: "md",
+      className: "ui-text-[#892122]",
+    },
     {
       color: "pink",
       size: "md",
