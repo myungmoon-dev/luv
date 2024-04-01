@@ -6,7 +6,6 @@ export interface ITableData {
   date: string;
   title: string;
   writer: string;
-  viewCount: number;
 }
 
 interface ITableProps {
@@ -18,17 +17,14 @@ export const Table = ({ data, className }: ITableProps) => {
   return (
     <div className={cn("ui-text-center", className)}>
       <div className="ui-flex ui-font-bold ui-py-3">
-        <div className="ui-w-[20%]">
+        <div className="ui-w-[30%]">
           <p>날짜</p>
         </div>
         <div className="ui-w-[50%]">
           <p>제목</p>
         </div>
-        <div className="ui-w-[15%]">
+        <div className="ui-w-[20%]">
           <p>작성자</p>
-        </div>
-        <div className="ui-w-[15%]">
-          <p>조회수</p>
         </div>
       </div>
       <hr className="ui-border-gray-100" />
@@ -36,17 +32,14 @@ export const Table = ({ data, className }: ITableProps) => {
         {data.map((row) => (
           <>
             <div className="ui-flex ui-py-3" key={row.id}>
-              <div className="ui-w-[20%]">
+              <div className="ui-w-[30%]">
                 <p>{row.date}</p>
               </div>
               <div className="ui-w-[50%]">
                 <p>{row.title}</p>
               </div>
-              <div className="ui-w-[15%]">
+              <div className="ui-w-[20%]">
                 <p>{row.writer}</p>
-              </div>
-              <div className="ui-w-[15%]">
-                <p>{row.viewCount}</p>
               </div>
             </div>
             <hr className="ui-border-gray-100" />
