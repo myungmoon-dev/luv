@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "..";
+import dayjs from "dayjs";
 
 export interface ITableData {
   id: string;
@@ -11,9 +12,10 @@ export interface ITableData {
 interface ITableProps {
   data: ITableData[];
   className?: string;
+  onClickRow?: (rowId: string) => void;
 }
 
-export const Table = ({ data, className }: ITableProps) => {
+export const Table = ({ data, className, onClickRow }: ITableProps) => {
   return (
     <div className={cn("ui-text-center", className)}>
       <div className="ui-flex ui-font-bold ui-py-3">
@@ -31,9 +33,9 @@ export const Table = ({ data, className }: ITableProps) => {
       <div className="ui-flex ui-flex-col">
         {data.map((row) => (
           <>
-            <div className="ui-flex ui-py-3" key={row.id}>
+            <div className="ui-flex ui-py-3" key={row.id} onClick={() => onClickRow?.(row.id)}>
               <div className="ui-w-[30%]">
-                <p>{row.date}</p>
+                <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
               </div>
               <div className="ui-w-[50%]">
                 <p>{row.title}</p>
