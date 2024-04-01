@@ -5,7 +5,7 @@ import { Chip, Line } from "ui";
 import { useRouter } from "next/router";
 import ProfileList from "@/components/about/profileList";
 
-const LeadershipAssociatePage = () => {
+const LeadershipMinisterPage = () => {
   const { asPath, push } = useRouter();
   return (
     <Layout
@@ -38,4 +38,4 @@ const LeadershipAssociatePage = () => {
   );
 };
 
-export default LeadershipAssociatePage;
+export default LeadershipMinisterPage;
