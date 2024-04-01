@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getBulletins } from "@/api/bulletin";
+import { getBulletin, getBulletins } from "@/api/bulletin";
 import bulletinKeys from "./keys";
 
 const useGetBulletins = () => {
@@ -10,4 +10,11 @@ const useGetBulletins = () => {
   });
 };
 
-export { useGetBulletins };
+const useGetBulletin = ({ bulletinId }: { bulletinId: string }) => {
+  return useQuery({
+    queryFn: () => getBulletin(bulletinId),
+    queryKey: bulletinKeys.detail(bulletinId),
+  });
+};
+
+export { useGetBulletins, useGetBulletin };

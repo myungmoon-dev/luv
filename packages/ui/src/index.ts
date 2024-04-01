@@ -12,6 +12,10 @@ import { Card } from "./Card";
 import { cn } from "./utils/twMerge";
 import { Drawer } from "./Drawer";
 import { Spinner } from "./Spinner";
+import { Table } from "./Table";
+import { Pagination } from "./Pagination";
+
+export { type ITableData } from "./Table";
 
 export {
   Icon,
@@ -26,4 +30,6 @@ export {
   cn,
   Drawer,
   Spinner,
+  Table,
+  Pagination,
 };
