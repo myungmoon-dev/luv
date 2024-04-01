@@ -19,7 +19,6 @@ const LeadershipRetiredPage = () => {
       <div className="flex w-full flex-col gap-20">
         <div className="flex justify-center gap-4">
           {aboutLeaderMenus.map((menu) => (
-            // FIXME: 디자인 수정해야함
             <Chip
               onClick={() => push(menu.path)}
               selected={true}
@@ -30,7 +29,7 @@ const LeadershipRetiredPage = () => {
             />
           ))}
         </div>
-        <ProfileList pastorType="retired" />
+        <ProfileList tabType="retired" />
       </div>
     </Layout>
   );
