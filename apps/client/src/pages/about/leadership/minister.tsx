@@ -5,7 +5,7 @@ import { Chip } from "ui";
 import { useRouter } from "next/router";
 import ProfileList from "@/components/about/profileList";
 
-const LeadershipEvangelistPage = () => {
+const LeadershipAssociatePage = () => {
   const { asPath, push } = useRouter();
   return (
     <Layout
@@ -19,7 +19,6 @@ const LeadershipEvangelistPage = () => {
       <div className="flex w-full flex-col gap-20">
         <div className="flex justify-center gap-4">
           {aboutLeaderMenus.map((menu) => (
-            // FIXME: 디자인 수정해야함
             <Chip
               onClick={() => push(menu.path)}
               selected={true}
@@ -30,10 +29,10 @@ const LeadershipEvangelistPage = () => {
             />
           ))}
         </div>
-        <ProfileList pastorType="evangelist" />
+        <ProfileList tabType="minister" />
       </div>
     </Layout>
   );
 };
 
-export default LeadershipEvangelistPage;
+export default LeadershipAssociatePage;
