@@ -13,7 +13,7 @@ const AboutServicesPage = () => {
       bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
-      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-5">
+      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-20">
         <div className="flex w-full flex-col items-center justify-center gap-5">
           <SectionHeader text="주일예배" hasLine={true} selected={true} size="sm" />
           <ServicesTable worship="주일" />

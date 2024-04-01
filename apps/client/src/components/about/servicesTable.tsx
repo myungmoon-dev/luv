@@ -59,22 +59,25 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
   return (
     <div className="flex w-full flex-col items-center justify-center">
       {/* th */}
-      <div className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b border-b-gray-300">
-        <p className="text-center font-bold">구분</p>
-        <p className="flex h-full items-center justify-center border-l border-r border-l-gray-300 border-r-gray-300 text-center font-bold">
-          시간
+      <div className="mb-3 grid min-h-[50px] w-full grid-cols-3 items-center gap-5 rounded-md bg-gray-200">
+        <p className="text-center font-bold tracking-widest">구 분</p>
+        <p className="flex h-1/2 items-center justify-center border-l-2 border-r-2 border-l-[#dfc7c7] border-r-[#dfc7c7] text-center font-bold tracking-widest">
+          시 간
         </p>
-        <p className="text-center font-bold">장소</p>
+        <p className="text-center font-bold tracking-widest">장 소</p>
       </div>
 
       {/* tb */}
       {ServiceWorshipSchedule.filter((schedule) => schedule.worship === worship).map((service, index) => (
-        <div key={index} className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b border-b-gray-300">
-          <p className="text-center text-sm">{service.label}</p>
-          <p className="flex h-full items-center justify-center border-l border-r border-l-gray-300 border-r-gray-300 text-center text-sm">
+        <div
+          key={index}
+          className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b-2 border-b-gray-200"
+        >
+          <p className="text-center text-xs sm:text-sm">{service.label}</p>
+          <p className="flex h-full items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
             {service.time}
           </p>
-          <p className="text-center text-sm">{service.place}</p>
+          <p className="text-center text-xs sm:text-sm">{service.place}</p>
         </div>
       ))}
     </div>
