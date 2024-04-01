@@ -17,7 +17,7 @@ const LeadershipMinisterPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <div className="flex w-full flex-col gap-20">
-        <div className="relative flex items-center justify-center gap-4">
+        <div className="relative flex flex-wrap items-center justify-center gap-4">
           {aboutLeaderMenus.map((menu) => (
             <Chip
               onClick={() => push(menu.path)}
@@ -30,7 +30,7 @@ const LeadershipMinisterPage = () => {
               className="z-[1]"
             />
           ))}
-          <Line className="absolute left-0 right-0 h-[0.15rem]" />
+          <Line className="absolute left-0 right-0 hidden h-[0.15rem] sm:flex" />
         </div>
         <ProfileList tabType="minister" />
       </div>
