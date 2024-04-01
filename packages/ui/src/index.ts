@@ -12,18 +12,8 @@ import { Card } from "./Card";
 import { cn } from "./utils/twMerge";
 import { Drawer } from "./Drawer";
 import { Spinner } from "./Spinner";
+import { Table } from "./Table";
 
-export {
-  Icon,
-  Header,
-  Banner,
-  Footer,
-  Chip,
-  Line,
-  DoubleQuote,
-  SectionHeader,
-  Card,
-  cn,
-  Drawer,
-  Spinner,
-};
+export { type ITableData } from "./Table";
+
+export { Icon, Header, Banner, Footer, Chip, Line, DoubleQuote, SectionHeader, Card, cn, Drawer, Spinner, Table };
