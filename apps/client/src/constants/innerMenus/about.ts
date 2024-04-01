@@ -23,3 +23,11 @@ export const pastorTypes: IPastorType[] = [
   { label: "associate", type: "목사" },
   { label: "evangelist", type: "전도사" },
 ];
+
+export const aboutHistoryMenus: IInnerMenu[] = [
+  { label: "1980년대", path: "/about/history/1980s" },
+  { label: "1990년대", path: "/about/history/1990s" },
+  { label: "2000년대", path: "/about/history/2000s" },
+  { label: "2010년대", path: "/about/history/2010s" },
+  { label: "2020년대", path: "/about/history" },
+];
