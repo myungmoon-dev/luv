@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import React from "react";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
-import { Chip } from "ui";
+import { Chip, Line } from "ui";
 import { useRouter } from "next/router";
 import ProfileList from "@/components/about/profileList";
 
@@ -17,17 +17,20 @@ const LeadershipEvangelistPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <div className="flex w-full flex-col gap-20">
-        <div className="flex justify-center gap-4">
+        <div className="relative flex items-center justify-center gap-4">
           {aboutLeaderMenus.map((menu) => (
             <Chip
               onClick={() => push(menu.path)}
-              selected={true}
+              selected={menu.path === asPath}
               text={menu.label}
               size="xs"
               color="pink"
               key={menu.label}
+              shadow="md"
+              className="z-[1]"
             />
           ))}
+          <Line className="absolute left-0 right-0 h-[0.15rem]" />
         </div>
         <ProfileList tabType="elder" />
       </div>
