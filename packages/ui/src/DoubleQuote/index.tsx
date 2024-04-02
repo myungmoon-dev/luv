@@ -20,12 +20,26 @@ export const DoubleQuoteVariants = cva(
 );
 
 interface IDoubleQuoteProps extends VariantProps<typeof DoubleQuoteVariants> {
-  image: ReactNode;
   className?: string;
+  direction: "up" | "down";
 }
 
-export const DoubleQuote = ({ size, className, image }: IDoubleQuoteProps) => {
+export const DoubleQuote = ({
+  size,
+  className,
+  direction,
+}: IDoubleQuoteProps) => {
   return (
-    <div className={cn(DoubleQuoteVariants({ size }), className)}>{image}</div>
+    <div className={cn(DoubleQuoteVariants({ size }), className)}>
+      <img
+        src={
+          direction === "up"
+            ? "images/common/red-up-quote.png"
+            : "images/common/red-down-quote.png"
+        }
+        alt="쌍따옴표"
+        className="ui-object-cover"
+      />
+    </div>
   );
 };
