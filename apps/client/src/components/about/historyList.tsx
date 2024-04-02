@@ -468,20 +468,37 @@ const HISTORY: IHistory[] = [
   },
 ];
 
+// FIXME: HISTORY 정리, className 조건문 정리 필요
 const HistoryList = ({ decade }: IHistoryListProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col items-center justify-center">
       {HISTORY.filter((history) => history.label === decade).map((history) => (
-        <div className="flex flex-col gap-5" key={history.label}>
-          <h3 className="text-3xl font-bold">{history.label}</h3>
-          <div className="flex flex-col gap-2">
-            {history.innerEvents.map((event) => (
-              <div key={event.description}>
-                <span className="text-lg font-semibold">{event.date}</span>
-                <p>{event.description}</p>
-              </div>
-            ))}
-          </div>
+        <div className="relative grid grid-cols-1 gap-10">
+          {history.innerEvents.map((event, index, arr) => (
+            <div className="relative grid grid-cols-2 place-items-center gap-16" key={event.description}>
+              <p
+                className={`max-w-20 justify-self-end text-sm font-semibold text-pink-100 ${
+                  index === 0 ? "self-start" : ""
+                } ${arr.length - 1 === index ? "self-end" : ""}`}
+              >
+                {event.date}
+              </p>
+              <p
+                className={`max-w-lg justify-self-start text-sm ${index === 0 ? "self-start" : ""} ${
+                  arr.length - 1 === index ? "self-end" : ""
+                }`}
+              >
+                {event.description}
+              </p>
+              <div
+                className={`absolute left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full bg-pink-100 ${
+                  index === 0 ? "top-0" : ""
+                }
+                 `}
+              ></div>
+            </div>
+          ))}
+          <div className="absolute bottom-1 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-pink-100"></div>
         </div>
       ))}
     </div>
