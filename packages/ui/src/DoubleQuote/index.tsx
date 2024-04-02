@@ -23,12 +23,12 @@ export const DoubleQuoteVariants = cva(`ui-font-bold`, {
     {
       color: "red",
       size: "md",
-      className: "ui-text-[#892122]",
+      className: "ui-text-pink-200",
     },
     {
       color: "pink",
       size: "md",
-      className: "ui-text-[#c8b3b3]",
+      className: "ui-text-pink-100",
     },
   ],
 });

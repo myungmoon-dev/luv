@@ -42,22 +42,22 @@ export const ChipVariants = cva(
       {
         color: "red",
         selected: true,
-        className: "ui-bg-[#892122] ui-text-white",
+        className: "ui-bg-pink-200 ui-text-white",
       },
       {
         color: "red",
         selected: false,
-        className: "ui-bg-white ui-text-[#892122]",
+        className: "ui-bg-white ui-text-pink-200",
       },
       {
         color: "pink",
         selected: true,
-        className: "ui-bg-[#dfc7c7] ui-text-white",
+        className: "ui-bg-pink-100 ui-text-white",
       },
       {
         color: "pink",
         selected: false,
-        className: "ui-bg-white ui-text-[#dfc7c7]",
+        className: "ui-bg-white ui-text-pink-100",
       },
     ],
   }

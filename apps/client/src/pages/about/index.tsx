@@ -15,14 +15,14 @@ const AboutIndexPage = () => {
       <div className="flex flex-col gap-5 sm:text-lg md:text-xl">
         <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-5">
           <DoubleQuote className="sm:text-6xl md:text-8xl" />
-          <h2 className="mb-5 break-words text-center text-lg font-bold text-[#892122] sm:text-2xl md:text-3xl">
+          <h2 className="mb-5 break-words text-center text-lg font-bold text-pink-200 sm:text-2xl md:text-3xl">
             명문교회 홈페이지를 방문해 주신 여러분을
             <br />
             주님의 이름으로 환영하고 축복합니다.
           </h2>
           <DoubleQuote className="sm:text-6xl md:text-8xl" />
         </div>
-        <div className="text-md justify-start font-bold text-[#892122] sm:text-lg md:text-xl">
+        <div className="text-md justify-start font-bold text-pink-200 sm:text-lg md:text-xl">
           복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!
           <br />
           명문교회는 '지역과 민족을 품고 세계와 열방을 향해'

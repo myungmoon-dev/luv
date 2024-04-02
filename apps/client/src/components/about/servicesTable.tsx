@@ -61,7 +61,7 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
       {/* th */}
       <div className="mb-3 grid min-h-[50px] w-full grid-cols-3 items-center gap-5 rounded-md bg-gray-200">
         <p className="text-center font-bold tracking-widest">구 분</p>
-        <p className="flex h-1/2 items-center justify-center border-l-2 border-r-2 border-l-[#dfc7c7] border-r-[#dfc7c7] text-center font-bold tracking-widest">
+        <p className="flex h-1/2 items-center justify-center border-l-2 border-r-2 border-l-pink-100 border-r-pink-100 text-center font-bold tracking-widest">
           시 간
         </p>
         <p className="text-center font-bold tracking-widest">장 소</p>
