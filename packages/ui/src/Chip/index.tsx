@@ -24,7 +24,7 @@ export const ChipVariants = cva(
         xl: "ui-p-[0.9rem] ui-px-11 ui-text-5xl",
       },
       shadow: {
-        none: "",
+        none: "ui-shadow-none",
         sm: "ui-shadow-sm",
         md: "ui-shadow-md",
         lg: "ui-shadow-lg",
