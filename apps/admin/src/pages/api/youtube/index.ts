@@ -1,5 +1,5 @@
+import { createSermonVideo, getSermonVideo } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
-import { createYoutubeLink, getYoutubeLink } from "firebase/src/database";
 
 export default async function handler(
   req: NextApiRequest,
@@ -7,14 +7,14 @@ export default async function handler(
 ) {
   const {
     method,
-    query: { id, type },
+    query: { type },
+    body: { url, date, mainText, title, preacher, type: formType },
   } = req;
-  const videoId = id as string;
-  const videoType = type as string;
 
   switch (method) {
     case "GET":
-      const youtubeLink = (await getYoutubeLink({ videoType })).docs.map(
+      const videoType = type as string;
+      const youtubeLink = (await getSermonVideo({ videoType })).docs.map(
         (doc) => doc.data().videoId
       );
 
@@ -22,7 +22,14 @@ export default async function handler(
         youtubeLink,
       });
     case "POST":
-      await createYoutubeLink({ videoId, videoType });
+      await createSermonVideo({
+        url,
+        mainText,
+        title,
+        preacher,
+        date,
+        type: formType,
+      });
 
       return res.status(200).json({
         result: "success",
