@@ -1,6 +1,8 @@
 import Layout from "@/components/layout";
 import React from "react";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
+import { Card } from "ui";
+import Image from "next/image";
 
 const AboutVisionPage = () => {
   return (
@@ -12,6 +14,14 @@ const AboutVisionPage = () => {
       innerMenus={aboutInnerMenus}
     >
       <div className="flex flex-col gap-10">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <Card className="relative h-[200px] shadow-lg">
+            <Image src="/images/about/vision1.png" className="object-cover" alt="로고와 비전" fill />
+          </Card>
+          <Card className="relative h-[200px] shadow-lg">
+            <Image src="/images/about/vision2.png" className="object-cover" alt="로고와 비전" fill />
+          </Card>
+        </div>
         <div className="flex flex-col gap-5">
           <h3 className="text-3xl font-bold text-pink-100">명문교회</h3>
           <p>
