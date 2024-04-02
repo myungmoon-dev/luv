@@ -29,7 +29,7 @@ export const ChipVariants = cva(
         md: "ui-shadow-md",
         lg: "ui-shadow-lg",
         xl: "ui-shadow-xl",
-        xxl: "ui-shadow-2xl",
+        "2xl": "ui-shadow-2xl",
       },
     },
     defaultVariants: {
