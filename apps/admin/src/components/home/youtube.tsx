@@ -20,27 +20,26 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
     const { mainText, preacher, title, url, date } = data;
     const id = getYoutubeId({ url });
 
-    id
-      ? mutate(
-          {
-            url: id,
-            mainText,
-            title,
-            preacher,
-            type,
-            date,
-          },
-          {
-            onSuccess: ({ result }) => {
-              reset();
-              return result === "success"
-                ? alert("변경되었습니다.")
-                : alert("API 요청 중 오류가 발생하였습니다.");
-            },
-            onError: (error) => console.log(error),
-          }
-        )
-      : alert("유튜브 링크를 다시 확인해주세요.");
+    if (!id) return alert("유튜브 링크를 다시 확인해주세요.");
+    mutate(
+      {
+        url: id,
+        mainText,
+        title,
+        preacher,
+        type,
+        date,
+      },
+      {
+        onSuccess: ({ result }) => {
+          reset();
+          return result === "success"
+            ? alert("변경되었습니다.")
+            : alert("API 요청 중 오류가 발생하였습니다.");
+        },
+        onError: (error) => console.log(error),
+      }
+    );
   };
 
   const onInValid = () => {
@@ -117,7 +116,6 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
               </label>
             </>
           )}
-
           <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
             등록
           </button>
