@@ -11,5 +11,9 @@ export const Spinner = ({
   size,
   loading = true,
 }: ISpinnerProps) => {
-  return <HashLoader color={color} size={size} loading={loading} />;
+  return (
+    <div className="ui-absolute ui-inset-0 ui-flex ui-items-center ui-justify-center ui-bg-transparent">
+      <HashLoader color={color} size={size} loading={loading} />
+    </div>
+  );
 };
