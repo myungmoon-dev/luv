@@ -1,14 +1,10 @@
 import { useGetYoutubeLink } from "@/query/youtube";
+import { IYoutubeProps } from "@/types/youtube/props";
 import React from "react";
-import { YoutubeType } from "type";
 import { Spinner } from "ui";
 
-type YoutubeVideoProps = {
-  type: YoutubeType;
-};
-
-const YoutubeVideo = ({ type }: YoutubeVideoProps) => {
-  const { data, isLoading } = useGetYoutubeLink(type);
+const YoutubeVideo = ({ type, count }: IYoutubeProps) => {
+  const { data, isLoading } = useGetYoutubeLink({ type, count });
   return (
     <>
       {isLoading ? (

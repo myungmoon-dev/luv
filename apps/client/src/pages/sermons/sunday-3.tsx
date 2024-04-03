@@ -3,8 +3,14 @@ import Layout from "@/components/layout";
 import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
 import { Card, SectionHeader } from "ui";
 import YoutubeVideo from "@/components/youtubeVideo";
+import { useGetYoutubeSermon } from "@/query/youtube";
 
 const SermonsSunday3Page = () => {
+  const { data: sermons } = useGetYoutubeSermon({
+    type: "main",
+    count: 4,
+  });
+
   return (
     <Layout
       pageTitle="주일 3부 예배"
@@ -26,9 +32,8 @@ const SermonsSunday3Page = () => {
           <div className="flex w-full flex-col items-center justify-center">
             <h1 className="font-HSBombaram3 text-lg sm:text-2xl">" 평범한 사람들의 비범한 역사 "</h1>
             <p className="text-xs text-gray-700 sm:text-sm">김지혁 담임목사 | 이사야 28장 16절</p>
-            {/* FIXME: YoutubeVideo 숏츠/라이브/주일설교/새벽설교 등으로 구분해야 함 */}
             <Card className="relative mt-10 h-[300px] w-[100%] sm:w-[70%] lg:h-[450px]">
-              <YoutubeVideo type="youtube" />
+              <YoutubeVideo type="main" />
             </Card>
           </div>
         </div>
