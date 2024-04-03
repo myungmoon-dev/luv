@@ -1,6 +1,6 @@
-import { YoutubeType } from "@/api/youtube";
 import { useGetYoutubeLink } from "@/query/youtube";
 import React from "react";
+import { YoutubeType } from "type";
 import { Spinner } from "ui";
 
 type YoutubeVideoProps = {

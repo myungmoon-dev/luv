@@ -2,14 +2,14 @@ import { postBulletinImage } from "./storage";
 
 import {
   getBulletins,
-  getYoutubeLink,
-  createYoutubeLink,
+  getSermonVideo,
+  createSermonVideo,
   postBulletin,
 } from "./database";
 
 export {
-  getYoutubeLink,
-  createYoutubeLink,
+  getSermonVideo,
+  createSermonVideo,
   getBulletins,
   postBulletin,
   postBulletinImage,
