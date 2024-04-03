@@ -1,4 +1,4 @@
-import { getYoutubeLink } from "firebase";
+import { getSermonVideo } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (method) {
     case "GET":
-      const snapshot = await getYoutubeLink({ videoType });
+      const snapshot = await getSermonVideo({ videoType });
       const youtubeLink = snapshot.docs.map((doc) => doc.data().videoId);
 
       return res.status(200).json({

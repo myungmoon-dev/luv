@@ -1,11 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import { YoutubeType, getYoutubeLink, postYoutubeLink } from "@/api/youtube";
+import { getYoutubeLink, postYoutubeLink } from "@/api/youtube";
 import youtubeKeys from "./keys";
-
-interface IMutationProps {
-  id: string;
-}
+import { YoutubeType } from "type";
 
 export const useGetYoutubeLink = (type: YoutubeType) => {
   const queryKey = youtubeKeys[type]();
@@ -22,8 +18,7 @@ export const usePostYoutubeLink = (type: YoutubeType) => {
   const queryKey = youtubeKeys[type]();
 
   return useMutation({
-    mutationFn: async ({ id }: IMutationProps) =>
-      await postYoutubeLink({ id, type }),
+    mutationFn: postYoutubeLink,
     onSuccess: async () =>
       await queryClient.invalidateQueries({
         queryKey,

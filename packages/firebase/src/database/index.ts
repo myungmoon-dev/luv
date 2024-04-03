@@ -1,8 +1,6 @@
 import { getFirestore } from "firebase/firestore";
 import { firebase } from "../../firebase";
-
-import { createYoutubeLink, getYoutubeLink } from "./video";
-
+import { getSermonVideo, createSermonVideo } from "./video";
 import { getBulletins, postBulletin } from "./bulletin";
 
 const database = getFirestore(firebase);
@@ -14,8 +12,8 @@ const collections = {
 export {
   database,
   collections,
-  getYoutubeLink,
-  createYoutubeLink,
+  getSermonVideo,
+  createSermonVideo,
   getBulletins,
   postBulletin,
 };

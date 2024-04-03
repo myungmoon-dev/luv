@@ -8,7 +8,7 @@ const WordsSection = () => {
     <Section title="생명의 말씀">
       <div className="flex flex-col gap-5 sm:flex-row">
         <Card className="relative h-[300px] w-[100%] sm:w-[70%] lg:h-[450px]">
-          <YoutubeVideo type="youtube" />
+          <YoutubeVideo type="live" />
         </Card>
         <Card className="relative h-[300px] w-[100%] sm:w-[30%] lg:h-[450px]">
           <YoutubeVideo type="shorts" />

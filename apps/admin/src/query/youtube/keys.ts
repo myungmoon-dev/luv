@@ -1,8 +1,12 @@
 const youtubeKeys = {
   all: ["youtubeLinks"],
-  youtube: () => [...youtubeKeys.all, "youtube"],
   shorts: () => [...youtubeKeys.all, "shorts"],
   live: () => [...youtubeKeys.all, "live"],
+  main: () => [...youtubeKeys.all, "main"],
+  youth: () => [...youtubeKeys.all, "youth"],
+  afternoon: () => [...youtubeKeys.all, "afternoon"],
+  firday: () => [...youtubeKeys.all, "firday"],
+  wednesday: () => [...youtubeKeys.all, "wednesday"],
 };
 
 export default youtubeKeys;
