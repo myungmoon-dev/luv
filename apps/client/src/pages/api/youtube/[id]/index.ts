@@ -11,13 +11,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (method) {
     case "GET":
-      const snapshot = await getSermonVideo({ videoType, videoCount: +videoCount });
-
-      const test = snapshot.docs.map((doc) => doc.data());
-      console.log(test);
+      // FIXME: 미구현
+      const sermons = (await getSermonVideo({ videoType, videoCount: +videoCount })).docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
 
       return res.status(200).json({
-        test,
+        sermons,
       });
     default:
       res.setHeader("Allow", ["GET"]);
