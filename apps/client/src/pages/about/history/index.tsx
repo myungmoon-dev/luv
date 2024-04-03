@@ -1,4 +1,4 @@
-import HistoryList from "@/components/about/historyList";
+import HistoryEventList from "@/components/about/historyEventList";
 import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
 import { aboutHistoryMenus, aboutInnerMenus } from "@/constants/innerMenus/about";
@@ -14,7 +14,7 @@ const HistoryIndexPage = () => {
       detailMenus={aboutHistoryMenus}
     >
       <Tabs menus={aboutHistoryMenus}>
-        <HistoryList decade="2023년" />
+        <HistoryEventList decade="2020년대" />
       </Tabs>
     </Layout>
   );
