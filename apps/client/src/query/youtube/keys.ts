@@ -1,12 +1,9 @@
+import { YoutubeType } from "type";
+
 const youtubeKeys = {
-  all: ["youtubeLinks"],
-  shorts: () => [...youtubeKeys.all, "shorts"],
-  live: () => [...youtubeKeys.all, "live"],
-  main: () => [...youtubeKeys.all, "main"],
-  youth: () => [...youtubeKeys.all, "youth"],
-  afternoon: () => [...youtubeKeys.all, "afternoon"],
-  firday: () => [...youtubeKeys.all, "firday"],
-  wednesday: () => [...youtubeKeys.all, "wednesday"],
+  all: ["youtube"],
+  list: (videoType: YoutubeType) => [...youtubeKeys.all, "list", videoType],
+  one: (videoId: string) => [...youtubeKeys.all, "one", videoId],
 };
 
 export default youtubeKeys;

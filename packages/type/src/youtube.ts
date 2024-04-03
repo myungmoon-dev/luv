@@ -10,6 +10,7 @@ export type YoutubeType =
 export interface IYoutube {
   id: string;
   videoId: string;
+  date?: string;
   title?: string;
   preacher?: string;
   mainText?: string;
@@ -23,4 +24,8 @@ export interface IYoutubeForm {
   mainText?: string;
   date?: string;
   type: YoutubeType;
+}
+
+export interface IYoutubeListProps {
+  videoType: YoutubeType;
 }
