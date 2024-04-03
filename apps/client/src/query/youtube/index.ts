@@ -1,23 +1,23 @@
 import { useQuery } from "@tanstack/react-query";
-import { getYoutubeLink, getYoutubeSermon } from "@/api/youtube";
+import { IYoutubeListProps } from "type";
+import { getYoutubeList } from "@/api/youtube";
 import youtubeKeys from "./keys";
-import { IYoutubeProps } from "@/types/youtube/props";
 
-export const useGetYoutubeLink = ({ type, count }: IYoutubeProps) => {
-  const queryKey = youtubeKeys[type]();
+export const useGetYoutubeList = ({ videoType }: IYoutubeListProps) => {
+  const queryKey = youtubeKeys.list(videoType);
 
   return useQuery({
     queryKey,
-    queryFn: () => getYoutubeLink({ type, count }),
-    select: (response) => response.youtubeLink[0],
+    queryFn: () => getYoutubeList({ videoType }),
+    select: (response) => response.youtubeList,
   });
 };
 
-export const useGetYoutubeSermon = ({ type, count }: IYoutubeProps) => {
-  const queryKey = youtubeKeys[type]();
+// FIXME: 미구현
+export const useGetYoutube = ({ videoId }: { videoId: string }) => {
+  const queryKey = youtubeKeys.one(videoId);
 
   return useQuery({
     queryKey,
-    queryFn: () => getYoutubeSermon({ type, count }),
   });
 };

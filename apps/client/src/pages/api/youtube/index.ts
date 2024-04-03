@@ -1,21 +1,24 @@
-import { getSermonVideo } from "firebase";
+import { getYoutubeList } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
+import { YoutubeType } from "type";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
-    query: { type, count },
+    query: { type },
   } = req;
-  const videoType = type as string;
-  const videoCount = count as string;
+
+  const videoType = type as YoutubeType;
 
   switch (method) {
     case "GET":
-      const snapshot = await getSermonVideo({ videoType, videoCount: +videoCount });
-      const youtubeLink = snapshot.docs.map((doc) => doc.data().videoId);
+      const youtubeList = (await getYoutubeList({ videoType })).docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
 
       return res.status(200).json({
-        youtubeLink,
+        youtubeList,
       });
     default:
       res.setHeader("Allow", ["GET"]);

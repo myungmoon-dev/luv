@@ -1,18 +1,22 @@
-import { IGetYoutubeResponse, IGetYoutubeSermonListResponse } from "@/types/youtube/response";
+import { IGetYoutubeSermonListResponse } from "@/types/youtube/response";
 import { api } from ".";
+import { IYoutube, IYoutubeListProps } from "type";
 import { IYoutubeProps } from "@/types/youtube/props";
 
-export const getYoutubeLink = async ({ type, count }: IYoutubeProps) => {
-  const { data } = await api.get<IGetYoutubeResponse>("/api/youtube", {
-    params: { type, count },
+interface IGetYoutubeListResponse {
+  youtubeList: IYoutube[];
+}
+
+export const getYoutubeList = async ({ videoType }: IYoutubeListProps) => {
+  const { data } = await api.get<IGetYoutubeListResponse>("/api/youtube", {
+    params: { type: videoType },
   });
   return data;
 };
 
-export const getYoutubeSermon = async ({ type, count }: IYoutubeProps) => {
-  const { data } = await api.get("/api/youtube/sermons", {
-    params: { type, count },
-  });
+// FIXME: 미구현
+export const getYoutubeSermon = async ({}: IYoutubeProps) => {
+  const { data } = await api.get<IGetYoutubeSermonListResponse>("/api/youtube/sermons", {});
 
   return data;
 };
