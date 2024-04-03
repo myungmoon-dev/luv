@@ -12,10 +12,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (method) {
     case "GET":
       const snapshot = await getSermonVideo({ videoType, videoCount: +videoCount });
-      const youtubeLink = snapshot.docs.map((doc) => doc.data().videoId);
+
+      const test = snapshot.docs.map((doc) => doc.data());
+      console.log(test);
 
       return res.status(200).json({
-        youtubeLink,
+        test,
       });
     default:
       res.setHeader("Allow", ["GET"]);

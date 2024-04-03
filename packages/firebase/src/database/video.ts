@@ -12,26 +12,31 @@ import { IYoutubeForm } from "type";
 
 export interface IGetYoutubeProps {
   videoType: string;
+  videoCount?: number;
 }
 
 const database = getFirestore(firebase);
 
-export const getSermonVideo = async ({ videoType }: IGetYoutubeProps) => {
+export const getSermonVideo = async ({
+  videoType,
+  videoCount,
+}: IGetYoutubeProps) => {
   const getQuery =
     videoType === "shorts" || videoType === "live"
       ? query(
           collection(database, videoType),
           orderBy("createdAt", "desc"),
-          limit(1)
+          limit(videoCount ? videoCount : 1)
         )
       : query(
           collection(database, "youtube", "sermon", videoType),
           orderBy("date", "desc"),
-          limit(1)
+          limit(videoCount ? videoCount : 1)
         );
 
-  const youtubeLink = await getDocs(getQuery);
-  return youtubeLink;
+  const snapshot = await getDocs(getQuery);
+
+  return snapshot;
 };
 
 export const createSermonVideo = async (youtubeForm: IYoutubeForm) => {
