@@ -8,7 +8,7 @@ export const useGetYoutubeLink = (type: YoutubeType) => {
 
   return useQuery({
     queryKey,
-    queryFn: async () => await getYoutubeLink(type),
+    queryFn: () => getYoutubeLink(type),
     select: (response) => response.youtubeLink[0],
   });
 };

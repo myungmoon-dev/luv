@@ -1,7 +1,8 @@
-import Layout from "@/components/layout";
-import NotPrepared from "@/components/layout/notPrepared";
-import { newsInnerMenus } from "@/constants/innerMenus/news";
 import React from "react";
+
+import { newsInnerMenus } from "@/constants/innerMenus/news";
+import Layout from "@/components/layout";
+import Bulletins from "@/components/news/bulletins";
 
 const BulletinsPage = () => {
   return (
@@ -12,7 +13,7 @@ const BulletinsPage = () => {
       bannerImage="/images/balance.jpg"
       innerMenus={newsInnerMenus}
     >
-      <NotPrepared />
+      <Bulletins />
     </Layout>
   );
 };
