@@ -15,6 +15,7 @@ import { Spinner } from "./Spinner";
 import { Table } from "./Table";
 import { Pagination } from "./Pagination";
 import { DateTab } from "./DateTab";
+import { YoutubeVideo } from "./YoutubeVideo";
 
 export { type ITableData } from "./Table";
 
@@ -34,4 +35,5 @@ export {
   Table,
   Pagination,
   DateTab,
+  YoutubeVideo,
 };
