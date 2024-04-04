@@ -1,10 +1,9 @@
-import { IGetYoutubeResponse } from "@/types/youtube/response";
 import { api } from ".";
-import { YoutubeType } from "type";
+import { IGetYoutubeListProps, IGetYoutubeResponse } from "type";
 
-export const getYoutubeLink = async (type: YoutubeType) => {
+export const getYoutubeList = async ({ videoType, videoCount }: IGetYoutubeListProps) => {
   const { data } = await api.get<IGetYoutubeResponse>("/api/youtube", {
-    params: { type },
+    params: { type: videoType, count: videoCount },
   });
   return data;
 };

@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { getYoutubeLink } from "@/api/youtube";
 import youtubeKeys from "./keys";
-import { YoutubeType } from "type";
+import { IGetYoutubeListProps } from "type";
+import { getYoutubeList } from "@/api/youtube";
 
-export const useGetYoutubeLink = (type: YoutubeType) => {
-  const queryKey = youtubeKeys[type]();
+export const useGetYoutubeList = ({ videoType, videoCount }: IGetYoutubeListProps) => {
+  const queryKey = youtubeKeys[videoType]();
 
   return useQuery({
     queryKey,
-    queryFn: () => getYoutubeLink(type),
-    select: (response) => response.youtubeLink[0],
+    queryFn: () => getYoutubeList({ videoType, videoCount }),
+    select: (response) => response.youtubeList,
   });
 };
