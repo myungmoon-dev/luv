@@ -1,8 +1,5 @@
-import {
-  IGetYoutubeResponse,
-  IPostYoutubeResponse,
-} from "@/types/youtube/response";
-import { IYoutubeForm, YoutubeType } from "type";
+import { IPostYoutubeResponse } from "@/types/youtube/response";
+import { IGetYoutubeResponse, IYoutubeForm, YoutubeType } from "type";
 import { api } from ".";
 
 export const getYoutubeLink = async (type: YoutubeType) => {

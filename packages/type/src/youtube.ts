@@ -24,3 +24,11 @@ export interface IYoutubeForm {
   date?: string;
   type: YoutubeType;
 }
+
+export interface IGetYoutubeResponse {
+  youtubeList: IYoutube[];
+}
+export interface IGetYoutubeListProps {
+  videoType: YoutubeType;
+  videoCount?: number;
+}

@@ -8,20 +8,15 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { firebase } from "../../firebase";
-import { IYoutubeForm, YoutubeType } from "type";
+import { IGetYoutubeListProps, IYoutubeForm } from "type";
 import { collections } from ".";
-
-export interface IGetYoutubeProps {
-  videoType: YoutubeType;
-  videoCount?: number;
-}
 
 const database = getFirestore(firebase);
 
 export const getYoutube = async ({
   videoType,
   videoCount = videoType === "shorts" || videoType === "live" ? 1 : 4,
-}: IGetYoutubeProps) => {
+}: IGetYoutubeListProps) => {
   const orderByField =
     videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
 
