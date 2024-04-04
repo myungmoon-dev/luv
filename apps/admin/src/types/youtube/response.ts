@@ -1,5 +1,7 @@
+import { IYoutube } from "type";
+
 export interface IGetYoutubeResponse {
-  youtubeLink: string[];
+  youtubeList: IYoutube[];
 }
 export interface IPostYoutubeResponse {
   result: string;

@@ -1,5 +1,6 @@
-import { createSermonVideo, getSermonVideo } from "firebase";
+import { createYoutube, getYoutube } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
+import { YoutubeType } from "type";
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,18 +12,22 @@ export default async function handler(
     body: { url, date, mainText, title, preacher, type: formType },
   } = req;
 
+  // FIXME: 관리자페이지는 일단 youtube 1개만 가져옴
   switch (method) {
     case "GET":
-      const videoType = type as string;
-      const youtubeLink = (await getSermonVideo({ videoType })).docs.map(
-        (doc) => doc.data().videoId
-      );
+      const videoType = type as YoutubeType;
+      const youtubeList = (
+        await getYoutube({ videoType, videoCount: 1 })
+      ).docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
 
       return res.status(200).json({
-        youtubeLink,
+        youtubeList,
       });
     case "POST":
-      await createSermonVideo({
+      await createYoutube({
         url,
         mainText,
         title,
