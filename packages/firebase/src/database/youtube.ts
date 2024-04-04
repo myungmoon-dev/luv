@@ -15,15 +15,16 @@ const database = getFirestore(firebase);
 
 export const getYoutube = async ({
   videoType,
-  videoCount = videoType === "shorts" || videoType === "live" ? 1 : 4,
+  videoCount,
 }: IGetYoutubeListProps) => {
   const orderByField =
     videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
+  const limitField = videoType === "shorts" || videoType === "live" ? 1 : 4;
 
   const getQuery = query(
     collection(database, collections.youtube(videoType)),
     orderBy(orderByField, "desc"),
-    limit(videoCount)
+    limit(videoCount ? videoCount : limitField)
   );
 
   const youtubeList = await getDocs(getQuery);
