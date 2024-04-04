@@ -14,6 +14,7 @@ import { Drawer } from "./Drawer";
 import { Spinner } from "./Spinner";
 import { Table } from "./Table";
 import { Pagination } from "./Pagination";
+import { DateTab } from "./DateTab";
 
 export { type ITableData } from "./Table";
 
@@ -32,4 +33,5 @@ export {
   Spinner,
   Table,
   Pagination,
+  DateTab,
 };
