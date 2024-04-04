@@ -13,6 +13,8 @@ export interface IYoutube {
   title?: string;
   preacher?: string;
   mainText?: string;
+  date?: string;
+  videoType: YoutubeType;
   createdAt: number;
 }
 

@@ -15,6 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const youtubeList = (await getYoutube({ videoType, videoCount: +videoCount })).docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
+        videoType: videoType,
       }));
 
       return res.status(200).json({

@@ -4,7 +4,7 @@ import { IGetYoutubeListProps } from "type";
 import { getYoutubeList } from "@/api/youtube";
 
 export const useGetYoutubeList = ({ videoType, videoCount }: IGetYoutubeListProps) => {
-  const queryKey = youtubeKeys[videoType]();
+  const queryKey = youtubeKeys.list(videoType);
 
   return useQuery({
     queryKey,
