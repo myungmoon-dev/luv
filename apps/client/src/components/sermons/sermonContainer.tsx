@@ -23,7 +23,7 @@ const SermonContainer = ({ list }: ISermonContainerProps) => {
   }, [list]);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex w-full items-center justify-center">
       <div className="flex w-full flex-col gap-5">
         <SectionHeader text="2024년" color="pink" selected={true} size="sm" hasLine={true} />
         <DateTab
