@@ -3,8 +3,13 @@ export interface IBoardBase {
   createdAt: string;
   date: string;
   title: string;
-  images: string[];
-  buffers?: string[];
+  content: string;
+}
+
+export interface IBoardFormBase {
+  date: string;
+  title: string;
+  content: string;
 }
 
 export interface IFile {
