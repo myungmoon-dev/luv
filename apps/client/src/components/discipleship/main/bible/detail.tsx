@@ -4,8 +4,9 @@ import { useParams } from "next/navigation";
 import React from "react";
 
 const DiscipleshipMainBibleDetail = () => {
-  const { id } = useParams();
-  const { data } = useGetBible({ bibleId: id as string });
+  const params = useParams();
+  const bibleId = params?.id as string;
+  const { data } = useGetBible({ bibleId });
 
   if (!data) return <p>loaidng...</p>;
 
