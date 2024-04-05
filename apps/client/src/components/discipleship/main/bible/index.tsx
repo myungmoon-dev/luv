@@ -2,8 +2,10 @@ import React from "react";
 import { DateTab, Table } from "ui";
 
 import { useGetBibles } from "@/query/bible";
+import { useRouter } from "next/navigation";
 
 const DiscipleshipMainBible = () => {
+  const { push } = useRouter();
   const { data } = useGetBibles();
   const onClickTab = (index: number) => {};
 
@@ -19,6 +21,7 @@ const DiscipleshipMainBible = () => {
           title: bible.title,
           writer: "관리자",
         }))}
+        onClickRow={(rowId) => push(`/discipleship/main/bible/${rowId}`)}
       />
     </div>
   );
