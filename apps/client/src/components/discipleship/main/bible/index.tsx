@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { DateTab, Table } from "ui";
+import { DateTab, Spinner, Table } from "ui";
 
 import { useGetBibles } from "@/query/bible";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,12 @@ const DiscipleshipMainBible = () => {
     setCurrentTap(index);
   };
 
-  if (!data) return <p>loading...</p>;
+  if (!data)
+    return (
+      <div className="flex justify-center">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div>

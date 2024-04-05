@@ -2,13 +2,19 @@ import { useGetBible } from "@/query/bible";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import React from "react";
+import { Spinner } from "ui";
 
 const DiscipleshipMainBibleDetail = () => {
   const params = useParams();
   const bibleId = params?.id as string;
   const { data } = useGetBible({ bibleId });
 
-  if (!data) return <p>loaidng...</p>;
+  if (!data)
+    return (
+      <div className="flex justify-center">
+        <Spinner />
+      </div>
+    );
 
   const bible = data.bible;
 
