@@ -1,20 +1,19 @@
-// TODO: 원하는 날짜형식 기능 넣기
+interface IDateFormatProps {
+  format: DateFormat;
+  date: string; // "YYYY-MM-DD"
+}
 
-const getDateFormat = (text: string) => {
-  const regex = /(\d{4})-(\d{2})-(\d{2})/g;
-  const date = text.match(regex);
+type DateFormat = "YYYY년 MM월 DD일" | "MM월 DD일";
 
-  if (date) {
-    // 각각의 날짜에 대해 MM월 DD일 형식으로 변경
-    date.forEach((date) => {
-      const [year, month, day] = date.split("-");
-      const monthNames = ["", "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"];
+const getDateFormat = ({ date, format }: IDateFormatProps) => {
+  const [year, month, day, _] = date.split("-");
 
-      const newDate = `${parseInt(monthNames[parseInt(month)])}월 ${parseInt(day)}일`;
-      text = text.replace(date, newDate);
-    });
+  switch (format) {
+    case "YYYY년 MM월 DD일":
+      return `${year}년 ${month}월 ${day}일`;
+    case "MM월 DD일":
+      return `${month}월 ${day}일`;
   }
-  return text;
 };
 
 export default getDateFormat;

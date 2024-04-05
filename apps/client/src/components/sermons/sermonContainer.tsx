@@ -27,7 +27,9 @@ const SermonContainer = ({ list }: ISermonContainerProps) => {
       <div className="flex w-full flex-col gap-5">
         <SectionHeader text="2024년" color="pink" selected={true} size="sm" hasLine={true} />
         <DateTab
-          tabs={list.map((youtube) => (youtube.date ? getDateFormat(youtube.date) : "none"))}
+          tabs={list.map((youtube) =>
+            youtube.date ? getDateFormat({ date: youtube.date, format: "MM월 DD일" }) : "none",
+          )}
           selectedTabIndex={selectedTabIndex}
           onClickTab={onClickTab}
         >
