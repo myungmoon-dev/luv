@@ -4,7 +4,6 @@ import {
   IYoutube,
   IYoutubeForm,
   IGetYoutubeResponse,
-  IGetYoutubeListProps,
 } from "./youtube";
 
 export type {
@@ -15,5 +14,4 @@ export type {
   IYoutube,
   IYoutubeForm,
   IGetYoutubeResponse,
-  IGetYoutubeListProps,
 };

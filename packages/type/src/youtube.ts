@@ -30,7 +30,3 @@ export interface IYoutubeForm {
 export interface IGetYoutubeResponse {
   youtubeList: IYoutube[];
 }
-export interface IGetYoutubeListProps {
-  videoType: YoutubeType;
-  videoCount?: number;
-}

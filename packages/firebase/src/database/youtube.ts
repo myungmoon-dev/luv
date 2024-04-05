@@ -8,10 +8,15 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { firebase } from "../../firebase";
-import { IGetYoutubeListProps, IYoutubeForm } from "type";
+import { IYoutubeForm, YoutubeType } from "type";
 import { collections } from ".";
 
 const database = getFirestore(firebase);
+
+export interface IGetYoutubeListProps {
+  videoType: YoutubeType;
+  videoCount?: number;
+}
 
 export const getYoutube = async ({
   videoType,
