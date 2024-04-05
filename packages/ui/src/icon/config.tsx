@@ -1,6 +1,8 @@
 import { CursorType } from "../types/cursor";
-import HamburgerIcon from "./assets/Hamburger";
+import HamburgerIcon from "./assets/hamburger";
 import CrossIcon from "./assets/cross";
+import YoutubeIcon from "./assets/youtube";
+import OpenBookIcon from "./assets/openBook";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -22,4 +24,6 @@ export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
 export const icons = {
   Cross: (props: IIconProps) => <CrossIcon {...props} />,
   Hamburger: (props: IIconProps) => <HamburgerIcon {...props} />,
+  Youtube: (props: IIconProps) => <YoutubeIcon {...props} />,
+  OpenBook: (props: IIconProps) => <OpenBookIcon {...props} />,
 };
