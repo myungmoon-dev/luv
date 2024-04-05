@@ -3,11 +3,14 @@ import { useRouter } from "next/router";
 import React, { ReactNode } from "react";
 import { Banner, Footer, Header } from "ui";
 import { BannerImageComponent } from "./bannerImage";
+import BannerIconList from "./bannerIconList";
+import { IBannerIcon } from "@/types/banner/type";
 
 interface LayoutProps {
   children: ReactNode;
   bannerImage?: string;
   bannerVideo?: string;
+  bannerIcons?: IBannerIcon[];
   title?: string;
   bannerDescription?: string;
   innerMenus?: { label: string; path: string }[];
@@ -19,6 +22,7 @@ const Layout = ({
   children,
   bannerDescription,
   bannerImage,
+  bannerIcons,
   title,
   pageTitle,
   innerMenus,
@@ -43,7 +47,8 @@ const Layout = ({
       <main className="relative">
         <Header push={push} />
         <Banner
-          image={bannerImage ? <BannerImageComponent image={bannerImage} /> : null}
+          icons={bannerIcons && <BannerIconList list={bannerIcons} />}
+          image={bannerImage && <BannerImageComponent image={bannerImage} />}
           video={bannerVideo}
           title={title}
           description={bannerDescription}
