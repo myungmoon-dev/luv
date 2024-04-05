@@ -5,3 +5,9 @@ export const discipleshipInnerMenus: IInnerMenu[] = [
   { label: "새가족 교육", path: "/discipleship/new" },
   { label: "신혼가정", path: "/discipleship/newlyweds" },
 ];
+
+export const discipleshipMainMenus: IInnerMenu[] = [
+  { label: "성경 파노라마", path: "/discipleship/main/panorama" },
+  { label: "큐티 세미나", path: "/discipleship/main/qt" },
+  { label: "성경통독", path: "/discipleship/main/bible" },
+];

@@ -2,7 +2,8 @@ import React from "react";
 
 import Layout from "@/components/layout";
 import NotPrepared from "@/components/layout/notPrepared";
-import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
+import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
+import Tabs from "@/components/layout/tabs";
 
 const DiscipleshipMainPanoramaPage = () => {
   return (
@@ -13,7 +14,9 @@ const DiscipleshipMainPanoramaPage = () => {
       bannerImage="/images/discipleship.jpg"
       innerMenus={discipleshipInnerMenus}
     >
-      <NotPrepared />
+      <Tabs menus={discipleshipMainMenus}>
+        <NotPrepared />
+      </Tabs>
     </Layout>
   );
 };
