@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DateTab, Table } from "ui";
 
 import { useGetBibles } from "@/query/bible";
@@ -7,20 +7,30 @@ import { useRouter } from "next/navigation";
 const DiscipleshipMainBible = () => {
   const { push } = useRouter();
   const { data } = useGetBibles();
-  const onClickTab = (index: number) => {};
+
+  const [currentTap, setCurrentTap] = useState(0);
+
+  const onClickTab = (index: number) => {
+    setCurrentTap(index);
+  };
 
   if (!data) return <p>loading...</p>;
 
   return (
     <div>
-      <DateTab selectedTabIndex={0} tabs={["4월", "5월", "6월", "7월"]} onClickTab={onClickTab} />
+      <DateTab selectedTabIndex={currentTap} tabs={["4월", "5월", "6월", "7월"]} onClickTab={onClickTab} />
       <Table
-        data={data.bibles.map((bible) => ({
-          id: bible.id,
-          date: bible.createdAt,
-          title: bible.title,
-          writer: "관리자",
-        }))}
+        data={
+          // FIXME: 진짜 임시로 4월일 때만 보이는 것처럼 적용
+          currentTap !== 0
+            ? []
+            : data.bibles.map((bible) => ({
+                id: bible.id,
+                date: bible.createdAt,
+                title: bible.title,
+                writer: "관리자",
+              }))
+        }
         onClickRow={(rowId) => push(`/discipleship/main/bible/${rowId}`)}
       />
     </div>
