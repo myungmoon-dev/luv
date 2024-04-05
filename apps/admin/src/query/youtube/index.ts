@@ -3,13 +3,14 @@ import { getYoutubeLink, postYoutubeLink } from "@/api/youtube";
 import youtubeKeys from "./keys";
 import { YoutubeType } from "type";
 
+// FIXME: youtube 객체를 항상 1개를 가져옴
 export const useGetYoutubeLink = (type: YoutubeType) => {
   const queryKey = youtubeKeys[type]();
 
   return useQuery({
     queryKey,
     queryFn: async () => await getYoutubeLink(type),
-    select: (response) => response.youtubeLink[0],
+    select: (response) => response.youtubeList[0].videoId,
   });
 };
 

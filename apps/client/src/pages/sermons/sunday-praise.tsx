@@ -1,10 +1,11 @@
-import React from "react";
-
 import Layout from "@/components/layout";
 import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
-import NotPrepared from "@/components/layout/notPrepared";
+import SermonContainer from "@/components/sermons/sermonContainer";
+import { Spinner } from "ui";
+import { useGetYoutubeList } from "@/query/youtube";
 
 const SermonsSundayPraisePage = () => {
+  const { data: youtubeList } = useGetYoutubeList({ videoType: "afternoon" });
   return (
     <Layout
       pageTitle="주일찬양예배"
@@ -13,7 +14,9 @@ const SermonsSundayPraisePage = () => {
       bannerImage="/images/sermons.jpeg"
       innerMenus={sermonsInnerMenus}
     >
-      <NotPrepared />
+      <div className="flex items-center justify-center">
+        {youtubeList ? <SermonContainer list={youtubeList} /> : <Spinner />}
+      </div>
     </Layout>
   );
 };

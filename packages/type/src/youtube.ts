@@ -13,6 +13,8 @@ export interface IYoutube {
   title?: string;
   preacher?: string;
   mainText?: string;
+  date?: string;
+  videoType: YoutubeType;
   createdAt: number;
 }
 
@@ -23,4 +25,8 @@ export interface IYoutubeForm {
   mainText?: string;
   date?: string;
   type: YoutubeType;
+}
+
+export interface IGetYoutubeResponse {
+  youtubeList: IYoutube[];
 }

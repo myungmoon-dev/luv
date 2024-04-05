@@ -8,33 +8,36 @@ import {
   getFirestore,
 } from "firebase/firestore";
 import { firebase } from "../../firebase";
-import { IYoutubeForm } from "type";
-
-export interface IGetYoutubeProps {
-  videoType: string;
-}
+import { IYoutubeForm, YoutubeType } from "type";
+import { collections } from ".";
 
 const database = getFirestore(firebase);
 
-export const getSermonVideo = async ({ videoType }: IGetYoutubeProps) => {
-  const getQuery =
-    videoType === "shorts" || videoType === "live"
-      ? query(
-          collection(database, videoType),
-          orderBy("createdAt", "desc"),
-          limit(1)
-        )
-      : query(
-          collection(database, "youtube", "sermon", videoType),
-          orderBy("date", "desc"),
-          limit(1)
-        );
+export interface IGetYoutubeListProps {
+  videoType: YoutubeType;
+  videoCount?: number;
+}
 
-  const youtubeLink = await getDocs(getQuery);
-  return youtubeLink;
+export const getYoutube = async ({
+  videoType,
+  videoCount,
+}: IGetYoutubeListProps) => {
+  const orderByField =
+    videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
+  const limitField = videoType === "shorts" || videoType === "live" ? 1 : 4;
+
+  const getQuery = query(
+    collection(database, collections.youtube(videoType)),
+    orderBy(orderByField, "desc"),
+    limit(videoCount ? videoCount : limitField)
+  );
+
+  const youtubeList = await getDocs(getQuery);
+
+  return youtubeList;
 };
 
-export const createSermonVideo = async (youtubeForm: IYoutubeForm) => {
+export const createYoutube = async (youtubeForm: IYoutubeForm) => {
   // date가 있는 경우: main, afternoon, youth, wednesday, firday
   if (youtubeForm.date) {
     await addDoc(collection(database, "youtube", "sermon", youtubeForm.type), {

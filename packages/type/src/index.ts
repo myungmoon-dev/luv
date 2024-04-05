@@ -1,5 +1,10 @@
 import { IBulletin, IBulletinForm, IBulletinImageForm } from "./bulletin";
-import { YoutubeType, IYoutube, IYoutubeForm } from "./youtube";
+import {
+  YoutubeType,
+  IYoutube,
+  IYoutubeForm,
+  IGetYoutubeResponse,
+} from "./youtube";
 
 export type {
   IBulletin,
@@ -8,4 +13,5 @@ export type {
   YoutubeType,
   IYoutube,
   IYoutubeForm,
+  IGetYoutubeResponse,
 };

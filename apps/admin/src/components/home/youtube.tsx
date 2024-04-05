@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import HomeSection from "./section";
 import getYoutubeId from "@/utils/getYoutubeId";
 import { IYoutubeForm, YoutubeType } from "type";
+import { YoutubeVideo } from "ui";
 
 interface IYoutubeSectionProps {
   sectionTitle: string;
@@ -58,13 +59,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
             {youtubeLink}
           </a>
         </div>
-        <div>
-          <iframe
-            className="h-full w-full rounded-lg"
-            src={`https://www.youtube.com/embed/${youtubeLink}`}
-            allowFullScreen
-          />
-        </div>
+        <YoutubeVideo className="h-[200px]" videoId={youtubeLink} />
         <form
           onSubmit={handleSubmit(onSubmit, onInValid)}
           className="mt-4 flex flex-col gap-3"
