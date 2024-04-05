@@ -22,7 +22,7 @@ export const DateTab = ({
           <div
             key={index}
             className={cn(
-              "ui-cursor-pointer ui-text-center ui-text-sm hover:ui-font-bold hover:ui-text-pink-200",
+              "ui-cursor-pointer ui-text-center ui-text-sm sm:ui-text-base hover:ui-font-bold hover:ui-text-pink-200",
               selectedTabIndex === index ? "ui-font-bold ui-text-pink-200" : ""
             )}
             onClick={() => onClickTab(index)}
