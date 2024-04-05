@@ -18,6 +18,7 @@ import { DateTab } from "./DateTab";
 import { YoutubeVideo } from "./YoutubeVideo";
 
 export { type ITableData } from "./Table";
+export type { IIconPropsType } from "./icon";
 
 export {
   Icon,
