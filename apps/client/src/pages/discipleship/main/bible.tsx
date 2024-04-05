@@ -1,9 +1,7 @@
-import React from "react";
-
+import DiscipleshipMainBible from "@/components/discipleship/main/bible";
 import Layout from "@/components/layout";
-import NotPrepared from "@/components/layout/notPrepared";
-import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 import Tabs from "@/components/layout/tabs";
+import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 
 const DiscipleshipMainBiblePage = () => {
   return (
@@ -15,7 +13,7 @@ const DiscipleshipMainBiblePage = () => {
       innerMenus={discipleshipInnerMenus}
     >
       <Tabs menus={discipleshipMainMenus}>
-        <NotPrepared />
+        <DiscipleshipMainBible />
       </Tabs>
     </Layout>
   );
