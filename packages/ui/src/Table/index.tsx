@@ -33,7 +33,7 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
       <div className="ui-flex ui-flex-col">
         {data.map((row) => (
           <>
-            <div className="ui-flex ui-py-3" key={row.id} onClick={() => onClickRow?.(row.id)}>
+            <div className="ui-flex ui-py-3 ui-cursor-pointer" key={row.id} onClick={() => onClickRow?.(row.id)}>
               <div className="ui-w-[30%]">
                 <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
               </div>

@@ -16,7 +16,7 @@ const Tabs = ({ menus, children }: ITabsProps) => {
         {menus.map((menu) => (
           <Chip
             onClick={() => push(menu.path)}
-            selected={menu.path === asPath}
+            selected={asPath.includes(menu.path)}
             text={menu.label}
             size="xs"
             color="pink"
