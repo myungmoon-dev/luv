@@ -99,7 +99,12 @@ export const Header = ({ push }: IHeaderProps) => {
                   </button>
                 ))}
               </div>
-              <img src="/images/Logo.png" alt="myungmoon" width={100} height={50} />
+              <img
+                src="/images/Logo.png"
+                alt="myungmoon"
+                width={100}
+                height={50}
+              />
             </Drawer>
           </nav>
         </div>

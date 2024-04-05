@@ -23,32 +23,41 @@ export const ChipVariants = cva(
         lg: "ui-p-[0.8rem] ui-px-10 ui-text-4xl",
         xl: "ui-p-[0.9rem] ui-px-11 ui-text-5xl",
       },
+      shadow: {
+        none: "ui-shadow-none",
+        sm: "ui-shadow-sm",
+        md: "ui-shadow-md",
+        lg: "ui-shadow-lg",
+        xl: "ui-shadow-xl",
+        "2xl": "ui-shadow-2xl",
+      },
     },
     defaultVariants: {
       color: "pink",
       size: "md",
       selected: false,
+      shadow: "none",
     },
     compoundVariants: [
       {
         color: "red",
         selected: true,
-        className: "ui-bg-[#892122] ui-text-white",
+        className: "ui-bg-pink-200 ui-text-white",
       },
       {
         color: "red",
         selected: false,
-        className: "ui-bg-white ui-text-[#892122]",
+        className: "ui-bg-white ui-text-pink-200",
       },
       {
         color: "pink",
         selected: true,
-        className: "ui-bg-[#dfc7c7] ui-text-white",
+        className: "ui-bg-pink-100 ui-text-white",
       },
       {
         color: "pink",
         selected: false,
-        className: "ui-bg-white ui-text-[#892122]",
+        className: "ui-bg-white ui-text-pink-100",
       },
     ],
   }
@@ -65,11 +74,12 @@ export const Chip = ({
   text,
   selected,
   className,
+  shadow,
   ...props
 }: ChipProps) => {
   return (
     <div
-      className={cn(ChipVariants({ color, size, selected }), className)}
+      className={cn(ChipVariants({ color, size, selected, shadow }), className)}
       {...props}
     >
       {text}

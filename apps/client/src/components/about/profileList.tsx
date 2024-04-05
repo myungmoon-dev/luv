@@ -1,7 +1,7 @@
 import Profile from "./profile";
 
 interface IProfileListProps {
-  pastorType: string;
+  tabType: string;
 }
 // FIXME: profiles DB에 저장 /  position keyword로 변경해야 함
 const profiles = [
@@ -12,6 +12,7 @@ const profiles = [
     name: "이덕진",
     position: "",
     pastor: "retired",
+    tab: "retired",
   },
   {
     // FIXME: 담임, 2청년부, 임직 - 2022년 12월
@@ -20,6 +21,7 @@ const profiles = [
     name: "김지혁",
     position: "",
     pastor: "senior",
+    tab: "senior",
   },
   {
     name: "이 삭",
@@ -27,6 +29,7 @@ const profiles = [
     image: "/images/leader/lee-sak.jpeg",
     position: "1교구, 신혼부부, 전도위원회, 시설위원회",
     pastor: "associate",
+    tab: "minister",
   },
   {
     name: "표명성",
@@ -34,6 +37,7 @@ const profiles = [
     image: "/images/leader/myung-seong.jpeg",
     position: "2교구, 1청년부, 예배위원회, 찬양위원회",
     pastor: "associate",
+    tab: "minister",
   },
   {
     name: "이현준",
@@ -41,6 +45,7 @@ const profiles = [
     image: "/images/leader/hyun-jun.jpeg",
     position: "중등부, 고등부, 미디어위원회, 체육친교위원회",
     pastor: "associate",
+    tab: "minister",
   },
   {
     description: "2023년 1월",
@@ -48,6 +53,7 @@ const profiles = [
     name: "정재준",
     position: "새가족위원회, 선교위원회, 주일예배, 찬양인도(1부)",
     pastor: "associate",
+    tab: "minister",
   },
   {
     name: "장건진",
@@ -55,6 +61,7 @@ const profiles = [
     description: "2023년 12월",
     position: "유년부, 초등부, 금요기도회 찬양인도",
     pastor: "associate",
+    tab: "minister",
   },
   {
     description: "2023년 12월",
@@ -62,6 +69,7 @@ const profiles = [
     name: "김규보",
     position: "상담사역 (총신대학교 상담학 교수)",
     pastor: "associate",
+    tab: "minister",
   },
   {
     description: "2004년 1월",
@@ -69,6 +77,7 @@ const profiles = [
     name: "박매실",
     position: "1교구, 신혼부부, 차량위원회",
     pastor: "evangelist",
+    tab: "minister",
   },
   {
     name: "이능옥",
@@ -76,6 +85,7 @@ const profiles = [
     description: "2008년 1월",
     position: "2교구, 실버구역, 새가족부, 새가족위원회",
     pastor: "evangelist",
+    tab: "minister",
   },
   {
     name: "순현주",
@@ -83,6 +93,7 @@ const profiles = [
     image: "/images/leader/hyun-ju.png",
     position: "유치부, 교육디렉터, 교육위원회",
     pastor: "evangelist",
+    tab: "minister",
   },
   {
     name: "김화선",
@@ -90,13 +101,14 @@ const profiles = [
     image: "/images/leader/hwa-seon.jpeg",
     position: "영아부, 엄마QT학교",
     pastor: "evangelist",
+    tab: "minister",
   },
 ];
-const ProfileList = ({ pastorType }: IProfileListProps) => {
+const ProfileList = ({ tabType }: IProfileListProps) => {
   return (
     <div className="flex flex-col gap-10">
       {profiles
-        .filter((profile) => profile.pastor === pastorType)
+        .filter((profile) => profile.tab === tabType)
         .map((profile) => {
           return (
             <Profile

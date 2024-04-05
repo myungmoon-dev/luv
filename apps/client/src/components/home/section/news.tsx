@@ -50,7 +50,7 @@ const NewsSection = () => {
                 <div className="flex justify-around">
                   <span
                     className={cn(
-                      "flex h-5 w-5 items-center justify-center bg-[#dfc7c7] text-center font-bold text-white",
+                      "flex h-5 w-5 items-center justify-center bg-pink-100 text-center font-bold text-white",
                       idx === 0 ? "visible" : "invisible",
                     )}
                   >

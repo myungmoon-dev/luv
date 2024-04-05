@@ -3,7 +3,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex h-[250px] justify-center bg-[#dfc7c7]">
+    <footer className="flex h-[250px] justify-center bg-pink-100">
       <div className="flex h-full w-full max-w-[1100px] items-center gap-10">
         <div className="relative h-[100px] w-[300px]">
           <Image src="https://www.myungmoon.or.kr/img/body/logo.png" fill={true} alt="myungmoon" />

@@ -1,12 +1,9 @@
 import Layout from "@/components/layout";
-import React from "react";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
-import { Chip } from "ui";
-import { useRouter } from "next/router";
 import ProfileList from "@/components/about/profileList";
+import Tabs from "@/components/layout/tabs";
 
 const LeadershipIndexPage = () => {
-  const { asPath, push } = useRouter();
   return (
     <Layout
       pageTitle="섬기는 분들"
@@ -16,22 +13,9 @@ const LeadershipIndexPage = () => {
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
     >
-      <div className="flex w-full flex-col gap-20">
-        <div className="flex justify-center gap-4">
-          {aboutLeaderMenus.map((menu) => (
-            // FIXME: 디자인 수정해야함
-            <Chip
-              onClick={() => push(menu.path)}
-              selected={true}
-              text={menu.label}
-              size="xs"
-              color="pink"
-              key={menu.label}
-            />
-          ))}
-        </div>
-        <ProfileList pastorType="senior" />
-      </div>
+      <Tabs menus={aboutLeaderMenus}>
+        <ProfileList tabType="senior" />
+      </Tabs>
     </Layout>
   );
 };

@@ -15,6 +15,10 @@ const config: Config = {
       fontFamily: {
         HSBombaram3: ["HSBombaram3_Regular", "sans-serif"],
       },
+      colors: {
+        "pink-100": "#DFC7C7",
+        "pink-200": "#892122",
+      },
     },
   },
   plugins: [],

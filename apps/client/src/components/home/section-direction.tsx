@@ -7,7 +7,7 @@ export default function SectionDirection({ chaple, address }: ISectionDirectionP
   return (
     <div className="flex flex-col items-center justify-center gap-5">
       {/* title */}
-      <div className="rounded-[3.5rem] bg-[#dfc7c7] px-8 py-3 shadow-md">
+      <div className="rounded-[3.5rem] bg-pink-100 px-8 py-3 shadow-md">
         <h3 className="text-md font-bold text-gray-800">{chaple}</h3>
       </div>
       {/* 상세주소 */}
@@ -15,7 +15,7 @@ export default function SectionDirection({ chaple, address }: ISectionDirectionP
         <span className="text-md text-center font-light">{address}</span>
       </div>
       {/* 카카오 맵 */}
-      <div className="h-[100%] w-[90%] rounded-2xl bg-[#dfc7c7] shadow-md"></div>
+      <div className="h-[100%] w-[90%] rounded-2xl bg-pink-100 shadow-md"></div>
     </div>
   );
 }

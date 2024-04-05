@@ -1,8 +1,8 @@
 import React from "react";
-
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
-import NotPrepared from "@/components/layout/notPrepared";
+import { SectionHeader } from "ui";
+import ServicesTable from "@/components/about/servicesTable";
 
 const AboutServicesPage = () => {
   return (
@@ -13,7 +13,16 @@ const AboutServicesPage = () => {
       bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
-      <NotPrepared />
+      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-20">
+        <div className="flex w-full flex-col items-center justify-center gap-5">
+          <SectionHeader text="주일예배" hasLine={true} selected={true} size="sm" />
+          <ServicesTable worship="주일" />
+        </div>
+        <div className="flex w-full flex-col items-center justify-center gap-5">
+          <SectionHeader text="평일예배" hasLine={true} selected={true} size="sm" />
+          <ServicesTable worship="평일" />
+        </div>
+      </div>
     </Layout>
   );
 };
