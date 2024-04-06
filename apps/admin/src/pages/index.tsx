@@ -1,3 +1,4 @@
+import BibleSection from "@/components/home/bible";
 import BulletinSection from "@/components/home/bulletin";
 import YoutubeSection from "@/components/home/youtube";
 
@@ -13,6 +14,7 @@ export default function Home() {
         <YoutubeSection sectionTitle="수요예배 링크" type="wednesday" />
         <YoutubeSection sectionTitle="금요기도회 링크" type="firday" />
         <BulletinSection />
+        <BibleSection />
       </div>
     </main>
   );

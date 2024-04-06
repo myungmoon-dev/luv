@@ -3,17 +3,12 @@ import { cn } from "..";
 
 interface IDateTabProps {
   tabs: string[];
-  children: ReactNode;
+  children?: ReactNode;
   selectedTabIndex: number;
   onClickTab: (tabIndex: number) => void;
 }
 
-export const DateTab = ({
-  children,
-  tabs,
-  selectedTabIndex,
-  onClickTab,
-}: IDateTabProps) => {
+export const DateTab = ({ children, tabs, selectedTabIndex, onClickTab }: IDateTabProps) => {
   return (
     <div className="ui-flex ui-w-full ui-flex-col ui-items-center ui-justify-center">
       <div className="ui-mb-10 ui-grid ui-min-h-[50px] ui-w-full ui-max-w-3xl ui-grid-cols-4 ui-items-center ui-gap-5 ui-rounded-md ui-bg-gray-100 ui-px-3">
