@@ -47,7 +47,7 @@ const Layout = ({
       <main className="relative">
         <Header push={push} />
         <Banner
-          icons={bannerIcons && <BannerIconList list={bannerIcons} />}
+          iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
           image={bannerImage && <BannerImageComponent image={bannerImage} />}
           video={bannerVideo}
           title={title}
