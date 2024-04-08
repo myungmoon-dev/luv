@@ -2,9 +2,10 @@ import HomePage from "@/components/home";
 import Layout from "@/components/layout";
 import { useGetYoutubeList } from "@/query/youtube";
 import { IBannerIcon } from "@/types/banner/type";
+import { useEffect, useState } from "react";
 
 // FIXME: 관리자페이지에서 다룰 수 있게 변경해야 함
-const bannerIcons: IBannerIcon[] = [
+const BANNER_ICON_DATA: IBannerIcon[] = [
   {
     text: "예배생중계",
     className: "bg-pink-200 text-white",
@@ -20,7 +21,7 @@ const bannerIcons: IBannerIcon[] = [
     url: "discipleship/main/bible",
     className: "bg-white text-pink-200",
     iconType: {
-      name: "OpenBook",
+      name: "Bible",
       size: "lg",
       backgroundColor: "#892122",
       strokeColor: "#892122",
@@ -30,10 +31,24 @@ const bannerIcons: IBannerIcon[] = [
 
 export default function Home() {
   const { data: liveLink } = useGetYoutubeList({ videoType: "live", videoCount: 1 });
+  const [bannerIcons, setBannerIcons] = useState<IBannerIcon[]>(BANNER_ICON_DATA);
 
-  if (liveLink) {
-    bannerIcons[0].url = `https://www.youtube.com/live/${liveLink[0].videoId}`;
-  }
+  useEffect(() => {
+    // 아이콘 리스트에서 "예배생중계"인 객체의 URL에 라이브 링크를 삽입
+    if (liveLink && liveLink.length > 0) {
+      setBannerIcons((prevIcons) => {
+        return prevIcons.map((prevIcon) => {
+          if (prevIcon.text === "예배생중계") {
+            return {
+              ...prevIcon,
+              url: `https://www.youtube.com/live/${liveLink[0].videoId}`,
+            };
+          }
+          return prevIcon;
+        });
+      });
+    }
+  }, [liveLink]);
 
   return (
     <Layout pageTitle="메인" bannerVideo="/videos/banner.mp4" bannerIcons={bannerIcons}>
