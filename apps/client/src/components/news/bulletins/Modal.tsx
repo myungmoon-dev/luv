@@ -14,11 +14,13 @@ const BulletinModal = ({ selectedBulletinId }: { selectedBulletinId?: string }) 
       <h1 className="text-lg">주보 | {bulletin?.title}</h1>
       <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
         {bulletin && (
-          <BlurImageComponent
-            img={`${bulletin.images[currentViewImage]}/bulletin`}
-            alt={`${bulletin.title}_${currentViewImage}`}
-            fill
-          />
+          <a href={`${bulletin.images[currentViewImage]}/bulletin`} target="_blank">
+            <BlurImageComponent
+              img={`${bulletin.images[currentViewImage]}/bulletin`}
+              alt={`${bulletin.title}_${currentViewImage}`}
+              fill
+            />
+          </a>
         )}
       </div>
       <div className="flex justify-end gap-2">
