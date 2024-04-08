@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { cn } from "..";
 
 interface ICardProps {
   className?: string;
@@ -6,5 +7,5 @@ interface ICardProps {
 }
 
 export const Card = ({ children, className }: ICardProps) => {
-  return <div className={`${className} ui-rounded-lg`}>{children}</div>;
+  return <div className={cn(className)}>{children}</div>;
 };
