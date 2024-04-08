@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from "next";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
-    body: { content, date, title },
+    body: { content, date, title, links },
   } = req;
 
   switch (method) {
     case "POST":
-      await postBible({ content, date, title });
+      await postBible({ content, date, title, links });
 
       return res.status(200).json({ result: "success" });
     default:
