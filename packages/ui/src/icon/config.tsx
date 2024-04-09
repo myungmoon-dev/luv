@@ -4,6 +4,9 @@ import YoutubeIcon from "./assets/youtube";
 import OpenBookIcon from "./assets/openBook";
 import HamburgerIcon from "./assets/hamburger";
 import BibleIcon from "./assets/bible";
+import PrayIcon from "./assets/pray";
+import BellIcon from "./assets/bell";
+import HandHeart from "./assets/handHeart";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -30,4 +33,7 @@ export const icons = {
   Youtube: (props: IIconProps) => <YoutubeIcon {...props} />,
   OpenBook: (props: IIconProps) => <OpenBookIcon {...props} />,
   Bible: (props: IIconProps) => <BibleIcon {...props} />,
+  Pray: (props: IIconProps) => <PrayIcon {...props} />,
+  Bell: (props: IIconProps) => <BellIcon {...props} />,
+  HandHeart: (props: IIconProps) => <HandHeart {...props} />,
 };
