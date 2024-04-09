@@ -7,5 +7,5 @@ interface ICardProps {
 }
 
 export const Card = ({ children, className }: ICardProps) => {
-  return <div className={cn(className)}>{children}</div>;
+  return <div className={className}>{children}</div>;
 };

@@ -1,6 +1,6 @@
 import { IIconProps } from "../config";
 
-const HandHeart = ({ backgroundColor, strokeColor }: IIconProps) => {
+const HandHeartIcon = ({ backgroundColor, strokeColor }: IIconProps) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <path
@@ -13,4 +13,4 @@ const HandHeart = ({ backgroundColor, strokeColor }: IIconProps) => {
   );
 };
 
-export default HandHeart;
+export default HandHeartIcon;

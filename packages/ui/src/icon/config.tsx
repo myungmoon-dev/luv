@@ -6,7 +6,7 @@ import HamburgerIcon from "./assets/hamburger";
 import BibleIcon from "./assets/bible";
 import PrayIcon from "./assets/pray";
 import BellIcon from "./assets/bell";
-import HandHeart from "./assets/handHeart";
+import HandHeartIcon from "./assets/handHeart";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -23,8 +23,8 @@ export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
   sm: "ui-w-[16px]",
   md: "ui-w-[20px]",
   lg: "ui-w-[24px]",
-  xl: "ui-w-[50px]",
-  "2xl": "ui-w-[70px]",
+  xl: "ui-w-[48px]",
+  "2xl": "ui-w-[72px]",
 };
 
 export const icons = {
@@ -35,5 +35,5 @@ export const icons = {
   Bible: (props: IIconProps) => <BibleIcon {...props} />,
   Pray: (props: IIconProps) => <PrayIcon {...props} />,
   Bell: (props: IIconProps) => <BellIcon {...props} />,
-  HandHeart: (props: IIconProps) => <HandHeart {...props} />,
+  HandHeart: (props: IIconProps) => <HandHeartIcon {...props} />,
 };
