@@ -1,6 +1,5 @@
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
-import Image from "next/image";
 import React from "react";
 import { DoubleQuote } from "ui";
 
@@ -16,7 +15,7 @@ const AboutIndexPage = () => {
       <div className="flex flex-col gap-5 sm:text-lg md:text-xl">
         <div className="mb-20 flex items-center justify-center gap-2 sm:gap-3 md:gap-5">
           <DoubleQuote direction="up" />
-          <h2 className="break-words text-center text-lg font-bold text-pink-200 sm:text-2xl md:text-3xl">
+          <h2 className="break-words text-center font-bold text-pink-200 sm:text-2xl md:text-3xl">
             명문교회 홈페이지를 방문해 주신 여러분을
             <br />
             주님의 이름으로 환영하고 축복합니다.
