@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 const BANNER_ICON_DATA: IBannerIcon[] = [
   {
     text: "예배생중계",
-    className: "bg-pink-200 text-white",
+    className: "bg-pink-200 text-white hover:brightness-125 duration-500",
     iconType: {
       name: "Youtube",
       size: "lg",
@@ -19,9 +19,9 @@ const BANNER_ICON_DATA: IBannerIcon[] = [
   {
     text: "성경통독",
     url: "discipleship/main/bible",
-    className: "bg-white text-pink-200",
+    className: "bg-white font-semibold text-pink-200 hover:brightness-125 duration-500",
     iconType: {
-      name: "Bible",
+      name: "OpenBook",
       size: "lg",
       backgroundColor: "#892122",
       strokeColor: "#892122",

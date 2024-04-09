@@ -11,14 +11,14 @@ interface IBannerIconProps {
 const BannerIcon = ({ url, text, iconType, className }: IBannerIconProps) => {
   return (
     <Link href={url ?? ""}>
-      <div className={cn("flex cursor-pointer items-center justify-center ", className)}>
+      <div className={cn("flex cursor-pointer items-center justify-center", className)}>
         <Icon
           name={iconType.name}
           size={iconType.size}
           backgroundColor={iconType.backgroundColor}
           strokeColor={iconType.strokeColor}
         />
-        <p className="text-sm font-semibold sm:text-lg">{text}</p>
+        <p className="text-sm font-bold sm:text-lg">{text}</p>
       </div>
     </Link>
   );

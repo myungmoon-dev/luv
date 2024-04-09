@@ -20,7 +20,7 @@ const BannerIconList = ({ list, className }: IBannerIconListProps) => {
           key={index}
           iconType={item.iconType}
           text={item.text}
-          className={cn("h-12 w-32 gap-2 rounded-3xl  sm:h-16 sm:w-40 md:rounded-[30px]", item.className)}
+          className={cn("h-12 w-32 gap-2 rounded-3xl sm:h-16 sm:w-40 md:rounded-[30px]", item.className)}
           url={item.url}
         />
       ))}
