@@ -29,6 +29,9 @@ importers:
       '@plaiceholder/next':
         specifier: ^3.0.0
         version: 3.0.0(next@14.1.2)(plaiceholder@3.0.0)(sharp@0.32.6)
+      dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
       firebase:
         specifier: workspace:*
         version: link:../../packages/firebase
