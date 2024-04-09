@@ -5,8 +5,12 @@ import { IBibleForm } from "type";
 
 import { usePostBible } from "@/query/discipleship";
 import getYoutubeId from "@/utils/getYoutubeId";
+import { Spinner } from "ui";
 
-const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), { ssr: false });
+const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 const DiscipleshipBibleCreatePage = () => {
   const { register, handleSubmit, setValue } = useForm<IBibleForm>();
@@ -42,37 +46,54 @@ const DiscipleshipBibleCreatePage = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 justify-center items-center">
-        <label className="flex items-center gap-2">
-          <p>날짜</p>
-          <input className="text-black p-1" {...register("date")} placeholder="ex) 2021-01-01" />
-        </label>
-        <label className="flex items-center gap-2">
-          <p>제목</p>
-          <input className="text-black p-1" {...register("title")} placeholder="ex) 2021년 1월 첫째주" />
-        </label>
-        <div className="flex items-center gap-2">
+    <div className="px-24 py-20">
+      <h1 className="text-3xl font-bold mb-5">성경통독 추가하기</h1>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 justify-center">
+        <div className="flex justify-between gap-5 w-full">
+          <label className="flex flex-col gap-2 w-full">
+            <p>날짜</p>
+            <input className="text-black p-1" {...register("date")} placeholder="ex) 2021-01-01" />
+          </label>
+          <label className="flex flex-col gap-2 w-full">
+            <p>제목</p>
+            <input className="text-black p-1" {...register("title")} placeholder="ex) 2021년 1월 첫째주" />
+          </label>
+        </div>
+        <div className="flex flex-col gap-2 w-full">
           <p>내용</p>
           <Editor setValue={handleChangeContent} />
         </div>
-        <label className="flex items-center gap-2">
-          <p>Youtube Link</p>
-          <div className="flex flex-col gap-2">
+        <label className="flex flex-col gap-2">
+          <p>유튜브 링크</p>
+          <div className="flex flex-col gap-2 w-full">
             {links.map((link, idx) => (
-              <div className="flex items-center gap-2" key={link}>
-                <input className="text-black" onChange={(e) => handleChangeLink(e, idx)} />
-                <button type="button" onClick={() => setLinks((prev) => [...prev, ""])}>
-                  추가
-                </button>
-                <button type="button" onClick={() => handleRemoveLink(idx)}>
-                  삭제
-                </button>
+              <div className="flex items-center gap-5 justify-between w-full" key={link}>
+                <input
+                  placeholder="https://youtube.com/..."
+                  className="text-black w-full py-1 px-2"
+                  onChange={(e) => handleChangeLink(e, idx)}
+                />
+                <div className="flex gap-2 min-w-fit">
+                  <button
+                    className="!bg-green-500 px-3 py-1 rounded-md"
+                    type="button"
+                    onClick={() => setLinks((prev) => [...prev, ""])}
+                  >
+                    추가
+                  </button>
+                  <button
+                    className="!bg-red-500 px-3 py-1 rounded-md"
+                    type="button"
+                    onClick={() => handleRemoveLink(idx)}
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         </label>
-        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">성경통독 추가하기</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded mt-7">성경통독 추가하기</button>
       </form>
     </div>
   );
