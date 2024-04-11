@@ -2,43 +2,44 @@ import { IWorshipService } from "@/constants/innerMenus/types";
 
 const ServiceWorshipSchedule: IWorshipService[] = [
   {
-    label: "경건예배",
+    label: "1부 경건예배",
     time: "오전 7시30분",
     place: "독산동 비전채플 3층",
     worship: "주일",
   },
   {
-    label: "1부예배",
+    label: "2부 예배",
     time: "오전 9시",
     place: "서울여상 사랑채플 강당",
     worship: "주일",
   },
   {
-    label: "2부예배",
+    label: "3부 예배",
     time: "오전 11시30분",
     place: "서울여상 사랑채플 강당",
     worship: "주일",
   },
   {
-    label: "오후찬양예배",
-    time: "오후 2시",
-    place: "서울여상 사랑채플 강당",
-    worship: "주일",
-  },
-  {
-    label: "청년예배",
+    label: "4부 청년예배",
     time: "오후 2시",
     place: "독산동 비전채플 3층",
     worship: "주일",
   },
   {
-    label: "수요예배(오전)",
+    label: "오후 찬양예배",
+    time: "오후 2시",
+    place: "서울여상 사랑채플 강당",
+    worship: "주일",
+  },
+
+  {
+    label: "수요 예배(오전)",
     time: "오전 10시30분",
     place: "독산동 비전채플 3층",
     worship: "평일",
   },
   {
-    label: "수요예배(오후)",
+    label: "수요 예배(오후)",
     time: "오후 7시30분",
     place: "독산동 비전채플 3층",
     worship: "평일",

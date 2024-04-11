@@ -12,7 +12,7 @@ const AboutVisionPage = () => {
       bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
-      <div className="flex flex-col gap-10">
+      <div className="mx-auto flex max-w-screen-lg flex-col gap-10">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <div className="relative h-[200px] shadow-lg lg:h-[300px]">
             <Image src="/images/about/vision1.png" className="rounded-lg object-cover" alt="로고와 비전" fill />
