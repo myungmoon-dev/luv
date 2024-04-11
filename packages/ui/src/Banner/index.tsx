@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { Chip } from "..";
 
 interface BannerProps {
+  iconList: ReactNode;
   image?: ReactNode;
   video?: string;
   title?: string;
@@ -14,6 +15,7 @@ interface BannerProps {
 }
 
 export const Banner = ({
+  iconList,
   description,
   image,
   title,
@@ -63,6 +65,7 @@ export const Banner = ({
           ))}
         </div>
       </div>
+      {iconList}
     </div>
   );
 };

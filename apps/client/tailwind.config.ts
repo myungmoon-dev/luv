@@ -18,6 +18,7 @@ const config: Config = {
       colors: {
         "pink-100": "#DFC7C7",
         "pink-200": "#892122",
+        "pink-300": "#EAE3E1",
       },
     },
   },

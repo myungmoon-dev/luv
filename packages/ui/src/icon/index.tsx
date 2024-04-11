@@ -1,6 +1,12 @@
-import { IconCursorType, IconNameType, IconSizeType, icons, widthSize } from "./config";
+import {
+  IconCursorType,
+  IconNameType,
+  IconSizeType,
+  icons,
+  widthSize,
+} from "./config";
 
-interface IIconPropsType {
+export interface IIconPropsType {
   name: IconNameType;
   size: IconSizeType;
   strokeColor?: string;
@@ -20,8 +26,14 @@ export const Icon = ({
   const IconComponent = icons[name as IconNameType];
 
   return (
-    <div className={`${widthSize[size]} ${cursor}`} onClick={() => onClick && onClick()}>
-      <IconComponent backgroundColor={backgroundColor} strokeColor={strokeColor} />
+    <div
+      className={`${widthSize[size]} ${cursor}`}
+      onClick={() => onClick && onClick()}
+    >
+      <IconComponent
+        backgroundColor={backgroundColor}
+        strokeColor={strokeColor}
+      />
     </div>
   );
 };

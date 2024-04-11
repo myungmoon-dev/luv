@@ -1,4 +1,4 @@
-import { Card, Spinner, cn } from "..";
+import { Spinner, cn } from "..";
 
 interface IYoutubeVideoProps {
   videoId?: string;
@@ -7,7 +7,7 @@ interface IYoutubeVideoProps {
 
 export const YoutubeVideo = ({ videoId, className }: IYoutubeVideoProps) => {
   return (
-    <Card className={cn("ui-relative", className)}>
+    <div className={cn("ui-relative", className)}>
       {videoId ? (
         <iframe
           className="ui-h-full ui-w-full ui-rounded-lg"
@@ -20,6 +20,6 @@ export const YoutubeVideo = ({ videoId, className }: IYoutubeVideoProps) => {
           <Spinner />
         </div>
       )}
-    </Card>
+    </div>
   );
 };
