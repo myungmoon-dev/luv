@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
-import { Card, cn } from "ui";
+import { cn } from "ui";
 
 interface ISectionCardProps {
   image?: string;
@@ -15,7 +15,7 @@ const SectionCard = ({ image, icon, className, text, url }: ISectionCardProps) =
   return (
     <Link href={url}>
       <div className="flex cursor-pointer flex-col items-center justify-center gap-4">
-        <Card className={cn("relative flex w-full flex-col items-center justify-center", className)}>
+        <div className={cn("relative flex w-full flex-col items-center justify-center", className)}>
           {image && (
             <>
               <Image
@@ -31,7 +31,7 @@ const SectionCard = ({ image, icon, className, text, url }: ISectionCardProps) =
             </>
           )}
           {icon}
-        </Card>
+        </div>
         {icon && <p className="font-semibold text-gray-700">{text}</p>}
       </div>
     </Link>

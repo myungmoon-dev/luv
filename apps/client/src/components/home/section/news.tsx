@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Card, cn } from "ui";
+
 import { IBulletin } from "type";
 
 import Section from ".";
 import { useGetBulletins } from "@/query/bulletin";
 import useModalStore from "@/store/modal";
 import BlurImageComponent from "@/components/blurImage";
+import { cn } from "ui";
 
 const BulletinModal = ({ selectedBulletin }: { selectedBulletin: IBulletin }) => {
   const [currentViewImage, setCurrentViewImage] = useState(0);
@@ -63,7 +64,7 @@ const NewsSection = () => {
               </div>
             ))}
         </div>
-        <Card className="flex h-[300px] items-center justify-center bg-gray-100 sm:h-auto">주보 미리보기</Card>
+        <div className="flex h-[300px] items-center justify-center bg-gray-100 sm:h-auto">주보 미리보기</div>
       </div>
     </Section>
   );

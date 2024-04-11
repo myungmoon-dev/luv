@@ -8,7 +8,6 @@ import { Chip } from "./Chip";
 import { Line } from "./Line";
 import { DoubleQuote } from "./DoubleQuote";
 import { SectionHeader } from "./SectionHeader";
-import { Card } from "./Card";
 import { cn } from "./utils/twMerge";
 import { Drawer } from "./Drawer";
 import { Spinner } from "./Spinner";
@@ -29,7 +28,6 @@ export {
   Line,
   DoubleQuote,
   SectionHeader,
-  Card,
   cn,
   Drawer,
   Spinner,
