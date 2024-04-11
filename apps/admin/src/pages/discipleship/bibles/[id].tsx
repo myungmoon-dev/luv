@@ -1,10 +1,10 @@
-import { useGetBible } from "@/query/bible";
+import { useGetBible } from "@/query/discipleship";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import React from "react";
 import { Spinner, YoutubeVideo } from "ui";
 
-const DiscipleshipMainBibleDetail = () => {
+const DiscipleShipBibleDetailPage = () => {
   const params = useParams();
   const bibleId = params?.id as string;
   const { data } = useGetBible({ bibleId });
@@ -19,7 +19,7 @@ const DiscipleshipMainBibleDetail = () => {
   const bible = data.bible;
 
   return (
-    <div>
+    <div className="px-24 py-10">
       <h1 className="mb-2 text-3xl font-bold">{bible.title}</h1>
       <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}</p>
       <div className="mb-10">{bible.content}</div>
@@ -32,4 +32,4 @@ const DiscipleshipMainBibleDetail = () => {
   );
 };
 
-export default DiscipleshipMainBibleDetail;
+export default DiscipleShipBibleDetailPage;

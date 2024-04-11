@@ -11,6 +11,10 @@ const nextConfig = {
   },
   reactStrictMode: true,
   transpilePackages: ["ui", "firebase"],
+  // FIXME: scrollRestoration 직접 구현하기
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 export default withPlaiceholder(nextConfig);

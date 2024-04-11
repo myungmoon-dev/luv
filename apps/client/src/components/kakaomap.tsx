@@ -58,7 +58,7 @@ const KakaoMap = ({ address }: KakaoMapProp) => {
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_KEY}&autoload=false&libraries=services`}
         onLoad={onLoadKakaoMap}
       />
-      <div ref={kakaoMapRef} className="ui-rounded-lg relative h-[230px] w-full" />
+      <div ref={kakaoMapRef} className="ui-rounded-lg relative h-[230px] w-full lg:h-[330px]" />
     </>
   );
 };
