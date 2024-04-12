@@ -2,7 +2,7 @@ import { useGetBible } from "@/query/bible";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import React from "react";
-import { Spinner, YoutubeVideo } from "ui";
+import { SafeHTML, Spinner, YoutubeVideo } from "ui";
 
 const DiscipleshipMainBibleDetail = () => {
   const params = useParams();
@@ -22,7 +22,9 @@ const DiscipleshipMainBibleDetail = () => {
     <div>
       <h1 className="mb-2 text-3xl font-bold">{bible.title}</h1>
       <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}</p>
-      <div className="mb-10">{bible.content}</div>
+      <div className="mb-10">
+        <SafeHTML html={bible.content} />
+      </div>
       <div className="grid grid-cols-2 gap-5">
         {bible.links.map((link) => (
           <YoutubeVideo className="h-[250px]" videoId={link} key={link} />
