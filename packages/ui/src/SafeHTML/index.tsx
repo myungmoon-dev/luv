@@ -1,5 +1,5 @@
 import DOMPurify from "dompurify";
-import parse from "react-html-parser";
+import parse from "html-react-parser";
 
 interface ISafeHTMLPRops {
   html: string;
