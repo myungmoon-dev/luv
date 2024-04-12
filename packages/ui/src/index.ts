@@ -15,6 +15,7 @@ import { Table } from "./Table";
 import { Pagination } from "./Pagination";
 import { DateTab } from "./DateTab";
 import { YoutubeVideo } from "./YoutubeVideo";
+import { SafeHTML } from "./SafeHTML";
 
 export { type ITableData } from "./Table";
 export type { IIconPropsType } from "./icon";
@@ -35,4 +36,5 @@ export {
   Pagination,
   DateTab,
   YoutubeVideo,
+  SafeHTML,
 };
