@@ -6,7 +6,7 @@ export const Footer = ({ push }: IFooterProps) => {
   const menus: { label: string; path: string }[] = [
     { label: "교회소개", path: "/about" },
     { label: "설교•찬양", path: "/sermons/sunday-3" },
-    { label: "다음세대", path: "/education/youth-adults2" },
+    { label: "다음세대", path: "/education/infants" },
     { label: "주보•소식", path: "/news/bulletins" },
     { label: "교회양육", path: "/discipleship" },
   ];
@@ -18,7 +18,11 @@ export const Footer = ({ push }: IFooterProps) => {
   return (
     <footer className="ui-bg-pink-100 ui-flex ui-flex-col ui-justify-between ui-gap-2 ui-px-8 sm:ui-px-16 md:ui-px-24 ui-py-14">
       <div className="ui-flex ui-w-full ui-flex-col ui-gap-5 md:ui-gap-0 md:ui-flex-row ui-justify-between">
-        <img src="/images/Logo.png" className="ui-w-[150px] ui-h-[45px]" alt="myungmoon" />
+        <img
+          src="/images/Logo.png"
+          className="ui-w-[150px] ui-h-[45px]"
+          alt="myungmoon"
+        />
         <div className="ui-flex ui-flex-col ui-gap-5">
           <nav className="md:ui-flex ui-gap-5 ui-hidden">
             {menus.map((menu) => (
@@ -40,15 +44,24 @@ export const Footer = ({ push }: IFooterProps) => {
       <div className="ui-flex ui-flex-col ui-gap-2">
         <hr className="ui-border-white" />
         <div className="ui-flex ui-gap-x-2 ui-flex-wrap ui-text-white">
-          <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+          <button
+            onClick={handleNotPreparedClick}
+            className="hover:ui-underline"
+          >
             이용약관
           </button>
           <p>/</p>
-          <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+          <button
+            onClick={handleNotPreparedClick}
+            className="hover:ui-underline"
+          >
             개인정보 처리방침
           </button>
           <p>/</p>
-          <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+          <button
+            onClick={handleNotPreparedClick}
+            className="hover:ui-underline"
+          >
             이메일 무단수집 거부
           </button>
         </div>
