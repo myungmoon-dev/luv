@@ -1,6 +1,5 @@
-import React from "react";
-import { cn } from "..";
 import dayjs from "dayjs";
+import { cn } from "..";
 
 export interface ITableData {
   id: string;
@@ -31,22 +30,28 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
       </div>
       <hr className="ui-border-gray-100" />
       <div className="ui-flex ui-flex-col">
-        {data.map((row) => (
+        {data.length > 0 ? (
+          data.map((row) => (
+            <>
+              <div className="ui-flex ui-py-3 ui-cursor-pointer" key={row.id} onClick={() => onClickRow?.(row.id)}>
+                <div className="ui-w-[30%]">
+                  <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
+                </div>
+                <div className="ui-w-[50%]">
+                  <p>{row.title}</p>
+                </div>
+                <div className="ui-w-[20%]">
+                  <p>{row.writer}</p>
+                </div>
+              </div>
+              <hr className="ui-border-gray-100" />
+            </>
+          ))
+        ) : (
           <>
-            <div className="ui-flex ui-py-3 ui-cursor-pointer" key={row.id} onClick={() => onClickRow?.(row.id)}>
-              <div className="ui-w-[30%]">
-                <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
-              </div>
-              <div className="ui-w-[50%]">
-                <p>{row.title}</p>
-              </div>
-              <div className="ui-w-[20%]">
-                <p>{row.writer}</p>
-              </div>
-            </div>
-            <hr className="ui-border-gray-100" />
+            <h2 className="ui-text-xl ui-my-20">데이터가 없습니다.</h2>
           </>
-        ))}
+        )}
       </div>
     </div>
   );
