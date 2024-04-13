@@ -5,7 +5,8 @@ export type YoutubeType =
   | "youth"
   | "afternoon"
   | "firday"
-  | "wednesday";
+  | "wednesday"
+  | "video";
 
 export interface IYoutube {
   id: string;
