@@ -13,6 +13,9 @@ interface IYoutubeSectionProps {
 // FIXME: CustomInput 컴포넌트 만들기
 
 const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
+  const showAllFields = type !== "live" && type !== "shorts";
+  const hideMainText = type !== "video";
+
   const { data: youtubeLink } = useGetYoutubeLink(type);
   const { register, handleSubmit, reset } = useForm<IYoutubeForm>();
   const { mutate } = usePostYoutubeLink(type);
@@ -75,32 +78,34 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
             />
           </label>
           {/* 라이브/쇼츠 링크에는 보이지 않음 */}
-          {type !== "live" && type !== "shorts" && (
+          {showAllFields && (
             <>
               <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">설교제목</p>
+                <p className="w-20">제목</p>
                 <input
                   {...register("title")}
-                  placeholder="설교 제목을 입력해주세요."
+                  placeholder="제목을 입력해주세요."
                   className="border rounded px-4 py-2 text-black"
                 />
               </label>
               <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">설교날짜</p>
+                <p className="w-20">날짜</p>
                 <input
                   {...register("date")}
                   placeholder="ex) 2024-01-01"
                   className="border rounded px-4 py-2 text-black"
                 />
               </label>
-              <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">본문말씀</p>
-                <input
-                  {...register("mainText")}
-                  placeholder="ex) 마태복음 1장 1절"
-                  className="border rounded px-4 py-2 text-black"
-                />
-              </label>
+              {hideMainText && (
+                <label className="grid grid-flow-col place-items-center gap-3">
+                  <p className="w-20">본문말씀</p>
+                  <input
+                    {...register("mainText")}
+                    placeholder="ex) 마태복음 1장 1절"
+                    className="border rounded px-4 py-2 text-black"
+                  />
+                </label>
+              )}
               <label className="grid grid-flow-col place-items-center gap-3">
                 <p className="w-20">설교자</p>
                 <input
