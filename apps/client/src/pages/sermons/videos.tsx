@@ -1,10 +1,12 @@
 import React from "react";
-
 import Layout from "@/components/layout";
 import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
-import NotPrepared from "@/components/layout/notPrepared";
+import SermonContainer from "@/components/sermons/sermonContainer";
+import { Spinner } from "ui";
+import { useGetYoutubeList } from "@/query/youtube";
 
 const VideosPage = () => {
+  const { data: youtubeList } = useGetYoutubeList({ videoType: "video" });
   return (
     <Layout
       pageTitle="명문영상"
@@ -13,7 +15,9 @@ const VideosPage = () => {
       bannerImage="/images/sermons.jpeg"
       innerMenus={sermonsInnerMenus}
     >
-      <NotPrepared />
+      <div className="flex items-center justify-center">
+        {youtubeList ? <SermonContainer list={youtubeList} /> : <Spinner />}
+      </div>
     </Layout>
   );
 };
