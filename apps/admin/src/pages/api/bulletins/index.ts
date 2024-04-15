@@ -42,15 +42,25 @@ export default async function handler(
       const apiResponses = await Promise.all(
         Array(2)
           .fill(null)
-          .map(() =>
-            api.post<IPostCloudflareResponse>(`${origin}/api/cloudflare`, {
-              expireDate: expireDate.toISOString(),
-            })
-          )
+          .map(async () => {
+            const apiResponse = await api.post<IPostCloudflareResponse>(
+              `${origin}/api/cloudflare`,
+              {
+                expireDate: expireDate.toISOString(),
+              }
+            );
+            return apiResponse.data;
+          })
       );
-      const uploadURLs = apiResponses.map(
-        (response) => response.data.uploadURL
-      );
+
+      const uploadURLs = apiResponses.map((response) => {
+        if (response.success !== true) {
+          return res
+            .status(500)
+            .json({ result: "Cloudflare 업로드 URL을 생성하지 못하였습니다." });
+        }
+        return response.uploadURL;
+      });
 
       const form = new IncomingForm();
       const result = form.parse(req, async (err, fields, files) => {
