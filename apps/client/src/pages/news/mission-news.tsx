@@ -1,7 +1,6 @@
 import Layout from "@/components/layout";
-import NotPrepared from "@/components/layout/notPrepared";
+import Mission from "@/components/news/mission";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
-import React from "react";
 
 const MissionNewsPage = () => {
   return (
@@ -12,7 +11,7 @@ const MissionNewsPage = () => {
       bannerImage="/images/balance.jpg"
       innerMenus={newsInnerMenus}
     >
-      <NotPrepared />
+      <Mission />
     </Layout>
   );
 };
