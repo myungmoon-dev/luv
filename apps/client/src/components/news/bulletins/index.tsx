@@ -1,6 +1,6 @@
 import { useGetBulletins } from "@/query/bulletin";
 import React from "react";
-import { Table, Pagination } from "ui";
+import { Table, Pagination, Spinner } from "ui";
 import BulletinModal from "./Modal";
 import useModalStore from "@/store/modal";
 
@@ -12,14 +12,19 @@ const Bulletins = () => {
     open(<BulletinModal selectedBulletinId={id} />);
   };
 
-  if (!data) return <p>loading...</p>;
+  if (!data)
+    return (
+      <div className="flex justify-center">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-7">
       <Table
         data={data.bulletins.map((bulletin) => ({
           id: bulletin.id,
-          date: bulletin.createdAt,
+          date: bulletin.date,
           title: bulletin.title,
           writer: "관리자",
         }))}
