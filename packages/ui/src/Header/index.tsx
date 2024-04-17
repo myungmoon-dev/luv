@@ -51,11 +51,7 @@ export const Header = ({ push }: IHeaderProps) => {
             : "ui-px-8 md:ui-px-10 ui-rounded-full"
         )}
       >
-        <div
-          className={cn(
-            "ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full"
-          )}
-        >
+        <div className="ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full">
           <img
             onClick={() => push("/")}
             src="/images/Logo.png"
