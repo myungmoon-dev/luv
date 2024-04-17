@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@/components/layout";
 import { educationInfantsMenus, educationInnerMenus } from "@/constants/innerMenus/education";
 import Tabs from "@/components/layout/tabs";
-import EducationIntroduction from "@/components/education/introduction";
+import EducationOverView from "@/components/education";
 
 const EducationInfantsPage = () => {
   return (
@@ -15,7 +15,7 @@ const EducationInfantsPage = () => {
       detailMenus={educationInfantsMenus}
     >
       <Tabs menus={educationInfantsMenus}>
-        <EducationIntroduction
+        <EducationOverView
           title={`일어나 세상으로 흘러가는 "영아부"`}
           bible="요한복음 3:16"
           words="하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니
