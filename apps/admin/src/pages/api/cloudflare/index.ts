@@ -1,4 +1,4 @@
-import axios from "axios";
+import { api } from "@/api";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -17,7 +17,7 @@ export default async function handler(
         data: {
           result: { uploadURL },
         },
-      } = await axios.post(`${process.env.CLOUDFLARE_REQ_URL}`, null, {
+      } = await api.post(`${process.env.CLOUDFLARE_REQ_URL}`, null, {
         headers: {
           ContentType: "application/json",
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,
