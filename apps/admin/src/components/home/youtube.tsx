@@ -13,8 +13,8 @@ interface IYoutubeSectionProps {
 // FIXME: CustomInput 컴포넌트 만들기
 
 const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
-  const showAllFields = type !== "live" && type !== "shorts";
-  const hideMainText = type !== "video";
+  const isShowAllFields = type !== "live" && type !== "shorts";
+  const isHideMainText = type !== "video";
 
   const { data: youtubeLink } = useGetYoutubeLink(type);
   const { register, handleSubmit, reset } = useForm<IYoutubeForm>();
@@ -78,7 +78,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
             />
           </label>
           {/* 라이브/쇼츠 링크에는 보이지 않음 */}
-          {showAllFields && (
+          {isShowAllFields && (
             <>
               <label className="grid grid-flow-col place-items-center gap-3">
                 <p className="w-20">제목</p>
@@ -96,7 +96,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
                   className="border rounded px-4 py-2 text-black"
                 />
               </label>
-              {hideMainText && (
+              {isHideMainText && (
                 <label className="grid grid-flow-col place-items-center gap-3">
                   <p className="w-20">본문말씀</p>
                   <input
