@@ -18,6 +18,7 @@ import { YoutubeVideo } from "./YoutubeVideo";
 
 export { type ITableData } from "./Table";
 export type { IIconPropsType } from "./icon";
+export type { IconNameType } from "./icon/config";
 
 export {
   Icon,
