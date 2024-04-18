@@ -6,7 +6,7 @@ export const Footer = ({ push }: IFooterProps) => {
   const menus: { label: string; path: string }[] = [
     { label: "교회소개", path: "/about" },
     { label: "설교•찬양", path: "/sermons/sunday-3" },
-    { label: "다음세대", path: "/education/infants" },
+    { label: "다음세대", path: "/education" },
     { label: "주보•소식", path: "/news/bulletins" },
     { label: "교회양육", path: "/discipleship" },
   ];
