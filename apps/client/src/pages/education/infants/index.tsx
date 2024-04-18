@@ -17,14 +17,14 @@ const EducationInfantsPage = () => {
       <Tabs menus={educationInfantsMenus}>
         <EducationOverView
           title={`일어나 세상으로 흘러가는 "영아부"`}
-          bible="요한복음 3:16"
-          words="하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니
-          이는 저를 믿는 자마다 멸망치 않고 영생을 얻게 하려하심이니라"
+          words="명문교회 영아부는 부모와 교사가 함께 
+          오직 말씀,기도,사랑으로 우리 아이들에게 
+          복음의 씨앗을 심어주어
+          바른 믿음을 키워주는 부서입니다."
           image="/images/next-g.jpeg"
-          minister="ddd 목사"
-          place="장소"
-          target="0-1세"
-          time="오전 9시30분"
+          place="사랑채플(서울여상) 2층 체조실"
+          target="만 0-3세"
+          time="오전 10시30분 - 12시30분"
         />
       </Tabs>
     </Layout>
