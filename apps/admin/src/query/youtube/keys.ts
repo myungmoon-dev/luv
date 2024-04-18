@@ -7,6 +7,7 @@ const youtubeKeys = {
   afternoon: () => [...youtubeKeys.all, "afternoon"],
   firday: () => [...youtubeKeys.all, "firday"],
   wednesday: () => [...youtubeKeys.all, "wednesday"],
+  video: () => [...youtubeKeys.all, "video"],
 };
 
 export default youtubeKeys;

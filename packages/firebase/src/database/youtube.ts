@@ -38,13 +38,13 @@ export const getYoutube = async ({
 };
 
 export const createYoutube = async (youtubeForm: IYoutubeForm) => {
-  // date가 있는 경우: main, afternoon, youth, wednesday, firday
+  // date가 있는 경우: main, afternoon, youth, wednesday, firday, video
   if (youtubeForm.date) {
     await addDoc(collection(database, "youtube", "sermon", youtubeForm.type), {
       videoId: youtubeForm.url,
-      title: youtubeForm.title,
-      preacher: youtubeForm.preacher,
-      mainText: youtubeForm.mainText,
+      title: youtubeForm.title ?? "",
+      preacher: youtubeForm.preacher ?? "",
+      mainText: youtubeForm.mainText ?? "",
       date: youtubeForm.date,
       createdAt: Date.now(),
     });

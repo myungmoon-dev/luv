@@ -5,7 +5,7 @@ import { useGetYoutubeList } from "@/query/youtube";
 import { Spinner } from "ui";
 
 const SermonsSunday3Page = () => {
-  const { data: youtubeList } = useGetYoutubeList({ videoType: "main" });
+  const { data: youtubeList, isLoading } = useGetYoutubeList({ videoType: "main" });
 
   return (
     <Layout
@@ -16,7 +16,7 @@ const SermonsSunday3Page = () => {
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
-        {youtubeList ? <SermonContainer list={youtubeList} /> : <Spinner />}
+        {isLoading ? <Spinner /> : <SermonContainer list={youtubeList || []} />}
       </div>
     </Layout>
   );
