@@ -7,6 +7,10 @@ import BibleIcon from "./assets/bible";
 import PrayIcon from "./assets/pray";
 import BellIcon from "./assets/bell";
 import HandHeartIcon from "./assets/handHeart";
+import CircleHeartIcon from "./assets/circleHeart";
+import ClockIcon from "./assets/clock";
+import MapIcon from "./assets/map";
+import UserIcon from "./assets/user";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -36,4 +40,8 @@ export const icons = {
   Pray: (props: IIconProps) => <PrayIcon {...props} />,
   Bell: (props: IIconProps) => <BellIcon {...props} />,
   HandHeart: (props: IIconProps) => <HandHeartIcon {...props} />,
+  CircleHeart: (props: IIconProps) => <CircleHeartIcon {...props} />,
+  Clock: (props: IIconProps) => <ClockIcon {...props} />,
+  Map: (props: IIconProps) => <MapIcon {...props} />,
+  User: (props: IIconProps) => <UserIcon {...props} />,
 };

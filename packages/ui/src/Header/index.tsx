@@ -12,7 +12,7 @@ export const Header = ({ push }: IHeaderProps) => {
   const menus: { label: string; path: string }[] = [
     { label: "교회소개", path: "/about" },
     { label: "설교•찬양", path: "/sermons/sunday-3" },
-    { label: "다음세대", path: "/education/youth-adults2" },
+    { label: "다음세대", path: "/education/infants" },
     { label: "주보•소식", path: "/news/bulletins" },
     { label: "교회양육", path: "/discipleship/main/bible" },
   ];
@@ -38,16 +38,20 @@ export const Header = ({ push }: IHeaderProps) => {
     <header
       className={cn(
         "ui-z-10",
-        isScrolled ? "ui-sticky ui-top-0 ui-px-0" : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
+        isScrolled
+          ? "ui-sticky ui-top-0 ui-px-0"
+          : "ui-w-full ui-absolute -ui-top-0 ui-pt-8 ui-px-4 sm:ui-px-10"
       )}
     >
       <div
         className={cn(
           "ui-h-[60px] ui-bg-white ui-w-full ui-shadow-lg",
-          isScrolled ? "ui-px-8 md:ui-px-20" : "ui-px-8 md:ui-px-10 ui-rounded-full"
+          isScrolled
+            ? "ui-px-8 md:ui-px-20"
+            : "ui-px-8 md:ui-px-10 ui-rounded-full"
         )}
       >
-        <div className={cn("ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full")}>
+        <div className="ui-flex ui-justify-between ui-items-center ui-w-full ui-h-full">
           <img
             onClick={() => push("/")}
             src="/images/Logo.png"
@@ -91,7 +95,12 @@ export const Header = ({ push }: IHeaderProps) => {
                   </button>
                 ))}
               </div>
-              <img src="/images/Logo.png" alt="myungmoon" width={100} height={50} />
+              <img
+                src="/images/Logo.png"
+                alt="myungmoon"
+                width={100}
+                height={50}
+              />
             </Drawer>
           </nav>
         </div>
