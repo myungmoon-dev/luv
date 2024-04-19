@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@/components/layout";
 import { educationInfantsMenus, educationInnerMenus } from "@/constants/innerMenus/education";
 import Tabs from "@/components/layout/tabs";
-import EducationOverView from "@/components/education";
+import EducationOverView from "@/components/education/overview";
 
 const EducationInfantsPage = () => {
   return (
