@@ -13,6 +13,8 @@ import MapIcon from "./assets/map";
 import UserIcon from "./assets/user";
 import { LogoBlackIcon } from "./assets/logoBlack";
 import { LogoBlueIcon } from "./assets/logoBlue";
+import { RealYoutubeIcon } from "./assets/youtube-1";
+import { InstagramIcon } from "./assets/instagram";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -49,4 +51,6 @@ export const icons = {
   User: (props: IIconProps) => <UserIcon {...props} />,
   LogoBlack: (props: IIconProps) => <LogoBlackIcon {...props} />,
   LogoBlue: (props: IIconProps) => <LogoBlueIcon {...props} />,
+  RealYoutube: (props: IIconProps) => <RealYoutubeIcon {...props} />,
+  Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
 };
