@@ -50,12 +50,12 @@ export const Header = ({ push }: IHeaderProps) => {
         <Drawer
           open={isOpenDrawer}
           onClose={() => setOpenDrawer(false)}
-          className="ui-flex ui-flex-col ui-justify-between ui-items-center ui-px-2 ui-pt-10 ui-pb-5"
+          className="ui-flex ui-flex-col ui-justify-between ui-items-center ui-pt-10 ui-pb-5"
         >
           <div className="ui-flex ui-flex-col ui-gap-2 ui-w-full">
             {menus.map((menu) => (
               <button
-                className="hover:ui-text-pink-200 ui-text-black ui-w-full ui-text-end ui-text-xl"
+                className="hover:ui-text-pink-200 ui-text-black ui-w-full ui-text-center ui-text-xl"
                 onClick={() => push(menu.path)}
                 key={menu.path}
               >
