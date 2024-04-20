@@ -12,7 +12,7 @@ const HistoryEvent = ({ index, length, event }: IHistoryEventProps) => {
     <div className="relative grid grid-cols-2 place-items-center gap-16">
       <p
         className={cn(
-          "justify-self-end text-sm font-semibold text-pink-100",
+          "justify-self-end text-sm font-semibold text-blue-400",
           index === 0 && "self-start",
           length - 1 === index && "self-end",
         )}
@@ -30,7 +30,7 @@ const HistoryEvent = ({ index, length, event }: IHistoryEventProps) => {
       </p>
       <div
         className={cn(
-          "absolute left-1/2 h-4 w-4 -translate-x-1/2 transform rounded-full bg-pink-100",
+          "absolute left-1/2 z-[1] h-4 w-4 -translate-x-1/2 transform rounded-full bg-blue-500",
           index === 0 && "top-0",
         )}
       />

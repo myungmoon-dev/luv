@@ -394,7 +394,7 @@ const HistoryEventList = ({ decade }: IHistoryListProps) => {
           {history.innerEvents.map((event, index, arr) => (
             <HistoryEvent key={event.description} event={event} index={index} length={arr.length} />
           ))}
-          <div className="absolute bottom-1 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-pink-100" />
+          <div className="absolute bottom-1 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-blue-400" />
         </div>
       ))}
     </div>

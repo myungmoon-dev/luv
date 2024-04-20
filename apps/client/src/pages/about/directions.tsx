@@ -15,18 +15,18 @@ const AboutDirectionsPage = () => {
       innerMenus={aboutInnerMenus}
     >
       <div className="mx-auto flex max-w-screen-lg flex-col gap-20">
-        <SectionHeader text="오시는 길" hasLine={true} selected={true} size="sm" />
+        <SectionHeader text="오시는 길" hasLine={true} selected={true} size="sm" color="blue" />
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <KakaoMap address="서울특별시 금천구 남부순환로 1406" />
           <div className="flex flex-col items-center justify-center gap-3">
-            <p className="text-xl font-bold text-pink-100">독산동 비전채플 (평일)</p>
+            <p className="text-xl font-bold text-blue-400">독산동 비전채플 (평일)</p>
             <p className="text-gray-600">서울특별시 금천구 남부순환로 1406</p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <KakaoMap address="서울특별시 관악구 관악로 85" />
           <div className="flex flex-col items-center justify-center gap-3">
-            <p className="text-xl font-bold text-pink-100">서울여상 사랑채플 (주일)</p>
+            <p className="text-xl font-bold text-blue-400">서울여상 사랑채플 (주일)</p>
             <p className="text-center text-gray-600">
               서울특별시 관악구 관악로 85
               <br />
