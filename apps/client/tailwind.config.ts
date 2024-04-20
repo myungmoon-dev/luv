@@ -19,6 +19,8 @@ const config: Config = {
         "pink-100": "#DFC7C7",
         "pink-200": "#892122",
         "pink-300": "#EAE3E1",
+        "blue-400": "#41C9E2",
+        "blue-500": "#3490DE",
       },
     },
   },
