@@ -57,7 +57,7 @@ export const Banner = ({
                 }
                 text={innerMenu.label}
                 size="sm"
-                color="red"
+                color="blue"
                 key={innerMenu.label}
               />
             ))}
