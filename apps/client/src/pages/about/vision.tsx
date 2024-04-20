@@ -1,9 +1,8 @@
+import AboutTitle from "@/components/about/title";
 import Layout from "@/components/layout";
-import React from "react";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import Image from "next/image";
-import AboutTitle from "@/components/about/title";
-import { Icon, cn } from "ui";
+import { Icon } from "ui";
 
 interface IVision {
   description: string;
@@ -78,7 +77,7 @@ const AboutVisionPage = () => {
           <hr className="my-10 border-t-2 border-white" />
           <div className="mb-10 flex flex-col justify-center gap-10">
             {visionList.map((vision, idx) => (
-              <div className={cn("flex items-center gap-7", idx % 2 === 1 && "pl-40")} key={vision.description}>
+              <div className="flex items-center justify-center gap-7" key={vision.description}>
                 <div className="relative h-[150px] w-[150px] overflow-hidden rounded-full">
                   <Image src={`/images/about/vision${idx + 1}.jpg`} alt="value" fill={true} className="object-cover" />
                 </div>
