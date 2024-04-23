@@ -58,7 +58,7 @@ const Layout = ({
           onClickChip={push}
           push={push}
         />
-        <div className="px-4 py-20 sm:px-12 sm:py-24 lg:px-48">{children}</div>
+        <div className="py-20 sm:py-24">{children}</div>
         <Footer push={push} />
       </main>
     </>
