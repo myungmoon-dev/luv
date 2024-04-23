@@ -11,7 +11,7 @@ const EducationInformationCard = ({ title, text, iconName }: IEducationInformati
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <SectionCard
-        className="hover:bg-brown-200 h-[100px] w-[110px] rounded-3xl bg-green-100 pb-2 shadow-lg duration-700"
+        className="h-[100px] w-[110px] rounded-3xl bg-green-100 pb-2 shadow-lg duration-700 hover:bg-brown-200"
         text={title}
         icon={<Icon name={iconName} size="xl" backgroundColor="white" strokeColor="white" cursor="ui-cursor-pointer" />}
       />

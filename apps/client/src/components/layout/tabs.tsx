@@ -19,7 +19,7 @@ const Tabs = ({ menus, children }: ITabsProps) => {
             selected={asPath === menu.path}
             text={menu.label}
             size="xs"
-            color="pink"
+            color="blue"
             key={menu.label}
             shadow="md"
             className="z-[1]"

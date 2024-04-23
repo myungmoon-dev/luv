@@ -10,7 +10,7 @@ interface ISectionProps {
 const Section = ({ children, className, title }: ISectionProps) => {
   return (
     <section className={`${className}`}>
-      <SectionHeader text={title} hasLine={true} selected={true} size="sm" />
+      <SectionHeader text={title} hasLine={true} selected={true} size="sm" color="blue" />
       <div className="my-5">{children}</div>
     </section>
   );

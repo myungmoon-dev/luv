@@ -11,6 +11,7 @@ export const ChipVariants = cva(
       color: {
         red: "",
         pink: "",
+        blue: "",
       },
       selected: {
         true: "",
@@ -59,29 +60,26 @@ export const ChipVariants = cva(
         selected: false,
         className: "ui-bg-white ui-text-pink-100",
       },
+      {
+        color: "blue",
+        selected: true,
+        className: "ui-bg-blue-500 ui-text-white",
+      },
+      {
+        color: "blue",
+        selected: false,
+        className: "ui-bg-white ui-text-blue-500",
+      },
     ],
   }
 );
 
-interface ChipProps
-  extends VariantProps<typeof ChipVariants>,
-    Omit<HTMLAttributes<HTMLDivElement>, "color"> {
+interface ChipProps extends VariantProps<typeof ChipVariants>, Omit<HTMLAttributes<HTMLDivElement>, "color"> {
   text: string;
 }
-export const Chip = ({
-  color,
-  size,
-  text,
-  selected,
-  className,
-  shadow,
-  ...props
-}: ChipProps) => {
+export const Chip = ({ color, size, text, selected, className, shadow, ...props }: ChipProps) => {
   return (
-    <div
-      className={cn(ChipVariants({ color, size, selected, shadow }), className)}
-      {...props}
-    >
+    <div className={cn(ChipVariants({ color, size, selected, shadow }), className)} {...props}>
       {text}
     </div>
   );
