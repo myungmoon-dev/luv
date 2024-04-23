@@ -29,10 +29,7 @@ export const Banner = ({
   return (
     <div className="ui-w-full ui-relative">
       {image ? (
-        <>
-          {image}
-          <div className="ui-w-full ui-h-[200px] ui-bottom-0 ui-absolute ui-bg-gradient-to-b ui-from-transparent ui-to-white" />
-        </>
+        <div className="ui-shadow-2xl">{image}</div>
       ) : (
         <video
           src={video}
@@ -45,9 +42,7 @@ export const Banner = ({
       )}
       <div className="ui-absolute ui-flex ui-flex-col ui-gap-5 ui-items-center ui-px-8 md:ui-px-16 xl:ui-px-24 ui-w-full ui-bottom-[100px] ui-left-1/2 -ui-translate-x-1/2 ui-text-white">
         <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center">
-          <h1 className="ui-text-2xl ui-font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">
-            {title}
-          </h1>
+          <h1 className="ui-text-2xl ui-font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">{title}</h1>
           <p className="ui-font-thin">{description}</p>
         </div>
         {title && <hr className="ui-w-full" />}
@@ -58,10 +53,7 @@ export const Banner = ({
                 onClick={() => onClickChip(innerMenu.path)}
                 selected={
                   pathname === innerMenu.path ||
-                  (detailMenus &&
-                    detailMenus.some(
-                      (detailMenu) => detailMenu.path === innerMenu.path
-                    ))
+                  (detailMenus && detailMenus.some((detailMenu) => detailMenu.path === innerMenu.path))
                 }
                 text={innerMenu.label}
                 size="sm"
