@@ -15,7 +15,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
     {
       label: "교회양육",
       path: "/discipleship/main/bible",
-      key: "/discipleship"
+      key: "/discipleship",
     },
   ];
 
@@ -27,7 +27,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
         onClick={() => push("/")}
         src="/images/Logo.png"
         className="ui-cursor-pointer"
-        width={100}
+        width={150}
         height={50}
         alt="myungmoon"
       />
