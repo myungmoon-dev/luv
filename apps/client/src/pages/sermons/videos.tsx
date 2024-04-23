@@ -17,7 +17,7 @@ const VideosPage = () => {
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
-        {isLoading ? <Spinner /> : <SermonContainer list={youtubeList || []} />}
+        {isLoading ? <Spinner /> : <SermonContainer title="명문 영상" list={youtubeList || []} />}
       </div>
     </Layout>
   );
