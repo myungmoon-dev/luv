@@ -15,7 +15,7 @@ const SermonsFridayPage = () => {
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
-        {isLoading ? <Spinner /> : <SermonContainer list={youtubeList || []} />}
+        {isLoading ? <Spinner /> : <SermonContainer title="금요 예배" list={youtubeList || []} />}
       </div>
     </Layout>
   );

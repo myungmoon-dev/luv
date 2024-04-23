@@ -1,38 +1,24 @@
-import React, { useEffect, useState } from "react";
 import { IYoutube } from "type";
 import Sermon from "./sermon";
-import { DateTab, SectionHeader } from "ui";
-import dayjs from "dayjs";
 
 interface ISermonContainerProps {
+  title: string;
   list: IYoutube[];
 }
 
-const SermonContainer = ({ list }: ISermonContainerProps) => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
-
-  const onClickTab = (index: number) => {
-    setSelectedTabIndex(index);
-  };
-
-  useEffect(() => {
-    // 렌더링 시, 탭 초기화
-    if (list.length > 0) {
-      setSelectedTabIndex(0);
-    }
-  }, [list]);
-
+const SermonContainer = ({ list, title }: ISermonContainerProps) => {
   return (
     <div className="flex w-full items-center justify-center">
       <div className="flex w-full flex-col gap-5">
-        <SectionHeader text="2024년" color="pink" selected={true} size="sm" hasLine={true} />
-        <DateTab
-          tabs={list.map((youtube) => (youtube.date && dayjs(youtube.date).format("M월 D일")) ?? "none")}
-          selectedTabIndex={selectedTabIndex}
-          onClickTab={onClickTab}
-        >
-          <Sermon sermon={list[selectedTabIndex]} />
-        </DateTab>
+        <h3 className="text-3xl font-bold">{title}</h3>
+        <hr className="border-gray-400/60" />
+        <div className="flex gap-5 overflow-scroll">
+          {list.map((sermon) => (
+            <div key={sermon.id} className="min-w-[calc(100%+5rem)] md:min-w-[calc(100%/2)] lg:min-w-[calc(100%/3)]">
+              <Sermon sermon={sermon} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
