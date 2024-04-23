@@ -13,7 +13,7 @@ const EducationCoreValuesSection = () => {
 
       <div className="relative grid w-full grid-cols-2 items-center justify-items-center">
         <CustomImage
-          src="https://imagedelivery.net/XBJ9Uf9wqjQ5z1gg-GjLDw/c0aefec6-229b-4fe7-89da-51b7adb96400/bgHorizontal"
+          src="/images/education/value1.jpg"
           className="h-[200px] bg-black sm:h-[350px] lg:h-[400px]"
           imgClass="opacity-40"
           alt="핵심가치1"
@@ -41,7 +41,7 @@ const EducationCoreValuesSection = () => {
           text="그리스도인의 삶으로 나아가는 교육"
         />
         <CustomImage
-          src="https://imagedelivery.net/XBJ9Uf9wqjQ5z1gg-GjLDw/dd2ebe59-8cc3-4678-131c-091497127600/bgHorizontal"
+          src="/images/education/value2.jpg"
           className="h-[200px] bg-black sm:h-[350px] lg:h-[400px]"
           imgClass="opacity-40"
           alt="핵심가치4"
