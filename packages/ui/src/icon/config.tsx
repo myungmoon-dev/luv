@@ -11,12 +11,16 @@ import CircleHeartIcon from "./assets/circleHeart";
 import ClockIcon from "./assets/clock";
 import MapIcon from "./assets/map";
 import UserIcon from "./assets/user";
+import { LogoBlackIcon } from "./assets/logoBlack";
+import { LogoBlueIcon } from "./assets/logoBlue";
+import { RealYoutubeIcon } from "./assets/youtube-1";
+import { InstagramIcon } from "./assets/instagram";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
 export type IconNameType = keyof typeof icons;
 
-export type IconSizeType = "sm" | "md" | "lg" | "xl" | "2xl";
+export type IconSizeType = "sm" | "md" | "lg" | "xl" | "2xl" | "4xl";
 
 export interface IIconProps {
   backgroundColor?: string;
@@ -29,6 +33,7 @@ export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
   lg: "ui-w-[24px]",
   xl: "ui-w-[48px]",
   "2xl": "ui-w-[72px]",
+  "4xl": "ui-w-[96px]",
 };
 
 export const icons = {
@@ -44,4 +49,8 @@ export const icons = {
   Clock: (props: IIconProps) => <ClockIcon {...props} />,
   Map: (props: IIconProps) => <MapIcon {...props} />,
   User: (props: IIconProps) => <UserIcon {...props} />,
+  LogoBlack: (props: IIconProps) => <LogoBlackIcon {...props} />,
+  LogoBlue: (props: IIconProps) => <LogoBlueIcon {...props} />,
+  RealYoutube: (props: IIconProps) => <RealYoutubeIcon {...props} />,
+  Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
 };
