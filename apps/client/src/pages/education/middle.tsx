@@ -1,8 +1,7 @@
 import React from "react";
-
 import Layout from "@/components/layout";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
-import NotPrepared from "@/components/layout/notPrepared";
+import EducationOverView from "@/components/education/overview";
 
 const EducationMiddlePage = () => {
   return (
@@ -13,7 +12,7 @@ const EducationMiddlePage = () => {
       bannerImage="/images/edu-middle.jpeg"
       innerMenus={educationInnerMenus}
     >
-      <NotPrepared />
+      <EducationOverView type="middle" />
     </Layout>
   );
 };

@@ -3,6 +3,7 @@ import React from "react";
 import Layout from "@/components/layout";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
 import NotPrepared from "@/components/layout/notPrepared";
+import EducationOverView from "@/components/education/overview";
 
 const EducationHighPage = () => {
   return (
@@ -13,7 +14,7 @@ const EducationHighPage = () => {
       bannerImage="/images/edu-high.jpeg"
       innerMenus={educationInnerMenus}
     >
-      <NotPrepared />
+      <EducationOverView type="high" />
     </Layout>
   );
 };
