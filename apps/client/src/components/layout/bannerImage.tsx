@@ -7,7 +7,7 @@ interface IBannerImageProps {
 }
 export const BannerImageComponent = ({ image, imgClass }: IBannerImageProps) => {
   return (
-    <div className="relative flex h-[inherit]">
+    <div className="relative flex h-full">
       <Image src={image} alt="배너 이미지" className={cn("object-cover", imgClass)} fill priority />
     </div>
   );
