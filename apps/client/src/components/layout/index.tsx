@@ -1,10 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import { Banner, Footer, Header } from "ui";
 import { BannerImageComponent } from "./bannerImage";
 import BannerIconList from "./bannerIconList";
 import { IBannerIcon } from "@/types/banner/type";
+import AOS from "aos";
+
+import "aos/dist/aos.css";
 
 interface LayoutProps {
   children: ReactNode;
@@ -30,6 +33,10 @@ const Layout = ({
   bannerVideo,
 }: LayoutProps) => {
   const { asPath, push } = useRouter();
+
+  useEffect(() => {
+    AOS.init({ once: true });
+  }, []);
 
   return (
     <>
