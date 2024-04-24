@@ -6,15 +6,15 @@ const EducationCoreValuesSection = () => {
   return (
     <div className="flex w-full flex-col">
       <EducationSectionTitle
-        className="flex w-full gap-1 p-10 text-5xl text-blue-500"
+        className="flex w-full gap-1 p-10 text-4xl text-blue-500"
         first="핵심가치"
         second="Core Values"
       />
 
-      <div className="relative grid w-full grid-cols-2 items-center justify-items-center">
+      <div className="relative grid w-full grid-cols-2 items-center justify-items-center" data-aos="fade-up">
         <CustomImage
           src="/images/education/value1.jpg"
-          className="h-[500px] bg-black"
+          className="h-[400px] bg-black"
           imgClass="opacity-40"
           alt="핵심가치1"
           loading="lazy"
@@ -42,7 +42,7 @@ const EducationCoreValuesSection = () => {
         />
         <CustomImage
           src="/images/education/value2.jpg"
-          className="h-[500px] bg-black"
+          className="h-[400px] bg-black"
           imgClass="opacity-40"
           alt="핵심가치4"
           loading="lazy"
