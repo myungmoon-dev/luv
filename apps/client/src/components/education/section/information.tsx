@@ -14,8 +14,8 @@ const EducationInformationSection = ({ department, target, time, place }: IEduca
       <EducationIntroductionTitle department={department} type="안내" />
       <div className="grid grid-cols-3 gap-5">
         <EducationInformationCard iconName="CircleHeart" title="대상" text={target} />
-        <EducationInformationCard iconName="CircleHeart" title="예배시간" text={time} />
-        <EducationInformationCard iconName="CircleHeart" title="예배장소" text={place} />
+        <EducationInformationCard iconName="Clock" title="예배시간" text={time} />
+        <EducationInformationCard iconName="Map" title="예배장소" text={place} />
       </div>
     </div>
   );
