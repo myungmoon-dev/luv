@@ -7,9 +7,9 @@ interface IEducationSectionTitleProps {
 const EducationSectionTitle = ({ first, second, className }: IEducationSectionTitleProps) => {
   return (
     <div className={className}>
-      <p className="font-bold">{first}</p>
-      <p className="font-thin">|</p>
-      <p className="font-thin">{second}</p>
+      <p className="font-extrabold">{first}</p>
+      <p className="">|</p>
+      <p className="font-Lora font-medium">{second}</p>
     </div>
   );
 };

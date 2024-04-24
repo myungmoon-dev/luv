@@ -14,6 +14,10 @@ const config: Config = {
       },
       fontFamily: {
         HSBombaram3: ["HSBombaram3_Regular", "sans-serif"],
+        Lora: ["Lora", "sans-serif"],
+        Yanone: ["Yanone", "sans-serif"],
+        SCoreDream: ["SCoreDream", "sans-serif"],
+        Cormorant: ["Cormorant", "sans-serif"],
       },
       colors: {
         "pink-100": "#DFC7C7",

@@ -16,7 +16,7 @@ const EducationIndexPage = () => {
       bannerImage="/images/sketch-3.jpg"
       innerMenus={educationInnerMenus}
     >
-      <div className="mx-auto flex max-w-screen-2xl flex-col items-center justify-center gap-10 lg:gap-20">
+      <div className="mx-auto flex w-full flex-col items-center justify-center gap-10 lg:gap-20">
         <EducationMissionSection />
         <EducationVisionSection />
         <EducationCoreValuesSection />
