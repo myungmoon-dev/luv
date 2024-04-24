@@ -13,7 +13,7 @@ interface ISectionCardProps {
 
 const SectionCard = ({ image, icon, className, text, url }: ISectionCardProps) => {
   const content = (
-    <div className="flex cursor-pointer flex-col items-center justify-center gap-4">
+    <div data-aos="fade-up" className="flex cursor-pointer flex-col items-center justify-center gap-4">
       <div className={cn("relative flex w-full flex-col items-center justify-center", className)}>
         {image && (
           <>
