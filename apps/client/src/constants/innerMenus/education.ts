@@ -4,8 +4,7 @@ export const educationInnerMenus: IInnerMenu[] = [
   { label: "다음세대 사역안내", path: "/education" },
   { label: "영아부", path: "/education/infants" },
   { label: "유치부", path: "/education/toddlers" },
-  { label: "유년부", path: "/education/primary" },
-  { label: "초등부", path: "/education/elementary" },
+  { label: "유초등부", path: "/education/elementary" },
   { label: "중등부", path: "/education/middle" },
   { label: "고등부", path: "/education/high" },
   { label: "2청년", path: "/education/youth-adults2" },
@@ -19,7 +18,6 @@ const commonEducationDetailMenus = (basePath: string): IInnerMenu[] => [
 
 export const educationInfantsMenus: IInnerMenu[] = commonEducationDetailMenus("/education/infants");
 export const educationToddlersMenus: IInnerMenu[] = commonEducationDetailMenus("/education/toddlers");
-export const educationPrimaryMenus: IInnerMenu[] = commonEducationDetailMenus("/education/primary");
 export const educationElementaryMenus: IInnerMenu[] = commonEducationDetailMenus("/education/elementary");
 export const educationMiddleMenus: IInnerMenu[] = commonEducationDetailMenus("/education/middle");
 export const educationHighMenus: IInnerMenu[] = commonEducationDetailMenus("/education/high");
