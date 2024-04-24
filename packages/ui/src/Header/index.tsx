@@ -22,7 +22,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
   const [isOpenDrawer, setOpenDrawer] = useState(false);
 
   return (
-    <header className="ui-flex ui-shadow-lg ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-bg-white ui-py-4 ui-px-8 lg:ui-py-6 lg:ui-px-16">
+    <header className="ui-flex ui-shadow-lg ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-bg-white ui-py-4 ui-px-8 lg:ui-px-16">
       <img
         onClick={() => push("/")}
         src="/images/Logo.png"
