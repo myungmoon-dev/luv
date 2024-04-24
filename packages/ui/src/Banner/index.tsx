@@ -38,13 +38,13 @@ export const Banner = ({
           className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
       ) : (
-        <>
-          <div className="w-full ui-absolute ui-brightness-75 ui-h-[80%] md:ui-h-[88%]">
+        <div className="ui-relative ui-w-full ui-flex ui-flex-col ui-justify-center ui-items-center ui-gap-10">
+          <div className="w-full ui-w-full ui-brightness-90 ui-h-[400px]">
             {image}
           </div>
-          <div className="ui-z-[1] ui-h-[450px] ui-w-3/4 gap-3 ui-flex ui-justify-end ui-items-center ui-flex-col">
+          <div className="ui-absolute ui-h-3/5 ui-w-3/4 gap-3 ui-flex ui-justify-end ui-items-center ui-flex-col">
             <div className="ui-flex ui-justify-center">
-              <h1 className="ui-text-blue-500 ui-font-SCoreDream ui-italic ui-text-xl">
+              <h1 className="ui-text-blue-600 ui-font-SCoreDream ui-italic ui-text-xl">
                 MYUNGMOON CHURCH.
               </h1>
             </div>
@@ -54,7 +54,7 @@ export const Banner = ({
               </p>
             </div>
           </div>
-          <div className="ui-z-[1] ui-gap-4 ui-flex ui-flex-wrap ui-justify-center ui-items-center ui-border-b-2 ui-border-gray-200 ui-pb-4">
+          <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center ui-items-center ui-border-b-2 ui-border-gray-200 ui-pb-4">
             {innerMenus &&
               innerMenus.map((innerMenu) => (
                 <Chip
@@ -73,7 +73,7 @@ export const Banner = ({
                 />
               ))}
           </div>
-        </>
+        </div>
       )}
 
       {iconList}
