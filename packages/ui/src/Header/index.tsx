@@ -4,10 +4,9 @@ import { Drawer, Icon, cn } from "..";
 interface IHeaderProps {
   push: (url: string) => void;
   asPath: string;
-  logoSize: string;
 }
 
-export const Header = ({ push, asPath, logoSize }: IHeaderProps) => {
+export const Header = ({ push, asPath }: IHeaderProps) => {
   const menus: { label: string; path: string; key: string }[] = [
     { label: "교회소개", path: "/about", key: "/about" },
     { label: "설교•찬양", path: "/sermons/sunday-3", key: "/sermons" },
@@ -27,9 +26,7 @@ export const Header = ({ push, asPath, logoSize }: IHeaderProps) => {
       <img
         onClick={() => push("/")}
         src="/images/Logo.png"
-        className="ui-cursor-pointer"
-        width={logoSize}
-        height={50}
+        className="ui-cursor-pointer ui-w-auto ui-h-[30px] md:ui-h-[40px]"
         alt="myungmoon"
       />
       <div className="ui-flex ui-justify-end ui-items-center ui-gap-5 sm:ui-gap-7">

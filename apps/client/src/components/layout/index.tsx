@@ -45,7 +45,7 @@ const Layout = ({
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
-        <Header push={push} asPath={asPath} logoSize="130" />
+        <Header push={push} asPath={asPath} />
         <Banner
           iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
           image={bannerImage && <BannerImageComponent image={bannerImage} />}
