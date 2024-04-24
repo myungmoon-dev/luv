@@ -11,7 +11,8 @@ const SermonsWednesdayPage = () => {
       pageTitle="수요 예배"
       title="수요 예배"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sermons.jpeg"
+      bannerImage="/images/common/sermon.jpg"
+      bannerImgClass="object-[100%_12%]"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">

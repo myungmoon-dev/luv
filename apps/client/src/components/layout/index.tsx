@@ -12,6 +12,7 @@ import "aos/dist/aos.css";
 interface LayoutProps {
   children: ReactNode;
   bannerImage?: string;
+  bannerImgClass?: string;
   bannerVideo?: string;
   bannerIcons?: IBannerIcon[];
   title?: string;
@@ -25,6 +26,7 @@ const Layout = ({
   children,
   bannerDescription,
   bannerImage,
+  bannerImgClass,
   bannerIcons,
   title,
   pageTitle,
@@ -55,7 +57,7 @@ const Layout = ({
         <Header push={push} asPath={asPath} />
         <Banner
           iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-          image={bannerImage && <BannerImageComponent image={bannerImage} />}
+          image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
           video={bannerVideo}
           title={title}
           description={bannerDescription}
@@ -65,7 +67,7 @@ const Layout = ({
           onClickChip={push}
           push={push}
         />
-        <div className="py-20 sm:py-24">{children}</div>
+        <div className="py-10">{children}</div>
         <Footer push={push} />
       </main>
     </>

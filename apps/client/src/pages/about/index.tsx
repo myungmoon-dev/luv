@@ -47,7 +47,7 @@ const AboutIndexPage = () => {
       pageTitle="교회소개"
       title="교회소개"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/introduce.jpeg"
+      bannerImage="/images/common/paint.jpg"
       innerMenus={aboutInnerMenus}
     >
       <AboutTitle title="명문교회 소개" />

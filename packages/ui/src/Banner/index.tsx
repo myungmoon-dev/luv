@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Chip } from "..";
+import { Chip, Icon } from "..";
 
 interface BannerProps {
   iconList: ReactNode;
@@ -27,10 +27,8 @@ export const Banner = ({
   push,
 }: BannerProps) => {
   return (
-    <div className="ui-w-full ui-relative">
-      {image ? (
-        <div className="ui-shadow-2xl">{image}</div>
-      ) : (
+    <div className="ui-w-full ui-relative ui-flex ui-justify-center ui-flex-col ui-items-center">
+      {video ? (
         <video
           src={video}
           autoPlay={true}
@@ -39,30 +37,45 @@ export const Banner = ({
           playsInline
           className="ui-w-full ui-h-[550px] sm:ui-h-[750px] ui-object-cover"
         />
+      ) : (
+        <div className="ui-relative ui-w-full ui-flex ui-flex-col ui-justify-center ui-items-center ui-gap-10">
+          <div className="w-full ui-w-full ui-brightness-90 ui-h-[400px]">
+            {image}
+          </div>
+          <div className="ui-absolute ui-h-3/5 ui-w-3/4 gap-3 ui-flex ui-justify-end ui-items-center ui-flex-col">
+            <div className="ui-flex ui-justify-center">
+              <h1 className="ui-text-blue-600 ui-font-SCoreDream ui-italic ui-text-xl">
+                MYUNGMOON CHURCH.
+              </h1>
+            </div>
+            <div className="ui-justify-center ui-flex ui-pb-10 ui-mb-20">
+              <p className="ui-font-bold ui-text-5xl ui-font-SCoreDream ui-text-white ">
+                {title}
+              </p>
+            </div>
+          </div>
+          <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center ui-items-center ui-border-b-2 ui-border-gray-200 ui-pb-4">
+            {innerMenus &&
+              innerMenus.map((innerMenu) => (
+                <Chip
+                  onClick={() => onClickChip(innerMenu.path)}
+                  selected={
+                    pathname === innerMenu.path ||
+                    (detailMenus &&
+                      detailMenus.some(
+                        (detailMenu) => detailMenu.path === innerMenu.path
+                      ))
+                  }
+                  text={innerMenu.label}
+                  size="sm"
+                  color="blue"
+                  key={innerMenu.label}
+                />
+              ))}
+          </div>
+        </div>
       )}
-      <div className="ui-absolute ui-flex ui-flex-col ui-gap-5 ui-items-center ui-px-8 md:ui-px-16 xl:ui-px-24 ui-w-full ui-bottom-[100px] ui-left-1/2 -ui-translate-x-1/2 ui-text-white">
-        <div className="ui-flex ui-flex-col ui-gap-2 ui-items-center">
-          <h1 className="ui-text-2xl ui-font-bold [text-shadow:_0_1px_0_rgb(0_0_0_/_80%)]">{title}</h1>
-          <p className="ui-font-thin">{description}</p>
-        </div>
-        {title && <hr className="ui-w-full" />}
-        <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center">
-          {innerMenus &&
-            innerMenus.map((innerMenu) => (
-              <Chip
-                onClick={() => onClickChip(innerMenu.path)}
-                selected={
-                  pathname === innerMenu.path ||
-                  (detailMenus && detailMenus.some((detailMenu) => detailMenu.path === innerMenu.path))
-                }
-                text={innerMenu.label}
-                size="sm"
-                color="blue"
-                key={innerMenu.label}
-              />
-            ))}
-        </div>
-      </div>
+
       {iconList}
     </div>
   );

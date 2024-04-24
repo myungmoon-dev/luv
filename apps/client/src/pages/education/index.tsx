@@ -13,7 +13,7 @@ const EducationIndexPage = () => {
       pageTitle="다음세대 사역안내"
       title="다음세대 사역안내"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sketch-3.jpg"
+      bannerImage="/images/education/flower_blue.jpg"
       innerMenus={educationInnerMenus}
     >
       <div className="mx-auto flex w-full flex-col items-center justify-center gap-10 lg:gap-20">
