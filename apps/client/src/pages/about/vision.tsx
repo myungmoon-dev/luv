@@ -22,7 +22,7 @@ const AboutVisionPage = () => {
       pageTitle="로고와 비전"
       title="로고와 비전"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/introduce.jpeg"
+      bannerImage="/images/common/paint.jpg"
       innerMenus={aboutInnerMenus}
     >
       <AboutTitle title="명문교회 로고와 비전" />

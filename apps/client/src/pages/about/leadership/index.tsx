@@ -9,7 +9,7 @@ const LeadershipIndexPage = () => {
       pageTitle="섬기는 분들"
       title="섬기는 분들"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/introduce.jpeg"
+      bannerImage="/images/common/paint.jpg"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
     >

@@ -9,7 +9,7 @@ const History2010sPage = () => {
       pageTitle="연혁"
       title="연혁"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/introduce.jpeg"
+      bannerImage="/images/common/paint.jpg"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutHistoryMenus}
     >

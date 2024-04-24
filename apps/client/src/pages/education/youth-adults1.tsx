@@ -10,7 +10,7 @@ const EducationYoungAdults1Page = () => {
       pageTitle="1청년"
       title="1청년"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/dunamis.jpeg"
+      bannerImage="/images/education/flower_blue.jpg"
       innerMenus={educationInnerMenus}
     >
       <NotPrepared />
