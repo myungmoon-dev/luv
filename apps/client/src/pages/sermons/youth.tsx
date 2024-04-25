@@ -8,10 +8,11 @@ const SermonsYouthPage = () => {
   const { data: youtubeList, isLoading } = useGetYoutubeList({ videoType: "youth" });
   return (
     <Layout
-      pageTitle="젊은이 예배"
-      title="젊은이 예배"
+      pageTitle="청년 예배"
+      title="청년 예배"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sermons.jpeg"
+      bannerImage="/images/common/sermon.jpg"
+      bannerImgClass="object-[100%_12%]"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">

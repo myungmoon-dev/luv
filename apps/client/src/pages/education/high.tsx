@@ -11,7 +11,7 @@ const EducationHighPage = () => {
       pageTitle="고등부"
       title="고등부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/edu-high.jpeg"
+      bannerImage="/images/education/flower_blue.jpg"
       innerMenus={educationInnerMenus}
     >
       <EducationOverView type="high" />

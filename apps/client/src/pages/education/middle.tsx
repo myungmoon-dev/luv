@@ -9,7 +9,7 @@ const EducationMiddlePage = () => {
       pageTitle="중등부"
       title="중등부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/edu-middle.jpeg"
+      bannerImage="/images/education/flower_blue.jpg"
       innerMenus={educationInnerMenus}
     >
       <EducationOverView type="middle" />
