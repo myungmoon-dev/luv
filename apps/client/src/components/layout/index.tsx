@@ -50,7 +50,7 @@ const Layout = ({
         <meta property="og:title" content={`${pageTitle} | 명문교회`} />
         <meta property="og:url" content="https://myungmoon.or.kr/" />
         <meta property="og:description" content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!" />
-        <meta property="og:image" content="https://myungmoon.or.kr/images/Logo.png" />
+        <meta property="og:image" content="https://myungmoon.or.kr/images/LogoBlue.png" />
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
