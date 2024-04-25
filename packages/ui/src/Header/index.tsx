@@ -40,7 +40,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
   return (
     <header
       className={cn(
-        "ui-flex ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-py-4 ui-px-8 lg:ui-px-16 ui-transition ui-duration-700 ui-ease-in-out ui-text-black",
+        "ui-flex ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-py-4 ui-px-8 lg:ui-px-16 ui-transition ui-duration-300 ui-ease-in-out ui-text-black",
         isScrolled ? "ui-bg-white ui-shadow-lg ui-text-black" : "ui-text-white"
       )}
     >
@@ -58,7 +58,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
                 onClick={() => push(menu.path)}
                 key={menu.path}
                 className={cn(
-                  "ui-font-semibold lg:ui-text-lg ui-pb-2",
+                  "ui-font-semibold lg:ui-text-lg ui-pb-1",
                   asPath.startsWith(menu.key) &&
                     "ui-text-blue-500  ui-border-b-2 ui-border-blue-500"
                 )}
@@ -68,7 +68,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
             ))}
           </div>
         </nav>
-        <div>
+        <div className="ui-pb-1">
           <Icon
             name="Hamburger"
             cursor="ui-cursor-pointer"
