@@ -7,10 +7,10 @@ import NotPrepared from "@/components/layout/notPrepared";
 const EducationYoungAdults2Page = () => {
   return (
     <Layout
-      pageTitle="2청년"
-      title="2청년"
+      pageTitle="2청년부"
+      title="2청년부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/education/flower_blue.jpg"
+      bannerImage="/images/education/다음세대.jpg"
       innerMenus={educationInnerMenus}
     >
       <NotPrepared />

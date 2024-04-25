@@ -11,8 +11,8 @@ const SermonsSundayPraisePage = () => {
       pageTitle="주일 오후찬양예배"
       title="주일 오후찬양예배"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/common/sermon.jpg"
-      bannerImgClass="object-[100%_12%]"
+      bannerImage="/images/sermon/설교찬양2.jpg"
+      bannerImgClass="object-[100%_30%]"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
