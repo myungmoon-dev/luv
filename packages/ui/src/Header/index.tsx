@@ -58,7 +58,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
                 onClick={() => push(menu.path)}
                 key={menu.path}
                 className={cn(
-                  "ui-font-semibold lg:ui-text-lg ui-pb-1",
+                  "ui-font-semibold lg:ui-text-lg ui-pb-[0.5px]",
                   asPath.startsWith(menu.key) &&
                     "ui-text-blue-500  ui-border-b-2 ui-border-blue-500"
                 )}
@@ -68,7 +68,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
             ))}
           </div>
         </nav>
-        <div className="ui-pb-1">
+        <div className="ui-pb-[0.5px]">
           <Icon
             name="Hamburger"
             cursor="ui-cursor-pointer"
