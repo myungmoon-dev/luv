@@ -10,7 +10,7 @@ const EducationSectionTitle = ({ first, second, className }: IEducationSectionTi
       <p className="font-extrabold">{first}</p>
       {second && (
         <>
-          <p className="">|</p>
+          <p>|</p>
           <p className="font-Lora font-medium">{second}</p>
         </>
       )}
