@@ -2,11 +2,7 @@ import { IIconProps } from "../config";
 
 const ClockIcon = ({ backgroundColor, strokeColor }: IIconProps) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="-1 -1 26 26"
-      className="ui-pt-1"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 26 26">
       <path
         fill={backgroundColor}
         stroke={strokeColor}

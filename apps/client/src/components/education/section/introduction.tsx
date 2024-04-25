@@ -1,22 +1,16 @@
-import Image from "next/image";
+import EducationIntroductionTitle from "../introductionTitle";
 
 interface IEducationIntroductionSectionProps {
-  image: string;
-  title: string;
-  words: string;
+  text: string;
+  department: string;
 }
 
-const EducationIntroductionSection = ({ image, title, words }: IEducationIntroductionSectionProps) => {
+const EducationIntroductionSection = ({ text, department }: IEducationIntroductionSectionProps) => {
   return (
-    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
-      <div className="relative h-[200px] w-full shadow-lg sm:h-[230px] lg:h-[300px]">
-        <Image src={image} className="rounded-lg object-cover shadow-2xl" alt={title} fill />
-      </div>
-      <div className="flex flex-col items-center justify-center gap-7 sm:items-stretch">
-        <h1 className="border-b-[1px] border-gray-300 pb-4 text-xl font-bold sm:text-2xl">{title}</h1>
-        <div className="flex flex-col gap-3">
-          <p className="text-sm text-gray-700 sm:text-base">{words}</p>
-        </div>
+    <div className="flex w-1/2 flex-col justify-center gap-7">
+      <EducationIntroductionTitle department={department} type="소개" />
+      <div className="flex w-full flex-col gap-3 break-keep">
+        <p className="text-lg leading-loose">{text}</p>
       </div>
     </div>
   );

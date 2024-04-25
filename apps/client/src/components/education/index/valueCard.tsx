@@ -23,7 +23,9 @@ const EducationValueCard = ({
         <p className={cn("font-SCoreDream text-4xl", textColor)}>VALUE</p>
         <p className={cn("font-SCoreDream text-4xl", textColor)}>{index}</p>
       </div>
-      <p className={cn("px-8 text-center text-4xl font-semibold", textColor)}>{text}</p>
+      <p data-aos="fade-up" className={cn("px-8 text-center text-3xl font-semibold", textColor)}>
+        {text}
+      </p>
     </div>
   );
 };

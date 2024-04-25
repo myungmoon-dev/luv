@@ -37,7 +37,7 @@ const Layout = ({
   const { asPath, push } = useRouter();
 
   useEffect(() => {
-    AOS.init({ once: true });
+    AOS.init({ once: true, duration: 1300 });
   }, []);
 
   return (

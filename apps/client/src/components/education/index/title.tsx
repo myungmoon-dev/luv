@@ -1,6 +1,6 @@
 interface IEducationSectionTitleProps {
   first: string;
-  second: string;
+  second?: string;
   className?: string;
 }
 
@@ -8,8 +8,12 @@ const EducationSectionTitle = ({ first, second, className }: IEducationSectionTi
   return (
     <div className={className}>
       <p className="font-extrabold">{first}</p>
-      <p className="">|</p>
-      <p className="font-Lora font-medium">{second}</p>
+      {second && (
+        <>
+          <p>|</p>
+          <p className="font-Lora font-medium">{second}</p>
+        </>
+      )}
     </div>
   );
 };

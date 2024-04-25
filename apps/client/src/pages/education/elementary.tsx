@@ -1,8 +1,7 @@
 import React from "react";
-
 import Layout from "@/components/layout";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
-import NotPrepared from "@/components/layout/notPrepared";
+import EducationOverView from "@/components/education/overview";
 
 const EducationElementaryPage = () => {
   return (
@@ -13,7 +12,7 @@ const EducationElementaryPage = () => {
       bannerImage="/images/education/flower_blue.jpg"
       innerMenus={educationInnerMenus}
     >
-      <NotPrepared />
+      <EducationOverView type="elementary" />
     </Layout>
   );
 };
