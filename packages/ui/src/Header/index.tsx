@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Drawer, Icon, cn } from "..";
+import { throttle } from "lodash";
 
 interface IHeaderProps {
   push: (url: string) => void;
@@ -20,12 +21,32 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
   ];
 
   const [isOpenDrawer, setOpenDrawer] = useState(false);
+  const [isScrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateScroll = throttle(() => {
+      const position = window.scrollY || document.documentElement.scrollTop;
+      setScrolled(position > 40);
+    }, 100);
+
+    window.addEventListener("scroll", updateScroll);
+
+    return () => {
+      updateScroll.cancel();
+      window.removeEventListener("scroll", updateScroll);
+    };
+  }, []);
 
   return (
-    <header className="ui-flex ui-shadow-lg ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-bg-white ui-py-4 ui-px-8 lg:ui-px-16">
+    <header
+      className={cn(
+        "ui-flex ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-py-4 ui-px-8 lg:ui-px-16 ui-transition ui-duration-300 ui-ease-in-out ui-text-black",
+        isScrolled ? "ui-bg-white ui-shadow-lg ui-text-black" : "ui-text-white"
+      )}
+    >
       <img
         onClick={() => push("/")}
-        src="/images/Logo.png"
+        src={isScrolled ? "/images/LogoBlue.png" : "/images/LogoWhite.png"}
         className="ui-cursor-pointer ui-w-auto ui-h-[30px] md:ui-h-[40px]"
         alt="myungmoon"
       />
@@ -37,10 +58,9 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
                 onClick={() => push(menu.path)}
                 key={menu.path}
                 className={cn(
-                  "ui-font-semibold lg:ui-text-lg",
-                  asPath.startsWith(menu.key)
-                    ? "ui-text-blue-500 ui-underline"
-                    : "ui-text-black"
+                  "ui-font-semibold lg:ui-text-lg ui-pb-1",
+                  asPath.startsWith(menu.key) &&
+                    "ui-text-blue-500  ui-border-b-2 ui-border-blue-500"
                 )}
               >
                 {menu.label}
@@ -48,12 +68,12 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
             ))}
           </div>
         </nav>
-        <div>
+        <div className="ui-pb-1">
           <Icon
             name="Hamburger"
             cursor="ui-cursor-pointer"
             size="md"
-            strokeColor="black"
+            strokeColor={isScrolled ? "black" : "white"}
             onClick={() => setOpenDrawer(true)}
           />
           <Drawer
@@ -73,7 +93,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
               ))}
             </div>
             <img
-              src="/images/Logo.png"
+              src="/images/LogoBlue.png"
               alt="myungmoon"
               width={100}
               height={50}
