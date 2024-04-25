@@ -7,8 +7,8 @@ export const educationInnerMenus: IInnerMenu[] = [
   { label: "유초등부", path: "/education/elementary" },
   { label: "중등부", path: "/education/middle" },
   { label: "고등부", path: "/education/high" },
-  { label: "2청년", path: "/education/youth-adults2" },
-  { label: "1청년", path: "/education/youth-adults1" },
+  { label: "2청년부", path: "/education/youth-adults2" },
+  { label: "1청년부", path: "/education/youth-adults1" },
 ];
 
 const commonEducationDetailMenus = (basePath: string): IInnerMenu[] => [
