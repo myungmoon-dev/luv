@@ -11,7 +11,7 @@ const SermonsFridayPage = () => {
       pageTitle="금요기도회"
       title="금요기도회"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sermon/설교찬양2.jpg"
+      bannerImage="/images/sermon/banner2.jpg"
       bannerImgClass="object-[100%_30%]"
       innerMenus={sermonsInnerMenus}
     >

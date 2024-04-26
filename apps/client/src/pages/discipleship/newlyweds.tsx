@@ -10,7 +10,8 @@ const DiscipleshipNewlywedsPage = () => {
       pageTitle="신혼가정"
       title="신혼가정"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/common/wave.jpg"
+      bannerImage="/images/discipleship/banner2.jpg"
+      bannerImgClass="object-[100%_40%]"
       innerMenus={discipleshipInnerMenus}
     >
       <NotPrepared />

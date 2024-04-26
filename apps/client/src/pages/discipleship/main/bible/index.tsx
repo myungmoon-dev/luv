@@ -9,7 +9,8 @@ const DiscipleshipMainBiblePage = () => {
       pageTitle="성경통독"
       title="성경통독"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/common/wave.jpg"
+      bannerImage="/images/discipleship/banner.jpg"
+      bannerImgClass="object-[100%_30%]"
       innerMenus={discipleshipInnerMenus}
       detailMenus={discipleshipMainMenus}
     >

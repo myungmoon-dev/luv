@@ -13,7 +13,7 @@ const VideosPage = () => {
       pageTitle="명문 영상"
       title="명문영상"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sermon/설교찬양.jpg"
+      bannerImage="/images/sermon/banner.jpg"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">

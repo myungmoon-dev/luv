@@ -10,7 +10,7 @@ const DiscipleshipIndexPage = () => {
       pageTitle="전체 안내"
       title="전체 안내"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/common/wave.jpg"
+      bannerImage="/images/discipleship/banner.jpg"
       innerMenus={discipleshipInnerMenus}
     >
       <NotPrepared />
