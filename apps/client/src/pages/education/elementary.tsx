@@ -6,10 +6,10 @@ import EducationOverView from "@/components/education/overview";
 const EducationElementaryPage = () => {
   return (
     <Layout
-      pageTitle="초등부"
-      title="초등부"
+      pageTitle="유초등부"
+      title="유초등부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/education/flower_blue.jpg"
+      bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
     >
       <EducationOverView type="elementary" />

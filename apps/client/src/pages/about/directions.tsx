@@ -11,7 +11,8 @@ const AboutDirectionsPage = () => {
       pageTitle="오시는 길"
       title="오시는 길"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/common/paint.jpg"
+      bannerImage="/images/about/banner2.jpg"
+      bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
     >
       <div className="mx-auto flex max-w-screen-lg flex-col gap-20">

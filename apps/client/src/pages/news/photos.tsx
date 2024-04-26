@@ -9,7 +9,8 @@ const PhotosPage = () => {
       pageTitle="교회 앨범"
       title="교회 앨범"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/balance.jpg"
+      bannerImage="/images/news/banner2.jpg"
+      bannerImgClass="object-[100%_30%]"
       innerMenus={newsInnerMenus}
     >
       <NotPrepared />
