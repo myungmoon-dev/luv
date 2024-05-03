@@ -1,5 +1,6 @@
 import MapSection from "./section/map";
 import NavSection from "./section/nav";
+import OfferingSection from "./section/offering";
 import VideosSection from "./section/videos";
 
 const HomePage = () => {
@@ -8,6 +9,7 @@ const HomePage = () => {
       <VideosSection />
       <NavSection />
       <MapSection />
+      <OfferingSection />
     </div>
   );
 };
