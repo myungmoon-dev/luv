@@ -51,7 +51,19 @@ export default function Home() {
   }, [liveLink]);
 
   return (
-    <Layout pageTitle="메인" bannerVideo="/videos/banner.mp4" bannerIcons={bannerIcons}>
+    <Layout
+      pageTitle="메인"
+      customTitle={
+        <h1 className="text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
+          <span data-aos="fade-up">교회여 일어나!</span>
+          <br />
+          <span data-aos="fade-up">세상으로 흘러가라!</span>
+        </h1>
+      }
+      bannerImage="/images/home/section1.png"
+      hasChildrenPadding={false}
+      imageClassName="sm:!h-[600px]"
+    >
       <HomePage />
     </Layout>
   );
