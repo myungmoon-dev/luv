@@ -4,11 +4,11 @@ import React from "react";
 const OfferingSection = () => {
   return (
     <div className="relative">
-      <div className="relative h-[1000px] w-full lg:h-[1200px]">
-        {/* TODO: 이미지 추가되면 적용 */}
-        <Image src="/images/home/section3.jpg" alt="" fill={true} />
+      <div className="absolute left-0 top-0 z-[1] h-full w-full bg-black/40" />
+      <div className="relative h-[600px] w-full lg:h-[500px]">
+        <Image src="/images/home/section5.jpeg" alt="" fill={true} className="object-cover" />
       </div>
-      <div className="absolute left-0 top-0 flex w-full flex-col gap-8 px-8 pb-16 pt-24">
+      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col gap-8 px-8 pb-16 pt-24">
         <h3 className="text-3xl font-bold text-white">온라인 헌금</h3>
         <p className="text-xl font-semibold text-white">
           온라인 특별 목적헌금 구좌
