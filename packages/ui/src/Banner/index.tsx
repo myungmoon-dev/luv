@@ -48,13 +48,13 @@ export const Banner = ({
                 MYUNGMOON CHURCH.
               </h1>
             </div>
-            <div className="ui-justify-center ui-flex ui-pb-10 ui-mb-20">
+            <div className="ui-justify-center ui-flex ui-pb-10 ui-mb-32 md:ui-mb-20">
               <p className="ui-font-bold ui-text-5xl ui-font-SCoreDream ui-text-white ">
                 {title}
               </p>
             </div>
           </div>
-          <div className="ui-gap-4 ui-flex ui-flex-wrap ui-justify-center ui-items-center ui-border-b-2 ui-border-gray-200 ui-pb-4">
+          <div className="ui-gap-4 ui-z-[1] ui-flex ui-flex-wrap ui-justify-center ui-items-center ui-border-b-2 ui-border-gray-200 ui-pb-4">
             {innerMenus &&
               innerMenus.map((innerMenu) => (
                 <Chip
