@@ -23,6 +23,7 @@ interface LayoutProps {
   hasChildrenPadding?: boolean;
   customTitle?: ReactNode;
   imageClassName?: string;
+  customBanner?: ReactNode;
 }
 
 const Layout = ({
@@ -39,6 +40,7 @@ const Layout = ({
   hasChildrenPadding = true,
   customTitle,
   imageClassName,
+  customBanner,
 }: LayoutProps) => {
   const { asPath, push } = useRouter();
 
@@ -61,20 +63,24 @@ const Layout = ({
       </Head>
       <main className="relative">
         <Header push={push} asPath={asPath} />
-        <Banner
-          customTitle={customTitle}
-          iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-          image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
-          video={bannerVideo}
-          title={title}
-          description={bannerDescription}
-          innerMenus={innerMenus}
-          detailMenus={detailMenus}
-          pathname={asPath}
-          onClickChip={push}
-          push={push}
-          imageClassName={imageClassName}
-        />
+        {customBanner ? (
+          customBanner
+        ) : (
+          <Banner
+            customTitle={customTitle}
+            iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
+            image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
+            video={bannerVideo}
+            title={title}
+            description={bannerDescription}
+            innerMenus={innerMenus}
+            detailMenus={detailMenus}
+            pathname={asPath}
+            onClickChip={push}
+            push={push}
+            imageClassName={imageClassName}
+          />
+        )}
         <div className={cn(hasChildrenPadding && "py-10")}>{children}</div>
         <Footer push={push} />
       </main>

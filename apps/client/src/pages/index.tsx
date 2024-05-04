@@ -1,4 +1,5 @@
 import HomePage from "@/components/home";
+import HomeBanner from "@/components/home/banner";
 import Layout from "@/components/layout";
 import { useGetYoutubeList } from "@/query/youtube";
 import { IBannerIcon } from "@/types/banner/type";
@@ -52,14 +53,8 @@ export default function Home() {
 
   return (
     <Layout
+      customBanner={<HomeBanner />}
       pageTitle="메인"
-      customTitle={
-        <h1 className="text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
-          <span data-aos="fade-up">교회여 일어나!</span>
-          <br />
-          <span data-aos="fade-up">세상으로 흘러가라!</span>
-        </h1>
-      }
       bannerImage="/images/home/section1.png"
       hasChildrenPadding={false}
       imageClassName="sm:!h-[600px]"
