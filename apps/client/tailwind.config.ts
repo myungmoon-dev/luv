@@ -18,6 +18,7 @@ const config: Config = {
         Yanone: ["Yanone", "sans-serif"],
         SCoreDream: ["SCoreDream", "sans-serif"],
         Cormorant: ["Cormorant", "sans-serif"],
+        NIXGONM: ["NIXGONM", "sans-serif"],
       },
       colors: {
         "pink-100": "#DFC7C7",
