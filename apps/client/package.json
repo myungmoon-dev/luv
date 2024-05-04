@@ -13,6 +13,7 @@
     "aos": "^2.3.4",
     "dayjs": "^1.11.10",
     "firebase": "workspace:*",
+    "framer-motion": "^11.1.7",
     "next": "14.0.4",
     "plaiceholder": "^3.0.0",
     "react": "^18",
