@@ -6,8 +6,8 @@ import EducationOverView from "@/components/education/overview";
 const EducationElementaryPage = () => {
   return (
     <Layout
-      pageTitle="유초등부"
-      title="유초등부"
+      pageTitle="예빛"
+      title="예빛"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}

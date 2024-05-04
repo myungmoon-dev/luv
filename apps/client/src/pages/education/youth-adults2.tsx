@@ -6,8 +6,8 @@ import NotPrepared from "@/components/layout/notPrepared";
 const EducationYoungAdults2Page = () => {
   return (
     <Layout
-      pageTitle="2청년부"
-      title="2청년부"
+      pageTitle="M'embers"
+      title="M'embers"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
