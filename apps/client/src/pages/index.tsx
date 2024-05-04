@@ -1,4 +1,5 @@
 import HomePage from "@/components/home";
+import HomeBanner from "@/components/home/banner";
 import Layout from "@/components/layout";
 import { useGetYoutubeList } from "@/query/youtube";
 import { IBannerIcon } from "@/types/banner/type";
@@ -51,7 +52,13 @@ export default function Home() {
   }, [liveLink]);
 
   return (
-    <Layout pageTitle="메인" bannerVideo="/videos/banner.mp4" bannerIcons={bannerIcons}>
+    <Layout
+      customBanner={<HomeBanner />}
+      pageTitle="메인"
+      bannerImage="/images/home/section1.png"
+      hasChildrenPadding={false}
+      imageClassName="sm:!h-[600px]"
+    >
       <HomePage />
     </Layout>
   );

@@ -1,16 +1,15 @@
-import React from "react";
-import WordsSection from "./section/words";
-import AlbumSection from "./section/album";
 import MapSection from "./section/map";
-import ShortCutsSection from "./section/shortcuts";
+import NavSection from "./section/nav";
+import OfferingSection from "./section/offering";
+import VideosSection from "./section/videos";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col gap-y-10">
-      <ShortCutsSection />
-      <WordsSection />
-      <AlbumSection />
+    <div className="flex flex-col">
+      <VideosSection />
+      <NavSection />
       <MapSection />
+      <OfferingSection />
     </div>
   );
 };
