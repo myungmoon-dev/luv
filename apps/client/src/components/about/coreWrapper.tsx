@@ -46,7 +46,12 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
     <AnimatePresence initial={false}>
       <div className="relative grid h-full w-full grid-cols-5 gap-1">
         {dataList.map((data, number) => (
-          <motion.div onClick={() => onClickDetailValue(data.id)} layoutId={data.id + ""} className="h-full w-full">
+          <motion.div
+            key={number}
+            onClick={() => onClickDetailValue(data.id)}
+            layoutId={data.id + ""}
+            className="h-full w-full"
+          >
             <CustomImage
               className="h-[300px] w-full cursor-pointer md:h-[500px]"
               imgClass={data.imgClass}
@@ -55,7 +60,6 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
             >
               <div
                 data-aos="fade-up"
-                key={number}
                 className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:text-blue-600 sm:gap-16"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
