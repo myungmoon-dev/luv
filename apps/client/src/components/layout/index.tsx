@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactNode, useEffect } from "react";
-import { Banner, Footer, Header } from "ui";
+import { Banner, Footer, Header, cn } from "ui";
 import { BannerImageComponent } from "./bannerImage";
 import BannerIconList from "./bannerIconList";
 import { IBannerIcon } from "@/types/banner/type";
@@ -20,6 +20,10 @@ interface LayoutProps {
   innerMenus?: { label: string; path: string }[];
   detailMenus?: { label: string; path: string }[];
   pageTitle: string;
+  hasChildrenPadding?: boolean;
+  customTitle?: ReactNode;
+  imageClassName?: string;
+  customBanner?: ReactNode;
 }
 
 const Layout = ({
@@ -33,6 +37,10 @@ const Layout = ({
   innerMenus,
   detailMenus,
   bannerVideo,
+  hasChildrenPadding = true,
+  customTitle,
+  imageClassName,
+  customBanner,
 }: LayoutProps) => {
   const { asPath, push } = useRouter();
 
@@ -55,19 +63,25 @@ const Layout = ({
       </Head>
       <main className="relative">
         <Header push={push} asPath={asPath} />
-        <Banner
-          iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-          image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
-          video={bannerVideo}
-          title={title}
-          description={bannerDescription}
-          innerMenus={innerMenus}
-          detailMenus={detailMenus}
-          pathname={asPath}
-          onClickChip={push}
-          push={push}
-        />
-        <div className="py-10">{children}</div>
+        {customBanner ? (
+          customBanner
+        ) : (
+          <Banner
+            customTitle={customTitle}
+            iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
+            image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
+            video={bannerVideo}
+            title={title}
+            description={bannerDescription}
+            innerMenus={innerMenus}
+            detailMenus={detailMenus}
+            pathname={asPath}
+            onClickChip={push}
+            push={push}
+            imageClassName={imageClassName}
+          />
+        )}
+        <div className={cn(hasChildrenPadding && "py-10")}>{children}</div>
         <Footer push={push} />
       </main>
     </>

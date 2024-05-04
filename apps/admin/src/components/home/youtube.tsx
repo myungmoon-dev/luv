@@ -13,7 +13,7 @@ interface IYoutubeSectionProps {
 // FIXME: CustomInput 컴포넌트 만들기
 
 const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
-  const isShowAllFields = type !== "live" && type !== "shorts";
+  const isShowAllFields = type !== "shorts";
   const isHideMainText = type !== "video";
 
   const { data: youtubeLink } = useGetYoutubeLink(type);
@@ -37,9 +37,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
       {
         onSuccess: ({ result }) => {
           reset();
-          return result === "success"
-            ? alert("변경되었습니다.")
-            : alert("API 요청 중 오류가 발생하였습니다.");
+          return result === "success" ? alert("변경되었습니다.") : alert("API 요청 중 오류가 발생하였습니다.");
         },
         onError: (error) => console.log(error),
       }
@@ -55,18 +53,12 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
       <div className="flex flex-col justify-center items-center">
         <div className="flex justify-center items-center">
           <p>현재 주소:&nbsp;</p>
-          <a
-            href={`https://www.youtube.com/embed/${youtubeLink}`}
-            className="text-blue-500"
-          >
+          <a href={`https://www.youtube.com/embed/${youtubeLink}`} className="text-blue-500">
             {youtubeLink}
           </a>
         </div>
         <YoutubeVideo className="h-[200px]" videoId={youtubeLink} />
-        <form
-          onSubmit={handleSubmit(onSubmit, onInValid)}
-          className="mt-4 flex flex-col gap-3"
-        >
+        <form onSubmit={handleSubmit(onSubmit, onInValid)} className="mt-4 flex flex-col gap-3">
           <label className="grid grid-flow-col place-items-center gap-3">
             <p className="w-20">유튜브 링크</p>
             <input
@@ -77,7 +69,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
               className="border rounded px-4 py-2 text-black"
             />
           </label>
-          {/* 라이브/쇼츠 링크에는 보이지 않음 */}
+          {/* 쇼츠 링크에는 보이지 않음 */}
           {isShowAllFields && (
             <>
               <label className="grid grid-flow-col place-items-center gap-3">
@@ -116,9 +108,7 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
               </label>
             </>
           )}
-          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
-            등록
-          </button>
+          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">등록</button>
         </form>
       </div>
     </HomeSection>
