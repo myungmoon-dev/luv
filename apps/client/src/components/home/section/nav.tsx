@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import CustomImage from "@/components/customImage";
 import { useRouter } from "next/router";
 
 const NavSection = () => {
@@ -18,7 +17,7 @@ const NavSection = () => {
       titleKr: "교회 소개",
       titleEn: "Worship information",
       description: "지역과 민족을 품고\n세계와 열방을 향해 나아가는\n명문교회를 소개합니다.",
-      path: "/",
+      path: "/about",
       img: "/images/sermon/banner2.jpg",
       imgClass: "brightness-75 object-[20%_40%] rounded-xl",
     },
