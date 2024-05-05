@@ -4,10 +4,10 @@ export const educationInnerMenus: IInnerMenu[] = [
   { label: "다음세대 사역안내", path: "/education" },
   { label: "영아부", path: "/education/infants" },
   { label: "유치부", path: "/education/toddlers" },
-  { label: "유초등부", path: "/education/elementary" },
+  { label: "예빛", path: "/education/elementary" },
   { label: "중등부", path: "/education/middle" },
   { label: "고등부", path: "/education/high" },
-  { label: "2청년부", path: "/education/youth-adults2" },
+  { label: "M'embers", path: "/education/youth-adults2" },
   { label: "1청년부", path: "/education/youth-adults1" },
 ];
 

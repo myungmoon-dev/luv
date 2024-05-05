@@ -77,7 +77,7 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "elementary",
-    department: "유초등부 연합공동체",
+    department: "예빛",
     introduction:
       "우리는 예!빛! 안녕하세요 유초등부 연합공동체 예빛입니다! (예빛은 '예수님은 우리의 빛이세요'와 '우리는 예수님의 빛 아이에요'의 줄임말 입니다.)",
     target: "초등학생",
