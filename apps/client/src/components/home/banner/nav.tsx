@@ -14,7 +14,7 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
   const navList: { label: string; path: HomeBannerEnum }[] = [
     { label: "교회여 일어나!\n세상으로 흘러가라!", path: HomeBannerEnum.Watchword },
     {
-      label: `${dayjs(liveVideo?.date).format("YYYY.MM.DD")} ${liveVideo?.title}\n<설교 라이브> 바로가기`,
+      label: `${dayjs(liveVideo?.date).format("YYYY.MM.DD")} ${liveVideo?.title || ""}\n<설교 라이브> 바로가기`,
       path: HomeBannerEnum.Live,
     },
     { label: "온세대가 함께하는\n명문교회 <181일 성경통독>", path: HomeBannerEnum.Bible },
