@@ -3,25 +3,39 @@ import Image from "next/image";
 import { YoutubeVideo } from "ui";
 
 import { useGetYoutubeList } from "@/query/youtube";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
 
 const VideosSection = () => {
+  const { push } = useRouter();
   const { data: main } = useGetYoutubeList({ videoType: "main" });
   const { data: shorts } = useGetYoutubeList({ videoType: "shorts" });
+
+  const mainVideo = main?.[0];
 
   return (
     <div className="relative">
       <div className="relative h-[700px] w-full sm:h-[900px] md:h-[600px] xl:h-[800px]">
-        <Image src="/images/home/section2.png" alt="" fill={true} className="object-cover" />
+        <Image src="/images/home/video1.jpeg" alt="" fill={true} />
       </div>
       <div className="absolute left-0 top-0 flex w-full flex-col items-center justify-center gap-10 px-8 pb-10 pt-16">
-        <div className="flex flex-col items-center gap-2 text-white">
-          <p data-aos="fade-up" className="text-lg">
-            2024.04.24
+        <div className="flex flex-col items-center gap-2">
+          <p data-aos="fade-up" className="font-SCoreDream text-3xl text-blue-600">
+            {dayjs(mainVideo?.date).format("YYYY.MM.DD")}
           </p>
-          <p data-aos="fade-up" data-aos-delay="200" className="text-5xl font-bold">
-            일어나 걸으라!
+          <p
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="font-SCoreDream text-3xl font-bold text-blue-600 sm:text-5xl"
+          >
+            {mainVideo?.title}
           </p>
-          <button data-aos="fade-up" delay-aos-delay="400" className="text-2xl hover:underline">
+          <button
+            onClick={() => push("https://www.youtube.com/@myungmoonchurch/videos")}
+            data-aos="fade-up"
+            delay-aos-delay="400"
+            className="font-SCoreDream hover:underline sm:text-xl"
+          >
             설교 라이브, 1분 설교 보러가기 {">"}
           </button>
         </div>

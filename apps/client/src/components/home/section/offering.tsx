@@ -8,9 +8,9 @@ const OfferingSection = () => {
       <div className="relative h-[600px] w-full lg:h-[500px]">
         <Image src="/images/home/section5.jpeg" alt="" fill={true} className="object-cover" />
       </div>
-      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col gap-8 px-8 pb-16 pt-24">
-        <h3 className="text-3xl font-bold text-white">온라인 헌금</h3>
-        <p className="text-xl font-semibold text-white">
+      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col items-center justify-center gap-8 px-8 pb-16 pt-24">
+        <h3 className="font-SCoreDream text-3xl font-bold text-white sm:text-6xl">온라인 헌금</h3>
+        <p className="border-b-2 border-white pb-6 text-center font-semibold text-white sm:text-2xl">
           온라인 특별 목적헌금 구좌
           <br />
           (십일조, 건축, 선교, 장학, 차량, 기타)
@@ -19,10 +19,10 @@ const OfferingSection = () => {
           <br />
           아래 계좌로 송금하실 수 있습니다.
         </p>
-        <p className="text-xl font-semibold text-white">
+        <p className="font-SCoreDream text-center text-lg font-semibold leading-relaxed text-white sm:text-3xl">
           기업은행 206-081250-01-021
           <br />
-          예금주:대한예수교 장로회 명문교회
+          예금주: 대한예수교 장로회 명문교회
         </p>
       </div>
     </div>
