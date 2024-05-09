@@ -18,6 +18,7 @@
     "plaiceholder": "^3.0.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-medium-image-zoom": "^5.2.0",
     "react-modal": "^3.16.1",
     "react-query": "^3.39.3",
     "swiper": "^11.0.7",
