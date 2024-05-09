@@ -54,6 +54,7 @@ const AboutPromiseComponent = ({
         <div className="flex flex-col justify-center gap-1 md:gap-3">
           <p className="font-SCoreDream text-lg text-blue-500 md:text-3xl lg:text-4xl">{title1}</p>
           <p className="font-SCoreDream text-lg text-blue-500 md:text-3xl lg:text-4xl">{title2}</p>
+          <div className="w-full h-[2px] bg-blue-500"/>
         </div>
         <div className="flex flex-col justify-center gap-1 text-xs font-medium sm:text-sm md:text-2xl">
           <p>{text1}</p>
