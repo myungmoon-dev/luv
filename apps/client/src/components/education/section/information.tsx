@@ -10,7 +10,7 @@ interface IEducationInformationSectionProps {
 
 const EducationInformationSection = ({ department, target, time, place }: IEducationInformationSectionProps) => {
   return (
-    <div className="flex w-1/2 flex-col justify-center gap-10">
+    <div className="flex w-full flex-col justify-center gap-10 px-10 md:w-2/3 lg:w-1/2">
       <EducationIntroductionTitle department={department} type="안내" />
       <div className="grid grid-cols-3 gap-5">
         <EducationInformationCard iconName="CircleHeart" title="대상" text={target} />

@@ -13,8 +13,8 @@ const EducationInformationCard = ({ title, text, iconName }: IEducationInformati
         <Icon name={iconName} size="xl" strokeColor="white" backgroundColor="white" />
       </div>
       <p className="text-xl font-bold">{title}</p>
-      <div className="h-[0.1em] w-1/2 bg-blue-600" />
-      <p>{text}</p>
+      <div className="h-[0.1em] w-full bg-blue-600 md:w-1/2" />
+      <p className="break-keep text-center text-sm md:text-base">{text}</p>
     </div>
   );
 };
