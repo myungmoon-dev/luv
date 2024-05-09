@@ -1,13 +1,20 @@
-import BlurImageComponent from "@/components/blurImage";
 import { useGetBulletin } from "@/query/bulletin";
+import Image from "next/image";
 import { useState } from "react";
+import { Spinner } from "ui";
 
 const BulletinModal = ({ selectedBulletinId }: { selectedBulletinId?: string }) => {
-  const { data } = useGetBulletin({ bulletinId: selectedBulletinId as string });
-
+  const { data, isLoading } = useGetBulletin({ bulletinId: selectedBulletinId as string });
   const bulletin = data?.bulletin;
-
   const [currentViewImage, setCurrentViewImage] = useState(0);
+
+  // FIXME: 호출하기까지 시간이 걸리므로 임시로 로딩처리
+  if (isLoading)
+    return (
+      <div className="flex h-[220px] w-[338px] items-center justify-center sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-2">
@@ -15,10 +22,12 @@ const BulletinModal = ({ selectedBulletinId }: { selectedBulletinId?: string }) 
       <div className="relative h-[220px] w-[338px] sm:h-[300px] sm:w-[468px] md:h-[440px] md:w-[688px] lg:h-[550px] lg:w-[868px]">
         {bulletin && (
           <a href={`${bulletin.images[currentViewImage]}/bulletin`} target="_blank">
-            <BlurImageComponent
-              img={`${bulletin.images[currentViewImage]}/bulletin`}
-              alt={`${bulletin.title}_${currentViewImage}`}
-              fill
+            <Image
+              src={`${bulletin.images[currentViewImage]}/bulletin`}
+              fill={true}
+              alt={bulletin.title}
+              placeholder="blur"
+              blurDataURL={`${bulletin.images[currentViewImage]}/blur`}
             />
           </a>
         )}

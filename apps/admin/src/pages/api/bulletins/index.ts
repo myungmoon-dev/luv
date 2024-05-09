@@ -106,12 +106,6 @@ export default async function handler(
 
         const images = await Promise.all(promiseImages);
 
-        // CloudFlare 이미지를 base64로 변환
-        const buffers = images.map(async (image) => {
-          const { base64 } = await getBlurImage(`${image}/bulletin`);
-          return base64;
-        });
-
         // TODO: error 기능 추가
         if (!fields.date?.[0] || !fields.title?.[0])
           return new NextResponse("");
@@ -120,7 +114,6 @@ export default async function handler(
           date: fields.date?.[0],
           title: fields.title?.[0],
           images,
-          buffers: await Promise.all(buffers),
         });
 
         return result;
