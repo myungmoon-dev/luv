@@ -24,7 +24,7 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
     <div className="grid w-full gap-10 px-5 md:grid-cols-3 md:px-20 lg:px-40 xl:px-60 2xl:px-80">
       {navList.map((nav) => (
         <div onClick={() => setCurrentView(nav.path)} className="flex cursor-pointer flex-col gap-5" key={nav.label}>
-          <p className="font-SCoreDream whitespace-pre text-xl font-bold text-white">{nav.label}</p>
+          <p className="font-SCoreDream whitespace-pre md:text-xl font-bold text-white">{nav.label}</p>
           <div className="h-1 w-full bg-white" />
         </div>
       ))}
