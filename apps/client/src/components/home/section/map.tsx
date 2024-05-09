@@ -32,7 +32,7 @@ const MapSection = () => {
       <div className="relative h-[1000px] w-full lg:h-[1200px]">
         <Image src="/images/home/section4.png" alt="" fill={true} />
       </div>
-      <div className="absolute left-0 top-0 flex w-full flex-col items-center gap-8 px-8 pb-16 pt-24">
+      <div className="absolute left-0 top-0 flex w-full flex-col items-center gap-8 overflow-x-hidden px-8 pb-16 pt-24">
         <div className="flex flex-col items-center gap-3">
           <p
             data-aos="fade-up"
