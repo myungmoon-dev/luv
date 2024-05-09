@@ -53,10 +53,10 @@ const NavSection = () => {
       <div className="relative h-[650px] w-full md:h-[800px]">
         <Image src="/images/home/section3.jpg" alt="" fill={true} className="object-cover" />
       </div>
-      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col gap-12 px-8 py-16 md:gap-32">
+      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col gap-12 px-8 py-16 md:gap-32 xl:gap-20">
         <div className="flex flex-col gap-3 sm:gap-8 text-white">
           <div data-aos="fade-up" className="h-[5px] w-[120px] bg-white" />
-          <div data-aos="fade-up" className="flex flex-col sm:gap-1 font-SCoreDream w-full sm:text-xl font-bold md:text-3xl lg:text-4xl">
+          <div data-aos="fade-up" className="flex flex-col sm:gap-1 md:gap-3 font-SCoreDream w-full sm:text-xl font-bold md:text-4xl lg:text-5xl xl:text-7xl">
             <p>명문교회 홈페이지를 방문해주신 여러분을</p>
             <p>주님의 이름으로 환영하고 축복합니다.</p>
           </div>
@@ -80,14 +80,14 @@ const NavSection = () => {
               data-aos-duration="400"
               className="flex h-full w-full cursor-pointer items-center justify-center text-white sm:gap-16 hover:text-blue-600"
             >
-              <div className="flex flex-col items-center justify-center gap-5">
-                <div className="flex flex-col items-center justify-center gap-1">
-                  <p className="font-SCoreDream transition-colors sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl">
+              <div className="flex flex-col items-center justify-center gap-3 md:gap-5">
+                <div className="flex flex-col items-center justify-center sm:gap-1">
+                  <p className="font-SCoreDream transition-colors sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl">
                     {nav.titleKr}
                   </p>
-                  <p className="font-Lora hidden lg:text-lg md:block">{nav.titleEn}</p>
+                  <p className="font-Cormorant font-semibold text-xs md:text-lg lg:text-xl">{nav.titleEn}</p>
                 </div>
-                <p className="whitespace-pre text-center text-xs md:text-base">{nav.description}</p>
+                <p className="whitespace-pre text-center text-xs md:text-base lg:text-xl xl:text-2xl">{nav.description}</p>
               </div>
             </div>
           ))}
