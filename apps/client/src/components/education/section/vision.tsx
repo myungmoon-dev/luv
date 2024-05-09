@@ -4,7 +4,7 @@ import CustomImage from "@/components/customImage";
 
 const EducationVisionSection = () => {
   return (
-    <div className="flex w-full flex-col gap-20">
+    <div className="flex w-full flex-col gap-10 md:gap-20">
       <CustomImage className="h-[600px]" src="/images/education/vision1.jpg" alt="비전 이미지" imgClass="brightness-50">
         <div className="absolute flex h-full w-full flex-col items-center justify-center gap-10">
           <EducationSectionTitle
@@ -26,14 +26,14 @@ const EducationVisionSection = () => {
       </CustomImage>
       <div className="grid grid-cols-4 lg:gap-5" data-aos="fade-right">
         <EducationSectionText
-          className="col-span-2 w-full flex-col justify-center px-5 text-xs font-medium sm:gap-2 md:items-end md:px-20 md:text-xl lg:text-2xl xl:col-span-1"
+          className="col-span-2 w-full flex-col items-center justify-center px-5 text-xs font-medium sm:gap-2 md:items-start md:px-20 md:text-lg lg:text-2xl xl:col-span-1 xl:px-12"
           first="교회와 가정이 합력하여"
           second="분명한 복음과 말씀으로"
           third="다음세대를 세우는"
           pointText="교육 공동체"
         />
         <CustomImage
-          className="col-span-2 h-[200px] w-full md:h-[300px] lg:h-[400px] xl:col-span-3 xl:h-[600px]"
+          className="col-span-2 h-[200px] w-full md:h-[300px] lg:h-[400px] xl:col-span-3 xl:h-[500px]"
           src="/images/education/vision2.jpg"
           alt="교육공동체 이미지"
           imgClass="brightness-90 rounded-s-xl xl:rounded-none"
@@ -42,13 +42,13 @@ const EducationVisionSection = () => {
 
       <div className="grid grid-cols-4 lg:gap-5" data-aos="fade-left">
         <CustomImage
-          className="col-span-2 h-[200px] w-full md:h-[300px] lg:h-[400px] xl:col-span-3 xl:h-[600px]"
+          className="col-span-2 h-[200px] w-full md:h-[300px] lg:h-[400px] xl:col-span-3 xl:h-[500px]"
           src="/images/education/vision3.jpg"
           alt="신앙전수공동체 이미지"
           imgClass="brightness-90 rounded-e-xl xl:rounded-none"
         />
         <EducationSectionText
-          className="col-span-2 w-full flex-col justify-center px-5 text-xs font-medium sm:gap-2 md:items-end md:px-10 lg:px-20 md:text-xl lg:text-2xl xl:col-span-1"
+          className="col-span-2 w-full flex-col items-center justify-center px-5 text-xs font-medium sm:gap-2 md:items-start md:px-20 md:text-lg lg:text-2xl xl:col-span-1 xl:px-12"
           first="교사와 부모가"
           second="다음세대에게 믿음의 선배로서"
           third="본을 보이는"
@@ -58,13 +58,13 @@ const EducationVisionSection = () => {
 
       <div className="grid grid-cols-4 lg:gap-5" data-aos="fade-right">
         <EducationSectionText
-          className="col-span-2 w-full flex-col justify-center gap-2 px-5 text-sm font-medium md:items-end md:px-20 md:text-xl lg:text-2xl xl:col-span-1"
+          className="col-span-2 w-full flex-col items-center justify-center px-5 text-xs font-medium sm:gap-2 md:items-start md:px-20 md:text-lg lg:text-2xl xl:col-span-1 xl:px-12"
           first="이웃을 섬기며"
           second="복음을 전하는"
           pointText="선교 공동체"
         />
         <CustomImage
-          className="col-span-2 h-[500px] w-full"
+          className="col-span-2 h-[200px] w-full md:h-[300px] lg:h-[400px] xl:col-span-3 xl:h-[500px]"
           src="/images/education/vision4.jpg"
           alt="선교공동체 이미지"
           imgClass="brightness-90 rounded-s-xl xl:rounded-none"

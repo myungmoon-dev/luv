@@ -13,7 +13,7 @@ const EducationSectionText = ({ first, second, third, pointText, className }: IE
       <p>{first}</p>
       <p>{second}</p>
       <p>{third}</p>
-      <p className="mt-4 w-fit border-b-2 border-blue-500 pb-1 font-SCoreDream font-bold text-blue-500 md:text-3xl lg:text-4xl xl:text-5xl">
+      <p className="font-SCoreDream mt-4 w-fit border-b-2 border-blue-500 pb-1 font-bold text-blue-500 md:text-3xl lg:text-4xl">
         {pointText}
       </p>
     </div>
