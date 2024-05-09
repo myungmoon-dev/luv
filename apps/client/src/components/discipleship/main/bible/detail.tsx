@@ -19,13 +19,13 @@ const DiscipleshipMainBibleDetail = () => {
   const bible = data.bible;
 
   return (
-    <div>
+    <div className="px-5 sm:px-10 md:px-20 lg:px-28 xl:px-36 2xl:px-40">
       <h1 className="mb-2 text-3xl font-bold">{bible.title}</h1>
       <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}</p>
       <div className="mb-10">
         <SafeHTML html={bible.content} />
       </div>
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {bible.links.map((link) => (
           <YoutubeVideo className="h-[250px]" videoId={link} key={link} />
         ))}

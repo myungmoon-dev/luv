@@ -31,7 +31,7 @@ const DiscipleshipMainBible = () => {
             ? []
             : data.bibles.map((bible) => ({
                 id: bible.id,
-                date: bible.createdAt,
+                date: bible.date,
                 title: bible.title,
                 writer: "관리자",
               }))
