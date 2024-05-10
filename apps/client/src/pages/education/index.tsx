@@ -14,7 +14,7 @@ const EducationIndexPage = () => {
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
     >
-      <div className="flex w-full flex-col items-center justify-center gap-10 lg:gap-20">
+      <div className="mb-20 flex w-full flex-col items-center justify-center gap-10 overflow-hidden md:gap-16 lg:gap-20">
         <EducationMissionSection />
         <EducationVisionSection />
         <EducationCoreValuesSection />

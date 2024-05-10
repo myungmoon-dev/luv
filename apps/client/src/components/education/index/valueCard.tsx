@@ -20,10 +20,13 @@ const EducationValueCard = ({
   return (
     <div className={cn("flex h-full w-full flex-col items-center justify-around", className, bgColor, borderColor)}>
       <div className={cn("flex w-1/4 flex-col items-center justify-center gap-1 border-b-2 pb-5", borderColor)}>
-        <p className={cn("font-SCoreDream text-4xl", textColor)}>VALUE</p>
-        <p className={cn("font-SCoreDream text-4xl", textColor)}>{index}</p>
+        <p className={cn("font-SCoreDream md:text-3xl", textColor)}>VALUE</p>
+        <p className={cn("font-SCoreDream md:text-3xl", textColor)}>{index}</p>
       </div>
-      <p data-aos="fade-up" className={cn("px-8 text-center text-3xl font-semibold", textColor)}>
+      <p
+        data-aos="fade-up"
+        className={cn("px-8 text-center text-sm font-semibold md:text-xl lg:text-2xl xl:text-3xl", textColor)}
+      >
         {text}
       </p>
     </div>
