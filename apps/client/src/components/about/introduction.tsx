@@ -58,15 +58,15 @@ const AboutIntroduction = () => {
         text3="명문교회를 소개합니다!"
       />
       <CustomImage
-        className="h-[500px] md:h-screen"
+        className="h-[500px] md:h-[700px] lg:h-[800px] xl:h-screen"
         src="/images/education/vision1.jpg"
         alt="비전 이미지"
         imgClass="brightness-50"
       >
-        <div className="absolute flex h-full w-full flex-col items-end justify-center gap-16 px-12 md:px-32">
+        <div className="absolute flex h-full w-full flex-col items-end justify-center gap-16 px-12 xl:px-32">
           <div
             data-aos="fade-up"
-            className="font-SCoreDream flex w-full flex-col gap-3 text-2xl font-bold text-white md:text-5xl lg:text-7xl"
+            className="flex w-full flex-col gap-3 font-SCoreDream text-2xl font-bold text-white md:text-5xl lg:text-7xl"
           >
             <p>복음으로!</p>
             <p>오직 성령의 능력으로!</p>
@@ -74,7 +74,7 @@ const AboutIntroduction = () => {
           </div>
           <div
             data-aos="fade-up"
-            className="flex w-full flex-col justify-center gap-4 text-2xl text-white md:w-2/3 md:text-3xl lg:w-1/2 lg:text-5xl"
+            className="flex w-full flex-col justify-center gap-4 text-2xl text-white md:w-2/3 md:text-3xl lg:text-5xl xl:w-1/2"
           >
             <p>명문교회는</p>
             <p className="font-bold">'지역과 민족을 품고</p>
@@ -84,33 +84,45 @@ const AboutIntroduction = () => {
         </div>
       </CustomImage>
 
-      <div className="flex w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-center justify-center xl:h-screen">
         <AboutCoreLabel type="corevalue" />
         <AboutCoreWrapper dataList={valueList} />
       </div>
 
-      <div className="flex w-full flex-col items-center justify-center gap-12 px-3 md:w-3/4 md:px-0">
-        <div data-aos="fade-up" className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl">
-          <div className="flex items-end gap-1 md:gap-3">
-            <p className="font-SCoreDream text-xl text-blue-600 sm:text-4xl">명문교회는</p>
-            <p>지난 36년간 지역사회 목음화와</p>
+      <div className="relative flex h-full w-full flex-col items-center justify-center py-16 xl:h-[1080px]">
+        <div className="z-[1] flex w-full flex-col items-center justify-center gap-12 px-3 md:w-3/4 md:px-0">
+          <div
+            data-aos="fade-up"
+            className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl xl:text-2xl xl:font-semibold"
+          >
+            <p className="py-5 font-SCoreDream text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
+              명문교회는,
+            </p>
+            <p>지난 36년간 지역사회 목음화와 세계 선교를 위해</p>
+            <p>그리고 다음 세대 믿음의 자녀들을 위해</p>
+            <p>눈물로 기도하며 헌신하였습니다.</p>
           </div>
-          <p>세계 선교를 위해 그리고 다음 세대 믿음의 자녀들을 위해</p>
-          <p>눈물로 기도하며 헌신하였습니다.</p>
+          <div
+            data-aos="fade-up"
+            className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl xl:text-2xl xl:font-semibold"
+          >
+            <p>이제 우리는 한국교회의 영적 유산을</p>
+            <p>더욱 잘 계승할 뿐만 아니라,</p>
+            <p>시대적 변화에 발맞추어 오늘날 우리에게 주신</p>
+            <p>교회의 사명을 탁월하게 감당하려고 합니다.</p>
+          </div>
+          <div
+            data-aos="fade-up"
+            className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl xl:text-2xl xl:font-semibold"
+          >
+            <p>총성 없는 전쟁과도 같았던 코로나 시대를 보내면서,</p>
+            <p>명문교회는 한 영혼을 천하보다 귀하게 여기시는</p>
+            <p>주님의 마음으로 성도님들 한 영혼 한 영혼을 위해</p>
+            <p>회복과 소망의 복음을 전하겠습니다.</p>
+          </div>
         </div>
-
-        <div data-aos="fade-up" className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl">
-          <p>이제 우리는 한국교회의 영적 유산을</p>
-          <p>더욱 잘 계승할 뿐만 아니라,</p>
-          <p>시대적 변화에 발맞추어 오늘날 우리에게 주신</p>
-          <p>교회의 사명을 탁월하게 감당하려고 합니다.</p>
-        </div>
-
-        <div data-aos="fade-up" className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl">
-          <p>총성 없는 전쟁과도 같았던 코로나 시대를 보내면서,</p>
-          <p>명문교회는 한 영혼을 천하보다 귀하게 여기시는</p>
-          <p>주님의 마음으로 성도님들 한 영혼 한 영혼을 위해</p>
-          <p>회복과 소망의 복음을 전하겠습니다.</p>
+        <div className="absolute h-full w-full">
+          <CustomImage className="h-full" src="/images/about/promise.png" alt="비전 이미지" />
         </div>
       </div>
 
