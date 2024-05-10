@@ -9,7 +9,7 @@ const HomeBannerBible = () => {
       <h1 className="font-SCoreDream text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
         <span data-aos="fade-up">온세대가 함께하는</span>
         <br />
-        <span data-aos="fade-up">명문교회 {"<181일 성경통독>"}</span>
+        <span data-aos="fade-up">{"<181일 성경통독>"}</span>
       </h1>
       <p data-aos="fade-up" className="text-2xl font-semibold text-white">
         {/* TODO: 일차 추가 */}

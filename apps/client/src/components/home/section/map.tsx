@@ -16,7 +16,7 @@ const Map = ({ isWhite, address, title }: IMapProps) => {
       className={cn("flex w-full", isWhite ? "justify-start" : "justify-end")}
     >
       <div className={cn("flex w-[90%] flex-col md:w-3/5", isWhite ? "items-start text-white" : "items-end")}>
-        <p className={cn("font-SCoreDream text-lg font-extrabold sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>
+        <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>
           {title}
         </p>
         <p className="mb-2 md:text-lg">{address}</p>
@@ -37,7 +37,7 @@ const MapSection = () => {
           <p
             data-aos="fade-up"
             data-aos-duration="1000"
-            className="font-SCoreDream text-3xl font-bold text-blue-600 sm:text-4xl md:text-5xl"
+            className="font-SCoreDream text-3xl text-blue-600 sm:text-4xl md:text-5xl"
           >
             '명문교회' 오시는 길
           </p>
