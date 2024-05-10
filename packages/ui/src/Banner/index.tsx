@@ -54,14 +54,14 @@ export const Banner = ({
           {customTitle ? (
             <div className="ui-absolute ">{customTitle}</div>
           ) : (
-            <div className="ui-absolute ui-h-3/5 ui-w-3/4 gap-3 ui-flex ui-justify-end ui-items-center ui-flex-col">
+            <div className="ui-absolute ui-h-3/5 ui-w-3/4 gap-3 ui-flex ui-justify-center md:ui-justify-end ui-items-center ui-flex-col">
               <div className="ui-flex ui-justify-center">
-                <h1 className="ui-text-blue-600 ui-font-SCoreDream ui-italic ui-text-xl">
+                <h1 className="ui-text-blue-600 ui-font-SCoreDream ui-italic md:ui-text-xl">
                   MYUNGMOON CHURCH.
                 </h1>
               </div>
               <div className="ui-justify-center ui-flex ui-pb-10 ui-mb-20">
-                <p className="ui-font-bold ui-text-5xl ui-font-SCoreDream ui-text-white">
+                <p className="ui-font-bold text-3xl md:ui-text-5xl ui-font-SCoreDream ui-text-white">
                   {title}
                 </p>
               </div>
