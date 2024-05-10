@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { getHomeWorship, getHomeWorships } from "@/api/homeWorship";
+import { getHomeWorship, getHomeWorships, postHomeWorship } from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
@@ -17,4 +17,9 @@ const useGetHomeWorship = ({ homeWorshipId }: { homeWorshipId: string }) => {
   });
 };
 
-export { useGetHomeWorship, useGetHomeWorships };
+const usePostHomeWorship = () =>
+  useMutation({
+    mutationFn: postHomeWorship,
+  });
+
+export { useGetHomeWorship, useGetHomeWorships, usePostHomeWorship };

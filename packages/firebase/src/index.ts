@@ -13,6 +13,7 @@ import {
   getHomeWorship,
   getHomeWorships,
   postHomeWorship,
+  getUser,
 } from "./database";
 
 export {
@@ -31,4 +32,5 @@ export {
   getHomeWorship,
   getHomeWorships,
   postHomeWorship,
+  getUser,
 };

@@ -5,6 +5,7 @@ export interface IHomeWorship extends IBoardBase {
   userName: string;
 }
 
-export interface IHomeWorshipForm extends IBoardFormBase {
+export interface IHomeWorshipForm extends Omit<IBoardFormBase, "content"> {
+  content: FileList;
   userId: string;
 }

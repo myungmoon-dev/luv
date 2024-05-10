@@ -4,7 +4,7 @@ import { getYoutube, createYoutube } from "./youtube";
 import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible } from "./discipleship";
 import { getHomeWorship, getHomeWorships, postHomeWorship } from "./homeWorship";
-import { postUser } from "./user";
+import { postUser, getUser } from "./user";
 import { YoutubeType } from "type";
 
 const database = getFirestore(firebase);
@@ -32,4 +32,5 @@ export {
   getHomeWorship,
   getHomeWorships,
   postHomeWorship,
+  getUser,
 };
