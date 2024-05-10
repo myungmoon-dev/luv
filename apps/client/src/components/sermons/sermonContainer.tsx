@@ -8,15 +8,12 @@ interface ISermonContainerProps {
 
 const SermonContainer = ({ list, title }: ISermonContainerProps) => {
   return (
-    <div className="flex w-full items-center justify-center">
+    <div className="flex w-full items-center justify-center px-5 2xl:px-20">
       <div className="flex w-full flex-col gap-5">
-        <h3 className="text-3xl font-bold">{title}</h3>
-        <hr className="border-gray-400/60" />
-        <div className="flex gap-5 overflow-scroll">
+        {/* FIXME: 임시 스타일 <h3 className="text-3xl font-bold pb-2 border-b-[1px] border-gray-400/60">{title}</h3> */}
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 2xl:grid-cols-3">
           {list.map((sermon) => (
-            <div key={sermon.id} className="min-w-[calc(100%+5rem)] md:min-w-[calc(100%/2)] lg:min-w-[calc(100%/3)]">
-              <Sermon sermon={sermon} />
-            </div>
+            <Sermon sermon={sermon} />
           ))}
         </div>
       </div>
