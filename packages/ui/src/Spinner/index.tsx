@@ -7,7 +7,7 @@ interface ISpinnerProps {
 }
 
 export const Spinner = ({
-  color = "#dfc7c7",
+  color = "#3490DE",
   size,
   loading = true,
 }: ISpinnerProps) => {
