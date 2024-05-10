@@ -9,7 +9,7 @@ const HomeBannerLive = () => {
   return (
     <div className="flex flex-col items-center gap-6">
       <h1 className="text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
-        <span data-aos="fade-up" className="font-SCoreDream">
+        <span data-aos="fade-up">
           {dayjs(liveVideo?.date).format("YYYY.MM.DD")}
         </span>
         <br />
@@ -20,7 +20,7 @@ const HomeBannerLive = () => {
       <button
         onClick={() => open(`https://youtu.be/${liveVideo?.videoId}`)}
         data-aos="fade-up"
-        className="font-NIXGONM text-2xl text-white hover:underline"
+        className="text-2xl text-white hover:underline font-bold"
       >
         예배생중계 바로가기 {">"}
       </button>

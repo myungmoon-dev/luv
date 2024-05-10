@@ -6,6 +6,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Yanone+Kaffeesatz:wght@200..700&display=swap");
 
 @font-face {
+  font-family: "Pretendard";
+  src : url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+}
+@font-face {
   font-family: "HSBombaram3_Regular";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-10@1.1/HSBombaram3_Regular.woff") format("woff");
   font-weight: 100;
@@ -13,25 +18,25 @@
 }
 @font-face {
   font-family: "Lora";
-  src: url("../../public/fonts/Lora-VariableFont_wght.ttf") format("woff");
+  src: url("../../public/fonts/Lora-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: "Yanone";
-  src: url("../../public/fonts/YanoneKaffeesatz-VariableFont_wght.ttf") format("woff");
+  src: url("../../public/fonts/YanoneKaffeesatz-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: "SCoreDream";
-  src: url("../../public/fonts/SCDream.otf") format("woff");
+  src: url("../../public/fonts/SCDream.otf") format("opentype");
 }
 @font-face {
   font-family: "Cormorant";
-  src: url("../../public/fonts/Cormorant-VariableFont_wght.ttf") format("woff");
+  src: url("../../public/fonts/Cormorant-VariableFont_wght.ttf") format("truetype");
 }
 @font-face {
   font-family: "NIXGONM";
-  src: url("../../public/fonts/NIXGONFONTS.ttf") format("woff");
+  src: url("../../public/fonts/NIXGONFONTS.ttf") format("truetype");
 }
 
 * {
-  font-family: "Pretendard";
+  font-family: "Pretendard", sans-serif;
 }
