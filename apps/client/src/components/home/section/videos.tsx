@@ -39,13 +39,13 @@ const VideosSection = () => {
             설교 라이브, 1분 설교 보러가기 {">"}
           </button>
         </div>
-        <div className="flex w-full flex-col gap-5 md:flex-row">
+        <div className="flex w-full flex-col gap-5 md:flex-row 2xl:w-3/4">
           <YoutubeVideo
-            className="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[270px] xl:h-[500px]"
+            className="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[350px] xl:h-[500px]"
             videoId={main && main.length > 0 ? main[0].videoId : undefined}
           />
           <YoutubeVideo
-            className="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[270px] xl:h-[500px]"
+            className="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[350px] xl:h-[500px]"
             videoId={shorts && shorts.length > 0 ? shorts[0].videoId : undefined}
           />
         </div>

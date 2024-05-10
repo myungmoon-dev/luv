@@ -15,7 +15,7 @@ const Map = ({ isWhite, address, title }: IMapProps) => {
       data-aos-duration="700"
       className={cn("flex w-full", isWhite ? "justify-start" : "justify-end")}
     >
-      <div className={cn("flex w-[90%] flex-col md:w-3/5", isWhite ? "items-start text-white" : "items-end")}>
+      <div className={cn("flex w-[90%] flex-col md:w-3/5 2xl:w-1/2", isWhite ? "items-start text-white" : "items-end")}>
         <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>
           {title}
         </p>

@@ -56,7 +56,7 @@ const NavSection = () => {
       <div className="absolute left-0 top-0 z-[1] flex w-full h-full flex-col gap-12 px-8 py-16 md:gap-32 xl:gap-20">
         <div className="flex flex-col gap-3 sm:gap-8 text-white">
           <div data-aos="fade-up" className="h-1 w-1/2 bg-white" />
-          <div data-aos="fade-up" className="flex flex-col sm:gap-1 md:gap-3 font-SCoreDream w-full text-lg sm:text-xl font-bold md:text-4xl lg:text-5xl xl:text-7xl">
+          <div data-aos="fade-up" className="flex flex-col sm:gap-1 md:gap-3 font-SCoreDream w-full text-lg sm:text-xl font-bold md:text-4xl lg:text-5xl xl:text-6xl">
             <p>명문교회 홈페이지를 방문해주신 여러분을</p>
             <p>주님의 이름으로 환영하고 축복합니다.</p>
           </div>
