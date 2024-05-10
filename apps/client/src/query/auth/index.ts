@@ -1,4 +1,4 @@
-import { getUser, postLogin } from "@/api/auth";
+import { getUser, postLogin, postSignUp } from "@/api/auth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import authKeys from "./keys";
 
@@ -9,3 +9,5 @@ export const useGetMe = () =>
   });
 
 export const usePostLogin = () => useMutation({ mutationFn: postLogin });
+
+export const usePostSignUp = () => useMutation({ mutationFn: postSignUp });

@@ -1,7 +1,16 @@
-import { postLogin, getMe } from "./auth";
+import { postLogin, getMe, postSignup } from "./auth";
 import { postBulletinImage } from "./storage";
 
-import { getBulletins, getYoutube, createYoutube, postBulletin, getBible, getBibles, postBible } from "./database";
+import {
+  getBulletins,
+  getYoutube,
+  createYoutube,
+  postBulletin,
+  getBible,
+  getBibles,
+  postBible,
+  postUser,
+} from "./database";
 
 export {
   getYoutube,
@@ -14,4 +23,6 @@ export {
   postBible,
   postLogin,
   getMe,
+  postUser,
+  postSignup,
 };
