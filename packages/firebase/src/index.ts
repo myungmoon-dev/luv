@@ -10,6 +10,9 @@ import {
   getBibles,
   postBible,
   postUser,
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
 } from "./database";
 
 export {
@@ -25,4 +28,7 @@ export {
   getMe,
   postUser,
   postSignup,
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
 };

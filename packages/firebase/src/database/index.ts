@@ -3,6 +3,7 @@ import { firebase } from "../../firebase";
 import { getYoutube, createYoutube } from "./youtube";
 import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible } from "./discipleship";
+import { getHomeWorship, getHomeWorships, postHomeWorship } from "./homeWorship";
 import { postUser } from "./user";
 import { YoutubeType } from "type";
 
@@ -14,6 +15,7 @@ const collections = {
     videoType === "shorts" || videoType === "live" ? videoType : `youtube/sermon/${videoType}`,
   bible: "bible",
   user: "user",
+  homeWorship: "homeWorship",
 };
 
 export {
@@ -27,4 +29,7 @@ export {
   getBible,
   postBible,
   postUser,
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
 };
