@@ -1,8 +1,8 @@
 import { api } from "@/api";
 import { IPostCloudflareResponse } from "@/types/cloudflare/response";
-import getBlurImage from "@/utils/getBlurImage";
 import axios from "axios";
 import { getBulletins, postBulletin } from "firebase";
+import FormData from "form-data";
 import { IncomingForm } from "formidable";
 import fs from "fs";
 import { NextApiRequest, NextApiResponse } from "next";
@@ -14,10 +14,7 @@ export const config = {
   },
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
     headers: { origin },
@@ -43,28 +40,23 @@ export default async function handler(
         Array(2)
           .fill(null)
           .map(async () => {
-            const apiResponse = await api.post<IPostCloudflareResponse>(
-              `${origin}/api/cloudflare`,
-              {
-                expireDate: expireDate.toISOString(),
-              }
-            );
+            const apiResponse = await api.post<IPostCloudflareResponse>(`${origin}/api/cloudflare`, {
+              expireDate: expireDate.toISOString(),
+            });
             return apiResponse.data;
           })
       );
 
       const uploadURLs = apiResponses.map((response) => {
         if (response.success !== true) {
-          return res
-            .status(500)
-            .json({ result: "Cloudflare 업로드 URL을 생성하지 못하였습니다." });
+          return res.status(500).json({ result: "Cloudflare 업로드 URL을 생성하지 못하였습니다." });
         }
         return response.uploadURL;
       });
 
       const form = new IncomingForm();
-      const result = form.parse(req, async (err, fields, files) => {
-        if (err) res.status(500).json({ result: err });
+      form.parse(req, async (err, fields, files) => {
+        if (err) return res.status(500).json({ result: err });
 
         const twoArray = new Array(2).fill(0).map((el, idx) => el + idx);
 
@@ -77,26 +69,23 @@ export default async function handler(
           const image = files[`image-${el}-file`]?.[0];
           const uploadURL = uploadURLs[el];
 
-          // 사용자에게 받은 이미지파일 변환하여 가상파일 생성
+          // 사용자에게 받은 이미지파일을 읽어 Buffer로 변환
           const fileData = await fs.promises.readFile(image?.filepath || "");
-          const blob = new Blob([fileData], {
-            type: image?.mimetype ?? "image/png",
-          });
-          const file = new File([blob], title || "", {
-            type: image?.mimetype ?? "image/png",
+
+          // 가상 폼에 파일 추가
+          imgForm.append("file", fileData, {
+            filename: title || "image.png",
+            contentType: image?.mimetype ?? "image/png",
           });
 
-          // 가상 폼에 가상파일 추가
-          imgForm.append("file", file);
-
-          // 가상파일 CloudFlare 업로드 및 결과로 이미지 경로 반환
+          // 가상 파일을 CloudFlare에 업로드하고 결과로 이미지 경로 반환
           const {
             data: {
               result: { id },
             },
           } = await axios.post(uploadURL || "", imgForm, {
             headers: {
-              ContentType: "multipart/form-data",
+              ...imgForm.getHeaders(),
             },
           });
 
@@ -107,8 +96,7 @@ export default async function handler(
         const images = await Promise.all(promiseImages);
 
         // TODO: error 기능 추가
-        if (!fields.date?.[0] || !fields.title?.[0])
-          return new NextResponse("");
+        if (!fields.date?.[0] || !fields.title?.[0]) return new NextResponse("");
 
         const result = await postBulletin({
           date: fields.date?.[0],
@@ -116,12 +104,12 @@ export default async function handler(
           images,
         });
 
-        return result;
+        return res.status(200).json({
+          result,
+        });
       });
 
-      return res.status(200).json({
-        result,
-      });
+      break;
 
     default:
       res.setHeader("Allow", ["GET", "POST"]);
