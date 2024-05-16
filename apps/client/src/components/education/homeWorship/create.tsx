@@ -57,7 +57,9 @@ const HomeWorshipCreate = () => {
             <p>사진 업로드</p>
             <input type="file" accept="image/*" {...register("content")} />
           </label>
-          <button className="rounded-md bg-blue-500 py-2 text-white">제출</button>
+          <button disabled={isPending} className="rounded-md bg-blue-500 py-2 text-white">
+            제출
+          </button>
         </form>
       </div>
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
