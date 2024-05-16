@@ -8,4 +8,5 @@ export interface IHomeWorship extends IBoardBase {
 export interface IHomeWorshipForm extends Omit<IBoardFormBase, "content"> {
   content: FileList;
   userId: string;
+  userName: string;
 }

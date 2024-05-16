@@ -99,6 +99,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           date: fields.date,
           title: `${dayjs(fields.date).format("YYYY년 MM월")} ${userName} 가정 가정예배 인증`,
           userId: fields.userId,
+          userName,
         });
 
         return res.status(200).json({
