@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     case "POST":
       // Multer 미들웨어를 통해 파일 업로드 처리
-      upload.single("image-file")(req, res, async (err) => {
+      upload.single("image-file")(req as any, res as any, async (err) => {
         if (err) {
           return res.status(500).json({ result: err.message });
         }
@@ -55,7 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const uploadURL = apiResponseData.uploadURL;
 
         // 파일 업로드 처리
-        const { file } = req;
+        const { file } = req as any;
         const fields = req.body;
 
         if (!file) {
