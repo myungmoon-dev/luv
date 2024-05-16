@@ -1,32 +1,41 @@
 import { usePostHomeWorship } from "@/query/homeWorship";
+import useAuthStore from "@/store/auth";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IHomeWorshipForm } from "type";
 
 const HomeWorshipCreate = () => {
+  const { push } = useRouter();
   const { register, handleSubmit } = useForm<IHomeWorshipForm>();
+  const uid = useAuthStore((state) => state.uid);
 
   const { mutate } = usePostHomeWorship();
 
-  const onSubmit: SubmitHandler<IHomeWorshipForm> = (data) => {
-    console.log(data);
-
+  const onSubmit: SubmitHandler<IHomeWorshipForm> = async (data) => {
     const formData = new FormData();
 
-    if (!data.content || !data.date) return alert("모든 정보를 입력해주세요.");
+    if (!uid) {
+      alert("로그인이 필요합니다.");
+      push("/login");
+    } else {
+      if (!data.content || !data.date) return alert("모든 정보를 입력해주세요.");
 
-    formData.append("date", data.date);
+      formData.append("date", data.date);
 
-    Array.from(data.content).forEach((image) => {
-      formData.append(`image-file`, image);
-      formData.append(`image-name`, image.name);
-    });
+      Array.from(data.content).forEach((image) => {
+        formData.append(`image-file`, image);
+        formData.append(`image-name`, image.name);
+      });
 
-    mutate(formData, {
-      onSuccess: (res) => console.log(res),
-      onError: (err) => console.log(err),
-      onSettled: () => alert("완료"),
-    });
+      formData.append("userId", uid);
+
+      mutate(formData, {
+        onSuccess: (res) => console.log(res),
+        onError: (err) => console.log(err),
+        onSettled: () => alert("완료"),
+      });
+    }
   };
 
   return (
