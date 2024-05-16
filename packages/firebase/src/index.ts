@@ -1,36 +1,39 @@
-import { postLogin, getMe, postSignup } from "./auth";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth, postLogin, postSignup } from "./auth";
 import { postBulletinImage } from "./storage";
 
 import {
-  getBulletins,
-  getYoutube,
   createYoutube,
-  postBulletin,
   getBible,
   getBibles,
-  postBible,
-  postUser,
+  getBulletins,
   getHomeWorship,
   getHomeWorships,
-  postHomeWorship,
   getUser,
+  getYoutube,
+  postBible,
+  postBulletin,
+  postHomeWorship,
+  postUser,
 } from "./database";
 
 export {
-  getYoutube,
+  auth,
   createYoutube,
-  getBulletins,
-  postBulletin,
-  postBulletinImage,
   getBible,
   getBibles,
-  postBible,
-  postLogin,
-  getMe,
-  postUser,
-  postSignup,
+  getBulletins,
   getHomeWorship,
   getHomeWorships,
-  postHomeWorship,
   getUser,
+  getYoutube,
+  onAuthStateChanged,
+  postBible,
+  postBulletin,
+  postBulletinImage,
+  postHomeWorship,
+  postLogin,
+  postSignup,
+  postUser,
 };
