@@ -19,7 +19,8 @@ const HomeWorshipCreate = () => {
       alert("로그인이 필요합니다.");
       push("/login");
     } else {
-      if (!data.content || !data.date) return alert("모든 정보를 입력해주세요.");
+      if (data.content.length === 0 || !data.date) return alert("모든 정보를 입력해주세요.");
+      if (data.content.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
       formData.append("date", data.date);
 
@@ -49,7 +50,7 @@ const HomeWorshipCreate = () => {
           </label>
           <label className="flex items-center gap-5">
             <p>사진 업로드</p>
-            <input type="file" {...register("content")} />
+            <input type="file" accept="image/*" {...register("content")} />
           </label>
           <button className="rounded-md bg-blue-500 py-2 text-white">제출</button>
         </form>
