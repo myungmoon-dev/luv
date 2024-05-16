@@ -11,8 +11,8 @@ const Tabs = ({ menus, children }: ITabsProps) => {
   const { asPath, push } = useRouter();
 
   return (
-    <div className="flex w-full flex-col gap-20">
-      <div className="relative flex flex-wrap items-center justify-center gap-4">
+    <div className="flex w-full flex-col items-center gap-20">
+      <div className="relative flex flex-wrap items-center justify-center gap-4 md:w-5/6 lg:w-2/3 2xl:w-1/2">
         {menus.map((menu) => (
           <Chip
             onClick={() => push(menu.path)}
