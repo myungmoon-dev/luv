@@ -1,7 +1,7 @@
 import { useGetHomeWorship } from "@/query/homeWorship";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
-import { SafeHTML, Spinner } from "ui";
+import { Spinner } from "ui";
 
 const HomeWorshipDetail = () => {
   const params = useParams();
@@ -26,7 +26,9 @@ const HomeWorshipDetail = () => {
         <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(homeWorship.createdAt).format("YYYY-MM-DD")}</p>
       </div>
       <div className="mb-10">
-        <SafeHTML html={homeWorship.content} />
+        <div className="relative h-full w-full">
+          <img src={`${homeWorship.content}/bgHorizontal`} alt="이미지" />
+        </div>
       </div>
     </div>
   );
