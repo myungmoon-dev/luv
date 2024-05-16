@@ -390,11 +390,11 @@ const HistoryEventList = ({ decade }: IHistoryListProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       {HISTORY.filter((history) => history.label === decade).map((history) => (
-        <div className="relative grid grid-cols-1 gap-32">
+        <div className="relative grid grid-cols-1 gap-32 px-4 md:w-5/6 lg:w-2/3 2xl:w-3/4">
           {history.innerEvents.map((event, index, arr) => (
             <HistoryEvent key={event.description} event={event} index={index} length={arr.length} />
           ))}
-          <div className="absolute bottom-1 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-blue-400" />
+          <div className="absolute bottom-4 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-blue-600" />
         </div>
       ))}
     </div>
