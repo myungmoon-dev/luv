@@ -15,8 +15,7 @@ const AboutDirectionsPage = () => {
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
     >
-      <div className="mx-auto flex max-w-screen-lg flex-col gap-20">
-        <SectionHeader text="오시는 길" hasLine={true} selected={true} size="sm" color="blue" />
+      <div className="mx-auto flex max-w-screen-lg flex-col gap-20 px-3">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           <KakaoMap address="서울특별시 금천구 남부순환로 1406" />
           <div className="flex flex-col items-center justify-center gap-3">
