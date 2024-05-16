@@ -9,6 +9,7 @@ const HomeWorshipCreatePage = () => {
       title="가정예배 인증"
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
+      mustLogin={true}
     >
       <HomeWorshipCreate />
     </Layout>
