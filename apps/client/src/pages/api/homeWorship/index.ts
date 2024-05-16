@@ -1,15 +1,23 @@
 import { api } from "@/api";
 import dayjs from "dayjs";
 import { getHomeWorships, getUser, postHomeWorship } from "firebase";
-import { NextApiRequest, NextApiResponse } from "next";
-import { IncomingForm } from "formidable";
+import FormData from "form-data";
 import fs from "fs";
-import { NextResponse } from "next/server";
+import multer from "multer";
+import { NextApiRequest, NextApiResponse } from "next";
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: "/tmp/uploads", // 업로드 폴더 경로 설정
+    filename: (req, file, cb) => {
+      cb(null, file.originalname); // 원래 파일 이름 사용
+    },
+  }),
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
-    body: { content, date, title, userId },
     headers: { origin },
   } = req;
 
@@ -21,48 +29,50 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
 
     case "POST":
-      // 3시간 유효기간 변수 설정
-      const expireDate = new Date();
-      expireDate.setHours(expireDate.getHours() + 3);
+      // Multer 미들웨어를 통해 파일 업로드 처리
+      upload.single("image-file")(req, res, async (err) => {
+        if (err) {
+          return res.status(500).json({ result: err.message });
+        }
 
-      // CloudFlare DirectCreatorUpload 유효한 uploadURL 2개 가져오기
-      const apiResponse = await api.post<{
-        success: boolean;
-        uploadURL: string;
-      }>(`${origin}/api/cloudflare`, {
-        expireDate: expireDate.toISOString(),
-      });
-      const apiResponseData = apiResponse.data;
+        const expireDate = new Date();
+        expireDate.setHours(expireDate.getHours() + 3);
 
-      if (apiResponseData.success !== true) {
-        return res.status(500).json({ result: "Cloudflare 업로드 URL을 생성하지 못하였습니다." });
-      }
+        // CloudFlare DirectCreatorUpload 유효한 uploadURL 가져오기
+        const apiResponse = await api.post<{
+          success: boolean;
+          uploadURL: string;
+        }>(`${origin}/api/cloudflare`, {
+          expireDate: expireDate.toISOString(),
+        });
 
-      const uploadURL = apiResponseData.uploadURL;
+        const apiResponseData = apiResponse.data;
 
-      const form = new IncomingForm();
-      const result = form.parse(req, async (err, fields, files) => {
-        console.log("byebye", req);
-        if (err) res.status(500).json({ result: err });
+        if (apiResponseData.success !== true) {
+          return res.status(500).json({ result: "Cloudflare 업로드 URL을 생성하지 못하였습니다." });
+        }
+
+        const uploadURL = apiResponseData.uploadURL;
+
+        // 파일 업로드 처리
+        const { file } = req;
+        const fields = req.body;
+
+        if (!file) {
+          return res.status(400).json({ result: "No file uploaded" });
+        }
 
         // 가상 폼 생성
         const imgForm = new FormData();
 
-        // 변수 가져오기
-        const title = fields[`image-name`]?.[0];
-        const image = files[`image-file`]?.[0];
+        // 사용자에게 받은 이미지파일을 읽어 Buffer로 변환
+        const fileData = await fs.promises.readFile(file.path);
 
-        // 사용자에게 받은 이미지파일 변환하여 가상파일 생성
-        const fileData = await fs.promises.readFile(image?.filepath || "");
-        const blob = new Blob([fileData], {
-          type: image?.mimetype ?? "image/png",
+        // 가상 폼에 파일 추가
+        imgForm.append("file", fileData, {
+          filename: file.originalname,
+          contentType: file.mimetype,
         });
-        const file = new File([blob], title || "", {
-          type: image?.mimetype ?? "image/png",
-        });
-
-        // 가상 폼에 가상파일 추가
-        imgForm.append("file", file);
 
         // 가상파일 CloudFlare 업로드 및 결과로 이미지 경로 반환
         const {
@@ -71,34 +81,40 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
         } = await api.post(uploadURL || "", imgForm, {
           headers: {
-            ContentType: "multipart/form-data",
+            ...imgForm.getHeaders(),
           },
         });
 
-        // CloudFlare CDN 이미지경로 반환
+        // CloudFlare CDN 이미지 경로 반환
         const contentImage = `https://imagedelivery.net/${process.env.CLOUDFLARE_ACCOUNT_HASH}/${id}`;
 
-        // TODO: error 기능 추가
-        if (!fields.date?.[0] || !fields.title?.[0]) return new NextResponse("");
+        // 필드 검증 및 에러 처리
+        if (!fields.date) return res.status(400).json({ result: "Missing required fields" });
 
-        const userName = (await getUser({ userId })).forEach((doc) => doc.data().name);
+        const userDocs = await getUser({ userId: fields.userId });
+        const userName = userDocs.docs.map((doc) => doc.data().name).join(", ");
 
         const result = await postHomeWorship({
           content: contentImage,
-          date: fields.date?.[0],
-          title: `${dayjs(fields.date?.[0]).format("YYYY년 MM월")} ${userName} 가정 가정예배 인증`,
-          userId,
+          date: fields.date,
+          title: `${dayjs(fields.date).format("YYYY년 MM월")} ${userName} 가정 가정예배 인증`,
+          userId: fields.userId,
         });
 
-        return result;
+        return res.status(200).json({
+          result,
+        });
       });
-
-      return res.status(200).json({
-        result,
-      });
+      break;
 
     default:
       res.setHeader("Allow", ["GET", "POST"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
+
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
