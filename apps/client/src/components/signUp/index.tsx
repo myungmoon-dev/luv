@@ -37,10 +37,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className="grid grid-cols-2">
-      <div className="flex items-center justify-center">
+    <div className="relative grid sm:static sm:grid-cols-2">
+      <div className="absolute left-1/2 top-1/2 z-10 flex -translate-x-1/2 -translate-y-1/2 items-center justify-center sm:static sm:translate-x-0 sm:translate-y-0">
         <form
-          className="flex w-[400px] flex-col items-center gap-8 rounded-lg px-10 py-10 shadow-md"
+          className="flex min-w-[330px] flex-col items-center gap-8 rounded-lg bg-white/90 px-10 py-10 shadow-md sm:w-[400px] sm:bg-white"
           onSubmit={handleSubmit(onSubmit)}
         >
           <h1 className="text-3xl">회원가입</h1>
