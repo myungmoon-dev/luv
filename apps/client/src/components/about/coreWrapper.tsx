@@ -44,7 +44,7 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
 
   return (
     <AnimatePresence initial={false}>
-      <div className="relative grid h-full w-full grid-cols-5 gap-1">
+      <div className="relative grid h-full w-full grid-cols-5">
         {dataList.map((data, number) => (
           <motion.div
             key={number}
@@ -60,15 +60,15 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
             >
               <div
                 data-aos="fade-up"
-                className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:text-blue-600 sm:gap-16"
+                className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:text-blue-600 sm:gap-16 hover:bg-blue-600 hover:bg-opacity-30"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
                   <p className="font-SCoreDream text-[50px] sm:text-5xl md:text-9xl">{data.id}</p>
                   <div className="flex flex-col items-center justify-center gap-1">
                     <p className="font-SCoreDream hidden text-white md:block lg:text-xl">{data.titleKr}</p>
-                    <p className="font-Lora hidden text-gray-300 md:text-sm lg:block">{data.titleEn}</p>
+                    <p className="font-Cormorant hidden text-white md:text-xs lg:text-sm md:block">{data.titleEn}</p>
                   </div>
-                  <p className="font-SCoreDream text-xs text-white md:text-base">자세히 보기</p>
+                  <p className="text-xs md:text-base md:font-semibold">자세히 보기</p>
                 </div>
               </div>
             </CustomImage>

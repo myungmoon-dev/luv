@@ -344,7 +344,7 @@ const HISTORY: IHistory[] = [
         description:
           "임직, 위임, 은퇴식 안수집사취임 : 유병천,김명환, 정재우 안수집사장립 : 이영로, 최대흥, 김성수, 이용선, 김옥곤, 김영건, 노승훈, 이진범 권사취임 : 김애순, 이계영, 강유자, 방점순, 김태숙, 방희경, 이기숙, 금순녀, 김길례, 권혜선, 이수선, 이미숙, 박호경, 정주자, 오재수, 강민주, 이순남, 조형순, 김희순, 유완숙, 신하문, 유선화, 이명순A, 이봉자, 이나경, 임영자, 류명월, 이명순B, 신믿음, 박정일, 이윤화, 박영란, 박초월, 이춘희, 김귀녀, 김수정, 황지영, 이명옥, 김영순, 유은하, 박희명, 김매숙, 정미경, 김인숙, 최사랑, 송순화, 송현순, 김옥희, 최인영, 김현숙, 이미란, 박창숙, 황숙연, 김유리, 김영숙, 김영애, 이정연, 박영미, 문금자, 김경미, 김은수, 유미옥, 최난경, 최미영, 박화자 명예권사추대 : 남경숙, 유영심, 육경숙, 이종육, 황성분 원로장로-박효진 은퇴장로-조미훈, 여상용, 이해경",
       },
-      { date: "2021. 03. 29", description: "명문교회 조원동 성전이전(임시초소)" },
+      { date: "2021. 03. 29", description: "명문교회 조원동 성전이전(임시처소)" },
       {
         date: "2021. 05. 29",
         description: "장로 장립식 장로취임 : 곽형우 장로장립 : 김회국, 조윤형, 최균섭, 이중관, 송순섭, 박종일",
@@ -390,11 +390,11 @@ const HistoryEventList = ({ decade }: IHistoryListProps) => {
   return (
     <div className="flex flex-col items-center justify-center">
       {HISTORY.filter((history) => history.label === decade).map((history) => (
-        <div className="relative grid grid-cols-1 gap-32">
+        <div className="relative grid grid-cols-1 gap-32 px-4 md:w-5/6 lg:w-2/3 2xl:w-3/4">
           {history.innerEvents.map((event, index, arr) => (
             <HistoryEvent key={event.description} event={event} index={index} length={arr.length} />
           ))}
-          <div className="absolute bottom-1 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-blue-400" />
+          <div className="absolute bottom-4 left-1/2 right-1/2 top-1 w-1 -translate-x-1/2 transform bg-blue-600" />
         </div>
       ))}
     </div>

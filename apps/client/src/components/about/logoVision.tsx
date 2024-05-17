@@ -58,14 +58,14 @@ const AboutLogoWithVision = () => {
         <div className="absolute flex h-full w-full flex-col items-end justify-center gap-16 px-3 md:px-12 lg:px-32">
           <div
             data-aos="fade-up"
-            className="font-SCoreDream flex w-full flex-col gap-3 text-2xl font-bold text-white md:text-7xl"
+            className="flex w-full flex-col gap-3 font-SCoreDream text-2xl font-bold text-white md:text-7xl"
           >
             <p>名門(명문)</p>
             <p>이름을 얻는다.</p>
           </div>
           <div
             data-aos="fade-up"
-            className="flex w-full flex-col items-end justify-center gap-1 text-white sm:gap-4 sm:text-xl md:text-4xl"
+            className="flex w-full flex-col items-end justify-center gap-1 text-white sm:gap-4 sm:text-xl md:text-2xl lg:text-4xl"
           >
             <p>대한예수교장로회(합동)에 속하였으며,</p>
             <p className="font-bold">이 문을 들어오는 자마다 어린양의</p>
@@ -76,27 +76,39 @@ const AboutLogoWithVision = () => {
           </div>
         </div>
       </CustomImage>
-      <div className="flex w-full flex-col items-center justify-center">
+      <div className="relative flex h-full w-full items-center lg:h-[500px] xl:justify-center">
         <CustomImage
-          src="/images/about/vision1.png"
-          alt="로고이미지"
-          className="h-[100px] w-3/4 object-cover md:h-[200px]"
+          src="/images/about/logo_bg.png"
+          alt="로고 배경이미지"
+          className="absolute h-full w-full object-cover"
         />
         <div
           data-aos="fade-right"
-          className="flex w-full flex-col justify-center gap-3 px-3 py-20 text-xs font-semibold sm:px-12 sm:text-xl md:gap-12 md:text-3xl"
+          className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-base md:font-normal lg:w-1/2 xl:w-2/5 2xl:w-1/3 2xl:text-xl"
         >
-          <p className="font-SCoreDream text-2xl font-semibold text-blue-600 sm:text-4xl md:text-6xl">명문교회 로고</p>
-          <p>명문의 첫 두글자 영문 MM을 형상화하여 만들어졌습니다.</p>
-          <div className="flex flex-col">
-            <p>성부, 성자, 성령을 의미하는 세 개의 기둥으로 세워진 문을 통해</p>
-            <p>생명의 이름을 얻게 되는 명문교회 설립의도가 나타나있습니다.</p>
-          </div>
-          <div className="flex flex-col">
-            <p>생명의문은 열려진 형태이며, 누구든지 하나님의 은혜 앞에</p>
-            <p>나오는 사람은 생명의 이름을 얻고 구원의 길을 가게 됩니다.</p>
-          </div>
+          <p className="w-fit border-b-2 border-white pb-[2px] font-SCoreDream text-2xl font-semibold sm:text-4xl md:pb-2 md:text-5xl">
+            명문교회 로고
+          </p>
+          <p className="break-keep">명문의 첫 두글자 영문 MM을 형상화하여 만들어졌습니다.</p>
+          <p className="break-keep">
+            성부, 성자, 성령을 의미하는 세 개의 기둥으로 세워진 문을 통해 생명의 이름을 얻게 되는 명문교회 설립의도가
+            나타나있습니다.
+          </p>
+          <p className="break-keep">
+            생명의문은 열려진 형태이며, 누구든지 하나님의 은혜 앞에 나오는 사람은 생명의 이름을 얻고 구원의 길을 가게
+            됩니다.
+          </p>
         </div>
+        <div className="flex h-full w-fit items-center justify-center px-5">
+          <CustomImage
+            src="/images/logo.png"
+            alt="로고이미지"
+            className="right-1 top-5 h-[100px] w-[100px] md:h-[200px] md:w-[200px] lg:h-[300px] lg:w-[300px]"
+            imgClass="object-contain"
+          />
+        </div>
+      </div>
+      <div className="flex w-full flex-col items-center justify-center">
         <AboutCoreLabel type="vision" />
         <AboutCoreWrapper dataList={visionList} />
       </div>
