@@ -97,9 +97,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const result = await postHomeWorship({
           content: contentImage,
           date: fields.date,
-          title: `${dayjs(fields.date).format("YYYY년 MM월")} ${userName} 가정 가정예배 인증`,
+          title: fields.title,
           userId: fields.userId,
           userName,
+          createdAt: new Date().getTime(),
         });
 
         return res.status(200).json({

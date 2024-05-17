@@ -23,6 +23,7 @@ const HomeWorshipCreate = () => {
       if (data.content.length === 0 || !data.date) return alert("모든 정보를 입력해주세요.");
       if (data.content.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
+      formData.append("title", data.title);
       formData.append("date", data.date);
 
       Array.from(data.content).forEach((image) => {
@@ -46,18 +47,22 @@ const HomeWorshipCreate = () => {
 
   return (
     <div className="relative flex justify-center">
-      <div className={cn("flex w-[500px] flex-col gap-5 rounded-md px-5 py-8 shadow-lg", isPending && "opacity-50")}>
-        <h1 className="text-2xl">가정예배 인증하기</h1>
+      <div className={cn("flex w-[500px] flex-col gap-8 rounded-md px-5 py-8 shadow-lg", isPending && "opacity-50")}>
+        <h1 className="text-3xl">가정예배 인증하기</h1>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
           <label className="flex items-center gap-5">
-            <p>예배 날짜</p>
+            <p className="text-xl">예배 날짜</p>
             <input type="date" {...register("date")} />
           </label>
           <label className="flex items-center gap-5">
-            <p>사진 업로드</p>
+            <p className="text-xl">제목</p>
+            <input className="border px-2 py-1" {...register("title")} />
+          </label>
+          <label className="flex items-center gap-5">
+            <p className="text-xl">사진 업로드</p>
             <input type="file" accept="image/*" {...register("content")} />
           </label>
-          <button disabled={isPending} className="rounded-md bg-blue-500 py-2 text-white">
+          <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 text-white">
             제출
           </button>
         </form>
