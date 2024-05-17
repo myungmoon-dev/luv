@@ -2,7 +2,7 @@ import { usePostHomeWorship } from "@/query/homeWorship";
 import useAuthStore from "@/store/auth";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IHomeWorshipForm } from "type";
 import { Spinner, cn } from "ui";
@@ -57,23 +57,26 @@ const HomeWorshipCreate = () => {
   return (
     <div className="relative flex justify-center">
       <div
-        className={cn("flex flex-col gap-8 rounded-md px-5 py-8 shadow-lg lg:min-w-[500px]", isPending && "opacity-50")}
+        className={cn(
+          "flex w-screen flex-col gap-8 rounded-md px-5 py-8 shadow-lg sm:w-auto lg:min-w-[500px]",
+          isPending && "opacity-50",
+        )}
       >
         <h1 className="text-3xl">가정예배 인증하기</h1>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-          <label className="flex items-center gap-5">
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl">예배 날짜</p>
-            <input type="date" {...register("date")} />
+            <input className="border px-2 py-1" type="date" {...register("date")} />
           </label>
-          <label className="flex items-center gap-5">
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl">제목</p>
             <input className="border px-2 py-1" {...register("title")} />
           </label>
-          <label className="flex items-center gap-5">
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl">사진 업로드</p>
             <input type="file" accept="image/*" {...register("image")} />
           </label>
-          <div className="flex items-center gap-5">
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl">글</p>
             <Editor setValue={setContent} />
           </div>
