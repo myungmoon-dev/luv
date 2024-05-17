@@ -3,7 +3,7 @@ export interface IInnerMenu {
   path: string;
 }
 
-export interface IPastorType {
+export interface IStaffType {
   label: string;
   type: string;
 }
