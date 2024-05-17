@@ -22,3 +22,9 @@ export const postHomeWorship = async (homeWorship: FormData) => {
 
   return data;
 };
+
+export const deleteHomeWorship = async ({ homeWorshipId }: { homeWorshipId: string }) => {
+  const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}`);
+
+  return data;
+};
