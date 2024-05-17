@@ -28,7 +28,7 @@ const SignUp = () => {
   const onSubmit: SubmitHandler<ISignUpForm> = (data) => {
     mutate(data, {
       onSuccess: () => {
-        push("/");
+        push("/login");
       },
       onError: (res) => {
         alert((res as AxiosError<any>).response?.data.error || "에러가 발생했습니다.");
