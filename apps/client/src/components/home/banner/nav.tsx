@@ -18,14 +18,15 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
       path: HomeBannerEnum.Live,
     },
     { label: "온세대가 함께하는\n명문교회 <181일 성경통독>", path: HomeBannerEnum.Bible },
+    { label: "5월 가정의 달 캠페인\n맛있는 가정예배", path: HomeBannerEnum.HomeWorship },
   ];
 
   return (
-    <div className="grid w-full gap-10 px-5 md:grid-cols-3 md:px-20 lg:px-40 xl:px-60 2xl:px-80">
+    <div className="grid gap-10 w-full px-5 md:grid-cols-2 xl:grid-cols-4 md:px-20 lg:px-40 xl:px-60 2xl:px-80">
       {navList.map((nav) => (
         <div onClick={() => setCurrentView(nav.path)} className="flex cursor-pointer flex-col gap-5" key={nav.label}>
           <p className="whitespace-pre md:text-xl font-bold text-white">{nav.label}</p>
-          <div className="h-1 w-full bg-white"/>
+          <div className="h-[2px] w-full bg-white"/>
         </div>
       ))}
     </div>
