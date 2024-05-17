@@ -27,7 +27,7 @@ const HomeWorshipDetail = () => {
       </div>
       <div className="mb-10">
         <div className="relative h-full w-full">
-          <img src={`${homeWorship.content}/bgHorizontal`} alt="이미지" />
+          <img src={`${homeWorship.content}/full`} alt="이미지" />
         </div>
       </div>
     </div>
