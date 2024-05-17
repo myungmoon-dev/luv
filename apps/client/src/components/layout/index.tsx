@@ -8,6 +8,7 @@ import { IBannerIcon } from "@/types/banner/type";
 import AOS from "aos";
 
 import "aos/dist/aos.css";
+import useAuth from "@/hooks/useAuth";
 
 interface LayoutProps {
   children: ReactNode;
@@ -24,6 +25,7 @@ interface LayoutProps {
   customTitle?: ReactNode;
   imageClassName?: string;
   customBanner?: ReactNode;
+  mustLogin?: boolean;
 }
 
 const Layout = ({
@@ -41,7 +43,9 @@ const Layout = ({
   customTitle,
   imageClassName,
   customBanner,
+  mustLogin = false,
 }: LayoutProps) => {
+  useAuth({ mustLogin });
   const { asPath, push } = useRouter();
 
   useEffect(() => {

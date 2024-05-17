@@ -2,6 +2,7 @@ import { IInnerMenu } from "./types";
 
 export const educationInnerMenus: IInnerMenu[] = [
   { label: "다음세대 사역안내", path: "/education" },
+  { label: "가정예배 인증", path: "/education/home-worship" },
   { label: "영아부", path: "/education/infants" },
   { label: "유치부", path: "/education/toddlers" },
   { label: "예빛", path: "/education/elementary" },
