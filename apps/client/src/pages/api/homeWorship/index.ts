@@ -95,7 +95,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const userName = userDocs.docs.map((doc) => doc.data().name).join(", ");
 
         const result = await postHomeWorship({
-          content: contentImage,
+          image: contentImage,
+          content: fields.content,
           date: fields.date,
           title: fields.title,
           userId: fields.userId,
