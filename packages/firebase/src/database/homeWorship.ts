@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
 import { IHomeWorshipForm } from "type/src/homeWorship";
 import { collections, database } from ".";
 
@@ -23,4 +23,10 @@ export const postHomeWorship = async (
 ) => {
   const docRef = await addDoc(collection(database, collections.homeWorship), homeWorship);
   return docRef;
+};
+
+export const deleteHomeWorship = async (homeWorshipId: string) => {
+  const snapshot = await deleteDoc(doc(database, collections.homeWorship, homeWorshipId));
+
+  return snapshot;
 };

@@ -3,7 +3,7 @@ import { firebase } from "../../firebase";
 import { getYoutube, createYoutube } from "./youtube";
 import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible } from "./discipleship";
-import { getHomeWorship, getHomeWorships, postHomeWorship } from "./homeWorship";
+import { getHomeWorship, getHomeWorships, postHomeWorship, deleteHomeWorship } from "./homeWorship";
 import { postUser, getUser } from "./user";
 import { YoutubeType } from "type";
 
@@ -33,4 +33,5 @@ export {
   getHomeWorships,
   postHomeWorship,
   getUser,
+  deleteHomeWorship,
 };

@@ -16,6 +16,7 @@ import {
   postBulletin,
   postHomeWorship,
   postUser,
+  deleteHomeWorship,
 } from "./database";
 
 export {
@@ -36,4 +37,5 @@ export {
   postLogin,
   postSignup,
   postUser,
+  deleteHomeWorship,
 };
