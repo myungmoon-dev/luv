@@ -150,6 +150,7 @@ const LeadershipElderPage = () => {
                     alt={profile.name}
                     className="z-[1] h-[200px] w-[150px]"
                     imgClass="object-[100%_10%]"
+                    quality={30}
                   />
                   <div className="absolute h-full w-1/2 rounded-full bg-gray-200 md:w-[200px]" />
                 </div>
