@@ -14,7 +14,7 @@ interface IProfile {
 }
 
 // FIXME: 임시
-const elderProfiles : IProfile[] = [
+const elderProfiles: IProfile[] = [
   {
     name: "김용출",
     image: "/images/elder/kim_yc.png",
@@ -47,7 +47,7 @@ const elderProfiles : IProfile[] = [
   },
   {
     name: "이수만",
-    image: "/images/elder/lee_sm.png",
+    image: "/images/elder/profile.png",
     position: "찬양위원회 위원장",
     tabType: "elder",
   },
@@ -131,7 +131,8 @@ const LeadershipElderPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 xl:gap-20">
+        {/* FIXME: 교역자이미지 컨펌되면 컴포넌트로 수정예정 */}
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 xl:gap-20 2xl:grid-cols-4">
           {elderProfiles
             .filter((profile) => profile.tabType === "elder")
             .map((profile) => {
@@ -142,9 +143,14 @@ const LeadershipElderPage = () => {
                       {profile.name} {staffType.filter((staff) => staff.label === "elder")[0].type}
                     </h1>
                     <p className="font-semibold">{profile.description}</p>
-                    <p>{profile.position}</p>
+                    <p className="text-sm">{profile.position}</p>
                   </div>
-                  <CustomImage src={profile.image} alt={profile.name} className="z-[1] h-[200px] w-[150px]" imgClass="object-[100%_10%]" />
+                  <CustomImage
+                    src={profile.image ?? "/images/elder/profile.png"}
+                    alt={profile.name}
+                    className="z-[1] h-[200px] w-[150px]"
+                    imgClass="object-[100%_10%]"
+                  />
                   <div className="absolute h-full w-1/2 rounded-full bg-gray-200 md:w-[200px]" />
                 </div>
               );
