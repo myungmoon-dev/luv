@@ -8,7 +8,7 @@ const SessionNewsPage = () => {
       pageTitle="당회소식"
       title="당회소식"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/news/banner.jpg"
+      bannerImage="/images/news/banner5.jpg"
       innerMenus={newsInnerMenus}
     >
       <Session />

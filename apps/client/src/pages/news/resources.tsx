@@ -8,7 +8,7 @@ const ResourcesPage = () => {
       pageTitle="자료함"
       title="자료함"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/news/banner.jpg"
+      bannerImage="/images/news/banner3.jpg"
       innerMenus={newsInnerMenus}
     >
       <Resources />
