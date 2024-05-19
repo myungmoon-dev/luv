@@ -1,4 +1,4 @@
-import { pastorTypes } from "@/constants/innerMenus/about";
+import { staffType } from "@/constants/innerMenus/about";
 import Image from "next/image";
 import React from "react";
 
@@ -21,7 +21,7 @@ const Profile = ({ description, image, name, alt, className, position, type }: I
       <div className="flex max-w-sm flex-grow flex-col gap-5 pt-10">
         <div className="flex items-center gap-3 border-b-[1px] border-gray-300 pb-2">
           <h2 className="text-2xl font-bold">{name}</h2>
-          <p className="text-xl font-[500]">{pastorTypes.filter((pastor) => pastor.label === type)[0].type}</p>
+          <p className="text-xl font-[500]">{staffType.filter((staff) => staff.label === type)[0].type}</p>
         </div>
         <div className="flex flex-col gap-3">
           <p>{position}</p>

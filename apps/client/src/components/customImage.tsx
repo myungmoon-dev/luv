@@ -9,10 +9,11 @@ interface ICustomImageProps {
   imgClass?: string;
   blurImage?: string;
   loading?: "lazy" | "eager" | undefined;
+  quality?: number;
   children?: ReactNode;
 }
 
-const CustomImage = ({ alt, src, className, imgClass, loading, children, blurImage }: ICustomImageProps) => {
+const CustomImage = ({ alt, src, className, imgClass, loading, children, blurImage, quality }: ICustomImageProps) => {
   return (
     <div className={cn("relative w-full", className)}>
       <Image
@@ -22,6 +23,7 @@ const CustomImage = ({ alt, src, className, imgClass, loading, children, blurIma
         fill={true}
         blurDataURL={blurImage}
         loading={loading}
+        quality={quality}
       />
       {children}
     </div>
