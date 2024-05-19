@@ -11,7 +11,7 @@ const DiscipleshipMainQtPage = () => {
       pageTitle="큐티 세미나"
       title="큐티 세미나"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/discipleship/banner.jpg"
+      bannerImage="/images/discipleship/bibleBanner.jpg"
       bannerImgClass="object-[100%_30%]"
       innerMenus={discipleshipInnerMenus}
       detailMenus={discipleshipMainMenus}

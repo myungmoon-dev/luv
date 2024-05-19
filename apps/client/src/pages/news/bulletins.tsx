@@ -9,7 +9,7 @@ const BulletinsPage = () => {
       pageTitle="주보"
       title="주보"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/news/banner.jpg"
+      bannerImage="/images/news/banner5.jpg"
       innerMenus={newsInnerMenus}
     >
       <Bulletins />
