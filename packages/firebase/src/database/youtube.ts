@@ -1,12 +1,4 @@
-import {
-  addDoc,
-  collection,
-  query,
-  orderBy,
-  getDocs,
-  limit,
-  getFirestore,
-} from "firebase/firestore";
+import { addDoc, collection, query, orderBy, getDocs, limit, getFirestore } from "firebase/firestore";
 import { firebase } from "../../firebase";
 import { IYoutubeForm, YoutubeType } from "type";
 import { collections } from ".";
@@ -18,12 +10,8 @@ export interface IGetYoutubeListProps {
   videoCount?: number;
 }
 
-export const getYoutube = async ({
-  videoType,
-  videoCount,
-}: IGetYoutubeListProps) => {
-  const orderByField =
-    videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
+export const getYoutube = async ({ videoType, videoCount }: IGetYoutubeListProps) => {
+  const orderByField = videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
   const limitField = videoType === "shorts" || videoType === "live" ? 1 : 4;
 
   const getQuery = query(
@@ -38,6 +26,17 @@ export const getYoutube = async ({
 };
 
 export const createYoutube = async (youtubeForm: IYoutubeForm) => {
+  if (youtubeForm.type === "live") {
+    await addDoc(collection(database, youtubeForm.type), {
+      videoId: youtubeForm.url,
+      title: youtubeForm.title ?? "",
+      preacher: youtubeForm.preacher ?? "",
+      mainText: youtubeForm.mainText ?? "",
+      date: youtubeForm.date,
+      createdAt: Date.now(),
+    });
+  }
+
   // date가 있는 경우: main, afternoon, youth, wednesday, firday, video
   if (youtubeForm.date) {
     await addDoc(collection(database, "youtube", "sermon", youtubeForm.type), {
@@ -49,7 +48,8 @@ export const createYoutube = async (youtubeForm: IYoutubeForm) => {
       createdAt: Date.now(),
     });
   }
-  // shorts, live의 경우
+
+  // shorts의 경우
   else {
     await addDoc(collection(database, youtubeForm.type), {
       videoId: youtubeForm.url,
