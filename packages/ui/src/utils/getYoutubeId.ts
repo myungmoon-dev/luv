@@ -9,7 +9,7 @@ const getYoutubeId = ({ url }: IGetYoutubeIdProps) => {
   const videoMatch = url.match(videoRegExp);
   const playlistMatch = url.match(playlistRegExp);
 
-  const videoId = videoMatch && videoMatch[2].length === 11 ? videoMatch[2] : null;
+  const videoId = videoMatch && videoMatch[2]!.length === 11 ? videoMatch[2] : null;
   const playlistId = playlistMatch ? playlistMatch[1] : null;
 
   return videoId || playlistId || null;
