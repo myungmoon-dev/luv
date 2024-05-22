@@ -1,18 +1,31 @@
+import YouTube from "react-youtube";
 import { Spinner, cn } from "..";
+import getYoutubeId from "../utils/getYoutubeId";
 
 interface IYoutubeVideoProps {
-  videoId?: string;
+  videoId: string;
   className?: string;
+  isPlaylist?: boolean;
 }
 
-export const YoutubeVideo = ({ videoId, className }: IYoutubeVideoProps) => {
+export const YoutubeVideo = ({ videoId, className, isPlaylist }: IYoutubeVideoProps) => {
+  const formattedVideoId = getYoutubeId({ url: videoId });
+
+  const opts = {
+    playerVars: {
+      listType: "playlist",
+      list: formattedVideoId,
+    },
+  };
+
   return (
     <div className={cn("ui-relative", className)}>
-      {videoId ? (
-        <iframe
-          className="ui-h-full ui-w-full ui-rounded-lg"
-          src={`https://www.youtube.com/embed/${videoId}`}
-          allowFullScreen
+      {formattedVideoId ? (
+        <YouTube
+          opts={isPlaylist ? opts : {}}
+          videoId={isPlaylist ? "" : formattedVideoId}
+          iframeClassName="ui-h-full ui-w-full ui-rounded-lg"
+          className="ui-w-full ui-h-full"
           loading="lazy"
         />
       ) : (
