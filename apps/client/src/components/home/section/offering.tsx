@@ -8,7 +8,7 @@ const OfferingSection = () => {
       <div className="relative h-[600px] w-full lg:h-[500px]">
         <Image src="/images/home/section5.jpeg" alt="" fill={true} className="object-cover" />
       </div>
-      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col items-center justify-center gap-8 px-8 pb-16 pt-24">
+      <div className="absolute left-0 top-0 z-[1] flex w-full flex-col items-center justify-center gap-8 px-5 pb-16 pt-24">
         <h3 className="font-SCoreDream text-3xl text-white sm:text-6xl">온라인 헌금</h3>
         <p className="border-b-2 border-white pb-6 text-center font-semibold text-white sm:text-2xl">
           온라인 특별 목적헌금 구좌
