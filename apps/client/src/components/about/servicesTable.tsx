@@ -62,7 +62,7 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
       {/* th */}
       <div className="mb-3 grid min-h-[50px] w-full grid-cols-3 items-center gap-5 rounded-md bg-gray-200">
         <p className="text-center font-bold tracking-widest">구 분</p>
-        <p className="flex h-1/2 items-center justify-center border-l-2 border-r-2 border-l-pink-100 border-r-pink-100 text-center font-bold tracking-widest">
+        <p className="flex items-center justify-center border-l-2 border-r-2 border-l-blue-500 border-r-blue-500 text-center font-bold tracking-widest">
           시 간
         </p>
         <p className="text-center font-bold tracking-widest">장 소</p>
@@ -75,7 +75,7 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
           className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b-2 border-b-gray-200"
         >
           <p className="text-center text-xs sm:text-sm">{service.label}</p>
-          <p className="flex h-full items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
+          <p className="flex items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
             {service.time}
           </p>
           <p className="text-center text-xs sm:text-sm">{service.place}</p>
