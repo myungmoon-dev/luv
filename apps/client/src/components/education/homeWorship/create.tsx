@@ -62,26 +62,26 @@ const HomeWorshipCreate = () => {
           isPending && "opacity-50",
         )}
       >
-        <h1 className="text-3xl">가정예배 인증하기</h1>
+        <h1 className="font-SCoreDream text-3xl">가정예배 인증하기</h1>
         <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
           <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl">예배 날짜</p>
+            <p className="text-xl font-bold">예배 날짜</p>
             <input className="border px-2 py-1" type="date" {...register("date")} />
           </label>
           <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl">제목</p>
+            <p className="text-xl font-bold">제목</p>
             <input className="border px-2 py-1" {...register("title")} />
           </label>
           <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl">사진 업로드</p>
+            <p className="text-xl font-bold">사진 업로드</p>
             <input type="file" accept="image/*" {...register("image")} />
           </label>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl">글</p>
+            <p className="text-xl font-bold">글</p>
             <Editor setValue={setContent} />
           </div>
-          <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 text-white">
-            제출
+          <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white">
+            인증하기
           </button>
         </form>
       </div>
