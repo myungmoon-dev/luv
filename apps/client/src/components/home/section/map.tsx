@@ -45,7 +45,7 @@ const MapSection = () => {
             data-aos="fade-up"
             data-aos-delay="150"
             data-aos-duration="1000"
-            className="text-center text-lg leading-7 md:text-xl"
+            className="text-center leading-7 md:text-xl"
           >
             명문교회 평일예배는 독산동 비전채플에서,
             <br />

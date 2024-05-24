@@ -14,7 +14,7 @@ const HomeBannerHomeWorship = () => {
       <button
         onClick={() => push("/education/home-worship")}
         data-aos="fade-up"
-        className="text-2xl text-white hover:underline font-bold"
+        className="text-xl text-white hover:underline font-bold"
       >
         맛있는 가정예배 게시판 바로가기 {">"}
       </button>
