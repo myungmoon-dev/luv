@@ -3,7 +3,7 @@ import { IHomeWorshipForm } from "type/src/homeWorship";
 import { collections, database } from ".";
 
 export const getHomeWorships = async () => {
-  const getQuery = query(collection(database, collections.homeWorship), orderBy("createdAt", "desc"));
+  const getQuery = query(collection(database, collections.homeWorship), orderBy("date", "desc"));
 
   const snapshot = await getDocs(getQuery);
 
