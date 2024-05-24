@@ -100,7 +100,7 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
                       <p className="font-SCoreDream text-2xl sm:text-3xl md:text-5xl">{selectedValue.titleKr}</p>
                       <p className="font-Lora sm:text-xl md:text-2xl lg:text-5xl">{selectedValue.titleEn}</p>
                     </div>
-                    <p className="whitespace-pre pr-6 font-medium leading-relaxed text-white sm:pr-0 sm:text-2xl">
+                    <p className="break-keep md:whitespace-pre-wrap pr-6 font-medium leading-relaxed text-white sm:pr-0 sm:text-2xl">
                       {selectedValue.description}
                     </p>
                   </div>
