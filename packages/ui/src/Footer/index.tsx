@@ -22,18 +22,28 @@ export const Footer = ({ push }: IFooterProps) => {
       <div className="ui-flex ui-items-center ui-gap-5">
         <Icon name="LogoBlue" size="4xl" />
         <div className="ui-flex ui-gap-2">
-          <a href="https://www.youtube.com/channel/UC1v4PcaTti7luD1pYj_AgDg"><Icon
-            name="RealYoutube"
-            size="xl"
-            strokeColor="white"
-            backgroundColor="white"
-          /></a>
-          <a href="https://www.instagram.com/myungmoonchurch?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><Icon
-            name="Instagram"
-            size="xl"
-            strokeColor="white"
-            backgroundColor="white"
-          /></a>
+          <a
+            href="https://www.youtube.com/channel/UC1v4PcaTti7luD1pYj_AgDg"
+            target="_blank"
+          >
+            <Icon
+              name="RealYoutube"
+              size="xl"
+              strokeColor="white"
+              backgroundColor="white"
+            />
+          </a>
+          <a
+            href="https://www.instagram.com/myungmoonchurch?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+            target="_blank"
+          >
+            <Icon
+              name="Instagram"
+              size="xl"
+              strokeColor="white"
+              backgroundColor="white"
+            />
+          </a>
         </div>
       </div>
       <nav className="ui-flex ui-gap-5 ui-text-sm sm:ui-text-base">
