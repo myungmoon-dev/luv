@@ -16,6 +16,13 @@ const EducationInformationSection = ({ department, target, time, place }: IEduca
         <EducationInformationCard iconName="CircleHeart" title="대상" text={target} />
         <EducationInformationCard iconName="Clock" title="예배시간" text={time} />
         <EducationInformationCard iconName="Map" title="예배장소" text={place} />
+        {department === "M'embers" && (
+          <p className="col-span-3 mt-5 flex justify-center break-keep text-center font-bold text-blue-600 xl:text-xl">
+            *M'embers에 처음 오신 분들은
+            <br />
+            6주간 Vip's 새신자 교육에 참여하게 됩니다.
+          </p>
+        )}
       </div>
     </div>
   );
