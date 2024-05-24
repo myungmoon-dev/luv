@@ -59,7 +59,7 @@ const elderProfiles: IProfile[] = [
   },
   {
     name: "이병곤",
-    image: "/images/elder/profile.png",
+    image: "/images/elder/lee_bg.png",
     position: "해외 파견",
     tabType: "elder",
   },
@@ -72,6 +72,12 @@ const elderProfiles: IProfile[] = [
   {
     name: "구유택",
     image: "/images/elder/koo_yt.png",
+    position: "목양위원회 위원장",
+    tabType: "elder",
+  },
+  {
+    name: "곽형우",
+    image: "/images/elder/gwak_hw.png",
     position: "목양위원회 위원장",
     tabType: "elder",
   },
@@ -152,7 +158,7 @@ const LeadershipElderPage = () => {
                     imgClass="object-[100%_10%]"
                     quality={30}
                   />
-                  <div className="absolute h-full w-1/2 rounded-full bg-gray-200 md:w-[200px]" />
+                  <div className="absolute h-full w-[190px] rounded-full bg-gray-200 md:w-[200px]" />
                 </div>
               );
             })}
