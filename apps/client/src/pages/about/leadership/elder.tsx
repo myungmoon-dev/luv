@@ -138,7 +138,7 @@ const LeadershipElderPage = () => {
     >
       <Tabs menus={aboutLeaderMenus}>
         {/* FIXME: 교역자이미지 컨펌되면 컴포넌트로 수정예정 */}
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-3 xl:gap-20 2xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-20 lg:gap-32 xl:grid-cols-3 xl:gap-20 2xl:grid-cols-4">
           {elderProfiles
             .filter((profile) => profile.tabType === "elder")
             .map((profile) => {
