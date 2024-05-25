@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "html-react-parser": "^5.1.10",
-    "react-modern-drawer": "^1.2.2"
+    "react-modern-drawer": "^1.2.2",
+    "react-youtube": "^10.1.0"
   }
 }

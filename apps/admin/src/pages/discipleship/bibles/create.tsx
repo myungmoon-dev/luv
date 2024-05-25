@@ -11,12 +11,10 @@ const Editor = dynamic(() => import("@/components/common/editor").then((mod) => 
   loading: () => <Spinner />,
 });
 
-type InnerBibleFormType = Omit<IBibleForm, "links"> & { links: { name: string }[] };
-
 const DiscipleshipBibleCreatePage = () => {
-  const { control, register, handleSubmit, setValue } = useForm<InnerBibleFormType>({
+  const { control, register, handleSubmit, setValue } = useForm<IBibleForm>({
     defaultValues: {
-      links: [{ name: "" }],
+      links: [{ name: "", isPlaylist: false }],
     },
   });
   const { fields, append, remove } = useFieldArray({
@@ -26,15 +24,12 @@ const DiscipleshipBibleCreatePage = () => {
 
   const { mutate } = usePostBible();
 
-  const onSubmit: SubmitHandler<InnerBibleFormType> = (data) => {
+  const onSubmit: SubmitHandler<IBibleForm> = (data) => {
     const youtubeLinks = data.links.map((link) => getYoutubeId({ url: link.name }));
 
     if (youtubeLinks.some((link) => link === null)) return alert("youtube link를 다시 확인해주세요.");
 
-    mutate(
-      { ...data, links: youtubeLinks as string[] },
-      { onSuccess: () => alert("완료"), onError: () => alert("에러 발생") }
-    );
+    mutate(data, { onSuccess: () => alert("완료"), onError: () => alert("에러 발생") });
   };
 
   const handleChangeContent = (value: string) => {
@@ -69,11 +64,27 @@ const DiscipleshipBibleCreatePage = () => {
                   name={`links.${index}.name`}
                   render={({ field }) => <input className="text-black w-full py-1 px-2" {...field} />}
                 />
-                <div className="flex gap-2 min-w-fit">
+                <div className="flex gap-3 min-w-fit items-center">
+                  <label className="flex gap-2 items-center">
+                    <p>Playlist 여부</p>
+                    <Controller
+                      control={control}
+                      name={`links.${index}.isPlaylist`}
+                      render={({ field }) => (
+                        <input
+                          type="checkbox"
+                          className="w-6 h-6"
+                          checked={field.value}
+                          onChange={(e) => field.onChange(e.target.checked)}
+                        />
+                      )}
+                    />
+                  </label>
+                  <div className="h-6 w-[2px] bg-white" />
                   <button
                     className="!bg-green-500 px-3 py-1 rounded-md"
                     type="button"
-                    onClick={() => append({ name: "" })}
+                    onClick={() => append({ name: "", isPlaylist: false })}
                   >
                     추가
                   </button>

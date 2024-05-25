@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import { YoutubeVideo } from "ui";
+import { useRouter } from "next/navigation";
 
 import { useGetYoutubeList } from "@/query/youtube";
 import dayjs from "dayjs";
-import { useRouter } from "next/router";
 
 const VideosSection = () => {
   const { push } = useRouter();
@@ -20,14 +20,10 @@ const VideosSection = () => {
       </div>
       <div className="absolute left-0 top-0 flex w-full flex-col items-center justify-center gap-10 px-5 pb-10 pt-16">
         <div className="flex flex-col items-center gap-2">
-          <p data-aos="fade-up" className="font-SCoreDream text-xl md:text-3xl text-blue-600">
+          <p data-aos="fade-up" className="font-SCoreDream text-xl text-blue-600 md:text-3xl">
             {dayjs(mainVideo?.date).format("YYYY.MM.DD")}
           </p>
-          <p
-            data-aos="fade-up"
-            data-aos-delay="200"
-            className="font-SCoreDream text-3xl text-blue-600 sm:text-5xl"
-          >
+          <p data-aos="fade-up" data-aos-delay="200" className="font-SCoreDream text-3xl text-blue-600 sm:text-5xl">
             {mainVideo?.title}
           </p>
           <button
