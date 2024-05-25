@@ -1,8 +1,8 @@
 interface IGetYoutubeIdProps {
-  url: string;
+  url?: string;
 }
 
-const getYoutubeId = ({ url }: IGetYoutubeIdProps) => {
+const getYoutubeId = ({ url = "" }: IGetYoutubeIdProps) => {
   const videoRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|shorts\/|live\/|watch\?v=|&v=)([^#&?]*).*/;
   const playlistRegExp = /[?&]list=([^#&?]+)/;
 

@@ -3,7 +3,7 @@ import { Spinner, cn } from "..";
 import getYoutubeId from "../utils/getYoutubeId";
 
 interface IYoutubeVideoProps {
-  videoId: string;
+  videoId?: string;
   className?: string;
   isPlaylist?: boolean;
 }
