@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getBible, getBibles } from "@/api/discipleship";
 import bibleKeys from "./keys";
+import { YearMonthType } from "type";
 
-const useGetBibles = () => {
+const useGetBibles = ({ yearMonth }: { yearMonth: YearMonthType }) => {
   return useQuery({
-    queryFn: () => getBibles(),
-    queryKey: bibleKeys.list(),
+    queryFn: () => getBibles({ yearMonth }),
+    queryKey: bibleKeys.list(yearMonth),
   });
 };
 

@@ -1,8 +1,13 @@
 import { IGetBibleResponse, IGetBiblesResponse } from "@/types/discipleship/bible/response";
 import { api } from ".";
+import { YearMonthType } from "type";
 
-export const getBibles = async () => {
-  const { data } = await api.get<IGetBiblesResponse>("/api/discipleship/bibles");
+export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
+  const { data } = await api.get<IGetBiblesResponse>("/api/discipleship/bibles", {
+    params: {
+      yearMonth,
+    },
+  });
 
   return data;
 };

@@ -1,6 +1,8 @@
+import { YearMonthType } from "type";
+
 const bibleKeys = {
   all: ["bible"],
-  list: () => [...bibleKeys.all, "list"],
+  list: (yearMonth: YearMonthType) => [...bibleKeys.all, "list", yearMonth],
   detail: (bibleId: string) => [...bibleKeys.all, "detail", bibleId],
 };
 
