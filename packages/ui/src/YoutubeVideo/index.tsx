@@ -6,10 +6,11 @@ interface IYoutubeVideoProps {
   videoId?: string;
   className?: string;
   isPlaylist?: boolean;
+  isFullLink?: boolean;
 }
 
-export const YoutubeVideo = ({ videoId, className, isPlaylist }: IYoutubeVideoProps) => {
-  const formattedVideoId = getYoutubeId({ url: videoId });
+export const YoutubeVideo = ({ videoId, className, isPlaylist, isFullLink = false }: IYoutubeVideoProps) => {
+  const formattedVideoId = isFullLink ? getYoutubeId({ url: videoId }) : videoId;
 
   const opts = {
     playerVars: {
