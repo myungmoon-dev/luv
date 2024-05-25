@@ -25,9 +25,10 @@ const HomeWorshipDetail = () => {
   const isUsersHomeWorship = userId === homeWorship.userId;
 
   const handleClickDelete = () => {
+    if (!userId) return;
     if (!confirm("삭제하시겠습니까?")) return;
     mutate(
-      { homeWorshipId },
+      { homeWorshipId, userId },
       {
         onSuccess: () => {
           alert("삭제되었습니다.");
