@@ -1,11 +1,20 @@
 import { useGetBibles } from "@/query/discipleship";
 import { useRouter } from "next/navigation";
-import React from "react";
-import { Spinner, Table } from "ui";
+import React, { useState } from "react";
+import { YearMonthType } from "type";
+import { DateTab, Spinner, Table } from "ui";
+
+const DATE_TAB: YearMonthType[] = ["2024-04", "2024-05", "2024-06", "2024-07"];
 
 const DiscipleShipBiblesPage = () => {
   const { push } = useRouter();
-  const { data } = useGetBibles();
+  const [currentTap, setCurrentTap] = useState<YearMonthType>("2024-04");
+
+  const { data } = useGetBibles({ yearMonth: currentTap });
+
+  const onClickTab = (tab: YearMonthType) => {
+    setCurrentTap(tab);
+  };
 
   if (!data)
     return (
@@ -16,6 +25,7 @@ const DiscipleShipBiblesPage = () => {
 
   return (
     <div className="px-24 py-10">
+      <DateTab selectedTab={currentTap} tabs={DATE_TAB} onClickTab={onClickTab} />
       <Table
         data={data.bibles.map((bible) => ({
           id: bible.id,

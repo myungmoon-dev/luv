@@ -4,8 +4,9 @@ import { educationInfantsMenus, educationInnerMenus } from "@/constants/innerMen
 import Tabs from "@/components/layout/tabs";
 import { DateTab, SectionHeader } from "ui";
 import PhotoList from "@/components/photos/photoList";
+import { YearMonthType } from "type";
 
-const tabList: string[] = ["4월", "3월", "2월"];
+const tabList: YearMonthType[] = ["2024-04", "2024-03", "2024-02"];
 const photoList = [
   { title: "test", date: "20202020", image: "/images/next-g.jpeg" },
   { title: "test", date: "20202020", image: "/images/next-g.jpeg" },
@@ -13,16 +14,16 @@ const photoList = [
 ];
 
 const EducationInfantsPhotosPage = () => {
-  const [selectedTabIndex, setSelectedTabIndex] = useState(0);
+  const [selectedTabIndex, setSelectedTabIndex] = useState<YearMonthType>("2024-04");
 
-  const onClickTab = (index: number) => {
-    setSelectedTabIndex(index);
+  const onClickTab = (yearMonth: YearMonthType) => {
+    setSelectedTabIndex(yearMonth);
   };
 
   useEffect(() => {
     // 렌더링 시, 탭 초기화
     if (tabList.length > 0) {
-      setSelectedTabIndex(0);
+      setSelectedTabIndex("2024-04");
     }
   }, [tabList]);
   return (

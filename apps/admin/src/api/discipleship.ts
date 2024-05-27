@@ -1,4 +1,4 @@
-import { IBibleForm } from "type";
+import { IBibleForm, YearMonthType } from "type";
 import { IGetBibleResponse, IGetBiblesResponse } from "@/types/discipleship/bible/response";
 import { api } from ".";
 
@@ -8,8 +8,12 @@ export const postBible = async (bible: IBibleForm) => {
   return data;
 };
 
-export const getBibles = async () => {
-  const { data } = await api.get<IGetBiblesResponse>("/api/discipleship/bibles");
+export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
+  const { data } = await api.get<IGetBiblesResponse>("/api/discipleship/bibles", {
+    params: {
+      yearMonth,
+    },
+  });
 
   return data;
 };
