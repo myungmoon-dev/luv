@@ -1,10 +1,18 @@
-import { IBibleForm } from "type";
+import { IBibleForm, YearMonthType } from "type";
 
-import { addDoc, collection, getDocs, orderBy, query, doc, getDoc } from "firebase/firestore";
+import { addDoc, collection, getDocs, orderBy, query, doc, getDoc, where } from "firebase/firestore";
 import { database, collections } from ".";
 
-export const getBibles = async () => {
-  const getQuery = query(collection(database, collections.bible), orderBy("date", "desc"));
+export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
+  const startDate = `${yearMonth}-01`;
+  const endDate = `${yearMonth}-31`;
+
+  const getQuery = query(
+    collection(database, collections.bible),
+    orderBy("date", "desc"),
+    where("date", ">=", startDate),
+    where("date", "<=", endDate)
+  );
 
   const snapshot = await getDocs(getQuery);
 
