@@ -15,7 +15,7 @@ const LeadershipMinisterPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <ProfileList tabType="minister" className="lg:grid-cols-2" />
+        <ProfileList tabType="minister" className="lg:grid-cols-2 xl:grid-cols-3" />
       </Tabs>
     </Layout>
   );

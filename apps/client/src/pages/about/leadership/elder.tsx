@@ -15,7 +15,7 @@ const LeadershipElderPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <ProfileList tabType="elder" className="lg:grid-cols-2 2xl:grid-cols-3" />
+        <ProfileList tabType="elder" className="md:grid-cols-2 xl:grid-cols-3" />
       </Tabs>
     </Layout>
   );
