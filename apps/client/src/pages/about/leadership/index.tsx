@@ -6,7 +6,7 @@ import CustomImage from "@/components/customImage";
 const LeadershipIndexPage = () => {
   return (
     <Layout
-      pageTitle="섬기는 분들"
+      pageTitle="섬기는 분들-담임목사"
       title="섬기는 분들"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/about/banner2.jpg"
