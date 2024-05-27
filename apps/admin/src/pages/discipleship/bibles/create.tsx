@@ -25,11 +25,17 @@ const DiscipleshipBibleCreatePage = () => {
   const { mutate } = usePostBible();
 
   const onSubmit: SubmitHandler<IBibleForm> = (data) => {
-    const youtubeLinks = data.links.map((link) => getYoutubeId({ url: link.name }));
+    const youtubeLinks = data.links.map((link) => ({
+      name: getYoutubeId({ url: link.name }) || "",
+      isPlaylist: link.isPlaylist,
+    }));
 
     if (youtubeLinks.some((link) => link === null)) return alert("youtube link를 다시 확인해주세요.");
 
-    mutate(data, { onSuccess: () => alert("완료"), onError: () => alert("에러 발생") });
+    mutate(
+      { content: data.content, date: data.date, title: data.title, links: youtubeLinks },
+      { onSuccess: () => alert("완료"), onError: () => alert("에러 발생") }
+    );
   };
 
   const handleChangeContent = (value: string) => {
