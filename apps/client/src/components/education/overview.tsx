@@ -79,7 +79,7 @@ const EDUCATION_DATA: IEducationData[] = [
     type: "elementary",
     department: "예빛",
     introduction:
-      "우리는 예!빛!\n안녕하세요 유초등부 연합공동체 예빛입니다!\n예빛은 '예수님은 우리의 빛이세요'와 '우리는 예수님의 빛 아이에요'의 줄임말 입니다!",
+      "우리는 예!빛!\n안녕하세요 유초등부 연합공동체 예빛입니다!\n예빛은 '예수님은 우리의 빛이세요'와 '우리는 예수님의 빛 아이에요'의 줄임말입니다!",
     target: "초등학생",
     time: "11:30 - 12:30",
     place: "사랑채플 2층 무용실",
@@ -156,6 +156,30 @@ const EDUCATION_DATA: IEducationData[] = [
       {
         keyword: "Disciple",
         value: "세상으로 흘러가 이웃 섬김을 실천하는 제자도",
+      },
+    ],
+    mainImg: "/images/education/vision1.jpg",
+  },
+  {
+    type: "2youth",
+    department: "M'embers",
+    introduction:
+      "명문교회 2청년부 M'embers [M(yungmoon) embers, 명문교회의 불씨들]는 하나님을 경외하고 사랑하는 20~27세 청년들이 함께 모여 예배하는 공동체입니다.",
+    target: "20-27세 청년",
+    time: "14:00 - 16:30",
+    place: "독산동 비전채플 3층",
+    coreministry: [
+      {
+        keyword: "말씀 공동체",
+        value: "말씀과 기도를 통해 복음의 능력을 경험하는 청년부",
+      },
+      {
+        keyword: "나눔 공동체",
+        value: "각종 모임(순모임, Vip's 모임, 또래모임 등)과 교제를 통해 서로 하나되는 청년부",
+      },
+      {
+        keyword: "섬김 공동체",
+        value: "세상 속에서 예수님의 손과 발이 되어 섬기는 청년부",
       },
     ],
     mainImg: "/images/education/vision1.jpg",

@@ -17,15 +17,15 @@ interface ITableProps {
 export const Table = ({ data, className, onClickRow }: ITableProps) => {
   return (
     <div className={cn("ui-text-center", className)}>
-      <div className="ui-flex ui-font-bold ui-py-3">
+      <div className="ui-flex ui-py-3">
         <div className="ui-w-[30%]">
-          <p>날짜</p>
+          <p className="font-SCoreDream">날짜</p>
         </div>
         <div className="ui-w-[50%]">
-          <p>제목</p>
+          <p className="font-SCoreDream">제목</p>
         </div>
         <div className="ui-w-[20%]">
-          <p>작성자</p>
+          <p className="font-SCoreDream">작성자</p>
         </div>
       </div>
       <hr className="ui-border-gray-100" />
@@ -33,7 +33,11 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
         {data.length > 0 ? (
           data.map((row) => (
             <>
-              <div className="ui-flex ui-py-3 ui-cursor-pointer" key={row.id} onClick={() => onClickRow?.(row.id)}>
+              <div
+                className="ui-flex ui-py-3 ui-cursor-pointer text-sm md:text-base"
+                key={row.id}
+                onClick={() => onClickRow?.(row.id)}
+              >
                 <div className="ui-w-[30%]">
                   <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
                 </div>

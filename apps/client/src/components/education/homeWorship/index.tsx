@@ -15,11 +15,11 @@ const HomeWorships = () => {
     );
 
   return (
-    <div className="flex flex-col gap-10 px-20">
+    <div className="flex flex-col gap-10 px-3 md:px-20 2xl:max-w-screen-lg 2xl:mx-auto">
       <div className="flex justify-end">
         <button
           onClick={() => push("/education/home-worship/create")}
-          className="rounded-md bg-blue-500 px-2 py-1 text-white"
+          className="rounded-md bg-blue-500 px-3 py-2 font-SCoreDream text-white"
         >
           인증하기
         </button>
