@@ -36,7 +36,7 @@ const EducationInfantsPhotosPage = () => {
     >
       <Tabs menus={educationInfantsMenus}>
         <SectionHeader text="2024년" selected={true} size="sm" />
-        <DateTab tabs={tabList} selectedTabIndex={selectedTabIndex} onClickTab={onClickTab} />
+        <DateTab tabs={tabList} selectedTab={selectedTabIndex} onClickTab={onClickTab} />
         <PhotoList photoList={photoList} />
       </Tabs>
     </Layout>
