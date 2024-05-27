@@ -22,5 +22,5 @@ export interface IWorshipService {
   label: string;
   time: string;
   place: string;
-  worship: "주일" | "평일";
+  worship: "주일" | "평일" | "다음세대";
 }

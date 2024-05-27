@@ -23,6 +23,10 @@ const AboutServicesPage = () => {
           <SectionHeader text="평일예배" hasLine={true} selected={true} size="sm" />
           <ServicesTable worship="평일" />
         </div>
+        <div className="flex w-full flex-col items-center justify-center gap-5">
+          <SectionHeader text="다음세대예배" hasLine={true} selected={true} size="sm" />
+          <ServicesTable worship="다음세대" />
+        </div>
       </div>
     </Layout>
   );

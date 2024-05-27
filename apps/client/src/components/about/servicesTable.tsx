@@ -31,7 +31,12 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     place: "서울여상 사랑채플 강당",
     worship: "주일",
   },
-
+  {
+    label: "새벽예배",
+    time: "오전 5시",
+    place: "독산동 비전채플 3층",
+    worship: "평일",
+  },
   {
     label: "수요 예배(오전)",
     time: "오전 10시30분",
@@ -49,6 +54,36 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     time: "오후 8시30분",
     place: "독산동 비전채플 3층",
     worship: "평일",
+  },
+  {
+    label: "영아부",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 2층 체조실",
+    worship: "다음세대",
+  },
+  {
+    label: "유치부",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 1층 창작나눔실",
+    worship: "다음세대",
+  },
+  {
+    label: "예빛(초등부)",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 2층 무용실",
+    worship: "다음세대",
+  },
+  {
+    label: "중고등부",
+    time: "오전 9시30분",
+    place: "독산동 비전채플 3층",
+    worship: "다음세대",
+  },
+  {
+    label: "청년부",
+    time: "오후 2시",
+    place: "독산동 비전채플 3층",
+    worship: "다음세대",
   },
 ];
 
@@ -78,7 +113,7 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
           <p className="flex items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
             {service.time}
           </p>
-          <p className="text-center text-xs sm:text-sm">{service.place}</p>
+          <p className="break-keep text-center text-xs sm:text-sm">{service.place}</p>
         </div>
       ))}
     </div>
