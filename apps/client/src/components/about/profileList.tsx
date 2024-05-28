@@ -58,7 +58,7 @@ const staffProfiles = [
   },
   {
     description: "2023년 12월 부임",
-    image: "/images/leader/gyu-bo.jpeg",
+    image: "/images/leader/gyu-bo.png",
     name: "김규보",
     position: "상담사역 (총신대 상담학 교수)",
     tabType: "minister",
@@ -66,7 +66,7 @@ const staffProfiles = [
   },
   {
     description: "2004년 1월 부임",
-    image: "/images/leader/mae-sil.jpeg",
+    image: "/images/leader/mae-sil.png",
     name: "박매실",
     position: "1교구, 신혼부부, 차량위원회",
     tabType: "minister",
@@ -74,7 +74,7 @@ const staffProfiles = [
   },
   {
     name: "이능옥",
-    image: "/images/leader/neung-oak.jpeg",
+    image: "/images/leader/neung-oak.png",
     description: "2008년 1월 부임",
     position: "2교구, 실버구역, 새가족부, 새가족위원회",
     tabType: "minister",
@@ -91,7 +91,7 @@ const staffProfiles = [
   {
     name: "김화선",
     description: "2023년 12월 부임",
-    image: "/images/leader/hwa-seon.jpeg",
+    image: "/images/leader/hwa-seon.png",
     position: "영아부, 엄마QT학교",
     tabType: "minister",
     officerType: "evangelist",
