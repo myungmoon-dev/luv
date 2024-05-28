@@ -50,25 +50,16 @@ const NavSection = () => {
   return (
     <div className="relative">
       <div className="absolute left-0 top-0 z-[1] h-full w-full bg-black/40" />
-      <div className="relative h-[600px] w-full md:h-[800px]">
+      <div className="relative h-[500px] w-full md:h-[800px]">
         <Image src="/images/home/section3.jpg" alt="" fill={true} className="object-cover" />
       </div>
-      <div className="absolute left-0 top-0 z-[1] flex w-full h-full flex-col gap-12 px-8 py-16 md:gap-32 xl:gap-20">
+      <div className="absolute left-0 top-0 z-[1] flex w-full h-full flex-col md:justify-center gap-12 px-8 py-16 md:gap-32 xl:gap-40">
         <div className="flex flex-col gap-3 sm:gap-8 text-white">
           <div data-aos="fade-up" className="h-1 w-1/2 bg-white" />
           <div data-aos="fade-up" className="flex flex-col sm:gap-1 md:gap-3 font-SCoreDream w-full sm:text-xl font-bold md:text-4xl lg:text-5xl xl:text-6xl">
             <p>명문교회 홈페이지를 방문해주신 여러분을</p>
             <p>주님의 이름으로 환영하고 축복합니다.</p>
           </div>
-          <p data-aos="fade-up" className="font-Cormorant text-xl leading-5 md:text-4xl">
-            Thank you for visiting
-            <br />
-            the Myungmoon Church website.
-            <br />
-            We welcome and bless you
-            <br />
-            in the name of the Lord.
-          </p>
         </div>
         <div className="grid w-full grid-cols-2 gap-10 md:grid-cols-4 md:gap-3">
           {navList.map((nav, idx) => (
