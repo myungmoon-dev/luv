@@ -61,7 +61,7 @@ export const Banner = ({
                 </h1>
               </div>
               <div className="ui-justify-center ui-flex ui-pb-10 ui-mb-20">
-                <p className="ui-font-bold text-3xl md:ui-text-5xl ui-font-SCoreDream ui-text-white">
+                <p className="ui-text-3xl md:ui-text-5xl ui-font-SCoreDream ui-text-white">
                   {title}
                 </p>
               </div>
