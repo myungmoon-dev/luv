@@ -84,9 +84,9 @@ const AboutLogoWithVision = () => {
         />
         <div
           data-aos="fade-right"
-          className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-base md:font-normal lg:w-1/2 xl:w-2/5 2xl:w-1/3 2xl:text-xl"
+          className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-2xl md:font-normal lg:w-1/2 lg:text-3xl lg:font-semibold xl:w-3/5 2xl:w-1/2"
         >
-          <p className="w-fit border-b-2 border-white pb-[2px] font-SCoreDream text-2xl font-semibold sm:text-4xl md:pb-2 md:text-5xl">
+          <p className="w-fit border-b-2 border-white pb-[2px] font-SCoreDream text-2xl font-semibold sm:text-4xl md:mb-2 md:pb-2 md:text-5xl">
             명문교회 로고
           </p>
           <p className="break-keep">명문의 첫 두글자 영문 MM을 형상화하여 만들어졌습니다.</p>
@@ -95,7 +95,7 @@ const AboutLogoWithVision = () => {
             나타나있습니다.
           </p>
           <p className="break-keep">
-            생명의문은 열려진 형태이며, 누구든지 하나님의 은혜 앞에 나오는 사람은 생명의 이름을 얻고 구원의 길을 가게
+            생명의 문은 열려진 형태이며, 누구든지 하나님의 은혜 앞에 나오는 사람은 생명의 이름을 얻고 구원의 길을 가게
             됩니다.
           </p>
         </div>
