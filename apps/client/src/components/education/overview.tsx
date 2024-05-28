@@ -3,7 +3,7 @@ import EducationInformationSection from "./section/information";
 import EducationIntroductionSection from "./section/introduction";
 
 interface IEducationOverViewProps {
-  type: "infants" | "toddlers" | "elementary" | "middle" | "high" | "2youth" | "3youth";
+  type: "infants" | "toddlers" | "elementary" | "middle" | "high" | "2youth" | "1youth";
 }
 
 interface IEducationData {
@@ -180,6 +180,26 @@ const EDUCATION_DATA: IEducationData[] = [
       {
         keyword: "섬김 공동체",
         value: "세상 속에서 예수님의 손과 발이 되어 섬기는 청년부",
+      },
+    ],
+    mainImg: "/images/education/vision1.jpg",
+  },
+  {
+    type: "1youth",
+    department: "1청년부",
+    introduction:
+      "명문교회 1청년부는 28세 이상의 청년들이 말씀 앞에서 삶과 신앙의 성숙을 이루어가기 위해 모인 공동체 입니다. ",
+    target: "28세 이상 청년",
+    time: "14:00 - 16:30",
+    place: "독산동 비전채플 3층",
+    coreministry: [
+      {
+        keyword: "Along",
+        value: "교회 곳곳에 흩어져 섬김에 최선을 다하고",
+      },
+      {
+        keyword: "Togther",
+        value: "함께 모여 예배하고 교제하며 하나됨을 이룬다.",
       },
     ],
     mainImg: "/images/education/vision1.jpg",
