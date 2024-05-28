@@ -20,7 +20,7 @@ const LeadershipRetiredPage = () => {
             <Image src="/images/leader/deok-jin.jpeg" alt="이덕진 원로목사" fill className="object-cover" />
           </div>
           <div className="flex max-w-sm flex-grow flex-col gap-5 pt-10">
-            <div className="flex items-center gap-3 border-b-[1px] border-gray-300 pb-2">
+            <div className="flex flex-col items-center gap-3 border-b-[1px] border-gray-300 pb-2 md:flex-row">
               <h2 className="text-lg font-bold md:text-2xl">이덕진</h2>
               <p className="text-sm font-[500] md:text-xl">원로목사</p>
             </div>

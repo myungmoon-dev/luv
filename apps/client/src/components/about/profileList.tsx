@@ -44,7 +44,7 @@ const staffProfiles = [
     description: "2023년 1월 부임",
     image: "/images/leader/jae-jun.png",
     name: "정재준",
-    position: "새가족위원회, 선교위원회, 주일예배, 찬양인도(1부)",
+    position: "새가족위원회, 선교위원회, 주일예배",
     tabType: "minister",
     officerType: "associate",
   },
