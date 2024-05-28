@@ -74,7 +74,7 @@ const AboutIntroduction = () => {
           </div>
           <div
             data-aos="fade-up"
-            className="flex w-full flex-col justify-center gap-4 text-2xl text-white md:w-2/3 md:text-3xl lg:text-5xl xl:w-1/2"
+            className="flex w-full flex-col justify-center gap-4 text-xl text-white md:w-2/3 md:text-3xl lg:text-5xl xl:w-1/2"
           >
             <p>명문교회는</p>
             <p className="font-bold">'지역과 민족을 품고</p>

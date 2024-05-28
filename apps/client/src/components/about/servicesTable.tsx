@@ -31,7 +31,12 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     place: "서울여상 사랑채플 강당",
     worship: "주일",
   },
-
+  {
+    label: "새벽예배",
+    time: "오전 5시",
+    place: "독산동 비전채플 3층",
+    worship: "평일",
+  },
   {
     label: "수요 예배(오전)",
     time: "오전 10시30분",
@@ -50,6 +55,36 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     place: "독산동 비전채플 3층",
     worship: "평일",
   },
+  {
+    label: "영아부",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 2층 체조실",
+    worship: "다음세대",
+  },
+  {
+    label: "유치부",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 1층 창작나눔실",
+    worship: "다음세대",
+  },
+  {
+    label: "예빛(초등부)",
+    time: "오전 11시30분",
+    place: "서울여상 사랑채플 2층 무용실",
+    worship: "다음세대",
+  },
+  {
+    label: "중고등부",
+    time: "오전 9시30분",
+    place: "독산동 비전채플 3층",
+    worship: "다음세대",
+  },
+  {
+    label: "청년부",
+    time: "오후 2시",
+    place: "독산동 비전채플 3층",
+    worship: "다음세대",
+  },
 ];
 
 interface IServicesTableProps {
@@ -62,7 +97,7 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
       {/* th */}
       <div className="mb-3 grid min-h-[50px] w-full grid-cols-3 items-center gap-5 rounded-md bg-gray-200">
         <p className="text-center font-bold tracking-widest">구 분</p>
-        <p className="flex h-1/2 items-center justify-center border-l-2 border-r-2 border-l-pink-100 border-r-pink-100 text-center font-bold tracking-widest">
+        <p className="flex items-center justify-center border-l-2 border-r-2 border-l-blue-500 border-r-blue-500 text-center font-bold tracking-widest">
           시 간
         </p>
         <p className="text-center font-bold tracking-widest">장 소</p>
@@ -75,10 +110,10 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
           className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b-2 border-b-gray-200"
         >
           <p className="text-center text-xs sm:text-sm">{service.label}</p>
-          <p className="flex h-full items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
+          <p className="flex items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
             {service.time}
           </p>
-          <p className="text-center text-xs sm:text-sm">{service.place}</p>
+          <p className="break-keep text-center text-xs sm:text-sm">{service.place}</p>
         </div>
       ))}
     </div>
