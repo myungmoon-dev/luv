@@ -122,7 +122,7 @@ const AboutIntroduction = () => {
           </div>
         </div>
         <div className="absolute h-full w-full">
-          <CustomImage className="h-full" src="/images/about/promise.png" alt="비전 이미지" />
+          <CustomImage className="h-full" src="/images/about/promise.jpg" alt="비전 이미지" />
         </div>
       </div>
 
