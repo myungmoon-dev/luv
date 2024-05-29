@@ -9,6 +9,13 @@ import AOS from "aos";
 
 import "aos/dist/aos.css";
 import useAuth from "@/hooks/useAuth";
+import { IInnerMenu } from "@/constants/innerMenus/types";
+import { aboutInnerMenus } from "@/constants/innerMenus/about";
+import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
+import { educationInnerMenus } from "@/constants/innerMenus/education";
+import { newsInnerMenus } from "@/constants/innerMenus/news";
+import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
+import { DrawerMenuKey } from "type/src/common";
 
 interface LayoutProps {
   children: ReactNode;
@@ -48,6 +55,16 @@ const Layout = ({
   useAuth({ mustLogin });
   const { asPath, push } = useRouter();
 
+  const addKeyToMenus = (menus: IInnerMenu[], key: DrawerMenuKey) => menus.map(menu => ({ ...menu, key: key }));
+  
+  const allDetailMenus = [
+    ...addKeyToMenus(aboutInnerMenus, "/about"),
+    ...addKeyToMenus(sermonsInnerMenus, "/sermons"),
+    ...addKeyToMenus(educationInnerMenus, "/education"),
+    ...addKeyToMenus(newsInnerMenus, "/news"),
+    ...addKeyToMenus(discipleshipInnerMenus, "/discipleship"),
+  ];
+
   useEffect(() => {
     AOS.init({ once: true, duration: 1300 });
   }, []);
@@ -66,7 +83,7 @@ const Layout = ({
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
-        <Header push={push} asPath={asPath} />
+        <Header push={push} asPath={asPath} detailMenus={allDetailMenus} />
         {customBanner ? (
           customBanner
         ) : (

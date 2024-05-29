@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-
+import { ReactNode, useEffect, useState } from "react";
 import DrawerLib from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
 
@@ -11,9 +10,47 @@ interface IDrawerProps {
   onClose?: () => void;
 }
 
-export const Drawer = ({ direction = "right", open = false, className, children, onClose }: IDrawerProps) => {
+export const Drawer = ({
+  direction = "right",
+  open = false,
+  className,
+  children,
+  onClose,
+}: IDrawerProps) => {
+  const [drawerSize, setDrawerSize] = useState("");
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width >= 1280) {
+        setDrawerSize("550px");
+      } else if (width >= 1024) {
+        setDrawerSize("550px");
+      } else if (width >= 768) {
+        setDrawerSize("50vw");
+      } else {
+        setDrawerSize("300px");
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
-    <DrawerLib direction={direction} open={open} className={className} onClose={onClose}>
+    <DrawerLib
+      direction={direction}
+      open={open}
+      className={className}
+      onClose={onClose}
+      size={drawerSize}
+      lockBackgroundScroll={true}
+    >
       {children}
     </DrawerLib>
   );
