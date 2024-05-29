@@ -98,7 +98,7 @@ const AboutIntroduction = () => {
             <p className="py-5 font-SCoreDream text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
               명문교회는,
             </p>
-            <p>지난 36년간 지역사회 목음화와 세계 선교를 위해</p>
+            <p>지난 36년간 지역사회 복음화와 세계 선교를 위해</p>
             <p>그리고 다음 세대 믿음의 자녀들을 위해</p>
             <p>눈물로 기도하며 헌신하였습니다.</p>
           </div>
