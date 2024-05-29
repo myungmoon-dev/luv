@@ -5,13 +5,7 @@ import Tabs from "@/components/layout/tabs";
 import { DateTab, SectionHeader } from "ui";
 import PhotoList from "@/components/photos/photoList";
 import { YearMonthType } from "type";
-
-const tabList: { date: YearMonthType; label: string }[] = [
-  { label: "4월", date: "2024-04" },
-  { label: "5월", date: "2024-05" },
-  { label: "6월", date: "2024-06" },
-  { label: "7월", date: "2024-07" },
-];
+import { useDateTab } from "helper";
 
 const photoList = [
   { title: "test", date: "20202020", image: "/images/next-g.jpeg" },
@@ -21,6 +15,14 @@ const photoList = [
 
 const EducationInfantsPhotosPage = () => {
   const [selectedTabIndex, setSelectedTabIndex] = useState<YearMonthType>("2024-04");
+  const [dateTabs, setDateTabs] = useState<{ date: YearMonthType; label: string }[]>([
+    { label: "04월", date: "2024-04" },
+    { label: "05월", date: "2024-05" },
+    { label: "06월", date: "2024-06" },
+    { label: "07월", date: "2024-07" },
+  ]);
+
+  const { handleClickNext, handleClickPrev } = useDateTab({ setDateTabs });
 
   const onClickTab = (yearMonth: YearMonthType) => {
     setSelectedTabIndex(yearMonth);
@@ -28,10 +30,10 @@ const EducationInfantsPhotosPage = () => {
 
   useEffect(() => {
     // 렌더링 시, 탭 초기화
-    if (tabList.length > 0) {
+    if (dateTabs.length > 0) {
       setSelectedTabIndex("2024-04");
     }
-  }, [tabList]);
+  }, [dateTabs]);
   return (
     <Layout
       pageTitle="영아부"
@@ -43,7 +45,13 @@ const EducationInfantsPhotosPage = () => {
     >
       <Tabs menus={educationInfantsMenus}>
         <SectionHeader text="2024년" selected={true} size="sm" />
-        <DateTab tabs={tabList} selectedTab={selectedTabIndex} onClickTab={onClickTab} />
+        <DateTab
+          tabs={dateTabs}
+          selectedTab={selectedTabIndex}
+          onClickTab={onClickTab}
+          onClickPrev={handleClickPrev}
+          onClickNext={handleClickNext}
+        />
         <PhotoList photoList={photoList} />
       </Tabs>
     </Layout>

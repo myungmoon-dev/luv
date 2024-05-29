@@ -1,19 +1,21 @@
 import { useGetBibles } from "@/query/discipleship";
+import { useDateTab } from "helper";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { YearMonthType } from "type";
 import { DateTab, Spinner, Table } from "ui";
 
-const DATE_TAB: { date: YearMonthType; label: string }[] = [
-  { label: "4월", date: "2024-04" },
-  { label: "5월", date: "2024-05" },
-  { label: "6월", date: "2024-06" },
-  { label: "7월", date: "2024-07" },
-];
-
 const DiscipleShipBiblesPage = () => {
   const { push } = useRouter();
   const [currentTap, setCurrentTap] = useState<YearMonthType>("2024-04");
+  const [dateTabs, setDateTabs] = useState<{ date: YearMonthType; label: string }[]>([
+    { label: "04월", date: "2024-04" },
+    { label: "05월", date: "2024-05" },
+    { label: "06월", date: "2024-06" },
+    { label: "07월", date: "2024-07" },
+  ]);
+
+  const { handleClickNext, handleClickPrev } = useDateTab({ setDateTabs });
 
   const { data } = useGetBibles({ yearMonth: currentTap });
 
@@ -30,7 +32,13 @@ const DiscipleShipBiblesPage = () => {
 
   return (
     <div className="px-24 py-10">
-      <DateTab selectedTab={currentTap} tabs={DATE_TAB} onClickTab={onClickTab} />
+      <DateTab
+        selectedTab={currentTap}
+        tabs={dateTabs}
+        onClickTab={onClickTab}
+        onClickPrev={handleClickPrev}
+        onClickNext={handleClickNext}
+      />
       <Table
         data={data.bibles.map((bible) => ({
           id: bible.id,

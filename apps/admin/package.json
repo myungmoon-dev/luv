@@ -17,7 +17,8 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.0",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "helper": "workspace:*"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-build-classic": "^41.2.1",

@@ -18,6 +18,7 @@
     "firebase": "workspace:*",
     "form-data": "^4.0.0",
     "framer-motion": "^11.1.7",
+    "helper": "workspace:*",
     "next": "14.1.2",
     "plaiceholder": "^3.0.0",
     "react": "^18",
