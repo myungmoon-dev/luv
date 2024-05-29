@@ -6,7 +6,13 @@ import { DateTab, SectionHeader } from "ui";
 import PhotoList from "@/components/photos/photoList";
 import { YearMonthType } from "type";
 
-const tabList: YearMonthType[] = ["2024-04", "2024-03", "2024-02"];
+const tabList: { date: YearMonthType; label: string }[] = [
+  { label: "4월", date: "2024-04" },
+  { label: "5월", date: "2024-05" },
+  { label: "6월", date: "2024-06" },
+  { label: "7월", date: "2024-07" },
+];
+
 const photoList = [
   { title: "test", date: "20202020", image: "/images/next-g.jpeg" },
   { title: "test", date: "20202020", image: "/images/next-g.jpeg" },

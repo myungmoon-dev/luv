@@ -4,7 +4,12 @@ import React, { useState } from "react";
 import { YearMonthType } from "type";
 import { DateTab, Spinner, Table } from "ui";
 
-const DATE_TAB: YearMonthType[] = ["2024-04", "2024-05", "2024-06", "2024-07"];
+const DATE_TAB: { date: YearMonthType; label: string }[] = [
+  { label: "4월", date: "2024-04" },
+  { label: "5월", date: "2024-05" },
+  { label: "6월", date: "2024-06" },
+  { label: "7월", date: "2024-07" },
+];
 
 const DiscipleShipBiblesPage = () => {
   const { push } = useRouter();
