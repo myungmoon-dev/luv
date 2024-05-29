@@ -1,5 +1,4 @@
 import { usePostHomeWorship } from "@/query/homeWorship";
-import useAuthStore from "@/store/auth";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -15,7 +14,6 @@ const Editor = dynamic(() => import("@/components/common/editor").then((mod) => 
 const HomeWorshipCreate = () => {
   const { push } = useRouter();
   const { register, handleSubmit } = useForm<IHomeWorshipForm>();
-  const uid = useAuthStore((state) => state.uid);
 
   const { mutate, isPending } = usePostHomeWorship();
 
@@ -24,34 +22,30 @@ const HomeWorshipCreate = () => {
   const onSubmit: SubmitHandler<IHomeWorshipForm> = async (data) => {
     const formData = new FormData();
 
-    if (!uid) {
-      alert("로그인이 필요합니다.");
-      push("/login");
-    } else {
-      if (data.image.length === 0 || !data.date || !data.title || !content) return alert("모든 정보를 입력해주세요.");
-      if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
+    if (data.image.length === 0 || !data.date || !data.title || !data.password || !data.userName || !content)
+      return alert("모든 정보를 입력해주세요.");
+    if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
-      formData.append("title", data.title);
-      formData.append("date", data.date);
-      formData.append("content", content);
+    formData.append("title", data.title);
+    formData.append("date", data.date);
+    formData.append("content", content);
+    formData.append("password", data.password);
+    formData.append("userName", data.userName);
 
-      Array.from(data.image).forEach((image) => {
-        formData.append(`image-file`, image);
-        formData.append(`image-name`, image.name);
-      });
+    Array.from(data.image).forEach((image) => {
+      formData.append(`image-file`, image);
+      formData.append(`image-name`, image.name);
+    });
 
-      formData.append("userId", uid);
-
-      mutate(formData, {
-        onSuccess: (res) => {
-          alert("추가되었습니다.");
-          push("/education/home-worship");
-        },
-        onError: (err) => {
-          alert("에러가 발생했습니다. 다시 시도해주세요.");
-        },
-      });
-    }
+    mutate(formData, {
+      onSuccess: (res) => {
+        alert("추가되었습니다.");
+        push("/education/home-worship");
+      },
+      onError: (err) => {
+        alert("에러가 발생했습니다. 다시 시도해주세요.");
+      },
+    });
   };
 
   return (
@@ -80,6 +74,14 @@ const HomeWorshipCreate = () => {
             <p className="text-xl font-bold">글</p>
             <Editor setValue={setContent} />
           </div>
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+            <p className="text-xl font-bold">작성자</p>
+            <input className="border px-2 py-1" {...register("userName")} />
+          </label>
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+            <p className="text-xl font-bold">비밀번호</p>
+            <input className="border px-2 py-1" type="password" {...register("password")} />
+          </label>
           <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white">
             인증하기
           </button>

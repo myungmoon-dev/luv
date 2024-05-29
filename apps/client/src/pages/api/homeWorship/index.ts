@@ -1,6 +1,6 @@
 import { api } from "@/api";
-import dayjs from "dayjs";
-import { getHomeWorships, getUser, postHomeWorship } from "firebase";
+import { hash } from "bcrypt";
+import { getHomeWorships, postHomeWorship } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
 import multer from "multer";
@@ -91,17 +91,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // 필드 검증 및 에러 처리
         if (!fields.date) return res.status(400).json({ result: "Missing required fields" });
 
-        const userDocs = await getUser({ userId: fields.userId });
-        const userName = userDocs.docs.map((doc) => doc.data().name).join(", ");
+        const hashPassword = async (password: string) => {
+          const hashedPassword = await hash(password, 10);
+          return hashedPassword;
+        };
+
+        const hashedPassword = await hashPassword(fields.password);
 
         const result = await postHomeWorship({
           image: contentImage,
           content: fields.content,
           date: fields.date,
           title: fields.title,
-          userId: fields.userId,
-          userName,
+          userName: fields.userName,
           createdAt: new Date().getTime(),
+          password: hashedPassword,
         });
 
         return res.status(200).json({

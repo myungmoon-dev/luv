@@ -8,6 +8,6 @@ export interface IHomeWorship extends IBoardBase {
 
 export interface IHomeWorshipForm extends IBoardFormBase {
   image: FileList;
-  userId: string;
   userName: string;
+  password: string;
 }
