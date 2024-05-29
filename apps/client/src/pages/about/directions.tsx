@@ -1,9 +1,6 @@
-import Layout from "@/components/layout";
-import React from "react";
-import { aboutInnerMenus } from "@/constants/innerMenus/about";
-import NotPrepared from "@/components/layout/notPrepared";
-import { SectionHeader } from "ui";
 import KakaoMap from "@/components/kakaomap";
+import Layout from "@/components/layout";
+import { aboutInnerMenus } from "@/constants/innerMenus/about";
 
 const AboutDirectionsPage = () => {
   return (
