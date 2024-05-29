@@ -4,6 +4,7 @@ import { getYoutube, createYoutube } from "./youtube";
 import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible } from "./discipleship";
 import { getHomeWorship, getHomeWorships, postHomeWorship, deleteHomeWorship } from "./homeWorship";
+import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
 import { YoutubeType } from "type";
 
@@ -16,6 +17,7 @@ const collections = {
   bible: "bible",
   user: "user",
   homeWorship: "homeWorship",
+  mission: "mission",
 };
 
 export {
@@ -34,4 +36,8 @@ export {
   postHomeWorship,
   getUser,
   deleteHomeWorship,
+  getMission,
+  getMissions,
+  postMission,
+  deleteMission,
 };

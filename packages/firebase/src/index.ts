@@ -17,6 +17,10 @@ import {
   postHomeWorship,
   postUser,
   deleteHomeWorship,
+  getMission,
+  getMissions,
+  postMission,
+  deleteMission,
 } from "./database";
 
 export {
@@ -38,4 +42,8 @@ export {
   postSignup,
   postUser,
   deleteHomeWorship,
+  getMission,
+  getMissions,
+  postMission,
+  deleteMission,
 };
