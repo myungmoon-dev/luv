@@ -30,4 +30,7 @@ jobs:
           NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}
           NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MSG_SENDER_ID }}
           NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
-        run: pnpm build:client
+        run: |
+          echo "NEXT_PUBLIC_KAKOMAP_KEY=${{ secrets.NEXT_PUBLIC_KAKOMAP_KEY }}"
+          echo "NEXT_PUBLIC_FIREBASE_API_KEY=${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}"
+          pnpm build:client
