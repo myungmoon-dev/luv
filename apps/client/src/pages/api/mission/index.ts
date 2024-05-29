@@ -4,6 +4,7 @@ import FormData from "form-data";
 import fs from "fs";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
+import { IUser } from "type";
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -91,7 +92,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         if (!fields.date) return res.status(400).json({ result: "Missing required fields" });
 
         const userDocs = await getUser({ userId: fields.userId });
-        const userName = userDocs.docs.map((doc) => doc.data().name).join(", ");
+
+        const user = userDocs.docs.map((doc) => ({ ...doc.data() }))[0] as IUser;
+
+        if (user.role !== "missionary") return res.status(403).json({ result: "선교사만 작성할 수 있습니다." });
+
+        const userName = user.name;
 
         const result = await postMission({
           image: contentImage,

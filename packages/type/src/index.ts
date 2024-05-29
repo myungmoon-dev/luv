@@ -4,6 +4,7 @@ import { IBible, IBibleForm } from "./bible";
 import { IHomeWorship, IHomeWorshipForm } from "./homeWorship";
 import { YearMonthType } from "./date";
 import { IMission, IMissionForm } from "./news";
+import { IUser } from "./user";
 
 export type {
   IBulletin,
@@ -20,4 +21,5 @@ export type {
   YearMonthType,
   IMission,
   IMissionForm,
+  IUser,
 };
