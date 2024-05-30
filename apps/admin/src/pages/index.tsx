@@ -4,8 +4,8 @@ import YoutubeSection from "@/components/home/youtube";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-20 justify-center items-center py-20">
-      <div className="grid grid-cols-2 gap-10">
+    <main className="flex flex-col gap-20 justify-center items-center py-20 bg-black">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
         <YoutubeSection sectionTitle="라이브 생방송 링크" type="live" />
         <YoutubeSection sectionTitle="쇼츠 링크" type="shorts" />
         <YoutubeSection sectionTitle="주일예배 링크" type="main" />
