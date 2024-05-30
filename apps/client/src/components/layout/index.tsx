@@ -55,8 +55,8 @@ const Layout = ({
   useAuth({ mustLogin });
   const { asPath, push } = useRouter();
 
-  const addKeyToMenus = (menus: IInnerMenu[], key: DrawerMenuKey) => menus.map(menu => ({ ...menu, key: key }));
-  
+  const addKeyToMenus = (menus: IInnerMenu[], key: DrawerMenuKey) => menus.map((menu) => ({ ...menu, key: key }));
+
   const allDetailMenus = [
     ...addKeyToMenus(aboutInnerMenus, "/about"),
     ...addKeyToMenus(sermonsInnerMenus, "/sermons"),
