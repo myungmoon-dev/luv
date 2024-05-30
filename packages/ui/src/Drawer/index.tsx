@@ -32,7 +32,7 @@ export const Drawer = ({
       } else {
         setDrawerSize("300px");
       }
-    }, 200);
+    }, 1000);
     handleResize();
 
     window.addEventListener("resize", handleResize);
