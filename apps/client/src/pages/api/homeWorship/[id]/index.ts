@@ -1,10 +1,11 @@
+import { compare } from "bcrypt";
 import { deleteHomeWorship, getHomeWorship } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query, body } = req;
 
-  const userId = body?.userId;
+  const password = body?.password;
 
   const homeWorshipId = query.id as string;
 
@@ -19,11 +20,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     case "DELETE": {
       const homeWorship = (await getHomeWorship(homeWorshipId)).data();
-      const homeWorshipUserId = homeWorship?.userId;
+      const homeWorshipPassword = homeWorship?.password;
 
-      if (userId !== homeWorshipUserId)
+      const comparePassword = async (password: string, hashedPassword: string) => {
+        const isMatch = await compare(password, hashedPassword);
+        return isMatch;
+      };
+
+      const isValidPassword = await comparePassword(password, homeWorshipPassword);
+
+      if (!isValidPassword)
         return res.status(403).json({
-          result: "본인의 게시물만 삭제할 수 있습니다.",
+          result: "비밀번호가 일치하지 않습니다.",
         });
 
       const snapshot = await deleteHomeWorship(homeWorshipId);

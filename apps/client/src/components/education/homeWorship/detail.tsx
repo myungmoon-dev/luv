@@ -1,5 +1,4 @@
 import { useDeleteHomeWorship, useGetHomeWorship } from "@/query/homeWorship";
-import useAuthStore from "@/store/auth";
 import dayjs from "dayjs";
 import { useParams, useRouter } from "next/navigation";
 import { SafeHTML, Spinner } from "ui";
@@ -8,7 +7,6 @@ const HomeWorshipDetail = () => {
   const { push } = useRouter();
   const params = useParams();
   const homeWorshipId = params?.id as string;
-  const userId = useAuthStore((state) => state.uid);
 
   const { data } = useGetHomeWorship({ homeWorshipId });
   const { mutate } = useDeleteHomeWorship();
@@ -22,13 +20,11 @@ const HomeWorshipDetail = () => {
 
   const homeWorship = data.homeWorship;
 
-  const isUsersHomeWorship = userId === homeWorship.userId;
-
   const handleClickDelete = () => {
-    if (!userId) return;
-    if (!confirm("삭제하시겠습니까?")) return;
+    const password = prompt("비밀번호를 입력해주세요.");
+    if (!password) return alert("비밀번호를 입력해주세요.");
     mutate(
-      { homeWorshipId, userId },
+      { homeWorshipId, password },
       {
         onSuccess: () => {
           alert("삭제되었습니다.");
@@ -50,11 +46,9 @@ const HomeWorshipDetail = () => {
           <p className="mb-10 text-sm text-slate-500">|</p>
           <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(homeWorship.createdAt).format("YYYY-MM-DD")}</p>
         </div>
-        {isUsersHomeWorship && (
-          <button onClick={handleClickDelete} className="mb-10 text-sm text-red-500">
-            삭제
-          </button>
-        )}
+        <button onClick={handleClickDelete} className="mb-10 text-sm text-red-500">
+          삭제
+        </button>
       </div>
       <div className="mb-10">
         <SafeHTML html={homeWorship.content} />
