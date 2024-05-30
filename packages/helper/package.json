@@ -1,0 +1,23 @@
+{
+  "name": "helper",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/eslint": "^8.44.7",
+    "@types/node": "^20.5.2",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "eslint": "^8.53.0",
+    "immer": "^10.1.1",
+    "react": "^18.2.0",
+    "type": "workspace:*",
+    "typescript": "^5.2.2"
+  }
+}

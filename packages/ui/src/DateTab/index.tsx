@@ -1,33 +1,43 @@
-import { ReactNode } from "react";
-import { cn } from "..";
 import { YearMonthType } from "type";
+import { cn } from "..";
 
 interface IDateTabProps {
-  tabs: YearMonthType[];
-  children?: ReactNode;
+  tabs: { date: YearMonthType; label: string }[];
   selectedTab: YearMonthType;
   onClickTab: (tab: YearMonthType) => void;
+  onClickPrev: () => void;
+  onClickNext: () => void;
 }
 
-export const DateTab = ({ children, tabs, selectedTab, onClickTab }: IDateTabProps) => {
+export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNext }: IDateTabProps) => {
   return (
-    <div className="ui-flex ui-w-full ui-flex-col ui-items-center ui-justify-center">
-      <div className="ui-mb-10 ui-grid ui-min-h-[50px] ui-w-full ui-max-w-3xl ui-grid-cols-4 ui-items-center ui-gap-5 ui-rounded-md ui-bg-gray-100 ui-px-3">
-        {tabs.map((tabName, index) => (
-          // tabItem
+    <div className="ui-relative ui-mb-10 ui-min-h-[50px]">
+      <button
+        onClick={onClickPrev}
+        className="ui-absolute ui-top-1/2 -ui-left-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
+      >
+        {"<"}
+      </button>
+      <div className="ui-flex ui-justify-evenly ui-rounded-md ui-w-full ui-bg-gray-100 ui-h-[50px] ui-items-center">
+        {tabs.map((tab) => (
           <div
-            key={index}
+            key={tab.date}
             className={cn(
               "ui-cursor-pointer ui-text-center ui-text-sm sm:ui-text-base hover:ui-font-bold hover:ui-text-blue-400",
-              selectedTab === tabName && "ui-font-bold ui-text-blue-500"
+              selectedTab === tab.date && "ui-font-bold ui-text-blue-500"
             )}
-            onClick={() => onClickTab(tabName)}
+            onClick={() => onClickTab(tab.date)}
           >
-            {tabName}
+            {tab.label}
           </div>
         ))}
       </div>
-      {children}
+      <button
+        onClick={onClickNext}
+        className="ui-absolute ui-top-1/2 -ui-right-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
+      >
+        {">"}
+      </button>
     </div>
   );
 };
