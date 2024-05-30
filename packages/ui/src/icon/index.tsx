@@ -1,3 +1,4 @@
+import { cn } from "..";
 import {
   IconCursorType,
   IconNameType,
@@ -12,6 +13,7 @@ export interface IIconPropsType {
   strokeColor?: string;
   backgroundColor?: string;
   cursor?: IconCursorType;
+  className?: string;
   onClick?: () => void;
 }
 
@@ -21,13 +23,14 @@ export const Icon = ({
   strokeColor = "black",
   backgroundColor,
   cursor = "ui-cursor-auto",
+  className,
   onClick,
 }: IIconPropsType) => {
   const IconComponent = icons[name as IconNameType];
 
   return (
     <div
-      className={`${widthSize[size]} ${cursor}`}
+      className={cn(`${widthSize[size]} ${cursor}`, className)}
       onClick={() => onClick && onClick()}
     >
       <IconComponent
