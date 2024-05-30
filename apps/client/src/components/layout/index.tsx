@@ -15,7 +15,6 @@ import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
-import { DrawerMenuKey } from "type/src/common";
 
 interface LayoutProps {
   children: ReactNode;
@@ -55,7 +54,7 @@ const Layout = ({
   useAuth({ mustLogin });
   const { asPath, push } = useRouter();
 
-  const addKeyToMenus = (menus: IInnerMenu[], key: DrawerMenuKey) => menus.map((menu) => ({ ...menu, key: key }));
+  const addKeyToMenus = (menus: IInnerMenu[], key: string) => menus.map((menu) => ({ ...menu, key }));
 
   const allDetailMenus = [
     ...addKeyToMenus(aboutInnerMenus, "/about"),

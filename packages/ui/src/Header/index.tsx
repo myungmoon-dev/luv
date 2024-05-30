@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Drawer, Icon, cn } from "..";
 import { throttle } from "lodash";
-import { DrawerMenuKey } from "type/src/common";
 
 interface IDetailMenu {
   label: string;
   path: string;
-  key: DrawerMenuKey;
+  key: string;
 }
 interface IHeaderProps {
   push: (url: string) => void;
@@ -75,8 +74,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
 
   const [isOpenDrawer, setOpenDrawer] = useState(false);
   const [isScrolled, setScrolled] = useState(false);
-  const [currentDrawerMenu, setCurrentDrawerMenu] =
-    useState<DrawerMenuKey>("/about");
+  const [currentDrawerMenu, setCurrentDrawerMenu] = useState<string>("/about");
 
   useEffect(() => {
     const updateScroll = throttle(() => {

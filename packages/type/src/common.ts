@@ -16,5 +16,3 @@ export interface IFile {
   file: File;
   name: string;
 }
-
-export type DrawerMenuKey = "/about" | "/sermons" | "/education" | "/news" | "/discipleship";
