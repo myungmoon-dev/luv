@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import DrawerLib from "react-modern-drawer";
 import "react-modern-drawer/dist/index.css";
+import throttle from "lodash/throttle";
 
 interface IDrawerProps {
   direction?: "left" | "right" | "top" | "bottom";
@@ -20,7 +21,7 @@ export const Drawer = ({
   const [drawerSize, setDrawerSize] = useState("");
 
   useEffect(() => {
-    const handleResize = () => {
+    const handleResize = throttle(() => {
       const width = window.innerWidth;
       if (width >= 1280) {
         setDrawerSize("550px");
@@ -31,14 +32,13 @@ export const Drawer = ({
       } else {
         setDrawerSize("300px");
       }
-    };
-
+    }, 200);
     handleResize();
 
     window.addEventListener("resize", handleResize);
-
     return () => {
       window.removeEventListener("resize", handleResize);
+      handleResize.cancel();
     };
   }, []);
 
