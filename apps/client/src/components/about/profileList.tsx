@@ -223,7 +223,7 @@ const staffProfiles = [
     officerType: "elder",
   },
   {
-    name: "조미현",
+    name: "조미훈",
     image: "/images/elder/jo_mh.png",
     position: "시설관리",
     tabType: "staff",
