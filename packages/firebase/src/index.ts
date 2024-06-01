@@ -21,6 +21,7 @@ import {
   getMissions,
   postMission,
   deleteMission,
+  getPinnedHomeWorships,
 } from "./database";
 
 export {
@@ -46,4 +47,5 @@ export {
   getMissions,
   postMission,
   deleteMission,
+  getPinnedHomeWorships,
 };

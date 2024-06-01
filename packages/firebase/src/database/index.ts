@@ -3,7 +3,13 @@ import { firebase } from "../../firebase";
 import { getYoutube, createYoutube } from "./youtube";
 import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible } from "./discipleship";
-import { getHomeWorship, getHomeWorships, postHomeWorship, deleteHomeWorship } from "./homeWorship";
+import {
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
+  deleteHomeWorship,
+  getPinnedHomeWorships,
+} from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
 import { YoutubeType } from "type";
@@ -40,4 +46,5 @@ export {
   getMissions,
   postMission,
   deleteMission,
+  getPinnedHomeWorships,
 };

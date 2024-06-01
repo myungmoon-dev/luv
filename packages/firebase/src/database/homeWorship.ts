@@ -1,9 +1,25 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
 import { IHomeWorshipForm } from "type/src/homeWorship";
 import { collections, database } from ".";
 
 export const getHomeWorships = async () => {
-  const getQuery = query(collection(database, collections.homeWorship), orderBy("date", "desc"));
+  const getQuery = query(
+    collection(database, collections.homeWorship),
+    where("isPinned", "!=", true),
+    orderBy("date", "desc")
+  );
+
+  const snapshot = await getDocs(getQuery);
+
+  return snapshot;
+};
+
+export const getPinnedHomeWorships = async () => {
+  const getQuery = query(
+    collection(database, collections.homeWorship),
+    where("isPinned", "==", true),
+    orderBy("date", "desc")
+  );
 
   const snapshot = await getDocs(getQuery);
 

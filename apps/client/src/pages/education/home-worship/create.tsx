@@ -9,7 +9,6 @@ const HomeWorshipCreatePage = () => {
       title="맛있는 가정예배"
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
-      mustLogin={true}
     >
       <HomeWorshipCreate />
     </Layout>
