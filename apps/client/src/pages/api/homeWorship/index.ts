@@ -1,6 +1,6 @@
 import { api } from "@/api";
 import { hash } from "bcrypt";
-import { getHomeWorships, postHomeWorship } from "firebase";
+import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
 import multer from "multer";
@@ -23,9 +23,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (method) {
     case "GET":
+      const pinnedHomeWorships =
+        (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
       const homeWorships = (await getHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
+
       return res.status(200).json({
-        homeWorships,
+        homeWorships: [...pinnedHomeWorships, ...homeWorships],
       });
 
     case "POST":
