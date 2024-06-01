@@ -1,6 +1,5 @@
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { Pagination, Spinner, Table } from "ui";
 
 const HomeWorships = () => {
@@ -15,11 +14,11 @@ const HomeWorships = () => {
     );
 
   return (
-    <div className="flex flex-col gap-10 px-3 md:px-20 2xl:max-w-screen-lg 2xl:mx-auto">
+    <div className="flex flex-col gap-10 px-3 md:px-20 2xl:mx-auto 2xl:max-w-screen-lg">
       <div className="flex justify-end">
         <button
           onClick={() => push("/education/home-worship/create")}
-          className="rounded-md bg-blue-500 px-3 py-2 font-SCoreDream text-white"
+          className="font-SCoreDream rounded-md bg-blue-500 px-3 py-2 text-white"
         >
           인증하기
         </button>
@@ -31,6 +30,7 @@ const HomeWorships = () => {
             date: homeWorship.date,
             title: homeWorship.title,
             writer: homeWorship.userName,
+            isPinned: homeWorship.isPinned,
           }))}
           onClickRow={(rowId) => push(`/education/home-worship/${rowId}`)}
         />

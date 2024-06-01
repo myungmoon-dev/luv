@@ -6,6 +6,7 @@ export interface ITableData {
   date: string;
   title: string;
   writer: string;
+  isPinned?: boolean;
 }
 
 interface ITableProps {
@@ -34,7 +35,10 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
           data.map((row) => (
             <>
               <div
-                className="ui-flex ui-py-3 ui-cursor-pointer text-sm md:text-base"
+                className={cn(
+                  "ui-flex ui-py-3 ui-cursor-pointer text-sm md:text-base",
+                  row.isPinned && "ui-font-bold ui-bg-blue-100"
+                )}
                 key={row.id}
                 onClick={() => onClickRow?.(row.id)}
               >
@@ -42,7 +46,9 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
                   <p>{dayjs(row.date).format("YYYY. MM. DD")}</p>
                 </div>
                 <div className="ui-w-[50%]">
-                  <p>{row.title}</p>
+                  <p>
+                    {row.isPinned && "[공지]"} {row.title}
+                  </p>
                 </div>
                 <div className="ui-w-[20%]">
                   <p>{row.writer}</p>
