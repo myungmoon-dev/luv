@@ -15,12 +15,10 @@ const Map = ({ isWhite, address, title }: IMapProps) => {
       data-aos-duration="700"
       className={cn("flex w-full", isWhite ? "justify-start" : "justify-end")}
     >
-      <div className={cn("flex w-[90%] flex-col md:w-3/5 2xl:w-1/2", isWhite ? "items-start text-white" : "items-end")}>
-        <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>
-          {title}
-        </p>
+      <div className={cn("flex w-full flex-col md:w-3/5 2xl:w-1/2", isWhite ? "items-start text-white" : "items-end")}>
+        <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>{title}</p>
         <p className="mb-2 md:text-lg">{address}</p>
-        <KakaoMap address={address} />
+        <KakaoMap address={address} height=" h-[230px] lg:h-[400px]" />
       </div>
     </div>
   );
@@ -29,7 +27,7 @@ const Map = ({ isWhite, address, title }: IMapProps) => {
 const MapSection = () => {
   return (
     <div className="relative">
-      <div className="relative h-[1000px] w-full lg:h-[1200px]">
+      <div className="relative h-[1000px] w-full lg:h-[1300px]">
         <Image src="/images/home/section4.png" alt="" fill={true} />
       </div>
       <div className="absolute left-0 top-0 flex w-full flex-col items-center gap-8 overflow-x-hidden px-8 pb-16 pt-24">
@@ -45,7 +43,7 @@ const MapSection = () => {
             data-aos="fade-up"
             data-aos-delay="150"
             data-aos-duration="1000"
-            className="text-center leading-7 md:text-xl"
+            className="break-keep text-center leading-7 md:text-xl"
           >
             명문교회 평일예배는 독산동 비전채플에서,
             <br />

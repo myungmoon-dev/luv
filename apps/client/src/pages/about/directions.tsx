@@ -14,14 +14,14 @@ const AboutDirectionsPage = () => {
     >
       <div className="mx-auto flex max-w-screen-lg flex-col gap-20 px-3">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <KakaoMap address="서울특별시 금천구 남부순환로 1406" />
+          <KakaoMap address="서울특별시 금천구 남부순환로 1406" height=" h-[230px] lg:h-[330px]" />
           <div className="flex flex-col items-center justify-center gap-3">
             <p className="text-xl font-bold text-blue-600">독산동 비전채플 (평일)</p>
             <p className="text-gray-600">서울특별시 금천구 남부순환로 1406</p>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-          <KakaoMap address="서울특별시 관악구 관악로 85" />
+          <KakaoMap address="서울특별시 관악구 관악로 85" height=" h-[230px] lg:h-[330px]" />
           <div className="flex flex-col items-center justify-center gap-3">
             <p className="text-xl font-bold text-blue-600">서울여상 사랑채플 (주일)</p>
             <p className="text-center text-gray-600">

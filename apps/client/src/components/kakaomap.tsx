@@ -1,13 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import Script from "next/script";
+import { cn } from "ui";
 
 declare const window: typeof globalThis & { kakao: any };
 
-type KakaoMapProp = {
+type KakaoMapProps = {
   address: string;
+  height: string;
 };
 
-const KakaoMap = ({ address }: KakaoMapProp) => {
+const KakaoMap = ({ address, height }: KakaoMapProps) => {
   const kakaoMapRef = useRef<HTMLInputElement>(null);
 
   const onLoadKakaoMap = () => {
@@ -58,7 +60,7 @@ const KakaoMap = ({ address }: KakaoMapProp) => {
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_KEY}&autoload=false&libraries=services`}
         onLoad={onLoadKakaoMap}
       />
-      <div ref={kakaoMapRef} className="ui-rounded-lg relative h-[230px] w-full lg:h-[330px]" />
+      <div ref={kakaoMapRef} className={cn("ui-rounded-lg relative w-full ", height)} />
     </>
   );
 };
