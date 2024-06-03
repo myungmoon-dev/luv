@@ -1,4 +1,12 @@
-import { addDoc, collection, query, orderBy, getDocs, limit, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  query,
+  orderBy,
+  getDocs,
+  limit,
+  getFirestore,
+} from "firebase/firestore";
 import { firebase } from "../../firebase";
 import { IYoutubeForm, YoutubeType } from "type";
 import { collections } from ".";
@@ -10,8 +18,12 @@ export interface IGetYoutubeListProps {
   videoCount?: number;
 }
 
-export const getYoutube = async ({ videoType, videoCount }: IGetYoutubeListProps) => {
-  const orderByField = videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
+export const getYoutube = async ({
+  videoType,
+  videoCount,
+}: IGetYoutubeListProps) => {
+  const orderByField =
+    videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
   const limitField = videoType === "shorts" || videoType === "live" ? 1 : 4;
 
   const getQuery = query(
@@ -32,7 +44,7 @@ export const createYoutube = async (youtubeForm: IYoutubeForm) => {
       title: youtubeForm.title ?? "",
       preacher: youtubeForm.preacher ?? "",
       mainText: youtubeForm.mainText ?? "",
-      date: youtubeForm.date,
+      date: youtubeForm.date ?? "",
       createdAt: Date.now(),
     });
   }

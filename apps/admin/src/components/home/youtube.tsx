@@ -2,23 +2,33 @@ import { useGetYoutubeLink, usePostYoutubeLink } from "@/query/youtube";
 import { useForm } from "react-hook-form";
 import HomeSection from "./section";
 import getYoutubeId from "@/utils/getYoutubeId";
-import { IYoutubeForm, YoutubeType } from "type";
+import { IYoutubeForm } from "type";
 import { YoutubeVideo } from "ui";
+import YoutubeInput from "../youtube/input";
+import YoutubeDropDown, { IYoutubeDropDownOptions } from "../youtube/dropdown";
+import { useState } from "react";
 
-interface IYoutubeSectionProps {
-  sectionTitle: string;
-  type: YoutubeType;
-}
+const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
+  { label: "라이브 생방송", type: "live" },
+  { label: "쇼츠", type: "shorts" },
+  { label: "주일예배", type: "main" },
+  { label: "주일청년", type: "youth" },
+  { label: "주일찬양", type: "afternoon" },
+  { label: "금요기도회", type: "firday" },
+  { label: "수요예배", type: "wednesday" },
+  { label: "명문영상", type: "video" },
+];
 
-// FIXME: CustomInput 컴포넌트 만들기
+const YoutubeSection = () => {
+  const [selectedYoutube, setSelectedYoutube] =
+    useState<IYoutubeDropDownOptions>(YOUTUBE_OPTIONS_DATA[0]);
+  const isShowAllFields =
+    selectedYoutube.type !== "shorts" && selectedYoutube.type !== "live";
+  const isShowMainText = selectedYoutube.type !== "video";
 
-const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
-  const isShowAllFields = type !== "shorts";
-  const isHideMainText = type !== "video";
-
-  const { data: youtubeLink } = useGetYoutubeLink(type);
+  const { data: youtubeLink } = useGetYoutubeLink(selectedYoutube.type);
   const { register, handleSubmit, reset } = useForm<IYoutubeForm>();
-  const { mutate } = usePostYoutubeLink(type);
+  const { mutate } = usePostYoutubeLink(selectedYoutube.type);
 
   const onSubmit = (data: IYoutubeForm) => {
     const { mainText, preacher, title, url, date } = data;
@@ -31,13 +41,22 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
         mainText,
         title,
         preacher,
-        type,
+        type: selectedYoutube.type,
         date,
       },
       {
         onSuccess: ({ result }) => {
-          reset();
-          return result === "success" ? alert("변경되었습니다.") : alert("API 요청 중 오류가 발생하였습니다.");
+          // 필요한 필드만 리셋
+          reset({
+            url: "",
+            title: "",
+            preacher: "",
+            mainText: "",
+            date: "",
+          });
+          return result === "success"
+            ? alert("변경되었습니다.")
+            : alert("API 요청 중 오류가 발생하였습니다.");
         },
         onError: (error) => console.log(error),
       }
@@ -49,66 +68,79 @@ const YoutubeSection = ({ sectionTitle, type }: IYoutubeSectionProps) => {
   };
 
   return (
-    <HomeSection title={sectionTitle}>
+    <HomeSection title={`${selectedYoutube.label} 링크`}>
       <div className="flex flex-col justify-center items-center">
         <div className="flex justify-center items-center">
           <p>현재 주소:&nbsp;</p>
-          <a href={`https://www.youtube.com/embed/${youtubeLink}`} className="text-blue-500">
+          <a
+            href={`https://www.youtube.com/embed/${youtubeLink}`}
+            className="text-blue-500"
+          >
             {youtubeLink}
           </a>
         </div>
         <YoutubeVideo className="h-[200px]" videoId={youtubeLink} />
-        <form onSubmit={handleSubmit(onSubmit, onInValid)} className="mt-4 flex flex-col gap-3">
-          <label className="grid grid-flow-col place-items-center gap-3">
-            <p className="w-20">유튜브 링크</p>
-            <input
-              {...register("url", {
-                required: true,
-              })}
-              placeholder="유튜브 링크를 입력해주세요."
-              className="border rounded px-4 py-2 text-black"
-            />
-          </label>
-          {/* 쇼츠 링크에는 보이지 않음 */}
+        <form
+          onSubmit={handleSubmit(onSubmit, onInValid)}
+          className="mt-4 flex flex-col gap-3"
+        >
+          <YoutubeDropDown
+            label="유튜브 타입"
+            options={YOUTUBE_OPTIONS_DATA}
+            selected={selectedYoutube}
+            onSelect={(selected) => {
+              setSelectedYoutube(selected);
+            }}
+          />
+          <YoutubeInput
+            label="유튜브 링크"
+            name="url"
+            placeholder="유튜브 링크를 입력해주세요."
+            register={register}
+            required
+          />
           {isShowAllFields && (
             <>
-              <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">제목</p>
-                <input
-                  {...register("title")}
-                  placeholder="제목을 입력해주세요."
-                  className="border rounded px-4 py-2 text-black"
+              <YoutubeInput
+                label="제목"
+                name="title"
+                placeholder="제목을 입력해주세요."
+                register={register}
+                required
+              />
+              <YoutubeInput
+                label="날짜"
+                name="date"
+                placeholder="ex) 2024-01-01"
+                register={register}
+                required
+              />
+              {isShowMainText && (
+                <YoutubeInput
+                  label="본문말씀"
+                  name="mainText"
+                  placeholder="ex) 마태복음 1장 1절"
+                  register={register}
+                  required
                 />
-              </label>
-              <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">날짜</p>
-                <input
-                  {...register("date")}
-                  placeholder="ex) 2024-01-01"
-                  className="border rounded px-4 py-2 text-black"
-                />
-              </label>
-              {isHideMainText && (
-                <label className="grid grid-flow-col place-items-center gap-3">
-                  <p className="w-20">본문말씀</p>
-                  <input
-                    {...register("mainText")}
-                    placeholder="ex) 마태복음 1장 1절"
-                    className="border rounded px-4 py-2 text-black"
-                  />
-                </label>
               )}
-              <label className="grid grid-flow-col place-items-center gap-3">
-                <p className="w-20">설교자</p>
-                <input
-                  {...register("preacher")}
-                  placeholder="ex) 김지혁 담임목사"
-                  className="border rounded px-4 py-2 text-black"
-                />
-              </label>
+              <YoutubeInput
+                label={selectedYoutube.type === "video" ? "이름" : "설교자"}
+                name="preacher"
+                placeholder={
+                  selectedYoutube.type === "video"
+                    ? "ex) WITH EL(위드엘 주일찬양팀)"
+                    : "ex) 김지혁 담임목사"
+                }
+                register={register}
+                required
+              />
             </>
           )}
-          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">등록</button>
+
+          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
+            등록
+          </button>
         </form>
       </div>
     </HomeSection>
