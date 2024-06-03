@@ -23,14 +23,18 @@ const VideosSection = () => {
           <p data-aos="fade-up" className="font-SCoreDream text-xl text-blue-600 md:text-3xl">
             {dayjs(mainVideo?.date).format("YYYY.MM.DD")}
           </p>
-          <p data-aos="fade-up" data-aos-delay="200" className="font-SCoreDream text-3xl text-blue-600 sm:text-5xl">
+          <p
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="break-keep text-center font-SCoreDream text-3xl text-blue-600 sm:text-5xl"
+          >
             {mainVideo?.title}
           </p>
           <button
             onClick={() => push("https://www.youtube.com/@myungmoonchurch/videos")}
             data-aos="fade-up"
             delay-aos-delay="400"
-            className="font-semibold hover:underline sm:text-xl mt-3"
+            className="mt-3 font-semibold hover:underline sm:text-xl"
           >
             설교 라이브, 1분 설교 보러가기 {">"}
           </button>
