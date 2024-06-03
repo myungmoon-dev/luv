@@ -12,7 +12,7 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
   const liveVideo = data?.[0];
 
   const navList: { label: string; path: HomeBannerEnum }[] = [
-    { label: "교회여 일어나!\n세상으로 흘러가라!", path: HomeBannerEnum.Watchword },
+    { label: "교회여! 일어나\n세상으로 흘러가라!", path: HomeBannerEnum.Watchword },
     {
       label: `${dayjs(liveVideo?.date).format("YYYY.MM.DD")} ${liveVideo?.title || ""}\n<예배 생중계> 바로가기`,
       path: HomeBannerEnum.Live,
@@ -22,11 +22,11 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
   ];
 
   return (
-    <div className="grid gap-10 w-full px-5 md:grid-cols-2 xl:grid-cols-4 md:px-20 lg:px-40 xl:px-60 2xl:px-80">
+    <div className="grid w-full gap-10 px-5 md:grid-cols-2 md:px-20 lg:px-40 xl:grid-cols-4 xl:px-60 2xl:px-80">
       {navList.map((nav) => (
         <div onClick={() => setCurrentView(nav.path)} className="flex cursor-pointer flex-col gap-5" key={nav.label}>
-          <p className="whitespace-pre md:text-xl font-bold text-white">{nav.label}</p>
-          <div className="h-[2px] w-full bg-white"/>
+          <p className="whitespace-pre font-bold text-white md:text-xl">{nav.label}</p>
+          <div className="h-[2px] w-full bg-white" />
         </div>
       ))}
     </div>
