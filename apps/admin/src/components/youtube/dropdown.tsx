@@ -1,26 +1,31 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { YoutubeType } from "type";
 
 export interface IYoutubeDropDownOptions {
   label: string;
-  value: YoutubeType;
+  type: YoutubeType;
 }
 
 interface IYoutubeDropDownProps {
   label: string;
   options: IYoutubeDropDownOptions[];
-  onSelect: (selcted: YoutubeType) => void;
+  selected: IYoutubeDropDownOptions;
+  onSelect: (selcted: IYoutubeDropDownOptions) => void;
 }
 const YoutubeDropDown = ({
   label,
   options,
+  selected,
   onSelect,
 }: IYoutubeDropDownProps) => {
-  const [selected, setSelected] = useState<YoutubeType>("main");
-
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    setSelected(e.target.value as YoutubeType);
-    onSelect(selected);
+    const selectedYoutube = options.find(
+      (option) => option.type === (e.target.value as YoutubeType)
+    );
+
+    if (selectedYoutube) {
+      onSelect(selectedYoutube);
+    }
   };
 
   return (
@@ -29,10 +34,10 @@ const YoutubeDropDown = ({
       <select
         className="flex rounded px-4 py-2 font-bold text-black flex-grow appearance-no text-center"
         onChange={onChange}
-        value={selected}
+        value={selected.type}
       >
         {options.map((option) => (
-          <option key={option.label} value={option.value}>
+          <option key={option.label} value={option.type}>
             {option.label}
           </option>
         ))}
