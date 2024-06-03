@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import CustomImage from "../customImage";
 import { useState } from "react";
 
-interface IAboutCoreWrapperProps {
+interface IAboutCoreAlbumProps {
   dataList: IValueVision[];
 }
 
@@ -31,7 +31,7 @@ const coreValueVariants = {
   },
 };
 
-const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
+const AboutCoreAlbum = ({ dataList }: IAboutCoreAlbumProps) => {
   const [selectedValue, setSelectedValue] = useState<IValueVision>(dataList[0]);
   const [showDetailValue, setDetailValue] = useState<boolean>(false);
 
@@ -60,13 +60,13 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
             >
               <div
                 data-aos="fade-up"
-                className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:text-blue-600 sm:gap-16 hover:bg-blue-600 hover:bg-opacity-30"
+                className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-blue-600 hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
               >
                 <div className="flex flex-col items-center justify-center gap-3">
                   <p className="font-SCoreDream text-[50px] sm:text-5xl md:text-9xl">{data.id}</p>
                   <div className="flex flex-col items-center justify-center gap-1">
-                    <p className="font-SCoreDream hidden text-white md:block lg:text-xl">{data.titleKr}</p>
-                    <p className="font-Cormorant hidden text-white md:text-xs lg:text-sm md:block">{data.titleEn}</p>
+                    <p className="hidden font-SCoreDream text-white md:block lg:text-xl">{data.titleKr}</p>
+                    <p className="hidden font-Cormorant text-white md:block md:text-xs lg:text-sm">{data.titleEn}</p>
                   </div>
                   <p className="text-xs md:text-base md:font-semibold">자세히 보기</p>
                 </div>
@@ -100,7 +100,7 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
                       <p className="font-SCoreDream text-2xl sm:text-3xl md:text-5xl">{selectedValue.titleKr}</p>
                       <p className="font-Lora sm:text-xl md:text-2xl lg:text-5xl">{selectedValue.titleEn}</p>
                     </div>
-                    <p className="break-keep md:whitespace-pre-wrap pr-6 font-medium leading-relaxed text-white sm:pr-0 sm:text-2xl">
+                    <p className="break-keep pr-6 font-medium leading-relaxed text-white sm:pr-0 sm:text-2xl md:whitespace-pre-wrap">
                       {selectedValue.description}
                     </p>
                   </div>
@@ -114,4 +114,4 @@ const AboutCoreWrapper = ({ dataList }: IAboutCoreWrapperProps) => {
   );
 };
 
-export default AboutCoreWrapper;
+export default AboutCoreAlbum;
