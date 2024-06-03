@@ -15,7 +15,7 @@ interface IProfileProps {
 
 const Profile = ({ description, image, name, alt, className, position, tabType, officer }: IProfileProps) => {
   return (
-    <div className="relative flex w-full items-center justify-center md:gap-5">
+    <div className="relative flex w-full items-center justify-around md:gap-5">
       <div className="z-[1] flex flex-col justify-center gap-3">
         <h1 className="font-SCoreDream text-2xl text-blue-600">
           {name} {officerType.filter((staff) => staff.label === officer)[0].type}
