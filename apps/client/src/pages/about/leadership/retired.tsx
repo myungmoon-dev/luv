@@ -1,7 +1,6 @@
 import Layout from "@/components/layout";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 import Tabs from "@/components/layout/tabs";
-import ProfileList from "@/components/about/profileList";
 import CustomImage from "@/components/customImage";
 
 const LeadershipRetiredPage = () => {
