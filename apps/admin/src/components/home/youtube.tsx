@@ -71,7 +71,7 @@ const YoutubeSection = () => {
     <HomeSection title={`${selectedYoutube.label} 링크`}>
       <div className="flex flex-col justify-center items-center">
         <div className="flex justify-center items-center">
-          <p>현재 주소:&nbsp;</p>
+          <p className="text-white">현재 주소:&nbsp;</p>
           <a
             href={`https://www.youtube.com/embed/${youtubeLink}`}
             className="text-blue-500"

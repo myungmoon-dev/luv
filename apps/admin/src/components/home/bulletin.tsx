@@ -41,7 +41,7 @@ const BulletinSection = () => {
         className="flex flex-col gap-3 justify-center items-center"
       >
         <label className="flex items-center gap-2">
-          <p>날짜</p>
+          <p className="text-white">날짜</p>
           <input
             className="text-black p-1"
             {...register("date")}
@@ -49,7 +49,7 @@ const BulletinSection = () => {
           />
         </label>
         <label className="flex items-center gap-2">
-          <p>제목</p>
+          <p className="text-white">제목</p>
           <input
             className="text-black p-1"
             {...register("title")}

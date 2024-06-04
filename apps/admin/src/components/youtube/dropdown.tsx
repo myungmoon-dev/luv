@@ -30,7 +30,7 @@ const YoutubeDropDown = ({
 
   return (
     <label className="flex gap-3 items-center">
-      <p className="w-20 font-bold">{label}</p>
+      <p className="w-20 font-bold text-white">{label}</p>
       <select
         className="flex rounded px-4 py-2 font-bold text-black flex-grow appearance-no text-center"
         onChange={onChange}
