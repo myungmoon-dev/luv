@@ -13,7 +13,7 @@ interface IMenu {
 const AboutMainPage = () => {
   const menuList: IMenu[] = [
     { title: "교회소개", icon: "church", path: "/" },
-    { title: "로고와 비전", icon: "vision", path: "/" },
+    { title: "목회비전", icon: "vision", path: "/" },
     { title: "섬기는 분들", icon: "leadership", path: "/" },
     { title: "연혁", icon: "history", path: "/" },
     { title: "예배안내", icon: "services", path: "/" },

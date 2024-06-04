@@ -24,7 +24,11 @@ const LeadershipIndexPage = () => {
           >
             <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-20 md:px-6 xl:px-20">
               <div data-aos="fade-up" className="flex w-full text-white">
-                <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">"일어나 세상으로 흘러가자!"</p>
+                <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">
+                  "교회여!
+                  <br />
+                  일어나 세상으로 흘러가라!"
+                </p>
               </div>
               <div data-aos="fade-up" className="flex w-full items-end text-white">
                 <div className="hidden w-full gap-1 whitespace-pre-wrap break-keep md:flex md:flex-col md:gap-3 md:text-xl lg:text-xl">
