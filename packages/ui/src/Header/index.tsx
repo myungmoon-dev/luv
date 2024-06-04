@@ -20,7 +20,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
     { label: "다음세대", path: "/education", key: "/education" },
     { label: "주보•소식", path: "/news/bulletins", key: "/news" },
     {
-      label: "교회양육",
+      label: "교회훈련",
       path: "/discipleship/main/bible",
       key: "/discipleship",
     },

@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 
 const Header = () => {
-  const menus = ["교회소개", "섬기는 분들", "설교말씀", "교회양육", "교육부서", "성도의 교제"];
+  const menus = ["교회소개", "섬기는 분들", "설교말씀", "교회훈련", "교육부서", "성도의 교제"];
 
   return (
     <header className="fixed z-10 flex h-[75px] w-full items-center justify-between bg-black bg-opacity-40 px-5 lg:px-48">
