@@ -1,8 +1,7 @@
 import React from "react";
-
 import Layout from "@/components/layout";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
-import NotPrepared from "@/components/layout/notPrepared";
+import DiscipleshipNew from "@/components/discipleship/new";
 
 const DiscipleshipNewPage = () => {
   return (
@@ -14,7 +13,7 @@ const DiscipleshipNewPage = () => {
       bannerImgClass="object-[100%_40%]"
       innerMenus={discipleshipInnerMenus}
     >
-      <NotPrepared />
+      <DiscipleshipNew />
     </Layout>
   );
 };
