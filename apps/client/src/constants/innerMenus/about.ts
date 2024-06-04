@@ -22,7 +22,7 @@ export const officerType: IOfficerType[] = [
   { label: "associate", type: "목사" },
   { label: "evangelist", type: "전도사" },
   { label: "elder", type: "장로" },
-  { label: "otherelder", type: "협동장로" },
+  { label: "otherElder", type: "협동장로" },
   { label: "deacon", type: "집사" },
   { label: "staff", type: "간사" },
 ];

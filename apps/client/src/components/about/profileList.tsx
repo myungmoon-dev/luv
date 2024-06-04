@@ -220,7 +220,7 @@ const staffProfiles = [
     image: "/images/elder/jung_sh.png",
     position: "체육,친교위원회 위원장",
     tabType: "elder",
-    officerType: "otherelder",
+    officerType: "otherElder",
   },
   {
     name: "조미훈",
