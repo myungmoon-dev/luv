@@ -38,7 +38,7 @@ const DiscipleshipPanorama = () => {
   const placeData = getPanoramaData("place") as IPanoramaDetailedData;
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10">
+    <div className="flex w-full max-w-screen-xl flex-col items-center justify-center gap-10">
       {outlineData && <PanoramaOutlineSection title={outlineData.title} description={outlineData.description} />}
       {targetData && (
         <PanoramaTargetSection

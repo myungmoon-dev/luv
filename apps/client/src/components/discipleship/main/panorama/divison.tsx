@@ -24,8 +24,8 @@ const PanoramaDivisionComponent = ({ text, type, className }: IPanoramaDivisionC
 
   return (
     <div className={cn("flex items-center gap-1", className)}>
-      <p className="text-lg font-bold">{title()}</p>
-      <p>{text}</p>
+      <p className="text-lg font-bold md:text-xl lg:text-2xl">{title()}</p>
+      <p className="md:text-lg lg:text-xl">{text}</p>
     </div>
   );
 };
