@@ -1,0 +1,94 @@
+import AboutHeaderSection from "@/components/about/section/header";
+import Discipleship3040VisionSection from "./section/vision";
+import Discipleship3040PurposeSection from "./section/purpose";
+import Discipleship3040ProgramSection from "./section/program";
+import { GENERATION_3040_TYPE, I3040ProgramData, I3040PurposeData, I3040VisionData, I3040WatchwordData } from "type";
+
+// FIXME: DB저장 예정
+const DISCIPLESHIP_3040_DATA: (I3040VisionData | I3040WatchwordData | I3040PurposeData | I3040ProgramData)[] = [
+  {
+    id: "watchword",
+    data: {
+      text1: "Come Together",
+      text2: "함께 모여요!",
+      text3: "히브리서 10장 24-25절",
+    },
+  },
+  {
+    id: "vision",
+    data: {
+      img: "/images/discipleship/3040/vision.png",
+      text1: "하나님을 기쁘시게",
+      text2: "가정을 행복하게",
+      emphasis: "가정을 교회같이, 교회를 가정같이",
+    },
+  },
+  {
+    id: "purpose",
+    data: {
+      img: "/images/discipleship/3040/purpose.png",
+      purposes: [
+        "3040 세대는 직장・가사・육아로 몸과 마음이 지쳐 신앙생활에 어려움이 크기 때문에 신앙공동체 안에서 함께 위로하고 나눌 수 있는 모임이 필요합니다.",
+        "이를 위해 명문교회 3040 모임은 진정한 믿음의 관계를 회복하고, 소그룹 활동을 통해 삶의 의미와 목적을 공유하며 믿음생활의 유지 발전에 도움을 주고자 합니다.",
+      ],
+    },
+  },
+  {
+    id: "program",
+    data: {
+      img: "/images/discipleship/3040/program.png",
+      programs: [
+        {
+          title: "3040 성경적 자녀양육 세미나",
+          informations: [
+            "5월 11일(토), 18일(토) 10:00~12:00 총 2회",
+            "행복한 부부, 거룩한 가정 / 성경적 부모 자녀 관계와 의사소통",
+          ],
+        },
+        {
+          title: "3040 바베큐 파티",
+          informations: ["5월 25일(토) 가족 및 자녀 동반"],
+        },
+        {
+          title: "명문부부세미나 “끝까지 잘 사는 부부“",
+          informations: [
+            "6월 15일(토), 22일(토) 10:20~12:30 총 2회",
+            "부부 대화의 더하기와 빼기 / 서로 돕는 친밀한 부부",
+          ],
+        },
+        {
+          title: "3040 독서모임",
+          informations: ["7, 8월 중 『예수님이라면 어떻게 하실까?』", "9월 중 독서나눔 예정"],
+        },
+      ],
+    },
+  },
+];
+
+const Discipleship3040 = () => {
+  const getPanoramaData = (id: GENERATION_3040_TYPE) => DISCIPLESHIP_3040_DATA.find((item) => item.id === id);
+  const watchwordData = getPanoramaData("watchword") as I3040WatchwordData;
+  const visionData = getPanoramaData("vision") as I3040VisionData;
+  const purposeData = getPanoramaData("purpose") as I3040PurposeData;
+  const programData = getPanoramaData("program") as I3040ProgramData;
+
+  return (
+    <div className="mb-20 flex w-full flex-col items-center justify-center gap-14 overflow-x-hidden xl:gap-20">
+      <AboutHeaderSection
+        text1={watchwordData.data.text1}
+        text2={watchwordData.data.text2}
+        text3={watchwordData.data.text3}
+      />
+      <Discipleship3040VisionSection
+        img={visionData.data.img}
+        text1={visionData.data.text1}
+        text2={visionData.data.text2 ?? ""}
+        emphasis={visionData.data.emphasis}
+      />
+      <Discipleship3040PurposeSection img={purposeData.data.img} list={purposeData.data.purposes} />
+      <Discipleship3040ProgramSection img={programData.data.img} list={programData.data.programs} />
+    </div>
+  );
+};
+
+export default Discipleship3040;
