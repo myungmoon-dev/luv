@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "@/components/layout";
 import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 import Tabs from "@/components/layout/tabs";
-import DiscipleshipPanorama from "@/components/discipleship/main/panorama/section";
+import DiscipleshipPanorama from "@/components/discipleship/main/panorama";
 
 const DiscipleshipMainPanoramaPage = () => {
   return (
