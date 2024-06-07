@@ -7,8 +7,8 @@ interface IHomeSectionProps {
 
 const HomeSection = ({ title, children }: IHomeSectionProps) => {
   return (
-    <section className="flex flex-col justify-center items-center border border-white p-5 rounded-lg">
-      <p className="font-bold text-lg text-white">{title}</p>
+    <section className="flex flex-col gap-2 justify-center items-center border border-white p-5 rounded-lg">
+      <p className="font-bold text-xl text-white">{title}</p>
       {children}
     </section>
   );
