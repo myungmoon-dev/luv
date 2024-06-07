@@ -1,10 +1,10 @@
-import { INewCommersData } from "type";
-import NewCommersCard from "./common/card";
-import NewCommersSection from "./common/section";
-import NewCommersWrapper from "./common/wrapper";
+import { IDiscipleshipTabData } from "type";
+import DiscipleshipTabBarContentWrapper from "../../tabs/wrapper";
+import DiscipleshipTabBarContentSection from "../../tabs/section";
+import DiscipleshipTabBarContentCard from "../../tabs/card";
 
 // FIXME: DB 저장해야 함
-const NEWCOMMERS_DATE_DATA: INewCommersData[] = [
+const NEWCOMMERS_DATE_DATA: IDiscipleshipTabData[] = [
   {
     title: "5주 새신자 과정",
     content: [
@@ -32,16 +32,21 @@ const NEWCOMMERS_DATE_DATA: INewCommersData[] = [
   },
 ];
 const ForNewCommersDate = () => (
-  <NewCommersWrapper className="md:h-[600px] lg:h-[700px]">
+  <DiscipleshipTabBarContentWrapper className="md:h-[600px] lg:h-[700px]">
     {NEWCOMMERS_DATE_DATA.map((data) => (
-      <NewCommersSection key={data.title} title={data.title}>
+      <DiscipleshipTabBarContentSection key={data.title} title={data.title}>
         {data.content &&
           data.content.map((content, idx) => (
-            <NewCommersCard key={idx} title={content.title} text={content.text} className="items-center" />
+            <DiscipleshipTabBarContentCard
+              key={idx}
+              title={content.title}
+              text={content.text}
+              className="items-center"
+            />
           ))}
-      </NewCommersSection>
+      </DiscipleshipTabBarContentSection>
     ))}
-  </NewCommersWrapper>
+  </DiscipleshipTabBarContentWrapper>
 );
 
 export default ForNewCommersDate;

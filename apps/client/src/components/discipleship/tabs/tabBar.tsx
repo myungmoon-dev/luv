@@ -1,13 +1,13 @@
 import { cn } from "ui";
 
-interface INewCommersTabBarProps {
+interface IDiscipleshipTabBarProps {
   label: string;
   currnetIndex: number;
   selectedIndex: number;
   onClick: (selctedIndex: number) => void;
 }
 
-const NewCommersTabBar = ({ label, currnetIndex, selectedIndex, onClick }: INewCommersTabBarProps) => {
+const DiscipleshipTabBar = ({ label, currnetIndex, selectedIndex, onClick }: IDiscipleshipTabBarProps) => {
   return (
     <button
       onClick={() => onClick(currnetIndex)}
@@ -21,4 +21,4 @@ const NewCommersTabBar = ({ label, currnetIndex, selectedIndex, onClick }: INewC
   );
 };
 
-export default NewCommersTabBar;
+export default DiscipleshipTabBar;

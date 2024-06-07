@@ -1,9 +1,9 @@
-import { INewCommersData } from "type";
-import NewCommersWrapper from "./common/wrapper";
-import NewCommersSection from "./common/section";
-import NewCommersCard from "./common/card";
+import { IDiscipleshipTabData } from "type";
+import DiscipleshipTabBarContentWrapper from "../../tabs/wrapper";
+import DiscipleshipTabBarContentSection from "../../tabs/section";
+import DiscipleshipTabBarContentCard from "../../tabs/card";
 
-const NEWCOMMERS_PROCESS_DATA: INewCommersData[] = [
+const NEWCOMMERS_PROCESS_DATA: IDiscipleshipTabData[] = [
   {
     title: "5단계의 관리를 통해 교회정착, 명문교회 교인으로의 준비를 돕습니다.",
     content: [
@@ -31,21 +31,21 @@ const NEWCOMMERS_PROCESS_DATA: INewCommersData[] = [
   },
 ];
 const ForNewCommersProcess = () => (
-  <NewCommersWrapper className="h-[700px] md:h-[800px]">
+  <DiscipleshipTabBarContentWrapper className="h-[700px] md:h-[800px]">
     {NEWCOMMERS_PROCESS_DATA.map((data) => (
-      <NewCommersSection key={data.title} title={data.title}>
+      <DiscipleshipTabBarContentSection key={data.title} title={data.title}>
         {data.content &&
           data.content.map((content) => (
-            <NewCommersCard
+            <DiscipleshipTabBarContentCard
               key={content.text}
               title={content.title}
               text={content.text}
               className="flex-col 2xl:flex-row 2xl:items-center 2xl:gap-10"
             />
           ))}
-      </NewCommersSection>
+      </DiscipleshipTabBarContentSection>
     ))}
-  </NewCommersWrapper>
+  </DiscipleshipTabBarContentWrapper>
 );
 
 export default ForNewCommersProcess;

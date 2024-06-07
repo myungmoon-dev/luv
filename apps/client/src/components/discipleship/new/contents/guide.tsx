@@ -1,9 +1,9 @@
-import { INewCommersData } from "type";
-import NewCommersSection from "./common/section";
-import NewCommersWrapper from "./common/wrapper";
+import { IDiscipleshipTabData } from "type";
+import DiscipleshipTabBarContentWrapper from "../../tabs/wrapper";
+import DiscipleshipTabBarContentSection from "../../tabs/section";
 
 // FIXME: DB 저장해야 함
-const NEWCOMMERS_GUIDE_DATA: INewCommersData[] = [
+const NEWCOMMERS_GUIDE_DATA: IDiscipleshipTabData[] = [
   {
     title: "명문교회의 등록교인",
     text: "새가족 온라인(상시), 현장(주일/주중) 등록 가능합니다.",
@@ -20,11 +20,11 @@ const NEWCOMMERS_GUIDE_DATA: INewCommersData[] = [
 ];
 
 const ForNewCommersGuide = () => (
-  <NewCommersWrapper>
+  <DiscipleshipTabBarContentWrapper>
     {NEWCOMMERS_GUIDE_DATA.map((data) => (
-      <NewCommersSection key={data.title} title={data.title} text={data.text} caution={data.caution} />
+      <DiscipleshipTabBarContentSection key={data.title} title={data.title} text={data.text} caution={data.caution} />
     ))}
-  </NewCommersWrapper>
+  </DiscipleshipTabBarContentWrapper>
 );
 
 export default ForNewCommersGuide;
