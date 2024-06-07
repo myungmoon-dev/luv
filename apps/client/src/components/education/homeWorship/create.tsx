@@ -26,14 +26,11 @@ const HomeWorshipCreate = () => {
       return alert("모든 정보를 입력해주세요.");
     if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
-    const isPinned = data.isPinned ? "checked" : "unchecked";
-
     formData.append("title", data.title);
     formData.append("date", data.date);
     formData.append("content", content);
     formData.append("password", data.password);
     formData.append("userName", data.userName);
-    formData.append("isPinned", isPinned);
 
     Array.from(data.image).forEach((image) => {
       formData.append(`image-file`, image);
@@ -84,10 +81,6 @@ const HomeWorshipCreate = () => {
           <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl font-bold">비밀번호</p>
             <input className="border px-2 py-1" type="password" {...register("password")} />
-          </label>
-          <label className="flex items-center gap-5">
-            <p className="text-xl font-bold">공지사항 여부</p>
-            <input className="h-4 w-4" type="checkbox" {...register("isPinned")} />
           </label>
           <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white">
             인증하기

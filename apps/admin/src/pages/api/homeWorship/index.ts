@@ -1,6 +1,6 @@
 import { api } from "@/api";
 import { hash } from "bcrypt";
-import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
+import { postHomeWorship } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
 import multer from "multer";
@@ -22,15 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } = req;
 
   switch (method) {
-    case "GET":
-      const pinnedHomeWorships =
-        (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
-      const homeWorships = (await getHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
-
-      return res.status(200).json({
-        homeWorships: [...pinnedHomeWorships, ...homeWorships],
-      });
-
     case "POST":
       // Multer 미들웨어를 통해 파일 업로드 처리
       upload.single("image-file")(req as any, res as any, async (err) => {
@@ -109,7 +100,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           userName: fields.userName,
           createdAt: new Date().getTime(),
           password: hashedPassword,
-          isPinned: false,
+          isPinned: fields.isPinned === "checked",
         });
 
         return res.status(200).json({
