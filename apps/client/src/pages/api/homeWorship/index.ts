@@ -109,7 +109,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           userName: fields.userName,
           createdAt: new Date().getTime(),
           password: hashedPassword,
-          isPinned: fields.isPinned === "checked",
+          isPinned: false,
         });
 
         return res.status(200).json({
