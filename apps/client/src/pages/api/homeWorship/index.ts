@@ -1,8 +1,8 @@
 import { api } from "@/api";
-import { hash } from "bcrypt";
 import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
+import { hash } from "bcrypt";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -14,6 +14,11 @@ const upload = multer({
     },
   }),
 });
+
+export const hashPassword = async (password: string) => {
+  const hashedPassword = await hash(password, 10);
+  return hashedPassword;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
@@ -93,11 +98,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         // 필드 검증 및 에러 처리
         if (!fields.date) return res.status(400).json({ result: "Missing required fields" });
-
-        const hashPassword = async (password: string) => {
-          const hashedPassword = await hash(password, 10);
-          return hashedPassword;
-        };
 
         const hashedPassword = await hashPassword(fields.password);
 
