@@ -43,7 +43,7 @@ const AboutMinistryVision = () => {
       <div className="flex w-full flex-col">
         <AboutPromiseComponent
           direction="left"
-          img="/images/about/default-1.jpg"
+          img="/images/about/ministryVision/1.jpg"
           title1="양을 위하여 목숨을 버리는"
           title2="목자의 심정으로 목회하겠습니다."
           text1="영혼을 구원하기 위해 성육신하신"
@@ -53,7 +53,7 @@ const AboutMinistryVision = () => {
         />
         <AboutPromiseComponent
           direction="right"
-          img="/images/about/default-2.jpg"
+          img="/images/about/ministryVision/2.jpg"
           title1="생명을 걸고 설교 준비를 하고,"
           title2="삶으로 설교하겠습니다."
           text1="명문의 강단이 푸른 감람나무 같고 물댄 동산 같아서"
@@ -63,7 +63,7 @@ const AboutMinistryVision = () => {
         />
         <AboutPromiseComponent
           direction="left"
-          img="/images/discipleship/banner.jpg"
+          img="/images/about/ministryVision/3.jpeg"
           title1="기도하기를 쉬는 죄를 범하지 않고,"
           title2="눈물과 무릎으로 목회하겠습니다."
           text1="사람의 능력이 아니라,"
