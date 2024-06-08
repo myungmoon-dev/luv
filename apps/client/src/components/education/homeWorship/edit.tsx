@@ -1,4 +1,4 @@
-import { useGetHomeWorship, usePutHomeWorship } from "@/query/homeWorship";
+import { useGetHomeWorship, usePostHomeWorshipPasswordCheck, usePutHomeWorship } from "@/query/homeWorship";
 import dynamic from "next/dynamic";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -22,6 +22,7 @@ const HomeWorshipEdit = () => {
   const { register, handleSubmit, reset } = useForm<IHomeWorshipForm>();
 
   const { mutate, isPending } = usePutHomeWorship();
+  const { mutate: passwordCheckMutate } = usePostHomeWorshipPasswordCheck();
 
   const [content, setContent] = useState("");
   const [isNewImage, setNewImage] = useState(false);
@@ -67,6 +68,23 @@ const HomeWorshipEdit = () => {
     );
   };
 
+  const checkPassword = () => {
+    const password = prompt("비밀번호를 입력해주세요.");
+    if (!password) {
+      push("/education/home-worship");
+    } else {
+      passwordCheckMutate(
+        { homeWorshipId, password },
+        {
+          onError: (err: any) => {
+            alert("비밀번호가 일치하지 않습니다.");
+            push("/education/home-worship");
+          },
+        },
+      );
+    }
+  };
+
   useEffect(() => {
     if (!homeWorship) return;
     reset({
@@ -77,6 +95,10 @@ const HomeWorshipEdit = () => {
     });
     setContent(homeWorship.content);
   }, [homeWorship, reset]);
+
+  useEffect(() => {
+    checkPassword();
+  }, []);
 
   return (
     <div className="relative flex justify-center">

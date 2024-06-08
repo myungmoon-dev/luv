@@ -1,4 +1,4 @@
-import { useDeleteHomeWorship, useGetHomeWorship, usePostHomeWorshipPasswordCheck } from "@/query/homeWorship";
+import { useDeleteHomeWorship, useGetHomeWorship } from "@/query/homeWorship";
 import dayjs from "dayjs";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { SafeHTML, Spinner } from "ui";
@@ -12,7 +12,6 @@ const HomeWorshipDetail = () => {
 
   const { data } = useGetHomeWorship({ homeWorshipId });
   const { mutate } = useDeleteHomeWorship();
-  const { mutate: passwordCheckMutate } = usePostHomeWorshipPasswordCheck();
 
   if (!data)
     return (
@@ -41,20 +40,7 @@ const HomeWorshipDetail = () => {
   };
 
   const handleClickUpdate = () => {
-    const password = prompt("비밀번호를 입력해주세요.");
-    if (!password) return alert("비밀번호를 입력해주세요.");
-    passwordCheckMutate(
-      { homeWorshipId, password },
-      {
-        onSuccess: () => {
-          push(`${pathname}/edit`);
-        },
-        onError: (err: any) => {
-          console.log(err);
-          alert(err.response.data.result);
-        },
-      },
-    );
+    push(`${pathname}/edit`);
   };
 
   return (
