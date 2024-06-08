@@ -24,7 +24,10 @@ const QtSummarySection = ({ contents }: IQtSummarySectionProps) => {
             />
           ))}
         </nav>
-        <div data-aos="fade-right" className="break-keep bg-blue-700 px-2 py-5 font-semibold">
+        <div
+          data-aos="fade-right"
+          className="break-keep bg-blue-700 px-2 py-5 font-semibold lg:text-lg 2xl:px-4 2xl:py-10 2xl:text-xl"
+        >
           <p>{contents[tabIndex].text}</p>
         </div>
       </div>
