@@ -1,6 +1,11 @@
-import { compare } from "bcrypt";
 import { deleteHomeWorship, getHomeWorship } from "firebase";
+import { compare } from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
+
+export const comparePassword = async (password: string, hashedPassword: string) => {
+  const isMatch = await compare(password, hashedPassword);
+  return isMatch;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query, body } = req;
@@ -21,11 +26,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     case "DELETE": {
       const homeWorship = (await getHomeWorship(homeWorshipId)).data();
       const homeWorshipPassword = homeWorship?.password;
-
-      const comparePassword = async (password: string, hashedPassword: string) => {
-        const isMatch = await compare(password, hashedPassword);
-        return isMatch;
-      };
 
       const isValidPassword = await comparePassword(password, homeWorshipPassword);
 

@@ -1,6 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { deleteHomeWorship, getHomeWorship, getHomeWorships, postHomeWorship } from "@/api/homeWorship";
+import {
+  deleteHomeWorship,
+  deleteHomeWorshipComment,
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
+  postHomeWorshipComment,
+} from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
@@ -24,4 +31,15 @@ const usePostHomeWorship = () =>
 
 const useDeleteHomeWorship = () => useMutation({ mutationFn: deleteHomeWorship });
 
-export { useGetHomeWorship, useGetHomeWorships, usePostHomeWorship, useDeleteHomeWorship };
+const usePostHomeWorshipComment = () => useMutation({ mutationFn: postHomeWorshipComment });
+
+const useDeleteHomeWorshipComment = () => useMutation({ mutationFn: deleteHomeWorshipComment });
+
+export {
+  useGetHomeWorship,
+  useGetHomeWorships,
+  usePostHomeWorship,
+  useDeleteHomeWorship,
+  usePostHomeWorshipComment,
+  useDeleteHomeWorshipComment,
+};
