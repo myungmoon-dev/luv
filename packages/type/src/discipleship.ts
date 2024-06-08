@@ -5,14 +5,10 @@ export interface INewCommersData {
   caution?: string;
 }
 
-export type GENERATION_3040_TYPE =
-  | "watchword"
-  | "vision"
-  | "purpose"
-  | "program";
+export type Generation3040Type = "watchword" | "vision" | "purpose" | "program";
 
 export interface I3040Data {
-  id: GENERATION_3040_TYPE;
+  id: Generation3040Type;
   data: any; // 데이터 타입을 정확하게 정의하기 위해 아래와 같은 세부 인터페이스를 사용
 }
 export interface I3040WatchwordData extends I3040Data {

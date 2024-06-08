@@ -2,7 +2,7 @@ import AboutHeaderSection from "@/components/about/section/header";
 import Discipleship3040VisionSection from "./section/vision";
 import Discipleship3040PurposeSection from "./section/purpose";
 import Discipleship3040ProgramSection from "./section/program";
-import { GENERATION_3040_TYPE, I3040ProgramData, I3040PurposeData, I3040VisionData, I3040WatchwordData } from "type";
+import { Generation3040Type, I3040ProgramData, I3040PurposeData, I3040VisionData, I3040WatchwordData } from "type";
 import Discipleship3040TitleSection from "./section/title";
 
 // FIXME: DB저장 예정
@@ -67,7 +67,7 @@ const DISCIPLESHIP_3040_DATA: (I3040VisionData | I3040WatchwordData | I3040Purpo
 ];
 
 const Discipleship3040 = () => {
-  const getPanoramaData = (id: GENERATION_3040_TYPE) => DISCIPLESHIP_3040_DATA.find((item) => item.id === id);
+  const getPanoramaData = (id: Generation3040Type) => DISCIPLESHIP_3040_DATA.find((item) => item.id === id);
   const watchwordData = getPanoramaData("watchword") as I3040WatchwordData;
   const visionData = getPanoramaData("vision") as I3040VisionData;
   const purposeData = getPanoramaData("purpose") as I3040PurposeData;

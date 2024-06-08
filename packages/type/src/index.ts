@@ -12,7 +12,7 @@ import { IMission, IMissionForm } from "./news";
 import { IUser } from "./user";
 import {
   INewCommersData,
-  GENERATION_3040_TYPE,
+  Generation3040Type,
   I3040Data,
   I3040ProgramData,
   I3040ProgramInfo,
@@ -38,7 +38,7 @@ export type {
   IMissionForm,
   IUser,
   INewCommersData,
-  GENERATION_3040_TYPE,
+  Generation3040Type,
   I3040Data,
   I3040ProgramData,
   I3040ProgramInfo,
