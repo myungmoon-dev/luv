@@ -2,7 +2,7 @@ import { api } from "@/api";
 import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
-import { hashPassword } from "helper";
+import { hash } from "bcrypt";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -14,6 +14,11 @@ const upload = multer({
     },
   }),
 });
+
+export const hashPassword = async (password: string) => {
+  const hashedPassword = await hash(password, 10);
+  return hashedPassword;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {

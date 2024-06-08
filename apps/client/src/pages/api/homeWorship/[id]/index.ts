@@ -1,6 +1,11 @@
 import { deleteHomeWorship, getHomeWorship } from "firebase";
-import { comparePassword } from "helper";
+import { compare } from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
+
+export const comparePassword = async (password: string, hashedPassword: string) => {
+  const isMatch = await compare(password, hashedPassword);
+  return isMatch;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query, body } = req;

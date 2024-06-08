@@ -1,8 +1,18 @@
 import { deleteHomeWorshipComment, getHomeWorship, postHomeWorshipComment } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
-import { comparePassword, hashPassword } from "helper";
+import { hash, compare } from "bcrypt";
 import { v4 as uuidv4 } from "uuid";
 import { IComment } from "type";
+
+export const hashPassword = async (password: string) => {
+  const hashedPassword = await hash(password, 10);
+  return hashedPassword;
+};
+
+export const comparePassword = async (password: string, hashedPassword: string) => {
+  const isMatch = await compare(password, hashedPassword);
+  return isMatch;
+};
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query, body } = req;
