@@ -5,13 +5,13 @@ const AboutMinistryVision = () => {
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-20 overflow-hidden">
       <CustomImage
-        className="h-[600px] md:h-[1000px]"
+        className="h-[600px] md:h-[1000px] lg:h-[1200px]"
         src="/images/about/myungmoon.jpg"
         alt="목회비전 이미지"
         imgClass="brightness-50"
       >
         <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-14 md:px-12 lg:px-32">
-          <p className="flex w-full font-SCoreDream text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
+          <p className="font-SCoreDream flex w-full text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
           <div
             data-aos="fade-up"
             className="flex w-full flex-col justify-center gap-1 text-white sm:gap-4 sm:text-xl md:text-xl lg:text-3xl"
