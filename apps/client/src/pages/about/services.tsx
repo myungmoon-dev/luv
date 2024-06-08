@@ -10,7 +10,7 @@ const AboutServicesPage = () => {
       pageTitle="예배 안내"
       title="예배 안내"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/about/banner2.jpg"
+      bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
     >
