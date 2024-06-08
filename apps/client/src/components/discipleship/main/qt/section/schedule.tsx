@@ -12,7 +12,7 @@ const QtScheduleSection = ({ weekday, weekend, description, place }: QtScheduleS
   return (
     <div className="flex w-full max-w-screen-md flex-col justify-start gap-5">
       <QtTitle titleEn="SCHEDULE" titleKr="교육일정 및 장소" />
-      <p className="font-semibold">{description}</p>
+      <p className="font-semibold 2xl:text-xl">{description}</p>
       <div className="grid w-full grid-cols-1 gap-1 md:grid-cols-2 md:grid-rows-2">
         <CustomImage
           alt="평일반 이미지"
@@ -28,7 +28,7 @@ const QtScheduleSection = ({ weekday, weekend, description, place }: QtScheduleS
         <CustomImage
           alt="장소 이미지"
           src={place.img}
-          className="relative row-span-2 h-[200px] md:h-[300px]"
+          className="relative row-span-2 h-[200px] md:h-[300px] 2xl:h-[400px]"
           imgClass="brightness-75"
         >
           <div className="absolute flex h-full w-full flex-col items-center justify-center text-white">
