@@ -1,9 +1,9 @@
-interface ICurriculumTitleComponentProps {
+interface ICurriculumTitleProps {
   firstHalf: string;
   secondHalf: string;
 }
 
-const CurriculumTitleComponent = ({ firstHalf, secondHalf }: ICurriculumTitleComponentProps) => {
+const CurriculumTitle = ({ firstHalf, secondHalf }: ICurriculumTitleProps) => {
   return (
     <div className="grid min-h-[50px] w-full grid-cols-3 items-center rounded-md bg-gray-200">
       <p className="font-SCoreDream text-center tracking-widest">일 정</p>
@@ -15,4 +15,4 @@ const CurriculumTitleComponent = ({ firstHalf, secondHalf }: ICurriculumTitleCom
   );
 };
 
-export default CurriculumTitleComponent;
+export default CurriculumTitle;
