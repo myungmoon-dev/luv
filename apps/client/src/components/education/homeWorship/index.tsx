@@ -1,6 +1,6 @@
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
-import { Pagination, Spinner, Table } from "ui";
+import { Spinner, Table } from "ui";
 
 const HomeWorships = () => {
   const { push } = useRouter();
@@ -35,7 +35,7 @@ const HomeWorships = () => {
           onClickRow={(rowId) => push(`/education/home-worship/${rowId}`)}
         />
         {/* FIXME: api에서 페이지네이션 정보 보내주도록 수정 */}
-        <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.homeWorships.length} />
+        {/* <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.homeWorships.length} /> */}
       </div>
     </div>
   );
