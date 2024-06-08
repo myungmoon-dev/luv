@@ -31,7 +31,7 @@ export interface IIconProps {
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
   sm: "ui-w-[16px]",
   md: "ui-w-[20px]",
-  lg: "ui-w-[24px]",
+  lg: "ui-w-[36px]",
   xl: "ui-w-[48px]",
   "2xl": "ui-w-[72px]",
   "4xl": "ui-w-[96px]",
