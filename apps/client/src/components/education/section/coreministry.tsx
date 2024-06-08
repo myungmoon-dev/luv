@@ -65,15 +65,17 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
               >
                 <div
                   data-aos="fade-up"
-                  className=" flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
+                  className="flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
                 >
                   <div className="flex flex-col items-center justify-center gap-3">
                     <p className="font-SCoreDream text-[50px] sm:text-5xl md:text-9xl">{data.id}</p>
-                    <div className="flex flex-col items-center justify-center gap-1">
-                      <p className="font-SCoreDream text-white md:text-2xl lg:text-xl">{data.titleKr}</p>
+                    <div className="flex flex-col items-end justify-center gap-1">
+                      <p className="font-SCoreDream w-16 overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm text-white md:w-auto md:text-2xl lg:text-xl">
+                        {data.titleKr}
+                      </p>
                       <p className="font-Cormorant text-white md:text-2xl">{data.titleEn}</p>
                     </div>
-                    <p className="text-sm  md:text-base md:font-semibold">자세히보기</p>
+                    <p className="text-sm md:text-base md:font-semibold">자세히보기</p>
                   </div>
                 </div>
               </CustomImage>
