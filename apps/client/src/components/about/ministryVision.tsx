@@ -5,13 +5,13 @@ const AboutMinistryVision = () => {
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-20 overflow-hidden">
       <CustomImage
-        className="h-[600px] md:h-[1000px]"
+        className="h-[600px] md:h-[1000px] lg:h-[1200px]"
         src="/images/about/myungmoon.jpg"
         alt="목회비전 이미지"
         imgClass="brightness-50"
       >
         <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-14 md:px-12 lg:px-32">
-          <p className="flex w-full font-SCoreDream text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
+          <p className="font-SCoreDream flex w-full text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
           <div
             data-aos="fade-up"
             className="flex w-full flex-col justify-center gap-1 text-white sm:gap-4 sm:text-xl md:text-xl lg:text-3xl"
@@ -43,7 +43,7 @@ const AboutMinistryVision = () => {
       <div className="flex w-full flex-col">
         <AboutPromiseComponent
           direction="left"
-          img="/images/about/default-1.jpg"
+          img="/images/about/ministryVision/1.jpg"
           title1="양을 위하여 목숨을 버리는"
           title2="목자의 심정으로 목회하겠습니다."
           text1="영혼을 구원하기 위해 성육신하신"
@@ -53,7 +53,7 @@ const AboutMinistryVision = () => {
         />
         <AboutPromiseComponent
           direction="right"
-          img="/images/about/default-2.jpg"
+          img="/images/about/ministryVision/2.jpg"
           title1="생명을 걸고 설교 준비를 하고,"
           title2="삶으로 설교하겠습니다."
           text1="명문의 강단이 푸른 감람나무 같고 물댄 동산 같아서"
@@ -63,7 +63,7 @@ const AboutMinistryVision = () => {
         />
         <AboutPromiseComponent
           direction="left"
-          img="/images/discipleship/banner.jpg"
+          img="/images/about/ministryVision/3.jpeg"
           title1="기도하기를 쉬는 죄를 범하지 않고,"
           title2="눈물과 무릎으로 목회하겠습니다."
           text1="사람의 능력이 아니라,"

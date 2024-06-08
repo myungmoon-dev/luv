@@ -26,12 +26,12 @@ const AboutPromiseComponent = ({
     right: "fade-right",
   };
   const imgStyle = {
-    left: "-left-[100px] md:-left-[100px] xl:-left-[50px]",
-    right: "-right-[100px] md:-right-[100px] xl:-right-[50px]",
+    left: "-left-[80px] md:-left-[100px] xl:-left-[50px]",
+    right: "-right-[80px] md:-right-[100px] xl:-right-[50px]",
   };
   const textStyle = {
-    left: "pl-20 md:pl-40 lg:pl-52",
-    right: "pr-20 md:pr-40 lg:pr-52",
+    left: "pl-24 md:pl-40 lg:pl-52 2xl:pl-0",
+    right: "pr-24 md:pr-40 lg:pr-52 2xl:pr-0",
   };
 
   return (

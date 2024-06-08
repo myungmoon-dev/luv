@@ -93,39 +93,14 @@ const AboutIntroduction = () => {
         text2="세계와 열방을 향해 나아가는"
         text3="명문교회를 소개합니다!"
       />
-      <CustomImage
-        className="h-[500px] md:h-[700px] lg:h-[800px] xl:h-screen"
-        src="/images/education/vision1.jpg"
-        alt="비전 이미지"
-        imgClass="brightness-50"
-      >
-        <div className="absolute flex h-full w-full flex-col items-end justify-center gap-16 px-12 xl:px-32">
-          <div
-            data-aos="fade-up"
-            className="flex w-full flex-col gap-3 font-SCoreDream text-2xl font-bold text-white md:text-5xl lg:text-7xl"
-          >
-            <p>복음으로!</p>
-            <p>오직 성령의 능력으로!</p>
-            <p>회복을 넘어 부흥으로!</p>
-          </div>
-          <div
-            data-aos="fade-up"
-            className="flex w-full flex-col justify-center gap-4 text-xl text-white md:w-2/3 md:text-3xl lg:text-5xl xl:w-1/2"
-          >
-            <p>명문교회는</p>
-            <p className="font-bold">'지역과 민족을 품고</p>
-            <p className="font-bold">세계와 열방을 향해 나아가는'</p>
-            <p>생명의 공동체입니다.</p>
-          </div>
-        </div>
-      </CustomImage>
+
       <div className="relative flex h-full w-full flex-col items-center justify-center py-16 xl:h-[1080px]">
         <div className="z-[1] flex w-full flex-col items-center justify-center gap-12 px-3 md:w-3/4 md:px-0">
           <div
             data-aos="fade-up"
             className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl xl:text-2xl xl:font-semibold"
           >
-            <p className="py-5 font-SCoreDream text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
+            <p className="font-SCoreDream py-5 text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
               名門 (명문)
               <br />
               이름을 얻는다.
@@ -150,9 +125,9 @@ const AboutIntroduction = () => {
         />
         <div
           data-aos="fade-right"
-          className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-2xl md:font-normal lg:w-1/2 lg:text-3xl lg:font-semibold xl:w-3/5 2xl:w-1/2"
+          className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-2xl md:font-normal lg:w-1/2 lg:text-xl lg:font-semibold xl:w-3/5 2xl:w-1/2 2xl:text-2xl"
         >
-          <p className="w-fit border-b-2 border-white pb-[2px] font-SCoreDream text-2xl font-semibold sm:text-4xl md:mb-2 md:pb-2 md:text-5xl">
+          <p className="font-SCoreDream w-fit border-b-2 border-white pb-[2px] text-2xl font-semibold sm:text-4xl md:mb-2 md:pb-2 md:text-5xl">
             명문교회 로고
           </p>
           <p className="break-keep">명문의 첫 두글자 영문 MM을 형상화하여 만들어졌습니다.</p>
@@ -169,7 +144,7 @@ const AboutIntroduction = () => {
           <CustomImage
             src="/images/logo.png"
             alt="로고이미지"
-            className="right-1 top-5 h-[100px] w-[100px] md:h-[200px] md:w-[200px] lg:h-[300px] lg:w-[300px]"
+            className="right-1 top-5 h-[100px] w-[100px] md:h-[200px] md:w-[200px] lg:h-[400px] lg:w-[400px]"
             imgClass="object-contain"
           />
         </div>
