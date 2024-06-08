@@ -3,15 +3,16 @@ import Discipleship3040VisionSection from "./section/vision";
 import Discipleship3040PurposeSection from "./section/purpose";
 import Discipleship3040ProgramSection from "./section/program";
 import { GENERATION_3040_TYPE, I3040ProgramData, I3040PurposeData, I3040VisionData, I3040WatchwordData } from "type";
+import Discipleship3040TitleSection from "./section/title";
 
 // FIXME: DB저장 예정
 const DISCIPLESHIP_3040_DATA: (I3040VisionData | I3040WatchwordData | I3040PurposeData | I3040ProgramData)[] = [
   {
     id: "watchword",
     data: {
-      text1: "Come Together",
-      text2: "함께 모여요!",
-      text3: "히브리서 10장 24-25절",
+      watchwordEn: "COME TOGETHER",
+      watchwordKr: "함께 모여요!",
+      verse: "히브리서 10장 24-25절",
     },
   },
   {
@@ -74,10 +75,10 @@ const Discipleship3040 = () => {
 
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-14 overflow-x-hidden xl:gap-20">
-      <AboutHeaderSection
-        text1={watchwordData.data.text1}
-        text2={watchwordData.data.text2}
-        text3={watchwordData.data.text3}
+      <Discipleship3040TitleSection
+        titleEn={watchwordData.data.watchwordEn}
+        titleKr={watchwordData.data.watchwordKr}
+        verse={watchwordData.data.verse}
       />
       <Discipleship3040VisionSection
         img={visionData.data.img}

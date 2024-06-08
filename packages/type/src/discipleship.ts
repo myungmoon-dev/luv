@@ -17,9 +17,9 @@ export interface I3040Data {
 }
 export interface I3040WatchwordData extends I3040Data {
   data: {
-    text1: string;
-    text2: string;
-    text3: string;
+    watchwordEn: string;
+    watchwordKr: string;
+    verse: string;
   };
 }
 export interface I3040VisionData extends I3040Data {
