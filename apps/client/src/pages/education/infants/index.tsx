@@ -9,9 +9,10 @@ const EducationInfantsPage = () => {
       pageTitle="영아부"
       title="영아부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/education/banner.jpg"
+      bannerImage="/images/education/infants/banner.jpg"
       innerMenus={educationInnerMenus}
       detailMenus={educationInfantsMenus}
+      bannerImgClass="object-[50%_70%]"
     >
       <EducationOverView type="infants" />
     </Layout>
