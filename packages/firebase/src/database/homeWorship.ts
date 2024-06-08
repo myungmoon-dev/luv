@@ -55,6 +55,15 @@ export const postHomeWorship = async (
   return docRef;
 };
 
+export const putHomeWorship = async (
+  changedHomeworship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number; id: string }
+) => {
+  const docRef = doc(database, collections.homeWorship, changedHomeworship.id);
+
+  const snapshot = await updateDoc(docRef, changedHomeworship);
+  return snapshot;
+};
+
 export const deleteHomeWorship = async (homeWorshipId: string) => {
   const snapshot = await deleteDoc(doc(database, collections.homeWorship, homeWorshipId));
 

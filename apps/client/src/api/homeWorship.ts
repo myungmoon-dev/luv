@@ -23,8 +23,24 @@ export const postHomeWorship = async (homeWorship: FormData) => {
   return data;
 };
 
+export const putHomeWorship = async ({
+  homeWorship,
+  homeWorshipId,
+}: {
+  homeWorship: FormData;
+  homeWorshipId: string;
+}) => {
+  const { data } = await api.put(`/api/homeWorship/${homeWorshipId}`, homeWorship, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+
+  return data;
+};
+
 export const deleteHomeWorship = async ({ homeWorshipId, password }: { homeWorshipId: string; password: string }) => {
-  const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}`, { data: { password } });
+  const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}`, { params: { password } });
 
   return data;
 };
@@ -59,6 +75,18 @@ export const deleteHomeWorshipComment = async ({
   password: string;
 }) => {
   const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}/comment`, { data: { password, commentId } });
+
+  return data;
+};
+
+export const postHomeWorshipPasswordCheck = async ({
+  homeWorshipId,
+  password,
+}: {
+  homeWorshipId: string;
+  password: string;
+}) => {
+  const { data } = await api.post(`/api/homeWorship/${homeWorshipId}/password-check`, { password });
 
   return data;
 };

@@ -1,6 +1,6 @@
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
-import { Pagination, Spinner, Table } from "ui";
+import { Spinner, Table } from "ui";
 
 const HomeWorships = () => {
   const { push } = useRouter();
@@ -17,8 +17,8 @@ const HomeWorships = () => {
     <div className="flex flex-col gap-10 px-3 md:px-20 2xl:mx-auto 2xl:max-w-screen-lg">
       <div className="flex justify-end">
         <button
-          onClick={() => push("/education/home-worship/create")}
-          className="font-SCoreDream rounded-md bg-blue-500 px-3 py-2 text-white"
+          onClick={() => push("/homeworship/create")}
+          className="rounded-md bg-blue-500 px-3 py-2 font-SCoreDream text-white"
         >
           인증하기
         </button>
@@ -32,10 +32,10 @@ const HomeWorships = () => {
             writer: homeWorship.userName,
             isPinned: homeWorship.isPinned,
           }))}
-          onClickRow={(rowId) => push(`/education/home-worship/${rowId}`)}
+          onClickRow={(rowId) => push(`/homeworship/${rowId}`)}
         />
         {/* FIXME: api에서 페이지네이션 정보 보내주도록 수정 */}
-        <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.homeWorships.length} />
+        {/* <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.homeWorships.length} /> */}
       </div>
     </div>
   );

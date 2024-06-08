@@ -11,6 +11,7 @@ import {
   getPinnedHomeWorships,
   postHomeWorshipComment,
   deleteHomeWorshipComment,
+  putHomeWorship,
 } from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
@@ -51,4 +52,5 @@ export {
   getPinnedHomeWorships,
   postHomeWorshipComment,
   deleteHomeWorshipComment,
+  putHomeWorship,
 };
