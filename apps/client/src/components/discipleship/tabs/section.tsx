@@ -10,9 +10,9 @@ interface IDiscipleshipTabBarContentSection {
 const DiscipleshipTabBarContentSection = ({ title, text, caution, children }: IDiscipleshipTabBarContentSection) => {
   return (
     <div className="flex w-full flex-col gap-1 xl:gap-3">
-      <h1 className="break-keep font-SCoreDream text-lg text-blue-500 md:text-2xl 2xl:text-4xl">{title}</h1>
+      <h1 className="font-SCoreDream break-keep text-lg text-blue-500 md:text-2xl 2xl:text-4xl">{title}</h1>
       {text && <p className="break-keep md:text-lg">{text}</p>}
-      {caution && <p className="text-sm font-thin text-blue-600 md:text-base md:font-light">{`* ${caution}`}</p>}
+      {caution && <p className="text-sm font-bold text-blue-600 md:text-base">{`* ${caution}`}</p>}
       {children}
     </div>
   );
