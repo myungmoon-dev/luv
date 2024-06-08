@@ -18,7 +18,7 @@ const HomeBannerNav = ({ setCurrentView }: IHomeBannerNavProps) => {
       path: HomeBannerEnum.Live,
     },
     { label: "온세대가 함께하는\n명문교회 <181일 성경통독>", path: HomeBannerEnum.Bible },
-    { label: "맛있는 가정예배", path: HomeBannerEnum.HomeWorship },
+    { label: "전성도가 함께하는\n맛있는 가정예배", path: HomeBannerEnum.HomeWorship },
   ];
 
   return (
