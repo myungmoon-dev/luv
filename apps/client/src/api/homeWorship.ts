@@ -62,3 +62,15 @@ export const deleteHomeWorshipComment = async ({
 
   return data;
 };
+
+export const postHomeWorshipPasswordCheck = async ({
+  homeWorshipId,
+  password,
+}: {
+  homeWorshipId: string;
+  password: string;
+}) => {
+  const { data } = await api.post(`/api/homeWorship/${homeWorshipId}/password-check`, { password });
+
+  return data;
+};

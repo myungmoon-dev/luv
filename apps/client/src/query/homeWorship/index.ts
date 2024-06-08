@@ -7,6 +7,7 @@ import {
   getHomeWorships,
   postHomeWorship,
   postHomeWorshipComment,
+  postHomeWorshipPasswordCheck,
 } from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
 
@@ -35,6 +36,11 @@ const usePostHomeWorshipComment = () => useMutation({ mutationFn: postHomeWorshi
 
 const useDeleteHomeWorshipComment = () => useMutation({ mutationFn: deleteHomeWorshipComment });
 
+const usePostHomeWorshipPasswordCheck = () =>
+  useMutation({
+    mutationFn: postHomeWorshipPasswordCheck,
+  });
+
 export {
   useGetHomeWorship,
   useGetHomeWorships,
@@ -42,4 +48,5 @@ export {
   useDeleteHomeWorship,
   usePostHomeWorshipComment,
   useDeleteHomeWorshipComment,
+  usePostHomeWorshipPasswordCheck,
 };
