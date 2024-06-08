@@ -10,7 +10,15 @@ import { IHomeWorship, IHomeWorshipForm } from "./homeWorship";
 import { YearMonthType } from "./date";
 import { IMission, IMissionForm } from "./news";
 import { IUser } from "./user";
-import { IDiscipleshipTabData } from "./discipleship";
+import {
+  IDiscipleshipTabData,
+  INewlywedsCurriculumData,
+  INewlywedsData,
+  INewlywedsGuideData,
+  INewlywedsImageData,
+  INewlywedsIntroData,
+  NewlywedsType,
+} from "./discipleship";
 
 export type {
   IBulletin,
@@ -29,4 +37,10 @@ export type {
   IMissionForm,
   IUser,
   IDiscipleshipTabData,
+  INewlywedsCurriculumData,
+  INewlywedsData,
+  INewlywedsGuideData,
+  INewlywedsImageData,
+  INewlywedsIntroData,
+  NewlywedsType,
 };
