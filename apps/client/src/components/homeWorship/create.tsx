@@ -40,7 +40,7 @@ const HomeWorshipCreate = () => {
     mutate(formData, {
       onSuccess: (res) => {
         alert("추가되었습니다.");
-        push("/education/home-worship");
+        push("/homeworship");
       },
       onError: (err) => {
         alert("에러가 발생했습니다. 다시 시도해주세요.");

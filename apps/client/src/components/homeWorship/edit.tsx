@@ -59,7 +59,7 @@ const HomeWorshipEdit = () => {
       {
         onSuccess: (res) => {
           alert("수정되었습니다.");
-          push("/education/home-worship");
+          push("/homeworship");
         },
         onError: (err) => {
           alert("에러가 발생했습니다. 다시 시도해주세요.");
@@ -71,14 +71,14 @@ const HomeWorshipEdit = () => {
   const checkPassword = () => {
     const password = prompt("비밀번호를 입력해주세요.");
     if (!password) {
-      push("/education/home-worship");
+      push("/homeworship");
     } else {
       passwordCheckMutate(
         { homeWorshipId, password },
         {
           onError: (err: any) => {
             alert("비밀번호가 일치하지 않습니다.");
-            push("/education/home-worship");
+            push("/homeworship");
           },
         },
       );
