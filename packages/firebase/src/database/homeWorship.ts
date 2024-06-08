@@ -1,6 +1,20 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, where } from "firebase/firestore";
+import {
+  addDoc,
+  arrayRemove,
+  arrayUnion,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { IHomeWorshipForm } from "type/src/homeWorship";
 import { collections, database } from ".";
+import { IComment } from "type";
 
 export const getHomeWorships = async () => {
   const getQuery = query(
@@ -43,6 +57,38 @@ export const postHomeWorship = async (
 
 export const deleteHomeWorship = async (homeWorshipId: string) => {
   const snapshot = await deleteDoc(doc(database, collections.homeWorship, homeWorshipId));
+
+  return snapshot;
+};
+
+export const postHomeWorshipComment = async ({
+  homeWorshipId,
+  comment,
+}: {
+  homeWorshipId: string;
+  comment: IComment;
+}) => {
+  const docRef = doc(database, collections.homeWorship, homeWorshipId);
+
+  const snapshot = await updateDoc(docRef, {
+    comments: arrayUnion(comment),
+  });
+
+  return snapshot;
+};
+
+export const deleteHomeWorshipComment = async ({
+  comment,
+  homeWorshipId,
+}: {
+  homeWorshipId: string;
+  comment: IComment;
+}) => {
+  const docRef = doc(database, collections.homeWorship, homeWorshipId);
+
+  const snapshot = await updateDoc(docRef, {
+    comments: arrayRemove(comment),
+  });
 
   return snapshot;
 };

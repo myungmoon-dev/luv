@@ -1,10 +1,10 @@
 import AboutHeaderSection from "@/components/about/section/header";
 import CustomImage from "@/components/customImage";
-import ForNewCommersGuide from "./commers/guide";
-import ForNewCommersDate from "./commers/date";
-import ForNewCommersApply from "./commers/apply";
-import ForNewCommersProcess from "./commers/process";
-import NewCommersTabBar from "./commers/tabBar";
+import DiscipleshipTabBar from "../tabs/tabBar";
+import ForNewCommersGuide from "./contents/guide";
+import ForNewCommersDate from "./contents/date";
+import ForNewCommersProcess from "./contents/process";
+import ForNewCommersApply from "./contents/apply";
 import { useState } from "react";
 
 const NEWCOMMERS_TAB_DATA = [
@@ -56,7 +56,7 @@ const DiscipleshipNew = () => {
       <div className="flex w-full max-w-screen-lg flex-col">
         <nav className="flex h-[70px] w-full items-center justify-center gap-1">
           {NEWCOMMERS_TAB_DATA.map((menu, idx) => (
-            <NewCommersTabBar
+            <DiscipleshipTabBar
               key={menu.label}
               label={menu.label}
               currnetIndex={idx}

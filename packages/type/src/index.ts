@@ -19,7 +19,15 @@ import {
   I3040PurposeData,
   I3040VisionData,
   I3040WatchwordData,
+  IDiscipleshipTabData,
+  INewlywedsCurriculumData,
+  INewlywedsData,
+  INewlywedsGuideData,
+  INewlywedsImageData,
+  INewlywedsIntroData,
+  NewlywedsType,
 } from "./discipleship";
+import { IComment } from "./comment";
 
 export type {
   IBulletin,
@@ -45,4 +53,12 @@ export type {
   I3040PurposeData,
   I3040VisionData,
   I3040WatchwordData,
+  IDiscipleshipTabData,
+  INewlywedsCurriculumData,
+  INewlywedsData,
+  INewlywedsGuideData,
+  INewlywedsImageData,
+  INewlywedsIntroData,
+  NewlywedsType,
+  IComment,
 };

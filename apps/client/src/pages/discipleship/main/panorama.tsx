@@ -1,9 +1,8 @@
 import React from "react";
-
 import Layout from "@/components/layout";
-import NotPrepared from "@/components/layout/notPrepared";
 import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 import Tabs from "@/components/layout/tabs";
+import DiscipleshipPanorama from "@/components/discipleship/main/panorama";
 
 const DiscipleshipMainPanoramaPage = () => {
   return (
@@ -17,7 +16,7 @@ const DiscipleshipMainPanoramaPage = () => {
       detailMenus={discipleshipMainMenus}
     >
       <Tabs menus={discipleshipMainMenus}>
-        <NotPrepared />
+        <DiscipleshipPanorama />
       </Tabs>
     </Layout>
   );
