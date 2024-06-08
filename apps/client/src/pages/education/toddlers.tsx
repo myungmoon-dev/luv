@@ -9,7 +9,8 @@ const EducationToddlersPage = () => {
       pageTitle="유치부"
       title="유치부"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/education/banner2.jpg"
+      bannerImage="/images/education/toddlers/banner.jpg"
+      bannerImgClass="object-[50%_70%]"
       innerMenus={educationInnerMenus}
     >
       <EducationOverView type="toddlers" />

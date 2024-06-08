@@ -9,7 +9,7 @@ const EducationYoungAdults2Page = () => {
       pageTitle="M'embers"
       title="M'embers"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/education/banner.jpg"
+      bannerImage="/images/education/2youth/banner.jpg"
       innerMenus={educationInnerMenus}
     >
       <EducationOverView type="2youth" />
