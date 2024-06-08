@@ -11,7 +11,6 @@ import { YearMonthType } from "./date";
 import { IMission, IMissionForm } from "./news";
 import { IUser } from "./user";
 import {
-  INewCommersData,
   Generation3040Type,
   I3040Data,
   I3040ProgramData,
@@ -45,7 +44,6 @@ export type {
   IMission,
   IMissionForm,
   IUser,
-  INewCommersData,
   Generation3040Type,
   I3040Data,
   I3040ProgramData,
