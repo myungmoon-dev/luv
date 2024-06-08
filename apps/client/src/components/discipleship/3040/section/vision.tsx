@@ -14,15 +14,15 @@ const Discipleship3040VisionSection = ({ img, text1, text2, emphasis }: IDiscipl
         <EducationSectionTitle
           first="비전"
           second="Vision"
-          className="flex items-center justify-center gap-3 text-5xl text-white md:text-6xl lg:text-8xl"
+          className="flex items-center justify-center gap-3 text-5xl text-white md:text-6xl lg:text-6xl xl:text-7xl 2xl:text-8xl"
         />
         <div
           data-aos="fade-up"
-          className="flex flex-col items-center justify-center gap-1 text-xl text-white sm:gap-4 md:text-3xl lg:text-5xl"
+          className="flex flex-col items-center justify-center gap-1 text-xl text-white sm:gap-4 md:text-2xl lg:text-3xl"
         >
           <p>{text1}</p>
           {text2 && <p>{text2}</p>}
-          <p className="font-SCoreDream">{emphasis}</p>
+          <p>{emphasis}</p>
         </div>
       </div>
     </CustomImage>
