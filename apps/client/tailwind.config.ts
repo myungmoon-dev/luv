@@ -31,6 +31,7 @@ const config: Config = {
         "blue-400": "#41C9E2",
         "blue-500": "#3490DE",
         "blue-600": "#2b66f6",
+        "blue-700": "#eff5f9",
         "orange-400": "#F1B201",
         "orange-500": "#FF9843",
       },
