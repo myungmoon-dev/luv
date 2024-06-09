@@ -1,20 +1,22 @@
-import dayjs from "dayjs";
-import React from "react";
+import { useRouter } from "next/navigation";
 
 const HomeBannerBible = () => {
-  const today = dayjs().format(`M/D일`);
+  const { push } = useRouter();
 
   return (
     <div className="flex flex-col items-center gap-6">
-      <h1 className="font-SCoreDream text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
+      <h1 className="text-center font-SCoreDream text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
         <span data-aos="fade-up">온세대가 함께하는</span>
         <br />
         <span data-aos="fade-up">{"<181일 성경통독>"}</span>
       </h1>
-      <p data-aos="fade-up" className="text-2xl font-semibold text-white">
-        {/* TODO: 일차 추가 */}
-        {today}(181일)
-      </p>
+      <button
+        onClick={() => push("/discipleship/main/bible")}
+        data-aos="fade-up"
+        className="text-xl font-bold text-white hover:underline"
+      >
+        성경통독 게시판 바로가기 {">"}
+      </button>
     </div>
   );
 };
