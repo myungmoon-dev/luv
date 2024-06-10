@@ -86,8 +86,6 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
   const [currentDrawerMenu, setCurrentDrawerMenu] = useState<string>("/about");
 
   useEffect(() => {
-    console.log(asPath);
-
     const updateScroll = throttle(() => {
       const position = window.scrollY || document.documentElement.scrollTop;
       setScrolled(position > 40);
