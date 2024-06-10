@@ -51,19 +51,33 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
   const getDetailMenu = () => {
     switch (currentDrawerMenu) {
       case "/about":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/about"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/about")
+        );
       case "/sermons":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/sermons"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/sermons")
+        );
       case "/education":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/education"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/education")
+        );
       case "/news":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/news"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/news")
+        );
       case "/discipleship":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/discipleship"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/discipleship")
+        );
       case "/homeworship":
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/homeworship"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/homeworship")
+        );
       default:
-        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/about"));
+        return detailMenus.filter((detailMenu) =>
+          detailMenu.path.startsWith("/about")
+        );
     }
   };
 
@@ -107,7 +121,8 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
                 key={menu.path}
                 className={cn(
                   "ui-font-semibold lg:ui-text-lg ui-pb-[0.5px]",
-                  asPath.startsWith(menu.path) && "ui-text-blue-500 ui-border-b-2 ui-border-blue-500"
+                  asPath.startsWith(menu.key) &&
+                    "ui-text-blue-500 ui-border-b-2 ui-border-blue-500"
                 )}
               >
                 {menu.label}
@@ -132,7 +147,9 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
               <div className="ui-flex ui-justify-between ui-w-full ui-items-start ui-pb-2 ui-border-b-[1px] ui-border-white ui-text-white ui-px-5 md:ui-pb-5 xl:ui-px-10">
                 <div className="ui-flex ui-flex-col ui-w-full md:ui-text-xl lg:ui-text-2xl xl:ui-text-3xl">
                   <p className="ui-font-SCoreDream">교회여!</p>
-                  <p className="ui-font-SCoreDream">일어나 세상으로 흘러가라!</p>
+                  <p className="ui-font-SCoreDream">
+                    일어나 세상으로 흘러가라!
+                  </p>
                 </div>
                 <Icon
                   name="Close"
@@ -168,7 +185,9 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
                     key={menu.key}
                     className={cn(
                       "ui-font-semibold",
-                      currentDrawerMenu === menu.key ? "ui-text-blue-600 ui-underline" : "ui-text-black"
+                      currentDrawerMenu === menu.key
+                        ? "ui-text-blue-600 ui-underline"
+                        : "ui-text-black"
                     )}
                   >
                     {menu.label}
@@ -177,7 +196,11 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
               </div>
               <div className="ui-flex ui-flex-col ui-col-span-3 ui-px-4 ui-pt-10 ui-gap-5 md:ui-px-6 xl:ui-px-10">
                 <p className="ui-font-SCoreDream ui-pb-2 ui-border-b-[1px] ui-border-gray-200 ui-text-lg xl:ui-text-3xl">
-                  {menus.find((menu) => menu.key === currentDrawerMenu && menu.label)?.label}
+                  {
+                    menus.find(
+                      (menu) => menu.key === currentDrawerMenu && menu.label
+                    )?.label
+                  }
                 </p>
                 <div className="ui-flex ui-flex-col ui-gap-3 ui-items-start">
                   {getDetailMenu().map((menu) => (

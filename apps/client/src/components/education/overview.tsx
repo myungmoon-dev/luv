@@ -105,7 +105,7 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "elementary",
-    department: "예빛(유초등부)",
+    department: "예빛",
     imgs: [
       "/images/education/elementary/1.jpg",
       "/images/education/elementary/2.jpg",
@@ -307,7 +307,7 @@ const EducationOverView = ({ type }: IEducationOverViewProps) => {
   }
 
   return (
-    <div className="sacle flex w-full flex-col items-center justify-center gap-16 overflow-x-hidden">
+    <div className="flex w-full flex-col items-center justify-center gap-16 overflow-x-hidden">
       <EducationIntroductionSection department={educationData.department} text={educationData.introduction} />
       <EducationImageSection list={educationData.imgs} />
       <EducationInformationSection

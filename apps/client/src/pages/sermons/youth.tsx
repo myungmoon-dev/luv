@@ -11,8 +11,8 @@ const SermonsYouthPage = () => {
       pageTitle="청년 예배"
       title="청년 예배"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/sermon/banner2.jpg"
-      bannerImgClass="object-[100%_30%]"
+      bannerImage="/images/sermon/banner3.jpg"
+      bannerImgClass="object-[50%_60%] xl:object-[50%_50%]"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
