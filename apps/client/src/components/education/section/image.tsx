@@ -6,7 +6,7 @@ interface IEducationImageSectionProps {
 
 const EducationImageSection = ({ list }: IEducationImageSectionProps) => {
   return (
-    <div data-aos="fade-left" className="grid w-full grid-cols-1 gap-5 md:grid-cols-3">
+    <div data-aos="fade-left" className="grid w-full grid-cols-1 gap-5 px-3 md:grid-cols-3">
       {list.map((item, idx) => (
         <CustomImage
           key={idx}

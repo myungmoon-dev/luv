@@ -46,36 +46,38 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10 xl:h-screen">
+    <div className="flex w-full flex-col items-center justify-center gap-10 overflow-y-hidden xl:h-screen">
       <EducationIntroductionTitle department={department} type="핵심사역" />
       <AnimatePresence initial={false}>
-        <div className={cn("relative grid h-full w-full gap-1", `grid-cols-${dataList.length}`)}>
+        <div className={cn("relative grid w-full gap-[1px] md:gap-1", `grid-cols-${dataList.length}`)}>
           {dataList.map((data, number) => (
             <motion.div
               key={number}
               onClick={() => onClickDetailValue(data.id)}
               layoutId={data.id + ""}
-              className="h-full w-full"
+              className="w-full"
             >
               <CustomImage
-                className="h-[300px] w-full cursor-pointer bg-blue-600 md:h-[500px]"
+                className="relative h-[300px] w-full cursor-pointer bg-blue-600 md:h-[500px]"
                 imgClass={data.imgClass}
                 src={data.img}
                 alt={`${data.titleKr} 이미지`}
               >
                 <div
                   data-aos="fade-up"
-                  className="flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
+                  className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
                 >
                   <div className="flex flex-col items-center justify-center gap-3">
                     <p className="font-SCoreDream text-[50px] sm:text-5xl md:text-9xl">{data.id}</p>
                     <div className="flex flex-col items-end justify-center gap-1">
-                      <p className="font-SCoreDream w-16 overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm text-white md:w-auto md:text-2xl lg:text-xl">
+                      <p className="w-16 overflow-hidden text-ellipsis whitespace-nowrap text-center font-SCoreDream text-sm text-white md:w-auto md:text-2xl lg:text-xl">
                         {data.titleKr}
                       </p>
                       <p className="font-Cormorant text-white md:text-2xl">{data.titleEn}</p>
                     </div>
-                    <p className="text-sm md:text-base md:font-semibold">자세히보기</p>
+                    <p data-aos="fade-up" className="text-sm md:text-base md:font-semibold">
+                      자세히보기
+                    </p>
                   </div>
                 </div>
               </CustomImage>
@@ -86,7 +88,7 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
               <motion.div
                 // layoutId={selectedValue.id + ""}
                 onClick={toggleShowDetailValue}
-                className="z-99 absolute left-0 top-0 h-full w-full"
+                className="z-99 absolute left-0 top-0 w-full"
                 variants={coreValueVariants}
                 initial="initial"
                 animate="animate"
