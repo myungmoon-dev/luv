@@ -10,7 +10,6 @@ const SermonContainer = ({ list, title }: ISermonContainerProps) => {
   return (
     <div className="flex w-full items-center justify-center px-5 2xl:px-20">
       <div className="flex w-full flex-col gap-5">
-        {/* FIXME: 임시 스타일 <h3 className="text-3xl font-bold pb-2 border-b-[1px] border-gray-400/60">{title}</h3> */}
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 2xl:grid-cols-3">
           {list.map((sermon) => (
             <Sermon sermon={sermon} />

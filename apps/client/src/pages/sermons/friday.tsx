@@ -12,7 +12,7 @@ const SermonsFridayPage = () => {
       title="금요기도회"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/sermon/banner2.jpg"
-      bannerImgClass="object-[100%_30%]"
+      bannerImgClass="object-[50%_30%]"
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
