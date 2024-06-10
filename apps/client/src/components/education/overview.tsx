@@ -105,7 +105,7 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "elementary",
-    department: "예빛(유초등부)",
+    department: "예빛",
     imgs: [
       "/images/education/elementary/1.jpg",
       "/images/education/elementary/2.jpg",
