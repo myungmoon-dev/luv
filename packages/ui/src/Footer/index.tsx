@@ -68,13 +68,16 @@ export const Footer = ({ push }: IFooterProps) => {
       </div>
       <div className="ui-flex ui-gap-x-2 ui-flex-wrap ui-text-white ui-text-sm sm:ui-text-base">
         <button
-          onClick={() => push("/policy?idx=1")}
+          onClick={() => push("/policy?idx=0")}
           className="hover:ui-underline"
         >
           이용약관
         </button>
         <p>/</p>
-        <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+        <button
+          onClick={() => push("/policy?idx=1")}
+          className="hover:ui-underline"
+        >
           개인정보 처리방침
         </button>
         <p>/</p>
