@@ -1,3 +1,4 @@
+import HomeAlbumSection from "@/components/home/album";
 import BibleSection from "@/components/home/bible";
 import BulletinSection from "@/components/home/bulletin";
 import HomeWorshipSection from "@/components/home/homeWorship";
@@ -11,6 +12,7 @@ export default function Home() {
         <BulletinSection />
         <BibleSection />
         <HomeWorshipSection />
+        <HomeAlbumSection />
       </div>
     </main>
   );
