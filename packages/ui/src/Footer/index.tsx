@@ -1,7 +1,7 @@
 import { Icon } from "..";
 
 interface IFooterProps {
-  push: (url: string) => void;
+  push: (url: { pathname: string; query?: Record<string, any> }) => void;
 }
 
 export const Footer = ({ push }: IFooterProps) => {
@@ -49,7 +49,7 @@ export const Footer = ({ push }: IFooterProps) => {
       <nav className="ui-flex ui-gap-5 ui-text-sm sm:ui-text-base">
         {menus.map((menu) => (
           <button
-            onClick={() => push(menu.path)}
+            onClick={() => push({ pathname: menu.path })}
             key={menu.path}
             className="ui-font-semibold ui-text-md"
           >
@@ -67,11 +67,27 @@ export const Footer = ({ push }: IFooterProps) => {
         </p>
       </div>
       <div className="ui-flex ui-gap-x-2 ui-flex-wrap ui-text-white ui-text-sm sm:ui-text-base">
-        <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+        <button
+          onClick={() =>
+            push({
+              pathname: "/policy",
+              query: { idx: 0 },
+            })
+          }
+          className="hover:ui-underline"
+        >
           이용약관
         </button>
         <p>/</p>
-        <button onClick={handleNotPreparedClick} className="hover:ui-underline">
+        <button
+          onClick={() =>
+            push({
+              pathname: "/policy",
+              query: { idx: 1 },
+            })
+          }
+          className="hover:ui-underline"
+        >
           개인정보 처리방침
         </button>
         <p>/</p>
