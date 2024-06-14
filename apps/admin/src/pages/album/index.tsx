@@ -4,11 +4,7 @@ import { ChangeEvent, useState } from "react";
 import { AlbumType } from "type";
 import { Spinner } from "ui";
 
-const ALBUM_OPTION_DATA = [
-  {
-    label: "전체",
-    value: "all",
-  },
+export const ALBUM_OPTION_DATA = [
   {
     label: "명문앨범",
     value: "main",
@@ -92,6 +88,7 @@ const HomeAlbumList = () => {
             onChange={onTypeChange}
             value={selectedType}
           >
+            <option value="all">전체</option>
             {ALBUM_OPTION_DATA.map((option) => (
               <option key={option.label} value={option.value}>
                 {option.label}

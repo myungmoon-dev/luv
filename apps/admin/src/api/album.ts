@@ -7,3 +7,11 @@ export const getAlbumList = async (type: AlbumType) => {
   });
   return data;
 };
+export const PostAlbum = async (album: FormData) => {
+  const { data } = await api.post("/api/album", album, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return data;
+};

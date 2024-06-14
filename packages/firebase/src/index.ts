@@ -25,6 +25,8 @@ import {
   postHomeWorshipComment,
   deleteHomeWorshipComment,
   putHomeWorship,
+  getAlbum,
+  postAlbum,
 } from "./database";
 
 export {
@@ -54,4 +56,6 @@ export {
   postHomeWorshipComment,
   deleteHomeWorshipComment,
   putHomeWorship,
+  getAlbum,
+  postAlbum,
 };

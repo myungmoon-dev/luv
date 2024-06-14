@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AlbumType } from "type";
 import albumKeys from "./keys";
-import { getAlbumList } from "@/api/album";
+import { PostAlbum, getAlbumList } from "@/api/album";
 
-export const useGetAlbumList = (type: AlbumType) => {
+const useGetAlbumList = (type: AlbumType) => {
   const queryKey = albumKeys[type]();
 
   return useQuery({
@@ -12,3 +12,7 @@ export const useGetAlbumList = (type: AlbumType) => {
     select: (response) => response.albumList,
   });
 };
+
+const usePostAlbum = () => useMutation({ mutationFn: PostAlbum });
+
+export { useGetAlbumList, usePostAlbum };

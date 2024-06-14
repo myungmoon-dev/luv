@@ -15,7 +15,7 @@ import {
 } from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
-import { getAlbum } from "./album";
+import { getAlbum, postAlbum } from "./album";
 import { YoutubeType } from "type";
 
 const database = getFirestore(firebase);
@@ -58,4 +58,5 @@ export {
   deleteHomeWorshipComment,
   putHomeWorship,
   getAlbum,
+  postAlbum,
 };
