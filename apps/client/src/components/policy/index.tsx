@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PolicyTab from "./tab";
 import PolicyContent from "./content";
 import { parseAsInteger, useQueryState } from "nuqs";
@@ -203,8 +202,7 @@ const POLICY_TAB_DATA = [
 ];
 
 const Policy = () => {
-  const [idx, _] = useQueryState("idx", parseAsInteger);
-  const [tabIndex, setTabIndex] = useState(idx || 0);
+  const [tabIndex, setTabIndex] = useQueryState("idx", parseAsInteger.withDefault(0));
 
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-10 overflow-x-hidden">
