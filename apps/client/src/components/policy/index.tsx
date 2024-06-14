@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PolicyTab from "./tab";
 import PolicyContent from "./content";
-import { useRouter } from "next/router";
+import { parseAsInteger, useQueryState } from "nuqs";
 
 export interface IPolicyData {
   id: number;
@@ -203,11 +203,9 @@ const POLICY_TAB_DATA = [
 ];
 
 const Policy = () => {
-  const {
-    query: { idx },
-  } = useRouter();
-  const queryIdx = parseInt(idx as string, 10);
-  const [tabIndex, setTabIndex] = useState<number>(queryIdx || 0);
+  const [idx, _] = useQueryState("idx", parseAsInteger);
+  const [tabIndex, setTabIndex] = useState(idx || 0);
+
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-10 overflow-x-hidden">
       <div className="flex max-w-screen-xl flex-col">
