@@ -16,6 +16,7 @@ import { LogoBlueIcon } from "./assets/logoBlue";
 import { RealYoutubeIcon } from "./assets/youtube-1";
 import { InstagramIcon } from "./assets/instagram";
 import { CloseIcon } from "./assets/close";
+import { ImageUploadIcon } from "./assets/imageUpload";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -55,4 +56,5 @@ export const icons = {
   RealYoutube: (props: IIconProps) => <RealYoutubeIcon {...props} />,
   Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
   Close: (props: IIconProps) => <CloseIcon {...props} />,
+  ImageUpload: (props: IIconProps) => <ImageUploadIcon {...props} />,
 };
