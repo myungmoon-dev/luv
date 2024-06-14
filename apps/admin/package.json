@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/error-message": "^2.0.1",
     "@plaiceholder/next": "^3.0.0",
     "dayjs": "^1.11.10",
     "firebase": "workspace:*",
