@@ -1,6 +1,6 @@
 import { IBibleForm, YearMonthType } from "type";
 
-import { addDoc, collection, getDocs, orderBy, query, doc, getDoc, where } from "firebase/firestore";
+import { addDoc, collection, getDocs, orderBy, query, doc, getDoc, where, deleteDoc } from "firebase/firestore";
 import { database, collections } from ".";
 
 export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
@@ -30,4 +30,10 @@ export const getBible = async (bibleId: string) => {
 export const postBible = async (bible: IBibleForm) => {
   const docRef = await addDoc(collection(database, collections.bible), bible);
   return docRef;
+};
+
+export const deleteBible = async (bibleId: string) => {
+  const snapshot = await deleteDoc(doc(database, collections.bible, bibleId));
+
+  return snapshot;
 };
