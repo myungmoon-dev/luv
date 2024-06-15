@@ -14,7 +14,7 @@ export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNex
     <div className="ui-relative ui-mb-10 ui-min-h-[50px]">
       <button
         onClick={onClickPrev}
-        className="ui-absolute ui-top-1/2 -ui-left-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
+        className="ui-absolute ui-top-1/2 -ui-left-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-text-black ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
       >
         {"<"}
       </button>
@@ -23,7 +23,7 @@ export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNex
           <div
             key={tab.date}
             className={cn(
-              "ui-cursor-pointer ui-text-center ui-text-sm sm:ui-text-base hover:ui-font-bold hover:ui-text-blue-400",
+              "ui-cursor-pointer ui-text-center ui-text-sm sm:ui-text-base hover:ui-font-bold ui-text-black hover:ui-text-blue-400",
               selectedTab === tab.date && "ui-font-bold ui-text-blue-500"
             )}
             onClick={() => onClickTab(tab.date)}
@@ -34,7 +34,7 @@ export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNex
       </div>
       <button
         onClick={onClickNext}
-        className="ui-absolute ui-top-1/2 -ui-right-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
+        className="ui-absolute ui-top-1/2 -ui-right-4 ui-text-2xl ui-pt-1 ui-border ui-rounded-full ui-text-black ui-bg-white ui-w-8 ui-h-8 ui-flex ui-justify-center ui-items-center ui-border-gray-300 -ui-translate-y-1/2 hover:ui-bg-gray-200"
       >
         {">"}
       </button>
