@@ -17,6 +17,9 @@ const BulletinsPage = () => {
 
   return (
     <div className="px-24 py-10">
+      <button className="mb-10" onClick={() => push("/")}>
+        {"<"} 뒤로가기
+      </button>
       <Table
         data={data?.bulletins.map((bulletin) => ({
           id: bulletin.id,

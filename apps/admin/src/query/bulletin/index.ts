@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 
-import { getBulletin, getBulletins, postBulletin } from "@/api/bulletin";
+import { deleteBulletin, getBulletin, getBulletins, postBulletin } from "@/api/bulletin";
 import bulletinKeys from "./keys";
 import { useParams } from "next/navigation";
 
@@ -24,4 +24,6 @@ const useGetBulletin = () => {
 
 const usePostBulletin = () => useMutation({ mutationFn: postBulletin });
 
-export { useGetBulletins, usePostBulletin, useGetBulletin };
+const useDeleteBulletin = () => useMutation({ mutationFn: deleteBulletin });
+
+export { useGetBulletins, usePostBulletin, useGetBulletin, useDeleteBulletin };

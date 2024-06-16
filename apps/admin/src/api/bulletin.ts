@@ -22,3 +22,9 @@ export const getBulletin = async (bulletinId: string) => {
 
   return data;
 };
+
+export const deleteBulletin = async (bulletinId: string) => {
+  const { data } = await api.delete(`/api/bulletins/${bulletinId}`);
+
+  return data;
+};
