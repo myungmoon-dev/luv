@@ -26,6 +26,7 @@ import {
   deleteHomeWorshipComment,
   putHomeWorship,
   deleteBible,
+  getBulletin,
 } from "./database";
 
 export {
@@ -56,4 +57,5 @@ export {
   deleteHomeWorshipComment,
   putHomeWorship,
   deleteBible,
+  getBulletin,
 };
