@@ -1,4 +1,4 @@
-import { getBible } from "firebase";
+import { deleteBible, getBible } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -12,6 +12,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).json({
         bible,
+      });
+
+    case "DELETE":
+      const snapshot = await deleteBible(bibleId);
+
+      return res.status(200).json({
+        rewsult: snapshot,
       });
 
     default:
