@@ -1,8 +1,8 @@
 import { getFirestore } from "firebase/firestore";
 import { firebase } from "../../firebase";
 import { getYoutube, createYoutube } from "./youtube";
-import { getBulletins, postBulletin } from "./bulletin";
 import { getBible, getBibles, postBible, deleteBible } from "./discipleship";
+import { getBulletins, postBulletin, getBulletin, deleteBulletin } from "./bulletin";
 import {
   getHomeWorship,
   getHomeWorships,
@@ -54,4 +54,6 @@ export {
   deleteHomeWorshipComment,
   putHomeWorship,
   deleteBible,
+  getBulletin,
+  deleteBulletin,
 };
