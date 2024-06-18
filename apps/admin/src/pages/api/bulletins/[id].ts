@@ -1,28 +1,28 @@
-import { deleteBible, getBible } from "firebase";
+import { deleteBulletin, getBulletin } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method, query } = req;
 
-  const bibleId = query.id as string;
+  const bulletinId = query.id as string;
 
   switch (method) {
     case "GET":
-      const bible = (await getBible(bibleId)).data();
+      const bulletin = (await getBulletin(bulletinId)).data();
 
       return res.status(200).json({
-        bible,
+        bulletin,
       });
 
     case "DELETE":
-      const snapshot = await deleteBible(bibleId);
+      const snapshot = await deleteBulletin(bulletinId);
 
       return res.status(200).json({
-        rewsult: snapshot,
+        bulletin: snapshot,
       });
 
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader("Allow", ["GET", "DELETE"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

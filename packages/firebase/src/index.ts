@@ -28,6 +28,9 @@ import {
   getAlbum,
   postAlbum,
   deleteAlbum,
+  deleteBible,
+  getBulletin,
+  deleteBulletin,
 } from "./database";
 
 export {
@@ -60,4 +63,7 @@ export {
   getAlbum,
   postAlbum,
   deleteAlbum,
+  deleteBible,
+  getBulletin,
+  deleteBulletin,
 };

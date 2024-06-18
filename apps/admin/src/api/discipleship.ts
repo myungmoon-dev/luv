@@ -23,3 +23,9 @@ export const getBible = async (bibleId: string) => {
 
   return data;
 };
+
+export const deleteBible = async ({ bibleId }: { bibleId: string }) => {
+  const { data } = await api.delete(`/api/discipleship/bibles/${bibleId}`);
+
+  return data;
+};
