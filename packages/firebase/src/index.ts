@@ -27,6 +27,7 @@ import {
   putHomeWorship,
   getAlbum,
   postAlbum,
+  deleteAlbum,
 } from "./database";
 
 export {
@@ -58,4 +59,5 @@ export {
   putHomeWorship,
   getAlbum,
   postAlbum,
+  deleteAlbum,
 };

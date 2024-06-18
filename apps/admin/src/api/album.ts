@@ -15,3 +15,12 @@ export const PostAlbum = async (album: FormData) => {
   });
   return data;
 };
+
+export const DeleteAlbum = async (idList: string[]) => {
+  const { data } = await api.delete("/api/album", {
+    params: {
+      idList: idList.join(","),
+    },
+  });
+  return data;
+};

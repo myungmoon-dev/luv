@@ -1,7 +1,7 @@
 import { api } from "@/api";
 import { IPostCloudflareResponse } from "@/types/cloudflare/response";
 import axios from "axios";
-import { getAlbum, postAlbum } from "firebase";
+import { deleteAlbum, getAlbum, postAlbum } from "firebase";
 import FormData from "form-data";
 import { IncomingForm } from "formidable";
 import fs from "fs";
@@ -20,7 +20,7 @@ export default async function handler(
 ) {
   const {
     method,
-    query: { type },
+    query: { type, idList },
     headers: { origin },
   } = req;
 
@@ -120,8 +120,19 @@ export default async function handler(
       });
 
       break;
+    case "DELETE":
+      const albumIdList = (idList as string).split(",");
+      try {
+        for (const albumId of albumIdList) {
+          await deleteAlbum(albumId);
+        }
+        return res.status(200).json({ result: true });
+      } catch (error) {
+        return res.status(404).json({ result: false });
+      }
+
     default:
-      res.setHeader("Allow", ["GET", "POST"]);
+      res.setHeader("Allow", ["GET", "POST", "DELETE"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
