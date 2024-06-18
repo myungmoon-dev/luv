@@ -1,5 +1,4 @@
 import { AlbumType } from "type";
-import { ALBUM_OPTION_DATA } from ".";
 import { ChangeEvent, useState } from "react";
 import { Icon, Spinner } from "ui";
 import Image from "next/image";
@@ -7,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 import { usePostAlbum } from "@/query/album";
 import { ErrorMessage } from "@hookform/error-message";
+import { AlbumTypeOptions } from ".";
 
 interface IAblumForm {
   title: string;
@@ -31,6 +31,7 @@ const HomeAlbumCreate = () => {
     const selected = e.target.value as AlbumType;
     setSelectedType(selected);
   };
+
   const onPreviewImage = async () => {
     const watchImages = watch("images");
     const files = Array.from(watchImages);
@@ -66,7 +67,6 @@ const HomeAlbumCreate = () => {
         back();
       },
     });
-    //setIsUploading(true);
   };
 
   return (
@@ -106,7 +106,7 @@ const HomeAlbumCreate = () => {
               required: "필수 값입니다.",
             })}
           >
-            {ALBUM_OPTION_DATA.map((option) => (
+            {AlbumTypeOptions.map((option) => (
               <option key={option.label} value={option.value}>
                 {option.label}
               </option>
