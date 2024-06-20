@@ -25,6 +25,7 @@ interface IAlbumForm {
   title: string;
   albumType: string;
   images: string[];
+  date: string;
 }
 
 interface IcreateAlbumQueryProps {
