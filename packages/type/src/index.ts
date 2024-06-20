@@ -27,6 +27,7 @@ import {
   NewlywedsType,
 } from "./discipleship";
 import { IComment } from "./comment";
+import { AlbumType, IAlbum, IGetAlbumResponse } from "./album";
 
 export type {
   IBulletin,
@@ -59,4 +60,7 @@ export type {
   INewlywedsIntroData,
   NewlywedsType,
   IComment,
+  AlbumType,
+  IAlbum,
+  IGetAlbumResponse,
 };
