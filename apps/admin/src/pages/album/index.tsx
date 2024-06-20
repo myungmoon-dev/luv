@@ -64,7 +64,7 @@ export const AlbumTypeOptions = [
 const HomeAlbumList = () => {
   const { asPath, push, back, reload } = useRouter();
   const [selectedType, setSelectedType] = useState<AlbumType>("all");
-  const { data } = useGetAlbumList(selectedType);
+  const { data, refetch } = useGetAlbumList(selectedType);
   const { mutate } = useDeleteAlbum();
 
   const onTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -77,7 +77,7 @@ const HomeAlbumList = () => {
       mutate([id], {
         onSuccess: () => {
           alert("삭제되었습니다.");
-          reload();
+          refetch();
         },
         onError: () => alert("삭제하지못했습니다."),
       });

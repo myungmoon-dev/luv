@@ -27,28 +27,38 @@ interface IAlbumForm {
   images: string[];
 }
 
-export const getAlbum = async ({
+interface IcreateAlbumQueryProps {
+  albumType: AlbumType;
+  albumCount?: number;
+}
+
+const createAlbumQuery = ({
   albumType,
   albumCount,
-}: IGetAlbumListProps) => {
+}: IcreateAlbumQueryProps) => {
   const albumRef = collection(database, collections.album);
-  let getQuery;
 
   if (albumType === "all") {
-    getQuery = query(
+    return query(
       albumRef,
       orderBy("createdAt", "desc"),
       limit(albumCount ?? 20)
     );
   } else {
-    getQuery = query(
+    return query(
       albumRef,
       where("albumType", "==", albumType),
       orderBy("createdAt", "desc"),
       limit(albumCount ?? 20)
     );
   }
+};
 
+export const getAlbum = async ({
+  albumType,
+  albumCount,
+}: IGetAlbumListProps) => {
+  const getQuery = createAlbumQuery({ albumType, albumCount });
   const albumList = await getDocs(getQuery);
 
   return albumList;

@@ -15,17 +15,19 @@ interface IAblumForm {
 }
 
 const HomeAlbumCreate = () => {
-  const [isUploading, setIsUploading] = useState(false);
-  const { push, back } = useRouter();
+  const { push } = useRouter();
   const {
     watch,
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IAblumForm>();
+
+  const [isUploading, setIsUploading] = useState(false);
   const [selectedType, setSelectedType] = useState<AlbumType>("main");
   const [imgPaths, setImgPaths] = useState<string[]>([]);
-  const { mutate } = usePostAlbum();
+
+  const { mutate, isPending } = usePostAlbum();
 
   const onTypeChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selected = e.target.value as AlbumType;
@@ -64,21 +66,21 @@ const HomeAlbumCreate = () => {
       onError: (err) => console.log(err),
       onSettled: () => {
         alert("업로드하였습니다.");
-        back();
+        push("/album");
       },
     });
   };
 
   return (
     <div className="relative flex flex-col justify-center items-center mx-auto h-screen p-20">
-      {isUploading && (
+      {isPending && (
         <div className="bg-black opacity-70 absolute w-full h-full z-10 flex justify-center items-center">
           <Spinner />
         </div>
       )}
       <div className="flex gap-3">
         <button
-          onClick={back}
+          onClick={() => push("/album")}
           className="font-semibold p-2 bg-blue-600 rounded-md my-5"
         >
           뒤로가기
