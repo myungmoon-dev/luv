@@ -111,6 +111,7 @@ export default async function handler(
         const result = await postAlbum({
           title: fields.title?.[0] ?? "title",
           albumType: fields.type?.[0] ?? "type",
+          date: fields.date?.[0] ?? "date",
           images,
         });
 

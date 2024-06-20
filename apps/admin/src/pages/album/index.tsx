@@ -114,7 +114,7 @@ const HomeAlbumList = () => {
         <p>번호</p>
         <p>제목</p>
         <p>타입</p>
-        <p>업로드날짜</p>
+        <p>날짜/업로드일시</p>
         <p>처리</p>
       </div>
       <div className="flex flex-col w-full gap-5">
@@ -140,9 +140,12 @@ const HomeAlbumList = () => {
                   <p>{data.length - idx}</p>
                   <p>{album.title}</p>
                   <p className="flex gap-1">{albumOption?.label ?? ""}</p>
-                  <p className="text-sm">
-                    {dayjs(album.createdAt).format("YYYY-MM-DD HH:mm")}
-                  </p>
+                  <div className="text-center">
+                    <p>{dayjs(album.date).format("YYYY-MM-DD")}</p>
+                    <p className="text-sm text-gray-400">
+                      {dayjs(album.createdAt).format("YYYY-MM-DD HH:mm")}
+                    </p>
+                  </div>
                   <p className="flex gap-3">
                     <button
                       onClick={() => {}}

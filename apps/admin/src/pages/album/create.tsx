@@ -12,6 +12,7 @@ interface IAblumForm {
   title: string;
   type: AlbumType;
   images: FileList;
+  date: string;
 }
 
 const HomeAlbumCreate = () => {
@@ -23,7 +24,6 @@ const HomeAlbumCreate = () => {
     formState: { errors },
   } = useForm<IAblumForm>();
 
-  const [isUploading, setIsUploading] = useState(false);
   const [selectedType, setSelectedType] = useState<AlbumType>("main");
   const [imgPaths, setImgPaths] = useState<string[]>([]);
 
@@ -50,11 +50,11 @@ const HomeAlbumCreate = () => {
   };
 
   const onSubmit = async (data: IAblumForm) => {
-    setIsUploading(true);
     const formData = new FormData();
 
     formData.append("title", data.title);
     formData.append("type", data.type);
+    formData.append("date", data.date);
     formData.append("length", data.images.length + "");
     Array.from(data.images).forEach((image, index) => {
       formData.append(`image-${index}-file`, image);
@@ -83,7 +83,7 @@ const HomeAlbumCreate = () => {
           onClick={() => push("/album")}
           className="font-semibold p-2 bg-blue-600 rounded-md my-5"
         >
-          뒤로가기
+          목록으로
         </button>
         <button
           onClick={() => push("/")}
@@ -98,7 +98,7 @@ const HomeAlbumCreate = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="mt-10 w-full flex flex-col gap-3"
       >
-        <label className="flex gap-3 items-center w-1/4 mx-auto">
+        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
           <p className="w-20 font-bold text-white">앨범 타입</p>
           <select
             className="flex rounded px-4 py-2 font-bold text-black flex-grow appearance-no text-center"
@@ -115,7 +115,7 @@ const HomeAlbumCreate = () => {
             ))}
           </select>
         </label>
-        <label className="flex gap-3 items-center w-1/4 mx-auto">
+        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
           <p className="w-20 font-bold text-white">제목</p>
           <input
             {...register("title", { required: "제목을 입력해주세요." })}
@@ -126,6 +126,22 @@ const HomeAlbumCreate = () => {
         <ErrorMessage
           errors={errors}
           name="title"
+          render={({ message }) => (
+            <p className="text-sm text-center text-red-500">{message}</p>
+          )}
+        />
+        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
+          <p className="w-20 font-bold text-white">행사날짜</p>
+          <input
+            {...register("date", { required: "행사날짜를 입력해주세요." })}
+            type="text"
+            className="rounded py-2 font-bold text-black flex-grow appearance-no text-center"
+            placeholder="ex) 2024-01-01"
+          />
+        </label>
+        <ErrorMessage
+          errors={errors}
+          name="date"
           render={({ message }) => (
             <p className="text-sm text-center text-red-500">{message}</p>
           )}
