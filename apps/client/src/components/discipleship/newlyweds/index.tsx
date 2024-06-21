@@ -9,6 +9,7 @@ import {
   INewlywedsIntroData,
   NewlywedsType,
 } from "type";
+import AlbumList from "@/components/albums";
 
 // FIXME: DB 저장 예정
 const DISCIPLESHIP_NEWLYWEDS_DATA: (
@@ -96,6 +97,7 @@ const DiscipleshipNewlyweds = () => {
         firstHalf={curriculumData.data.firstHalf}
         secondHalf={curriculumData.data.secondHalf}
       />
+      <AlbumList albumType="newlyweds" />
     </div>
   );
 };

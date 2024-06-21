@@ -1,3 +1,4 @@
+import AlbumList from "../albums";
 import EducationCoreMinistrySection, { IValueVision } from "./section/coreministry";
 import EducationImageSection from "./section/image";
 import EducationInformationSection from "./section/information";
@@ -317,6 +318,7 @@ const EducationOverView = ({ type }: IEducationOverViewProps) => {
         time={educationData.time}
       />
       <EducationCoreMinistrySection dataList={educationData.coreministry} department={educationData.department} />
+      <AlbumList albumType={type} />
     </div>
   );
 };

@@ -4,6 +4,7 @@ import QtSummarySection from "./section/summary";
 import QtTargetSection from "./section/target";
 import QtProgramSection from "./section/program";
 import QtScheduleSection from "./section/schedule";
+import AlbumList from "@/components/albums";
 
 type QtType = "introduce" | "images" | "summary" | "target" | "program" | "schedule";
 
@@ -136,6 +137,7 @@ const DiscipleshipQt = () => {
         weekend={scheduleData.data.contents[1]}
         place={scheduleData.data.contents[2]}
       />
+      <AlbumList albumType="qt" />
     </div>
   );
 };
