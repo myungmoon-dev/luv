@@ -10,8 +10,8 @@ const HomeBannerLive = () => {
   const openModal = useModalStore((state) => state.open);
 
   const handleClickLive = () => {
-    openModal(<YoutubeError />);
-    return; // FIXME: 에러 풀릴 시 삭제
+    // openModal(<YoutubeError />);
+    // return; // TODO: 에러 시 사.
     open(`https://youtu.be/${liveVideo?.videoId}`);
   };
 
