@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
 import useModalStore from "@/store/modal";
 
 const ModalProvider = () => {
+  const [isClient, setIsClient] = useState(false);
   const [isOpen, children, close] = useModalStore((state) => [state.isOpen, state.children, state.close]);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -13,7 +17,7 @@ const ModalProvider = () => {
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isClient || !isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 overflow-hidden">
