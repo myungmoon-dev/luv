@@ -15,7 +15,11 @@ export enum HomeBannerEnum {
   HomeWorship,
 }
 
-const HomeBanner = () => {
+interface HomeBannerProps {
+  blurDataURLs: Record<HomeBannerEnum, string>;
+}
+
+const HomeBanner = ({ blurDataURLs }: HomeBannerProps) => {
   const [currentView, setCurrentView] = useState(HomeBannerEnum.Watchword);
 
   const getBannerImage = () => {
@@ -62,6 +66,8 @@ const HomeBanner = () => {
                 currentView === HomeBannerEnum.HomeWorship && "object-[50%] brightness-75 md:object-[100%_15%]",
               )}
               priority
+              placeholder="blur"
+              blurDataURL={blurDataURLs[currentView]}
             />
           </div>
         </div>
