@@ -1,11 +1,12 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import { useState } from "react";
 import { cn } from "ui";
-import HomeBannerNav from "./nav";
-import HomeBannerWatchword from "./watchword";
-import HomeBannerLive from "./live";
+
 import HomeBannerBible from "./bible";
 import HomeBannerHomeWorship from "./homeworship";
+import HomeBannerLive from "./live";
+import HomeBannerNav from "./nav";
+import HomeBannerWatchword from "./watchword";
 
 export enum HomeBannerEnum {
   Watchword,
@@ -50,7 +51,7 @@ const HomeBanner = () => {
   return (
     <div className="relative flex w-full flex-col items-center justify-center">
       <div className="relative flex w-full flex-col items-center justify-center gap-10">
-        <div className={cn("h-[800px] w-full brightness-[.8] md:h-[600px]")}>
+        <div className="h-[800px] w-full brightness-[.8] md:h-[600px]">
           <div className="relative flex h-full">
             <Image
               src={getBannerImage()}
@@ -65,7 +66,7 @@ const HomeBanner = () => {
         </div>
         <div className="absolute flex w-full flex-col gap-24">
           {getBannerText()}
-          <HomeBannerNav setCurrentView={setCurrentView} />
+          <HomeBannerNav currentView={currentView} setCurrentView={setCurrentView} />
         </div>
       </div>
     </div>

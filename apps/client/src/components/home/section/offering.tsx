@@ -1,7 +1,10 @@
+import useCopy from "@/hooks/useCopy";
 import Image from "next/image";
 import React from "react";
 
 const OfferingSection = () => {
+  const { copy } = useCopy();
+
   return (
     <div className="relative">
       <div className="absolute left-0 top-0 z-[1] h-full w-full bg-black/40" />
@@ -19,7 +22,10 @@ const OfferingSection = () => {
           <br />
           아래 계좌로 송금하실 수 있습니다.
         </p>
-        <p className="text-center font-SCoreDream text-lg leading-relaxed text-white sm:text-3xl">
+        <p
+          onClick={() => copy("20608125001021")}
+          className="cursor-pointer text-center font-SCoreDream text-lg leading-relaxed text-white hover:underline sm:text-3xl"
+        >
           기업은행 206-081250-01-021
           <br />
           예금주: 대한예수교 장로회 명문교회
