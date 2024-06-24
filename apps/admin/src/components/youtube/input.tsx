@@ -23,7 +23,7 @@ const YoutubeInput = ({
           required,
         })}
         placeholder={placeholder}
-        className="border rounded px-4 py-2 text-black"
+        className="rounded border px-4 py-2 text-black"
       />
     </label>
   );

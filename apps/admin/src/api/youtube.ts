@@ -10,9 +10,6 @@ export const getYoutubeLink = async (type: YoutubeType) => {
 };
 
 export const postYoutubeLink = async (youtubeForm: IYoutubeForm) => {
-  const { data } = await api.post<IPostYoutubeResponse>(
-    "/api/youtube",
-    youtubeForm
-  );
+  const { data } = await api.post<IPostYoutubeResponse>("/api/youtube", youtubeForm);
   return data;
 };

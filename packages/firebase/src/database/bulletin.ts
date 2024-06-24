@@ -1,10 +1,24 @@
 import { IBulletinForm } from "type";
 
-import { addDoc, collection, getDocs, orderBy, query, limit, doc, getDoc, deleteDoc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  orderBy,
+  query,
+  limit,
+  doc,
+  getDoc,
+  deleteDoc,
+} from "firebase/firestore";
 import { database, collections } from ".";
 
 export const getBulletins = async () => {
-  const getQuery = query(collection(database, collections.bulletin), orderBy("date", "desc"), limit(4));
+  const getQuery = query(
+    collection(database, collections.bulletin),
+    orderBy("date", "desc"),
+    limit(4),
+  );
 
   const snapshot = await getDocs(getQuery);
 

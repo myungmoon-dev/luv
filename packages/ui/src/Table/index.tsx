@@ -37,7 +37,7 @@ export const Table = ({ data, className, onClickRow }: ITableProps) => {
               <div
                 className={cn(
                   "ui-flex ui-py-3 ui-cursor-pointer text-sm md:text-base",
-                  row.isPinned && "ui-font-bold ui-bg-blue-100"
+                  row.isPinned && "ui-font-bold ui-bg-blue-100",
                 )}
                 key={row.id}
                 onClick={() => onClickRow?.(row.id)}

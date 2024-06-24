@@ -11,7 +11,7 @@ const AboutMinistryVision = () => {
         imgClass="brightness-50"
       >
         <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-14 md:px-12 lg:px-32">
-          <p className="font-SCoreDream flex w-full text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
+          <p className="flex w-full font-SCoreDream text-3xl text-white md:text-5xl lg:text-7xl">명문교회는,</p>
           <div
             data-aos="fade-up"
             className="flex w-full flex-col justify-center gap-1 text-white sm:gap-4 sm:text-xl md:text-xl lg:text-3xl"

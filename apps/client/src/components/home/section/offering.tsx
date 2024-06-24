@@ -19,7 +19,7 @@ const OfferingSection = () => {
           <br />
           아래 계좌로 송금하실 수 있습니다.
         </p>
-        <p className="font-SCoreDream text-center text-lg leading-relaxed text-white sm:text-3xl">
+        <p className="text-center font-SCoreDream text-lg leading-relaxed text-white sm:text-3xl">
           기업은행 206-081250-01-021
           <br />
           예금주: 대한예수교 장로회 명문교회

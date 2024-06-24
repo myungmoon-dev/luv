@@ -100,7 +100,7 @@ const AboutIntroduction = () => {
             data-aos="fade-up"
             className="flex w-full flex-col gap-1 font-bold sm:text-lg md:text-2xl xl:text-2xl xl:font-semibold"
           >
-            <p className="font-SCoreDream py-5 text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
+            <p className="py-5 font-SCoreDream text-3xl font-normal text-blue-600 sm:text-4xl xl:py-12 xl:text-7xl">
               名門 (명문)
               <br />
               이름을 얻는다.
@@ -127,7 +127,7 @@ const AboutIntroduction = () => {
           data-aos="fade-right"
           className="flex w-full flex-col gap-3 px-3 py-20 text-xs font-semibold text-white sm:px-12 md:text-2xl md:font-normal lg:w-1/2 lg:text-xl lg:font-semibold xl:w-3/5 2xl:w-1/2 2xl:text-2xl"
         >
-          <p className="font-SCoreDream w-fit border-b-2 border-white pb-[2px] text-2xl font-semibold sm:text-4xl md:mb-2 md:pb-2 md:text-5xl">
+          <p className="w-fit border-b-2 border-white pb-[2px] font-SCoreDream text-2xl font-semibold sm:text-4xl md:mb-2 md:pb-2 md:text-5xl">
             명문교회 로고
           </p>
           <p className="break-keep">명문의 첫 두글자 영문 MM을 형상화하여 만들어졌습니다.</p>
