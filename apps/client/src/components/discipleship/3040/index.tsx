@@ -1,9 +1,9 @@
-import AboutHeaderSection from "@/components/about/section/header";
 import Discipleship3040VisionSection from "./section/vision";
 import Discipleship3040PurposeSection from "./section/purpose";
 import Discipleship3040ProgramSection from "./section/program";
 import { Generation3040Type, I3040ProgramData, I3040PurposeData, I3040VisionData, I3040WatchwordData } from "type";
 import Discipleship3040TitleSection from "./section/title";
+import AlbumList from "@/components/albums";
 
 // FIXME: DB저장 예정
 const DISCIPLESHIP_3040_DATA: (I3040VisionData | I3040WatchwordData | I3040PurposeData | I3040ProgramData)[] = [
@@ -88,6 +88,7 @@ const Discipleship3040 = () => {
       />
       <Discipleship3040PurposeSection img={purposeData.data.img} list={purposeData.data.purposes} />
       <Discipleship3040ProgramSection img={programData.data.img} list={programData.data.programs} />
+      <AlbumList albumType="3040" />
     </div>
   );
 };

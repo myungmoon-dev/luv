@@ -6,6 +6,7 @@ import ForNewCommersDate from "./contents/date";
 import ForNewCommersProcess from "./contents/process";
 import ForNewCommersApply from "./contents/apply";
 import { useState } from "react";
+import AlbumList from "@/components/albums";
 
 const NEWCOMMERS_TAB_DATA = [
   {
@@ -67,6 +68,7 @@ const DiscipleshipNew = () => {
         </nav>
         {NEWCOMMERS_TAB_DATA[tabIndex].content}
       </div>
+      <AlbumList albumType="newFamilly" />
     </div>
   );
 };

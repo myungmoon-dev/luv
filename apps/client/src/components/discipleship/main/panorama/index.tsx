@@ -5,6 +5,7 @@ import PanoramaTargetContent from "./contents/target";
 import PanoramaDateContent from "./contents/date";
 import PanoramaTimePlaceContent from "./contents/timePlace";
 import DiscipleshipTabBar from "../../tabs/tabBar";
+import AlbumList from "@/components/albums";
 
 const PANORAMA_DATA = [
   {
@@ -45,6 +46,7 @@ const DiscipleshipPanorama = () => {
         </nav>
         {PANORAMA_DATA[tabIndex].content}
       </div>
+      <AlbumList albumType="panorama" />
     </div>
   );
 };
