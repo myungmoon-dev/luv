@@ -3,7 +3,26 @@ import Layout from "@/components/layout";
 import { educationInfantsMenus, educationInnerMenus } from "@/constants/innerMenus/education";
 import EducationOverView from "@/components/education/overview";
 
-const EducationInfantsPage = () => {
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
+
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/education/infants/banner.jpg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
+}
+
+interface IEducationInfantsPageProps {
+  bannerBlurDataURL: string;
+}
+
+const EducationInfantsPage = ({ bannerBlurDataURL }: IEducationInfantsPageProps) => {
   return (
     <Layout
       pageTitle="영아부"
@@ -13,6 +32,7 @@ const EducationInfantsPage = () => {
       innerMenus={educationInnerMenus}
       detailMenus={educationInfantsMenus}
       bannerImgClass="object-[50%_70%]"
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <EducationOverView type="infants" />
     </Layout>

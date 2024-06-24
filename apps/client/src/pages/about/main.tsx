@@ -4,22 +4,41 @@ import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import Image from "next/image";
 import React from "react";
 
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
+
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/introduce.jpeg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
+}
+
+interface IAboutMainPageProps {
+  bannerBlurDataURL: string;
+}
+
 interface IMenu {
   title: string;
   icon: string;
   path: string;
 }
 
-const AboutMainPage = () => {
-  const menuList: IMenu[] = [
-    { title: "교회소개", icon: "church", path: "/" },
-    { title: "목회비전", icon: "vision", path: "/" },
-    { title: "섬기는 분들", icon: "leadership", path: "/" },
-    { title: "연혁", icon: "history", path: "/" },
-    { title: "예배안내", icon: "services", path: "/" },
-    { title: "오시는 길", icon: "location", path: "/" },
-  ];
+const menuList: IMenu[] = [
+  { title: "교회소개", icon: "church", path: "/" },
+  { title: "목회비전", icon: "vision", path: "/" },
+  { title: "섬기는 분들", icon: "leadership", path: "/" },
+  { title: "연혁", icon: "history", path: "/" },
+  { title: "예배안내", icon: "services", path: "/" },
+  { title: "오시는 길", icon: "location", path: "/" },
+];
 
+const AboutMainPage = ({ bannerBlurDataURL }: IAboutMainPageProps) => {
   return (
     <Layout
       pageTitle="교회소개"
@@ -27,6 +46,7 @@ const AboutMainPage = () => {
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
       bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <AboutTitle title="교회소개" />
       <div className="relative">

@@ -61,6 +61,7 @@ const HomeBanner = () => {
                 "object-cover",
                 currentView === HomeBannerEnum.HomeWorship && "object-[50%] brightness-75 md:object-[100%_15%]",
               )}
+              priority
             />
           </div>
         </div>

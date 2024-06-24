@@ -1,9 +1,28 @@
-import Layout from "@/components/layout";
-import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
-import Tabs from "@/components/layout/tabs";
 import CustomImage from "@/components/customImage";
+import Layout from "@/components/layout";
+import Tabs from "@/components/layout/tabs";
+import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 
-const LeadershipIndexPage = () => {
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
+
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/about/banner3.jpg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
+}
+
+interface ILeadershipPageProps {
+  bannerBlurDataURL: string;
+}
+
+const LeadershipPage = ({ bannerBlurDataURL }: ILeadershipPageProps) => {
   return (
     <Layout
       pageTitle="섬기는 분들-담임목사"
@@ -13,6 +32,7 @@ const LeadershipIndexPage = () => {
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={aboutLeaderMenus}>
         <div className="flex w-full flex-col gap-5 2xl:max-w-screen-xl">
@@ -71,4 +91,4 @@ const LeadershipIndexPage = () => {
   );
 };
 
-export default LeadershipIndexPage;
+export default LeadershipPage;
