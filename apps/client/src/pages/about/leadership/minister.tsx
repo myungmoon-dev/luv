@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 import Tabs from "@/components/layout/tabs";
-import ProfileList from "@/components/about/profileList";
+import MinisterList from "@/components/about/leadership/ministerList";
 
 const LeadershipMinisterPage = () => {
   return (
@@ -15,7 +15,7 @@ const LeadershipMinisterPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <ProfileList tabType="minister" className="lg:grid-cols-2 xl:grid-cols-3" />
+        <MinisterList />
       </Tabs>
     </Layout>
   );
