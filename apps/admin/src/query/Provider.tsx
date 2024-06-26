@@ -13,9 +13,7 @@ const QueryProvider = ({ children }: IQueryProviderProps) => {
     },
   });
 
-  return (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
+  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 };
 
 export default QueryProvider;

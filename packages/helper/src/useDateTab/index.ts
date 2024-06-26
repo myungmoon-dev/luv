@@ -39,7 +39,7 @@ export const useDateTab = ({ setDateTabs }: IUseDateTabProps) => {
         const newDate = getPreviousMonth(draft[0]!.date);
         const newLabel = `${newDate.split("-")[1]}월`;
         draft.unshift({ label: newLabel, date: newDate });
-      })
+      }),
     );
   };
 
@@ -50,7 +50,7 @@ export const useDateTab = ({ setDateTabs }: IUseDateTabProps) => {
         const newDate = getNextMonth(draft[draft.length - 1]!.date);
         const newLabel = `${newDate.split("-")[1]}월`;
         draft.push({ label: newLabel, date: newDate });
-      })
+      }),
     );
   };
 

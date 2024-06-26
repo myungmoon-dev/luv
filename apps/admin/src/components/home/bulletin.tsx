@@ -37,28 +37,35 @@ const BulletinSection = () => {
 
   return (
     <HomeSection title="주보">
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 justify-center items-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col items-center justify-center gap-3"
+      >
         <label className="flex items-center gap-2">
           <p className="text-white">날짜</p>
-          <input className="text-black p-1" {...register("date")} placeholder="ex) 2021-01-01" />
+          <input className="p-1 text-black" {...register("date")} placeholder="ex) 2021-01-01" />
         </label>
         <label className="flex items-center gap-2">
           <p className="text-white">제목</p>
-          <input className="text-black p-1" {...register("title")} placeholder="ex) 2021년 1월 첫째주" />
+          <input
+            className="p-1 text-black"
+            {...register("title")}
+            placeholder="ex) 2021년 1월 첫째주"
+          />
         </label>
         <label className="">
           <p>이미지</p>
           <input type="file" accept="image/*" multiple={true} {...register("images")} />
         </label>
-        <div className="flex gap-5 mt-2">
+        <div className="mt-2 flex gap-5">
           <button
             type="button"
             onClick={() => push("/bulletins")}
-            className="flex justify-center items-center !bg-blue-500 text-white rounded-md px-4 py-2"
+            className="flex items-center justify-center rounded-md !bg-blue-500 px-4 py-2 text-white"
           >
             목록
           </button>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded">주보 추가하기</button>
+          <button className="rounded bg-blue-500 px-4 py-2 text-white">주보 추가하기</button>
         </div>
       </form>
     </HomeSection>

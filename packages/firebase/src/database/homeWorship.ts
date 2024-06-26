@@ -20,7 +20,7 @@ export const getHomeWorships = async () => {
   const getQuery = query(
     collection(database, collections.homeWorship),
     where("isPinned", "!=", true),
-    orderBy("date", "desc")
+    orderBy("date", "desc"),
   );
 
   const snapshot = await getDocs(getQuery);
@@ -32,7 +32,7 @@ export const getPinnedHomeWorships = async () => {
   const getQuery = query(
     collection(database, collections.homeWorship),
     where("isPinned", "==", true),
-    orderBy("date", "desc")
+    orderBy("date", "desc"),
   );
 
   const snapshot = await getDocs(getQuery);
@@ -49,14 +49,18 @@ export const getHomeWorship = async (homeWorshipId: string) => {
 };
 
 export const postHomeWorship = async (
-  homeWorship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number }
+  homeWorship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number },
 ) => {
   const docRef = await addDoc(collection(database, collections.homeWorship), homeWorship);
   return docRef;
 };
 
 export const putHomeWorship = async (
-  changedHomeworship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number; id: string }
+  changedHomeworship: Omit<IHomeWorshipForm, "image"> & {
+    image: string;
+    createdAt: number;
+    id: string;
+  },
 ) => {
   const docRef = doc(database, collections.homeWorship, changedHomeworship.id);
 

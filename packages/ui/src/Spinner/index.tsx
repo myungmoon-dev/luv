@@ -6,10 +6,6 @@ interface ISpinnerProps {
   size?: number;
 }
 
-export const Spinner = ({
-  color = "#3490DE",
-  size,
-  loading = true,
-}: ISpinnerProps) => {
+export const Spinner = ({ color = "#3490DE", size, loading = true }: ISpinnerProps) => {
   return <HashLoader color={color} size={size} loading={loading} />;
 };

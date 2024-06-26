@@ -1,4 +1,13 @@
-import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { collections, database } from ".";
 import { IMissionForm } from "type";
 
@@ -18,7 +27,9 @@ export const getMission = async (missionId: string) => {
   return snapshot;
 };
 
-export const postMission = async (mission: Omit<IMissionForm, "image"> & { image: string; createdAt: number }) => {
+export const postMission = async (
+  mission: Omit<IMissionForm, "image"> & { image: string; createdAt: number },
+) => {
   const docRef = await addDoc(collection(database, collections.mission), mission);
   return docRef;
 };

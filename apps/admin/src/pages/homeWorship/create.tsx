@@ -5,13 +5,10 @@ import dynamic from "next/dynamic";
 import { Spinner } from "ui";
 import { usePostHomeWorship } from "@/query/homeWorship";
 
-const Editor = dynamic(
-  () => import("@/components/common/editor").then((mod) => mod.Editor),
-  {
-    ssr: false,
-    loading: () => <Spinner />,
-  }
-);
+const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 
 const HomeWorshipCreate = () => {
   const { register, handleSubmit, reset } = useForm<IHomeWorshipForm>();
@@ -32,8 +29,7 @@ const HomeWorshipCreate = () => {
       !content
     )
       return alert("모든 정보를 입력해주세요.");
-    if (data.image.length !== 1)
-      return alert("사진은 한 장 업로드 가능합니다.");
+    if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
     formData.append("title", data.title);
     formData.append("date", data.date);
@@ -59,23 +55,16 @@ const HomeWorshipCreate = () => {
   };
 
   return (
-    <div className="p-20 flex flex-col gap-10">
-      <h1 className="text-3xl font-bold text-center">가정예배 공지작성</h1>
+    <div className="flex flex-col gap-10 p-20">
+      <h1 className="text-center text-3xl font-bold">가정예배 공지작성</h1>
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">예배 날짜</p>
-          <input
-            className="text-black border px-2 py-1"
-            type="date"
-            {...register("date")}
-          />
+          <input className="border px-2 py-1 text-black" type="date" {...register("date")} />
         </label>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">제목</p>
-          <input
-            className="text-black border px-2 py-1"
-            {...register("title")}
-          />
+          <input className="border px-2 py-1 text-black" {...register("title")} />
         </label>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">사진 업로드</p>
@@ -87,15 +76,12 @@ const HomeWorshipCreate = () => {
         </div>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">작성자</p>
-          <input
-            className="text-black border px-2 py-1"
-            {...register("userName")}
-          />
+          <input className="border px-2 py-1 text-black" {...register("userName")} />
         </label>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">비밀번호</p>
           <input
-            className="text-black border px-2 py-1"
+            className="border px-2 py-1 text-black"
             type="password"
             {...register("password")}
           />

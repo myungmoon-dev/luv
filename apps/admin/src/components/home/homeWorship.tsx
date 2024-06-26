@@ -8,7 +8,7 @@ const HomeWorshipSection = () => {
     <HomeSection title="가정예배 공지">
       <button
         onClick={() => push("/homeWorship/create")}
-        className="flex justify-center items-center bg-blue-500 text-white rounded-md w-12 h-12"
+        className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
       >
         추가
       </button>

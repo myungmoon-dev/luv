@@ -13,4 +13,3 @@ export const RealYoutubeIcon = ({ backgroundColor, strokeColor }: IIconProps) =>
     </svg>
   );
 };
-

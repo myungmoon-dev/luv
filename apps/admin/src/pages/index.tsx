@@ -6,8 +6,8 @@ import YoutubeSection from "@/components/home/youtube";
 
 export default function Home() {
   return (
-    <main className="flex flex-col gap-20 justify-center items-center py-20 bg-black">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <main className="flex flex-col items-center justify-center gap-20 bg-black py-20">
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
         <YoutubeSection />
         <BulletinSection />
         <BibleSection />

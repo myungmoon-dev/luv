@@ -1,18 +1,26 @@
+import AboutIntroduction from "@/components/about/introduction";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
-import React from "react";
-import AboutIntroduction from "@/components/about/introduction";
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
 
-interface IValue {
-  id: number;
-  titleKr: string;
-  titleEn: string;
-  description: string;
-  img: string;
-  imgClass: string;
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/about/banner3.jpg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
 }
 
-const AboutIndexPage = () => {
+interface IAboutPageProps {
+  bannerBlurDataURL: string;
+}
+
+const AboutPage = ({ bannerBlurDataURL }: IAboutPageProps) => {
   return (
     <Layout
       pageTitle="교회소개"
@@ -21,10 +29,11 @@ const AboutIndexPage = () => {
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <AboutIntroduction />
     </Layout>
   );
 };
 
-export default AboutIndexPage;
+export default AboutPage;

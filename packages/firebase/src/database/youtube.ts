@@ -18,18 +18,14 @@ export interface IGetYoutubeListProps {
   videoCount?: number;
 }
 
-export const getYoutube = async ({
-  videoType,
-  videoCount,
-}: IGetYoutubeListProps) => {
-  const orderByField =
-    videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
+export const getYoutube = async ({ videoType, videoCount }: IGetYoutubeListProps) => {
+  const orderByField = videoType === "shorts" || videoType === "live" ? "createdAt" : "date";
   const limitField = videoType === "shorts" || videoType === "live" ? 1 : 4;
 
   const getQuery = query(
     collection(database, collections.youtube(videoType)),
     orderBy(orderByField, "desc"),
-    limit(videoCount ? videoCount : limitField)
+    limit(videoCount ? videoCount : limitField),
   );
 
   const youtubeList = await getDocs(getQuery);

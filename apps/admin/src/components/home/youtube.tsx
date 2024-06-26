@@ -20,10 +20,10 @@ const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
 ];
 
 const YoutubeSection = () => {
-  const [selectedYoutube, setSelectedYoutube] =
-    useState<IYoutubeDropDownOptions>(YOUTUBE_OPTIONS_DATA[0]);
-  const isShowAllFields =
-    selectedYoutube.type !== "shorts" && selectedYoutube.type !== "live";
+  const [selectedYoutube, setSelectedYoutube] = useState<IYoutubeDropDownOptions>(
+    YOUTUBE_OPTIONS_DATA[0],
+  );
+  const isShowAllFields = selectedYoutube.type !== "shorts" && selectedYoutube.type !== "live";
   const isShowMainText = selectedYoutube.type !== "video";
 
   const { data: youtubeLink } = useGetYoutubeLink(selectedYoutube.type);
@@ -59,7 +59,7 @@ const YoutubeSection = () => {
             : alert("API 요청 중 오류가 발생하였습니다.");
         },
         onError: (error) => console.log(error),
-      }
+      },
     );
   };
 
@@ -69,21 +69,15 @@ const YoutubeSection = () => {
 
   return (
     <HomeSection title={`${selectedYoutube.label} 링크`}>
-      <div className="flex flex-col justify-center items-center">
-        <div className="flex justify-center items-center">
+      <div className="flex flex-col items-center justify-center">
+        <div className="flex items-center justify-center">
           <p className="text-white">현재 주소:&nbsp;</p>
-          <a
-            href={`https://www.youtube.com/embed/${youtubeLink}`}
-            className="text-blue-500"
-          >
+          <a href={`https://www.youtube.com/embed/${youtubeLink}`} className="text-blue-500">
             {youtubeLink}
           </a>
         </div>
         <YoutubeVideo className="h-[200px]" videoId={youtubeLink} />
-        <form
-          onSubmit={handleSubmit(onSubmit, onInValid)}
-          className="mt-4 flex flex-col gap-3"
-        >
+        <form onSubmit={handleSubmit(onSubmit, onInValid)} className="mt-4 flex flex-col gap-3">
           <YoutubeDropDown
             label="유튜브 타입"
             options={YOUTUBE_OPTIONS_DATA}
@@ -138,9 +132,7 @@ const YoutubeSection = () => {
             </>
           )}
 
-          <button className="bg-blue-500 text-white px-4 py-2 rounded mt-2">
-            등록
-          </button>
+          <button className="mt-2 rounded bg-blue-500 px-4 py-2 text-white">등록</button>
         </form>
       </div>
     </HomeSection>
