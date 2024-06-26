@@ -1,4 +1,4 @@
-import AboutMinistryVision from "@/components/about/ministryVision";
+import AboutMinistryVision from "@/components/about/vision/ministryVision";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import React from "react";
