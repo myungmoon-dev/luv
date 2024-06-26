@@ -1,5 +1,11 @@
 import { api } from "@/api";
-import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
+import {
+  getHomeWorships,
+  getHomeWorshipsCount,
+  getPinnedHomeWorships,
+  getPinnedHomeWorshipsCount,
+  postHomeWorship,
+} from "firebase";
 import FormData from "form-data";
 import fs from "fs";
 import { hash } from "bcrypt";
@@ -24,16 +30,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const {
     method,
     headers: { origin },
+    query,
   } = req;
 
   switch (method) {
     case "GET":
-      const pinnedHomeWorships =
-        (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
-      const homeWorships = (await getHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
+      const lastVisibleCreatedAt = query.lastVisibleCreatedAt as string;
+
+      const isGetPinned = query.isGetPinned === "true";
+      const pinnedHomeWorships = isGetPinned
+        ? (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || []
+        : [];
+      const homeWorshipsSnapshots = await getHomeWorships({ lastVisibleCreatedAt });
+      const homeWorshipsCount = (await getHomeWorshipsCount()).data().count;
+      const pinnedHomeWorshipsCount = (await getPinnedHomeWorshipsCount()).data().count;
+      const homeWorships =
+        homeWorshipsSnapshots.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        })) || [];
 
       return res.status(200).json({
         homeWorships: [...pinnedHomeWorships, ...homeWorships],
+        notPinnedCount: homeWorshipsCount,
+        pinnedCount: pinnedHomeWorshipsCount,
       });
 
     case "POST":

@@ -31,6 +31,8 @@ import {
   deleteBible,
   getBulletin,
   deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 } from "./database";
 
 export {
@@ -66,4 +68,6 @@ export {
   deleteBible,
   getBulletin,
   deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 };

@@ -1,10 +1,18 @@
+import usePagination from "@/hooks/usePagination";
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
 import { Spinner, Table } from "ui";
 
 const HomeWorships = () => {
   const { push } = useRouter();
-  const { data } = useGetHomeWorships();
+  const { data, fetchNextPage } = useGetHomeWorships();
+
+  const { hasNextPage, setNextPage } = usePagination({ totalCount: data?.pages[0].notPinnedCount || 0 });
+
+  const handleClickNextPage = () => {
+    setNextPage();
+    fetchNextPage();
+  };
 
   if (!data)
     return (
@@ -25,17 +33,26 @@ const HomeWorships = () => {
       </div>
       <div className="flex flex-col gap-7">
         <Table
-          data={data.homeWorships.map((homeWorship) => ({
-            id: homeWorship.id,
-            date: homeWorship.date,
-            title: homeWorship.title,
-            writer: homeWorship.userName,
-            isPinned: homeWorship.isPinned,
-          }))}
+          data={data.pages
+            .map((page) =>
+              page.homeWorships.map((homeWorship) => ({
+                id: homeWorship.id,
+                date: homeWorship.date,
+                title: homeWorship.title,
+                writer: homeWorship.userName,
+                isPinned: homeWorship.isPinned,
+              })),
+            )
+            .flat()}
           onClickRow={(rowId) => push(`/homeworship/${rowId}`)}
         />
-        {/* FIXME: api에서 페이지네이션 정보 보내주도록 수정 */}
-        {/* <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.homeWorships.length} /> */}
+        {hasNextPage && (
+          <div className="flex justify-end">
+            <button className="rounded-md bg-blue-500 px-2 py-1 text-lg text-white" onClick={handleClickNextPage}>
+              다음
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

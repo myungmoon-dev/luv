@@ -12,6 +12,8 @@ import {
   postHomeWorshipComment,
   deleteHomeWorshipComment,
   putHomeWorship,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 } from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
@@ -61,4 +63,6 @@ export {
   deleteBible,
   getBulletin,
   deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 };
