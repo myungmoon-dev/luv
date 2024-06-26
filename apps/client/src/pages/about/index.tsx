@@ -1,16 +1,7 @@
+import AboutIntroduction from "@/components/about/introduction";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import React from "react";
-import AboutIntroduction from "@/components/about/introduction";
-
-interface IValue {
-  id: number;
-  titleKr: string;
-  titleEn: string;
-  description: string;
-  img: string;
-  imgClass: string;
-}
 
 const AboutIndexPage = () => {
   return (
