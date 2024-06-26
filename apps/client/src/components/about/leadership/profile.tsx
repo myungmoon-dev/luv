@@ -1,6 +1,6 @@
 import { officerType } from "@/constants/innerMenus/about";
 import React from "react";
-import CustomImage from "../customImage";
+import CustomImage from "../../customImage";
 import { cn } from "ui";
 
 interface IProfileProps {
