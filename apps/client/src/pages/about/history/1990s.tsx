@@ -1,4 +1,4 @@
-import HistoryEventList from "@/components/about/historyEventList";
+import HistoryEventList from "@/components/about/history/historyEventList";
 import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
 import { aboutHistoryMenus, aboutInnerMenus } from "@/constants/innerMenus/about";
