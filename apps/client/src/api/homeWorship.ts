@@ -1,8 +1,19 @@
 import { IGetHomeWorshipResponse, IGetHomeWorshipsResponse } from "@/types/homeWorship/response";
 import { api } from ".";
 
-export const getHomeWorships = async () => {
-  const { data } = await api.get<IGetHomeWorshipsResponse>("/api/homeWorship");
+export const getHomeWorships = async ({
+  lastVisibleCreatedAt,
+  isGetPinned = true,
+}: {
+  lastVisibleCreatedAt?: string;
+  isGetPinned?: boolean;
+}) => {
+  const { data } = await api.get<IGetHomeWorshipsResponse>("/api/homeWorship", {
+    params: {
+      lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
+      isGetPinned,
+    },
+  });
 
   return data;
 };
