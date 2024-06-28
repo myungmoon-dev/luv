@@ -72,36 +72,30 @@ const HomeAlbumCreate = () => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center items-center mx-auto h-screen p-20">
+    <div className="relative mx-auto flex h-screen flex-col items-center justify-center p-20">
       {isPending && (
-        <div className="bg-black opacity-70 absolute w-full h-full z-10 flex justify-center items-center">
+        <div className="absolute z-10 flex h-full w-full items-center justify-center bg-black opacity-70">
           <Spinner />
         </div>
       )}
       <div className="flex gap-3">
         <button
           onClick={() => push("/album")}
-          className="font-semibold p-2 bg-blue-600 rounded-md my-5"
+          className="my-5 rounded-md bg-blue-600 p-2 font-semibold"
         >
           목록으로
         </button>
-        <button
-          onClick={() => push("/")}
-          className="font-semibold p-2 bg-blue-600 rounded-md my-5"
-        >
+        <button onClick={() => push("/")} className="my-5 rounded-md bg-blue-600 p-2 font-semibold">
           홈으로
         </button>
       </div>
       <h1 className="text-4xl font-semibold">앨범 업로드</h1>
 
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="mt-10 w-full flex flex-col gap-3"
-      >
-        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="mt-10 flex w-full flex-col gap-3">
+        <label className="mx-auto flex w-1/2 items-center gap-3 xl:w-1/5">
           <p className="w-20 font-bold text-white">앨범 타입</p>
           <select
-            className="flex rounded px-4 py-2 font-bold text-black flex-grow appearance-no text-center"
+            className="appearance-no flex flex-grow rounded px-4 py-2 text-center font-bold text-black"
             value={selectedType}
             {...register("type", {
               onChange: onTypeChange,
@@ -115,45 +109,36 @@ const HomeAlbumCreate = () => {
             ))}
           </select>
         </label>
-        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
+        <label className="mx-auto flex w-1/2 items-center gap-3 xl:w-1/5">
           <p className="w-20 font-bold text-white">제목</p>
           <input
             {...register("title", { required: "제목을 입력해주세요." })}
             type="text"
-            className="rounded py-2 font-bold text-black flex-grow appearance-no text-center"
+            className="appearance-no flex-grow rounded py-2 text-center font-bold text-black"
           />
         </label>
         <ErrorMessage
           errors={errors}
           name="title"
-          render={({ message }) => (
-            <p className="text-sm text-center text-red-500">{message}</p>
-          )}
+          render={({ message }) => <p className="text-center text-sm text-red-500">{message}</p>}
         />
-        <label className="flex gap-3 items-center xl:w-1/5 w-1/2 mx-auto">
+        <label className="mx-auto flex w-1/2 items-center gap-3 xl:w-1/5">
           <p className="w-20 font-bold text-white">행사날짜</p>
           <input
             {...register("date", { required: "행사날짜를 입력해주세요." })}
             type="text"
-            className="rounded py-2 font-bold text-black flex-grow appearance-no text-center"
+            className="appearance-no flex-grow rounded py-2 text-center font-bold text-black"
             placeholder="ex) 2024-01-01"
           />
         </label>
         <ErrorMessage
           errors={errors}
           name="date"
-          render={({ message }) => (
-            <p className="text-sm text-center text-red-500">{message}</p>
-          )}
+          render={({ message }) => <p className="text-center text-sm text-red-500">{message}</p>}
         />
         <div className="w-full">
-          <label className="flex justify-center flex-col gap-1 items-center p-10 border-2 border-white rounded-md border-dashed cursor-pointer hover:opacity-50">
-            <Icon
-              name="ImageUpload"
-              size="lg"
-              backgroundColor="white"
-              strokeColor="white"
-            />
+          <label className="flex cursor-pointer flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed border-white p-10 hover:opacity-50">
+            <Icon name="ImageUpload" size="lg" backgroundColor="white" strokeColor="white" />
             <p>이미지 업로드 하기</p>
             <input
               className="hidden"
@@ -166,13 +151,13 @@ const HomeAlbumCreate = () => {
               })}
             />
           </label>
-          <div className="grid w-full grid-cols-5 gap-2 mt-5">
+          <div className="mt-5 grid w-full grid-cols-5 gap-2">
             {imgPaths.map((path, index) => (
-              <div key={index} className="relative w-full h-[200px]">
+              <div key={index} className="relative h-[200px] w-full">
                 <Image
                   src={path}
                   alt={`미리보기 이미지 ${index + 1}`}
-                  className="object-cover rounded-md"
+                  className="rounded-md object-cover"
                   fill={true}
                 />
               </div>
@@ -182,11 +167,9 @@ const HomeAlbumCreate = () => {
         <ErrorMessage
           errors={errors}
           name="images"
-          render={({ message }) => (
-            <p className="text-sm text-center text-red-500">{message}</p>
-          )}
+          render={({ message }) => <p className="text-center text-sm text-red-500">{message}</p>}
         />
-        <button className="bg-blue-500 text-white px-4 py-2 w-20 rounded mt-2 self-end">
+        <button className="mt-2 w-20 self-end rounded bg-blue-500 px-4 py-2 text-white">
           업로드
         </button>
       </form>

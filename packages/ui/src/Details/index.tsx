@@ -13,7 +13,9 @@ export const Details = ({ title, description }: IDetailsProps) => {
       <div className="ui-px-4 ui-py-7" onClick={() => setOpen(!isOpen)}>
         {title}
       </div>
-      {isOpen && <div className="ui-bg-[#f8f8f8] ui-px-4 ui-py-7 ui-whitespace-pre">{description}</div>}
+      {isOpen && (
+        <div className="ui-bg-[#f8f8f8] ui-px-4 ui-py-7 ui-whitespace-pre">{description}</div>
+      )}
     </div>
   );
 };

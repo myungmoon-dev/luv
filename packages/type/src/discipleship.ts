@@ -54,8 +54,7 @@ export interface INewlywedsData<T> {
 
 export interface INewlywedsIntroData extends INewlywedsData<{ text: string }> {}
 
-export interface INewlywedsImageData
-  extends INewlywedsData<{ imgs: string[] }> {}
+export interface INewlywedsImageData extends INewlywedsData<{ imgs: string[] }> {}
 
 export interface INewlywedsGuideData
   extends INewlywedsData<{

@@ -14,10 +14,7 @@ export const config = {
   },
 };
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
     query: { type, idList },
@@ -57,10 +54,10 @@ export default async function handler(
                 `${origin}/api/cloudflare`,
                 {
                   expireDate: expireDate.toISOString(),
-                }
+                },
               );
               return apiResponse.data;
-            })
+            }),
         );
         const uploadURLs = apiResponses.map((response) => {
           if (response.success !== true) {

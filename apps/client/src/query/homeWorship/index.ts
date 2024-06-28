@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 
 import {
   deleteHomeWorship,
@@ -13,9 +13,14 @@ import {
 import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
-  return useQuery({
-    queryFn: () => getHomeWorships(),
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string; isGetPinned?: boolean } }) =>
+      getHomeWorships({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt, isGetPinned: pageParam.isGetPinned }),
     queryKey: homeWorshipKeys.list(),
+    initialPageParam: { lastVisibleCreatedAt: undefined, isGetPinned: true },
+    getNextPageParam: (lastPage) => {
+      return { lastVisibleCreatedAt: lastPage.homeWorships.at(-1)?.createdAt, isGetPinned: false };
+    },
   });
 };
 

@@ -33,32 +33,22 @@ interface IcreateAlbumQueryProps {
   albumCount?: number;
 }
 
-const createAlbumQuery = ({
-  albumType,
-  albumCount,
-}: IcreateAlbumQueryProps) => {
+const createAlbumQuery = ({ albumType, albumCount }: IcreateAlbumQueryProps) => {
   const albumRef = collection(database, collections.album);
 
   if (albumType === "all") {
-    return query(
-      albumRef,
-      orderBy("createdAt", "desc"),
-      limit(albumCount ?? 20)
-    );
+    return query(albumRef, orderBy("createdAt", "desc"), limit(albumCount ?? 20));
   } else {
     return query(
       albumRef,
       where("albumType", "==", albumType),
       orderBy("createdAt", "desc"),
-      limit(albumCount ?? 20)
+      limit(albumCount ?? 20),
     );
   }
 };
 
-export const getAlbum = async ({
-  albumType,
-  albumCount,
-}: IGetAlbumListProps) => {
+export const getAlbum = async ({ albumType, albumCount }: IGetAlbumListProps) => {
   const getQuery = createAlbumQuery({ albumType, albumCount });
   const albumList = await getDocs(getQuery);
 

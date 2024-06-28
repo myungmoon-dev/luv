@@ -17,7 +17,13 @@ export const Pagination = ({ currentPage, totalQuantity }: IPaginationProps) => 
     <div className="ui-flex ui-gap-5 ui-justify-center">
       <div className="ui-flex ui-gap-2">
         {getPageList().map((page) => (
-          <div className={cn(currentPage === page ? "ui-font-bold" : "ui-font-normal", "ui-cursor-pointer")} key={page}>
+          <div
+            className={cn(
+              currentPage === page ? "ui-font-bold" : "ui-font-normal",
+              "ui-cursor-pointer",
+            )}
+            key={page}
+          >
             <p>{page}</p>
           </div>
         ))}
