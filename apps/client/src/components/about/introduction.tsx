@@ -1,5 +1,5 @@
-import CustomImage from "../customImage";
-import { IValueVision } from "./coreAlbum";
+import { IValueVision } from "@/components/education/section/coreministry";
+import CustomImage from "@/components/customImage";
 import AboutCoreSection from "./coreSection";
 import AboutHeaderSection from "./section/header";
 

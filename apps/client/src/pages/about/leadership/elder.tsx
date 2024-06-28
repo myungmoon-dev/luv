@@ -1,7 +1,7 @@
-import ProfileList from "@/components/about/profileList";
 import Layout from "@/components/layout";
-import Tabs from "@/components/layout/tabs";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
+import Tabs from "@/components/layout/tabs";
+import ProfileList from "@/components/about/leadership/profileList";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";

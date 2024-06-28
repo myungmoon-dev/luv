@@ -1,5 +1,5 @@
-import CustomImage from "../customImage";
-import AboutPromiseComponent from "./promise";
+import CustomImage from "@/components/customImage";
+import AboutPromiseComponent from "../promise";
 
 const AboutMinistryVision = () => {
   return (

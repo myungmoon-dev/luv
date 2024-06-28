@@ -1,7 +1,7 @@
 import Layout from "@/components/layout";
 import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 import Tabs from "@/components/layout/tabs";
-import ProfileList from "@/components/about/profileList";
+import MinisterList from "@/components/about/leadership/ministerList";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
@@ -35,7 +35,7 @@ const LeadershipMinisterPage = ({ bannerBlurDataURL }: ILeadreshipMinisterPagePr
       bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <ProfileList tabType="minister" className="lg:grid-cols-2 xl:grid-cols-3" />
+        <MinisterList />
       </Tabs>
     </Layout>
   );

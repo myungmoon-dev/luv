@@ -1,6 +1,7 @@
 import AboutIntroduction from "@/components/about/introduction";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
+import React from "react";
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
 
