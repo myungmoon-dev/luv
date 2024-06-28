@@ -2,12 +2,7 @@ import { IIconProps } from "../config";
 
 const HamburgerIcon = ({ backgroundColor, strokeColor }: IIconProps) => {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2.0}
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.0}>
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -12,15 +12,10 @@ interface IYoutubeDropDownProps {
   selected: IYoutubeDropDownOptions;
   onSelect: (selcted: IYoutubeDropDownOptions) => void;
 }
-const YoutubeDropDown = ({
-  label,
-  options,
-  selected,
-  onSelect,
-}: IYoutubeDropDownProps) => {
+const YoutubeDropDown = ({ label, options, selected, onSelect }: IYoutubeDropDownProps) => {
   const onChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const selectedYoutube = options.find(
-      (option) => option.type === (e.target.value as YoutubeType)
+      (option) => option.type === (e.target.value as YoutubeType),
     );
 
     if (selectedYoutube) {
@@ -29,10 +24,10 @@ const YoutubeDropDown = ({
   };
 
   return (
-    <label className="flex gap-3 items-center">
+    <label className="flex items-center gap-3">
       <p className="w-20 font-bold text-white">{label}</p>
       <select
-        className="flex rounded px-4 py-2 font-bold text-black flex-grow appearance-no text-center"
+        className="appearance-no flex flex-grow rounded px-4 py-2 text-center font-bold text-black"
         onChange={onChange}
         value={selected.type}
       >

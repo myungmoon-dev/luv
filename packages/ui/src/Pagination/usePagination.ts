@@ -8,7 +8,9 @@ export const usePagination = ({ currentPage, totalQuantity }: IUsePaginationProp
     // FIXME: 추후 로직 적용
     if (!totalQuantity) return [];
 
-    return new Array(Math.floor(totalQuantity / 10) + (totalQuantity % 10 ? 1 : 0)).fill(1).map((_, i) => i + 1);
+    return new Array(Math.floor(totalQuantity / 10) + (totalQuantity % 10 ? 1 : 0))
+      .fill(1)
+      .map((_, i) => i + 1);
   };
 
   return { getPageList };

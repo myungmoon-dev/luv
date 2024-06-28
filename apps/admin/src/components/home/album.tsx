@@ -8,7 +8,7 @@ const HomeAlbumSection = () => {
     <HomeSection title="앨범 업로드">
       <button
         onClick={() => push("/album")}
-        className="flex justify-center items-center bg-blue-500 text-white rounded-md p-2 px-3 font-bold"
+        className="flex items-center justify-center rounded-md bg-blue-500 p-2 px-3 font-bold text-white"
       >
         업로드하기
       </button>

@@ -43,18 +43,13 @@ export const Banner = ({
         />
       ) : (
         <div className="ui-relative ui-w-full ui-flex ui-flex-col ui-justify-center ui-items-center ui-gap-10">
-          <div
-            className={cn(
-              "ui-w-full ui-brightness-90 ui-h-[400px]",
-              imageClassName
-            )}
-          >
+          <div className={cn("ui-w-full ui-brightness-90 ui-h-[400px]", imageClassName)}>
             {image}
           </div>
           {customTitle ? (
             <div className="ui-absolute ">{customTitle}</div>
           ) : (
-            <div className="ui-absolute ui-h-3/5 ui-w-3/4 gap-3 ui-flex ui-justify-center md:ui-justify-end ui-items-center ui-flex-col">
+            <div className="ui-absolute ui-h-3/5 ui-w-3/4 ui-flex ui-justify-center md:ui-justify-end ui-items-center ui-flex-col gap-3">
               <div className="ui-flex ui-justify-center">
                 <h1 className="ui-text-blue-600 ui-font-SCoreDream ui-italic md:ui-text-xl">
                   MYUNGMOON CHURCH.
@@ -75,9 +70,7 @@ export const Banner = ({
                   selected={
                     pathname === innerMenu.path ||
                     (detailMenus &&
-                      detailMenus.some(
-                        (detailMenu) => detailMenu.path === innerMenu.path
-                      ))
+                      detailMenus.some((detailMenu) => detailMenu.path === innerMenu.path))
                   }
                   text={innerMenu.label}
                   size="sm"

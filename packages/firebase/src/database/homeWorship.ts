@@ -5,25 +5,59 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDoc,
   getDocs,
+  limit,
   orderBy,
   query,
+  startAfter,
   updateDoc,
   where,
 } from "firebase/firestore";
+import { IComment } from "type";
 import { IHomeWorshipForm } from "type/src/homeWorship";
 import { collections, database } from ".";
-import { IComment } from "type";
 
-export const getHomeWorships = async () => {
-  const getQuery = query(
-    collection(database, collections.homeWorship),
-    where("isPinned", "!=", true),
-    orderBy("date", "desc")
-  );
+export const getHomeWorships = async ({
+  lastVisibleCreatedAt,
+}: {
+  lastVisibleCreatedAt?: string;
+}) => {
+  let getQuery;
+
+  if (lastVisibleCreatedAt) {
+    getQuery = query(
+      collection(database, collections.homeWorship),
+      where("isPinned", "!=", true),
+      orderBy("createdAt", "desc"),
+      limit(10),
+      startAfter(Number(lastVisibleCreatedAt)),
+    );
+  } else {
+    getQuery = query(
+      collection(database, collections.homeWorship),
+      where("isPinned", "!=", true),
+      orderBy("createdAt", "desc"),
+      limit(10),
+    );
+  }
 
   const snapshot = await getDocs(getQuery);
+
+  return snapshot;
+};
+
+export const getHomeWorshipsCount = async () => {
+  const q = query(collection(database, collections.homeWorship), where("isPinned", "!=", true));
+  const snapshot = await getCountFromServer(q);
+
+  return snapshot;
+};
+
+export const getPinnedHomeWorshipsCount = async () => {
+  const q = query(collection(database, collections.homeWorship), where("isPinned", "==", true));
+  const snapshot = await getCountFromServer(q);
 
   return snapshot;
 };
@@ -32,7 +66,7 @@ export const getPinnedHomeWorships = async () => {
   const getQuery = query(
     collection(database, collections.homeWorship),
     where("isPinned", "==", true),
-    orderBy("date", "desc")
+    orderBy("date", "desc"),
   );
 
   const snapshot = await getDocs(getQuery);
@@ -49,14 +83,18 @@ export const getHomeWorship = async (homeWorshipId: string) => {
 };
 
 export const postHomeWorship = async (
-  homeWorship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number }
+  homeWorship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number },
 ) => {
   const docRef = await addDoc(collection(database, collections.homeWorship), homeWorship);
   return docRef;
 };
 
 export const putHomeWorship = async (
-  changedHomeworship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number; id: string }
+  changedHomeworship: Omit<IHomeWorshipForm, "image"> & {
+    image: string;
+    createdAt: number;
+    id: string;
+  },
 ) => {
   const docRef = doc(database, collections.homeWorship, changedHomeworship.id);
 

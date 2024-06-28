@@ -85,19 +85,16 @@ const HomeAlbumList = () => {
   };
 
   return (
-    <div className="w-full flex gap-10 flex-col p-20 px-5">
-      <button
-        onClick={() => back()}
-        className="font-bold rounded-md text-black bg-white w-fit p-2"
-      >
+    <div className="flex w-full flex-col gap-10 p-20 px-5">
+      <button onClick={() => back()} className="w-fit rounded-md bg-white p-2 font-bold text-black">
         뒤로가기
       </button>
       <h1 className="text-3xl font-semibold">앨범 업로드</h1>
-      <div className="flex gap-3 justify-between">
+      <div className="flex justify-between gap-3">
         <p>{`데이터 수 : ${data ? data.length : ""}`}</p>
-        <div className="flex gap-3 items-end">
+        <div className="flex items-end gap-3">
           <select
-            className="flex rounded px-3 py-2 font-bold text-black flex-grow appearance-no text-center"
+            className="appearance-no flex flex-grow rounded px-3 py-2 text-center font-bold text-black"
             onChange={onTypeChange}
             value={selectedType}
           >
@@ -110,33 +107,28 @@ const HomeAlbumList = () => {
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-2 place-items-center font-bold text-lg">
+      <div className="grid grid-cols-5 place-items-center gap-2 text-lg font-bold">
         <p>번호</p>
         <p>제목</p>
         <p>타입</p>
         <p>날짜/업로드일시</p>
         <p>처리</p>
       </div>
-      <div className="flex flex-col w-full gap-5">
+      <div className="flex w-full flex-col gap-5">
         {!data ? (
-          <div className="w-full flex flex-col justify-center items-center">
+          <div className="flex w-full flex-col items-center justify-center">
             <Spinner />
           </div>
         ) : (
           <>
-            {data.length === 0 && (
-              <p className="text-center">데이터가 존재하지 않습니다.</p>
-            )}
+            {data.length === 0 && <p className="text-center">데이터가 존재하지 않습니다.</p>}
             {data.map((album, idx) => {
               // ALBUM_OPTION_DATA에서 albumType에 해당하는 label 찾기
               const albumOption = AlbumTypeOptions.find(
-                (option) => option.value === album.albumType
+                (option) => option.value === album.albumType,
               );
               return (
-                <div
-                  key={album.id}
-                  className="grid grid-cols-5 gap-2 place-items-center"
-                >
+                <div key={album.id} className="grid grid-cols-5 place-items-center gap-2">
                   <p>{data.length - idx}</p>
                   <p>{album.title}</p>
                   <p className="flex gap-1">{albumOption?.label ?? ""}</p>
@@ -147,15 +139,12 @@ const HomeAlbumList = () => {
                     </p>
                   </div>
                   <p className="flex gap-3">
-                    <button
-                      onClick={() => {}}
-                      className="p-1 px-2 text-sm rounded-md bg-blue-600"
-                    >
+                    <button onClick={() => {}} className="rounded-md bg-blue-600 p-1 px-2 text-sm">
                       수정
                     </button>
                     <button
                       onClick={() => onDelete(album.id)}
-                      className="p-1 px-2 text-sm rounded-md bg-red-500"
+                      className="rounded-md bg-red-500 p-1 px-2 text-sm"
                     >
                       삭제
                     </button>
@@ -166,12 +155,12 @@ const HomeAlbumList = () => {
           </>
         )}
       </div>
-      <div className="w-full flex">
+      <div className="flex w-full">
         <button
           onClick={() => {
             push(`${asPath}/create`);
           }}
-          className="p-2 px-3 rounded-md bg-blue-600 font-bold"
+          className="rounded-md bg-blue-600 p-2 px-3 font-bold"
         >
           앨범 추가
         </button>

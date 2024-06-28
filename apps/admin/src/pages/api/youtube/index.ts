@@ -2,10 +2,7 @@ import { createYoutube, getYoutube } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 import { YoutubeType } from "type";
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
     query: { type },
@@ -16,9 +13,7 @@ export default async function handler(
   switch (method) {
     case "GET":
       const videoType = type as YoutubeType;
-      const youtubeList = (
-        await getYoutube({ videoType, videoCount: 1 })
-      ).docs.map((doc) => ({
+      const youtubeList = (await getYoutube({ videoType, videoCount: 1 })).docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));

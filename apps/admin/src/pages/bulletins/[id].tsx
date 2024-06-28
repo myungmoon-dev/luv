@@ -41,10 +41,14 @@ const BulletinDetailPage = () => {
         {"<"} 뒤로가기
       </button>
       <h1 className="mb-2 text-3xl font-bold">{bulletin.title}</h1>
-      <div className="flex justify-between mb-10 items-center">
+      <div className="mb-10 flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">날짜: {dayjs(bulletin.date).format("YYYY-MM-DD")}</p>
-          <p className="text-sm text-slate-500">생성일: {dayjs(bulletin.createdAt).format("YYYY-MM-DD")}</p>
+          <p className="text-sm text-slate-500">
+            날짜: {dayjs(bulletin.date).format("YYYY-MM-DD")}
+          </p>
+          <p className="text-sm text-slate-500">
+            생성일: {dayjs(bulletin.createdAt).format("YYYY-MM-DD")}
+          </p>
         </div>
         <button onClick={handleDeleteBulletin} className="text-red-500">
           삭제
@@ -52,7 +56,7 @@ const BulletinDetailPage = () => {
       </div>
       <div className="flex flex-col gap-5">
         {bulletin.images.map((image) => (
-          <div className="relative w-[868px] h-[550px]">
+          <div className="relative h-[550px] w-[868px]">
             <Image src={`${image}/bulletin`} fill={true} alt="주보" />
           </div>
         ))}

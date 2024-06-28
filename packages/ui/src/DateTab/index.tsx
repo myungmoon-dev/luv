@@ -9,7 +9,13 @@ interface IDateTabProps {
   onClickNext: () => void;
 }
 
-export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNext }: IDateTabProps) => {
+export const DateTab = ({
+  tabs,
+  selectedTab,
+  onClickTab,
+  onClickPrev,
+  onClickNext,
+}: IDateTabProps) => {
   return (
     <div className="ui-relative ui-mb-10 ui-min-h-[50px]">
       <button
@@ -24,7 +30,7 @@ export const DateTab = ({ tabs, selectedTab, onClickTab, onClickPrev, onClickNex
             key={tab.date}
             className={cn(
               "ui-cursor-pointer ui-text-center ui-text-sm sm:ui-text-base hover:ui-font-bold ui-text-black hover:ui-text-blue-400",
-              selectedTab === tab.date && "ui-font-bold ui-text-blue-500"
+              selectedTab === tab.date && "ui-font-bold ui-text-blue-500",
             )}
             onClick={() => onClickTab(tab.date)}
           >

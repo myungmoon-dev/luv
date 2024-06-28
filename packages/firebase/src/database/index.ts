@@ -12,6 +12,8 @@ import {
   postHomeWorshipComment,
   deleteHomeWorshipComment,
   putHomeWorship,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 } from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
@@ -23,9 +25,7 @@ const database = getFirestore(firebase);
 const collections = {
   bulletin: "bulletin",
   youtube: (videoType: YoutubeType) =>
-    videoType === "shorts" || videoType === "live"
-      ? videoType
-      : `youtube/sermon/${videoType}`,
+    videoType === "shorts" || videoType === "live" ? videoType : `youtube/sermon/${videoType}`,
   bible: "bible",
   user: "user",
   homeWorship: "homeWorship",
@@ -63,4 +63,6 @@ export {
   deleteBible,
   getBulletin,
   deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 };
