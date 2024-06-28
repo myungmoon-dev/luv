@@ -1,24 +1,30 @@
 import dynamic from "next/dynamic";
-import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form";
+import {
+  Controller,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+} from "react-hook-form";
 import { IBibleForm } from "type";
-
 import { usePostBible } from "@/query/discipleship";
 import getYoutubeId from "@/utils/getYoutubeId";
 import { Spinner } from "ui";
-import { useRouter } from "next/navigation";
 
-const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
+const Editor = dynamic(
+  () => import("@/components/common/editor").then((mod) => mod.Editor),
+  {
+    ssr: false,
+    loading: () => <Spinner />,
+  }
+);
 
 const DiscipleshipBibleCreatePage = () => {
-  const { push } = useRouter();
-  const { control, register, handleSubmit, setValue } = useForm<IBibleForm>({
-    defaultValues: {
-      links: [{ name: "", isPlaylist: false }],
-    },
-  });
+  const { control, register, handleSubmit, setValue, reset } =
+    useForm<IBibleForm>({
+      defaultValues: {
+        links: [{ name: "", isPlaylist: false }],
+      },
+    });
   const { fields, append, remove } = useFieldArray({
     control,
     name: "links",
@@ -36,11 +42,16 @@ const DiscipleshipBibleCreatePage = () => {
       return alert("youtube link를 다시 확인해주세요.");
 
     mutate(
-      { content: data.content, date: data.date, title: data.title, links: youtubeLinks },
+      {
+        content: data.content,
+        date: data.date,
+        title: data.title,
+        links: youtubeLinks,
+      },
       {
         onSuccess: () => {
           alert("완료");
-          push("/discipleship/bibles");
+          reset();
         },
         onError: () => alert("에러 발생"),
       },
