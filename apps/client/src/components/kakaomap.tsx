@@ -4,10 +4,10 @@ import { cn } from "ui";
 
 declare const window: typeof globalThis & { kakao: any };
 
-type KakaoMapProps = {
+interface KakaoMapProps {
   address: string;
   height: string;
-};
+}
 
 const KakaoMap = ({ address, height }: KakaoMapProps) => {
   const kakaoMapRef = useRef<HTMLInputElement>(null);
@@ -60,7 +60,7 @@ const KakaoMap = ({ address, height }: KakaoMapProps) => {
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_KEY}&autoload=false&libraries=services`}
         onLoad={onLoadKakaoMap}
       />
-      <div ref={kakaoMapRef} className={cn("ui-rounded-lg relative w-full ", height)} />
+      <div ref={kakaoMapRef} className={cn("ui-rounded-lg relative w-full", height)} />
     </>
   );
 };

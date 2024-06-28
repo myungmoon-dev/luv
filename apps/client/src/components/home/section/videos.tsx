@@ -1,5 +1,4 @@
 import { YoutubeVideo } from "ui";
-
 import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,13 +21,13 @@ const VideosSection = () => {
       </div>
       <div className="absolute left-0 top-0 flex w-full flex-col items-center justify-center gap-10 px-5 pb-10 pt-16">
         <div className="flex flex-col items-center gap-2">
-          <p data-aos="fade-up" className="font-SCoreDream text-xl text-blue-600 md:text-3xl">
+          <p data-aos="fade-up" className="font-SCoreDream text-xl md:text-3xl">
             {dayjs(mainVideo?.date).format("YYYY.MM.DD")}
           </p>
           <p
             data-aos="fade-up"
             data-aos-delay="200"
-            className="break-keep text-center font-SCoreDream text-3xl text-blue-600 sm:text-5xl"
+            className="w-2/3 break-keep text-center font-SCoreDream text-3xl sm:text-5xl md:w-full"
           >
             {mainVideo?.title}
           </p>
@@ -37,9 +36,9 @@ const VideosSection = () => {
             target="_blank"
             data-aos="fade-up"
             delay-aos-delay="400"
-            className="mt-3 font-semibold hover:underline sm:text-xl"
+            className="mt-3 rounded-md bg-blue-600 p-2 px-3 font-semibold text-white duration-700 sm:text-lg"
           >
-            설교 라이브, 1분 설교 보러가기 {">"}
+            설교 라이브, 1분 설교 보러가기
           </Link>
         </div>
         <div className="flex w-full flex-col gap-5 md:flex-row 2xl:w-3/4">
