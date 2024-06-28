@@ -1,8 +1,14 @@
 import { api } from "@/api";
-import { hash } from "bcrypt";
-import { getHomeWorships, getPinnedHomeWorships, postHomeWorship } from "firebase";
+import {
+  getHomeWorships,
+  getHomeWorshipsCount,
+  getPinnedHomeWorships,
+  getPinnedHomeWorshipsCount,
+  postHomeWorship,
+} from "firebase";
 import FormData from "form-data";
 import fs from "fs";
+import { hash } from "bcrypt";
 import multer from "multer";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -15,20 +21,39 @@ const upload = multer({
   }),
 });
 
+export const hashPassword = async (password: string) => {
+  const hashedPassword = await hash(password, 10);
+  return hashedPassword;
+};
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
     headers: { origin },
+    query,
   } = req;
 
   switch (method) {
     case "GET":
-      const pinnedHomeWorships =
-        (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
-      const homeWorships = (await getHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
+      const lastVisibleCreatedAt = query.lastVisibleCreatedAt as string;
+
+      const isGetPinned = query.isGetPinned === "true";
+      const pinnedHomeWorships = isGetPinned
+        ? (await getPinnedHomeWorships()).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || []
+        : [];
+      const homeWorshipsSnapshots = await getHomeWorships({ lastVisibleCreatedAt });
+      const homeWorshipsCount = (await getHomeWorshipsCount()).data().count;
+      const pinnedHomeWorshipsCount = (await getPinnedHomeWorshipsCount()).data().count;
+      const homeWorships =
+        homeWorshipsSnapshots.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        })) || [];
 
       return res.status(200).json({
         homeWorships: [...pinnedHomeWorships, ...homeWorships],
+        notPinnedCount: homeWorshipsCount,
+        pinnedCount: pinnedHomeWorshipsCount,
       });
 
     case "POST":
@@ -94,11 +119,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // 필드 검증 및 에러 처리
         if (!fields.date) return res.status(400).json({ result: "Missing required fields" });
 
-        const hashPassword = async (password: string) => {
-          const hashedPassword = await hash(password, 10);
-          return hashedPassword;
-        };
-
         const hashedPassword = await hashPassword(fields.password);
 
         const result = await postHomeWorship({
@@ -109,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           userName: fields.userName,
           createdAt: new Date().getTime(),
           password: hashedPassword,
-          isPinned: fields.isPinned === "checked",
+          isPinned: false,
         });
 
         return res.status(200).json({

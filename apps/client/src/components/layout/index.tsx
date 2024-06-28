@@ -32,6 +32,7 @@ interface LayoutProps {
   imageClassName?: string;
   customBanner?: ReactNode;
   mustLogin?: boolean;
+  bannerBlurDataURL?: string;
 }
 
 const Layout = ({
@@ -50,6 +51,7 @@ const Layout = ({
   imageClassName,
   customBanner,
   mustLogin = false,
+  bannerBlurDataURL,
 }: LayoutProps) => {
   useAuth({ mustLogin });
   const { asPath, push } = useRouter();
@@ -62,6 +64,7 @@ const Layout = ({
     ...addKeyToMenus(educationInnerMenus, "/education"),
     ...addKeyToMenus(newsInnerMenus, "/news"),
     ...addKeyToMenus(discipleshipInnerMenus, "/discipleship"),
+    ...addKeyToMenus([{ label: "맛있는 가정예배", path: "/homeworship" }], "/homeworship"),
   ];
 
   useEffect(() => {
@@ -89,7 +92,15 @@ const Layout = ({
           <Banner
             customTitle={customTitle}
             iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-            image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
+            image={
+              bannerImage && (
+                <BannerImageComponent
+                  image={bannerImage}
+                  imgClass={bannerImgClass}
+                  bannerBlurDataURL={bannerBlurDataURL}
+                />
+              )
+            }
             video={bannerVideo}
             title={title}
             description={bannerDescription}

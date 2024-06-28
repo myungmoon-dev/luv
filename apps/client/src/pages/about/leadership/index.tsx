@@ -1,18 +1,38 @@
-import Layout from "@/components/layout";
-import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
-import Tabs from "@/components/layout/tabs";
 import CustomImage from "@/components/customImage";
+import Layout from "@/components/layout";
+import Tabs from "@/components/layout/tabs";
+import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
 
-const LeadershipIndexPage = () => {
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
+
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/about/banner3.jpg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
+}
+
+interface ILeadershipPageProps {
+  bannerBlurDataURL: string;
+}
+
+const LeadershipPage = ({ bannerBlurDataURL }: ILeadershipPageProps) => {
   return (
     <Layout
       pageTitle="섬기는 분들-담임목사"
       title="섬기는 분들"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/about/banner2.jpg"
+      bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={aboutLeaderMenus}>
         <div className="flex w-full flex-col gap-5 2xl:max-w-screen-xl">
@@ -24,7 +44,11 @@ const LeadershipIndexPage = () => {
           >
             <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-20 md:px-6 xl:px-20">
               <div data-aos="fade-up" className="flex w-full text-white">
-                <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">"일어나 세상으로 흘러가자!"</p>
+                <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">
+                  "교회여!
+                  <br />
+                  일어나 세상으로 흘러가라!"
+                </p>
               </div>
               <div data-aos="fade-up" className="flex w-full items-end text-white">
                 <div className="hidden w-full gap-1 whitespace-pre-wrap break-keep md:flex md:flex-col md:gap-3 md:text-xl lg:text-xl">
@@ -67,4 +91,4 @@ const LeadershipIndexPage = () => {
   );
 };
 
-export default LeadershipIndexPage;
+export default LeadershipPage;

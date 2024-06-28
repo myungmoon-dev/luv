@@ -9,13 +9,13 @@ const BibleSection = () => {
       <div className="flex gap-5">
         <button
           onClick={() => push("/discipleship/bibles")}
-          className="flex justify-center items-center bg-blue-500 text-white rounded-md w-12 h-12"
+          className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
         >
           목록
         </button>
         <button
           onClick={() => push("/discipleship/bibles/create")}
-          className="flex justify-center items-center bg-blue-500 text-white rounded-md w-12 h-12"
+          className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
         >
           추가
         </button>

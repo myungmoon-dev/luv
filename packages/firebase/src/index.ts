@@ -22,6 +22,17 @@ import {
   postMission,
   deleteMission,
   getPinnedHomeWorships,
+  postHomeWorshipComment,
+  deleteHomeWorshipComment,
+  putHomeWorship,
+  getAlbum,
+  postAlbum,
+  deleteAlbum,
+  deleteBible,
+  getBulletin,
+  deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 } from "./database";
 
 export {
@@ -48,4 +59,15 @@ export {
   postMission,
   deleteMission,
   getPinnedHomeWorships,
+  postHomeWorshipComment,
+  deleteHomeWorshipComment,
+  putHomeWorship,
+  getAlbum,
+  postAlbum,
+  deleteAlbum,
+  deleteBible,
+  getBulletin,
+  deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 };

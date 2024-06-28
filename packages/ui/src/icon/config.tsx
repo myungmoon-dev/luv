@@ -16,6 +16,7 @@ import { LogoBlueIcon } from "./assets/logoBlue";
 import { RealYoutubeIcon } from "./assets/youtube-1";
 import { InstagramIcon } from "./assets/instagram";
 import { CloseIcon } from "./assets/close";
+import { ImageUploadIcon } from "./assets/imageUpload";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -31,7 +32,7 @@ export interface IIconProps {
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
   sm: "ui-w-[16px]",
   md: "ui-w-[20px]",
-  lg: "ui-w-[24px]",
+  lg: "ui-w-[36px]",
   xl: "ui-w-[48px]",
   "2xl": "ui-w-[72px]",
   "4xl": "ui-w-[96px]",
@@ -55,4 +56,5 @@ export const icons = {
   RealYoutube: (props: IIconProps) => <RealYoutubeIcon {...props} />,
   Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
   Close: (props: IIconProps) => <CloseIcon {...props} />,
+  ImageUpload: (props: IIconProps) => <ImageUploadIcon {...props} />,
 };

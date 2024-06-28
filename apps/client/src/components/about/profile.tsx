@@ -1,6 +1,7 @@
 import { officerType } from "@/constants/innerMenus/about";
 import React from "react";
 import CustomImage from "../customImage";
+import { cn } from "ui";
 
 interface IProfileProps {
   name: string;
@@ -11,17 +12,21 @@ interface IProfileProps {
   officer: string;
   className?: string;
   position?: string;
+  greeting?: string;
 }
 
-const Profile = ({ description, image, name, alt, className, position, tabType, officer }: IProfileProps) => {
+const Profile = ({ description, image, name, alt, className, position, tabType, officer, greeting }: IProfileProps) => {
   return (
-    <div className="relative flex w-full items-center justify-center md:gap-5">
+    <div className="relative flex w-full items-center justify-around md:gap-5">
       <div className="z-[1] flex flex-col justify-center gap-3">
-        <h1 className="font-SCoreDream text-2xl text-blue-600">
-          {name} {officerType.filter((staff) => staff.label === officer)[0].type}
-        </h1>
+        {greeting && (
+          <p className="max-w-44 break-keep text-xs font-bold text-blue-600 md:text-sm">{`"${greeting}"`}</p>
+        )}
         <p className="font-semibold">{description}</p>
         <p className="whitespace-pre-wrap break-keep text-xs md:text-sm">{position}</p>
+        <h1 className={cn("font-SCoreDream text-2xl", tabType !== "minister" && "text-blue-600")}>
+          {name} {officerType.filter((staff) => staff.label === officer)[0].type}
+        </h1>
       </div>
       <CustomImage
         src={image ?? "/images/profile.png"}

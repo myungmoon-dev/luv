@@ -1,17 +1,23 @@
 import { getFirestore } from "firebase/firestore";
 import { firebase } from "../../firebase";
 import { getYoutube, createYoutube } from "./youtube";
-import { getBulletins, postBulletin } from "./bulletin";
-import { getBible, getBibles, postBible } from "./discipleship";
+import { getBible, getBibles, postBible, deleteBible } from "./discipleship";
+import { getBulletins, postBulletin, getBulletin, deleteBulletin } from "./bulletin";
 import {
   getHomeWorship,
   getHomeWorships,
   postHomeWorship,
   deleteHomeWorship,
   getPinnedHomeWorships,
+  postHomeWorshipComment,
+  deleteHomeWorshipComment,
+  putHomeWorship,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 } from "./homeWorship";
 import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
+import { getAlbum, postAlbum, deleteAlbum } from "./album";
 import { YoutubeType } from "type";
 
 const database = getFirestore(firebase);
@@ -24,6 +30,7 @@ const collections = {
   user: "user",
   homeWorship: "homeWorship",
   mission: "mission",
+  album: "album",
 };
 
 export {
@@ -47,4 +54,15 @@ export {
   postMission,
   deleteMission,
   getPinnedHomeWorships,
+  postHomeWorshipComment,
+  deleteHomeWorshipComment,
+  putHomeWorship,
+  getAlbum,
+  postAlbum,
+  deleteAlbum,
+  deleteBible,
+  getBulletin,
+  deleteBulletin,
+  getHomeWorshipsCount,
+  getPinnedHomeWorshipsCount,
 };

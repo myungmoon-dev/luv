@@ -1,12 +1,26 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 
-import { deleteHomeWorship, getHomeWorship, getHomeWorships, postHomeWorship } from "@/api/homeWorship";
+import {
+  deleteHomeWorship,
+  deleteHomeWorshipComment,
+  getHomeWorship,
+  getHomeWorships,
+  postHomeWorship,
+  postHomeWorshipComment,
+  postHomeWorshipPasswordCheck,
+  putHomeWorship,
+} from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
-  return useQuery({
-    queryFn: () => getHomeWorships(),
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string; isGetPinned?: boolean } }) =>
+      getHomeWorships({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt, isGetPinned: pageParam.isGetPinned }),
     queryKey: homeWorshipKeys.list(),
+    initialPageParam: { lastVisibleCreatedAt: undefined, isGetPinned: true },
+    getNextPageParam: (lastPage) => {
+      return { lastVisibleCreatedAt: lastPage.homeWorships.at(-1)?.createdAt, isGetPinned: false };
+    },
   });
 };
 
@@ -22,6 +36,29 @@ const usePostHomeWorship = () =>
     mutationFn: postHomeWorship,
   });
 
+const usePutHomeWorship = () =>
+  useMutation({
+    mutationFn: putHomeWorship,
+  });
+
 const useDeleteHomeWorship = () => useMutation({ mutationFn: deleteHomeWorship });
 
-export { useGetHomeWorship, useGetHomeWorships, usePostHomeWorship, useDeleteHomeWorship };
+const usePostHomeWorshipComment = () => useMutation({ mutationFn: postHomeWorshipComment });
+
+const useDeleteHomeWorshipComment = () => useMutation({ mutationFn: deleteHomeWorshipComment });
+
+const usePostHomeWorshipPasswordCheck = () =>
+  useMutation({
+    mutationFn: postHomeWorshipPasswordCheck,
+  });
+
+export {
+  useGetHomeWorship,
+  useGetHomeWorships,
+  usePostHomeWorship,
+  useDeleteHomeWorship,
+  usePostHomeWorshipComment,
+  useDeleteHomeWorshipComment,
+  usePostHomeWorshipPasswordCheck,
+  usePutHomeWorship,
+};

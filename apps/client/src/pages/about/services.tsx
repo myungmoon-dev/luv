@@ -4,15 +4,35 @@ import { aboutInnerMenus } from "@/constants/innerMenus/about";
 import { SectionHeader } from "ui";
 import ServicesTable from "@/components/about/servicesTable";
 
-const AboutServicesPage = () => {
+import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
+import path from "path";
+
+export async function getStaticProps() {
+  const imagePath = path.resolve("public/images/about/banner3.jpg");
+
+  const blurDataURL = await generateBlurDataURL(imagePath);
+
+  return {
+    props: {
+      bannerBlurDataURL: blurDataURL,
+    },
+  };
+}
+
+interface IAboutServicesPageProps {
+  bannerBlurDataURL: string;
+}
+
+const AboutServicesPage = ({ bannerBlurDataURL }: IAboutServicesPageProps) => {
   return (
     <Layout
       pageTitle="예배 안내"
       title="예배 안내"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/about/banner2.jpg"
+      bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
+      bannerBlurDataURL={bannerBlurDataURL}
     >
       <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-20 px-5">
         <div className="flex w-full flex-col items-center justify-center gap-5">

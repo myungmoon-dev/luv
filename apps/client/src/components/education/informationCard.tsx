@@ -9,12 +9,10 @@ interface IEducationInformationCardProps {
 const EducationInformationCard = ({ title, text, iconName }: IEducationInformationCardProps) => {
   return (
     <div data-aos="fade-up" className="flex flex-col items-center justify-start gap-4">
-      <div className="rounded-full bg-blue-600 p-5">
-        <Icon name={iconName} size="xl" strokeColor="white" backgroundColor="white" />
-      </div>
-      <p className="text-xl font-bold">{title}</p>
-      <div className="h-[0.1em] w-full bg-blue-600 md:w-1/2" />
-      <p className="break-keep text-center text-sm md:text-base">{text}</p>
+      <Icon name={iconName} size="lg" strokeColor="#2b66f6" backgroundColor="#2b66f6" />
+      <p className="text-lg font-bold md:text-xl 2xl:text-2xl">{title}</p>
+      <div className="h-[2px] w-full bg-black md:w-1/2" />
+      <p className="break-keep text-center text-sm md:text-base 2xl:text-lg">{text}</p>
     </div>
   );
 };

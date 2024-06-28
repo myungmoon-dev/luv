@@ -20,15 +20,20 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
     { label: "다음세대", path: "/education", key: "/education" },
     { label: "주보•소식", path: "/news/bulletins", key: "/news" },
     {
-      label: "교회양육",
+      label: "교회훈련",
       path: "/discipleship/main/bible",
       key: "/discipleship",
+    },
+    {
+      label: "가정예배",
+      path: "/homeworship",
+      key: "/homeworship",
     },
   ];
   const favMenus: IDetailMenu[] = [
     {
       label: "맛있는 가정예배",
-      path: "/education/home-worship",
+      path: "/homeworship",
       key: "/education",
     },
     {
@@ -46,29 +51,19 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
   const getDetailMenu = () => {
     switch (currentDrawerMenu) {
       case "/about":
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/about")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/about"));
       case "/sermons":
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/sermons")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/sermons"));
       case "/education":
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/education")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/education"));
       case "/news":
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/news")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/news"));
       case "/discipleship":
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/discipleship")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/discipleship"));
+      case "/homeworship":
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/homeworship"));
       default:
-        return detailMenus.filter((detailMenu) =>
-          detailMenu.path.startsWith("/about")
-        );
+        return detailMenus.filter((detailMenu) => detailMenu.path.startsWith("/about"));
     }
   };
 
@@ -94,7 +89,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
     <header
       className={cn(
         "ui-flex ui-fixed ui-top-0 ui-z-10 ui-justify-between ui-items-center ui-w-full ui-py-4 ui-px-8 lg:ui-px-16 ui-transition ui-duration-300 ui-ease-in-out ui-text-black",
-        isScrolled ? "ui-bg-white ui-shadow-lg ui-text-black" : "ui-text-white"
+        isScrolled ? "ui-bg-white ui-shadow-lg ui-text-black" : "ui-text-white",
       )}
     >
       <img
@@ -112,8 +107,8 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
                 key={menu.path}
                 className={cn(
                   "ui-font-semibold lg:ui-text-lg ui-pb-[0.5px]",
-                  asPath.startsWith(menu.path) &&
-                    "ui-text-blue-500 ui-border-b-2 ui-border-blue-500"
+                  asPath.startsWith(menu.key) &&
+                    "ui-text-blue-500 ui-border-b-2 ui-border-blue-500",
                 )}
               >
                 {menu.label}
@@ -138,9 +133,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
               <div className="ui-flex ui-justify-between ui-w-full ui-items-start ui-pb-2 ui-border-b-[1px] ui-border-white ui-text-white ui-px-5 md:ui-pb-5 xl:ui-px-10">
                 <div className="ui-flex ui-flex-col ui-w-full md:ui-text-xl lg:ui-text-2xl xl:ui-text-3xl">
                   <p className="ui-font-SCoreDream">교회여!</p>
-                  <p className="ui-font-SCoreDream">
-                    일어나 세상으로 흘러가라!
-                  </p>
+                  <p className="ui-font-SCoreDream">일어나 세상으로 흘러가라!</p>
                 </div>
                 <Icon
                   name="Close"
@@ -151,7 +144,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
                   onClick={() => setOpenDrawer(false)}
                 />
               </div>
-              <div className="ui-grid ui-grid-cols-2 gap-3 lg:ui-grid-cols-4">
+              <div className="ui-grid ui-grid-cols-2 lg:ui-grid-cols-4 gap-3">
                 <div className="ui-text-sm ui-p-2 md:ui-p-3 ui-border-[1px] lg:ui-py-2 ui-border-white ui-rounded-3xl ui-bg-white ui-text-blue-600 ui-text-center ui-font-semibold">
                   자주찾는 메뉴
                 </div>
@@ -178,7 +171,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
                       "ui-font-semibold",
                       currentDrawerMenu === menu.key
                         ? "ui-text-blue-600 ui-underline"
-                        : "ui-text-black"
+                        : "ui-text-black",
                     )}
                   >
                     {menu.label}
@@ -187,11 +180,7 @@ export const Header = ({ push, asPath, detailMenus }: IHeaderProps) => {
               </div>
               <div className="ui-flex ui-flex-col ui-col-span-3 ui-px-4 ui-pt-10 ui-gap-5 md:ui-px-6 xl:ui-px-10">
                 <p className="ui-font-SCoreDream ui-pb-2 ui-border-b-[1px] ui-border-gray-200 ui-text-lg xl:ui-text-3xl">
-                  {
-                    menus.find(
-                      (menu) => menu.key === currentDrawerMenu && menu.label
-                    )?.label
-                  }
+                  {menus.find((menu) => menu.key === currentDrawerMenu && menu.label)?.label}
                 </p>
                 <div className="ui-flex ui-flex-col ui-gap-3 ui-items-start">
                   {getDetailMenu().map((menu) => (

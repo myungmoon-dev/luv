@@ -2,9 +2,8 @@ import { IInnerMenu, IOfficerType } from "./types";
 
 export const aboutInnerMenus: IInnerMenu[] = [
   { label: "교회소개", path: "/about" },
-  { label: "로고와 비전", path: "/about/vision" },
+  { label: "목회비전", path: "/about/vision" },
   { label: "섬기는 분들", path: "/about/leadership" },
-  { label: "연혁", path: "/about/history" },
   { label: "예배 안내", path: "/about/services" },
   { label: "오시는 길", path: "/about/directions" },
 ];
@@ -13,6 +12,7 @@ export const aboutLeaderMenus: IInnerMenu[] = [
   { label: "원로목사", path: "/about/leadership/retired" },
   { label: "담임목사", path: "/about/leadership" },
   { label: "교역자", path: "/about/leadership/minister" },
+  { label: "선교사", path: "/about/leadership/missionary" },
   { label: "장로", path: "/about/leadership/elder" },
   { label: "직원", path: "/about/leadership/staff" },
 ];
@@ -22,7 +22,9 @@ export const officerType: IOfficerType[] = [
   { label: "senior", type: "담임목사" },
   { label: "associate", type: "목사" },
   { label: "evangelist", type: "전도사" },
+  { label: "missionary", type: "선교사" },
   { label: "elder", type: "장로" },
+  { label: "otherElder", type: "협동장로" },
   { label: "deacon", type: "집사" },
   { label: "staff", type: "간사" },
 ];

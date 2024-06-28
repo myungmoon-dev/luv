@@ -1,15 +1,16 @@
-import React from "react";
-import Image from "next/image";
 import { YoutubeVideo } from "ui";
-import { useRouter } from "next/navigation";
-
-import { useGetYoutubeList } from "@/query/youtube";
 import dayjs from "dayjs";
+import Image from "next/image";
+import Link from "next/link";
+import Skeleton from "react-loading-skeleton";
+
+import DeferredComponent from "@/components/common/deferredComponent";
+import View from "@/components/common/view";
+import { useGetYoutubeList } from "@/query/youtube";
 
 const VideosSection = () => {
-  const { push } = useRouter();
-  const { data: main } = useGetYoutubeList({ videoType: "main" });
-  const { data: shorts } = useGetYoutubeList({ videoType: "shorts" });
+  const { data: main, isLoading: mainLoading } = useGetYoutubeList({ videoType: "main" });
+  const { data: shorts, isLoading: shortsLoading } = useGetYoutubeList({ videoType: "shorts" });
 
   const mainVideo = main?.[0];
 
@@ -30,24 +31,49 @@ const VideosSection = () => {
           >
             {mainVideo?.title}
           </p>
-          <button
-            onClick={() => push("https://www.youtube.com/@myungmoonchurch/videos")}
+          <Link
+            href="https://www.youtube.com/@myungmoonchurch/videos"
+            target="_blank"
             data-aos="fade-up"
             delay-aos-delay="400"
             className="mt-3 rounded-md bg-blue-600 p-2 px-3 font-semibold text-white duration-700 sm:text-lg"
           >
             설교 라이브, 1분 설교 보러가기
-          </button>
+          </Link>
         </div>
         <div className="flex w-full flex-col gap-5 md:flex-row 2xl:w-3/4">
-          <YoutubeVideo
-            className="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[350px] xl:h-[500px]"
-            videoId={main && main.length > 0 ? main[0].videoId : undefined}
-          />
-          <YoutubeVideo
-            className="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[350px] xl:h-[500px]"
-            videoId={shorts && shorts.length > 0 ? shorts[0].videoId : undefined}
-          />
+          <View
+            isEmpty={mainLoading}
+            fallback={
+              <DeferredComponent>
+                <Skeleton
+                  containerClassName="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[350px] xl:h-[500px]"
+                  className="h-full"
+                />
+              </DeferredComponent>
+            }
+          >
+            <YoutubeVideo
+              className="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[350px] xl:h-[500px]"
+              videoId={main?.[0].videoId}
+            />
+          </View>
+          <View
+            isEmpty={shortsLoading}
+            fallback={
+              <DeferredComponent>
+                <Skeleton
+                  containerClassName="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[350px] xl:h-[500px]"
+                  className="h-full"
+                />
+              </DeferredComponent>
+            }
+          >
+            <YoutubeVideo
+              className="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[350px] xl:h-[500px]"
+              videoId={shorts?.[0].videoId}
+            />
+          </View>
         </div>
       </div>
     </div>

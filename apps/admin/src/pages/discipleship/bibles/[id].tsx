@@ -1,13 +1,32 @@
-import { useGetBible } from "@/query/discipleship";
+import { useDeleteBible, useGetBible } from "@/query/discipleship";
 import dayjs from "dayjs";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import React from "react";
 import { SafeHTML, Spinner, YoutubeVideo } from "ui";
 
 const DiscipleShipBibleDetailPage = () => {
+  const { push } = useRouter();
   const params = useParams();
   const bibleId = params?.id as string;
   const { data } = useGetBible({ bibleId });
+
+  const { mutate } = useDeleteBible();
+
+  const handleClickDelete = () => {
+    if (!confirm("삭제하시겠습니까?")) return;
+    mutate(
+      { bibleId },
+      {
+        onSuccess: () => {
+          alert("삭제되었습니다.");
+          push("/discipleship/bibles");
+        },
+        onError: (err: any) => {
+          alert(err.response.data.result);
+        },
+      },
+    );
+  };
 
   if (!data)
     return (
@@ -21,7 +40,14 @@ const DiscipleShipBibleDetailPage = () => {
   return (
     <div className="px-24 py-10">
       <h1 className="mb-2 text-3xl font-bold">{bible.title}</h1>
-      <p className="mb-10 text-sm text-slate-500">생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}</p>
+      <div className="mb-10 flex items-center justify-between ">
+        <p className="text-sm text-slate-500">
+          생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}
+        </p>
+        <button onClick={handleClickDelete} className="text-sm text-red-500">
+          삭제
+        </button>
+      </div>
       <div className="mb-10">
         <SafeHTML html={bible.content} />
       </div>

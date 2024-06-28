@@ -1,4 +1,4 @@
-import { IGetBulletinsResponse } from "@/types/bulletin/response";
+import { IGetBulletinResponse, IGetBulletinsResponse } from "@/types/bulletin/response";
 import { api } from ".";
 
 export const getBulletins = async () => {
@@ -13,6 +13,18 @@ export const postBulletin = async (bulletin: FormData) => {
       "Content-Type": "multipart/form-data",
     },
   });
+
+  return data;
+};
+
+export const getBulletin = async (bulletinId: string) => {
+  const { data } = await api.get<IGetBulletinResponse>(`/api/bulletins/${bulletinId}`);
+
+  return data;
+};
+
+export const deleteBulletin = async (bulletinId: string) => {
+  const { data } = await api.delete(`/api/bulletins/${bulletinId}`);
 
   return data;
 };

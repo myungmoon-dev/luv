@@ -13,7 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   switch (method) {
     case "GET":
-      const bibles = (await getBibles({ yearMonth })).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
+      const bibles =
+        (await getBibles({ yearMonth })).docs.map((doc) => ({ ...doc.data(), id: doc.id })) || [];
       return res.status(200).json({
         bibles,
       });

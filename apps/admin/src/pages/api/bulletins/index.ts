@@ -40,11 +40,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         Array(2)
           .fill(null)
           .map(async () => {
-            const apiResponse = await api.post<IPostCloudflareResponse>(`${origin}/api/cloudflare`, {
-              expireDate: expireDate.toISOString(),
-            });
+            const apiResponse = await api.post<IPostCloudflareResponse>(
+              `${origin}/api/cloudflare`,
+              {
+                expireDate: expireDate.toISOString(),
+              },
+            );
             return apiResponse.data;
-          })
+          }),
       );
 
       const uploadURLs = apiResponses.map((response) => {

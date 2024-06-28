@@ -8,7 +8,7 @@ interface IQueryProviderProps {
 const QueryProvider = ({ children }: IQueryProviderProps) => {
   const queryClient = new QueryClient({
     defaultOptions: {
-      queries: { retry: 3 },
+      queries: { retry: 3, staleTime: 60 * 1000 },
     },
   });
 
