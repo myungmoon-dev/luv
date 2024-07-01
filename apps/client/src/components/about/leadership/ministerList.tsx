@@ -98,7 +98,13 @@ const MinisterList = () => {
   return (
     <div className="flex w-full max-w-screen-2xl flex-col items-center gap-20 px-5 lg:gap-32 xl:gap-20">
       {ministerProfiles.map((profile) => (
-        <Minister greeting={profile.greeting} img={profile.image} name={profile.name} position={profile.position} />
+        <Minister
+          greeting={profile.greeting}
+          img={profile.image}
+          name={profile.name}
+          position={profile.position}
+          officer={profile.officerType}
+        />
       ))}
     </div>
   );
