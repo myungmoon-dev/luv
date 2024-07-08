@@ -1,6 +1,7 @@
 import { IBoardFormBase } from "./common";
 
 export interface IBook {
+  id: string;
   title: string;
   date: string;
   createdAt: number;
