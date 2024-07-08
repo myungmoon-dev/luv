@@ -23,6 +23,7 @@ import {
 } from "./discipleship";
 import { IComment } from "./comment";
 import { AlbumType, IAlbum, IGetAlbumResponse } from "./album";
+import { IBook, IBookForm } from "./book";
 
 export type {
   IBulletin,
@@ -58,4 +59,6 @@ export type {
   AlbumType,
   IAlbum,
   IGetAlbumResponse,
+  IBook,
+  IBookForm,
 };
