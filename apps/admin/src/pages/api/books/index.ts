@@ -1,5 +1,5 @@
 import { api } from "@/api";
-import { getBooks, postBook } from "firebase";
+import { getBooks, getBooksCount, postBook } from "firebase";
 import FormData from "form-data";
 import fs from "fs";
 import multer from "multer";
@@ -17,14 +17,23 @@ const upload = multer({
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {
     method,
+    query,
     headers: { origin },
   } = req;
 
   switch (method) {
     case "GET":
-      const books = (await getBooks()).docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+      const lastVisibleCreatedAt = query.lastVisibleCreatedAt as string;
+
+      const books = (await getBooks({ lastVisibleCreatedAt })).docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const totalBooksCount = (await getBooksCount()).data().count;
+
       return res.status(200).json({
         books,
+        totalBooksCount,
       });
 
     case "POST":

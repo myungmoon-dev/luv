@@ -1,11 +1,16 @@
 import { getBooks, postBook } from "@/api/books";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
 import { booksKeys } from "./keys";
 
 export const useGetBooks = () => {
-  return useQuery({
-    queryFn: getBooks,
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: number } }) =>
+      getBooks({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt }),
     queryKey: booksKeys.list(),
+    initialPageParam: { lastVisibleCreatedAt: undefined },
+    getNextPageParam: (lastPage) => {
+      return { lastVisibleCreatedAt: lastPage.books.at(-1)?.createdAt };
+    },
   });
 };
 
