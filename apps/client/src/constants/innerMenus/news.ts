@@ -2,7 +2,7 @@ import { IInnerMenu } from "./types";
 
 export const newsInnerMenus: IInnerMenu[] = [
   { label: "주보", path: "/news/bulletins" },
-  { label: "추천 도서", path: "/news/books" },
   { label: "선교지소식", path: "/news/mission-news" },
+  { label: "추천 도서", path: "/news/books" },
   { label: "자료함", path: "/news/resources" },
 ];

@@ -6,7 +6,7 @@ import path from "path";
 import React from "react";
 
 export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/news/bulletins/banner.JPG");
+  const imagePath = path.resolve("public/images/news/books/banner.png");
 
   const blurDataURL = await generateBlurDataURL(imagePath);
 
@@ -27,7 +27,7 @@ const BooksPage = ({ bannerBlurDataURL }: IBooksPageProps) => {
       pageTitle="추천 도서"
       title="추천 도서"
       bannerDescription="교회여 일어나 세상으로 흘러가라!"
-      bannerImage="/images/news/bulletins/banner.JPG"
+      bannerImage="/images/news/books/banner.png"
       innerMenus={newsInnerMenus}
       bannerBlurDataURL={bannerBlurDataURL}
     >
