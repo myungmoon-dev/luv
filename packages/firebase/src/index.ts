@@ -35,6 +35,7 @@ import {
   getPinnedHomeWorshipsCount,
   getBooks,
   postBook,
+  getBooksCount,
 } from "./database";
 
 export {
@@ -74,4 +75,5 @@ export {
   getPinnedHomeWorshipsCount,
   getBooks,
   postBook,
+  getBooksCount,
 };
