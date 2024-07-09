@@ -1,8 +1,16 @@
+import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
 import { Spinner, Table } from "ui";
 
 const Books = () => {
-  const { data } = useGetBooks();
+  const { data, fetchNextPage } = useGetBooks();
+
+  const { hasNextPage, setNextPage } = usePagination({ totalCount: data?.pages[0].totalBooksCount || 0, pageSize: 5 });
+
+  const handleClickNextPage = () => {
+    setNextPage();
+    fetchNextPage();
+  };
 
   if (!data)
     return (
@@ -14,11 +22,16 @@ const Books = () => {
   return (
     <div>
       <Table
-        data={data.books.map((book) => ({
-          ...book,
-          writer: "관리자",
-        }))}
+        data={data.pages
+          .map((page) =>
+            page.books.map((book) => ({
+              ...book,
+              writer: "관리자",
+            })),
+          )
+          .flat()}
       />
+      {hasNextPage && <button onClick={handleClickNextPage}>더보기</button>}
     </div>
   );
 };
