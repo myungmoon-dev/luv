@@ -23,8 +23,8 @@ const Profile = ({ description, image, name, alt, className, position, tabType, 
           <p className="max-w-44 break-keep text-xs font-bold text-blue-600 md:text-sm">{`"${greeting}"`}</p>
         )}
         <p className="font-semibold">{description}</p>
-        <p className="whitespace-pre-wrap break-keep text-xs md:text-sm">{position}</p>
-        <h1 className="font-SCoreDream text-2xl text-blue-600">
+        <p className="whitespace-pre-wrap break-keep text-blue-600">{position}</p>
+        <h1 className="font-SCoreDream text-2xl">
           {name} {officerType.filter((staff) => staff.label === officer)[0].type}
         </h1>
       </div>
