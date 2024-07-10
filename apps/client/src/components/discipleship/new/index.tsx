@@ -31,7 +31,7 @@ const DiscipleshipNew = () => {
 
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-10 overflow-x-hidden">
-      <AboutHeaderSection text1="명문교회에" text2="새롭게 찾아오신 여러분을" text3="주님의 이름으로 환영합니다!" />
+      <AboutHeaderSection texts={["명문교회에", "새롭게 찾아오신 여러분을", "주님의 이름으로 환영합니다!"]} />
       <CustomImage
         src="/images/discipleship/welcome.jpg"
         alt="새신자 교육 이미지"

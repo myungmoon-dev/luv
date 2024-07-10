@@ -88,11 +88,7 @@ const visionList: IValueVision[] = [
 const AboutIntroduction = () => {
   return (
     <div className="mb-20 flex w-full flex-col items-center justify-center gap-20 overflow-hidden">
-      <AboutHeaderSection
-        text1="지역과 민족을 품고"
-        text2="세계와 열방을 향해 나아가는"
-        text3="명문교회를 소개합니다!"
-      />
+      <AboutHeaderSection texts={["지역과 민족을 품고", "세계와 열방을 향해 나아가는", "명문교회를 소개합니다!"]} />
 
       <div className="relative flex h-full w-full flex-col items-center justify-center py-16 xl:h-[1080px]">
         <div className="z-[1] flex w-full flex-col items-center justify-center gap-12 px-3 md:w-3/4 md:px-0">

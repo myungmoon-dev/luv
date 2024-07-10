@@ -31,7 +31,7 @@ const DiscipleshipPanorama = () => {
 
   return (
     <div className="flex w-full max-w-screen-xl flex-col items-center justify-center gap-10 overflow-hidden">
-      <AboutHeaderSection text1="성경파노라마" text2="교육을 통해 말씀을" text3="더 깊이 훈련합니다." />
+      <AboutHeaderSection texts={["성경파노라마", "교육을 통해 말씀을", "더 깊이 훈련합니다."]} />
       <div className="flex w-full max-w-screen-lg flex-col">
         <nav className="flex h-[70px] w-full items-center justify-center gap-1">
           {PANORAMA_DATA.map((menu, idx) => (
