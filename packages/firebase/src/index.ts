@@ -36,6 +36,7 @@ import {
   getBooks,
   postBook,
   getBooksCount,
+  getBook,
 } from "./database";
 
 export {
@@ -76,4 +77,5 @@ export {
   getBooks,
   postBook,
   getBooksCount,
+  getBook,
 };

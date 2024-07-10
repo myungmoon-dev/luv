@@ -1,7 +1,9 @@
 import {
   addDoc,
   collection,
+  doc,
   getCountFromServer,
+  getDoc,
   getDocs,
   limit,
   orderBy,
@@ -44,4 +46,12 @@ export const getBooksCount = async () => {
 export const postBook = async (book: IBookForm) => {
   const docRef = await addDoc(collection(database, collections.books), book);
   return docRef;
+};
+
+export const getBook = async (bookId: string) => {
+  const docRef = doc(database, collections.books, bookId);
+
+  const snapshot = await getDoc(docRef);
+
+  return snapshot;
 };
