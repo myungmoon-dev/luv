@@ -37,8 +37,8 @@ const LeadershipRetiredPage = ({ bannerBlurDataURL }: ILeadershipRetiredPageProp
       <Tabs menus={aboutLeaderMenus}>
         <div className="relative flex w-full items-center justify-center px-3 md:gap-5">
           <div className="z-[1] flex flex-col justify-center gap-3">
-            <h1 className="font-SCoreDream text-2xl text-blue-600 xl:text-5xl">이덕진 원로목사</h1>
-            <p className="font-SCoreDream xl:text-2xl">명문교회 원로목사</p>
+            <h1 className="font-SCoreDream text-2xl xl:text-5xl">이덕진 원로목사</h1>
+            <p className="font-SCoreDream text-blue-600 xl:text-2xl">명문교회 원로목사</p>
             <p className="whitespace-pre-wrap break-keep text-xs md:text-sm lg:text-base xl:text-lg">
               대한예수교장로회 (합동) GMS 명예선교사, 꿈을꾸는세계선교회 대표
             </p>
