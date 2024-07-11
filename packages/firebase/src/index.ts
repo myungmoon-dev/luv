@@ -33,6 +33,10 @@ import {
   deleteBulletin,
   getHomeWorshipsCount,
   getPinnedHomeWorshipsCount,
+  getBooks,
+  postBook,
+  getBooksCount,
+  getBook,
 } from "./database";
 
 export {
@@ -70,4 +74,8 @@ export {
   deleteBulletin,
   getHomeWorshipsCount,
   getPinnedHomeWorshipsCount,
+  getBooks,
+  postBook,
+  getBooksCount,
+  getBook,
 };

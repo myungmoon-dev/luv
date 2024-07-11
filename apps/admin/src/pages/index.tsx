@@ -1,5 +1,6 @@
 import HomeAlbumSection from "@/components/home/album";
 import BibleSection from "@/components/home/bible";
+import BooksSection from "@/components/home/books";
 import BulletinSection from "@/components/home/bulletin";
 import HomeWorshipSection from "@/components/home/homeWorship";
 import YoutubeSection from "@/components/home/youtube";
@@ -13,6 +14,7 @@ export default function Home() {
         <BibleSection />
         <HomeWorshipSection />
         <HomeAlbumSection />
+        <BooksSection />
       </div>
     </main>
   );

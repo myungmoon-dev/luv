@@ -28,6 +28,7 @@
     "@tanstack/react-query-devtools": "^5.18.0",
     "@types/bcrypt": "^5.0.2",
     "@types/formidable": "^3.4.5",
+    "@types/lodash": "^4.14.202",
     "@types/multer": "^1.4.11",
     "@types/node": "^20",
     "@types/react": "^18",
@@ -39,10 +40,12 @@
     "eslint-config-next": "14.1.2",
     "form-data": "^4.0.0",
     "formidable": "^3.5.1",
+    "lodash": "^4.17.21",
     "multer": "1.4.5-lts.1",
     "postcss": "^8",
     "sharp": "0.32.6",
     "tailwindcss": "^3.3.0",
+    "theme": "workspace:*",
     "type": "workspace:*",
     "typescript": "^5"
   }
