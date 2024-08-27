@@ -59,7 +59,11 @@ const DISCIPLESHIP_3040_DATA: (I3040VisionData | I3040WatchwordData | I3040Purpo
         },
         {
           title: "3040 독서모임",
-          informations: ["7, 8월 중 『예수님이라면 어떻게 하실까?』", "9월 중 독서나눔 예정"],
+          informations: [
+            "『예수님이라면 어떻게 하실까?』",
+            "독서나눔 (1차): 9월 28일(토) 10:30, 비전채플 2층",
+            "독서나눔 (2차): 10월 중 진행 예정",
+          ],
         },
       ],
     },
