@@ -37,6 +37,7 @@ import {
   postBook,
   getBooksCount,
   getBook,
+  deleteBook,
 } from "./database";
 
 export {
@@ -78,4 +79,5 @@ export {
   postBook,
   getBooksCount,
   getBook,
+  deleteBook,
 };

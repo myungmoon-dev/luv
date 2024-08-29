@@ -26,3 +26,9 @@ export const getBook = async ({ bookId }: { bookId: string }) => {
 
   return data;
 };
+
+export const deleteBook = async ({ bookId }: { bookId: string }) => {
+  const { data } = await api.delete(`/api/books/${bookId}`);
+
+  return data;
+};

@@ -1,6 +1,7 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
   doc,
   getCountFromServer,
   getDoc,
@@ -52,6 +53,12 @@ export const getBook = async (bookId: string) => {
   const docRef = doc(database, collections.books, bookId);
 
   const snapshot = await getDoc(docRef);
+
+  return snapshot;
+};
+
+export const deleteBook = async (bookId: string) => {
+  const snapshot = await deleteDoc(doc(database, collections.books, bookId));
 
   return snapshot;
 };

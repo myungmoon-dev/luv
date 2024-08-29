@@ -1,4 +1,4 @@
-import { getBook } from "firebase";
+import { deleteBook, getBook } from "firebase";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -14,8 +14,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         book,
       });
 
+    case "DELETE":
+      const snapshot = await deleteBook(bookId);
+
+      return res.status(200).json({
+        book: snapshot,
+      });
+
     default:
-      res.setHeader("Allow", ["GET"]);
+      res.setHeader("Allow", ["GET", "DELETE"]);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

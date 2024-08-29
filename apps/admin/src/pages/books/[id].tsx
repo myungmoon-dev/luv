@@ -1,4 +1,4 @@
-import { useGetBook } from "@/query/books";
+import { useDeleteBook, useGetBook } from "@/query/books";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useParams } from "next/navigation";
@@ -11,6 +11,12 @@ const BookPage = () => {
   const bookId = params.id as string;
 
   const { data, isLoading } = useGetBook({ bookId });
+  const { mutate } = useDeleteBook();
+
+  const handleDeleteBook = () => {
+    if (!confirm("삭제하시곘습니까?")) return;
+    mutate({ bookId }, { onSuccess: () => push("/books") });
+  };
 
   if (isLoading)
     return (
@@ -21,7 +27,7 @@ const BookPage = () => {
 
   return (
     <div className="px-24 py-10">
-      <button className="mb-10" onClick={() => push("/bulletins")}>
+      <button className="mb-10" onClick={() => push("/books")}>
         {"<"} 뒤로가기
       </button>
       <h1 className="mb-2 text-3xl font-bold">{data?.title}</h1>
@@ -32,9 +38,9 @@ const BookPage = () => {
             생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD")}
           </p>
         </div>
-        {/* <button onClick={handleDeleteBulletin} className="text-red-500">
+        <button onClick={handleDeleteBook} className="text-red-500">
           삭제
-        </button> */}
+        </button>
       </div>
       <p className="mb-2">작가: {data?.writer}</p>
       <SafeHTML html={data?.content} />
