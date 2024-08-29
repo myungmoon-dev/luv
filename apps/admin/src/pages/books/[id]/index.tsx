@@ -13,6 +13,9 @@ const BookPage = () => {
   const { data, isLoading } = useGetBook({ bookId });
   const { mutate } = useDeleteBook();
 
+  const handleUpdateBook = () => {
+    push(`/books/${bookId}/update`);
+  };
   const handleDeleteBook = () => {
     if (!confirm("삭제하시곘습니까?")) return;
     mutate({ bookId }, { onSuccess: () => push("/books") });
@@ -38,9 +41,14 @@ const BookPage = () => {
             생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD")}
           </p>
         </div>
-        <button onClick={handleDeleteBook} className="text-red-500">
-          삭제
-        </button>
+        <div className="flex gap-2">
+          <button onClick={handleUpdateBook} className="text-blue-500">
+            수정
+          </button>
+          <button onClick={handleDeleteBook} className="text-red-500">
+            삭제
+          </button>
+        </div>
       </div>
       <p className="mb-2">작가: {data?.writer}</p>
       <SafeHTML html={data?.content} />

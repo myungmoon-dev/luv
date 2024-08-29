@@ -19,7 +19,7 @@ import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
 import { getAlbum, postAlbum, deleteAlbum } from "./album";
 import { YoutubeType } from "type";
-import { getBooks, postBook, getBooksCount, getBook, deleteBook } from "./books";
+import { getBooks, postBook, getBooksCount, getBook, deleteBook, putBook } from "./books";
 
 const database = getFirestore(firebase);
 
@@ -72,4 +72,5 @@ export {
   getBooksCount,
   getBook,
   deleteBook,
+  putBook,
 };

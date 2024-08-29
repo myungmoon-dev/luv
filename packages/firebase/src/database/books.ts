@@ -10,6 +10,7 @@ import {
   orderBy,
   query,
   startAfter,
+  updateDoc,
 } from "firebase/firestore";
 import { collections, database } from ".";
 import { IBookForm } from "type";
@@ -60,5 +61,14 @@ export const getBook = async (bookId: string) => {
 export const deleteBook = async (bookId: string) => {
   const snapshot = await deleteDoc(doc(database, collections.books, bookId));
 
+  return snapshot;
+};
+
+export const putBook = async (
+  changedBook: Omit<IBookForm, "createdAt" | "image"> & { id: string; image?: string },
+) => {
+  const docRef = doc(database, collections.books, changedBook.id);
+
+  const snapshot = await updateDoc(docRef, changedBook);
   return snapshot;
 };
