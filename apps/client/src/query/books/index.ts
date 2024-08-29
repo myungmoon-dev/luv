@@ -1,7 +1,6 @@
 import { getBook, getBooks } from "@/api/books";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { booksKeys } from "./keys";
-import { useParams } from "next/navigation";
 
 export const useGetBooks = () => {
   return useInfiniteQuery({
@@ -15,12 +14,10 @@ export const useGetBooks = () => {
   });
 };
 
-export const useGetBook = () => {
-  const { id } = useParams();
-  const bookId = id as string;
-
+export const useGetBook = ({ bookId }: { bookId: string }) => {
   return useQuery({
     queryFn: () => getBook({ bookId }),
     queryKey: booksKeys.detail(bookId),
+    select: (res) => res.book,
   });
 };

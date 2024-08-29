@@ -7,6 +7,7 @@ export interface IBook {
   createdAt: number;
   image: string;
   content: string;
+  writer: string;
 }
 
 export interface IBookForm extends IBoardFormBase {

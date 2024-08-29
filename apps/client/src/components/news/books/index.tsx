@@ -2,9 +2,13 @@ import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
 import { Spinner } from "ui";
 import Book from "./item";
+import useModalStore from "@/store/modal";
+import BookModal from "./modal";
 
 const Books = () => {
   const { data, fetchNextPage } = useGetBooks();
+
+  const open = useModalStore((state) => state.open);
 
   const { hasNextPage, setNextPage } = usePagination({ totalCount: data?.pages[0].totalBooksCount || 0, pageSize: 5 });
 
@@ -15,7 +19,9 @@ const Books = () => {
     fetchNextPage();
   };
 
-  const handleClickBook = (id: string) => {};
+  const handleClickBook = (id: string) => {
+    open(<BookModal id={id} />);
+  };
 
   if (!data)
     return (
