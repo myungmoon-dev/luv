@@ -7,6 +7,7 @@ import { Spinner } from "ui";
 
 interface IBookCreateForm extends Omit<IBookForm, "createdAt" | "image"> {
   image: FileList;
+  writer: string;
 }
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
@@ -30,6 +31,7 @@ const BookCreatePage = () => {
 
     formData.append("title", data.title);
     formData.append("date", data.date);
+    formData.append("writer", data.writer);
     formData.append("content", content);
 
     Array.from(data.image).forEach((image) => {
@@ -60,6 +62,10 @@ const BookCreatePage = () => {
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">제목</p>
           <input className="border px-2 py-1 text-black" {...register("title")} />
+        </label>
+        <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+          <p className="text-xl font-bold">작가</p>
+          <input className="border px-2 py-1 text-black" {...register("writer")} />
         </label>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">사진 업로드</p>

@@ -1,5 +1,5 @@
-import { getBooks, postBook } from "@/api/books";
-import { useInfiniteQuery, useMutation } from "@tanstack/react-query";
+import { getBook, getBooks, postBook } from "@/api/books";
+import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
 import { booksKeys } from "./keys";
 
 export const useGetBooks = () => {
@@ -11,6 +11,14 @@ export const useGetBooks = () => {
     getNextPageParam: (lastPage) => {
       return { lastVisibleCreatedAt: lastPage.books.at(-1)?.createdAt };
     },
+  });
+};
+
+export const useGetBook = ({ bookId }: { bookId: string }) => {
+  return useQuery({
+    queryFn: () => getBook({ bookId }),
+    queryKey: booksKeys.detail(bookId),
+    select: (res) => res.book,
   });
 };
 

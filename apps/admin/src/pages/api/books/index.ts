@@ -105,6 +105,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           image: contentImage,
           title: fields.title,
           createdAt: new Date().getTime(),
+          writer: fields.writer,
         });
 
         return res.status(200).json({

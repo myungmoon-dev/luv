@@ -13,4 +13,5 @@ export interface IBook {
 export interface IBookForm extends IBoardFormBase {
   image: IBook["image"];
   createdAt: number;
+  writer: string;
 }
