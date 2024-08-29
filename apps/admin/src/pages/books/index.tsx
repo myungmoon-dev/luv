@@ -1,9 +1,11 @@
 import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
+import { useRouter } from "next/router";
 import React from "react";
 import { Spinner, Table } from "ui";
 
 const Books = () => {
+  const { push } = useRouter();
   const { data, fetchNextPage } = useGetBooks();
 
   const { hasNextPage, setNextPage } = usePagination({
@@ -26,14 +28,8 @@ const Books = () => {
   return (
     <div className="px-24 py-10">
       <Table
-        data={data.pages
-          .map((page) =>
-            page.books.map((book) => ({
-              ...book,
-              writer: "관리자",
-            })),
-          )
-          .flat()}
+        data={data.pages.map((page) => page.books).flat()}
+        onClickRow={(rowId) => push(`/books/${rowId}`)}
       />
       {hasNextPage && <button onClick={handleClickNextPage}>더보기</button>}
     </div>
