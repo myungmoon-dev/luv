@@ -25,7 +25,7 @@ const Book = ({ book, onClick }: IBookProps) => {
       <div className="flex flex-col gap-2.5 py-8 sm:pb-12 sm:pt-14">
         <h3 className="text-xl font-bold">{book.title}</h3>
         <p className="line-clamp-2 text-gray-500">{extractText(book.content)}</p>
-        <p>{dayjs(book.date).format("YYYY-MM-DD")}</p>
+        <p>{dayjs(book.date).format("YYYY. MM.")}</p>
       </div>
     </div>
   );

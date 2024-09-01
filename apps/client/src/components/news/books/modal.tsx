@@ -13,7 +13,12 @@ interface IBookModalProps {
 const BookModal = ({ id }: IBookModalProps) => {
   const { data, isLoading } = useGetBook({ bookId: id });
 
-  if (isLoading) return <Spinner />;
+  if (isLoading)
+    return (
+      <div className="flex items-center justify-center">
+        <Spinner />
+      </div>
+    );
 
   return (
     <div>
@@ -25,7 +30,7 @@ const BookModal = ({ id }: IBookModalProps) => {
           <h3 className="text-3xl font-bold">{data?.title}</h3>
           <div className="flex flex-col items-center gap-1">
             <p>{data?.writer || "작성자"}</p>
-            <p className="text-sm">{dayjs(data?.date).format("YYYY-MM-DD")}</p>
+            <p className="text-sm">{dayjs(data?.date).format("YYYY. MM.")}</p>
           </div>
         </div>
       </div>

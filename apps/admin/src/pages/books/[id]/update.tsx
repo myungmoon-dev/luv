@@ -81,7 +81,7 @@ const BookCreatePage = () => {
       <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">추천 날짜</p>
-          <input className="border px-2 py-1 text-black" type="date" {...register("date")} />
+          <input className="border px-2 py-1 text-black" type="month" {...register("date")} />
         </label>
         <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">제목</p>
