@@ -8,7 +8,7 @@ import { SafeHTML, Spinner } from "ui";
 const BookPage = () => {
   const { push } = useRouter();
   const params = useParams();
-  const bookId = params.id as string;
+  const bookId = params?.id as string;
 
   const { data, isLoading } = useGetBook({ bookId });
   const { mutate } = useDeleteBook();
