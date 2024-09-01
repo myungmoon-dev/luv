@@ -3,14 +3,13 @@ import { useState } from "react";
 interface IUsePaginationProps {
   totalCount: number;
   pinnedCount?: number;
+  pageSize?: number;
 }
 
-const PAGE_SIZE = 10;
-
-const usePagination = ({ totalCount }: IUsePaginationProps) => {
+const usePagination = ({ totalCount, pageSize = 10 }: IUsePaginationProps) => {
   const [page, setPage] = useState(1);
 
-  const expectedCount = page * PAGE_SIZE;
+  const expectedCount = page * pageSize;
   const notPinnedCount = totalCount;
   const setNextPage = () => {
     setPage(page + 1);
