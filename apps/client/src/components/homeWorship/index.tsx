@@ -38,7 +38,7 @@ const HomeWorships = () => {
               page.homeWorships.map((homeWorship) => ({
                 id: homeWorship.id,
                 date: homeWorship.date,
-                title: homeWorship.title,
+                title: `${homeWorship.title} ${homeWorship?.comments ? `[${homeWorship.comments.length}]` : ""}`,
                 writer: homeWorship.userName,
                 isPinned: homeWorship.isPinned,
               })),
