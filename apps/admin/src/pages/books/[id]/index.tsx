@@ -36,7 +36,7 @@ const BookPage = () => {
       <h1 className="mb-2 text-3xl font-bold">{data?.title}</h1>
       <div className="mb-10 flex items-center justify-between">
         <div className="flex flex-col gap-2">
-          <p className="text-sm text-slate-500">날짜: {dayjs(data?.date).format("YYYY. MM.")}</p>
+          <p className="text-sm text-slate-500">날짜: {dayjs(data?.date).format("YYYY년 M월")}</p>
           <p className="text-sm text-slate-500">
             생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD")}
           </p>
