@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import Sidebar from "./sidebar";
 import { TooltipProvider } from "../ui/tooltip";
+import Header from "./header";
 
 interface LayoutProps {
   children: ReactNode;
@@ -11,7 +12,10 @@ const Layout = ({ children }: LayoutProps) => {
     <TooltipProvider>
       <div className="flex">
         <Sidebar />
-        <main>{children}</main>
+        <div className="flex w-full flex-col">
+          <Header />
+          <main>{children}</main>
+        </div>
       </div>
     </TooltipProvider>
   );
