@@ -71,7 +71,6 @@ const NAV_LIST: INav[] = [
 
 const Sidebar = () => {
   const path = usePathname();
-  const theme = useThemeStore((state) => state.theme);
 
   const getIsCurrentPage = (href: string) => {
     if (href === "/") return path === href;
@@ -79,38 +78,28 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col gap-4 px-2 py-4">
-      <div className="flex items-center justify-center py-2">
-        <Image
-          src={`/images/logo_${theme === "dark" ? "white" : "blue"}.png`}
-          alt="myungmoon_logo"
-          width={120}
-          height={0}
-        />
-      </div>
-      <nav className="flex flex-col gap-1">
-        {NAV_LIST.map((nav) => (
-          <Tooltip key={nav.title}>
-            <TooltipTrigger>
-              <Link
-                href={nav.href}
-                className={cn(
-                  buttonVariants({
-                    variant: getIsCurrentPage(nav.href) ? "default" : "link",
-                    size: "lg",
-                    className: "flex w-full items-center justify-start gap-4",
-                  }),
-                )}
-              >
-                <nav.icon />
-                {nav.title}
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>{nav.tooltip}</TooltipContent>
-          </Tooltip>
-        ))}
-      </nav>
-    </div>
+    <nav className="flex flex-col gap-1">
+      {NAV_LIST.map((nav) => (
+        <Tooltip key={nav.title}>
+          <TooltipTrigger>
+            <Link
+              href={nav.href}
+              className={cn(
+                buttonVariants({
+                  variant: getIsCurrentPage(nav.href) ? "default" : "link",
+                  size: "lg",
+                  className: "flex w-full items-center justify-start gap-4",
+                }),
+              )}
+            >
+              <nav.icon />
+              {nav.title}
+            </Link>
+          </TooltipTrigger>
+          <TooltipContent>{nav.tooltip}</TooltipContent>
+        </Tooltip>
+      ))}
+    </nav>
   );
 };
 
