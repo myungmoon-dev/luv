@@ -72,7 +72,8 @@ const Sidebar = () => {
   const path = usePathname();
 
   const getIsCurrentPage = (href: string) => {
-    return path === href;
+    if (href === "/") return path === href;
+    return path.includes(href);
   };
 
   return (
