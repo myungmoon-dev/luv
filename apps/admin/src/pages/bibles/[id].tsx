@@ -19,7 +19,7 @@ const DiscipleShipBibleDetailPage = () => {
       {
         onSuccess: () => {
           alert("삭제되었습니다.");
-          push("/discipleship/bibles");
+          push("/bibles");
         },
         onError: (err: any) => {
           alert(err.response.data.result);

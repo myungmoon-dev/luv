@@ -57,14 +57,7 @@ const BulletinSection = () => {
           <p>이미지</p>
           <input type="file" accept="image/*" multiple={true} {...register("images")} />
         </label>
-        <div className="mt-2 flex gap-5">
-          <button
-            type="button"
-            onClick={() => push("/bulletins")}
-            className="flex items-center justify-center rounded-md !bg-blue-500 px-4 py-2 text-white"
-          >
-            목록
-          </button>
+        <div className="mt-2">
           <button className="rounded bg-blue-500 px-4 py-2 text-white">주보 추가하기</button>
         </div>
       </form>

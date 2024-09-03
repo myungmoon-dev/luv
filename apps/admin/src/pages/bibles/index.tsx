@@ -30,23 +30,31 @@ const DiscipleShipBiblesPage = () => {
     );
 
   return (
-    <div className="px-24 py-10">
-      <DateTab
-        selectedTab={currentTap}
-        tabs={dateTabs}
-        onClickTab={onClickTab}
-        onClickPrev={handleClickPrev}
-        onClickNext={handleClickNext}
-      />
-      <Table
-        data={data.bibles.map((bible) => ({
-          id: bible.id,
-          date: bible.date,
-          title: bible.title,
-          writer: "관리자",
-        }))}
-        onClickRow={(rowId) => push(`/discipleship/bibles/${rowId}`)}
-      />
+    <div>
+      <button
+        onClick={() => push("/bibles/create")}
+        className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
+      >
+        추가
+      </button>
+      <div className="px-24 py-10">
+        <DateTab
+          selectedTab={currentTap}
+          tabs={dateTabs}
+          onClickTab={onClickTab}
+          onClickPrev={handleClickPrev}
+          onClickNext={handleClickNext}
+        />
+        <Table
+          data={data.bibles.map((bible) => ({
+            id: bible.id,
+            date: bible.date,
+            title: bible.title,
+            writer: "관리자",
+          }))}
+          onClickRow={(rowId) => push(`/bibles/${rowId}`)}
+        />
+      </div>
     </div>
   );
 };
