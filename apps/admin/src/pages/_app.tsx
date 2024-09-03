@@ -1,14 +1,17 @@
 import QueryProvider from "@/query/Provider";
 import "@/styles/globals.css";
-import type { AppProps } from "next/app";
+import ThemeProvider from "@/utils/themeProvider";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { AppProps } from "next/app";
 
 // FIXME: Hydrate Component Add
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryProvider>
-      <Component {...pageProps} />
+      <ThemeProvider>
+        <Component {...pageProps} />
+      </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} position="bottom" />
     </QueryProvider>
   );

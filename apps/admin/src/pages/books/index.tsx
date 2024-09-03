@@ -1,3 +1,4 @@
+import Layout from "@/components/layout";
 import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
 import { useRouter } from "next/router";
@@ -26,13 +27,21 @@ const Books = () => {
     );
 
   return (
-    <div className="px-24 py-10">
-      <Table
-        data={data.pages.map((page) => page.books).flat()}
-        onClickRow={(rowId) => push(`/books/${rowId}`)}
-      />
-      {hasNextPage && <button onClick={handleClickNextPage}>더보기</button>}
-    </div>
+    <Layout title="추천 도서">
+      <button
+        onClick={() => push("/books/create")}
+        className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
+      >
+        추가
+      </button>
+      <div className="px-24 py-10">
+        <Table
+          data={data.pages.map((page) => page.books).flat()}
+          onClickRow={(rowId) => push(`/books/${rowId}`)}
+        />
+        {hasNextPage && <button onClick={handleClickNextPage}>더보기</button>}
+      </div>
+    </Layout>
   );
 };
 
