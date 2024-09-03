@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "ui";
 import { buttonVariants } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import useThemeStore from "@/store/theme";
 
 interface INav {
   title: string;
@@ -70,6 +71,7 @@ const NAV_LIST: INav[] = [
 
 const Sidebar = () => {
   const path = usePathname();
+  const theme = useThemeStore((state) => state.theme);
 
   const getIsCurrentPage = (href: string) => {
     if (href === "/") return path === href;
@@ -79,7 +81,12 @@ const Sidebar = () => {
   return (
     <div className="flex h-screen flex-col gap-4 px-2 py-4">
       <div className="flex items-center justify-center py-2">
-        <Image src="/images/logo_white.png" alt="myungmoon_logo" width={120} height={0} />
+        <Image
+          src={`/images/logo_${theme === "dark" ? "white" : "blue"}.png`}
+          alt="myungmoon_logo"
+          width={120}
+          height={0}
+        />
       </div>
       <nav className="flex flex-col gap-1">
         {NAV_LIST.map((nav) => (

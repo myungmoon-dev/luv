@@ -12,7 +12,7 @@ const TimeDisplay = () => {
     return () => clearInterval(intervalId);
   }, []);
 
-  return <span className="text-sm text-zinc-300">{currentTime}</span>;
+  return <span className="text-sm text-zinc-500 dark:text-zinc-300">{currentTime}</span>;
 };
 
 export default TimeDisplay;
