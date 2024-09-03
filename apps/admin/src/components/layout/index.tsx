@@ -5,10 +5,11 @@ import Header from "./header";
 import { Separator } from "../ui/separator";
 
 interface LayoutProps {
+  title: string;
   children: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, title }: LayoutProps) => {
   return (
     <TooltipProvider>
       <div className="flex w-full flex-col gap-10">
@@ -19,7 +20,10 @@ const Layout = ({ children }: LayoutProps) => {
               <Sidebar />
               <Separator orientation="vertical" />
             </div>
-            <main className="w-full">{children}</main>
+            <main className="flex w-full flex-col gap-10">
+              <h1 className="text-4xl font-semibold">{title}</h1>
+              {children}
+            </main>
           </div>
         </div>
       </div>

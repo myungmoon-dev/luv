@@ -1,3 +1,4 @@
+import Layout from "@/components/layout";
 import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
 import { useRouter } from "next/router";
@@ -26,7 +27,7 @@ const Books = () => {
     );
 
   return (
-    <div>
+    <Layout title="추천 도서">
       <button
         onClick={() => push("/books/create")}
         className="flex h-12 w-12 items-center justify-center rounded-md bg-blue-500 text-white"
@@ -40,7 +41,7 @@ const Books = () => {
         />
         {hasNextPage && <button onClick={handleClickNextPage}>더보기</button>}
       </div>
-    </div>
+    </Layout>
   );
 };
 

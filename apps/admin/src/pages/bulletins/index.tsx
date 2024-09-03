@@ -1,7 +1,7 @@
 import BulletinSection from "@/components/home/bulletin";
+import Layout from "@/components/layout";
 import { useGetBulletins } from "@/query/bulletin";
 import { useRouter } from "next/navigation";
-import React from "react";
 import { Spinner, Table } from "ui";
 
 const BulletinsPage = () => {
@@ -9,28 +9,27 @@ const BulletinsPage = () => {
 
   const { data } = useGetBulletins();
 
-  if (!data)
-    return (
-      <div className="flex justify-center">
-        <Spinner />
-      </div>
-    );
-
   return (
-    <div>
+    <Layout title="주보">
       <BulletinSection />
       <div className="px-24 py-10">
-        <Table
-          data={data?.bulletins.map((bulletin) => ({
-            id: bulletin.id,
-            date: bulletin.date,
-            title: bulletin.title,
-            writer: "관리자",
-          }))}
-          onClickRow={(rowId) => push(`/bulletins/${rowId}`)}
-        />
+        {!data ? (
+          <div className="flex justify-center">
+            <Spinner />
+          </div>
+        ) : (
+          <Table
+            data={data?.bulletins.map((bulletin) => ({
+              id: bulletin.id,
+              date: bulletin.date,
+              title: bulletin.title,
+              writer: "관리자",
+            }))}
+            onClickRow={(rowId) => push(`/bulletins/${rowId}`)}
+          />
+        )}
       </div>
-    </div>
+    </Layout>
   );
 };
 
