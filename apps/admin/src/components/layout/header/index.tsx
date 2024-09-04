@@ -9,7 +9,7 @@ const Header = () => {
 
   return (
     <div>
-      <header className="flex h-[80px] items-center justify-center">
+      <header className="flex h-[80px] items-center justify-center px-10">
         <div className="flex w-full max-w-[1440px] items-center justify-between">
           <div className="flex items-center justify-center py-2">
             <Image
