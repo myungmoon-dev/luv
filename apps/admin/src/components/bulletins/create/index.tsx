@@ -40,11 +40,11 @@ const BulletinCreate = () => {
       className="flex flex-col items-center justify-center gap-3"
     >
       <label className="flex items-center gap-2">
-        <p className="text-white">날짜</p>
+        <p>날짜</p>
         <input className="p-1 text-black" {...register("date")} placeholder="ex) 2021-01-01" />
       </label>
       <label className="flex items-center gap-2">
-        <p className="text-white">제목</p>
+        <p>제목</p>
         <input
           className="p-1 text-black"
           {...register("title")}
