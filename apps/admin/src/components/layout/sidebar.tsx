@@ -8,13 +8,11 @@ import {
   LucideIcon,
   Radio,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useRouter } from "next/router";
 import { cn } from "ui";
 import { buttonVariants } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import useThemeStore from "@/store/theme";
 
 interface INav {
   title: string;
@@ -70,11 +68,11 @@ const NAV_LIST: INav[] = [
 ];
 
 const Sidebar = () => {
-  const path = usePathname();
+  const { pathname } = useRouter();
 
   const getIsCurrentPage = (href: string) => {
-    if (href === "/") return path === href;
-    return path.includes(href);
+    if (href === "/") return pathname === href;
+    return pathname.includes(href);
   };
 
   return (
