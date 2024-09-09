@@ -17,7 +17,7 @@ const YoutubeInput = ({
 }: YoutubeInputProps) => {
   return (
     <label className="grid grid-flow-col place-items-center gap-3">
-      <p className="w-20 text-white">{label}</p>
+      <p className="w-20">{label}</p>
       <input
         {...register(name, {
           required,

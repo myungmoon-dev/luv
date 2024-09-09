@@ -7,21 +7,25 @@ import { Separator } from "../ui/separator";
 interface LayoutProps {
   title: string;
   children: ReactNode;
+  titleChildren?: ReactNode;
 }
 
-const Layout = ({ children, title }: LayoutProps) => {
+const Layout = ({ children, title, titleChildren }: LayoutProps) => {
   return (
     <TooltipProvider>
-      <div className="flex w-full flex-col gap-10">
+      <div className="flex w-full flex-col gap-10 pb-10">
         <Header />
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center px-10">
           <div className="flex w-full max-w-[1440px] gap-10">
             <div className="flex gap-10">
               <Sidebar />
-              <Separator orientation="vertical" />
+              <Separator orientation="vertical" className="min-h-[calc(100vh-80px-80px)]" />
             </div>
             <main className="flex w-full flex-col gap-10">
-              <h1 className="text-4xl font-semibold">{title}</h1>
+              <div className="flex items-center justify-between">
+                <h1 className="text-4xl font-semibold">{title}</h1>
+                {titleChildren}
+              </div>
               {children}
             </main>
           </div>

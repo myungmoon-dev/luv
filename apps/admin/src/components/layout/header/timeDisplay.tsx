@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 
 const TimeDisplay = () => {
-  const [currentTime, setCurrentTime] = useState(dayjs().format("YYYY-MM-DD HH:mm:ss"));
+  const [currentTime, setCurrentTime] = useState("");
 
   useEffect(() => {
     const intervalId = setInterval(() => {
