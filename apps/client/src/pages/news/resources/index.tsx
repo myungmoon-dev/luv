@@ -1,7 +1,6 @@
 import Layout from "@/components/layout";
 import Resources from "@/components/news/resources";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
-
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
 
