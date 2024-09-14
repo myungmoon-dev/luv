@@ -7,7 +7,7 @@ const ChuseokModal = () => {
   const closeModal = useModalStore((state) => state.close);
 
   const handleClickButton = () => {
-    push("/news/resources");
+    push("/news/resources/1");
     closeModal();
   };
 
@@ -16,9 +16,9 @@ const ChuseokModal = () => {
       <h1 className="text-center text-lg font-bold text-gray-800 md:text-2xl">추석 가정예배 순서지</h1>
       <div className="mb-1 h-1 w-16 rounded-full bg-blue-500 sm:mb-3"></div>
       <p className="break-keep text-center text-xs text-gray-700 md:text-base">
-        풍성한 한가위를 맞아 교회에서 준비한 추석 가정예배 순서지를 확인해보세요.
+        은혜와 사랑이 가득한 복된 한가위 추석 명절 보내시길 바랍니다.&nbsp;
         <br />
-        가정에서 편안하게 예배를 드리며 은혜를 누리시길 바랍니다.
+        가정 예배를 통하여 수선대후의 은혜가 있기를 축복합니다.
       </p>
       <button
         onClick={handleClickButton}
