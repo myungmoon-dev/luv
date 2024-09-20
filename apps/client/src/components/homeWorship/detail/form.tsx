@@ -37,21 +37,28 @@ const HomeWorshipDetailComment = () => {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <label className="flex items-center gap-2">
-            <p>이름</p>
-            <input {...register("name")} className="rounded-md border border-gray-200 px-2 py-1" />
+            <p className="text-sm md:text-base">이름</p>
+            <input
+              {...register("name")}
+              className="focus:ring-main-color max-w-20 rounded-md border border-gray-600 px-2 py-1 transition duration-300 focus:outline-none focus:ring-2 focus:ring-inset md:max-w-40"
+            />
           </label>
           <div className="h-[24px] w-[1px] bg-gray-300" />
           <label className="flex items-center gap-2">
-            <p>비밀번호</p>
-            <input {...register("password")} type="password" className="rounded-md border border-gray-200 px-2 py-1" />
+            <p className="text-sm md:text-base">비밀번호</p>
+            <input
+              {...register("password")}
+              type="password"
+              className="focus:ring-main-color max-w-24 rounded-md border border-gray-600 px-2 py-1 transition duration-300 focus:outline-none focus:ring-2 focus:ring-inset md:max-w-40"
+            />
           </label>
         </div>
-        <button className="rounded-md bg-blue-500 px-2 py-1 text-white">등록</button>
+        <button className="rounded-md bg-blue-500 px-2 py-1 text-sm text-white md:text-base">등록</button>
       </div>
       <textarea
         {...register("content")}
-        placeholder="내용을 입력하세요"
-        className="min-h-[100px] w-full rounded-md border border-gray-200 px-2 py-1"
+        placeholder="내용을 입력하세요."
+        className="min-h-[100px] w-full rounded-md border border-gray-600 px-2 py-1 transition duration-300 focus:outline-none focus:ring-2 focus:ring-inset"
       />
     </form>
   );
