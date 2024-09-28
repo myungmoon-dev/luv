@@ -1,13 +1,4 @@
-import React from "react";
-import { ChangeEvent, useState } from "react";
-import { Icon, Spinner } from "ui";
-import Image from "next/image";
-import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
-import { usePostAlbum } from "@/query/album";
-import { ErrorMessage } from "@hookform/error-message";
-import { AlbumType } from "type";
-import { ALBUM_TYPE_OPTIONS } from "../config";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -16,7 +7,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
+import { usePostAlbum } from "@/query/album";
+import { ErrorMessage } from "@hookform/error-message";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { AlbumType } from "type";
+import { Icon, Spinner } from "ui";
+import { ALBUM_TYPE_OPTIONS } from "../config";
 
 interface IAblumForm {
   title: string;
@@ -32,15 +31,17 @@ const AlbumCreate = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setValue,
   } = useForm<IAblumForm>();
 
-  const [selectedType, setSelectedType] = useState<AlbumType>("main");
+  const [selectedType, setSelectedType] = useState<AlbumType>();
   const [imgPaths, setImgPaths] = useState<string[]>([]);
 
   const { mutate, isPending } = usePostAlbum();
 
   const onTypeChange = (value: AlbumType) => {
     setSelectedType(value);
+    setValue("type", value);
   };
 
   const onPreviewImage = async () => {
