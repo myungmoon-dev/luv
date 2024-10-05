@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import { useParams, usePathname, useRouter } from "next/navigation";
 import { SafeHTML, Spinner } from "ui";
 import HomeWorshipDetailComments from "./comments";
+import HomeWorshipVideoPlayer from "./videoPlayer";
 
 const HomeWorshipDetail = () => {
   const { push } = useRouter();
@@ -10,15 +11,16 @@ const HomeWorshipDetail = () => {
   const params = useParams();
   const homeWorshipId = params?.id as string;
 
-  const { data } = useGetHomeWorship({ homeWorshipId });
+  const { data, isLoading, isError } = useGetHomeWorship({ homeWorshipId });
   const { mutate } = useDeleteHomeWorship();
 
-  if (!data)
+  if (isLoading || isError || !data || !data.homeWorship) {
     return (
       <div className="flex justify-center">
         <Spinner />
       </div>
     );
+  }
 
   const homeWorship = data.homeWorship;
 
@@ -44,7 +46,7 @@ const HomeWorshipDetail = () => {
   };
 
   return (
-    <div className="px-5 sm:px-10 md:px-20 lg:px-28 xl:px-36 2xl:mx-auto 2xl:max-w-screen-lg 2xl:px-40">
+    <div className="overflow-x-hidden px-5 sm:px-10 md:px-20 lg:px-28 xl:px-36 2xl:mx-auto 2xl:max-w-screen-lg 2xl:px-40">
       <h1 className="mb-2 font-SCoreDream text-3xl">{homeWorship.title}</h1>
       <div className="flex justify-between">
         <div className="flex gap-2">
@@ -61,11 +63,14 @@ const HomeWorshipDetail = () => {
           </button>
         </div>
       </div>
-      <div className="mb-10">
+      <div className="mb-10 flex w-full flex-col items-center justify-center gap-5">
         <SafeHTML html={homeWorship.content} />
-        <div className="relative h-full w-full">
-          <img src={`${homeWorship.image}/full`} alt="이미지" />
-        </div>
+        {homeWorship.image && (
+          <div className="relative flex h-full w-full justify-center">
+            <img src={`${homeWorship.image}/full`} alt="이미지" />
+          </div>
+        )}
+        {homeWorship.video && <HomeWorshipVideoPlayer video={homeWorship.video} />}
       </div>
       <HomeWorshipDetailComments />
     </div>

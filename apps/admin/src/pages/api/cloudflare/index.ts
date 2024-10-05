@@ -14,7 +14,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         data: {
           result: { uploadURL },
         },
-      } = await api.post(`${process.env.CLOUDFLARE_REQ_URL}`, null, {
+      } = await api.post(`${process.env.CLOUDFLARE_REQ_IMG_URL}`, null, {
         headers: {
           ContentType: "application/json",
           Authorization: `Bearer ${process.env.CLOUDFLARE_API_KEY}`,

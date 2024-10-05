@@ -83,7 +83,11 @@ export const getHomeWorship = async (homeWorshipId: string) => {
 };
 
 export const postHomeWorship = async (
-  homeWorship: Omit<IHomeWorshipForm, "image"> & { image: string; createdAt: number },
+  homeWorship: Omit<IHomeWorshipForm, "image" | "video"> & {
+    image: string | null;
+    createdAt: number;
+    video: string | null;
+  },
 ) => {
   const docRef = await addDoc(collection(database, collections.homeWorship), homeWorship);
   return docRef;
