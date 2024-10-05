@@ -57,7 +57,7 @@ const staffProfiles = [
     name: "장건진",
     description: "",
     image: "/images/leader/geon-jin.png",
-    position: "유년부, 초등부, 사회복지위원회",
+    position: "유초등부, 사회복지위원회",
     tabType: "minister",
     officerType: "associate",
     greeting: "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",

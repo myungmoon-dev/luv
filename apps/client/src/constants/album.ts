@@ -6,7 +6,7 @@ export const AlbumTypeOptions: { label: string; value: AlbumType }[] = [
     value: "main",
   },
   {
-    label: "유년부",
+    label: "영아부",
     value: "infants",
   },
   {
