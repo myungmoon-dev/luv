@@ -10,7 +10,7 @@ import { missionNewsListKeys } from "./keys";
 
 export const useGetMissionNewsList = () => {
   return useInfiniteQuery({
-    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: number } }) =>
+    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string } }) =>
       getMissionNewsList({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt }),
     queryKey: missionNewsListKeys.list(),
     initialPageParam: { lastVisibleCreatedAt: undefined },

@@ -4,7 +4,7 @@ import { api } from ".";
 export const getMissionNewsList = async ({
   lastVisibleCreatedAt,
 }: {
-  lastVisibleCreatedAt?: number;
+  lastVisibleCreatedAt?: string;
 }) => {
   const { data } = await api.get<IGetMissionNewsListResponse>("/api/mission-news", {
     params: {
