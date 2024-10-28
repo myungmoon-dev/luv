@@ -3,7 +3,7 @@ import { YoutubeType, IYoutube, IYoutubeForm, IGetYoutubeResponse } from "./yout
 import { IBible, IBibleForm } from "./bible";
 import { IHomeWorship, IHomeWorshipForm } from "./homeWorship";
 import { YearMonthType } from "./date";
-import { IMission, IMissionForm } from "./news";
+import { IMissionNews, IMissionNewsForm } from "./news";
 import { IUser } from "./user";
 import {
   Generation3040Type,
@@ -38,8 +38,8 @@ export type {
   IHomeWorship,
   IHomeWorshipForm,
   YearMonthType,
-  IMission,
-  IMissionForm,
+  IMissionNews,
+  IMissionNewsForm,
   IUser,
   Generation3040Type,
   I3040Data,

@@ -1,11 +1,16 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { getMission, getMissions } from "@/api/news";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import newsKeys from "./keys";
-import { deleteMission, getMission, getMissions, postMission } from "@/api/news";
 
 export const useGetMissions = () => {
-  return useQuery({
-    queryFn: () => getMissions(),
+  return useInfiniteQuery({
+    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string } }) =>
+      getMissions({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt }),
     queryKey: newsKeys.missionList(),
+    initialPageParam: { lastVisibleCreatedAt: undefined },
+    getNextPageParam: (lastPage) => {
+      return { lastVisibleCreatedAt: lastPage.missions.at(-1)?.createdAt };
+    },
   });
 };
 
@@ -15,10 +20,3 @@ export const useGetMission = ({ missionId }: { missionId: string }) => {
     queryKey: newsKeys.missionDetail(missionId),
   });
 };
-
-export const usePostMission = () =>
-  useMutation({
-    mutationFn: postMission,
-  });
-
-export const useDeleteMission = () => useMutation({ mutationFn: deleteMission });

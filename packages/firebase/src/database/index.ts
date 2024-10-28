@@ -15,11 +15,18 @@ import {
   getHomeWorshipsCount,
   getPinnedHomeWorshipsCount,
 } from "./homeWorship";
-import { getMission, getMissions, postMission, deleteMission } from "./news";
 import { postUser, getUser } from "./user";
 import { getAlbum, postAlbum, deleteAlbum } from "./album";
 import { YoutubeType } from "type";
 import { getBooks, postBook, getBooksCount, getBook, deleteBook, putBook } from "./books";
+import {
+  deleteMissionNews,
+  getMissionNews,
+  getMissionNewsList,
+  postMissionNews,
+  putMissionNews,
+  getMissionNewsListCount,
+} from "./missionNews";
 
 const database = getFirestore(firebase);
 
@@ -30,9 +37,9 @@ const collections = {
   bible: "bible",
   user: "user",
   homeWorship: "homeWorship",
-  mission: "mission",
   album: "album",
   books: "books",
+  missionNews: "missionNews",
 };
 
 export {
@@ -51,10 +58,6 @@ export {
   postHomeWorship,
   getUser,
   deleteHomeWorship,
-  getMission,
-  getMissions,
-  postMission,
-  deleteMission,
   getPinnedHomeWorships,
   postHomeWorshipComment,
   deleteHomeWorshipComment,
@@ -73,4 +76,10 @@ export {
   getBook,
   deleteBook,
   putBook,
+  deleteMissionNews,
+  getMissionNews,
+  getMissionNewsList,
+  postMissionNews,
+  putMissionNews,
+  getMissionNewsListCount,
 };
