@@ -1,6 +1,7 @@
 import {
   BookOpen,
   Church,
+  Earth,
   House,
   HousePlus,
   Images,
@@ -64,6 +65,12 @@ const NAV_LIST: INav[] = [
     href: "/books",
     tooltip: "매월 추천하는 도서를 등록하고 수정할 수 있습니다.",
     icon: Library,
+  },
+  {
+    title: "선교지 소식",
+    href: "/mission-news",
+    tooltip: "선교지 소식을 등록하고 수정할 수 있습니다.",
+    icon: Earth,
   },
 ];
 

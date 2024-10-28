@@ -1,13 +1,12 @@
 import { IBoardBase, IBoardFormBase } from "./common";
 
-export interface IMission extends IBoardBase {
-  userId: string;
-  userName: string;
+export interface IMissionNews extends IBoardBase {
+  writer: string;
   image: string;
 }
 
-export interface IMissionForm extends IBoardFormBase {
-  image: FileList;
-  userId: string;
-  userName: string;
+export interface IMissionNewsForm extends IBoardFormBase {
+  image: string;
+  writer: string;
+  createdAt: number;
 }

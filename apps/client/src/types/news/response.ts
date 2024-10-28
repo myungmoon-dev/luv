@@ -1,9 +1,10 @@
-import { IMission } from "type";
+import { IMissionNews } from "type";
 
 export interface IGetMissionsResponse {
-  missions: IMission[];
+  missions: IMissionNews[];
+  totalMissionsCount: number;
 }
 
 export interface IGetMissionResponse {
-  mission: IMission;
+  mission: IMissionNews;
 }
