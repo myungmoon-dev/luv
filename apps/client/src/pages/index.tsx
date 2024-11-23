@@ -1,8 +1,6 @@
 import HomePage from "@/components/home";
 import HomeBanner, { HomeBannerEnum } from "@/components/home/banner";
 import Layout from "@/components/layout";
-import ConcertModal from "@/components/modal/concert";
-import useModalStore from "@/store/modal";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
@@ -36,12 +34,6 @@ interface IHomePageProps {
 }
 
 export default function Home({ bannerBlurDataURLs }: IHomePageProps) {
-  const openModal = useModalStore((state) => state.open);
-
-  useEffect(() => {
-    openModal(<ConcertModal />);
-  }, []);
-
   return (
     <Layout
       customBanner={<HomeBanner blurDataURLs={bannerBlurDataURLs} />}
