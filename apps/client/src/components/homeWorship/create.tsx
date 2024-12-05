@@ -22,9 +22,22 @@ const HomeWorshipCreate = () => {
   const onSubmit: SubmitHandler<IHomeWorshipForm> = async (data) => {
     const formData = new FormData();
 
-    if (data.image.length === 0 || !data.date || !data.title || !data.password || !data.userName || !content)
+    // FIXME: 추후 validate 및 디자인 변경해야 함
+    if (!data.date || !data.title || !data.password || !data.userName || !content) {
       return alert("모든 정보를 입력해주세요.");
-    if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
+    }
+
+    if (data.image.length === 0 && data.video.length === 0) {
+      return alert("사진 또는 영상은 반드시 업로드해야 합니다.");
+    }
+
+    if (data.image.length > 1) {
+      return alert("사진은 1장만 가능 합니다.");
+    }
+
+    if (data.video.length > 1) {
+      return alert("영상은 1개만 가능 합니다.");
+    }
 
     formData.append("title", data.title);
     formData.append("date", data.date);
@@ -32,9 +45,15 @@ const HomeWorshipCreate = () => {
     formData.append("password", data.password);
     formData.append("userName", data.userName);
 
-    Array.from(data.image).forEach((image) => {
-      formData.append(`image-file`, image);
-      formData.append(`image-name`, image.name);
+    const imageFile = data.image || [];
+    const videoFile = data.video || [];
+
+    Array.from(imageFile).forEach((image) => {
+      formData.append("image-file", image);
+    });
+
+    Array.from(videoFile).forEach((video) => {
+      formData.append("video-file", video);
     });
 
     mutate(formData, {
@@ -69,6 +88,10 @@ const HomeWorshipCreate = () => {
           <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl font-bold">사진 업로드</p>
             <input type="file" accept="image/*" {...register("image")} />
+          </label>
+          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+            <p className="text-xl font-bold">영상 업로드</p>
+            <input type="file" accept="video/*" {...register("video")} />
           </label>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
             <p className="text-xl font-bold">글</p>
