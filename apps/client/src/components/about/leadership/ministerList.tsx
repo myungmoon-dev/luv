@@ -19,7 +19,7 @@ const ministerProfiles = [
     position: "청년 디렉터, 전도위원회, 체육친교위원회",
     tabType: "minister",
     officerType: "associate",
-    greeting: "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청소년들을 주님의 마음으로 섬기겠습니다.",
+    greeting: "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청년들을 주님의 마음으로 섬기겠습니다.",
   },
   {
     name: "정재준",
