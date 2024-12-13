@@ -15,7 +15,7 @@ const Map = ({ isWhite, address, title }: IMapProps) => {
       className={cn("flex w-full", isWhite ? "justify-start" : "justify-end")}
     >
       <div className={cn("flex w-full flex-col md:w-3/5 2xl:w-1/2", isWhite ? "items-start text-white" : "items-end")}>
-        <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-blue-600")}>{title}</p>
+        <p className={cn("font-SCoreDream text-lg sm:text-xl md:text-2xl", !isWhite && "text-red-500")}>{title}</p>
         <p className="mb-2 md:text-lg">{address}</p>
         <KakaoMap address={address} height=" h-[230px] lg:h-[400px]" />
       </div>

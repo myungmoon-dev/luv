@@ -41,7 +41,7 @@ const NavSection = () => {
     <div className="relative">
       <div className="absolute left-0 top-0 z-[1] h-full w-full bg-black/40" />
       <div className="relative h-[500px] w-full md:h-[800px]">
-        <Image src="/images/home/section3.jpg" alt="" fill={true} className="object-cover" />
+        <Image src="/images/home/sectionChristmas.jpg" alt="" fill={true} className="object-cover" />
       </div>
       <div className="absolute left-0 top-0 z-[1] flex h-full w-full flex-col gap-12 px-8 py-16 md:justify-center md:gap-32 xl:gap-40">
         <div className="flex flex-col gap-3 text-white sm:gap-8">
@@ -63,7 +63,7 @@ const NavSection = () => {
               data-aos-delay={idx * 50}
               data-aos-duration="400"
               key={nav.path}
-              className="flex h-full w-full cursor-pointer items-center justify-center text-white hover:text-blue-600 sm:gap-16"
+              className="flex h-full w-full cursor-pointer items-center justify-center text-white hover:text-red-500 sm:gap-16"
             >
               <div className="flex flex-col items-center justify-center gap-3 md:gap-5">
                 <div className="flex flex-col items-center justify-center sm:gap-1">
