@@ -25,7 +25,7 @@ const HomeBanner = ({ blurDataURLs }: HomeBannerProps) => {
   const getBannerImage = () => {
     switch (currentView) {
       case HomeBannerEnum.Watchword:
-        return "/images/home/banner1.png";
+        return "/images/home/bannerChristmas.jpg";
       case HomeBannerEnum.Live:
         return "/images/home/banner3.jpeg";
       case HomeBannerEnum.Bible:
@@ -63,7 +63,7 @@ const HomeBanner = ({ blurDataURLs }: HomeBannerProps) => {
               fill={true}
               className={cn(
                 "object-cover",
-                currentView === HomeBannerEnum.HomeWorship && "object-[50%] brightness-75 md:object-[100%_15%]",
+                currentView === HomeBannerEnum.HomeWorship && "object-[50%] brightness-90 md:object-[100%_15%]",
               )}
               priority
               placeholder="blur"
