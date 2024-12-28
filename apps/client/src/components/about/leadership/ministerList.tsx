@@ -84,23 +84,6 @@ const ministerProfiles = [
     officerType: "evangelist",
     greeting: "오직 예수님 안에 머무는 다음세대, 영아부를 최선을 다해 섬기겠습니다.",
   },
-  {
-    name: "김해봄",
-    description: "",
-    image: "/images/leader/hae-bom.png",
-    position: "WithEL 찬양팀",
-    officerType: "staff",
-    greeting: "마음다한 찬양으로 하나님께 영광돌리겠습니다.",
-  },
-  {
-    name: "김태연",
-    description: "",
-    image: "/images/leader/tae-yeon.png",
-    position: "WithEL 찬양팀",
-    tabType: "minister",
-    officerType: "staff",
-    greeting: "마음다한 찬양으로 하나님께 영광돌리겠습니다.",
-  },
 ];
 
 const MinisterList = () => {
