@@ -23,9 +23,10 @@ interface IHomeWorshipCreatePageProps {
 const HomeWorshipCreatePage = ({ bannerBlurDataURL }: IHomeWorshipCreatePageProps) => {
   return (
     <Layout
-      pageTitle="맛있는 가정예배"
-      title="맛있는 가정예배"
-      bannerImage="/images/education/banner.jpg"
+      pageTitle="가정예배 인증하기"
+      title="가정예배 인증하기"
+      bannerImage="/images/home/homeworship.png"
+      bannerImgClass="object-[100%_30%] brightness-75 md:object-[100%_15%] 2xl:object-[100%_25%]"
       bannerBlurDataURL={bannerBlurDataURL}
     >
       <HomeWorshipCreate />
