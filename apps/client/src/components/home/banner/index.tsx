@@ -25,7 +25,7 @@ const HomeBanner = ({ blurDataURLs }: HomeBannerProps) => {
   const getBannerImage = () => {
     switch (currentView) {
       case HomeBannerEnum.Watchword:
-        return "/images/home/bannerChristmas.jpg";
+        return "/images/home/banner-2025.jpg";
       case HomeBannerEnum.Live:
         return "/images/home/banner3.jpeg";
       case HomeBannerEnum.Bible:
@@ -71,7 +71,7 @@ const HomeBanner = ({ blurDataURLs }: HomeBannerProps) => {
             />
           </div>
         </div>
-        <div className="absolute flex w-full flex-col gap-24">
+        <div className="absolute flex w-full flex-col gap-16 xl:gap-24">
           {getBannerText()}
           <HomeBannerNav currentView={currentView} setCurrentView={setCurrentView} />
         </div>
