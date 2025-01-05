@@ -63,7 +63,7 @@ const NavSection = () => {
               data-aos-delay={idx * 50}
               data-aos-duration="400"
               key={nav.path}
-              className="flex h-full w-full cursor-pointer items-center justify-center text-white hover:text-red-500 sm:gap-16"
+              className="flex h-full w-full cursor-pointer items-center justify-center text-white hover:text-[#001f54] sm:gap-16"
             >
               <div className="flex flex-col items-center justify-center gap-3 md:gap-5">
                 <div className="flex flex-col items-center justify-center sm:gap-1">

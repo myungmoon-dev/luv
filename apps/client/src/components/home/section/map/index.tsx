@@ -5,14 +5,14 @@ const MapSection = () => {
   return (
     <div className="relative">
       <div className="relative h-[1000px] w-full lg:h-[1300px]">
-        <Image src="/images/home/section4(R).png" alt="" fill={true} />
+        <Image src="/images/home/section4.png" alt="" fill={true} />
       </div>
       <div className="absolute left-0 top-0 flex w-full flex-col items-center gap-8 overflow-x-hidden px-8 pb-16 pt-24">
         <div className="flex flex-col items-center gap-3 md:gap-5">
           <p
             data-aos="fade-up"
             data-aos-duration="1000"
-            className="font-SCoreDream text-3xl text-red-500 sm:text-4xl md:text-5xl"
+            className="font-SCoreDream text-3xl text-[#001f54] sm:text-4xl md:text-5xl"
           >
             '명문교회' 오시는 길
           </p>

@@ -1,13 +1,12 @@
 import HomePage from "@/components/home";
 import HomeBanner, { HomeBannerEnum } from "@/components/home/banner";
 import Layout from "@/components/layout";
-import ChristmasModal from "@/components/modal/christmas";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
 
 export async function getStaticProps() {
-  const watchwordPath = path.resolve("public/images/home/banner1.png");
+  const watchwordPath = path.resolve("public/images/home/banner-2025.jpg");
   const livePath = path.resolve("public/images/home/banner3.jpeg");
   const biblePath = path.resolve("public/images/home/banner2.jpeg");
   const homeWorshipPath = path.resolve("public/images/home/homeworship.png");
