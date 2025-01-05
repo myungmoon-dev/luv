@@ -36,7 +36,7 @@ const VideosSection = () => {
             target="_blank"
             data-aos="fade-up"
             delay-aos-delay="400"
-            className="mt-3 rounded-md bg-red-500 p-2 px-3 font-semibold text-white duration-700 sm:text-lg"
+            className="mt-3 rounded-md bg-[#001f54] p-2 px-3 font-semibold text-white duration-700 sm:text-lg"
           >
             설교 라이브, 1분 설교 보러가기
           </Link>

@@ -2,7 +2,7 @@ import React from "react";
 
 const HomeBannerWatchword = () => {
   return (
-    <h1 className="text-center text-4xl text-[#001F54] sm:text-[3rem] sm:leading-[4rem]">
+    <h1 className="text-center text-4xl text-white sm:text-[3rem] sm:leading-[4rem]">
       <span data-aos="fade-up" className="font-SCoreDream">
         보라! 내가 반드시
       </span>
