@@ -14,7 +14,7 @@ const HomeBannerNav = ({ setCurrentView, currentView }: IHomeBannerNavProps) => 
   const liveVideo = data?.[0];
 
   const navList: { label: string; path: HomeBannerEnum }[] = [
-    { label: "교회여! 일어나\n세상으로 흘러가라!", path: HomeBannerEnum.Watchword },
+    { label: "보라! 내가 반드시\n길을 내리라", path: HomeBannerEnum.Watchword },
     {
       label: `${dayjs(liveVideo?.date).format("YYYY.MM.DD")} ${liveVideo?.title || ""}\n<예배 생중계> 바로가기`,
       path: HomeBannerEnum.Live,
