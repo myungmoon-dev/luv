@@ -2,7 +2,7 @@ import { IGetBulletinResponse, IGetBulletinsResponse } from "@/types/bulletin/re
 import { api } from ".";
 
 export const getBulletins = async () => {
-  const { data } = await api.get<IGetBulletinsResponse>("/api/bulletins");
+  const { data } = await api.get<IGetBulletinsResponse>("/bulletins");
 
   return data;
 };
