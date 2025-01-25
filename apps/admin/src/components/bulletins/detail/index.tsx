@@ -10,7 +10,7 @@ const Bulletin = () => {
 
   const { push } = useRouter();
 
-  const { data: bulletin } = useGetBulletin();
+  const { data: bulletin, isLoading } = useGetBulletin();
 
   const { mutate } = useDeleteBulletin();
 
@@ -27,7 +27,7 @@ const Bulletin = () => {
     });
   };
 
-  if (!bulletin)
+  if (isLoading)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -36,14 +36,14 @@ const Bulletin = () => {
 
   return (
     <div>
-      <h1 className="mb-2 text-3xl font-bold">{bulletin.title}</h1>
+      <h1 className="mb-2 text-3xl font-bold">{bulletin?.title}</h1>
       <div className="mb-10 flex items-center justify-between">
         <div className="flex flex-col gap-2">
           <p className="text-sm text-slate-500">
-            날짜: {dayjs(bulletin.date).format("YYYY-MM-DD")}
+            날짜: {dayjs(bulletin?.date).format("YYYY-MM-DD")}
           </p>
           <p className="text-sm text-slate-500">
-            생성일: {dayjs(bulletin.createdAt).format("YYYY-MM-DD")}
+            생성일: {dayjs(bulletin?.createdAt).format("YYYY-MM-DD HH:mm:ss")}
           </p>
         </div>
         <button onClick={handleDeleteBulletin} className="text-red-500">
@@ -51,9 +51,9 @@ const Bulletin = () => {
         </button>
       </div>
       <div className="flex flex-col gap-5">
-        {bulletin.images.map((image) => (
-          <div className="relative h-[550px] w-[868px]">
-            <Image src={`${image}/bulletin`} fill={true} alt="주보" />
+        {bulletin?.imageUrls.map((imageUrl) => (
+          <div key={imageUrl} className="relative h-[550px] w-[868px]">
+            <Image src={`${imageUrl}`} fill={true} alt="주보" objectFit="contain" />
           </div>
         ))}
       </div>

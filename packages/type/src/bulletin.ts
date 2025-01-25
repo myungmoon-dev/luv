@@ -1,11 +1,11 @@
 import { IFile } from "./common";
 
 export interface IBulletin {
-  id: string;
+  _id: string;
   createdAt: string;
   date: string;
   title: string;
-  images: string[];
+  imageUrls: string[];
 }
 
 export interface IBulletinForm {
