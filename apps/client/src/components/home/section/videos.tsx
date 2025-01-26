@@ -3,16 +3,15 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import Skeleton from "react-loading-skeleton";
-
 import DeferredComponent from "@/components/common/deferredComponent";
 import View from "@/components/common/view";
-import { useGetYoutubeList } from "@/query/youtube";
+import { useGetYoutubeLink } from "@/query/youtube";
 
 const VideosSection = () => {
-  const { data: main, isLoading: mainLoading } = useGetYoutubeList({ videoType: "main" });
-  const { data: shorts, isLoading: shortsLoading } = useGetYoutubeList({ videoType: "shorts" });
+  const { data: main, isLoading: mainLoading } = useGetYoutubeLink("main");
+  const { data: shorts, isLoading: shortsLoading } = useGetYoutubeLink("shorts");
 
-  const mainVideo = main?.[0];
+  const mainVideo = main?.videos[0];
 
   return (
     <div className="relative">
@@ -55,7 +54,7 @@ const VideosSection = () => {
           >
             <YoutubeVideo
               className="h-[200px] w-full sm:h-[300px] md:w-[70%] lg:h-[350px] xl:h-[500px]"
-              videoId={main?.[0].videoId}
+              videoId={mainVideo?.url}
             />
           </View>
           <View
@@ -71,7 +70,7 @@ const VideosSection = () => {
           >
             <YoutubeVideo
               className="h-[200px] w-full sm:h-[300px] md:w-[30%] lg:h-[350px] xl:h-[500px]"
-              videoId={shorts?.[0].videoId}
+              videoId={shorts?.videos[0].url}
             />
           </View>
         </div>

@@ -10,7 +10,7 @@ const Sermon = ({ sermon }: ISermonProps) => {
     <div className="flex w-full flex-col">
       <YoutubeVideo
         className="mb-3 flex h-[200px] items-center justify-center md:h-[400px] lg:h-[300px] xl:h-[400px] 2xl:h-[300px]"
-        videoId={sermon.videoId}
+        videoId={sermon.url}
       />
 
       <div className="flex items-end justify-between">

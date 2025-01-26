@@ -1,3 +1,4 @@
+import { IGetLiveResponse } from "type/src/youtube";
 import { api } from ".";
 import { IGetYoutubeResponse, YoutubeType } from "type";
 
@@ -5,10 +6,14 @@ export interface IGetYoutbeRequest {
   videoType: YoutubeType;
   videoCount?: number;
 }
+export const getLive = async () => {
+  const { data } = await api.get<IGetLiveResponse>("/live");
+  return data;
+};
 
-export const getYoutubeList = async ({ videoType, videoCount }: IGetYoutbeRequest) => {
-  const { data } = await api.get<IGetYoutubeResponse>("/api/youtube", {
-    params: { type: videoType, count: videoCount },
+export const getYoutube = async (type: YoutubeType) => {
+  const { data } = await api.get<IGetYoutubeResponse>("/videos", {
+    params: { type },
   });
   return data;
 };

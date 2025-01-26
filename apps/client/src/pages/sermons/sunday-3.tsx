@@ -1,11 +1,11 @@
 import Layout from "@/components/layout";
 import SermonContainer from "@/components/sermons/sermonContainer";
 import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
-import { useGetYoutubeList } from "@/query/youtube";
 import { Spinner } from "ui";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
+import { useGetYoutubeLink } from "@/query/youtube";
 
 export async function getStaticProps() {
   const imagePath = path.resolve("public/images/sermon/banner4.jpg");
@@ -24,7 +24,9 @@ interface ISermonsSunday3PageProps {
 }
 
 const SermonsSunday3Page = ({ bannerBlurDataURL }: ISermonsSunday3PageProps) => {
-  const { data: youtubeList, isLoading } = useGetYoutubeList({ videoType: "main" });
+  const { data, isRefetching } = useGetYoutubeLink("main");
+
+  if (isRefetching) return <Spinner />;
 
   return (
     <Layout
@@ -37,7 +39,7 @@ const SermonsSunday3Page = ({ bannerBlurDataURL }: ISermonsSunday3PageProps) => 
       bannerBlurDataURL={bannerBlurDataURL}
     >
       <div className="flex items-center justify-center">
-        {isLoading ? <Spinner /> : <SermonContainer title="주일 예배" list={youtubeList || []} />}
+        {data && <SermonContainer title="주일 예배" list={data.videos} />}
       </div>
     </Layout>
   );

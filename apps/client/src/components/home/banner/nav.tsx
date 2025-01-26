@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { HomeBannerEnum } from ".";
-import { useGetYoutubeList } from "@/query/youtube";
 import dayjs from "dayjs";
 import { cn } from "ui";
+import { useGetLive } from "@/query/youtube";
 
 interface IHomeBannerNavProps {
   currentView: HomeBannerEnum;
@@ -10,13 +10,12 @@ interface IHomeBannerNavProps {
 }
 
 const HomeBannerNav = ({ setCurrentView, currentView }: IHomeBannerNavProps) => {
-  const { data } = useGetYoutubeList({ videoType: "live" });
-  const liveVideo = data?.[0];
+  const { data } = useGetLive();
 
   const navList: { label: string; path: HomeBannerEnum }[] = [
     { label: "보라! 내가 반드시\n길을 내리라", path: HomeBannerEnum.Watchword },
     {
-      label: `${dayjs(liveVideo?.date).format("YYYY.MM.DD")} ${liveVideo?.title || ""}\n<예배 생중계> 바로가기`,
+      label: `${dayjs(data?.updatedAt).format("YYYY.MM.DD")}\n<예배 생중계> 바로가기`,
       path: HomeBannerEnum.Live,
     },
     { label: "온세대가 함께하는\n명문교회 <181일 성경통독>", path: HomeBannerEnum.Bible },
