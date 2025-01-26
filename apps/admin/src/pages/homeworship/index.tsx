@@ -1,12 +1,19 @@
-import Homeworship from "@/components/homeworship";
+import HomeWorship from "@/components/homeworship";
 import Layout from "@/components/layout";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
-const HomeWorshipCreate = () => {
+const HomeWorshipPage = () => {
+  const { push } = useRouter();
+
   return (
-    <Layout title="가정예배 공지 추가">
-      <Homeworship />
+    <Layout
+      title="가정예배"
+      titleChildren={<Button onClick={() => push("/homeworship/create")}>추가</Button>}
+    >
+      <HomeWorship />
     </Layout>
   );
 };
 
-export default HomeWorshipCreate;
+export default HomeWorshipPage;
