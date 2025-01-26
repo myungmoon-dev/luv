@@ -9,7 +9,6 @@ const useGetAlbumList = (type: AlbumType) => {
   return useQuery({
     queryKey,
     queryFn: async () => await getAlbumList(type),
-    select: (response) => response.albumList,
   });
 };
 

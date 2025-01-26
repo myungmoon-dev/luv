@@ -14,13 +14,13 @@ interface IAlbumListProps {
 }
 
 const AlbumList = ({ className, albumType }: IAlbumListProps) => {
-  const { data, isPending } = useGetAlbumList(albumType);
+  const { data, isFetching } = useGetAlbumList(albumType);
   const open = useModalStore((state) => state.open);
 
   const convertImageGalleryFormat = (imageData: string[]) => {
     return imageData.map((imgPath) => ({
-      original: `${imgPath}/full`,
-      thumbnail: `${imgPath}/full`,
+      original: `${imgPath}`,
+      thumbnail: `${imgPath}`,
     }));
   };
 
@@ -29,24 +29,19 @@ const AlbumList = ({ className, albumType }: IAlbumListProps) => {
     open(<ImageGallery items={images} lazyLoad={true} showPlayButton={false} showFullscreenButton={false} />);
   };
 
-  const onClickAlbum = (id: number) => {
-    if (!data) return;
-    showModal(data[id].images);
-  };
-
   return (
     <div className={cn("flex w-full max-w-screen-xl flex-col items-center justify-center gap-10 px-10", className)}>
-      {data && data.length >= 1 && (
+      {data && data.totalAlbums >= 1 && (
         <>
           <AlbumTitleSection albumType={albumType} />
-          {isPending ? (
+          {isFetching ? (
             <div className="flex h-[200px] items-center justify-center">
               <Spinner />
             </div>
           ) : (
             <div className="grid w-full grid-cols-1 gap-7 md:grid-cols-3 2xl:grid-cols-4">
-              {data.map((album, idx) => (
-                <AlbumItemSection key={album.id} album={album} onClick={() => onClickAlbum(idx)} />
+              {data.albums.map((album, idx) => (
+                <AlbumItemSection key={album._id} album={album} onClick={() => showModal(album.imageUrls)} />
               ))}
             </div>
           )}

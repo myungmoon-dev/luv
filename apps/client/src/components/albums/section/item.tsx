@@ -11,7 +11,7 @@ const AlbumItemSection = ({ album, onClick }: IAlbumItemSectionProps) => {
       <div className="relative h-[200px] w-full">
         <CustomImage
           alt={album.title}
-          src={`${album.images[0]}/full`}
+          src={album.imageUrls[0]}
           imgClass="rounded-md shadow-lg"
           className="h-full w-full"
         />
