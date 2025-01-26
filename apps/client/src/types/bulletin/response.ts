@@ -4,6 +4,4 @@ export interface IGetBulletinsResponse {
   bulletins: IBulletin[];
 }
 
-export interface IGetBulletinResponse {
-  bulletin: IBulletin;
-}
+export interface IGetBulletinResponse extends IBulletin {}

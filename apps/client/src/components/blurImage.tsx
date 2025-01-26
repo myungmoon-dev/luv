@@ -8,11 +8,12 @@ interface IBlurImageProps {
 }
 
 const BlurImageComponent = ({ img, alt, fill = false }: IBlurImageProps) => {
-  const { data } = useGetBlurImage({
-    img,
-  });
+  // FIXME: useGetBlurImage 수정 해야함
+  // const { data } = useGetBlurImage({
+  //   img,
+  // });
 
-  return <>{data && <Image src={img} fill={fill} alt={alt} placeholder="blur" blurDataURL={data.base64} />}</>;
+  return <>{<Image src={img} fill={fill} alt={alt} />}</>;
 };
 
 export default BlurImageComponent;
