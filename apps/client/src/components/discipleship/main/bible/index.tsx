@@ -15,13 +15,13 @@ const DiscipleshipMainBible = () => {
 
   const { handleClickNext, handleClickPrev } = useDateTab({ setDateTabs });
 
-  const { data } = useGetBibles({ yearMonth: currentTap });
+  const { data, isFetching } = useGetBibles({ yearMonth: currentTap });
 
   const onClickTab = (tab: YearMonthType) => {
     setCurrentTap(tab);
   };
 
-  if (!data)
+  if (isFetching)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -37,15 +37,17 @@ const DiscipleshipMainBible = () => {
         onClickTab={onClickTab}
         onClickNext={handleClickNext}
       />
-      <Table
-        data={data.bibles.map((bible) => ({
-          id: bible.id,
-          date: bible.date,
-          title: bible.title,
-          writer: "관리자",
-        }))}
-        onClickRow={(rowId) => push(`/discipleship/main/bible/${rowId}`)}
-      />
+      {data && (
+        <Table
+          data={data.bibles.map((bible) => ({
+            id: bible._id,
+            date: bible.date,
+            title: bible.title,
+            writer: "관리자",
+          }))}
+          onClickRow={(rowId) => push(`/discipleship/main/bible/${rowId}`)}
+        />
+      )}
     </div>
   );
 };
