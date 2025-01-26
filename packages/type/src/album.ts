@@ -15,15 +15,15 @@ export type AlbumType =
   | "3040";
 
 export interface IAlbum {
-  id: string;
-  idx: number;
+  _id: string;
   title: string;
   date: string;
-  albumType: AlbumType;
-  images: string[];
+  type: AlbumType;
+  imageUrls: string[];
   createdAt: number;
 }
 
 export interface IGetAlbumResponse {
-  albumList: IAlbum[];
+  albums: IAlbum[];
+  totalAlbums: number;
 }

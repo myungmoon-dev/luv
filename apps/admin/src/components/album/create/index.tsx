@@ -16,6 +16,7 @@ import { useForm } from "react-hook-form";
 import { AlbumType } from "type";
 import { Icon, Spinner } from "ui";
 import { ALBUM_TYPE_OPTIONS } from "../config";
+import { toast } from "sonner";
 
 interface IAblumForm {
   title: string;
@@ -65,19 +66,17 @@ const AlbumCreate = () => {
     formData.append("title", data.title);
     formData.append("type", data.type);
     formData.append("date", data.date);
-    formData.append("length", data.images.length + "");
-    Array.from(data.images).forEach((image, index) => {
-      formData.append(`image-${index}-file`, image);
-      formData.append(`image-${index}-name`, image.name);
+    Array.from(data.images).forEach((image) => {
+      formData.append("images", image);
     });
 
     mutate(formData, {
-      onSuccess: (res) => console.log(res),
-      onError: (err) => console.log(err),
-      onSettled: () => {
-        alert("업로드하였습니다.");
+      onSuccess: () => {
+        toast("업로드하였습니다.");
         push("/album");
       },
+      onError: (err) => console.log(err),
+      onSettled: () => {},
     });
   };
 

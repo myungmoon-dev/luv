@@ -5,24 +5,24 @@ import { AlbumType } from "type";
 import { Spinner } from "ui";
 import { Button } from "../ui/button";
 import { ALBUM_TYPE_OPTIONS } from "./config";
+import { toast } from "sonner";
 
 interface IAlbumListProps {
   type: AlbumType;
 }
 
 const AlbumList = ({ type }: IAlbumListProps) => {
-  const { data, refetch } = useGetAlbumList(type);
+  const { data, isFetching, refetch } = useGetAlbumList(type);
 
   const { mutate } = useDeleteAlbum();
 
   const onDelete = (id: string) => {
     if (confirm("삭제하시겠습니까?")) {
-      mutate([id], {
+      mutate(id, {
         onSuccess: () => {
-          alert("삭제되었습니다.");
+          toast("삭제되었습니다.");
           refetch();
         },
-        onError: () => alert("삭제하지못했습니다."),
       });
     }
   };
@@ -37,37 +37,30 @@ const AlbumList = ({ type }: IAlbumListProps) => {
         <p>처리</p>
       </div>
       <div className="flex w-full flex-col gap-5">
-        {!data ? (
+        {isFetching ? (
           <div className="flex w-full flex-col items-center justify-center">
             <Spinner />
           </div>
         ) : (
           <>
-            {data.length === 0 && <p className="text-center">데이터가 존재하지 않습니다.</p>}
-            {data.map((album, idx) => {
+            {data?.totalAlbums === 0 && <p className="text-center">데이터가 존재하지 않습니다.</p>}
+            {data?.albums.map((album, idx) => {
               // ALBUM_OPTION_DATA에서 albumType에 해당하는 label 찾기
-              const albumOption = ALBUM_TYPE_OPTIONS.find(
-                (option) => option.value === album.albumType,
-              );
+              const albumOption = ALBUM_TYPE_OPTIONS.find((option) => option.value === album.type);
               return (
-                <div key={album.id} className="grid grid-cols-5 place-items-center gap-2">
-                  <p>{data.length - idx}</p>
+                <div key={album._id} className="grid grid-cols-5 place-items-center gap-2">
+                  <p>{data.totalAlbums - idx}</p>
                   <p>{album.title}</p>
                   <p className="flex gap-1">{albumOption?.label ?? ""}</p>
                   <div className="text-center">
-                    <p>{dayjs(album.date).format("YYYY-MM-DD")}</p>
+                    <p>{album.date}</p>
                     <p className="text-sm text-gray-400">
                       {dayjs(album.createdAt).format("YYYY-MM-DD HH:mm")}
                     </p>
                   </div>
-                  <p className="flex gap-3">
-                    <Button variant="secondary" onClick={() => {}}>
-                      수정
-                    </Button>
-                    <Button variant="destructive" onClick={() => onDelete(album.id)}>
-                      삭제
-                    </Button>
-                  </p>
+                  <Button variant="destructive" onClick={() => onDelete(album._id)}>
+                    삭제
+                  </Button>
                 </div>
               );
             })}
