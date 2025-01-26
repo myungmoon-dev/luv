@@ -1,17 +1,16 @@
-import { IBoardFormBase } from "./common";
-
 export interface IBook {
-  id: string;
+  _id: string;
   title: string;
   date: string;
   createdAt: number;
-  image: string;
+  imageUrls: string[];
   content: string;
   writer: string;
 }
 
-export interface IBookForm extends IBoardFormBase {
-  image: IBook["image"];
-  createdAt: number;
+export interface IBookForm {
+  title: string;
+  date: string;
+  content: string;
   writer: string;
 }

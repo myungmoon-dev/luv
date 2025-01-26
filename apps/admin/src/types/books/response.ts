@@ -2,9 +2,7 @@ import { IBook } from "type";
 
 export interface IGetBooksResponse {
   books: IBook[];
-  totalBooksCount: number;
+  totalBooks: number;
 }
 
-export interface IGetBookResponse {
-  book: IBook;
-}
+export interface IGetBookResponse extends IBook {}

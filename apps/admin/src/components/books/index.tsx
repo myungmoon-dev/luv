@@ -1,42 +1,39 @@
-import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import { Spinner, Table } from "ui";
-import { Button } from "../ui/button";
+import { Spinner } from "ui";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 const Books = () => {
   const { push } = useRouter();
-  const { data, fetchNextPage } = useGetBooks();
+  const { data, isFetching } = useGetBooks();
 
-  const { hasNextPage, setNextPage } = usePagination({
-    totalCount: data?.pages[0].totalBooksCount || 0,
-    pageSize: 5,
-  });
-
-  const handleClickNextPage = () => {
-    setNextPage();
-    fetchNextPage();
-  };
-
-  if (!data)
+  if (isFetching)
     return (
-      <div className="flex justify-center">
+      <div className="flex h-full items-center justify-center">
         <Spinner />
       </div>
     );
 
   return (
-    <div className="flex flex-col gap-5">
-      <Table
-        data={data.pages.map((page) => page.books).flat()}
-        onClickRow={(rowId) => push(`/books/${rowId}`)}
-      />
-      {hasNextPage && (
-        <div className="flex justify-end">
-          <Button onClick={handleClickNextPage}>더보기</Button>
-        </div>
-      )}
-    </div>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>날짜</TableHead>
+          <TableHead>제목</TableHead>
+          <TableHead>생성일</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data?.books.map((book) => (
+          <TableRow key={book._id} onClick={() => push(`/books/${book._id}`)}>
+            <TableCell>{book.date}</TableCell>
+            <TableCell>{book.title}</TableCell>
+            <TableCell>{dayjs(book.createdAt).format("YYYY-MM-DD HH:mm:ss")}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 

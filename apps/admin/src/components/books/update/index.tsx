@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { IBookForm } from "type";
 import { Spinner } from "ui";
 
@@ -47,8 +48,7 @@ const BookUpdate = () => {
 
     if (isNewImage) {
       Array.from(data.image).forEach((image) => {
-        formData.append(`image-file`, image);
-        formData.append(`image-name`, image.name);
+        formData.append("images", image);
       });
     }
 
@@ -56,7 +56,7 @@ const BookUpdate = () => {
       { form: formData, id: bookId },
       {
         onSuccess: () => {
-          alert("수정되었습니다.");
+          toast("수정되었습니다.");
           push(`/books/${bookId}`);
         },
         onError: () => {
@@ -95,9 +95,10 @@ const BookUpdate = () => {
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">기존 사진</p>
           <div className="flex flex-col items-end">
-            {data && (
-              <img src={`${data?.image}/bulletin`} className="h-full w-[380px]" alt="이미지" />
-            )}
+            {data &&
+              data?.imageUrls.map((imageUrl) => (
+                <img key={imageUrl} src={imageUrl} className="h-full w-[380px]" alt="이미지" />
+              ))}
             <Button onClick={() => setNewImage(true)} variant="destructive" type="button">
               삭제
             </Button>
@@ -115,7 +116,9 @@ const BookUpdate = () => {
         <Editor defaultValue={content} setValue={setContent} />
       </div>
       <div className="flex justify-end">
-        <Button disabled={isPending}>추천도서 수정</Button>
+        <Button isLoading={isPending} disabled={isPending}>
+          추천도서 수정
+        </Button>
       </div>
     </form>
   );
