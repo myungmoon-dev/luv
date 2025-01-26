@@ -5,6 +5,4 @@ export interface IGetMissionNewsListResponse {
   totalMissionNewsListCount: number;
 }
 
-export interface IGetMissionNewsResponse {
-  missionNews: IMissionNews;
-}
+export interface IGetMissionNewsResponse extends IMissionNews {}

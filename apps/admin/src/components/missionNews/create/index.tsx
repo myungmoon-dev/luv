@@ -1,10 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { usePostBook } from "@/query/books";
 import { usePostMissionNews } from "@/query/missionNews";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { IBookForm } from "type";
 import { Spinner } from "ui";
 
@@ -19,6 +20,8 @@ const Editor = dynamic(() => import("@/components/common/editor").then((mod) => 
 });
 
 const MissionNewsCreate = () => {
+  const { push } = useRouter();
+
   const { register, handleSubmit, reset } = useForm<IMissionNewsCreateForm>();
 
   const { mutate, isPending } = usePostMissionNews();
@@ -38,15 +41,15 @@ const MissionNewsCreate = () => {
     formData.append("content", content);
 
     Array.from(data.image).forEach((image) => {
-      formData.append(`image-file`, image);
-      formData.append(`image-name`, image.name);
+      formData.append("images", image);
     });
 
     mutate(formData, {
       onSuccess: () => {
-        alert("추가되었습니다.");
+        toast("추가되었습니다.");
         reset();
         setContent("");
+        push("/mission-news");
       },
       onError: () => {
         alert("에러가 발생했습니다. 다시 시도해주세요.");
@@ -77,7 +80,9 @@ const MissionNewsCreate = () => {
         <Editor setValue={setContent} />
       </div>
       <div className="flex justify-end">
-        <Button disabled={isPending}>선교지 소식 올리기</Button>
+        <Button isLoading={isPending} disabled={isPending}>
+          선교지 소식 올리기
+        </Button>
       </div>
     </form>
   );

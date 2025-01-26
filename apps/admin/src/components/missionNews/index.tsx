@@ -1,22 +1,12 @@
-import usePagination from "@/hooks/usePagination";
 import { useGetMissionNewsList } from "@/query/missionNews";
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import { Spinner, Table } from "ui";
-import { Button } from "../ui/button";
+import { Spinner } from "ui";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 const MissionNewsList = () => {
   const { push } = useRouter();
-  const { data, fetchNextPage } = useGetMissionNewsList();
-
-  const { hasNextPage, setNextPage } = usePagination({
-    totalCount: data?.pages[0].totalMissionNewsListCount || 0,
-    pageSize: 5,
-  });
-
-  const handleClickNextPage = () => {
-    setNextPage();
-    fetchNextPage();
-  };
+  const { data } = useGetMissionNewsList();
 
   if (!data)
     return (
@@ -26,17 +16,26 @@ const MissionNewsList = () => {
     );
 
   return (
-    <div className="flex flex-col gap-5">
-      <Table
-        data={data.pages.map((page) => page.missionNewsList).flat()}
-        onClickRow={(rowId) => push(`/mission-news/${rowId}`)}
-      />
-      {hasNextPage && (
-        <div className="flex justify-end">
-          <Button onClick={handleClickNextPage}>더보기</Button>
-        </div>
-      )}
-    </div>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>날짜</TableHead>
+          <TableHead>제목</TableHead>
+          <TableHead>생성자</TableHead>
+          <TableHead>생성일</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {data?.missionNewsList.map((missionNews) => (
+          <TableRow key={missionNews._id} onClick={() => push(`/mission-news/${missionNews._id}`)}>
+            <TableCell>{missionNews.date}</TableCell>
+            <TableCell>{missionNews.title}</TableCell>
+            <TableCell>{missionNews.userName}</TableCell>
+            <TableCell>{dayjs(missionNews.createdAt).format("YYYY-MM-DD HH:mm:ss")}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 

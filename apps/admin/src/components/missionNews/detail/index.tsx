@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 import { SafeHTML, Spinner } from "ui";
 
 const MissionNewsDetail = () => {
@@ -11,7 +12,7 @@ const MissionNewsDetail = () => {
   const params = useParams();
   const missionNewsId = params?.id as string;
 
-  const { data } = useGetMissionNews({ missionNewsId });
+  const { data, isPending } = useGetMissionNews({ missionNewsId });
   const { mutate } = useDeleteMissionNews();
 
   const handleUpdateMissionNews = () => {
@@ -19,10 +20,18 @@ const MissionNewsDetail = () => {
   };
   const handleDeleteMissionNews = () => {
     if (!confirm("삭제하시곘습니까?")) return;
-    mutate({ missionNewsId }, { onSuccess: () => push("/mission-news") });
+    mutate(
+      { missionNewsId },
+      {
+        onSuccess: () => {
+          toast("삭제되었습니다.");
+          push("/mission-news");
+        },
+      },
+    );
   };
 
-  if (!data)
+  if (isPending)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -48,15 +57,18 @@ const MissionNewsDetail = () => {
           </Button>
         </div>
       </div>
-      <p className="mb-2">작성자: {data?.writer}</p>
+      <p className="mb-2">작성자: {data?.userName}</p>
       <SafeHTML html={data?.content} />
       <div className="relative mt-10 h-[350px] w-full">
-        <Image
-          src={`${data?.image}/bulletin`}
-          alt={`${data?.title}_이미지`}
-          fill={true}
-          className="object-contain"
-        />
+        {data?.imageUrls.map((imageUrl) => (
+          <Image
+            key={imageUrl}
+            src={imageUrl}
+            alt={`${data?.title}_이미지`}
+            fill={true}
+            className="object-contain"
+          />
+        ))}
       </div>
     </div>
   );
