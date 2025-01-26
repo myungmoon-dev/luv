@@ -1,12 +1,25 @@
-import { IBoardBase, IBoardFormBase } from "./common";
-import { IComment } from "./comment";
+import { IBoardFormBase } from "./common";
 
-export interface IHomeWorship extends IBoardBase {
-  userId: string;
+export interface IHomeworshipComment {
+  _id: string;
   userName: string;
-  image: string;
+  password: string;
+  content: string;
+  createdAt: number;
+}
+
+export interface IHomeWorship {
+  _id: string;
+  date: string;
+  title: string;
+  content: string;
+  createdAt: number;
+  imageUrls: string[];
+  userName: string;
+  password: string;
   isPinned: boolean;
-  comments: IComment[];
+  updatedAt: number;
+  comments: IHomeworshipComment[];
 }
 
 export interface IHomeWorshipForm extends IBoardFormBase {
