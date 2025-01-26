@@ -1,18 +1,15 @@
 import { IGetBookResponse, IGetBooksResponse } from "@/types/books/response";
 import { api } from ".";
 
-export const getBooks = async ({ lastVisibleCreatedAt }: { lastVisibleCreatedAt?: number }) => {
-  const { data } = await api.get<IGetBooksResponse>("/api/books", {
-    params: {
-      lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
-    },
-  });
+export const getBooks = async () => {
+  const { data } = await api.get<IGetBooksResponse>("/books");
+  
 
   return data;
 };
 
 export const getBook = async ({ bookId }: { bookId: string }) => {
-  const { data } = await api.get<IGetBookResponse>(`/api/books/${bookId}`);
+  const { data } = await api.get<IGetBookResponse>(`/books/${bookId}`);
 
   return data;
 };

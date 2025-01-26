@@ -19,7 +19,7 @@ const Book = ({ book, onClick }: IBookProps) => {
       <div className="flex items-center justify-center px-[46px] py-6 sm:pb-8 sm:pt-9 md:px-[70px]">
         <div className="relative h-[97px] w-[60px] md:h-[146px] md:w-[91px]">
           {/* FIXME: 이미지 형식 바꿔야함 */}
-          <Image src={`${book.image}/bulletin`} alt={`${book.title}_이미지`} fill={true} className="object-contain" />
+          <Image src={book.imageUrls[0]} alt={`${book.title}_이미지`} fill={true} className="object-contain" />
         </div>
       </div>
       <div className="flex flex-col gap-2.5 py-8 sm:pb-12 sm:pt-14">

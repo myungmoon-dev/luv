@@ -5,6 +5,6 @@ export interface IGetBooksResponse {
   totalBooksCount: number;
 }
 
-export interface IGetBookResponse {
-  book: IBook;
+export interface IGetBookResponse extends IBook {
+  
 }

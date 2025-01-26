@@ -11,9 +11,9 @@ interface IBookModalProps {
 }
 
 const BookModal = ({ id }: IBookModalProps) => {
-  const { data, isLoading } = useGetBook({ bookId: id });
+  const { data, isPending } = useGetBook({ bookId: id });
 
-  if (isLoading)
+  if (isPending)
     return (
       <div className="flex items-center justify-center">
         <Spinner />
@@ -23,9 +23,11 @@ const BookModal = ({ id }: IBookModalProps) => {
   return (
     <div>
       <div className="flex flex-col items-center gap-10">
-        <div className="relative h-[220px] w-full sm:h-[300px] md:h-[320px] lg:h-[400px]">
-          <Image src={`${data?.image}/bulletin`} alt={`${data?.title}_이미지`} fill={true} className="object-contain" />
-        </div>
+        {data?.imageUrls.map((imageUrl) => (
+          <div className="relative h-[220px] w-full sm:h-[300px] md:h-[320px] lg:h-[400px]">
+            <Image src={`${imageUrl}`} alt={`${data?.title}_이미지`} fill={true} className="object-contain" />
+          </div>
+        ))}
         <div className="flex flex-col items-center gap-2.5">
           <h3 className="text-3xl font-bold">{data?.title}</h3>
           <div className="flex flex-col items-center gap-1">
