@@ -8,6 +8,7 @@ import {
   Library,
   LucideIcon,
   Radio,
+  Video,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -32,9 +33,15 @@ const NAV_LIST: INav[] = [
   {
     title: "실시간",
     href: "/live",
-    tooltip:
-      "주일 예배, 새벽 기도회, 수요 예배, 금요 예배의 실시간 유튜브 링크를 등록하고 수정할 수 있습니다.",
+    tooltip: "실시간 유튜브 링크를 등록하고 수정할 수 있습니다.",
     icon: Radio,
+  },
+  {
+    title: "유튜브",
+    href: "/youtube",
+    tooltip:
+      "주일 예배, 새벽 기도회, 수요 예배, 금요 예배의 유튜브 링크를 등록하고 수정할 수 있습니다.",
+    icon: Video,
   },
   {
     title: "주보",

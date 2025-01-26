@@ -4,7 +4,6 @@ import { IYoutubeDropDownOptions } from "./dropdown";
 import LiveForm from "./Form";
 
 const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
-  { label: "라이브 생방송", type: "live" },
   { label: "쇼츠", type: "shorts" },
   { label: "주일예배", type: "main" },
   { label: "주일청년", type: "youth" },
@@ -16,7 +15,7 @@ const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
 
 const Youtube = () => {
   return (
-    <Tabs defaultValue="live" className="flex flex-col gap-5">
+    <Tabs defaultValue="shorts" className="flex flex-col gap-5">
       <TabsList className="w-fit">
         {YOUTUBE_OPTIONS_DATA.map((option) => (
           <TabsTrigger value={option.type} key={option.type}>

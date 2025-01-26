@@ -9,13 +9,13 @@ export type YoutubeType =
   | "video";
 
 export interface IYoutube {
-  id: string;
-  videoId: string;
-  title?: string;
-  preacher?: string;
-  mainText?: string;
-  date?: string;
-  videoType: YoutubeType;
+  _id: string;
+  url: string;
+  title: string;
+  date: string;
+  mainText: string;
+  preacher: string;
+  type: YoutubeType;
   createdAt: number;
 }
 
@@ -29,7 +29,8 @@ export interface IYoutubeForm {
 }
 
 export interface IGetYoutubeResponse {
-  youtubeList: IYoutube[];
+  videos: IYoutube[];
+  totalVideos: number;
 }
 
 export type LiveType = {

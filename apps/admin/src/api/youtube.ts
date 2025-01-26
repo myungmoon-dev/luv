@@ -13,14 +13,14 @@ export const putLive = async ({ liveUrl }: { liveUrl: string }) => {
   return data;
 };
 
-export const getYoutubeLink = async (type: YoutubeType) => {
-  const { data } = await api.get<IGetYoutubeResponse>("/api/youtube", {
+export const getYoutube = async (type: YoutubeType) => {
+  const { data } = await api.get<IGetYoutubeResponse>("/videos", {
     params: { type },
   });
   return data;
 };
 
-export const postYoutubeLink = async (youtubeForm: IYoutubeForm) => {
-  const { data } = await api.post<IPostYoutubeResponse>("/api/youtube", youtubeForm);
+export const postYoutube = async (youtubeForm: IYoutubeForm) => {
+  const { data } = await api.post<IPostYoutubeResponse>("/videos", youtubeForm);
   return data;
 };

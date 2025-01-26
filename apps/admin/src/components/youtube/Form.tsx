@@ -5,6 +5,7 @@ import { IYoutubeForm, YoutubeType } from "type";
 import { Button } from "../ui/button";
 import YoutubeInput from "./input";
 import YoutubeVideoContainer from "./Video";
+import { toast } from "sonner";
 
 interface ILiveFormProps {
   option: YoutubeType;
@@ -15,7 +16,7 @@ const LiveForm = ({ option }: ILiveFormProps) => {
   const isShowMainText = option !== "video";
 
   const { register, handleSubmit, reset } = useForm<IYoutubeForm>();
-  const { mutate } = usePostYoutubeLink(option);
+  const { mutate, isPending } = usePostYoutubeLink(option);
 
   const onSubmit = (data: IYoutubeForm) => {
     const { mainText, preacher, title, url, date } = data;
@@ -33,7 +34,6 @@ const LiveForm = ({ option }: ILiveFormProps) => {
       },
       {
         onSuccess: ({ result }) => {
-          // 필요한 필드만 리셋
           reset({
             url: "",
             title: "",
@@ -41,9 +41,7 @@ const LiveForm = ({ option }: ILiveFormProps) => {
             mainText: "",
             date: "",
           });
-          return result === "success"
-            ? alert("변경되었습니다.")
-            : alert("API 요청 중 오류가 발생하였습니다.");
+          toast("변경되었습니다.");
         },
         onError: (error) => console.log(error),
       },
@@ -100,7 +98,9 @@ const LiveForm = ({ option }: ILiveFormProps) => {
             />
           </>
         )}
-        <Button className="mt-2">등록</Button>
+        <Button isLoading={isPending} disabled={isPending} className="mt-2">
+          등록
+        </Button>
       </form>
       <YoutubeVideoContainer option={option} />
     </div>
