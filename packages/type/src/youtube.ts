@@ -31,3 +31,12 @@ export interface IYoutubeForm {
 export interface IGetYoutubeResponse {
   youtubeList: IYoutube[];
 }
+
+export type LiveType = {
+  url: string;
+  updatedAt: number;
+};
+
+export interface IGetLiveResponse {
+  live: LiveType;
+}
