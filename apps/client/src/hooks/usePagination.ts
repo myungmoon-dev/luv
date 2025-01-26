@@ -18,6 +18,8 @@ const usePagination = ({ totalCount, pageSize = 10 }: IUsePaginationProps) => {
   return {
     hasNextPage: notPinnedCount > expectedCount,
     setNextPage,
+    page,
+    onSetPage: setPage,
   };
 };
 

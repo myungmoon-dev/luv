@@ -1,4 +1,4 @@
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 import {
   deleteHomeWorship,
@@ -7,20 +7,14 @@ import {
   getHomeWorships,
   postHomeWorship,
   postHomeWorshipComment,
-  postHomeWorshipPasswordCheck,
   putHomeWorship,
 } from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
-  return useInfiniteQuery({
-    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string; isGetPinned?: boolean } }) =>
-      getHomeWorships({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt, isGetPinned: pageParam.isGetPinned }),
+  return useQuery({
+    queryFn: () => getHomeWorships(),
     queryKey: homeWorshipKeys.list(),
-    initialPageParam: { lastVisibleCreatedAt: undefined, isGetPinned: true },
-    getNextPageParam: (lastPage) => {
-      return { lastVisibleCreatedAt: lastPage.homeWorships.at(-1)?.createdAt, isGetPinned: false };
-    },
   });
 };
 
@@ -28,6 +22,7 @@ const useGetHomeWorship = ({ homeWorshipId }: { homeWorshipId: string }) => {
   return useQuery({
     queryFn: () => getHomeWorship(homeWorshipId),
     queryKey: homeWorshipKeys.detail(homeWorshipId),
+    enabled: !!homeWorshipId,
   });
 };
 
@@ -47,18 +42,12 @@ const usePostHomeWorshipComment = () => useMutation({ mutationFn: postHomeWorshi
 
 const useDeleteHomeWorshipComment = () => useMutation({ mutationFn: deleteHomeWorshipComment });
 
-const usePostHomeWorshipPasswordCheck = () =>
-  useMutation({
-    mutationFn: postHomeWorshipPasswordCheck,
-  });
-
 export {
+  useDeleteHomeWorship,
+  useDeleteHomeWorshipComment,
   useGetHomeWorship,
   useGetHomeWorships,
   usePostHomeWorship,
-  useDeleteHomeWorship,
   usePostHomeWorshipComment,
-  useDeleteHomeWorshipComment,
-  usePostHomeWorshipPasswordCheck,
   usePutHomeWorship,
 };

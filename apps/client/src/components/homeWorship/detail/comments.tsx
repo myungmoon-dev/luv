@@ -13,7 +13,7 @@ const HomeWorshipDetailComments = () => {
   const { data } = useGetHomeWorship({ homeWorshipId });
   const { mutate } = useDeleteHomeWorshipComment();
 
-  const comments = data?.homeWorship.comments || [];
+  const comments = data?.comments || [];
 
   const handleClickDelete = (commentId: string) => {
     const password = prompt("비밀번호를 입력해주세요.");
@@ -25,8 +25,8 @@ const HomeWorshipDetailComments = () => {
           alert("삭제되었습니다.");
           queryClient.invalidateQueries({ queryKey: homeWorshipKeys.detail(homeWorshipId) });
         },
-        onError: (err: any) => {
-          alert(err.response.data.result);
+        onError: () => {
+          alert("비밀번호가 일치하지 않습니다.");
         },
       },
     );
@@ -40,14 +40,14 @@ const HomeWorshipDetailComments = () => {
         <HomeWorshipDetailCommentForm />
         <div className="flex flex-col gap-5">
           {comments.map((comment) => (
-            <div className="flex flex-col gap-3 rounded-md border border-gray-300 p-5 shadow-md" key={comment.id}>
+            <div className="flex flex-col gap-3 rounded-md border border-gray-300 p-5 shadow-md" key={comment._id}>
               <div className="flex justify-between text-sm">
                 <div className="flex gap-2">
-                  <p>{comment.name}</p>
+                  <p>{comment.userName}</p>
                   <p>|</p>
                   <p>{dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}</p>
                 </div>
-                <button onClick={() => handleClickDelete(comment.id)} className="text-red-500">
+                <button onClick={() => handleClickDelete(comment._id)} className="text-red-500">
                   삭제
                 </button>
               </div>

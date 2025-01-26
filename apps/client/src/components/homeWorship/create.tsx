@@ -33,8 +33,7 @@ const HomeWorshipCreate = () => {
     formData.append("userName", data.userName);
 
     Array.from(data.image).forEach((image) => {
-      formData.append(`image-file`, image);
-      formData.append(`image-name`, image.name);
+      formData.append("images", image);
     });
 
     mutate(formData, {

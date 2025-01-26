@@ -1,4 +1,4 @@
-import { useGetHomeWorship, usePostHomeWorshipPasswordCheck, usePutHomeWorship } from "@/query/homeWorship";
+import { useGetHomeWorship, usePutHomeWorship } from "@/query/homeWorship";
 import dynamic from "next/dynamic";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -16,13 +16,11 @@ const HomeWorshipEdit = () => {
   const params = useParams();
   const homeWorshipId = params?.id as string;
 
-  const { data } = useGetHomeWorship({ homeWorshipId });
-  const homeWorship = data?.homeWorship;
+  const { data: homeWorship } = useGetHomeWorship({ homeWorshipId });
 
   const { register, handleSubmit, reset } = useForm<IHomeWorshipForm>();
 
   const { mutate, isPending } = usePutHomeWorship();
-  const { mutate: passwordCheckMutate } = usePostHomeWorshipPasswordCheck();
 
   const [content, setContent] = useState("");
   const [isNewImage, setNewImage] = useState(false);
@@ -49,8 +47,7 @@ const HomeWorshipEdit = () => {
 
     if (isNewImage) {
       Array.from(data.image).forEach((image) => {
-        formData.append(`image-file`, image);
-        formData.append(`image-name`, image.name);
+        formData.append("images", image);
       });
     }
 
@@ -68,23 +65,6 @@ const HomeWorshipEdit = () => {
     );
   };
 
-  const checkPassword = () => {
-    const password = prompt("비밀번호를 입력해주세요.");
-    if (!password) {
-      push("/homeworship");
-    } else {
-      passwordCheckMutate(
-        { homeWorshipId, password },
-        {
-          onError: (err: any) => {
-            alert("비밀번호가 일치하지 않습니다.");
-            push("/homeworship");
-          },
-        },
-      );
-    }
-  };
-
   useEffect(() => {
     if (!homeWorship) return;
     reset({
@@ -95,10 +75,6 @@ const HomeWorshipEdit = () => {
     });
     setContent(homeWorship.content);
   }, [homeWorship, reset]);
-
-  useEffect(() => {
-    checkPassword();
-  }, []);
 
   return (
     <div className="relative flex justify-center">
@@ -122,7 +98,7 @@ const HomeWorshipEdit = () => {
             <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
               <p className="text-xl font-bold">기존 사진</p>
               <div className="flex flex-col items-end">
-                {homeWorship && <img src={`${homeWorship?.image}/full`} className="h-full w-[380px]" alt="이미지" />}
+                {homeWorship && <img src={homeWorship?.imageUrls[0]} className="h-full w-[380px]" alt="이미지" />}
                 <button onClick={() => setNewImage(true)} className="text-red-500" type="button">
                   삭제
                 </button>

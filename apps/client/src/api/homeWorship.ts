@@ -1,17 +1,11 @@
 import { IGetHomeWorshipResponse, IGetHomeWorshipsResponse } from "@/types/homeWorship/response";
 import { api } from ".";
 
-export const getHomeWorships = async ({
-  lastVisibleCreatedAt,
-  isGetPinned = true,
-}: {
-  lastVisibleCreatedAt?: string;
-  isGetPinned?: boolean;
-}) => {
-  const { data } = await api.get<IGetHomeWorshipsResponse>("/api/homeWorship", {
+export const getHomeWorships = async () => {
+  const { data } = await api.get<IGetHomeWorshipsResponse>("/homeWorships", {
     params: {
-      lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
-      isGetPinned,
+      // lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
+      // isGetPinned,
     },
   });
 
@@ -19,13 +13,13 @@ export const getHomeWorships = async ({
 };
 
 export const getHomeWorship = async (homeWorshipId: string) => {
-  const { data } = await api.get<IGetHomeWorshipResponse>(`/api/homeWorship/${homeWorshipId}`);
+  const { data } = await api.get<IGetHomeWorshipResponse>(`/homeWorships/${homeWorshipId}`);
 
   return data;
 };
 
 export const postHomeWorship = async (homeWorship: FormData) => {
-  const { data } = await api.post("/api/homeWorship", homeWorship, {
+  const { data } = await api.post("/homeWorships", homeWorship, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -41,7 +35,7 @@ export const putHomeWorship = async ({
   homeWorship: FormData;
   homeWorshipId: string;
 }) => {
-  const { data } = await api.put(`/api/homeWorship/${homeWorshipId}`, homeWorship, {
+  const { data } = await api.put(`/homeWorships/${homeWorshipId}`, homeWorship, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -51,7 +45,7 @@ export const putHomeWorship = async ({
 };
 
 export const deleteHomeWorship = async ({ homeWorshipId, password }: { homeWorshipId: string; password: string }) => {
-  const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}`, { params: { password } });
+  const { data } = await api.delete(`/homeWorships/${homeWorshipId}`, { params: { password } });
 
   return data;
 };
@@ -59,17 +53,17 @@ export const deleteHomeWorship = async ({ homeWorshipId, password }: { homeWorsh
 export const postHomeWorshipComment = async ({
   homeWorshipId,
   content,
-  name,
+  userName,
   password,
 }: {
   homeWorshipId: string;
-  name: string;
+  userName: string;
   content: string;
   password: string;
 }) => {
-  const { data } = await api.post(`/api/homeWorship/${homeWorshipId}/comment`, {
+  const { data } = await api.post(`/homeWorships/${homeWorshipId}/comments`, {
     content,
-    name,
+    userName,
     password,
   });
 
@@ -85,19 +79,7 @@ export const deleteHomeWorshipComment = async ({
   commentId: string;
   password: string;
 }) => {
-  const { data } = await api.delete(`/api/homeWorship/${homeWorshipId}/comment`, { data: { password, commentId } });
-
-  return data;
-};
-
-export const postHomeWorshipPasswordCheck = async ({
-  homeWorshipId,
-  password,
-}: {
-  homeWorshipId: string;
-  password: string;
-}) => {
-  const { data } = await api.post(`/api/homeWorship/${homeWorshipId}/password-check`, { password });
+  const { data } = await api.delete(`/homeWorships/${homeWorshipId}/comments/${commentId}`, { data: { password } });
 
   return data;
 };
