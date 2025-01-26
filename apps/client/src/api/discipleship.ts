@@ -3,7 +3,7 @@ import { api } from ".";
 import { YearMonthType } from "type";
 
 export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
-  const { data } = await api.get<IGetBiblesResponse>("/api/discipleship/bibles", {
+  const { data } = await api.get<IGetBiblesResponse>("/bibles", {
     params: {
       yearMonth,
     },
@@ -13,7 +13,7 @@ export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => 
 };
 
 export const getBible = async (bibleId: string) => {
-  const { data } = await api.get<IGetBibleResponse>(`/api/discipleship/bibles/${bibleId}`);
+  const { data } = await api.get<IGetBibleResponse>(`/bibles/${bibleId}`);
 
   return data;
 };

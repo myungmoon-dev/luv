@@ -1,5 +1,5 @@
 import { IBibleForm, YearMonthType } from "type";
-import { IGetBibleResponse, IGetBiblesResponse } from "@/types/discipleship/bible/response";
+import { IGetBibleResponse, IGetBiblesResponse } from "@/types/bible/response";
 import { api } from ".";
 
 export const postBible = async (bible: IBibleForm) => {

@@ -1,28 +1,18 @@
-import { useGetYoutubeList } from "@/query/youtube";
 import useModalStore from "@/store/modal";
 import dayjs from "dayjs";
-import YoutubeError from "../youtubeError";
+import { useGetLive } from "@/query/youtube";
 
 const HomeBannerLive = () => {
-  const { data } = useGetYoutubeList({ videoType: "live" });
-  const liveVideo = data?.[0];
-
-  const openModal = useModalStore((state) => state.open);
+  const { data } = useGetLive();
 
   const handleClickLive = () => {
-    // openModal(<YoutubeError />);
-    // return; // TODO: 에러 시 사.
-    open(`https://youtu.be/${liveVideo?.videoId}`);
+    open(data?.url);
   };
 
   return (
     <div className="flex flex-col items-center gap-6">
       <h1 className="text-center text-4xl font-extrabold text-white sm:text-[3.75rem] sm:leading-[4.5rem]">
-        <span data-aos="fade-up">{dayjs(liveVideo?.date).format("YYYY.MM.DD")}</span>
-        <br />
-        <span data-aos="fade-up" className="font-SCoreDream">
-          {liveVideo?.title} LIVE
-        </span>
+        <span data-aos="fade-up">{dayjs(data?.updatedAt).format("YYYY.MM.DD")}</span>
       </h1>
       <button onClick={handleClickLive} data-aos="fade-up" className="text-2xl font-bold text-white hover:underline">
         예배생중계 바로가기 {">"}

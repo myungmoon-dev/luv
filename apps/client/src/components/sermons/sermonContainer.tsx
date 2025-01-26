@@ -6,7 +6,7 @@ interface ISermonContainerProps {
   list: IYoutube[];
 }
 
-const SermonContainer = ({ list, title }: ISermonContainerProps) => {
+const SermonContainer = ({ list }: ISermonContainerProps) => {
   return (
     <div className="flex w-full items-center justify-center px-5 2xl:px-20">
       <div className="flex w-full flex-col gap-5">
