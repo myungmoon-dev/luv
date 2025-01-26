@@ -18,7 +18,7 @@ const HomeWorshipDetailComment = () => {
   const onSubmit: SubmitHandler<IComment> = (data) => {
     if (!data.content || !data.name || !data.password) return alert("모든 정보를 입력해 주세요.");
     mutate(
-      { homeWorshipId, content: data.content, name: data.name, password: data.password },
+      { homeWorshipId, content: data.content, userName: data.name, password: data.password },
       {
         onSuccess: () => {
           alert("추가되었습니다.");

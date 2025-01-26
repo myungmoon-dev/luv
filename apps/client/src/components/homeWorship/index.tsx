@@ -1,20 +1,12 @@
-import usePagination from "@/hooks/usePagination";
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
 import { Spinner, Table } from "ui";
 
 const HomeWorships = () => {
   const { push } = useRouter();
-  const { data, fetchNextPage } = useGetHomeWorships();
+  const { data, isFetching } = useGetHomeWorships();
 
-  const { hasNextPage, setNextPage } = usePagination({ totalCount: data?.pages[0].notPinnedCount || 0 });
-
-  const handleClickNextPage = () => {
-    setNextPage();
-    fetchNextPage();
-  };
-
-  if (!data)
+  if (isFetching)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -33,26 +25,17 @@ const HomeWorships = () => {
       </div>
       <div className="flex flex-col gap-7">
         <Table
-          data={data.pages
-            .map((page) =>
-              page.homeWorships.map((homeWorship) => ({
-                id: homeWorship.id,
-                date: homeWorship.date,
-                title: `${homeWorship.title} ${homeWorship?.comments ? `[${homeWorship.comments.length}]` : ""}`,
-                writer: homeWorship.userName,
-                isPinned: homeWorship.isPinned,
-              })),
-            )
-            .flat()}
+          data={
+            data?.homeworships.map((homeWorship) => ({
+              id: homeWorship._id,
+              date: homeWorship.date,
+              title: `${homeWorship.title} ${homeWorship?.comments ? `[${homeWorship.comments.length}]` : ""}`,
+              writer: homeWorship.userName,
+              isPinned: homeWorship.isPinned,
+            })) || []
+          }
           onClickRow={(rowId) => push(`/homeworship/${rowId}`)}
         />
-        {hasNextPage && (
-          <div className="flex justify-end">
-            <button className="rounded-md bg-blue-500 px-2 py-1 text-lg text-white" onClick={handleClickNextPage}>
-              다음
-            </button>
-          </div>
-        )}
       </div>
     </div>
   );
