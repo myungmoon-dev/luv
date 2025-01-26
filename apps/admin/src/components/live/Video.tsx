@@ -9,14 +9,10 @@ const LiveVideo = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <YoutubeVideo className="h-[300px] w-[500px]" videoId={data.url} />
+      <YoutubeVideo className="h-[300px] w-[500px]" videoId={data.url} isFullLink />
       <div className="flex">
         <p>현재 주소 -&nbsp;</p>
-        <Link
-          target="_blank"
-          href={`https://youtube.com/watch?v=${data.url}`}
-          className="text-blue-500"
-        >
+        <Link target="_blank" href={data.url} className="text-blue-500">
           {data.url}
         </Link>
       </div>
