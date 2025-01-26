@@ -1,11 +1,16 @@
-import { IBoardBase, IBoardFormBase } from "./common";
+import { IBoardFormBase } from "./common";
 
 interface ILink {
   isPlaylist: boolean;
   name: string;
 }
 
-export interface IBible extends IBoardBase {
+export interface IBible {
+  _id: string;
+  title: string;
+  content: string;
+  createdAt: number;
+  date: string;
   links: ILink[];
 }
 

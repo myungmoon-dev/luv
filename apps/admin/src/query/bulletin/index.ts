@@ -18,7 +18,6 @@ const useGetBulletin = () => {
   return useQuery({
     queryFn: () => getBulletin(bulletinId),
     queryKey: bulletinKeys.detail(bulletinId),
-    select: (res) => res.bulletin,
   });
 };
 

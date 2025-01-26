@@ -5,18 +5,13 @@ import {
   postMissionNews,
   putMissionNews,
 } from "@/api/missionNews";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { missionNewsListKeys } from "./keys";
 
 export const useGetMissionNewsList = () => {
-  return useInfiniteQuery({
-    queryFn: ({ pageParam = {} }: { pageParam?: { lastVisibleCreatedAt?: string } }) =>
-      getMissionNewsList({ lastVisibleCreatedAt: pageParam.lastVisibleCreatedAt }),
+  return useQuery({
+    queryFn: () => getMissionNewsList(),
     queryKey: missionNewsListKeys.list(),
-    initialPageParam: { lastVisibleCreatedAt: undefined },
-    getNextPageParam: (lastPage) => {
-      return { lastVisibleCreatedAt: lastPage.missionNewsList.at(-1)?.createdAt };
-    },
   });
 };
 
@@ -24,7 +19,7 @@ export const useGetMissionNews = ({ missionNewsId }: { missionNewsId: string }) 
   return useQuery({
     queryFn: () => getMissionNews({ missionNewsId }),
     queryKey: missionNewsListKeys.detail(missionNewsId),
-    select: (res) => res.missionNews,
+    enabled: !!missionNewsId,
   });
 };
 

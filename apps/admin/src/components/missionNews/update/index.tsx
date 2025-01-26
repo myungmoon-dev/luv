@@ -6,12 +6,12 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { IMissionNewsForm } from "type";
 import { Spinner } from "ui";
 
-interface IMissionNewsUpdateForm extends Omit<IMissionNewsForm, "createdAt" | "image"> {
+interface IMissionNewsUpdateForm extends IMissionNewsForm {
   image: FileList;
-  writer: string;
 }
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
@@ -42,13 +42,12 @@ const MissionNewsUpdate = () => {
 
     formData.append("title", data.title);
     formData.append("date", data.date);
-    formData.append("writer", data.writer);
+    formData.append("userName", data.userName);
     formData.append("content", content);
 
     if (isNewImage) {
       Array.from(data.image).forEach((image) => {
-        formData.append(`image-file`, image);
-        formData.append(`image-name`, image.name);
+        formData.append("images", image);
       });
     }
 
@@ -56,7 +55,7 @@ const MissionNewsUpdate = () => {
       { form: formData, id: missionNewsId },
       {
         onSuccess: () => {
-          alert("수정되었습니다.");
+          toast("수정되었습니다.");
           push(`/mission-news/${missionNewsId}`);
         },
         onError: () => {
@@ -72,7 +71,7 @@ const MissionNewsUpdate = () => {
       content: data.content,
       date: data.date,
       title: data.title,
-      writer: data.writer,
+      userName: data.userName,
     });
     setContent(data.content);
   }, [data, reset]);
@@ -89,15 +88,16 @@ const MissionNewsUpdate = () => {
       </label>
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">작성자</p>
-        <Input className="w-[233px]" {...register("writer")} />
+        <Input className="w-[233px]" {...register("userName")} />
       </label>
       {!isNewImage && (
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
           <p className="text-xl font-bold">기존 사진</p>
           <div className="flex flex-col items-end">
-            {data && (
-              <img src={`${data?.image}/bulletin`} className="h-full w-[380px]" alt="이미지" />
-            )}
+            {data &&
+              data.imageUrls.map((imageUrl) => (
+                <img key={imageUrl} src={imageUrl} className="h-full w-[380px]" alt="이미지" />
+              ))}
             <Button onClick={() => setNewImage(true)} variant="destructive" type="button">
               삭제
             </Button>
@@ -115,7 +115,9 @@ const MissionNewsUpdate = () => {
         <Editor defaultValue={content} setValue={setContent} />
       </div>
       <div className="flex justify-end">
-        <Button disabled={isPending}>선교지 소식 수정</Button>
+        <Button isLoading={isPending} disabled={isPending}>
+          선교지 소식 수정
+        </Button>
       </div>
     </form>
   );

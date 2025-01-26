@@ -1,7 +1,7 @@
+import { getLive, getYoutubeLink, postYoutubeLink, putLive } from "@/api/youtube";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getYoutubeLink, postYoutubeLink } from "@/api/youtube";
-import youtubeKeys from "./keys";
 import { YoutubeType } from "type";
+import youtubeKeys from "./keys";
 
 // FIXME: youtube 객체를 항상 1개를 가져옴
 export const useGetYoutubeLink = (type: YoutubeType) => {
@@ -27,3 +27,13 @@ export const usePostYoutubeLink = (type: YoutubeType) => {
     onError: (error) => console.error(error),
   });
 };
+
+export const useGetLive = () => {
+  return useQuery({
+    queryKey: youtubeKeys.live(),
+    queryFn: () => getLive(),
+    select: (res) => res.live,
+  });
+};
+
+export const usePutLive = () => useMutation({ mutationFn: putLive });

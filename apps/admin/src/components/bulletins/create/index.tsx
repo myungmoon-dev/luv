@@ -1,18 +1,16 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { usePostBulletin } from "@/query/bulletin";
 import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
-import { usePostBulletin } from "@/query/bulletin";
-import { useRouter } from "next/navigation";
 
 interface IBulletinImageListForm extends Omit<IBulletinImageForm, "images"> {
   images: FileList;
 }
 
 const BulletinCreate = () => {
-  const { push } = useRouter();
   const { register, handleSubmit } = useForm<IBulletinImageListForm>();
 
-  const { mutate } = usePostBulletin();
+  const { mutate, isPending } = usePostBulletin();
 
   const onSubmit = async (data: IBulletinImageListForm) => {
     const formData = new FormData();
@@ -22,9 +20,9 @@ const BulletinCreate = () => {
 
     formData.append("date", data.date);
     formData.append("title", data.title);
-    Array.from(data.images).forEach((image, index) => {
-      formData.append(`image-${index}-file`, image);
-      formData.append(`image-${index}-name`, image.name);
+
+    Array.from(data.images).forEach((image) => {
+      formData.append("images", image);
     });
 
     mutate(formData, {
@@ -56,7 +54,9 @@ const BulletinCreate = () => {
         <input type="file" accept="image/*" multiple={true} {...register("images")} />
       </label>
       <div className="mt-2">
-        <button className="rounded bg-blue-500 px-4 py-2 text-white">주보 추가하기</button>
+        <Button disabled={isPending} isLoading={isPending}>
+          주보 추가하기
+        </Button>
       </div>
     </form>
   );

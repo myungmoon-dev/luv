@@ -8,7 +8,7 @@ export const getBulletins = async () => {
 };
 
 export const postBulletin = async (bulletin: FormData) => {
-  const { data } = await api.post("/api/bulletins", bulletin, {
+  const { data } = await api.post("/bulletins", bulletin, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -18,13 +18,13 @@ export const postBulletin = async (bulletin: FormData) => {
 };
 
 export const getBulletin = async (bulletinId: string) => {
-  const { data } = await api.get<IGetBulletinResponse>(`/api/bulletins/${bulletinId}`);
+  const { data } = await api.get<IGetBulletinResponse>(`/bulletins/${bulletinId}`);
 
   return data;
 };
 
 export const deleteBulletin = async (bulletinId: string) => {
-  const { data } = await api.delete(`/api/bulletins/${bulletinId}`);
+  const { data } = await api.delete(`/bulletins/${bulletinId}`);
 
   return data;
 };

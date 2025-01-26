@@ -3,13 +3,14 @@ import { useDeleteBible, useGetBible } from "@/query/discipleship";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
+import { toast } from "sonner";
 import { SafeHTML, Spinner, YoutubeVideo } from "ui";
 
 const BibleDetail = () => {
   const { push } = useRouter();
   const params = useParams();
   const bibleId = params?.id as string;
-  const { data } = useGetBible({ bibleId });
+  const { data, isPending } = useGetBible({ bibleId });
 
   const { mutate } = useDeleteBible();
 
@@ -19,7 +20,7 @@ const BibleDetail = () => {
       { bibleId },
       {
         onSuccess: () => {
-          alert("삭제되었습니다.");
+          toast("삭제되었습니다.");
           push("/bibles");
         },
         onError: (err: any) => {
@@ -29,31 +30,29 @@ const BibleDetail = () => {
     );
   };
 
-  if (!data)
+  if (isPending)
     return (
-      <div className="flex justify-center">
+      <div className="flex h-full items-center justify-center">
         <Spinner />
       </div>
     );
 
-  const bible = data.bible;
-
   return (
     <div>
-      <h1 className="mb-2 text-3xl font-bold">{bible.title}</h1>
+      <h1 className="mb-2 text-3xl font-bold">{data?.title}</h1>
       <div className="mb-10 flex items-center justify-between ">
         <p className="text-sm text-slate-500">
-          생성일: {dayjs(bible.createdAt).format("YYYY-MM-DD")}
+          생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD HH:mm:ss")}
         </p>
         <Button variant="destructive" onClick={handleClickDelete}>
           삭제
         </Button>
       </div>
       <div className="mb-10">
-        <SafeHTML html={bible.content} />
+        <SafeHTML html={data?.content} />
       </div>
       <div className="grid grid-cols-2 gap-5">
-        {bible.links.map((link) => (
+        {data?.links.map((link) => (
           <YoutubeVideo
             isFullLink={false}
             className="h-[250px]"

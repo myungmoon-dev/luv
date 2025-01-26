@@ -1,44 +1,47 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { usePostMissionNews } from "@/query/missionNews";
+import { usePostHomeWorship } from "@/query/homeWorship";
 import dynamic from "next/dynamic";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { toast } from "sonner";
-import { IBookForm } from "type";
+import { IHomeWorshipForm } from "type";
 import { Spinner } from "ui";
-
-interface IMissionNewsCreateForm extends Omit<IBookForm, "createdAt" | "image"> {
-  image: FileList;
-  writer: string;
-}
+import { Input } from "../../ui/input";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
   ssr: false,
   loading: () => <Spinner />,
 });
 
-const MissionNewsCreate = () => {
+const HomeworshipCreate = () => {
   const { push } = useRouter();
 
-  const { register, handleSubmit, reset } = useForm<IMissionNewsCreateForm>();
+  const { register, handleSubmit, reset } = useForm<IHomeWorshipForm>();
 
-  const { mutate, isPending } = usePostMissionNews();
+  const { mutate, isPending } = usePostHomeWorship();
 
   const [content, setContent] = useState("");
 
-  const onSubmit: SubmitHandler<IMissionNewsCreateForm> = async (data) => {
+  const onSubmit: SubmitHandler<IHomeWorshipForm> = async (data) => {
     const formData = new FormData();
 
-    if (data.image.length === 0 || !data.date || !data.title || !content)
+    if (
+      data.image.length === 0 ||
+      !data.date ||
+      !data.title ||
+      !data.password ||
+      !data.userName ||
+      !content
+    )
       return alert("모든 정보를 입력해주세요.");
     if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
     formData.append("title", data.title);
     formData.append("date", data.date);
-    formData.append("userName", data.writer);
     formData.append("content", content);
+    formData.append("password", data.password);
+    formData.append("userName", data.userName);
+    formData.append("isPinned", "checked");
 
     Array.from(data.image).forEach((image) => {
       formData.append("images", image);
@@ -48,8 +51,7 @@ const MissionNewsCreate = () => {
       onSuccess: () => {
         toast("추가되었습니다.");
         reset();
-        setContent("");
-        push("/mission-news");
+        push("/homeworship");
       },
       onError: () => {
         alert("에러가 발생했습니다. 다시 시도해주세요.");
@@ -60,16 +62,12 @@ const MissionNewsCreate = () => {
   return (
     <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-        <p className="text-xl font-bold">날짜</p>
-        <Input className="w-[233px]" type="month" {...register("date")} />
+        <p className="text-xl font-bold">예배 날짜</p>
+        <Input className="w-[233px]" type="date" {...register("date")} />
       </label>
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">제목</p>
         <Input className="w-[233px]" {...register("title")} />
-      </label>
-      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-        <p className="text-xl font-bold">작성자</p>
-        <Input className="w-[233px]" {...register("writer")} />
       </label>
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">사진 업로드</p>
@@ -79,13 +77,22 @@ const MissionNewsCreate = () => {
         <p className="text-xl font-bold">글</p>
         <Editor setValue={setContent} />
       </div>
-      <div className="flex justify-end">
-        <Button isLoading={isPending} disabled={isPending}>
-          선교지 소식 올리기
-        </Button>
-      </div>
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="text-xl font-bold">작성자</p>
+        <Input className="w-[233px]" {...register("userName")} />
+      </label>
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="text-xl font-bold">비밀번호</p>
+        <Input className="w-[233px]" type="password" {...register("password")} />
+      </label>
+      <button
+        disabled={isPending}
+        className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white"
+      >
+        공지 올리기
+      </button>
     </form>
   );
 };
 
-export default MissionNewsCreate;
+export default HomeworshipCreate;

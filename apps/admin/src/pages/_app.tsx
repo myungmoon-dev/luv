@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/sonner";
 import QueryProvider from "@/query/Provider";
 import "@/styles/globals.css";
 import ThemeProvider from "@/utils/themeProvider";
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <QueryProvider>
       <ThemeProvider>
         <Component {...pageProps} />
+        <Toaster />
       </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} position="bottom" />
     </QueryProvider>
