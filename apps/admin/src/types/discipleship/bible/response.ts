@@ -4,6 +4,4 @@ export interface IGetBiblesResponse {
   bibles: IBible[];
 }
 
-export interface IGetBibleResponse {
-  bible: IBible;
-}
+export interface IGetBibleResponse extends IBible {}

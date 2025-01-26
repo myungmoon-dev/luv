@@ -16,6 +16,7 @@ export const useGetBible = ({ bibleId }: { bibleId: string }) => {
   return useQuery({
     queryFn: () => getBible(bibleId),
     queryKey: bibleKeys.detail(bibleId),
+    enabled: !!bibleId,
   });
 };
 
