@@ -1,18 +1,14 @@
 import { IGetMissionResponse, IGetMissionsResponse } from "@/types/news/response";
 import { api } from ".";
 
-export const getMissions = async ({ lastVisibleCreatedAt }: { lastVisibleCreatedAt?: string }) => {
-  const { data } = await api.get<IGetMissionsResponse>("/api/mission", {
-    params: {
-      lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
-    },
-  });
+export const getMissions = async () => {
+  const { data } = await api.get<IGetMissionsResponse>("/mission-news-list");
 
   return data;
 };
 
 export const getMission = async (missionId: string) => {
-  const { data } = await api.get<IGetMissionResponse>(`/api/mission/${missionId}`);
+  const { data } = await api.get<IGetMissionResponse>(`/mission-news-list/${missionId}`);
 
   return data;
 };

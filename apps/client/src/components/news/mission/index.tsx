@@ -1,25 +1,12 @@
-import usePagination from "@/hooks/usePagination";
 import { useGetMissions } from "@/query/news";
 import { useRouter } from "next/navigation";
 import { Spinner, Table } from "ui";
 
 const Mission = () => {
   const { push } = useRouter();
-  const { data, fetchNextPage } = useGetMissions();
+  const { data, isFetching } = useGetMissions();
 
-  const { hasNextPage, setNextPage } = usePagination({
-    totalCount: data?.pages[0].totalMissionsCount || 0,
-    pageSize: 5,
-  });
-
-  const missions = data?.pages.map((page) => page.missions).flat();
-
-  const handleClickNextPage = () => {
-    setNextPage();
-    fetchNextPage();
-  };
-
-  if (!data)
+  if (isFetching)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -31,23 +18,15 @@ const Mission = () => {
       <div className="flex flex-col gap-7">
         <Table
           data={
-            missions?.map((mission) => ({
-              id: mission.id,
-              date: mission.date,
-              title: mission.title,
-              writer: mission.writer,
+            data?.missionNewsList.map((missionNews) => ({
+              id: missionNews._id,
+              date: missionNews.date,
+              title: missionNews.title,
+              writer: missionNews.userName,
             })) || []
           }
           onClickRow={(rowId) => push(`/news/mission-news/${rowId}`)}
         />
-        {hasNextPage && (
-          <button
-            className="w-full rounded-3xl border border-gray-600 py-1 font-bold md:py-2 md:text-lg lg:py-3 lg:text-xl"
-            onClick={handleClickNextPage}
-          >
-            더보기
-          </button>
-        )}
       </div>
     </div>
   );
