@@ -11,6 +11,7 @@ const usePagination = ({ totalCount, pageSize = 10 }: IUsePaginationProps) => {
 
   const expectedCount = page * pageSize;
   const notPinnedCount = totalCount;
+  const totalPages = Math.ceil(totalCount / pageSize);
   const setNextPage = () => {
     setPage(page + 1);
   };
@@ -20,6 +21,7 @@ const usePagination = ({ totalCount, pageSize = 10 }: IUsePaginationProps) => {
     setNextPage,
     page,
     onSetPage: setPage,
+    totalPages,
   };
 };
 
