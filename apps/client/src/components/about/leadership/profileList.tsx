@@ -304,25 +304,18 @@ const staffProfiles = [
     officerType: "elder",
   },
   {
-    name: "박용래",
-    image: "/images/staff/park_yl.png",
-    position: "시설관리 및 차량운행",
-    tabType: "staff",
-    officerType: "deacon",
-  },
-  {
     name: "김해봄",
     image: "/images/leader/hae-bom.png",
     position: "WithEL 찬양팀",
     tabType: "staff",
-    officerType: "deacon",
+    officerType: "staff",
   },
   {
     name: "김태연",
     image: "/images/leader/tae-yeon.png",
     position: "WithEL 찬양팀",
     tabType: "staff",
-    officerType: "deacon",
+    officerType: "staff",
   },
 ];
 const ProfileList = ({ tabType, className }: IProfileListProps) => {
