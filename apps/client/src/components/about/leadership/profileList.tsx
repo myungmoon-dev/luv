@@ -290,9 +290,16 @@ const staffProfiles = [
     officerType: "elder",
   },
   {
-    name: "정성환 ",
+    name: "정성환",
     image: "/images/elder/jung_sh.png",
     position: "체육,친교위원회 위원장",
+    tabType: "elder",
+    officerType: "otherElder",
+  },
+  {
+    name: "조동욱",
+    image: "/images/elder/jo_dw.png",
+    position: "",
     tabType: "elder",
     officerType: "otherElder",
   },
