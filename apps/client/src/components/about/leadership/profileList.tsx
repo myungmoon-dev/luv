@@ -298,7 +298,7 @@ const staffProfiles = [
   },
   {
     name: "조동욱",
-    image: "/images/elder/jo_dw.png",
+    image: "/images/elder/jo_dw1.png",
     position: "",
     tabType: "elder",
     officerType: "otherElder",
