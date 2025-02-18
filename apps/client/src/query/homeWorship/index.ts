@@ -13,7 +13,7 @@ import homeWorshipKeys from "./keys";
 
 const useGetHomeWorships = () => {
   return useQuery({
-    queryFn: () => getHomeWorships(),
+    queryFn: () => getHomeWorships({ page }),
     queryKey: homeWorshipKeys.list(),
   });
 };
