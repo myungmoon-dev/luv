@@ -10,5 +10,10 @@ export const tailwindConfig: Config = {
       colors,
       fontFamily,
     },
+    screens: {
+      sm: "540px",
+      md: "820px",
+      lg: "1280px",
+    },
   },
 };
