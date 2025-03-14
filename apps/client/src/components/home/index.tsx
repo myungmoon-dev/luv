@@ -6,8 +6,8 @@ import VideosSection from "./section/videos";
 const HomePage = () => {
   return (
     <div className="flex flex-col">
-      <VideosSection />
       <NavSection />
+      <VideosSection />
       <MapSection />
       <OfferingSection />
     </div>

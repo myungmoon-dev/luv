@@ -30,7 +30,7 @@ export const YoutubeVideo = ({
         <YouTube
           opts={isPlaylist ? opts : {}}
           videoId={isPlaylist ? "" : formattedVideoId}
-          iframeClassName="ui-h-full ui-w-full ui-rounded-lg"
+          iframeClassName="ui-h-full ui-w-full"
           className="ui-w-full ui-h-full"
           loading="lazy"
         />
