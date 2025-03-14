@@ -1,7 +1,6 @@
 import HomeAlbumSection from "./section/album";
-import MapSection from "./section/map";
+import MapOfferingSection from "./section/mapOffering";
 import NavSection from "./section/nav";
-import OfferingSection from "./section/offering";
 import VideosSection from "./section/videos";
 
 const HomePage = () => {
@@ -11,8 +10,8 @@ const HomePage = () => {
       <VideosSection />
       <div className="h-[8px] w-full bg-[#E6E6E6]" />
       <HomeAlbumSection />
-      <MapSection />
-      <OfferingSection />
+      <div className="h-[8px] w-full bg-[#E6E6E6]" />
+      <MapOfferingSection />
     </div>
   );
 };
