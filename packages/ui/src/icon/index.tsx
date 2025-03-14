@@ -3,12 +3,13 @@ import { IconCursorType, IconNameType, IconSizeType, icons, widthSize } from "./
 
 export interface IIconPropsType {
   name: IconNameType;
-  size: IconSizeType;
+  size?: IconSizeType;
   strokeColor?: string;
   backgroundColor?: string;
   cursor?: IconCursorType;
   className?: string;
   onClick?: () => void;
+  sizeNumber?: number;
 }
 
 export const Icon = ({
@@ -19,15 +20,20 @@ export const Icon = ({
   cursor = "ui-cursor-auto",
   className,
   onClick,
+  sizeNumber,
 }: IIconPropsType) => {
   const IconComponent = icons[name as IconNameType];
 
   return (
     <div
-      className={cn(`${widthSize[size]} ${cursor}`, className)}
+      className={cn(size && widthSize[size], cursor, className)}
       onClick={() => onClick && onClick()}
     >
-      <IconComponent backgroundColor={backgroundColor} strokeColor={strokeColor} />
+      <IconComponent
+        backgroundColor={backgroundColor}
+        strokeColor={strokeColor}
+        sizeNumber={sizeNumber}
+      />
     </div>
   );
 };
