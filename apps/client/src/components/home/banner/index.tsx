@@ -2,15 +2,49 @@ import Image from "next/image";
 
 import CaretLeftIcon from "./caretLeft";
 import CaretRightIcon from "./caretRight";
+import { useGetLive } from "@/query/youtube";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import HomeBannerLgCard from "./card/lg";
+import HomeBannerSmCard from "./card/sm";
 
-export enum HomeBannerEnum {
-  Watchword,
+enum HomeBannerEnum {
   Live,
   Bible,
   HomeWorship,
 }
 
 const HomeBanner = () => {
+  const [currentBanner, setCurrentBanner] = useState<HomeBannerEnum>(HomeBannerEnum.Live);
+
+  const { push } = useRouter();
+
+  const { data } = useGetLive();
+
+  const handleOpenLive = () => {
+    open(data?.url);
+  };
+
+  const handleClickBible = () => {
+    push("/discipleship/main/bible");
+  };
+
+  const handleClickHomeworship = () => {
+    push("/homeworship");
+  };
+
+  const handleClickPrev = () => {
+    if (currentBanner === HomeBannerEnum.Live) return setCurrentBanner(HomeBannerEnum.HomeWorship);
+    if (currentBanner === HomeBannerEnum.Bible) return setCurrentBanner(HomeBannerEnum.Live);
+    setCurrentBanner(HomeBannerEnum.Bible);
+  };
+
+  const handleClickNext = () => {
+    if (currentBanner === HomeBannerEnum.Live) return setCurrentBanner(HomeBannerEnum.Bible);
+    if (currentBanner === HomeBannerEnum.Bible) return setCurrentBanner(HomeBannerEnum.HomeWorship);
+    setCurrentBanner(HomeBannerEnum.Live);
+  };
+
   return (
     <div className="relative">
       <div className="relative h-[474.23px] w-auto sm:h-[398px] md:h-[368px] lg:h-[676px]">
@@ -25,48 +59,50 @@ const HomeBanner = () => {
         <p className="text-[18px] font-bold sm:text-[20px] lg:text-[24px]">이사야 43:19</p>
       </div>
       <div className="absolute bottom-0 flex w-full items-center bg-[#F6F6F6] bg-opacity-[30%] py-[18px] sm:py-[26px] md:static lg:hidden">
-        <div className="flex min-h-[35px] min-w-[35px] cursor-pointer items-center justify-center">
+        <div
+          className="flex min-h-[35px] min-w-[35px] cursor-pointer items-center justify-center"
+          onClick={handleClickPrev}
+        >
           <CaretLeftIcon />
         </div>
-        <div className="flex w-full cursor-pointer">
-          <div className="relative h-[70px] w-[70px]">
-            <Image src="/images/profile.png" alt="image" fill={true} objectFit="contain" />
-          </div>
-          <div className="flex h-[70px] w-full items-center bg-white pl-[41px] text-[17px] font-bold text-[#222222] sm:pl-[38px] sm:text-[18px] md:pl-[33px]">
-            명문교회 예배 생방송
-          </div>
-        </div>
-        <div className="flex min-h-[35px] min-w-[35px] cursor-pointer items-center justify-center">
+        {currentBanner === HomeBannerEnum.Live && (
+          <HomeBannerSmCard description="명문교회 예배 생방송" handleClick={handleOpenLive} image="onair" />
+        )}
+        {currentBanner === HomeBannerEnum.Bible && (
+          <HomeBannerSmCard
+            description={"온세대가 함께하는\n명문교회 181일 성경통독"}
+            handleClick={handleClickBible}
+            image="bible"
+          />
+        )}
+        {currentBanner === HomeBannerEnum.HomeWorship && (
+          <HomeBannerSmCard
+            description={"전 성도가 함께하는\n맛있는 가정예배"}
+            handleClick={handleClickHomeworship}
+            image="hand"
+          />
+        )}
+        <div
+          className="flex min-h-[35px] min-w-[35px] cursor-pointer items-center justify-center"
+          onClick={handleClickNext}
+        >
           <CaretRightIcon />
         </div>
       </div>
       <div className="absolute -bottom-[66px] left-1/2 z-10 hidden -translate-x-1/2 gap-5 bg-[#F6F6F6] bg-opacity-[30%] p-5 lg:flex">
-        <div className="flex w-full cursor-pointer">
-          <div className="relative h-[92px] w-[92px]">
-            <Image src="/images/profile.png" alt="image" fill={true} objectFit="contain" />
-          </div>
-          <div className="flex h-[92px] w-[231px] items-center justify-center bg-white text-[18px] font-bold text-[#222222]">
-            명문교회 예배 생방송
-          </div>
-        </div>
+        <HomeBannerLgCard
+          description={"온세대가 함께하는\n명문교회 181일 성경통독"}
+          handleClick={handleClickBible}
+          image="bible"
+        />
         <div className="h-[92px] w-[1px] bg-white" />
-        <div className="flex w-full cursor-pointer">
-          <div className="relative h-[92px] w-[92px]">
-            <Image src="/images/profile.png" alt="image" fill={true} objectFit="contain" />
-          </div>
-          <div className="flex h-[92px] w-[231px] items-center justify-center bg-white text-[18px] font-bold text-[#222222]">
-            명문교회 예배 생방송
-          </div>
-        </div>
+        <HomeBannerLgCard description="명문교회 예배 생방송" handleClick={handleOpenLive} image="onair" />
         <div className="h-[92px] w-[1px] bg-white" />
-        <div className="flex w-full cursor-pointer">
-          <div className="relative h-[92px] w-[92px]">
-            <Image src="/images/profile.png" alt="image" fill={true} objectFit="contain" />
-          </div>
-          <div className="flex h-[92px] w-[231px] items-center justify-center bg-white text-[18px] font-bold text-[#222222]">
-            명문교회 예배 생방송
-          </div>
-        </div>
+        <HomeBannerLgCard
+          description={"전 성도가 함께하는\n맛있는 가정예배"}
+          handleClick={handleClickHomeworship}
+          image="hand"
+        />
       </div>
     </div>
   );
