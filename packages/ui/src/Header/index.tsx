@@ -41,7 +41,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
           ))}
         </nav>
       </div>
-      <div className="ui-block lg:ui-hidden">
+      <div className="ui-block lg:ui-hidden ui-relative">
         <div className="ui-flex ui-border-y ui-border-[#E6E6E6]">
           <div className="ui-overflow-scroll ui-w-full">
             <nav className="ui-flex ui-h-[49px] sm:ui-h-[70px] ui-min-w-max">
@@ -71,7 +71,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
           </div>
         </div>
         {openNav && (
-          <div className="ui-grid ui-grid-cols-3">
+          <div className="ui-grid ui-grid-cols-3 ui-absolute ui-w-full ui-z-10">
             {menus.slice(1).map((menu) => (
               <div
                 onClick={() => push(menu.path)}
