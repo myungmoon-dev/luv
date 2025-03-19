@@ -1,8 +1,8 @@
 import useResponsive from "@/hooks/useResponsive";
 import Image from "next/image";
-import { Icon } from "ui";
-
-type MapOfferingType = "MAP" | "OFFERING";
+import { cn, Icon } from "ui";
+import { MapOfferingType } from ".";
+import { useRouter } from "next/navigation";
 
 interface IMapOfferingCardProps {
   type: MapOfferingType;
@@ -26,6 +26,7 @@ const MAP_OFFERING_MAP = (
 });
 
 const MapOfferingCard = ({ type }: IMapOfferingCardProps) => {
+  const { push } = useRouter();
   const { isSm, isMd, isLg } = useResponsive();
 
   const getIconSizeNumber = () => {
@@ -36,11 +37,32 @@ const MapOfferingCard = ({ type }: IMapOfferingCardProps) => {
 
   const data = MAP_OFFERING_MAP(isLg)[type];
 
+  const handleClickMap = () => {
+    if (type !== "MAP") return;
+    push("/about/directions");
+  };
+
   return (
-    <div className="h-[146px] w-full bg-white p-[16px_16px_42px_40px] sm:h-[186px] sm:p-[32px_25px_38px_39px] md:p-[32px_50px_43px_73px] lg:h-[188px] lg:w-[500px] lg:px-[70px] lg:py-[50px]">
+    <div
+      onClick={handleClickMap}
+      className={cn(
+        "h-[146px] w-full bg-white p-[16px_16px_42px_40px] sm:h-[186px] sm:p-[32px_25px_38px_39px] md:p-[32px_50px_43px_73px] lg:h-[188px] lg:w-[500px] lg:px-[70px] lg:py-[50px]",
+        type === "MAP" && "cursor-pointer",
+      )}
+    >
       <div className="flex justify-end gap-2 sm:gap-[6.5px] md:gap-[11px] lg:hidden">
-        <span className="size-[6px] rounded-full border-[0.5px] border-[#222222] sm:size-[7.5px] md:size-[8px]" />
-        <span className="size-[6px] rounded-full border-[0.5px] border-[#222222] bg-[#222222] sm:size-[7.5px] md:size-[8px]" />
+        <span
+          className={cn(
+            "size-[6px] rounded-full border-[0.5px] border-[#222222] sm:size-[7.5px] md:size-[8px]",
+            type === "MAP" && "bg-[#222222]",
+          )}
+        />
+        <span
+          className={cn(
+            "size-[6px] rounded-full border-[0.5px] border-[#222222] sm:size-[7.5px] md:size-[8px]",
+            type === "OFFERING" && "bg-[#222222]",
+          )}
+        />
       </div>
       <div className="flex items-center justify-between pr-[18px] sm:pr-[14px] md:pr-[32px] lg:pr-0">
         <div className="flex flex-col gap-[5px] sm:gap-[9px] md:gap-[7px] lg:flex-col-reverse lg:gap-[18px]">
