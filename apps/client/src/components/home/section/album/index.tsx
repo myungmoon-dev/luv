@@ -1,6 +1,7 @@
 import useResponsive from "@/hooks/useResponsive";
-import Image from "next/image";
 import { Icon } from "ui";
+import LgImage from "./lg";
+import MdImage from "./md";
 
 const HomeAlbumSection = () => {
   const { isSm, isMd, isLg } = useResponsive();
@@ -9,6 +10,11 @@ const HomeAlbumSection = () => {
     if (isMd || isLg) return 14;
     if (isSm) return 16;
     return 15;
+  };
+
+  const getImages = () => {
+    // TODO: 앨범 api 적용
+    return new Array(12).fill("/images/sketch-2.jpg");
   };
 
   if (isLg)
@@ -22,10 +28,8 @@ const HomeAlbumSection = () => {
           </button>
         </div>
         <div className="flex overflow-scroll">
-          {new Array(12).fill(1).map(() => (
-            <div className="relative aspect-square min-w-[244px]">
-              <Image src={`/images/sketch-${2}.jpg`} alt="album" fill={true} objectFit="cover" />
-            </div>
+          {getImages().map((image, idx) => (
+            <LgImage imageSrc={image} key={idx} />
           ))}
         </div>
       </div>
@@ -41,10 +45,8 @@ const HomeAlbumSection = () => {
         </button>
       </div>
       <div className="grid grid-cols-3 gap-[17px] sm:gap-[12px] md:gap-[10px]">
-        {new Array(9).fill(1).map(() => (
-          <div className="relative aspect-square w-full">
-            <Image src={`/images/sketch-${2}.jpg`} alt="album" fill={true} objectFit="cover" />
-          </div>
+        {getImages().map((image, idx) => (
+          <MdImage imageSrc={image} key={idx} />
         ))}
       </div>
     </div>
