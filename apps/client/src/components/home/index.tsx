@@ -1,15 +1,17 @@
-import MapSection from "./section/map";
+import HomeAlbumSection from "./section/album";
+import MapOfferingSection from "./section/mapOffering";
 import NavSection from "./section/nav";
-import OfferingSection from "./section/offering";
 import VideosSection from "./section/videos";
 
 const HomePage = () => {
   return (
     <div className="flex flex-col">
-      <VideosSection />
       <NavSection />
-      <MapSection />
-      <OfferingSection />
+      <VideosSection />
+      <div className="h-[8px] w-full bg-[#E6E6E6]" />
+      <HomeAlbumSection />
+      <div className="h-[8px] w-full bg-[#E6E6E6]" />
+      <MapOfferingSection />
     </div>
   );
 };

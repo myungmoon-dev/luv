@@ -1,22 +1,27 @@
 import { CursorType } from "../types/cursor";
-import CrossIcon from "./assets/cross";
-import YoutubeIcon from "./assets/youtube";
-import OpenBookIcon from "./assets/openBook";
-import HamburgerIcon from "./assets/hamburger";
-import BibleIcon from "./assets/bible";
-import PrayIcon from "./assets/pray";
+import AboutChurchIcon from "./assets/aboutChurch";
 import BellIcon from "./assets/bell";
-import HandHeartIcon from "./assets/handHeart";
+import BibleIcon from "./assets/bible";
+import BulletinIcon from "./assets/bulletin";
+import CaretRightIcon from "./assets/caretRight";
 import CircleHeartIcon from "./assets/circleHeart";
 import ClockIcon from "./assets/clock";
-import MapIcon from "./assets/map";
-import UserIcon from "./assets/user";
+import { CloseIcon } from "./assets/close";
+import CrossIcon from "./assets/cross";
+import HamburgerIcon from "./assets/hamburger";
+import HandHeartIcon from "./assets/handHeart";
+import { ImageUploadIcon } from "./assets/imageUpload";
+import InfoIcon from "./assets/Info";
+import { InstagramIcon } from "./assets/instagram";
 import { LogoBlackIcon } from "./assets/logoBlack";
 import { LogoBlueIcon } from "./assets/logoBlue";
+import MapIcon from "./assets/map";
+import NextGenerationIcon from "./assets/nextGeneration";
+import OpenBookIcon from "./assets/openBook";
+import PrayIcon from "./assets/pray";
+import UserIcon from "./assets/user";
+import YoutubeIcon from "./assets/youtube";
 import { RealYoutubeIcon } from "./assets/youtube-1";
-import { InstagramIcon } from "./assets/instagram";
-import { CloseIcon } from "./assets/close";
-import { ImageUploadIcon } from "./assets/imageUpload";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -27,6 +32,7 @@ export type IconSizeType = "sm" | "md" | "lg" | "xl" | "2xl" | "4xl";
 export interface IIconProps {
   backgroundColor?: string;
   strokeColor?: string;
+  sizeNumber?: number;
 }
 
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
@@ -57,4 +63,9 @@ export const icons = {
   Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
   Close: (props: IIconProps) => <CloseIcon {...props} />,
   ImageUpload: (props: IIconProps) => <ImageUploadIcon {...props} />,
+  AboutChurch: (props: IIconProps) => <AboutChurchIcon {...props} />,
+  Bulletin: (props: IIconProps) => <BulletinIcon {...props} />,
+  Info: (props: IIconProps) => <InfoIcon {...props} />,
+  NextGeneration: (props: IIconProps) => <NextGenerationIcon {...props} />,
+  CaretRight: (props: IIconProps) => <CaretRightIcon {...props} />,
 };
