@@ -1,6 +1,14 @@
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
 import { Spinner, Table } from "ui";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../ui/pagination";
 
 const HomeWorships = () => {
   const { push } = useRouter();
@@ -36,6 +44,28 @@ const HomeWorships = () => {
           }
           onClickRow={(rowId) => push(`/homeworship/${rowId}`)}
         />
+        <Pagination />
+        {/* <Pagination>
+      <PaginationContent>
+        <PaginationItem>
+          <PaginationPrevious href="#" />
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">1</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#" isActive>
+            2
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink href="#">3</PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext href="#" />
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination> */}
       </div>
     </div>
   );

@@ -1,11 +1,10 @@
 import { IGetHomeWorshipResponse, IGetHomeWorshipsResponse } from "@/types/homeWorship/response";
 import { api } from ".";
 
-export const getHomeWorships = async () => {
+export const getHomeWorships = async ({ page }: { page: number }) => {
   const { data } = await api.get<IGetHomeWorshipsResponse>("/homeWorships", {
     params: {
-      // lastVisibleCreatedAt: JSON.stringify(lastVisibleCreatedAt) || {},
-      // isGetPinned,
+      page,
     },
   });
 
