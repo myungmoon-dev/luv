@@ -1,12 +1,9 @@
 import HomePage from "@/components/home";
 import HomeBanner, { HomeBannerEnum } from "@/components/home/banner";
 import Layout from "@/components/layout";
-import BibleConferenceModal from "@/components/modal/bibleConference";
-import useModalStore from "@/store/modal";
 
 import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import path from "path";
-import { useEffect } from "react";
 
 export async function getStaticProps() {
   const watchwordPath = path.resolve("public/images/home/banner-2025.jpg");
@@ -36,12 +33,6 @@ interface IHomePageProps {
 }
 
 export default function Home({ bannerBlurDataURLs }: IHomePageProps) {
-  const open = useModalStore((state) => state.open);
-
-  useEffect(() => {
-    open(<BibleConferenceModal />);
-  }, []);
-
   return (
     <Layout
       customBanner={<HomeBanner blurDataURLs={bannerBlurDataURLs} />}
