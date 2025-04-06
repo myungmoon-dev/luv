@@ -52,7 +52,7 @@ const NavSection = () => {
       {NAV_LIST.map((nav) => (
         <button
           onClick={() => push(nav.path)}
-          className="flex flex-col gap-1 sm:gap-[3px] sm:px-[12px] sm:pb-[5px] sm:pt-[2px] md:gap-2 md:px-[45px] md:pb-[2px] md:pt-0 lg:gap-5 lg:p-0"
+          className="flex flex-col items-center gap-1 sm:gap-[3px] sm:px-[12px] sm:pb-[5px] sm:pt-[2px] md:gap-2 md:px-[45px] md:pb-[2px] md:pt-0 lg:gap-5 lg:p-0"
         >
           <div className="flex size-[78px] items-center justify-center rounded-full bg-[#F5F5F5] sm:size-[89px] lg:size-[112px]">
             <Icon name={nav.icon} cursor="ui-cursor-pointer" sizeNumber={getIconSizeNumber()} />
