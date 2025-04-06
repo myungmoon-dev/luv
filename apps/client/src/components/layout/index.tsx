@@ -92,15 +92,7 @@ const Layout = ({
           <Banner
             customTitle={customTitle}
             iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-            image={
-              bannerImage && (
-                <BannerImageComponent
-                  image={bannerImage}
-                  imgClass={bannerImgClass}
-                  bannerBlurDataURL={bannerBlurDataURL}
-                />
-              )
-            }
+            image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
             video={bannerVideo}
             title={title}
             description={bannerDescription}

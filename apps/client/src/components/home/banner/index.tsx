@@ -62,7 +62,6 @@ const HomeBanner = () => {
                 currentView === HomeBannerEnum.HomeWorship && "object-[50%] brightness-90 md:object-[100%_15%]",
               )}
               priority
-              placeholder="blur"
             />
           </div>
         </div>
