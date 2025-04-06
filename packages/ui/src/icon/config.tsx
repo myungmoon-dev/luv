@@ -37,6 +37,7 @@ export interface IIconProps {
   backgroundColor?: string;
   strokeColor?: string;
   sizeNumber?: number;
+  cursor?: string;
 }
 
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
