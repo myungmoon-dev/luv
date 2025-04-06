@@ -195,6 +195,9 @@ importers:
       '@plaiceholder/next':
         specifier: ^3.0.0
         version: 3.0.0(next@14.1.2)(plaiceholder@3.0.0)(sharp@0.32.6)
+      '@suspensive/react':
+        specifier: ^2.18.12
+        version: 2.18.12(react@18.2.0)
       aos:
         specifier: ^2.3.4
         version: 2.3.4
@@ -2666,6 +2669,14 @@ packages:
       '@storybook/channels': 8.0.10
       '@types/express': 4.17.21
       file-system-cache: 2.3.0
+    dev: false
+
+  /@suspensive/react@2.18.12(react@18.2.0):
+    resolution: {integrity: sha512-De3sVLxLnMpTSOfW3t3D8uh8+/bK8+L/mV8YRAwjW2PyR8BBe9+nctFRVO+ZCIFKUs7VPtnIXnb+5bKfBQ1vog==}
+    peerDependencies:
+      react: ^18 || ^19
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@swc/helpers@0.5.2:
