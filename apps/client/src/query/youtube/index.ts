@@ -17,6 +17,15 @@ export const useGetYoutubeLinkSuspense = (type: YoutubeType) => {
   });
 };
 
+export const useGetYoutubeLink = (type: YoutubeType) => {
+  const queryKey = youtubeKeys[type]();
+
+  return useQuery({
+    queryKey,
+    queryFn: async () => await getYoutube(type),
+  });
+};
+
 export const useGetLive = () => {
   return useQuery({
     queryKey: youtubeKeys.live(),
