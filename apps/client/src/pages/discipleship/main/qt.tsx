@@ -3,26 +3,7 @@ import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
 import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
-import path from "path";
-
-export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/discipleship/qt/banner.jpg");
-
-  const blurDataURL = await generateBlurDataURL(imagePath);
-
-  return {
-    props: {
-      bannerBlurDataURL: blurDataURL,
-    },
-  };
-}
-
-interface IDiscipleshipMainQtPageProps {
-  bannerBlurDataURL: string;
-}
-
-const DiscipleshipMainQtPage = ({ bannerBlurDataURL }: IDiscipleshipMainQtPageProps) => {
+const DiscipleshipMainQtPage = () => {
   return (
     <Layout
       pageTitle="큐티 세미나"
@@ -32,7 +13,6 @@ const DiscipleshipMainQtPage = ({ bannerBlurDataURL }: IDiscipleshipMainQtPagePr
       bannerImgClass="object-[50%_50%]"
       innerMenus={discipleshipInnerMenus}
       detailMenus={discipleshipMainMenus}
-      bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={discipleshipMainMenus}>
         <DiscipleshipQt />

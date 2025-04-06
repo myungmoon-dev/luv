@@ -3,26 +3,7 @@ import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about"
 import Tabs from "@/components/layout/tabs";
 import CustomImage from "@/components/customImage";
 
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
-import path from "path";
-
-export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/about/banner3.jpg");
-
-  const blurDataURL = await generateBlurDataURL(imagePath);
-
-  return {
-    props: {
-      bannerBlurDataURL: blurDataURL,
-    },
-  };
-}
-
-interface ILeadershipRetiredPageProps {
-  bannerBlurDataURL: string;
-}
-
-const LeadershipRetiredPage = ({ bannerBlurDataURL }: ILeadershipRetiredPageProps) => {
+const LeadershipRetiredPage = () => {
   return (
     <Layout
       pageTitle="섬기는 분들-원로목사"
@@ -32,7 +13,6 @@ const LeadershipRetiredPage = ({ bannerBlurDataURL }: ILeadershipRetiredPageProp
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
-      bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={aboutLeaderMenus}>
         <div className="relative flex w-full items-center justify-center px-3 md:gap-5">

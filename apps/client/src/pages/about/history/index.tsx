@@ -3,26 +3,7 @@ import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
 import { aboutHistoryMenus, aboutInnerMenus } from "@/constants/innerMenus/about";
 
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
-import path from "path";
-
-export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/about/banner3.jpg");
-
-  const blurDataURL = await generateBlurDataURL(imagePath);
-
-  return {
-    props: {
-      bannerBlurDataURL: blurDataURL,
-    },
-  };
-}
-
-interface IHistoryPageProps {
-  bannerBlurDataURL: string;
-}
-
-const HistoryPage = ({ bannerBlurDataURL }: IHistoryPageProps) => {
+const HistoryPage = () => {
   return (
     <Layout
       pageTitle="연혁"
@@ -32,7 +13,6 @@ const HistoryPage = ({ bannerBlurDataURL }: IHistoryPageProps) => {
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutHistoryMenus}
-      bannerBlurDataURL={bannerBlurDataURL}
     >
       <Tabs menus={aboutHistoryMenus}>
         <HistoryEventList decade="2020년대" />

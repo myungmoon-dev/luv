@@ -1,41 +1,11 @@
 import HomePage from "@/components/home";
-import HomeBanner, { HomeBannerEnum } from "@/components/home/banner";
+import HomeBanner from "@/components/home/banner";
 import Layout from "@/components/layout";
 
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
-import path from "path";
-
-export async function getStaticProps() {
-  const watchwordPath = path.resolve("public/images/home/banner-2025.jpg");
-  const livePath = path.resolve("public/images/home/banner3.jpeg");
-  const biblePath = path.resolve("public/images/home/banner2.jpeg");
-  const homeWorshipPath = path.resolve("public/images/home/homeworship.png");
-
-  const watchwordBlurDataURL = await generateBlurDataURL(watchwordPath);
-  const liveBlurDataURL = await generateBlurDataURL(livePath);
-  const bibleBlurDataURL = await generateBlurDataURL(biblePath);
-  const homeWorshipBlurDataURL = await generateBlurDataURL(homeWorshipPath);
-
-  return {
-    props: {
-      bannerBlurDataURLs: {
-        [HomeBannerEnum.Watchword]: watchwordBlurDataURL,
-        [HomeBannerEnum.Live]: liveBlurDataURL,
-        [HomeBannerEnum.Bible]: bibleBlurDataURL,
-        [HomeBannerEnum.HomeWorship]: homeWorshipBlurDataURL,
-      },
-    },
-  };
-}
-
-interface IHomePageProps {
-  bannerBlurDataURLs: Record<HomeBannerEnum, string>;
-}
-
-export default function Home({ bannerBlurDataURLs }: IHomePageProps) {
+export default function Home() {
   return (
     <Layout
-      customBanner={<HomeBanner blurDataURLs={bannerBlurDataURLs} />}
+      customBanner={<HomeBanner />}
       pageTitle="메인"
       bannerImage="/images/home/section1.png"
       hasChildrenPadding={false}
