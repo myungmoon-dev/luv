@@ -16,7 +16,8 @@ const BulletinCreate = () => {
     const formData = new FormData();
 
     if (!data.title || !data.date) return alert("모든 정보를 입력해주세요.");
-    if (data.images?.length !== 2) return alert("주보 이미지는 2개만 제출 가능합니다.");
+    if (data.images?.length === 0) return alert("주보 이미지를 추가해야합니다.");
+    if (data.images?.length > 10) return alert("주보 이미지는 10개 이하로 제출 가능합니다.");
 
     formData.append("date", data.date);
     formData.append("title", data.title);
