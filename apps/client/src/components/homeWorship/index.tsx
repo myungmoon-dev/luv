@@ -1,12 +1,14 @@
+import usePagination from "@/hooks/usePagination";
 import { useGetHomeWorships } from "@/query/homeWorship";
 import { useRouter } from "next/navigation";
-import { Spinner, Table } from "ui";
+import { Pagination, Spinner, Table } from "ui";
 
 const HomeWorships = () => {
   const { push } = useRouter();
-  const { data, isFetching } = useGetHomeWorships();
+  const { data, isLoading } = useGetHomeWorships();
+  const { onSetPaginationQuery, page } = usePagination();
 
-  if (isFetching)
+  if (isLoading)
     return (
       <div className="flex justify-center">
         <Spinner />
@@ -37,6 +39,7 @@ const HomeWorships = () => {
           onClickRow={(rowId) => push(`/homeworship/${rowId}`)}
         />
       </div>
+      <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data?.totalHomeworships || 0} />
     </div>
   );
 };

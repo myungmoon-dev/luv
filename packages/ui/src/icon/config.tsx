@@ -17,6 +17,10 @@ import { RealYoutubeIcon } from "./assets/youtube-1";
 import { InstagramIcon } from "./assets/instagram";
 import { CloseIcon } from "./assets/close";
 import { ImageUploadIcon } from "./assets/imageUpload";
+import ChevronLeft from "./assets/chevronLeft";
+import ChevronDoubleLeft from "./assets/chevronDoubleLeft";
+import ChevronRight from "./assets/chevronRight";
+import ChevronDoubleRight from "./assets/chevronDoubleRight";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -27,6 +31,7 @@ export type IconSizeType = "sm" | "md" | "lg" | "xl" | "2xl" | "4xl";
 export interface IIconProps {
   backgroundColor?: string;
   strokeColor?: string;
+  cursor?: string;
 }
 
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
@@ -57,4 +62,8 @@ export const icons = {
   Instagram: (props: IIconProps) => <InstagramIcon {...props} />,
   Close: (props: IIconProps) => <CloseIcon {...props} />,
   ImageUpload: (props: IIconProps) => <ImageUploadIcon {...props} />,
+  ChevronLeft: (props: IIconProps) => <ChevronLeft {...props} />,
+  ChevronDoubleLeft: (props: IIconProps) => <ChevronDoubleLeft {...props} />,
+  ChevronRight: (props: IIconProps) => <ChevronRight {...props} />,
+  ChevronDoubleRight: (props: IIconProps) => <ChevronDoubleRight {...props} />,
 };

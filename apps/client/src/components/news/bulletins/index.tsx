@@ -1,39 +1,39 @@
+import usePagination from "@/hooks/usePagination";
 import { useGetBulletins } from "@/query/bulletin";
-import React from "react";
-import { Table, Pagination, Spinner } from "ui";
-import BulletinModal from "./Modal";
 import useModalStore from "@/store/modal";
+import { Pagination, Spinner, Table } from "ui";
+import BulletinModal from "./Modal";
 
 const Bulletins = () => {
-  const { data, isFetching } = useGetBulletins();
+  const { data, isLoading } = useGetBulletins();
   const open = useModalStore((state) => state.open);
+
+  const { onSetPaginationQuery, page } = usePagination();
 
   const handleBulletinClick = (id: string) => {
     open(<BulletinModal selectedBulletinId={id} />);
   };
 
-  if (isFetching)
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
-
   return (
     <div className="flex flex-col gap-7">
-      {data && (
+      {isLoading ? (
+        <div className="flex h-full items-center justify-center">
+          <Spinner />
+        </div>
+      ) : (
         <Table
-          data={data.bulletins.map((bulletin) => ({
-            id: bulletin._id,
-            date: bulletin.date,
-            title: bulletin.title,
-            writer: "관리자",
-          }))}
+          data={
+            data?.bulletins.map((bulletin) => ({
+              id: bulletin._id,
+              date: bulletin.date,
+              title: bulletin.title,
+              writer: "관리자",
+            })) || []
+          }
           onClickRow={handleBulletinClick}
         />
       )}
-      {/* FIXME: 페이지네이션 해야함 */}
-      {/* <Pagination currentPage={1} onSetPage={() => {}} totalQuantity={data.bulletins.length} /> */}
+      <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data?.totalBulletins || 0} />
     </div>
   );
 };

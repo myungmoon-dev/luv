@@ -1,6 +1,6 @@
 const newsKeys = {
   all: ["news"],
-  missionList: () => [...newsKeys.all, "missionList"],
+  missionList: (page: number, size: number) => [...newsKeys.all, "missionList", page, size],
   missionDetail: (missionId: string) => [...newsKeys.all, "missionDetail", missionId],
 };
 

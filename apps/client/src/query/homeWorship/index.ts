@@ -10,11 +10,15 @@ import {
   putHomeWorship,
 } from "@/api/homeWorship";
 import homeWorshipKeys from "./keys";
+import usePagination from "@/hooks/usePagination";
 
 const useGetHomeWorships = () => {
+  const { page, size } = usePagination();
+
   return useQuery({
-    queryFn: () => getHomeWorships(),
-    queryKey: homeWorshipKeys.list(),
+    placeholderData: (previousData) => previousData,
+    queryFn: () => getHomeWorships({ page, size }),
+    queryKey: homeWorshipKeys.list(page, size),
   });
 };
 

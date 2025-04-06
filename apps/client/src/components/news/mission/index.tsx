@@ -1,10 +1,12 @@
+import usePagination from "@/hooks/usePagination";
 import { useGetMissions } from "@/query/news";
 import { useRouter } from "next/navigation";
-import { Spinner, Table } from "ui";
+import { Pagination, Spinner, Table } from "ui";
 
 const Mission = () => {
   const { push } = useRouter();
   const { data, isFetching } = useGetMissions();
+  const { onSetPaginationQuery, page } = usePagination();
 
   if (isFetching)
     return (
@@ -28,6 +30,11 @@ const Mission = () => {
           onClickRow={(rowId) => push(`/news/mission-news/${rowId}`)}
         />
       </div>
+      <Pagination
+        currentPage={page}
+        onSetPage={onSetPaginationQuery}
+        totalQuantity={data?.totalMissionNewsCount || 0}
+      />
     </div>
   );
 };

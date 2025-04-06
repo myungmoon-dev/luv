@@ -1,26 +1,21 @@
-import { useState } from "react";
+import { usePageFromQueryParam } from "./usePage";
+import { useSizeFromQueryParam } from "./useSize";
 
 interface IUsePaginationProps {
-  totalCount: number;
-  pinnedCount?: number;
-  pageSize?: number;
+  key?: string;
+  sizeKey?: string;
 }
 
-const usePagination = ({ totalCount, pageSize = 10 }: IUsePaginationProps) => {
-  const [page, setPage] = useState(1);
+const usePagination = ({ key = "page", sizeKey = "size" }: IUsePaginationProps = {}) => {
+  const [page, setPage] = usePageFromQueryParam({ key });
+  const [size] = useSizeFromQueryParam({ key: sizeKey });
 
-  const expectedCount = page * pageSize;
-  const notPinnedCount = totalCount;
-  const setNextPage = () => {
-    setPage(page + 1);
+  // pagination 컴포넌트에 넣어 사용, 페이지네이션 내부 클릭 시 query 변경
+  const onSetPaginationQuery = ({ pageNumber }: { pageNumber: number }) => {
+    setPage(pageNumber);
   };
 
-  return {
-    hasNextPage: notPinnedCount > expectedCount,
-    setNextPage,
-    page,
-    onSetPage: setPage,
-  };
+  return { onSetPaginationQuery, page, size };
 };
 
 export default usePagination;

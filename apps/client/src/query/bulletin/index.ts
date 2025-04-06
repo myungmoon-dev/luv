@@ -2,11 +2,15 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getBulletin, getBulletins } from "@/api/bulletin";
 import bulletinKeys from "./keys";
+import usePagination from "@/hooks/usePagination";
 
 const useGetBulletins = () => {
+  const { page, size } = usePagination();
+
   return useQuery({
-    queryFn: () => getBulletins(),
-    queryKey: bulletinKeys.list(),
+    placeholderData: (previousData) => previousData,
+    queryFn: () => getBulletins({ page, size }),
+    queryKey: bulletinKeys.list(page, size),
   });
 };
 
