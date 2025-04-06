@@ -2,26 +2,7 @@ import KakaoMap from "@/components/kakaomap";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
 
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
-import path from "path";
-
-export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/about/banner3.jpg");
-
-  const blurDataURL = await generateBlurDataURL(imagePath);
-
-  return {
-    props: {
-      bannerBlurDataURL: blurDataURL,
-    },
-  };
-}
-
-interface IAboutDirectionsPageProps {
-  bannerBlurDataURL: string;
-}
-
-const AboutDirectionsPage = ({ bannerBlurDataURL }: IAboutDirectionsPageProps) => {
+const AboutDirectionsPage = () => {
   return (
     <Layout
       pageTitle="오시는 길"
@@ -30,7 +11,6 @@ const AboutDirectionsPage = ({ bannerBlurDataURL }: IAboutDirectionsPageProps) =
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
-      bannerBlurDataURL={bannerBlurDataURL}
     >
       <div className="mx-auto flex max-w-screen-lg flex-col gap-20 px-3">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">

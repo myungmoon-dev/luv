@@ -1,8 +1,6 @@
 import Layout from "@/components/layout";
-import { generateBlurDataURL } from "@/utils/generateBlurDataURL";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
-import path from "path";
 import { useEffect, useState } from "react";
 
 interface IFileList {
@@ -17,26 +15,6 @@ interface IData {
   writer: string;
   fileList: IFileList[];
   imgs: string[];
-}
-
-export async function getStaticPaths() {
-  return { paths: [], fallback: true };
-}
-
-export async function getStaticProps() {
-  const imagePath = path.resolve("public/images/news/banner3.jpg");
-
-  const blurDataURL = await generateBlurDataURL(imagePath);
-
-  return {
-    props: {
-      bannerBlurDataURL: blurDataURL,
-    },
-  };
-}
-
-interface INewsResourceDetailPageProps {
-  bannerBlurDataURL: string;
 }
 
 // FIXME: 임시데이터
@@ -82,7 +60,7 @@ const list: IData[] = [
   },
 ];
 
-const NewsResourceDetailPage = ({ bannerBlurDataURL }: INewsResourceDetailPageProps) => {
+const NewsResourceDetailPage = () => {
   const [data, setData] = useState<IData>();
   const params = useParams();
 
@@ -92,12 +70,7 @@ const NewsResourceDetailPage = ({ bannerBlurDataURL }: INewsResourceDetailPagePr
   }, [params?.id]);
 
   return (
-    <Layout
-      pageTitle={data?.title ?? ""}
-      title="자료함"
-      bannerImage="/images/news/banner3.jpg"
-      bannerBlurDataURL={bannerBlurDataURL}
-    >
+    <Layout pageTitle={data?.title ?? ""} title="자료함" bannerImage="/images/news/banner3.jpg">
       <div className="mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center gap-5 overflow-x-hidden px-5 sm:px-10 md:px-20 lg:px-28 xl:px-36 2xl:mx-auto 2xl:px-40">
         <h1 className="mb-2 w-full border-b-[1px] border-t-gray-500 p-3 text-center font-SCoreDream text-lg md:text-3xl">
           {data?.title}
