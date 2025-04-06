@@ -12,6 +12,7 @@
     "@ckeditor/ckeditor5-build-classic": "^41.2.1",
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "@plaiceholder/next": "^3.0.0",
+    "@suspensive/react": "^2.18.12",
     "aos": "^2.3.4",
     "dayjs": "^1.11.10",
     "firebase": "workspace:*",
@@ -29,6 +30,7 @@
     "react-medium-image-zoom": "^5.2.0",
     "react-modal": "^3.16.1",
     "react-query": "^3.39.3",
+    "react-responsive": "^10.0.1",
     "react-toastify": "^10.0.5",
     "swiper": "^11.0.7",
     "ui": "workspace:*"

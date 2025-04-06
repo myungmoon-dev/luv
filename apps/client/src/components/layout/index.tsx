@@ -85,7 +85,7 @@ const Layout = ({
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
-        <Header push={push} asPath={asPath} detailMenus={allDetailMenus} />
+        <Header push={push} asPath={asPath} />
         {customBanner ? (
           customBanner
         ) : (

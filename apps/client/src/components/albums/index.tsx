@@ -1,12 +1,13 @@
 import { Spinner, cn } from "ui";
 import { AlbumType } from "type";
-import { useGetAlbumList } from "@/query/album";
+import { useGetAlbumListSuspense } from "@/query/album";
 import useModalStore from "@/store/modal";
 import ImageGallery from "react-image-gallery";
 import AlbumItemSection from "./section/item";
 import AlbumTitleSection from "./section/title";
 
 import "react-image-gallery/styles/css/image-gallery.css";
+import { Suspense } from "@suspensive/react";
 
 interface IAlbumListProps {
   albumType: AlbumType;
@@ -14,7 +15,22 @@ interface IAlbumListProps {
 }
 
 const AlbumList = ({ className, albumType }: IAlbumListProps) => {
-  const { data, isFetching } = useGetAlbumList(albumType);
+  return (
+    <Suspense
+      clientOnly
+      fallback={
+        <div className="flex h-full w-full items-center justify-center">
+          <Spinner />
+        </div>
+      }
+    >
+      <AlbumListMain className={className} albumType={albumType} />
+    </Suspense>
+  );
+};
+
+const AlbumListMain = ({ className, albumType }: IAlbumListProps) => {
+  const { data, isFetching } = useGetAlbumListSuspense(albumType);
   const open = useModalStore((state) => state.open);
 
   const convertImageGalleryFormat = (imageData: string[]) => {
@@ -30,7 +46,7 @@ const AlbumList = ({ className, albumType }: IAlbumListProps) => {
   };
 
   return (
-    <div className={cn("flex w-full max-w-screen-xl flex-col items-center justify-center gap-10 px-10", className)}>
+    <div className={cn("max-w-screen-xl flex w-full flex-col items-center justify-center gap-10 px-10", className)}>
       {data && data.totalAlbums >= 1 && (
         <>
           <AlbumTitleSection albumType={albumType} />
@@ -39,7 +55,7 @@ const AlbumList = ({ className, albumType }: IAlbumListProps) => {
               <Spinner />
             </div>
           ) : (
-            <div className="grid w-full grid-cols-1 gap-7 md:grid-cols-3 2xl:grid-cols-4">
+            <div className="2xl:grid-cols-4 grid w-full grid-cols-1 gap-7 md:grid-cols-3">
               {data.albums.map((album, idx) => (
                 <AlbumItemSection key={album._id} album={album} onClick={() => showModal(album.imageUrls)} />
               ))}

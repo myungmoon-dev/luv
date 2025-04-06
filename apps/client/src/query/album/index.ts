@@ -1,15 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import { AlbumType } from "type";
 import albumKeys from "./keys";
 import { getAlbumList } from "@/api/album";
 
-const useGetAlbumList = (type: AlbumType) => {
+const useGetAlbumListSuspense = (type: AlbumType) => {
   const queryKey = albumKeys[type]();
 
-  return useQuery({
+  return useSuspenseQuery({
     queryKey,
     queryFn: async () => await getAlbumList(type),
   });
 };
 
-export { useGetAlbumList };
+export { useGetAlbumListSuspense };
