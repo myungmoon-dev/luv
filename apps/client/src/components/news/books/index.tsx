@@ -1,9 +1,9 @@
-import usePagination from "@/hooks/usePagination";
 import { useGetBooks } from "@/query/books";
+import useModalStore from "@/store/modal";
 import { Spinner } from "ui";
 import Book from "./item";
-import useModalStore from "@/store/modal";
 import BookModal from "./modal";
+import useBooksPagination from "./useBooksPagination";
 
 const Books = () => {
   const { data, isFetching } = useGetBooks();
@@ -11,11 +11,10 @@ const Books = () => {
   const books = data?.books.map((book) => book).flat();
 
   const open = useModalStore((state) => state.open);
-  const { hasNextPage, setNextPage } = usePagination({ totalCount: data?.totalBooksCount || 0, pageSize: 5 });
+  const { hasNextPage, setNextPage } = useBooksPagination({ totalCount: data?.totalBooksCount || 0, pageSize: 5 });
 
   const handleClickNextPage = () => {
     setNextPage();
-    
   };
 
   const handleClickBook = (id: string) => {
@@ -28,7 +27,7 @@ const Books = () => {
         <Spinner />
       </div>
     );
-  
+
   return (
     <div className="flex justify-center">
       <div className="flex w-full flex-col gap-10 px-5 sm:w-[480px] md:w-[640px] lg:w-[768px] xl:w-[1024px]">

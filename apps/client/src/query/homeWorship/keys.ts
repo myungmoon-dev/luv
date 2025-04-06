@@ -1,6 +1,6 @@
 const homeWorshipKeys = {
   all: ["homeWorship"],
-  list: () => [...homeWorshipKeys.all, "list"],
+  list: (page: number, size: number) => [...homeWorshipKeys.all, "list", page, size],
   detail: (homeWorshipId: string) => [...homeWorshipKeys.all, "detail", homeWorshipId],
 };
 
