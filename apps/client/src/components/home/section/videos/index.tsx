@@ -1,106 +1,36 @@
 import useResponsive from "@/hooks/useResponsive";
-import { useGetYoutubeLink } from "@/query/youtube";
-import { IYoutube } from "type";
-import { Icon } from "ui";
+import { useGetYoutubeLinkSuspense } from "@/query/youtube";
+import { Icon, Spinner } from "ui";
 import BigVideo from "./big";
 import SmallVideo from "./small";
-
-const MOCK_VIDEOS: IYoutube[] = [
-  {
-    _id: "1",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "2",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "3",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "4",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "5",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "6",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "7",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-  {
-    _id: "8",
-    createdAt: 1741830887929,
-    date: "2024",
-    mainText: "넉넉히",
-    preacher: "rlawlgur",
-    title: "제목입니닷",
-    type: "main",
-    url: "ㅇㅇ",
-  },
-];
+import { Suspense } from "@suspensive/react";
 
 const VideosSection = () => {
-  const { data: main } = useGetYoutubeLink("main");
+  return (
+    <Suspense
+      clientOnly
+      fallback={
+        <div className="flex h-full w-full items-center justify-center">
+          <Spinner />
+        </div>
+      }
+    >
+      <VideosSectionMain />
+    </Suspense>
+  );
+};
+
+const VideosSectionMain = () => {
+  const { data: main } = useGetYoutubeLinkSuspense("main");
   const { isMd } = useResponsive();
 
   const getBigVideos = () => {
-    // TODO: mock 대신 api 사용해 영상 목록 적용
-    if (isMd) return MOCK_VIDEOS.slice(0, 2);
-    return MOCK_VIDEOS;
+    if (isMd) return main.videos.slice(0, 2);
+    return main.videos;
   };
 
   const getSmallVideos = () => {
-    // TODO: mock 대신 api 사용해 영상 목록 적용
-    return MOCK_VIDEOS;
+    return main.videos;
   };
 
   return (

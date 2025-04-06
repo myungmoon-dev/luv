@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
 import youtubeKeys from "./keys";
 import { getLive, getYoutube } from "@/api/youtube";
 import { YoutubeType } from "type";
@@ -8,10 +8,10 @@ export interface IGetYoutubeListProps {
   videoCount?: number;
 }
 
-export const useGetYoutubeLink = (type: YoutubeType) => {
+export const useGetYoutubeLinkSuspense = (type: YoutubeType) => {
   const queryKey = youtubeKeys[type]();
 
-  return useQuery({
+  return useSuspenseQuery({
     queryKey,
     queryFn: async () => await getYoutube(type),
   });
