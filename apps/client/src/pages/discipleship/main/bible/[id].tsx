@@ -3,10 +3,6 @@ import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
 import { discipleshipInnerMenus, discipleshipMainMenus } from "@/constants/innerMenus/discipleship";
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: true }; // TODO: 성경통복 id 가져와 적용
-}
-
 const DiscipleshipMainBibleDetailPage = () => {
   return (
     <Layout

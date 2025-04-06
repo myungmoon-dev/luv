@@ -1,10 +1,6 @@
 import Layout from "@/components/layout";
 import MissionDetail from "@/components/news/mission/detail";
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: true }; // TODO: 선교지 소식 id 가져와 적용
-}
-
 const MissionNewsDetailPage = () => {
   return (
     <Layout

@@ -17,10 +17,6 @@ interface IData {
   imgs: string[];
 }
 
-export async function getStaticPaths() {
-  return { paths: [], fallback: true };
-}
-
 // FIXME: 임시데이터
 const list: IData[] = [
   {
