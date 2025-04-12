@@ -1,5 +1,6 @@
 import HomePage from "@/components/home";
 import HomeBanner from "@/components/home/banner";
+import PopupProvider from "@/components/home/popupProvider";
 import Layout from "@/components/layout";
 
 export default function Home() {
@@ -11,7 +12,9 @@ export default function Home() {
       hasChildrenPadding={false}
       imageClassName="sm:!h-[600px]"
     >
-      <HomePage />
+      <PopupProvider>
+        <HomePage />
+      </PopupProvider>
     </Layout>
   );
 }
