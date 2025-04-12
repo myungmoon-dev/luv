@@ -7,6 +7,7 @@ import {
   Images,
   Library,
   LucideIcon,
+  Megaphone,
   Radio,
   Video,
 } from "lucide-react";
@@ -78,6 +79,12 @@ const NAV_LIST: INav[] = [
     href: "/mission-news",
     tooltip: "선교지 소식을 등록하고 수정할 수 있습니다.",
     icon: Earth,
+  },
+  {
+    title: "팝업",
+    href: "/popups",
+    tooltip: "각종 공지와 알림을 팝업으로 띄우도록 관리할 수 있습니다.",
+    icon: Megaphone,
   },
 ];
 
