@@ -24,7 +24,7 @@ import {
 import { IComment } from "./comment";
 import { AlbumType, IAlbum, IGetAlbumResponse } from "./album";
 import { IBook, IBookForm } from "./book";
-export { IPopup, IPopupForm } from "./popup";
+import { IPopup, IPopupForm } from "./popup";
 
 export type {
   IBulletin,
