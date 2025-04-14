@@ -80,7 +80,7 @@ export const Footer = ({ push }: IFooterProps) => {
           <p className=" ui-w-full">
             서울특별시 금천구 남부순환로 1406
             <br />
-            TEL. 02-86-5071
+            TEL. 02-861-5071
           </p>
         </div>
         <p>Copyright © 2024 명문교회 All rights reserved.</p>
