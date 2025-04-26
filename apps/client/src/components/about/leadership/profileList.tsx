@@ -194,14 +194,14 @@ const staffProfiles = [
   {
     name: "최정만",
     image: "/images/elder/choi_jm.png",
-    position: "재정위원회 위원장",
+    position: "",
     tabType: "elder",
     officerType: "elder",
   },
   {
     name: "박광재",
     image: "/images/elder/park_gj.png",
-    position: "예배위원회 위원장",
+    position: "재정위원회 위원장",
     tabType: "elder",
     officerType: "elder",
   },
@@ -229,7 +229,7 @@ const staffProfiles = [
   {
     name: "이병곤",
     image: "/images/elder/lee_bg.png",
-    position: "해외 파견",
+    position: "예배위원회 위원장",
     tabType: "elder",
     officerType: "elder",
   },
@@ -327,7 +327,7 @@ const staffProfiles = [
 ];
 const ProfileList = ({ tabType, className }: IProfileListProps) => {
   return (
-    <div className={cn("grid grid-cols-1 gap-20 px-5 lg:gap-32 xl:gap-20", className)}>
+    <div className={cn("xl:gap-20 grid grid-cols-1 gap-20 px-5 lg:gap-32", className)}>
       {staffProfiles
         .filter((profile) => tabType === profile.tabType)
         .map((profile) => {
