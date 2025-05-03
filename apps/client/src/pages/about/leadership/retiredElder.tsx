@@ -3,10 +3,10 @@ import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about"
 import Tabs from "@/components/layout/tabs";
 import ProfileList from "@/components/about/leadership/profileList";
 
-const LeadershipElderPage = () => {
+const LeadershipRetiredElderPage = () => {
   return (
     <Layout
-      pageTitle="섬기는 분들-장로"
+      pageTitle="섬기는 분들-은퇴장로"
       title="섬기는 분들"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/about/banner3.jpg"
@@ -15,10 +15,10 @@ const LeadershipElderPage = () => {
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <ProfileList tabType="elder" className="xl:grid-cols-3 md:grid-cols-2" />
+        <ProfileList tabType="retiredElder" className="xl:grid-cols-3 md:grid-cols-2" />
       </Tabs>
     </Layout>
   );
 };
 
-export default LeadershipElderPage;
+export default LeadershipRetiredElderPage;

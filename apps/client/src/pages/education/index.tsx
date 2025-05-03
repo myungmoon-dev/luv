@@ -9,7 +9,7 @@ const EducationPage = () => {
     <Layout
       pageTitle="다음세대 사역안내"
       title="다음세대 사역안내"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/education/banner.jpg"
       innerMenus={educationInnerMenus}
     >

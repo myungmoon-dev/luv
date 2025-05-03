@@ -7,7 +7,7 @@ const DiscipleshipNewlywedsPage = () => {
     <Layout
       pageTitle="신혼가정"
       title="신혼가정"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/newlyweds/banner.png"
       bannerImgClass="object-[50%_20%]"
       innerMenus={discipleshipInnerMenus}

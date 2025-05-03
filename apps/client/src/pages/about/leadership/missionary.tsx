@@ -8,7 +8,7 @@ const LeadershipMissionaryPage = () => {
     <Layout
       pageTitle="섬기는 분들-교역자"
       title="섬기는 분들"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
