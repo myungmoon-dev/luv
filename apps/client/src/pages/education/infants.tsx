@@ -7,7 +7,7 @@ const EducationInfantsPage = () => {
     <Layout
       pageTitle="영아부"
       title="영아부"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/education/infants/banner.jpg"
       innerMenus={educationInnerMenus}
       detailMenus={educationInfantsMenus}

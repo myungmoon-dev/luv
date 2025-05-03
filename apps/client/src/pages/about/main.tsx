@@ -23,7 +23,7 @@ const AboutMainPage = () => {
     <Layout
       pageTitle="교회소개"
       title="교회소개"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/introduce.jpeg"
       innerMenus={aboutInnerMenus}
     >
@@ -34,9 +34,9 @@ const AboutMainPage = () => {
         </div>
         <div className="absolute top-0 h-full w-full bg-black/40 px-10 pt-20 text-white">
           <p className="mb-5 text-2xl font-bold">
-            교회여!
+            보라!
             <br />
-            일어나 세상으로 흘러가라!
+            내가 반드시 길을 내리라!
           </p>
           <p className="mb-7">명문교회에 오신 것을 환영합니다.</p>
           <p className="text-sm">{"자세히 보기 >"}</p>

@@ -8,26 +8,26 @@ const LeadershipPage = () => {
     <Layout
       pageTitle="섬기는 분들-담임목사"
       title="섬기는 분들"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}
       detailMenus={aboutLeaderMenus}
     >
       <Tabs menus={aboutLeaderMenus}>
-        <div className="flex w-full flex-col gap-5 2xl:max-w-screen-xl">
+        <div className="2xl:max-w-screen-xl flex w-full flex-col gap-5">
           <CustomImage
             className="h-[180px] md:h-[600px] lg:h-[600px]"
-            src="/images/about/introduce_senior.jpg"
+            src="/images/about/introduce_senior2.jpeg"
             alt="담임목사"
-            imgClass="brightness-90 md:brightness-95 md:object-[70%_0%]"
+            imgClass="brightness-90 md:brightness-95 object-[50%_0%] md:object-[70%_0%]"
           >
-            <div className="absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-20 md:px-6 xl:px-20">
+            <div className="xl:px-20 absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-20 md:px-6">
               <div data-aos="fade-up" className="flex w-full text-white">
                 <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">
-                  "교회여!
+                  "보라!
                   <br />
-                  일어나 세상으로 흘러가라!"
+                  내가 반드시 길을 내리라!"
                 </p>
               </div>
               <div data-aos="fade-up" className="flex w-full items-end text-white">
@@ -45,9 +45,9 @@ const LeadershipPage = () => {
                   </p>
                   <p>가족으로는 아내 정지영과 두 아들 성재, 은재가 있습니다.</p>
                 </div>
-                <div className="flex w-full flex-col items-end md:w-1/4 lg:w-1/2 xl:w-full">
-                  <p className="font-SCoreDream text-xs md:text-lg lg:text-xl 2xl:text-2xl">명문교회 |</p>
-                  <p className="font-SCoreDream text-sm md:text-xl lg:text-2xl 2xl:text-3xl">김지혁 담임목사</p>
+                <div className="xl:w-full flex w-full flex-col items-end md:w-1/4 lg:w-1/2">
+                  <p className="2xl:text-2xl font-SCoreDream text-xs md:text-lg lg:text-xl">명문교회 |</p>
+                  <p className="2xl:text-3xl font-SCoreDream text-sm md:text-xl lg:text-2xl">김지혁 담임목사</p>
                 </div>
               </div>
             </div>

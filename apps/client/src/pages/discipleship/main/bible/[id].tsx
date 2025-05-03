@@ -8,7 +8,7 @@ const DiscipleshipMainBibleDetailPage = () => {
     <Layout
       pageTitle="성경통독"
       title="성경통독"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/bibleBanner.jpg"
       bannerImgClass="object-[100%_30%]"
       innerMenus={discipleshipInnerMenus}

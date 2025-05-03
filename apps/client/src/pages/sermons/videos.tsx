@@ -14,7 +14,7 @@ const VideosPage = () => {
     <Layout
       pageTitle="명문 영상"
       title="명문영상"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/sermon/banner.jpg"
       innerMenus={sermonsInnerMenus}
     >

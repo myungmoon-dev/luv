@@ -14,7 +14,7 @@ const SermonsYouthPage = () => {
     <Layout
       pageTitle="청년 예배"
       title="청년 예배"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/sermon/banner3.JPG"
       bannerImgClass="object-[50%_60%] xl:object-[50%_50%]"
       innerMenus={sermonsInnerMenus}

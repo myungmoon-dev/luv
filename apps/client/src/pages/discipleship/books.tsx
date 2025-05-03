@@ -7,7 +7,7 @@ const BooksPage = () => {
     <Layout
       pageTitle="추천 도서"
       title="추천 도서"
-      bannerDescription="교회여 일어나 세상으로 흘러가라!"
+      bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/books/banner.png"
       innerMenus={discipleshipInnerMenus}
     >
