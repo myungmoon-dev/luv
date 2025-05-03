@@ -1,5 +1,6 @@
 import { cn } from "ui";
 import Profile from "./profile";
+import { officerType } from "@/constants/innerMenus/about";
 
 interface IProfileListProps {
   tabType: string;
@@ -17,15 +18,6 @@ export interface IProfile {
 
 // FIXME: staffProfiles DB에 저장
 const staffProfiles = [
-  {
-    name: "이 삭",
-    description: "",
-    image: "/images/leader/lee-sak.png",
-    position: "1교구, 신혼부부, 전도위원회, 시설위원회",
-    tabType: "minister",
-    officerType: "associate",
-    greeting: "하나님께서는 우리에게 믿음을 주셨고, 그 믿음 안에서 모든 것이 가능하게 되는 줄 믿습니다.",
-  },
   {
     name: "표명성",
     description: "",
@@ -176,6 +168,20 @@ const staffProfiles = [
     position: "인도/태국 선교사",
     tabType: "missionary",
     officerType: "missionary",
+  },
+  {
+    name: "박효진",
+    image: "/images/retiredElder/park_hj.png",
+    position: "",
+    tabType: "retiredElder",
+    officerType: "elder",
+  },
+  {
+    name: "장수희",
+    image: "/images/retiredElder/jang_sh.png",
+    position: "",
+    tabType: "retiredElder",
+    officerType: "elder",
   },
   {
     name: "김용출",

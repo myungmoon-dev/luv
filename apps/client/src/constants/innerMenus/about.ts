@@ -13,6 +13,7 @@ export const aboutLeaderMenus: IInnerMenu[] = [
   { label: "담임목사", path: "/about/leadership" },
   { label: "교역자", path: "/about/leadership/minister" },
   { label: "선교사", path: "/about/leadership/missionary" },
+  { label: "은퇴장로", path: "/about/leadership/retiredElder" },
   { label: "장로", path: "/about/leadership/elder" },
   { label: "직원", path: "/about/leadership/staff" },
 ];
