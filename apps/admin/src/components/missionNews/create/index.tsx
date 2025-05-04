@@ -10,7 +10,7 @@ import { IBookForm } from "type";
 import { Spinner } from "ui";
 
 interface IMissionNewsCreateForm extends Omit<IBookForm, "createdAt" | "image"> {
-  image: FileList;
+  images: FileList;
   writer: string;
 }
 
@@ -31,16 +31,15 @@ const MissionNewsCreate = () => {
   const onSubmit: SubmitHandler<IMissionNewsCreateForm> = async (data) => {
     const formData = new FormData();
 
-    if (data.image.length === 0 || !data.date || !data.title || !content)
+    if (data.images.length === 0 || !data.date || !data.title || !content)
       return alert("모든 정보를 입력해주세요.");
-    if (data.image.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
     formData.append("title", data.title);
     formData.append("date", data.date);
     formData.append("userName", data.writer);
     formData.append("content", content);
 
-    Array.from(data.image).forEach((image) => {
+    Array.from(data.images).forEach((image) => {
       formData.append("images", image);
     });
 
@@ -73,7 +72,13 @@ const MissionNewsCreate = () => {
       </label>
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">사진 업로드</p>
-        <Input className="w-[233px]" type="file" accept="image/*" {...register("image")} />
+        <Input
+          className="w-[233px]"
+          type="file"
+          multiple={true}
+          accept="image/*"
+          {...register("images")}
+        />
       </label>
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">글</p>

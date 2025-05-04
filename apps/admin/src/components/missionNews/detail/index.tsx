@@ -59,8 +59,8 @@ const MissionNewsDetail = () => {
       </div>
       <p className="mb-2">작성자: {data?.userName}</p>
       <SafeHTML html={data?.content} />
-      <div className="relative mt-10 h-[350px] w-full">
-        {data?.imageUrls.map((imageUrl) => (
+      {data?.imageUrls.map((imageUrl) => (
+        <div className="relative mt-10 h-[350px] w-full" key={imageUrl}>
           <Image
             key={imageUrl}
             src={imageUrl}
@@ -68,8 +68,8 @@ const MissionNewsDetail = () => {
             fill={true}
             className="object-contain"
           />
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   );
 };
