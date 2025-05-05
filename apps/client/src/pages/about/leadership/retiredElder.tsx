@@ -6,7 +6,7 @@ import ProfileList from "@/components/about/leadership/profileList";
 const LeadershipRetiredElderPage = () => {
   return (
     <Layout
-      pageTitle="섬기는 분들-은퇴장로"
+      pageTitle="섬기는 분들-원로장로"
       title="섬기는 분들"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/about/banner3.jpg"
