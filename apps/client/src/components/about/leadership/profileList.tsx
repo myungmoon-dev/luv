@@ -174,14 +174,14 @@ const staffProfiles = [
     image: "/images/retiredElder/park_hj.png",
     position: "",
     tabType: "retiredElder",
-    officerType: "elder",
+    officerType: "retiredElder",
   },
   {
     name: "장수희",
     image: "/images/retiredElder/jang_sh.png",
     position: "",
     tabType: "retiredElder",
-    officerType: "elder",
+    officerType: "retiredElder",
   },
   {
     name: "김용출",

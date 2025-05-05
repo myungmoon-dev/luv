@@ -13,7 +13,7 @@ export const aboutLeaderMenus: IInnerMenu[] = [
   { label: "담임목사", path: "/about/leadership" },
   { label: "교역자", path: "/about/leadership/minister" },
   { label: "선교사", path: "/about/leadership/missionary" },
-  { label: "은퇴장로", path: "/about/leadership/retiredElder" },
+  { label: "원로장로", path: "/about/leadership/retiredElder" },
   { label: "장로", path: "/about/leadership/elder" },
   { label: "직원", path: "/about/leadership/staff" },
 ];
@@ -25,6 +25,7 @@ export const officerType: IOfficerType[] = [
   { label: "evangelist", type: "전도사" },
   { label: "missionary", type: "선교사" },
   { label: "elder", type: "장로" },
+  { label: "retiredElder", type: "원로장로" },
   { label: "otherElder", type: "협동장로" },
   { label: "deacon", type: "집사" },
   { label: "staff", type: "간사" },
