@@ -24,7 +24,7 @@ const LeadershipPage = () => {
           >
             <div className="xl:px-20 absolute flex h-full w-full flex-col items-end justify-center gap-10 px-3 md:gap-20 md:px-6">
               <div data-aos="fade-up" className="flex w-full text-white">
-                <p className="font-SCoreDream text-xl md:text-4xl lg:text-5xl">
+                <p className="font-SCoreDream text-lg md:text-4xl lg:text-5xl">
                   "보라!
                   <br />
                   내가 반드시 길을 내리라!"
@@ -34,9 +34,9 @@ const LeadershipPage = () => {
                 <div className="hidden w-full gap-1 whitespace-pre-wrap break-keep md:flex md:flex-col md:gap-3 md:text-xl lg:text-xl">
                   <p>
                     고려대와 서울대 대학원에서 철학과 영미윤리학을 공부하였습니다. <br />
-                    총신신대원에서 목회학 석사(MDiv)를, 시카고에 있는 Trinity Evangelical Divinity School에서
-                    조직신학으로 신학 석사(ThM)를, 그리고 The Southern Baptist Theological Seminary에서 설교학 박사
-                    학위(PhD)를 취득하였습니다.
+                    총신신대원에서 목회학 석사(MDiv)를, <br />
+                    시카고에 있는 Trinity Evangelical Divinity School에서 조직신학으로 신학 석사(ThM)를, <br />
+                    그리고 The Southern Baptist Theological Seminary에서 설교학 박사 학위(PhD)를 취득하였습니다.
                   </p>
                   <p>
                     강남교회, 시카고아가페장로교회, 사랑의교회에서 사역했으며,
