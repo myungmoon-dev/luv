@@ -21,6 +21,9 @@ export const YoutubeVideo = ({
     playerVars: {
       listType: "playlist",
       list: formattedVideoId,
+      modestbranding: 1, // 유튜브 로고 최소화
+      rel: 0, // 관련 영상 추천 끄기
+      controls: 0, // 컨트롤러 노출 (0은 완전 제거)
     },
   };
 
