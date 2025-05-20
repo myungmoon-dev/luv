@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import NotPrepared from "@/components/layout/notPrepared";
+import NewsPhotos from "@/components/news/photos";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
 
 const PhotosPage = () => {
@@ -12,7 +12,7 @@ const PhotosPage = () => {
       bannerImgClass="object-[100%_30%]"
       innerMenus={newsInnerMenus}
     >
-      <NotPrepared />
+      <NewsPhotos />
     </Layout>
   );
 };
