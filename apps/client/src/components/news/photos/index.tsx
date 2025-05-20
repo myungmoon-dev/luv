@@ -5,7 +5,7 @@ import { Pagination, Spinner, Table } from "ui";
 import AlbumModal from "./Modal";
 
 const NewsPhotos = () => {
-  const { data, isLoading } = useGetAlbumList("all");
+  const { data, isFetching } = useGetAlbumList("all");
   const open = useModalStore((state) => state.open);
 
   const { onSetPaginationQuery, page } = usePagination();
@@ -16,7 +16,7 @@ const NewsPhotos = () => {
 
   return (
     <div className="flex flex-col gap-7">
-      {isLoading ? (
+      {isFetching ? (
         <div className="flex h-full items-center justify-center">
           <Spinner />
         </div>
