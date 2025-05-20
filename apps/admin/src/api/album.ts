@@ -1,8 +1,8 @@
-import { AlbumType, IGetAlbumResponse } from "type";
+import { AlbumType, IGetAlbumListResponse } from "type";
 import { api } from ".";
 
 export const getAlbumList = async (type: AlbumType) => {
-  const { data } = await api.get<IGetAlbumResponse>("/albums", {
+  const { data } = await api.get<IGetAlbumListResponse>("/albums", {
     params: { type },
   });
   return data;
