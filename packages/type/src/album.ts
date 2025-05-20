@@ -23,7 +23,13 @@ export interface IAlbum {
   createdAt: number;
 }
 
-export interface IGetAlbumResponse {
+export interface IGetAlbumListResponse {
   albums: IAlbum[];
   totalAlbums: number;
 }
+
+export interface IGetAlbumRequest {
+  id: string;
+}
+
+export interface IGetAlbumResponse extends IAlbum {}

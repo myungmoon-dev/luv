@@ -22,7 +22,13 @@ import {
   NewlywedsType,
 } from "./discipleship";
 import { IComment } from "./comment";
-import { AlbumType, IAlbum, IGetAlbumResponse } from "./album";
+import {
+  AlbumType,
+  IAlbum,
+  IGetAlbumResponse,
+  IGetAlbumRequest,
+  IGetAlbumListResponse,
+} from "./album";
 import { IBook, IBookForm } from "./book";
 import { IPopup, IPopupForm } from "./popup";
 
@@ -64,4 +70,6 @@ export type {
   IBookForm,
   IPopup,
   IPopupForm,
+  IGetAlbumListResponse,
+  IGetAlbumRequest,
 };

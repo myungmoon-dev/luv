@@ -1,23 +1,35 @@
-import { useGetAlbumListSuspense } from "@/query/album";
-import { Suspense } from "@suspensive/react";
-import { Table } from "ui";
+import usePagination from "@/hooks/usePagination";
+import { useGetAlbumList } from "@/query/album";
+import useModalStore from "@/store/modal";
+import { Pagination, Spinner, Table } from "ui";
+import AlbumModal from "./Modal";
 
 const NewsPhotos = () => {
-  return (
-    <Suspense clientOnly>
-      <NewsPhotosMain />
-    </Suspense>
-  );
-};
+  const { data, isLoading } = useGetAlbumList("all");
+  const open = useModalStore((state) => state.open);
 
-const NewsPhotosMain = () => {
-  const { data } = useGetAlbumListSuspense("all");
+  const { onSetPaginationQuery, page } = usePagination();
+
+  const handleAlbumClick = (id: string) => {
+    open(<AlbumModal albumId={id} />);
+  };
 
   return (
-    <div>
-      <Table
-        data={data.albums.map((album) => ({ id: album._id, date: album.date, title: album.title, writer: "관리자" }))}
-      />
+    <div className="flex flex-col gap-7">
+      {isLoading ? (
+        <div className="flex h-full items-center justify-center">
+          <Spinner />
+        </div>
+      ) : (
+        <Table
+          data={
+            data?.albums.map((album) => ({ id: album._id, date: album.date, title: album.title, writer: "관리자" })) ||
+            []
+          }
+          onClickRow={handleAlbumClick}
+        />
+      )}
+      <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data?.totalAlbums || 0} />
     </div>
   );
 };
