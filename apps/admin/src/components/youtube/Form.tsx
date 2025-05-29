@@ -1,4 +1,4 @@
-import { usePostYoutubeLink } from "@/query/youtube";
+import { usePostYoutubeLink, usePutVideo } from "@/query/youtube";
 import getYoutubeId from "@/utils/getYoutubeId";
 import { useForm } from "react-hook-form";
 import { IYoutubeForm, YoutubeType } from "type";
@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import YoutubeInput from "./input";
 import YoutubeVideoContainer from "./Video";
 import { toast } from "sonner";
+import useVideoStore from "@/store/Video";
+import { useEffect } from "react";
 
 interface ILiveFormProps {
   option: YoutubeType;
@@ -15,42 +17,110 @@ const LiveForm = ({ option }: ILiveFormProps) => {
   const isShowAllFields = option !== "shorts" && option !== "live";
   const isShowMainText = option !== "video";
 
+  const [isEdit, edittingVideo, setEdit, setEdittingVideo] = useVideoStore((state) => [
+    state.isEdit,
+    state.edittingVideo,
+    state.setEdit,
+    state.setEdittingVideo,
+  ]);
+
   const { register, handleSubmit, reset } = useForm<IYoutubeForm>();
   const { mutate, isPending } = usePostYoutubeLink(option);
+  const { mutate: putVideoMutate } = usePutVideo();
 
   const onSubmit = (data: IYoutubeForm) => {
     const { mainText, preacher, title, url, date } = data;
-    const id = getYoutubeId({ url });
 
-    if (!id) return alert("유튜브 링크를 다시 확인해주세요.");
-    mutate(
-      {
-        url: id,
-        mainText,
-        title,
-        preacher,
-        type: option,
-        date,
-      },
-      {
-        onSuccess: ({ result }) => {
-          reset({
-            url: "",
-            title: "",
-            preacher: "",
-            mainText: "",
-            date: "",
-          });
-          toast("변경되었습니다.");
+    if (isEdit && edittingVideo) {
+      const id = getYoutubeId({ url });
+
+      if (url !== edittingVideo.url && !id) return alert("유튜브 링크를 다시 확인해주세요.");
+
+      putVideoMutate(
+        {
+          videoId: edittingVideo._id,
+          youtubeForm: {
+            type: option,
+            url: url !== edittingVideo.url ? id! : url,
+            date,
+            mainText,
+            preacher,
+            title,
+          },
         },
-        onError: (error) => console.log(error),
-      },
-    );
+        {
+          onSuccess: () => {
+            reset({
+              url: "",
+              title: "",
+              preacher: "",
+              mainText: "",
+              date: "",
+            });
+            toast("수정되었습니다.");
+            setEdittingVideo(null);
+            setEdit(false);
+            reset({ date: "", mainText: "", preacher: "", title: "", url: "", type: option });
+          },
+          onError: () => {
+            toast("에러가 발생했습니다.");
+          },
+        },
+      );
+    } else {
+      const id = getYoutubeId({ url });
+
+      if (!id) return alert("유튜브 링크를 다시 확인해주세요.");
+
+      mutate(
+        {
+          url: id,
+          mainText,
+          title,
+          preacher,
+          type: option,
+          date,
+        },
+        {
+          onSuccess: ({ result }) => {
+            reset({
+              url: "",
+              title: "",
+              preacher: "",
+              mainText: "",
+              date: "",
+            });
+            toast("변경되었습니다.");
+          },
+          onError: () => {
+            toast("에러가 발생했습니다.");
+          },
+        },
+      );
+    }
   };
 
   const onInValid = () => {
     alert("유튜브 링크는 필수입니다. 입력해주세요.");
   };
+
+  const handleCancelEdit = () => {
+    setEdit(false);
+    setEdittingVideo(null);
+    reset({ date: "", mainText: "", preacher: "", title: "", url: "", type: option });
+  };
+
+  useEffect(() => {
+    if (!isEdit) return;
+    reset({
+      date: edittingVideo?.date,
+      mainText: edittingVideo?.mainText,
+      preacher: edittingVideo?.preacher,
+      title: edittingVideo?.title,
+      type: edittingVideo?.type,
+      url: edittingVideo?.url,
+    });
+  }, [isEdit, edittingVideo]);
 
   return (
     <div className="flex gap-10">
@@ -98,9 +168,16 @@ const LiveForm = ({ option }: ILiveFormProps) => {
             />
           </>
         )}
-        <Button isLoading={isPending} disabled={isPending} className="mt-2">
-          등록
-        </Button>
+        <div className="mt-2 flex items-center gap-2">
+          <Button isLoading={isPending} disabled={isPending}>
+            {isEdit ? "수정" : "등록"}
+          </Button>
+          {isEdit && (
+            <Button variant="destructive" type="button" onClick={handleCancelEdit}>
+              취소
+            </Button>
+          )}
+        </div>
       </form>
       <YoutubeVideoContainer option={option} />
     </div>

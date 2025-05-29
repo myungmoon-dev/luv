@@ -2,6 +2,7 @@ import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { IYoutubeDropDownOptions } from "./dropdown";
 import LiveForm from "./Form";
+import YoutubeVideoList from "./List";
 
 const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
   { label: "쇼츠", type: "shorts" },
@@ -26,6 +27,7 @@ const Youtube = () => {
       {YOUTUBE_OPTIONS_DATA.map((option) => (
         <TabsContent value={option.type} key={option.type}>
           <LiveForm option={option.type} />
+          <YoutubeVideoList option={option.type} />
         </TabsContent>
       ))}
     </Tabs>

@@ -24,3 +24,21 @@ export const postYoutube = async (youtubeForm: IYoutubeForm) => {
   const { data } = await api.post<IPostYoutubeResponse>("/videos", youtubeForm);
   return data;
 };
+
+export const deleteVideo = async ({ videoId }: { videoId: string }) => {
+  const { data } = await api.delete(`/videos/${videoId}`);
+
+  return data;
+};
+
+export const putVideo = async ({
+  videoId,
+  youtubeForm,
+}: {
+  videoId: string;
+  youtubeForm: IYoutubeForm;
+}) => {
+  const { data } = await api.put(`/videos/${videoId}`, youtubeForm);
+
+  return data;
+};
