@@ -5,8 +5,8 @@ import { educationInnerMenus } from "@/constants/innerMenus/education";
 const EducationYoungAdults2Page = () => {
   return (
     <Layout
-      pageTitle="M'embers"
-      title="M'embers"
+      pageTitle="청년부"
+      title="청년부"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/education/2youth/banner.jpg"
       innerMenus={educationInnerMenus}

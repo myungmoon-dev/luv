@@ -18,15 +18,15 @@ export const ALBUM_TYPE_OPTIONS: { label: string; value: AlbumType }[] = [
     value: "toddlers",
   },
   {
-    label: "예빛(유초등부)",
+    label: "유초등부",
     value: "elementary",
   },
   {
-    label: "중등부",
+    label: "중고등부",
     value: "middle",
   },
   {
-    label: "고등부",
+    label: "중고등부",
     value: "high",
   },
   {

@@ -31,7 +31,7 @@ const staffProfiles = [
     name: "이현준",
     description: "",
     image: "/images/leader/hyun-jun.png",
-    position: "중등부, 고등부, 미디어위원회, 체육친교위원회",
+    position: "청년부, 미디어위원회, 체육친교위원회",
     tabType: "minister",
     officerType: "associate",
     greeting: "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청소년들을 주님의 마음으로 섬기겠습니다.",

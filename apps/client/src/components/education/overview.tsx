@@ -106,36 +106,35 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "elementary",
-    department: "예빛",
+    department: "유초등부",
     imgs: [
       "/images/education/elementary/1.jpg",
       "/images/education/elementary/2.jpg",
       "/images/education/elementary/3.jpg",
     ],
-    introduction:
-      "우리는 예!빛!\n안녕하세요 유초등부 연합공동체 예빛입니다!\n예빛은 '예수님은 우리의 빛이세요'와 '우리는 예수님의 빛 아이에요'의 줄임말입니다!",
+    introduction: "바르게 찬양하고\n기쁘게 예배할 수 있도록 가르치며 양육하고 있습니다.",
     target: "초등학생",
     time: "11:30 - 12:30",
     place: "사랑채플 2층 무용실",
     coreministry: [
       {
         id: 1,
-        description: "예빛 어린이들이 바르게 찬양하고\n기쁘게 예배할 수 있도록 가르치며 양육하고 있습니다.",
-        titleKr: "예빛 율동 찬양팀",
+        description: "유초등부 어린이들이 바르게 찬양하고\n기쁘게 예배할 수 있도록 가르치며 양육하고 있습니다.",
+        titleKr: "유초등부 율동 찬양팀",
         img: "/images/education/banner.jpg",
         imgClass: "brightness-50 object-[0%_40%]",
       },
       {
         id: 2,
         description:
-          "예빛 어린이들의 입학식, 등교길 등에서 함께하며 심방하고\n주변 친구들에게 전도하는 활동을 하고 있습니다.",
+          "유초등부 어린이들의 입학식, 등교길 등에서 함께하며 심방하고\n주변 친구들에게 전도하는 활동을 하고 있습니다.",
         titleKr: "등교 심방&전도",
         img: "/images/education/elementary/2.jpg",
         imgClass: "brightness-50 object-[50%_40%]",
       },
       {
         id: 3,
-        description: "예빛선생님들이 직접 아이들과 소통하고\n교제하기 위해 교회 바깥에서 모임을 진행합니다.",
+        description: "선생님들이 직접 아이들과 소통하고\n교제하기 위해 교회 바깥에서 모임을 진행합니다.",
         titleKr: "반 목회",
         img: "/images/education/elementary/3.jpg",
         imgClass: "brightness-50 object-[20%_70%]",
@@ -153,11 +152,11 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "middle",
-    department: "중등부",
+    department: "중고등부",
     imgs: ["/images/education/middle/1.jpg", "/images/education/middle/2.jpg", "/images/education/middle/3.jpg"],
     introduction:
-      "중학교 1~3학년 청소년들이 모여 예배를 드리고, 말씀을 통해 성경적 세계관을 배우며, 하나님의 자녀로 성장하도록 섬기는 공동체입니다.",
-    target: "중학생",
+      "중고등학교 청소년들이 모여 예배를 드리고, 말씀을 통해 성경적 세계관을 배우며, 하나님의 자녀로 성장하도록 섬기는 공동체입니다.",
+    target: "중고등학생",
     time: "09:30 - 10:30",
     place: "독산동 비전채플 3층",
     coreministry: [
@@ -195,11 +194,11 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "high",
-    department: "고등부",
+    department: "중고등부",
     imgs: ["/images/education/high/4.jpg", "/images/education/high/2.jpg", "/images/education/high/3.jpg"],
     introduction:
-      "고등학교 1~3학년 청소년들이 모여 예배를 드리고, 하나님의 비전을 향해 함께 달려가며 부르심을 따라 세상을 섬기고 교회를 섬기는 영적리더를 세우는 공동체입니다.",
-    target: "고등학생",
+      "중고등학생 청소년들이 모여 예배를 드리고, 하나님의 비전을 향해 함께 달려가며 부르심을 따라 세상을 섬기고 교회를 섬기는 영적리더를 세우는 공동체입니다.",
+    target: "중고등학생",
     time: "09:30 - 10:30",
     place: "독산동 비전채플 3층",
     coreministry: [
@@ -239,11 +238,10 @@ const EDUCATION_DATA: IEducationData[] = [
   },
   {
     type: "2youth",
-    department: "M'embers",
+    department: "청년부",
     imgs: ["/images/education/2youth/1.jpg", "/images/education/2youth/2.jpg", "/images/education/2youth/3.jpg"],
-    introduction:
-      "명문교회 2청년부 M'embers [M(yungmoon) embers, 명문교회의 불씨들]는 하나님을 경외하고 사랑하는 20~27세 청년들이 함께 모여 예배하는 공동체입니다.",
-    target: "20-27세 청년",
+    introduction: "명문교회 청년부는 하나님을 경외하고 사랑하는 청년들이 함께 모여 예배하는 공동체입니다.",
+    target: "20세 이상의 모든 청년",
     time: "14:00 - 16:30",
     place: "독산동 비전채플 3층",
     coreministry: [
@@ -318,7 +316,7 @@ const EducationOverView = ({ type }: IEducationOverViewProps) => {
         time={educationData.time}
       />
       <EducationCoreMinistrySection dataList={educationData.coreministry} department={educationData.department} />
-      <AlbumList albumType={type} />
+      {/* <AlbumList albumType={type} /> */}
     </div>
   );
 };
