@@ -2,12 +2,11 @@ import Minister from "./minister";
 
 // FIXME: DB 저장 예정
 const ministerProfiles = [
-
   {
     name: "표명성",
     description: "",
     image: "/images/leader/myung-seong.png",
-    position: "행정, 교구, 예배위원회, 찬양위원회",
+    position: "행정, 교구, 신혼가정, 예배위원회, 찬양위원회",
     tabType: "minister",
     officerType: "associate",
     greeting: "하나님과 성도들 앞에서 진중하지만, 늘 유쾌한 목회자가 되고 싶은 표명성 목사입니다.",
@@ -25,7 +24,7 @@ const ministerProfiles = [
     name: "정재준",
     description: "",
     image: "/images/leader/jae-jun.png",
-    position: "중고등부, 새가족위원회, 선교위원회, 시니어 아카데미",
+    position: "새가족위원회, 선교위원회, 시니어 아카데미",
     tabType: "minister",
     officerType: "associate",
     greeting: "명문교회를 찾는 모든 분들과 주님 영광을 함께 나누기를 소망합니다.",
@@ -34,7 +33,7 @@ const ministerProfiles = [
     name: "장건진",
     description: "",
     image: "/images/leader/geon-jin.png",
-    position: "유초등부, 미디어위원회",
+    position: "유초등부, 교구, 미디어위원회",
     tabType: "minister",
     officerType: "associate",
     greeting: "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
@@ -61,7 +60,7 @@ const ministerProfiles = [
     name: "이능옥",
     image: "/images/leader/neung-oak.png",
     description: "",
-    position: "시니어 아카데미, 새가족부",
+    position: "시니어 아카데미, 새가족위원회",
     tabType: "minister",
     officerType: "evangelist",
     greeting: "진실한 사랑은 예수님 안에서 이루어지는 사랑입니다.",
@@ -84,11 +83,20 @@ const ministerProfiles = [
     officerType: "evangelist",
     greeting: "오직 예수님 안에 머무는 다음세대, 영아부를 최선을 다해 섬기겠습니다.",
   },
+  {
+    name: "김삼열",
+    description: "",
+    image: "/images/leader/sam-yeol.png",
+    position: "중고등부",
+    tabType: "minister",
+    officerType: "evangelist",
+    greeting: "청소년이 하나님 안에서 자라가도록, 묵묵히 곁을 지키겠습니다.",
+  },
 ];
 
 const MinisterList = () => {
   return (
-    <div className="flex w-full max-w-screen-2xl flex-col items-center gap-20 px-5 lg:gap-32 xl:gap-20">
+    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-20 px-5 lg:gap-32">
       {ministerProfiles.map((profile) => (
         <Minister
           key={profile.name}
