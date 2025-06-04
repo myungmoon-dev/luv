@@ -22,7 +22,7 @@ export const AlbumTypeOptions: { label: string; value: AlbumType }[] = [
     value: "middle",
   },
   {
-    label: "고등부",
+    label: "중고등부",
     value: "high",
   },
   {

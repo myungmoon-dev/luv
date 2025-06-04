@@ -68,7 +68,7 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     worship: "다음세대",
   },
   {
-    label: "예빛(유초등부)",
+    label: "유초등부",
     time: "오전 11시30분",
     place: "서울여상 사랑채플 2층 무용실",
     worship: "다음세대",
