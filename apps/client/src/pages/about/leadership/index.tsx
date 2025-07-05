@@ -74,10 +74,11 @@ const LeadershipPage = () => {
                     그리고 The Southern Baptist Theological Seminary에서 설교학 박사 학위(PhD)를 취득하였습니다.
                   </p>
                   <p>강남교회, 시카고아가페장로교회, 사랑의교회에서 사역했습니다.</p>
-                  <p>
-                    현재 총신대 목회신학전문대학원에서 후학들을 가르치고 있으며, 농어촌교회사역연구소 연구위원으로,
-                    한국개혁주의 설교학회 학술부회장으로, GMS 이사로도 섬기고 있습니다.
-                  </p>
+                  <div className="flex flex-col">
+                    <p>현재 총신대 목회신학전문대학원에서 후학들을 가르치고 있으며</p>
+                    <p>농어촌교회사역연구소 연구위원으로, 한국개혁주의 설교학회 학술부회장으로,</p>
+                    <p>GMS 이사로도 섬기고 있습니다.</p>
+                  </div>
                   <p>가족으로는 아내 정지영과 두 아들 성재, 은재가 있습니다.</p>
                 </div>
                 <div className="xl:w-full flex w-full flex-col items-end md:w-1/4 lg:w-1/2">
