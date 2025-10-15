@@ -1,19 +1,13 @@
-import Layout from "@/components/layout";
-import { aboutInnerMenus, aboutLeaderMenus } from "@/constants/innerMenus/about";
-import Tabs from "@/components/layout/tabs";
+import AboutBack from "@/components/about/Back";
 import MinisterList from "@/components/about/leadership/ministerList";
+import Layout from "@/components/layout";
+import Tabs from "@/components/layout/tabs";
+import { aboutLeaderMenus } from "@/constants/innerMenus/about";
 
 const LeadershipMinisterPage = () => {
   return (
-    <Layout
-      pageTitle="섬기는 분들-교역자"
-      title="섬기는 분들"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
-      bannerImage="/images/about/banner3.jpg"
-      bannerImgClass="object-[100%_60%]"
-      innerMenus={aboutInnerMenus}
-      detailMenus={aboutLeaderMenus}
-    >
+    <Layout pageTitle="섬기는 분들-교역자" title="섬기는 분들" customBanner={<></>} hasChildrenPadding={false}>
+      <AboutBack title="섬기는 분들" />
       <Tabs menus={aboutLeaderMenus}>
         <MinisterList />
       </Tabs>

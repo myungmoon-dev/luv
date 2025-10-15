@@ -1,10 +1,22 @@
+export type OfficerLabel =
+  | "retired"
+  | "senior"
+  | "associate"
+  | "evangelist"
+  | "missionary"
+  | "elder"
+  | "retiredElder"
+  | "otherElder"
+  | "deacon"
+  | "staff";
+
 export interface IInnerMenu {
   label: string;
   path: string;
 }
 
 export interface IOfficerType {
-  label: string;
+  label: OfficerLabel;
   type: string;
 }
 

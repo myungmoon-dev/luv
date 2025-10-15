@@ -1,3 +1,4 @@
+import { OfficerLabel } from "@/constants/innerMenus/types";
 import Minister from "./minister";
 
 // FIXME: DB 저장 예정
@@ -96,7 +97,7 @@ const ministerProfiles = [
 
 const MinisterList = () => {
   return (
-    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-20 px-5 lg:gap-32">
+    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-9 px-5 lg:gap-32">
       {ministerProfiles.map((profile) => (
         <Minister
           key={profile.name}
@@ -104,7 +105,7 @@ const MinisterList = () => {
           img={profile.image}
           name={profile.name}
           position={profile.position}
-          officer={profile.officerType}
+          officer={profile.officerType as OfficerLabel}
         />
       ))}
     </div>
