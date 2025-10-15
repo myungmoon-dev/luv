@@ -2,7 +2,7 @@ import { IWorshipService } from "@/constants/innerMenus/types";
 
 const ServiceWorshipSchedule: IWorshipService[] = [
   {
-    label: "1부 경건예배",
+    label: "1부\n경건예배",
     time: "오전 7시30분",
     place: "독산동 비전채플 3층",
     worship: "주일",
@@ -20,13 +20,13 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     worship: "주일",
   },
   {
-    label: "4부 청년예배",
+    label: "4부\n청년예배",
     time: "오후 2시",
     place: "독산동 비전채플 3층",
     worship: "주일",
   },
   {
-    label: "오후 찬양예배",
+    label: "오후\n찬양예배",
     time: "오후 2시",
     place: "서울여상 사랑채플 강당",
     worship: "주일",
@@ -50,7 +50,7 @@ const ServiceWorshipSchedule: IWorshipService[] = [
     worship: "평일",
   },
   {
-    label: "미스바 금요기도회",
+    label: "미스바\n금요기도회",
     time: "오후 8시30분",
     place: "독산동 비전채플 3층",
     worship: "평일",
@@ -92,30 +92,45 @@ interface IServicesTableProps {
 }
 
 const ServicesTable = ({ worship }: IServicesTableProps) => {
-  return (
-    <div className="flex w-full flex-col items-center justify-center">
-      {/* th */}
-      <div className="mb-3 grid min-h-[50px] w-full grid-cols-3 items-center gap-5 rounded-md bg-gray-200">
-        <p className="text-center font-bold tracking-widest">구 분</p>
-        <p className="flex items-center justify-center border-l-2 border-r-2 border-l-blue-500 border-r-blue-500 text-center font-bold tracking-widest">
-          시 간
-        </p>
-        <p className="text-center font-bold tracking-widest">장 소</p>
-      </div>
+  const rows = ServiceWorshipSchedule.filter((s) => s.worship === worship);
 
-      {/* tb */}
-      {ServiceWorshipSchedule.filter((schedule) => schedule.worship === worship).map((service, index) => (
-        <div
-          key={index}
-          className="grid min-h-[50px] w-full grid-cols-3 items-center gap-5 border-b-2 border-b-gray-200"
-        >
-          <p className="text-center text-xs sm:text-sm">{service.label}</p>
-          <p className="flex items-center justify-center border-l-2 border-r-2 border-l-gray-200 border-r-gray-200 text-center text-xs sm:text-sm">
-            {service.time}
-          </p>
-          <p className="break-keep text-center text-xs sm:text-sm">{service.place}</p>
-        </div>
-      ))}
+  return (
+    <div className="w-full">
+      <table className="w-full table-fixed border-separate border-spacing-0">
+        <thead>
+          <tr className="bg-[#F8F8F8]">
+            <th
+              scope="col"
+              className="w-1/3 border-b border-t border-b-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F]"
+            >
+              예배
+            </th>
+            <th
+              scope="col"
+              className="w-2/3 border-b border-l border-t border-b-[#BCBCBC] border-l-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F]"
+            >
+              시간/장소
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((service, i) => (
+            <tr key={`${service.label}-${i}`} className="border-b-2 border-gray-200">
+              <th
+                scope="row"
+                className="whitespace-pre-wrap border-b border-[#BCBCBC] bg-[#F8F8F8] px-3 py-3 text-center text-sm font-medium text-[#424242]"
+              >
+                {service.label}
+              </th>
+              <td className="border-b border-l border-[#BCBCBC] px-3 py-3 text-center text-sm font-medium text-[#424242]">
+                {service.time}
+                <br />
+                {service.place}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

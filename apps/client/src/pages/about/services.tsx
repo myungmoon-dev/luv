@@ -1,30 +1,62 @@
-import ServicesTable from "@/components/about/servicesTable";
+import AboutBack from "@/components/about/Back";
+import ServicesHeader from "@/components/about/services/Header";
+import ServicesTable from "@/components/about/services/Table";
+import KakaoMap from "@/components/kakaomap";
 import Layout from "@/components/layout";
-import { aboutInnerMenus } from "@/constants/innerMenus/about";
-import { SectionHeader } from "ui";
 
 const AboutServicesPage = () => {
   return (
-    <Layout
-      pageTitle="예배 안내"
-      title="예배 안내"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
-      bannerImage="/images/about/banner3.jpg"
-      bannerImgClass="object-[100%_60%]"
-      innerMenus={aboutInnerMenus}
-    >
-      <div className="mx-auto flex w-full max-w-xl flex-col items-center justify-center gap-20 px-5">
-        <div className="flex w-full flex-col items-center justify-center gap-5">
-          <SectionHeader text="주일예배" hasLine={true} selected={true} size="sm" />
+    <Layout pageTitle="예배 정보" title="예배 정보" customBanner={<></>} hasChildrenPadding={false}>
+      <AboutBack title="예배 정보" />
+      <div className="flex flex-col items-center justify-center gap-20 px-5 py-10">
+        <div className="flex w-full flex-col justify-center gap-8">
+          <ServicesHeader title="주일예배" />
           <ServicesTable worship="주일" />
         </div>
-        <div className="flex w-full flex-col items-center justify-center gap-5">
-          <SectionHeader text="평일예배" hasLine={true} selected={true} size="sm" />
+        <div className="flex w-full flex-col justify-center gap-8">
+          <ServicesHeader title="평일예배" />
           <ServicesTable worship="평일" />
         </div>
-        <div className="flex w-full flex-col items-center justify-center gap-5">
-          <SectionHeader text="다음세대예배" hasLine={true} selected={true} size="sm" />
+        <div className="flex w-full flex-col justify-center gap-8">
+          <ServicesHeader title="다음세대예배" />
           <ServicesTable worship="다음세대" />
+        </div>
+      </div>
+      <div className="mb-20 px-5">
+        <div className="mb-5 flex items-center justify-between">
+          <ServicesHeader title="오시는 길" />
+          <span>공유 아이콘</span>
+        </div>
+        <div className="mb-12 flex flex-col gap-3">
+          <KakaoMap address="서울특별시 금천구 남부순환로 1406" height="h-[230px]" />
+          <div className="flex flex-col justify-center gap-2">
+            <p className="text-[#001F54]">독산동 비전채플 (평일)</p>
+            <p className="font-medium text-[#464646]">서울특별시 금천구 남부순환로 1406</p>
+          </div>
+        </div>
+        <div className="flex flex-col gap-3">
+          <KakaoMap address="서울특별시 관악구 관악로 85" height=" h-[230px]" />
+          <div className="flex flex-col justify-center gap-2">
+            <p className="text-[#001F54]">서울여상 사랑채플 (주일)</p>
+            <p className="font-medium text-[#464646]">
+              서울특별시 관악구 관악로 85
+              <br />
+              (서울여자상업고등학교 체육관 건물 3층)
+            </p>
+          </div>
+        </div>
+      </div>
+      <div className="mb-60 flex flex-col gap-4 px-5">
+        <ServicesHeader title="교회정보" />
+        <div className="grid h-fit grid-cols-[auto,1fr] gap-x-14 gap-y-5 bg-[#D9D9D9]/[.3] px-8 py-4">
+          <p className="text-sm font-medium text-[#001F54]">주소</p>
+          <p className="text-sm text-[#464646]">
+            (우) 08548 서울특별시 금천구
+            <br />
+            남부순환로 1406
+          </p>
+          <p className="text-sm font-medium text-[#001F54]">대표번호</p>
+          <p className="text-sm text-[#464646]">02-861-5071</p>
         </div>
       </div>
     </Layout>
