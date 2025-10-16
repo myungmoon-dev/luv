@@ -1,5 +1,6 @@
 import EducationOverView from "@/components/education/overview";
 import EducationMenusSection from "@/components/education/section/menus";
+import EducationMissionSection from "@/components/education/section/mission";
 import Layout from "@/components/layout";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
 
@@ -13,7 +14,10 @@ const EducationToddlersPage = () => {
       bannerImgClass="object-[50%_70%]"
       innerMenus={educationInnerMenus}
     >
-      <div className="mb-10 w-full gap-3 px-4">
+      <div className="hidden lg:block">
+        <EducationMissionSection />
+      </div>
+      <div className="mb-10 flex w-full justify-center px-2 lg:px-20 lg:py-20">
         <EducationMenusSection />
       </div>
       <EducationOverView type="toddlers" />

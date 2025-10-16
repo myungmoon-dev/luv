@@ -10,11 +10,14 @@ interface IIconSectionProps {
 const IconSection = ({ icon, title, url }: IIconSectionProps) => {
   const { push } = useRouter();
   return (
-    <button onClick={() => push(url)} className="flex flex-col items-center gap-2 transition-transform hover:scale-110">
-      <div className="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-full bg-[#F5F5F5] transition-colors hover:bg-[#001F54] hover:bg-opacity-10">
-        {icon}
+    <button
+      onClick={() => push(url)}
+      className="flex flex-col items-center gap-2 transition-transform hover:scale-110 sm:gap-3"
+    >
+      <div className="flex h-[60px] w-[60px] cursor-pointer items-center justify-center rounded-full bg-[#F5F5F5] transition-colors hover:bg-[#001F54] hover:bg-opacity-10 sm:h-[70px] sm:w-[70px] md:h-[85px] md:w-[85px] lg:h-[100px] lg:w-[100px]">
+        <div className="scale-100 sm:scale-110 md:scale-125 lg:scale-150">{icon}</div>
       </div>
-      <p className="text-sm text-[#222222]">{title}</p>
+      <p className="text-xs text-[#222222] sm:text-sm md:text-base lg:text-lg">{title}</p>
     </button>
   );
 };
@@ -23,7 +26,7 @@ const EducationMenusSection = () => {
   return (
     <>
       {/* 부서 아이콘 섹션 */}
-      <div data-aos="fade" className="flex items-center justify-between gap-2">
+      <div data-aos="fade" className="flex items-center justify-between gap-4 sm:gap-12 md:gap-16 lg:gap-28">
         {/* 영아부 */}
         <IconSection
           url="/education/infants"
