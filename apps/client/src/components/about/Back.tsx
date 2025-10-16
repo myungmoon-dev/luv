@@ -6,12 +6,12 @@ interface IAboutBackProps {
 
 const AboutBack = ({ title }: IAboutBackProps) => {
   return (
-    <div className="flex items-center justify-between px-1 py-3 shadow-sm">
-      <Link href="/about" className="flex size-[35px] items-center justify-center">
+    <div className="flex items-center justify-between border-b border-[#E6E6E6] shadow-sm">
+      <Link href="/about" className="flex size-[35px] items-center justify-center sm:size-[57px]">
         {"<"}
       </Link>
-      <p className="font-bold text-[#5B5B5B]">{title}</p>
-      <p className="invisible size-[35px]">{">"}</p>
+      <p className="sm:text-x font-bold text-[#5B5B5B]">{title}</p>
+      <p className="invisible size-[35px] sm:size-[57px]">{">"}</p>
     </div>
   );
 };
