@@ -6,7 +6,7 @@ interface IEducationIntroductionTitleProps {
 const EducationIntroductionTitle = ({ department, type }: IEducationIntroductionTitleProps) => {
   return (
     <div className="flex justify-center gap-2">
-      <p className="font-SCoreDream text-3xl text-blue-600">{department}</p>
+      <p className="font-SCoreDream text-3xl text-[#001F54]">{department}</p>
       <p className="font-SCoreDream text-3xl">{type}</p>
     </div>
   );
