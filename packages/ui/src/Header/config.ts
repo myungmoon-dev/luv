@@ -11,7 +11,7 @@ export const menus: IDetailMenu[] = [
   { label: "다음세대", path: "/education", key: "/education" },
   { label: "주보•소식", path: "/news/bulletins", key: "/news" },
   {
-    label: "교회훈련",
+    label: "훈련",
     path: "/discipleship/main/bible",
     key: "/discipleship",
   },
