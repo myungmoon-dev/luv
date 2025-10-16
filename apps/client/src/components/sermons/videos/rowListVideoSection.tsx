@@ -10,13 +10,15 @@ interface IRowListVideoSecitonProps {
 const RowListVideoSeciton = ({ video, title }: IRowListVideoSecitonProps) => {
   return (
     <div>
-      <YoutubeVideo videoId={video.url} className="aspect-video w-[157px] sm:w-[180px] lg:w-[250px]" />
-      <div className="pt-[6px] sm:px-[12px] sm:pt-[13px] lg:px-0 lg:pt-[10px]">
-        <p className="mb-[1px] text-[12px] font-medium text-[#001F54] sm:mb-[5px] sm:text-[15px] lg:mb-[9px] lg:text-[12px]">
+      <YoutubeVideo videoId={video.url} className="aspect-video w-[160px] sm:w-[200px] md:w-[220px] lg:w-[280px]" />
+      <div className="pt-2 sm:px-3 sm:pt-3 md:px-0 md:pt-3 lg:pt-4">
+        <p className="mb-1 text-xs font-medium text-[#001F54] sm:mb-1.5 sm:text-sm md:text-base lg:mb-2 lg:text-base">
           {title}
         </p>
-        <p className="text-[15px] font-medium text-[#222222] sm:text-[17px] lg:mb-[4px]">{video.title}</p>
-        <p className="text-[12px] text-[#666666] sm:text-[13px] lg:text-[12px]">
+        <p className="mb-1 text-sm font-medium text-[#222222] sm:text-base md:text-lg lg:mb-2 lg:text-xl">
+          {video.title}
+        </p>
+        <p className="text-xs text-[#666666] sm:text-sm md:text-sm lg:text-base">
           주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
         </p>
       </div>

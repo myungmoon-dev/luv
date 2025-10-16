@@ -48,7 +48,7 @@ const SermonsIndexPageSection = () => {
 
   return (
     <Layout pageTitle="설교 찬양" title="설교 찬양">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col gap-5 sm:gap-8 md:gap-10 lg:gap-12">
         <MainSermonSection
           url="/sermons/sunday-3"
           video={mainQuery.data.videos[0]}
