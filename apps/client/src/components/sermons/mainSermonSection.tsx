@@ -1,6 +1,4 @@
-import dayjs from "dayjs";
 import { IYoutube } from "type";
-import { YoutubeVideo } from "ui";
 import SermonTitle from "./sermonTitle";
 import MainVideoSection from "./videos/mainVideoSection";
 
