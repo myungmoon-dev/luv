@@ -86,24 +86,7 @@ const Layout = ({
       </Head>
       <main className="relative">
         <Header push={push} asPath={asPath} />
-        {customBanner ? (
-          customBanner
-        ) : (
-          <Banner
-            customTitle={customTitle}
-            iconList={bannerIcons && <BannerIconList list={bannerIcons} />}
-            image={bannerImage && <BannerImageComponent image={bannerImage} imgClass={bannerImgClass} />}
-            video={bannerVideo}
-            title={title}
-            description={bannerDescription}
-            innerMenus={innerMenus}
-            detailMenus={detailMenus}
-            pathname={asPath}
-            onClickChip={push}
-            push={push}
-            imageClassName={imageClassName}
-          />
-        )}
+        {customBanner ? customBanner : null}
         <div className={cn(hasChildrenPadding && "py-10")}>{children}</div>
         <Footer push={push} />
       </main>
