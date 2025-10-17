@@ -40,13 +40,13 @@ const LeadershipMissionary = () => {
     <div>
       <div className="bg-slate-400">세계지도 이미지</div>
       <div className="mb-5 h-[8px] w-full bg-[#E6E6E6]" />
-      <div className="flex flex-col gap-10 px-4">
+      <div className="flex flex-col gap-10 px-4 sm:gap-12">
         {MISSIONARY_PROFILES.map((missionary) => (
           <div className="flex flex-col gap-4" key={missionary.location}>
             <div className="flex items-center justify-between px-3">
               <div className="flex items-center gap-5">
                 <span>아이콘</span>
-                <p className="text-xl font-bold text-[#001F54]">{missionary.location}</p>
+                <p className="text-xl font-bold text-[#001F54] sm:text-2xl">{missionary.location}</p>
               </div>
               <span>우측 화살표 아이콘</span>
             </div>
@@ -58,12 +58,12 @@ const LeadershipMissionary = () => {
                     key={image}
                     src={image ? `/images/missionary/${image}.png` : "/images/profile.png"}
                     alt={missionary.location}
-                    className="h-[80px] w-[80px]"
+                    className="h-[80px] w-[80px] sm:h-[95px] sm:w-[95px]"
                     imgClass="rounded-full object-[50%_0%]"
                   />
                 ))}
               </div>
-              <p className="font-medium text-[#464646]">{`${missionary.names.join(", ")} 선교사`}</p>
+              <p className="font-medium text-[#464646] sm:text-lg">{`${missionary.names.join(", ")} 선교사`}</p>
             </div>
           </div>
         ))}

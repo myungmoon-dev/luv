@@ -9,7 +9,7 @@ const CoreValueItem = ({ title, subtitle, children }: CoreValueItemProps) => {
   return (
     <details>
       <summary className="flex h-[66px] items-center justify-between border-b border-b-[#BBBBBB]">
-        <div className="flex flex-col font-medium">
+        <div className="flex flex-col font-medium sm:px-5">
           <p className="text-lg">{title}</p>
           {subtitle ? <p>{subtitle}</p> : null}
         </div>

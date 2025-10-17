@@ -98,7 +98,7 @@ const AboutMinistryVision = () => {
         </PromiseCard>
       </div>
       <div className="mb-4 h-[8px] w-full bg-[#E6E6E6]" />
-      <div className="flex flex-col gap-4 px-5">
+      <div className="flex flex-col gap-4 px-5 sm:mb-20">
         <p className="text-xl font-bold text-[#001f54] sm:text-2xl">명문교회 5대 핵심 가치</p>
         <div className="flex flex-col">
           <hr className="border-[#747474]" />

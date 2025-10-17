@@ -10,15 +10,15 @@ const LeadershipPage = () => {
       <AboutBack title="섬기는 분들" />
       <Tabs menus={aboutLeaderMenus}>
         <div>
-          <div className="mb-14 flex flex-col items-center gap-4">
+          <div className="mb-14 flex flex-col items-center gap-4 sm:gap-6">
             <CustomImage
-              className="size-[100px]"
+              className="size-[100px] sm:size-[150px]"
               src="/images/leader/ji-hyuk.jpeg"
               alt="담임목사"
               imgClass="rounded-full"
             />
-            <p className="text-center font-medium text-[#464646]">김지혁 담임목사</p>
-            <p className="text-center text-sm text-[#777777]">
+            <p className="text-center font-medium text-[#464646] sm:text-xl">김지혁 담임목사</p>
+            <p className="text-center text-sm text-[#777777] sm:text-base">
               고려대, 서울대 대학원: 철학과 영미윤리학
               <br />
               총신신대원: 목회학 석사 (M.Div.)
@@ -59,7 +59,7 @@ const LeadershipPage = () => {
             </p>
           </div>
           <div className="h-[8px] w-full bg-[#E6E6E6]" />
-          <div className="flex flex-col px-5 py-4">
+          <div className="flex flex-col px-5 py-4 sm:px-12 sm:py-6">
             <p className="mb-5 text-xl font-bold text-[#001F54]">인사말</p>
             <hr className="mb-4 border-[#747474]" />
             <p className="mb-4 px-2 text-[#6E6E6E]">

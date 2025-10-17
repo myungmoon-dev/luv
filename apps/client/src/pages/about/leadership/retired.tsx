@@ -10,15 +10,15 @@ const LeadershipRetiredPage = () => {
       <AboutBack title="섬기는 분들" />
       <Tabs menus={aboutLeaderMenus}>
         <div>
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-4 sm:gap-6">
             <CustomImage
-              className="size-[100px]"
+              className="size-[100px] sm:size-[150px]"
               src="/images/leader/deok-jin.jpeg"
               alt="원로목사"
               imgClass="rounded-full"
             />
-            <p className="text-center font-medium text-[#464646]">이덕진 원로목사</p>
-            <p className="text-center text-sm text-[#777777]">
+            <p className="text-center font-medium text-[#464646] sm:text-xl">이덕진 원로목사</p>
+            <p className="text-center text-sm text-[#777777] sm:text-base">
               대한예수교장로회(합동) GMS 명예선교사,
               <br />
               꿈을꾸는세계선교회 대표
