@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
-import { Chip, cn, Line } from "ui";
+import { cn } from "ui";
 
 interface ITabsProps {
   menus: { label: string; path: string }[];
@@ -14,9 +14,9 @@ const Tabs = ({ menus, children }: ITabsProps) => {
     <div className="flex w-full flex-col gap-14 pb-14">
       <div className="flex flex-col gap-2.5 sm:gap-3">
         <div className="bg-[#F8F8F8] px-5 py-2 sm:px-7 sm:py-3">
-          <p className="text-xs font-medium text-[#888888] sm:text-base">직분</p>
+          <p className="text-xs font-medium text-[#888888] sm:text-base md:text-lg">직분</p>
         </div>
-        <div className="flex gap-2.5 overflow-x-scroll px-4 sm:px-7">
+        <div className="flex gap-2.5 overflow-x-scroll px-4 sm:px-7 md:gap-5">
           {menus.map((menu) => (
             <div
               onClick={() => push(menu.path)}
@@ -25,7 +25,7 @@ const Tabs = ({ menus, children }: ITabsProps) => {
             >
               <p
                 className={cn(
-                  "whitespace-nowrap text-xs font-medium sm:text-base",
+                  "whitespace-nowrap text-xs font-medium sm:text-base md:text-xl",
                   asPath === menu.path ? "text-[#001F54]" : "text-[#666666]",
                 )}
               >

@@ -10,7 +10,7 @@ const AboutBack = ({ title }: IAboutBackProps) => {
       <Link href="/about" className="flex size-[35px] items-center justify-center sm:size-[57px]">
         {"<"}
       </Link>
-      <p className="sm:text-x font-bold text-[#5B5B5B]">{title}</p>
+      <p className="text-sm font-bold text-[#5B5B5B] md:text-xl lg:text-2xl">{title}</p>
       <p className="invisible size-[35px] sm:size-[57px]">{">"}</p>
     </div>
   );

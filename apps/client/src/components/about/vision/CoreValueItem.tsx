@@ -10,12 +10,12 @@ const CoreValueItem = ({ title, subtitle, children }: CoreValueItemProps) => {
     <details>
       <summary className="flex h-[66px] items-center justify-between border-b border-b-[#BBBBBB]">
         <div className="flex flex-col font-medium sm:px-5">
-          <p className="text-lg">{title}</p>
-          {subtitle ? <p>{subtitle}</p> : null}
+          <p className="text-lg md:text-xl">{title}</p>
+          {subtitle ? <p className="md:text-lg">{subtitle}</p> : null}
         </div>
         <p>화살표 아이콘</p>
       </summary>
-      <div className="border-b border-b-[#BBBBBB] bg-[#F7F7F7] p-5 text-[#6E6E6E]">{children}</div>
+      <div className="border-b border-b-[#BBBBBB] bg-[#F7F7F7] p-5 text-[#6E6E6E] md:px-2.5 md:py-6 md:text-lg">{children}</div>
     </details>
   );
 };

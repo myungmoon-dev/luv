@@ -101,13 +101,13 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
           <tr className="bg-[#F8F8F8]">
             <th
               scope="col"
-              className="w-1/3 border-b border-t border-b-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F] sm:py-5 sm:text-lg"
+              className="w-1/3 border-b border-t border-b-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F] sm:py-5 sm:text-lg md:text-xl md:py-5"
             >
               예배
             </th>
             <th
               scope="col"
-              className="w-2/3 border-b border-l border-t border-b-[#BCBCBC] border-l-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F] sm:py-5 sm:text-lg"
+              className="w-2/3 border-b border-l border-t border-b-[#BCBCBC] border-l-[#BCBCBC] border-t-[#7E7E7E] py-3 text-center text-sm font-medium text-[#4F4F4F] sm:py-5 sm:text-lg md:text-xl md:py-5"
             >
               시간/장소
             </th>
@@ -118,11 +118,11 @@ const ServicesTable = ({ worship }: IServicesTableProps) => {
             <tr key={`${service.label}-${i}`} className="border-b-2 border-gray-200">
               <th
                 scope="row"
-                className="whitespace-pre-wrap border-b border-[#BCBCBC] bg-[#F8F8F8] px-3 py-3 text-center text-sm font-medium text-[#424242] sm:py-7 sm:text-lg"
+                className="whitespace-pre-wrap border-b border-[#BCBCBC] bg-[#F8F8F8] px-3 py-3 text-center text-sm font-medium text-[#424242] sm:py-7 sm:text-lg md:text-xl md:py-5"
               >
                 {service.label}
               </th>
-              <td className="border-b border-l border-[#BCBCBC] px-3 py-3 text-center text-sm font-medium text-[#424242] sm:py-7 sm:text-lg">
+              <td className="border-b border-l border-[#BCBCBC] px-3 py-3 text-center text-sm font-medium text-[#424242] sm:py-7 sm:text-lg md:text-xl md:py-5">
                 {service.time}
                 <br />
                 {service.place}
