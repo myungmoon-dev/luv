@@ -20,7 +20,7 @@ const Profile = ({ description, image, name, alt, className, position, tabType, 
       <CustomImage
         src={image ?? "/images/profile.png"}
         alt={name}
-        className="h-[80px] w-[80px] min-w-[80px] sm:h-[100px] sm:w-[100px] sm:min-w-[100px]"
+        className="h-[80px] w-[80px] min-w-[80px] sm:h-[100px] sm:w-[100px] sm:min-w-[100px] lg:h-[130px] lg:w-[130px] lg:min-w-[130px]"
         imgClass="rounded-full object-[50%_0%]"
       />
       <div className="flex flex-col">

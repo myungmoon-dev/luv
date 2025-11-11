@@ -333,7 +333,7 @@ const staffProfiles = [
 ];
 const ProfileList = ({ tabType, className }: IProfileListProps) => {
   return (
-    <div className={cn("xl:gap-20 grid grid-cols-1 gap-9 px-5 sm:px-10 lg:gap-32", className)}>
+    <div className={cn("xl:gap-20 grid grid-cols-1 gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20", className)}>
       {staffProfiles
         .filter((profile) => tabType === profile.tabType)
         .map((profile) => {

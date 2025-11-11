@@ -1,4 +1,5 @@
 import AboutBack from "@/components/about/Back";
+import LgNavigation from "@/components/about/LgNavigation";
 import AboutMinistryVision from "@/components/about/vision/ministryVision";
 import Layout from "@/components/layout";
 import { aboutInnerMenus } from "@/constants/innerMenus/about";
@@ -13,6 +14,7 @@ const AboutVisionPage = () => {
       hasChildrenPadding={false}
     >
       <AboutBack title="교회비전" />
+      <LgNavigation />
       <AboutMinistryVision />
     </Layout>
   );

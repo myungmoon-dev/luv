@@ -97,7 +97,7 @@ const ministerProfiles = [
 
 const MinisterList = () => {
   return (
-    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-9 px-5 sm:px-10 lg:gap-32">
+    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20">
       {ministerProfiles.map((profile) => (
         <Minister
           key={profile.name}

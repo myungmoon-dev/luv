@@ -1,4 +1,5 @@
 import AboutBack from "@/components/about/Back";
+import LgNavigation from "@/components/about/LgNavigation";
 import CustomImage from "@/components/customImage";
 import Layout from "@/components/layout";
 import Tabs from "@/components/layout/tabs";
@@ -7,7 +8,7 @@ import { aboutLeaderMenus } from "@/constants/innerMenus/about";
 const LeadershipPage = () => {
   return (
     <Layout pageTitle="섬기는 분들-담임목사" title="섬기는 분들" customBanner={<></>} hasChildrenPadding={false}>
-      <AboutBack title="섬기는 분들" />
+      <LgNavigation/>
       <Tabs menus={aboutLeaderMenus}>
         <div>
           <div className="mb-14 flex flex-col items-center gap-4 sm:gap-6 md:gap-8">
@@ -59,10 +60,10 @@ const LeadershipPage = () => {
             </p>
           </div>
           <div className="h-[8px] w-full bg-[#E6E6E6]" />
-          <div className="flex flex-col px-5 py-4 sm:px-12 sm:py-6 md:px-16 md:py-8">
-            <p className="mb-5 text-xl font-bold text-[#001F54] md:text-2xl">인사말</p>
+          <div className="flex flex-col px-5 py-4 sm:px-12 sm:py-6 md:px-16 md:py-8 lg:px-0">
+            <p className="mb-5 text-xl font-bold text-[#001F54] md:text-2xl lg:px-10">인사말</p>
             <hr className="mb-4 border-[#747474] md:mb-10" />
-            <p className="mb-4 px-2 text-[#6E6E6E] md:text-xl md:mb-10">
+            <p className="mb-4 px-2 text-[#6E6E6E] md:text-xl md:mb-10 lg:px-14">
               <span className="font-medium">
                 사랑하는 성도 여러분,
                 <br />

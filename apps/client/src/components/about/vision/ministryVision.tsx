@@ -4,9 +4,9 @@ import CoreValueItem from "./CoreValueItem";
 
 const AboutMinistryVision = () => {
   return (
-    <div className="flex flex-col py-7 md:py-8">
-      <p className="mb-5 text-center text-lg font-medium text-[#222222] sm:text-2xl sm:font-bold md:text-3xl md:mb-12 md:text-start md:px-12">名門(명문)의 의미</p>
-      <div className="mb-16 flex gap-4 overflow-x-scroll px-5 sm:mb-24 sm:px-7 md:mb-32 md:px-12 md:gap-12">
+    <div className="flex flex-col py-7 md:py-8 lg:pt-20">
+      <p className="mb-5 text-center text-lg font-medium text-[#222222] sm:text-2xl sm:font-bold md:text-3xl md:mb-12 md:text-start md:px-12 lg:px-16">名門(명문)의 의미</p>
+      <div className="mb-16 flex gap-4 overflow-x-scroll px-5 sm:mb-24 sm:px-7 md:mb-32 md:px-12 md:gap-12 lg:flex-col lg:px-16 lg:gap-24">
         <ImageTextCard imageSrc="/images/about/myungmoon.jpg" imageAlt="사진">
           지역과 민족을 품고
           <br />
@@ -97,8 +97,8 @@ const AboutMinistryVision = () => {
           </p>
         </PromiseCard>
       </div>
-      <div className="mb-4 h-[8px] w-full bg-[#E6E6E6]" />
-      <div className="flex flex-col gap-4 px-5 sm:mb-20 md:gap-7">
+      <div className="mb-4 h-[8px] w-full bg-[#E6E6E6] lg:hidden" />
+      <div className="flex flex-col gap-4 px-5 sm:mb-20 md:gap-7 lg:gap-20">
         <p className="text-xl font-bold text-[#001f54] sm:text-2xl md:text-3xl">명문교회 5대 핵심 가치</p>
         <div className="flex flex-col">
           <hr className="border-[#747474]" />

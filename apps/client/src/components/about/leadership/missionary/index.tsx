@@ -37,13 +37,13 @@ const MISSIONARY_PROFILES: IMissionary[] = [
 
 const LeadershipMissionary = () => {
   return (
-    <div>
+    <div className="lg:pb-20">
       <div className="bg-slate-400">세계지도 이미지</div>
       <div className="mb-5 h-[8px] w-full bg-[#E6E6E6]" />
-      <div className="flex flex-col gap-10 px-4 sm:gap-12 md:gap-20">
+      <div className="flex flex-col gap-10 px-4 sm:gap-12 md:gap-20 lg:px-0">
         {MISSIONARY_PROFILES.map((missionary) => (
           <div className="flex flex-col gap-4 md:gap-6" key={missionary.location}>
-            <div className="flex items-center justify-between px-3">
+            <div className="flex items-center justify-between px-3 lg:pl-10">
               <div className="flex items-center gap-5">
                 <span>아이콘</span>
                 <p className="text-xl font-bold text-[#001F54] sm:text-2xl">{missionary.location}</p>
@@ -51,7 +51,7 @@ const LeadershipMissionary = () => {
               <span>우측 화살표 아이콘</span>
             </div>
             <hr className="border-[#747474]" />
-            <div className="flex items-center gap-5 px-3 pb-2.5 md:gap-14">
+            <div className="flex items-center gap-5 px-3 pb-2.5 md:gap-14 lg:pl-10">
               <div className="flex gap-2 md:gap-9">
                 {missionary.images.map((image) => (
                   <CustomImage
