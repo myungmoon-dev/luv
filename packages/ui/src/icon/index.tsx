@@ -10,6 +10,7 @@ export interface IIconPropsType {
   className?: string;
   onClick?: () => void;
   sizeNumber?: number;
+  iconClassName?: string;
 }
 
 export const Icon = ({
@@ -21,6 +22,7 @@ export const Icon = ({
   className,
   onClick,
   sizeNumber,
+  iconClassName,
 }: IIconPropsType) => {
   const IconComponent = icons[name as IconNameType];
 
@@ -33,6 +35,7 @@ export const Icon = ({
         backgroundColor={backgroundColor}
         strokeColor={strokeColor}
         sizeNumber={sizeNumber}
+        iconClassName={iconClassName}
       />
     </div>
   );

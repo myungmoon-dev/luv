@@ -1,8 +1,8 @@
 import { IIconProps } from "../config";
 
-const CaretRightIcon = ({
-  sizeNumber = 15,
-  strokeColor = "#555555",
+const CaretDownIcon = ({
+  sizeNumber = 14,
+  strokeColor = "#969696",
   cursor,
   iconClassName,
 }: IIconProps) => {
@@ -10,14 +10,14 @@ const CaretRightIcon = ({
     <svg
       width={sizeNumber}
       height={sizeNumber}
-      viewBox="0 0 15 15"
+      viewBox="0 0 14 14"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       style={{ cursor }}
       className={iconClassName}
     >
       <path
-        d="M5.625 2.8125L10.3125 7.5L5.625 12.1875"
+        d="M11.375 5.25L7 9.625L2.625 5.25"
         stroke={strokeColor}
         strokeWidth="2"
         strokeLinecap="round"
@@ -27,4 +27,4 @@ const CaretRightIcon = ({
   );
 };
 
-export default CaretRightIcon;
+export default CaretDownIcon;

@@ -4,8 +4,23 @@ import ServicesHeader from "@/components/about/services/Header";
 import ServicesTable from "@/components/about/services/Table";
 import KakaoMap from "@/components/kakaomap";
 import Layout from "@/components/layout";
+import { Icon } from "ui";
 
 const AboutServicesPage = () => {
+  const handleShare = async () => {
+    const shareData = {
+      title: document.title,
+      text: "이 페이지를 공유합니다!",
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(window.location.href);
+    }
+  };
+
   return (
     <Layout pageTitle="예배 정보" title="예배 정보" customBanner={<></>} hasChildrenPadding={false}>
       <LgNavigation />
@@ -26,7 +41,7 @@ const AboutServicesPage = () => {
       <div className="mb-20 px-5">
         <div className="mb-5 flex items-center justify-between md:mb-10 lg:w-[680px] lg:px-0 lg:mx-auto">
           <ServicesHeader title="오시는 길" />
-          <span>공유 아이콘</span>
+          <Icon name="Share" iconClassName="size-[22px] md:size-[30px]" strokeColor="#555555" cursor="ui-cursor-pointer" onClick={handleShare} />
         </div>
         <div className="mb-12 flex flex-col gap-3 md:gap-10 md:mb-20 lg:w-[900px] lg:px-0 lg:mx-auto">
           <KakaoMap address="서울특별시 금천구 남부순환로 1406" height="h-[230px] sm:h-[314px] md:h-[395px] lg:h-[508px]" />
