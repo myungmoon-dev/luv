@@ -1,4 +1,4 @@
-import { IInnerMenu, IOfficerType } from "./types";
+import { IInnerMenu, IOfficerType, OfficerLabel } from "./types";
 
 export const aboutInnerMenus: IInnerMenu[] = [
   { label: "교회소개", path: "/about" },
@@ -30,6 +30,19 @@ export const officerType: IOfficerType[] = [
   { label: "deacon", type: "집사" },
   { label: "staff", type: "간사" },
 ];
+
+export const officerTypeMap: Record<OfficerLabel, string> = {
+  retired: "원로목사",
+  senior: "담임목사",
+  associate: "목사",
+  evangelist: "전도사",
+  missionary: "선교사",
+  elder: "장로",
+  retiredElder: "원로장로",
+  otherElder: "협동장로",
+  deacon: "집사",
+  staff: "간사",
+};
 
 export const aboutHistoryMenus: IInnerMenu[] = [
   { label: "1980년대", path: "/about/history/1980s" },
