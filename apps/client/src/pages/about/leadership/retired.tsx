@@ -1,3 +1,4 @@
+import AboutBack from "@/components/about/Back";
 import LgNavigation from "@/components/about/LgNavigation";
 import CustomImage from "@/components/customImage";
 import Layout from "@/components/layout";
@@ -7,6 +8,7 @@ import { aboutLeaderMenus } from "@/constants/innerMenus/about";
 const LeadershipRetiredPage = () => {
   return (
     <Layout pageTitle="섬기는 분들-원로목사" title="섬기는 분들" customBanner={<></>} hasChildrenPadding={false}>
+      <AboutBack title="섬기는 분들" />
       <LgNavigation/>
       <Tabs menus={aboutLeaderMenus}>
         <div className="lg:pb-20">

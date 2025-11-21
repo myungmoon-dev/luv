@@ -8,6 +8,7 @@ import { aboutLeaderMenus } from "@/constants/innerMenus/about";
 const LeadershipPage = () => {
   return (
     <Layout pageTitle="섬기는 분들-담임목사" title="섬기는 분들" customBanner={<></>} hasChildrenPadding={false}>
+      <AboutBack title="섬기는 분들" />
       <LgNavigation/>
       <Tabs menus={aboutLeaderMenus}>
         <div>
