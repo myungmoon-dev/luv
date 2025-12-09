@@ -2,8 +2,10 @@ import { IGetMissionResponse, IGetMissionsResponse, IGetCongregationNewsListResp
 import { api } from ".";
 import { IGetMissionsRequest, IGetCongregationNewsListRequest } from "@/types/news/request";
 
-export const getMissions = async ({ page, size }: IGetMissionsRequest) => {
-  const { data } = await api.get<IGetMissionsResponse>("/mission-news-list", { params: { page, size } });
+export const getMissions = async ({ page, size, location }: IGetMissionsRequest) => {
+  const { data } = await api.get<IGetMissionsResponse>("/mission-news-list", {
+    params: { page, size, location },
+  });
 
   return data;
 };

@@ -1,6 +1,7 @@
 export interface IGetMissionsRequest {
   page: number;
   size: number;
+  location?: string;
 }
 
 export interface IGetCongregationNewsListRequest {

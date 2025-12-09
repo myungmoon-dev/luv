@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useGetMissionNews, usePutMissionNews } from "@/query/missionNews";
 import dynamic from "next/dynamic";
 import { useParams } from "next/navigation";
@@ -7,8 +14,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { IMissionNewsForm } from "type";
+import { IMissionNewsForm, MissionLocation } from "type";
 import { Spinner } from "ui";
+import { MISSION_LOCATION_OPTIONS } from "../config";
+import { cn } from "@/lib/utils";
 
 interface IMissionNewsUpdateForm extends IMissionNewsForm {
   image: FileList;
@@ -26,8 +35,12 @@ const MissionNewsUpdate = () => {
 
   const { data } = useGetMissionNews({ missionNewsId });
 
-  const { register, handleSubmit, reset } = useForm<IMissionNewsUpdateForm>();
+  const { register, handleSubmit, reset, watch, setValue, formState: { errors } } = useForm<IMissionNewsUpdateForm>();
 
+  // Select validation을 위해 register 추가
+  register("location", { required: true });
+
+  const selectedLocation = watch("location");
   const { mutate, isPending } = usePutMissionNews();
 
   const [content, setContent] = useState("");
@@ -36,7 +49,7 @@ const MissionNewsUpdate = () => {
   const onSubmit: SubmitHandler<IMissionNewsUpdateForm> = async (data) => {
     const formData = new FormData();
 
-    if ((isNewImage && data.image?.length === 0) || !data.date || !data.title || !content)
+    if ((isNewImage && data.image?.length === 0) || !data.date || !data.title || !content || !selectedLocation)
       return alert("모든 정보를 입력해주세요.");
     if (isNewImage && data.image?.length !== 1) return alert("사진은 한 장 업로드 가능합니다.");
 
@@ -44,6 +57,7 @@ const MissionNewsUpdate = () => {
     formData.append("date", data.date);
     formData.append("userName", data.userName);
     formData.append("content", content);
+    formData.append("location", selectedLocation);
 
     if (isNewImage) {
       Array.from(data.image).forEach((image) => {
@@ -72,6 +86,7 @@ const MissionNewsUpdate = () => {
       date: data.date,
       title: data.title,
       userName: data.userName,
+      location: data.location,
     });
     setContent(data.content);
   }, [data, reset]);
@@ -89,6 +104,29 @@ const MissionNewsUpdate = () => {
       <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
         <p className="text-xl font-bold">작성자</p>
         <Input className="w-[233px]" {...register("userName")} />
+      </label>
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="min-w-[100px] text-xl font-bold">선교지</p>
+        <Select
+          value={selectedLocation}
+          onValueChange={(value) =>
+            setValue("location", value as MissionLocation, { shouldValidate: true })
+          }
+          required
+        >
+          <SelectTrigger
+            className={cn("w-[233px]", !selectedLocation && errors.location && "border-red-500")}
+          >
+            <SelectValue placeholder="선교지를 선택하세요" />
+          </SelectTrigger>
+          <SelectContent>
+            {MISSION_LOCATION_OPTIONS.map((option) => (
+              <SelectItem key={option.value} value={option.value}>
+                {option.label}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
       </label>
       {!isNewImage && (
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
@@ -114,6 +152,7 @@ const MissionNewsUpdate = () => {
         <p className="text-xl font-bold">글</p>
         <Editor defaultValue={content} setValue={setContent} />
       </div>
+      {errors.location && <p className="text-sm text-red-500">선교지를 선택해주세요.</p>}
       <div className="flex justify-end">
         <Button isLoading={isPending} disabled={isPending}>
           선교지 소식 수정
