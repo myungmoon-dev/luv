@@ -1,4 +1,5 @@
 import { IMissionNews } from "type";
+import { ICongregationNews } from "./common";
 
 export interface IGetMissionsResponse {
   missionNewsList: IMissionNews[];
@@ -6,3 +7,8 @@ export interface IGetMissionsResponse {
 }
 
 export interface IGetMissionResponse extends IMissionNews {}
+
+export interface IGetCongregationNewsListResponse {
+  congregationNewsList: ICongregationNews[];
+  totalCongregationNewsCount: number;
+}

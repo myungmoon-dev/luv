@@ -1,10 +1,11 @@
 import React from "react";
 import NewsNavigation from "./Navigation";
-import { ICongregationNews, IResource } from "@/types/news/common";
+import { IResource } from "@/types/news/common";
 import CongregationNewsItem from "./congregation/Item";
 import ResourceItem from "./resources/Item";
-import { Icon } from "ui";
+import { Icon, Spinner } from "ui";
 import { useRouter } from "next/router";
+import { useGetCongregationNewsList } from "@/query/news";
 
 const MOCK_RESOURCE_LIST: IResource[] = [
   {
@@ -21,29 +22,10 @@ const MOCK_RESOURCE_LIST: IResource[] = [
   },
 ];
 
-const MOCK_NEWS_LIST: ICongregationNews[] = [
-  {
-    type: "marriage",
-    description: "김명훈, 박영희 결혼",
-    createdAt: 1715769600000,
-    updatedAt: 1715769600000,
-  },
-  {
-    type: "birth",
-    description: "김명훈, 박영희 결혼",
-    createdAt: 1715769600000,
-    updatedAt: 1715769600000,
-  },
-  {
-    type: "funeral",
-    description: "김명훈, 박영희 결혼",
-    createdAt: 1715769600000,
-    updatedAt: 1715769600000,
-  },
-];
-
 const News = () => {
   const { push } = useRouter();
+  const { data, isFetching } = useGetCongregationNewsList();
+  const congregationNewsList = data?.congregationNewsList?.slice(0, 3) || [];
 
   const handleClickCongregationNews = () => {
     push("/news/congregation");
@@ -67,9 +49,19 @@ const News = () => {
           />
         </div>
         <div className="flex flex-col border-t border-[#BBBBBB]">
-          {MOCK_NEWS_LIST.map((news) => (
-            <CongregationNewsItem key={news.createdAt} news={news} />
-          ))}
+          {isFetching ? (
+            <div className="flex items-center justify-center py-10">
+              <Spinner />
+            </div>
+          ) : congregationNewsList.length > 0 ? (
+            congregationNewsList.map((news) => (
+              <CongregationNewsItem key={news._id || news.createdAt} news={news} />
+            ))
+          ) : (
+            <div className="flex items-center justify-center py-10 text-[#666666]">
+              <p>교우 소식이 없습니다.</p>
+            </div>
+          )}
         </div>
       </div>
       <hr className="my-10 border-t-2 border-[#BBBBBB] sm:mx-16 md:mx-24" />
