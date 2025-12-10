@@ -15,9 +15,15 @@ export interface ICongregationNews {
   updatedAt: number;
 }
 
+export interface IFileItem {
+  name: string;
+  download: string;
+}
+
 export interface IResource {
   id: string;
   createdAt: number;
   updatedAt: number;
   title: string;
+  fileList?: IFileItem[];
 }
