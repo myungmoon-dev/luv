@@ -4,6 +4,6 @@ import { tailwindConfig } from "theme";
 
 const customConfig = {};
 
-const config: Config = merge({}, tailwindConfig, customConfig);
+// const config: Config = merge({}, tailwindConfig, customConfig);
 
-export default config;
+export default tailwindConfig;

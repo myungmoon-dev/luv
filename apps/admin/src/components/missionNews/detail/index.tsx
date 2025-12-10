@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { toast } from "sonner";
 import { SafeHTML, Spinner } from "ui";
+import { MISSION_LOCATION_MAP } from "../config";
 
 const MissionNewsDetail = () => {
   const { push } = useRouter();
@@ -44,6 +45,9 @@ const MissionNewsDetail = () => {
       <div className="mb-10 flex items-center justify-between">
         <div className="flex flex-col gap-2">
           <p className="text-sm text-slate-500">날짜: {dayjs(data?.date).format("YYYY년 M월")}</p>
+          <p className="text-sm text-slate-500">
+            선교지: {data?.location && MISSION_LOCATION_MAP[data.location]}
+          </p>
           <p className="text-sm text-slate-500">
             생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD")}
           </p>

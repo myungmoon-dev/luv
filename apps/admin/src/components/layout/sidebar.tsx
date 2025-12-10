@@ -8,8 +8,10 @@ import {
   Library,
   LucideIcon,
   Megaphone,
+  MessageCircle,
   Radio,
   Video,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -85,6 +87,12 @@ const NAV_LIST: INav[] = [
     href: "/popups",
     tooltip: "각종 공지와 알림을 팝업으로 띄우도록 관리할 수 있습니다.",
     icon: Megaphone,
+  },
+  {
+    title: "교우 소식",
+    href: "/congregation-news",
+    tooltip: "교우 소식을 등록하고 수정할 수 있습니다.",
+    icon: Users,
   },
 ];
 
