@@ -17,13 +17,15 @@ const Minister = ({ name, greeting, img, position, officer }: IMinisterProps) =>
         src={img ?? "/images/profile.png"}
         alt={name}
         className="h-[80px] w-[80px] min-w-[80px] sm:h-[100px] sm:w-[100px] sm:min-w-[100px] md:h-[130px] md:w-[130px] md:min-w-[130px]"
-        imgClass="rounded-full object-[50%_0%]"
+        imgClass="rounded-full object-[50%_-10%]"
       />
       <div className="flex flex-col">
         <p className="font-medium text-[#464646] sm:text-lg md:text-xl">
           {name} {officerTypeMap[officer]}
         </p>
-        <p className="mb-2 whitespace-pre-wrap text-xs text-[#464646] sm:text-sm md:text-lg">{greeting}</p>
+        <p className="mb-2 whitespace-pre-wrap text-xs text-[#464646] sm:text-sm md:text-lg">
+          {greeting}
+        </p>
         <p className="text-xs text-[#464646]/[.66] md:text-base">{position} 담당</p>
       </div>
     </div>
