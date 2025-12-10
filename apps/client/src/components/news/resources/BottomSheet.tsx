@@ -18,7 +18,7 @@ const ResourceBottomSheet = ({ resource }: IResourceBottomSheetProps) => {
   return (
     <div className="flex flex-col">
       {/* 제목 */}
-      <div className="px-6 pt-6 pb-4">
+      <div className="px-6 pb-4 pt-6">
         <h2 className="text-center text-lg font-bold text-[#222222] sm:text-xl md:text-2xl">
           {resource.title}
         </h2>
@@ -36,9 +36,7 @@ const ResourceBottomSheet = ({ resource }: IResourceBottomSheetProps) => {
                 onClick={() => handleDownload(file.download, file.name)}
                 className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-[#F9F9F9]"
               >
-                <span className="text-sm text-[#666666] sm:text-base md:text-lg">
-                  다운로드
-                </span>
+                <span className="text-sm text-[#666666] sm:text-base md:text-lg">다운로드</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -54,7 +52,7 @@ const ResourceBottomSheet = ({ resource }: IResourceBottomSheetProps) => {
                   />
                 </svg>
               </button>
-              {index < resource.fileList.length - 1 && (
+              {resource.fileList && index < resource.fileList.length - 1 && (
                 <div className="h-px bg-[#ECECEC]" />
               )}
             </div>
@@ -70,4 +68,3 @@ const ResourceBottomSheet = ({ resource }: IResourceBottomSheetProps) => {
 };
 
 export default ResourceBottomSheet;
-
