@@ -6,4 +6,5 @@ export const fontFamily: Record<string, string[]> = {
   SCoreDream: ["SCoreDream", "sans-serif"],
   Cormorant: ["Cormorant", "sans-serif"],
   NIXGONM: ["NIXGONM", "sans-serif"],
+  NotoSansKR: ["Noto Sans KR", "sans-serif"],
 };

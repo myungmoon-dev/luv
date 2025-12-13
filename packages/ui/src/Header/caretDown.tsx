@@ -15,9 +15,9 @@ const CaretDown = ({ ...props }: IProps) => {
       <path
         d="M19.5 9L12 16.5L4.5 9"
         stroke="#5A5A5A"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

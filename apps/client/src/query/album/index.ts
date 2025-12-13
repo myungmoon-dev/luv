@@ -4,12 +4,12 @@ import albumKeys from "./keys";
 import { getAlbum, getAlbumList } from "@/api/album";
 import usePagination from "@/hooks/usePagination";
 
-const useGetAlbumListSuspense = (type: AlbumType) => {
-  const queryKey = albumKeys[type](1, 10);
+const useGetAlbumListSuspense = (type: AlbumType, page: number = 1, size: number = 10) => {
+  const queryKey = albumKeys[type](page, size);
 
   return useSuspenseQuery({
     queryKey,
-    queryFn: async () => await getAlbumList({ type, page: 1, size: 10 }),
+    queryFn: async () => await getAlbumList({ type, page, size }),
   });
 };
 

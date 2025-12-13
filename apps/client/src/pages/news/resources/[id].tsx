@@ -71,7 +71,7 @@ const NewsResourceDetailPage = () => {
 
   return (
     <Layout pageTitle={data?.title ?? ""} title="자료함" bannerImage="/images/news/banner3.jpg">
-      <div className="mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center gap-5 overflow-x-hidden px-5 sm:px-10 md:px-20 lg:px-28 xl:px-36 2xl:mx-auto 2xl:px-40">
+      <div className="xl:px-36 2xl:mx-auto 2xl:px-40 mx-auto flex w-full max-w-screen-lg flex-col items-center justify-center gap-5 overflow-x-hidden px-5 sm:px-10 md:px-20 lg:px-28">
         <h1 className="mb-2 w-full border-b-[1px] border-t-gray-500 p-3 text-center font-SCoreDream text-lg md:text-3xl">
           {data?.title}
         </h1>
@@ -89,13 +89,13 @@ const NewsResourceDetailPage = () => {
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  stroke-width="1.5"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   className="size-6"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3"
                   />
                 </svg>

@@ -7,11 +7,11 @@ export interface IDetailMenu {
 export const menus: IDetailMenu[] = [
   { label: "홈", path: "/", key: "/" },
   { label: "교회안내", path: "/about", key: "/about" },
-  { label: "설교•찬양", path: "/sermons/sunday-3", key: "/sermons" },
+  { label: "설교•찬양", path: "/sermons", key: "/sermons" },
   { label: "다음세대", path: "/education", key: "/education" },
   { label: "명문소식", path: "/news", key: "/news" },
   {
-    label: "교회훈련",
+    label: "훈련",
     path: "/discipleship/main/bible",
     key: "/discipleship",
   },
