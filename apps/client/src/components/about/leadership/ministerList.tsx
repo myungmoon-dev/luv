@@ -37,7 +37,8 @@ const ministerProfiles = [
     position: "유초등부, 교구, 미디어위원회",
     tabType: "minister",
     officerType: "associate",
-    greeting: "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
+    greeting:
+      "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
   },
   {
     name: "김규보",
@@ -55,7 +56,8 @@ const ministerProfiles = [
     position: "교구, 신혼부부, 차량위원회",
     tabType: "minister",
     officerType: "evangelist",
-    greeting: "맡겨주신 사역들과 목양을 하나님의 마음을 담아 기쁨과 감사함으로 섬기겠습니다. 사랑하고 축복합니다.",
+    greeting:
+      "맡겨주신 사역들과 목양을 하나님의 마음을 담아 기쁨과 감사함으로 섬기겠습니다. 사랑하고 축복합니다.",
   },
   {
     name: "이능옥",
@@ -76,9 +78,9 @@ const ministerProfiles = [
     greeting: "하나님을 경외하는 다음세대를 세우는 일에 온 마음을 다하겠습니다.",
   },
   {
-    name: "김화선",
+    name: "장은경",
     description: "",
-    image: "/images/leader/hwa-seon.png",
+    image: "/images/leader/eun-kyung.png",
     position: "영아부, 엄마QT학교",
     tabType: "minister",
     officerType: "evangelist",
@@ -97,7 +99,7 @@ const ministerProfiles = [
 
 const MinisterList = () => {
   return (
-    <div className="max-w-screen-2xl xl:gap-20 flex w-full flex-col items-center gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20">
+    <div className="flex w-full max-w-screen-2xl flex-col items-center gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20 xl:gap-20">
       {ministerProfiles.map((profile) => (
         <Minister
           key={profile.name}
