@@ -23,6 +23,7 @@ const CommonAlbumList = ({ albumType, albumName }: ICommonAlbumListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, isFetching } = useGetAlbumListSuspense(albumType, currentPage, ITEMS_PER_PAGE);
   const containerRef = useRef<HTMLDivElement>(null);
+  const prevPageRef = useRef<number>(1);
 
   const albums = data?.albums || [];
   const totalAlbums = data?.totalAlbums || 0;
@@ -33,10 +34,11 @@ const CommonAlbumList = ({ albumType, albumName }: ICommonAlbumListProps) => {
     setCurrentPage((prev) => prev - 1);
   }
 
-  // 페이지 변경 시 스크롤을 앨범 섹션 상단으로 즉시 이동
+  // 페이지가 실제로 변경되었을 때만 스크롤
   useEffect(() => {
-    if (containerRef.current) {
+    if (prevPageRef.current !== currentPage && containerRef.current) {
       containerRef.current.scrollIntoView({ behavior: 'auto', block: 'start' });
+      prevPageRef.current = currentPage;
     }
   }, [currentPage]);
 
