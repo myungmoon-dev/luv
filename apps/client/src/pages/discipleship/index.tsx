@@ -5,8 +5,7 @@ import DiscipleshipNewGuideSection from "@/components/discipleship/new/contents/
 import DiscipleshipNewProcessSection from "@/components/discipleship/new/contents/process";
 import Layout from "@/components/layout";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
-import { useGetAlbumListSuspense } from "@/query/album";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { Spinner } from "ui";
 
 const DiscipleshipPage = () => {
@@ -22,8 +21,6 @@ const DiscipleshipPage = () => {
     </Suspense>
   );
 };
-
-export default DiscipleshipPage;
 
 const DiscipleshipMain = () => {
   return (
@@ -53,3 +50,5 @@ const DiscipleshipMain = () => {
     </Layout>
   );
 };
+
+export default DiscipleshipPage;
