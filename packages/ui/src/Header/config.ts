@@ -12,7 +12,7 @@ export const menus: IDetailMenu[] = [
   { label: "주보•소식", path: "/news/bulletins", key: "/news" },
   {
     label: "훈련",
-    path: "/discipleship/main/bible",
+    path: "/discipleship",
     key: "/discipleship",
   },
   {
