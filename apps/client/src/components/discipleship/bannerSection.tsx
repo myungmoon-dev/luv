@@ -5,14 +5,14 @@ const SLIDES = [
   {
     title: "새가족 훈련",
     desc: ['"처음 오셨나요?', '함께 걸어갈 믿음의 첫걸음을 안내해드립니다."'],
-    image: "/images/discipleship/discipleship.png",
+    image: "/images/discipleship/welcome-banner.jpg",
     url: "/discipleship",
   },
   {
     title: "맛있는 가정예배",
     desc: ['"가정에서 드리는 예배,', '은혜는 더하고 사랑은 깊어집니다."'],
     image: "images/home/homeworship.png",
-    url: "/homeworship",
+    url: "/discipleship/homeworship",
   },
   {
     title: "신앙교육",
