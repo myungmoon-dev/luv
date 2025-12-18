@@ -11,7 +11,7 @@ const SLIDES = [
   {
     title: "맛있는 가정예배",
     desc: ['"가정에서 드리는 예배,', '은혜는 더하고 사랑은 깊어집니다."'],
-    image: "images/home/homeworship.png",
+    image: "/images/home/homeworship.png",
     url: "/discipleship/homeworship",
   },
   {
@@ -38,7 +38,7 @@ const DiscipleshipBannerSection = () => {
   }, []);
 
   return (
-    <div className="relative w-full">
+    <div onClick={() => push(SLIDES[current].url)} className="relative w-full cursor-pointer">
       <div className="relative h-[190px] sm:h-[250px] md:h-[320px] lg:h-[400px]">
         {SLIDES.map((slide, i) => (
           <div
