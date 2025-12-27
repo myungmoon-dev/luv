@@ -1,5 +1,6 @@
 import { useDeleteHomeWorshipComment, useGetHomeWorship } from "@/query/homeWorship";
-import dayjs from "dayjs";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
 import { useParams } from "next/navigation";
 import HomeWorshipDetailCommentForm from "./form";
 import { useQueryClient } from "@tanstack/react-query";
@@ -33,30 +34,33 @@ const HomeWorshipDetailComments = () => {
   };
 
   return (
-    <>
-      <hr className="my-10" />
-      <div className="flex flex-col gap-5">
-        <p className="text-2xl">댓글 {comments?.length}</p>
-        <HomeWorshipDetailCommentForm />
-        <div className="flex flex-col gap-5">
-          {comments.map((comment) => (
-            <div className="flex flex-col gap-3 rounded-md border border-gray-300 p-5 shadow-md" key={comment._id}>
-              <div className="flex justify-between text-sm">
-                <div className="flex gap-2">
-                  <p>{comment.userName}</p>
-                  <p>|</p>
-                  <p>{dayjs(comment.createdAt).format("YYYY-MM-DD HH:mm")}</p>
-                </div>
-                <button onClick={() => handleClickDelete(comment._id)} className="text-red-500">
-                  삭제
-                </button>
-              </div>
-              <p className="whitespace-pre-wrap">{comment.content}</p>
-            </div>
-          ))}
-        </div>
+    <div className="flex flex-col gap-4">
+      <div className="border-t border-gray-200 pt-4">
+        <p className="text-lg font-semibold text-gray-900">댓글 {comments?.length}</p>
       </div>
-    </>
+      <HomeWorshipDetailCommentForm />
+      <div className="flex flex-col gap-3">
+        {comments.map((comment) => (
+          <div className="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3" key={comment._id}>
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex min-w-0 flex-col gap-1">
+                <p className="truncate text-sm font-medium text-gray-900">{comment.userName}</p>
+                <p className="text-xs text-gray-500">
+                  {format(new Date(comment.createdAt), "yyyy년 M월 d일 HH:mm", { locale: ko })}
+                </p>
+              </div>
+              <button
+                onClick={() => handleClickDelete(comment._id)}
+                className="shrink-0 text-xs text-red-500 hover:text-red-700"
+              >
+                삭제
+              </button>
+            </div>
+            <p className="whitespace-pre-wrap text-sm text-gray-700">{comment.content}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

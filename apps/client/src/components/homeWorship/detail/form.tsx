@@ -33,26 +33,30 @@ const HomeWorshipDetailComment = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2">
-            <p>이름</p>
-            <input {...register("name")} className="rounded-md border border-gray-200 px-2 py-1" />
-          </label>
-          <div className="h-[24px] w-[1px] bg-gray-300" />
-          <label className="flex items-center gap-2">
-            <p>비밀번호</p>
-            <input {...register("password")} type="password" className="rounded-md border border-gray-200 px-2 py-1" />
-          </label>
-        </div>
-        <button className="rounded-md bg-blue-500 px-2 py-1 text-white">등록</button>
-      </div>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-3">
       <textarea
         {...register("content")}
         placeholder="내용을 입력하세요"
-        className="min-h-[100px] w-full rounded-md border border-gray-200 px-2 py-1"
+        className="min-h-[80px] w-full resize-none rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
       />
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex gap-2">
+          <input
+            {...register("name")}
+            placeholder="이름"
+            className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none sm:w-auto"
+          />
+          <input
+            {...register("password")}
+            type="password"
+            placeholder="비밀번호"
+            className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none sm:w-auto"
+          />
+        </div>
+        <button className="rounded-md bg-[#1e3a5f] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2d4a6f]">
+          등록
+        </button>
+      </div>
     </form>
   );
 };

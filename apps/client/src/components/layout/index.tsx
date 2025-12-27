@@ -64,7 +64,7 @@ const Layout = ({
     ...addKeyToMenus(educationInnerMenus, "/education"),
     ...addKeyToMenus(newsInnerMenus, "/news"),
     ...addKeyToMenus(discipleshipInnerMenus, "/discipleship"),
-    ...addKeyToMenus([{ label: "맛있는 가정예배", path: "/homeworship" }], "/homeworship"),
+    ...addKeyToMenus([{ label: "맛있는 가정예배", path: "/discipleship/homeworship" }], "/homeworship"),
   ];
 
   useEffect(() => {

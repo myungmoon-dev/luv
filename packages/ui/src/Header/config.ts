@@ -17,7 +17,7 @@ export const menus: IDetailMenu[] = [
   },
   {
     label: "가정예배",
-    path: "/homeworship",
+    path: "/discipleship/homeworship",
     key: "/homeworship",
   },
 ];
@@ -25,7 +25,7 @@ export const menus: IDetailMenu[] = [
 export const favMenus: IDetailMenu[] = [
   {
     label: "맛있는 가정예배",
-    path: "/homeworship",
+    path: "/discipleship/homeworship",
     key: "/education",
   },
   {
