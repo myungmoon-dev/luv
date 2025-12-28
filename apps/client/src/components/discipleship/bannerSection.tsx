@@ -58,7 +58,7 @@ const SLIDES = [
     shortTitle: "공동체훈련",
     desc: ['"삶을 나누고 믿음을 세우는', '세대별 공동체의 자리로 초대합니다."'],
     image: "/images/discipleship/discipleship.png",
-    url: "/discipleship/community",
+    url: "/discipleship/training/newlyweds",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path
