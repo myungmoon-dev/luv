@@ -1,59 +1,32 @@
-import CustomImage from "@/components/customImage";
-import EducationValueCard from "../index/valueCard";
-import EducationSectionTitle from "../index/title";
-
 const EducationCoreValuesSection = () => {
   return (
-    <div className="flex w-full flex-col">
-      <EducationSectionTitle
-        className="flex w-full gap-1 p-5 text-2xl text-blue-500 md:p-10 md:text-4xl lg:text-5xl xl:text-6xl"
-        first="핵심가치"
-        second="Core Values"
-      />
+    <div data-aos="fade-up" className="mt-6 flex flex-col gap-3 pt-8 sm:mt-8 sm:gap-4 sm:pt-10 md:mt-10 md:gap-5 md:pt-12 lg:pt-16">
+      <h2 className="text-[20px] font-bold text-[#001F54] sm:text-[24px] md:text-[28px] lg:text-[32px]">명문교회 다음세대 핵심가치</h2>
 
-      <div className="relative grid w-full grid-cols-2 items-center justify-items-center" data-aos="fade-up">
-        <CustomImage
-          src="/images/education/value1.jpg"
-          className="h-[200px] bg-black md:h-[400px]"
-          imgClass="opacity-40"
-          alt="핵심가치1"
-          loading="lazy"
-        >
-          <EducationValueCard
-            className="absolute"
-            index="01"
-            textColor="text-white"
-            text="영적 변화와 회심이 일어나는 교육"
-          />
-        </CustomImage>
-        <EducationValueCard
-          index="02"
-          textColor="text-white"
-          bgColor="bg-blue-500"
-          text="성경의 핵심 진리를 이해하도록 돕는 교육"
-        />
-        <EducationValueCard
-          className="border-2"
-          index="03"
-          textColor="text-blue-500"
-          bgColor="bg-white"
-          borderColor="border-blue-500"
-          text="그리스도인의 삶으로 나아가는 교육"
-        />
-        <CustomImage
-          src="/images/education/value2.jpg"
-          className="h-[200px] bg-black md:h-[400px]"
-          imgClass="opacity-40"
-          alt="핵심가치4"
-          loading="lazy"
-        >
-          <EducationValueCard
-            className="absolute"
-            index="04"
-            textColor="text-white"
-            text="교회와 가정의 동역으로 이루어지는 교육"
-          />
-        </CustomImage>
+      <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
+        {/* value 1 */}
+        <div className="flex flex-col border-t border-gray-400 pt-3 sm:pt-4 md:pt-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#222222] sm:text-base md:text-lg">VALUE 01</p>
+          <p className="text-sm leading-relaxed text-[#001F54] sm:text-base md:text-lg">영적 변화와 회심이 일어나는 교육</p>
+        </div>
+
+        {/* value 2 */}
+        <div className="flex flex-col border-t border-[#E6E6E6] pt-3 sm:pt-4 md:pt-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#222222] sm:text-base md:text-lg">VALUE 02</p>
+          <p className="text-sm leading-relaxed text-[#001F54] sm:text-base md:text-lg">성경의 핵심 진리를 이해하도록 돕는 교육</p>
+        </div>
+
+        {/* value 3 */}
+        <div className="flex flex-col border-t border-[#E6E6E6] pt-3 sm:pt-4 md:pt-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#222222] sm:text-base md:text-lg">VALUE 03</p>
+          <p className="text-sm leading-relaxed text-[#001F54] sm:text-base md:text-lg">그리스도인의 삶으로 나아가는 교육</p>
+        </div>
+
+        {/* value 4 */}
+        <div className="flex flex-col border-t border-[#E6E6E6] pt-3 sm:pt-4 md:pt-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#222222] sm:text-base md:text-lg">VALUE 04</p>
+          <p className="text-sm leading-relaxed text-[#001F54] sm:text-base md:text-lg">교회와 가정의 동역으로 이루어지는 교육</p>
+        </div>
       </div>
     </div>
   );

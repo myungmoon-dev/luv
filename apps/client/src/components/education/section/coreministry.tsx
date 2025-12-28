@@ -46,7 +46,7 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
   };
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-10 overflow-y-hidden xl:h-screen">
+    <div className="xl:h-screen font-NotoSansKR flex w-full flex-col items-center justify-center gap-10 overflow-y-hidden">
       <EducationIntroductionTitle department={department} type="핵심사역" />
       <AnimatePresence initial={false}>
         <div className={cn("relative grid w-full gap-[1px] md:gap-1", `grid-cols-${dataList.length}`)}>
@@ -58,19 +58,19 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
               className="w-full"
             >
               <CustomImage
-                className="relative h-[300px] w-full cursor-pointer bg-blue-600 md:h-[500px]"
+                className="relative h-[300px] w-full cursor-pointer bg-[#001F54] md:h-[500px]"
                 imgClass={data.imgClass}
                 src={data.img}
                 alt={`${data.titleKr} 이미지`}
               >
                 <div
                   data-aos="fade-up"
-                  className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-blue-600 sm:gap-16"
+                  className="absolute flex h-full w-full items-center justify-center text-white transition duration-500 ease-in-out hover:bg-opacity-30 hover:text-[#001F54] sm:gap-16"
                 >
                   <div className="flex flex-col items-center justify-center gap-3">
-                    <p className="font-SCoreDream text-[50px] sm:text-5xl md:text-9xl">{data.id}</p>
+                    <p className="font-NotoSansKR text-[50px] font-bold sm:text-5xl md:text-9xl">{data.id}</p>
                     <div className="flex flex-col items-end justify-center gap-1">
-                      <p className="w-16 overflow-hidden text-ellipsis whitespace-nowrap text-center font-SCoreDream text-sm text-white md:w-auto md:text-2xl lg:text-xl">
+                      <p className="font-NotoSansKR w-16 overflow-hidden text-ellipsis whitespace-nowrap text-center text-sm font-bold text-white md:w-auto md:text-2xl lg:text-xl">
                         {data.titleKr}
                       </p>
                       <p className="font-Cormorant text-white md:text-2xl">{data.titleEn}</p>
@@ -102,14 +102,18 @@ const EducationCoreMinistrySection = ({ dataList, department }: IEducationCoreMi
                 >
                   <div className="absolute grid h-full w-full grid-cols-5 sm:gap-16">
                     <div className="col-span-2 flex items-center justify-center">
-                      <p className="font-SCoreDream text-9xl text-blue-600 md:text-[300px]">{selectedValue.id}</p>
+                      <p className="font-NotoSansKR text-9xl font-bold text-white md:text-[300px]">
+                        {selectedValue.id}
+                      </p>
                     </div>
                     <div
                       data-aos="fade-left"
                       className="col-span-3 flex w-full flex-col justify-center gap-6 md:gap-20"
                     >
                       <div className="flex flex-col gap-3 text-white">
-                        <p className="font-SCoreDream text-2xl sm:text-3xl md:text-5xl">{selectedValue.titleKr}</p>
+                        <p className="font-NotoSansKR text-2xl font-bold sm:text-3xl md:text-5xl">
+                          {selectedValue.titleKr}
+                        </p>
                         <p className="font-Lora sm:text-xl md:text-2xl lg:text-5xl">{selectedValue.titleEn}</p>
                       </div>
                       <p className="break-keep pr-6 font-medium leading-relaxed text-white sm:pr-0 sm:text-2xl md:whitespace-pre-wrap">
