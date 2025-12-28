@@ -1,15 +1,13 @@
 import { useGetHomeWorship, usePutHomeWorship } from "@/query/homeWorship";
-import dynamic from "next/dynamic";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IHomeWorshipForm } from "type";
-import { Spinner, cn } from "ui";
-
-const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
-  ssr: false,
-  loading: () => <Spinner />,
-});
+import { Spinner } from "ui";
+import HomeworshipFormDate from "./form/date";
+import HomeworshipFormEditor from "./form/editor";
+import HomeworshipFormImgUpload from "./form/imageUpload";
+import HomeworshipFormInput from "./form/writer";
 
 const HomeWorshipEdit = () => {
   const { push } = useRouter();
@@ -18,7 +16,7 @@ const HomeWorshipEdit = () => {
 
   const { data: homeWorship } = useGetHomeWorship({ homeWorshipId });
 
-  const { register, handleSubmit, reset } = useForm<IHomeWorshipForm>();
+  const { register, handleSubmit, reset, watch, setValue } = useForm<IHomeWorshipForm>();
 
   const { mutate, isPending } = usePutHomeWorship();
 
@@ -56,7 +54,7 @@ const HomeWorshipEdit = () => {
       {
         onSuccess: (res) => {
           alert("수정되었습니다.");
-          push("/homeworship");
+          push("/discipleship/homeworship");
         },
         onError: (err) => {
           alert("에러가 발생했습니다. 다시 시도해주세요.");
@@ -77,60 +75,100 @@ const HomeWorshipEdit = () => {
   }, [homeWorship, reset]);
 
   return (
-    <div className="relative flex justify-center">
-      <div
-        className={cn(
-          "flex w-screen flex-col gap-8 rounded-md px-5 py-8 shadow-lg sm:w-auto lg:min-w-[500px]",
-          isPending && "opacity-50",
-        )}
-      >
-        <h1 className="font-SCoreDream text-3xl">가정예배 인증하기 수정</h1>
-        <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
-          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl font-bold">예배 날짜</p>
-            <input className="border px-2 py-1" type="date" {...register("date")} />
-          </label>
-          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl font-bold">제목</p>
-            <input className="border px-2 py-1" {...register("title")} />
-          </label>
-          {!isNewImage && (
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-              <p className="text-xl font-bold">기존 사진</p>
-              <div className="flex flex-col items-end">
-                {homeWorship && <img src={homeWorship?.imageUrls[0]} className="h-full w-[380px]" alt="이미지" />}
-                <button onClick={() => setNewImage(true)} className="text-red-500" type="button">
-                  삭제
-                </button>
-              </div>
+    <div className="flex min-h-screen flex-col bg-white">
+      {/* 헤더 */}
+      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
+        <button onClick={() => push("/discipleship/homeworship")} className="flex items-center gap-2 text-gray-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+          <span className="text-base">뒤로</span>
+        </button>
+        <h1 className="absolute left-1/2 -translate-x-1/2 text-lg font-semibold">예배 수정하기</h1>
+        <div className="w-16"></div>
+      </div>
+
+      {/* 폼 */}
+      <form className="flex flex-col gap-6 p-4" onSubmit={handleSubmit(onSubmit)}>
+        {/* 예배 날짜 */}
+        <HomeworshipFormDate register={register("date")} />
+
+        {/* 작성자 */}
+        <HomeworshipFormInput register={register("userName")} label="작성자" />
+
+        {/* 제목 */}
+        <HomeworshipFormInput register={register("title")} label="제목" />
+
+        {/* 글 */}
+        <HomeworshipFormEditor setValue={setContent} defaultValue={content} />
+
+        {/* 사진 첨부 */}
+        {!isNewImage && homeWorship && (
+          <div className="flex flex-col gap-2">
+            <span className="text-sm font-medium text-gray-700">기존 사진</span>
+            <div className="relative h-48 w-48">
+              <img
+                src={homeWorship.imageUrls[0]}
+                alt="기존 이미지"
+                className="h-full w-full rounded-md border border-gray-300 object-cover"
+              />
+              <button
+                type="button"
+                onClick={() => setNewImage(true)}
+                className="absolute -right-3 -top-3 flex h-8 w-8 items-center justify-center rounded-full text-white shadow-lg ring-2 ring-white"
+                style={{ backgroundColor: "#dc2626" }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-          )}
-          {isNewImage && (
-            <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-              <p className="text-xl font-bold">사진 업로드</p>
-              <input type="file" accept="image/*" {...register("image")} />
-            </label>
-          )}
-          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl font-bold">글</p>
-            <Editor setValue={setContent} defaultValue={content} />
           </div>
-          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl font-bold">작성자</p>
-            <input className="border px-2 py-1" {...register("userName")} />
-          </label>
-          <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
-            <p className="text-xl font-bold">비밀번호</p>
-            <input className="border px-2 py-1" type="password" {...register("password")} />
-          </label>
-          <button disabled={isPending} className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white">
-            인증하기
-          </button>
-        </form>
+        )}
+        {isNewImage && <HomeworshipFormImgUpload register={register("image")} watch={watch} setValue={setValue} />}
+
+        {/* 비밀번호 */}
+        <HomeworshipFormInput
+          label="비밀번호"
+          register={register("password")}
+          type="password"
+          placeholder="수정/삭제 시 필요합니다"
+        />
+
+        {/* 하단 고정 버튼을 위한 여백 */}
+        <div className="h-20"></div>
+      </form>
+
+      {/* 하단 고정 저장 버튼 */}
+      <div className="fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white p-4">
+        <button
+          onClick={handleSubmit(onSubmit)}
+          disabled={isPending}
+          className="w-full rounded-md bg-[#1e3a5f] py-3 text-base font-medium text-white transition-colors hover:bg-[#2d4a6f] disabled:opacity-50"
+        >
+          수정
+        </button>
       </div>
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-        <Spinner loading={isPending} />
-      </div>
+
+      {/* 로딩 스피너 */}
+      {isPending && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20">
+          <Spinner />
+        </div>
+      )}
     </div>
   );
 };

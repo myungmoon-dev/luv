@@ -1,7 +1,7 @@
 import { IInnerMenu } from "./types";
 
 export const discipleshipInnerMenus: IInnerMenu[] = [
-  { label: "교회훈련", path: "/discipleship/main/bible" },
+  { label: "훈련", path: "/discipleship/main/bible" },
   { label: "추천 도서", path: "/discipleship/books" },
   { label: "새가족 교육", path: "/discipleship/new" },
   { label: "신혼가정", path: "/discipleship/newlyweds" },

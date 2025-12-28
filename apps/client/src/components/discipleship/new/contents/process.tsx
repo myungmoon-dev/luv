@@ -1,51 +1,45 @@
-import { IDiscipleshipTabData } from "type";
-import DiscipleshipTabBarContentWrapper from "../../tabs/wrapper";
-import DiscipleshipTabBarContentSection from "../../tabs/section";
-import DiscipleshipTabBarContentCard from "../../tabs/card";
+const DiscipleshipNewProcessSection = () => {
+  return (
+    <div className="flex flex-col gap-4 px-5 sm:gap-6 sm:px-8 md:px-12 lg:px-16">
+      <h2 className="border-b-[0.7px] border-gray-400 pb-5 text-xl font-bold text-[#111111] sm:text-2xl md:text-3xl lg:text-4xl">
+        5주 새신자 과정
+      </h2>
 
-const NEWCOMMERS_PROCESS_DATA: IDiscipleshipTabData[] = [
-  {
-    title: "5단계의 관리를 통해 교회정착, 명문교회 교인으로의 준비를 돕습니다.",
-    content: [
-      {
-        title: "1. 새가족등록",
-        text: "등록하시면 환영인사 후 담임목사님과 면담",
-      },
-      {
-        title: "2. 5주 교육",
-        text: "이슬비 편지, 관리문자, 교육, 수료 후 구역연결",
-      },
-      {
-        title: "3. 등반,구역 인계",
-        text: "등록심방, 신앙훈련과정 참여",
-      },
-      {
-        title: "4. 성장반 5주 교육",
-        text: "등반 후 교회에서 실제적인 신앙의 도움을 주는 추가교육",
-      },
-      {
-        title: "5. 새가족 환영회",
-        text: "연 2회 새가족 환영식",
-      },
-    ],
-  },
-];
-const ForNewCommersProcess = () => (
-  <DiscipleshipTabBarContentWrapper className="h-[700px] md:h-[800px]">
-    {NEWCOMMERS_PROCESS_DATA.map((data) => (
-      <DiscipleshipTabBarContentSection key={data.title} title={data.title}>
-        {data.content &&
-          data.content.map((content) => (
-            <DiscipleshipTabBarContentCard
-              key={content.text}
-              title={content.title}
-              text={content.text}
-              className="flex-col 2xl:flex-row 2xl:items-center 2xl:gap-10"
-            />
-          ))}
-      </DiscipleshipTabBarContentSection>
-    ))}
-  </DiscipleshipTabBarContentWrapper>
-);
+      <div className="flex flex-col gap-4 sm:gap-5 md:gap-6">
+        {/* 1주차 */}
+        <div className="flex items-center gap-10 border-b border-[#E6E6E6] px-10 pb-3 sm:pb-4 md:pb-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#001F54] sm:text-base md:text-lg">1주차</p>
+          <p className="text-sm leading-relaxed text-[#222222] sm:text-base md:text-lg">하나님의 창조와 사람의 죄</p>
+        </div>
 
-export default ForNewCommersProcess;
+        {/* 2주차 */}
+        <div className="flex items-center gap-10 border-b border-[#E6E6E6] px-10 pb-3 sm:pb-4 md:pb-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#001F54] sm:text-base md:text-lg">2주차</p>
+          <p className="text-sm leading-relaxed text-[#222222] sm:text-base md:text-lg">죄 그리고 구원의 길</p>
+        </div>
+
+        {/* 3주차 */}
+        <div className="flex items-center gap-10 border-b border-[#E6E6E6] px-10 pb-3 sm:pb-4 md:pb-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#001F54] sm:text-base md:text-lg">3주차</p>
+          <p className="text-sm leading-relaxed text-[#222222] sm:text-base md:text-lg">예수님 안에서의 성장하는 삶</p>
+        </div>
+
+        {/* 4주차 */}
+        <div className="flex items-center gap-10 border-b border-[#E6E6E6] px-10 pb-3 sm:pb-4 md:pb-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#001F54] sm:text-base md:text-lg">4주차</p>
+          <p className="text-sm leading-relaxed text-[#222222] sm:text-base md:text-lg">신앙의 성장과 말씀(성경)</p>
+        </div>
+
+        {/* 5주차 */}
+        <div className="flex items-center gap-10 border-b border-[#E6E6E6] px-10 pb-3 sm:pb-4 md:pb-5">
+          <p className="text-sm font-semibold leading-relaxed text-[#001F54] sm:text-base md:text-lg">5주차</p>
+          <p className="text-sm leading-relaxed text-[#222222] sm:text-base md:text-lg">
+            성도에게 교회의 유익과 신앙여정
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DiscipleshipNewProcessSection;

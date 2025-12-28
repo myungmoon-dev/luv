@@ -30,7 +30,7 @@ const HomeBanner = () => {
   };
 
   const handleClickHomeworship = () => {
-    push("/homeworship");
+    push("/discipleship/homeworship");
   };
 
   const handleClickPrev = () => {

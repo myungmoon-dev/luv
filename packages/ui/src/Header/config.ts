@@ -11,13 +11,13 @@ export const menus: IDetailMenu[] = [
   { label: "다음세대", path: "/education", key: "/education" },
   { label: "명문소식", path: "/news", key: "/news" },
   {
-    label: "교회훈련",
-    path: "/discipleship/main/bible",
+    label: "훈련",
+    path: "/discipleship",
     key: "/discipleship",
   },
   {
     label: "가정예배",
-    path: "/homeworship",
+    path: "/discipleship/homeworship",
     key: "/homeworship",
   },
 ];
@@ -25,7 +25,7 @@ export const menus: IDetailMenu[] = [
 export const favMenus: IDetailMenu[] = [
   {
     label: "맛있는 가정예배",
-    path: "/homeworship",
+    path: "/discipleship/homeworship",
     key: "/education",
   },
   {
