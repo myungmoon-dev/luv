@@ -4,7 +4,7 @@ import CaretLeftIcon from "./caretLeft";
 import CaretRightIcon from "./caretRight";
 import { useGetLive } from "@/query/youtube";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import HomeBannerLgCard from "./card/lg";
 import HomeBannerSmCard from "./card/sm";
 
@@ -20,6 +20,18 @@ const HomeBanner = () => {
   const { push } = useRouter();
 
   const { data } = useGetLive();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentBanner((prev) => {
+        if (prev === HomeBannerEnum.Live) return HomeBannerEnum.Bible;
+        if (prev === HomeBannerEnum.Bible) return HomeBannerEnum.HomeWorship;
+        return HomeBannerEnum.Live;
+      });
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleOpenLive = () => {
     open(data?.url);

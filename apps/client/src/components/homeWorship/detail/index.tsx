@@ -46,7 +46,10 @@ const HomeWorshipDetail = () => {
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 */}
       <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
-        <button onClick={() => push("/discipleship/homeworship")} className="flex items-center gap-2 text-gray-700">
+        <button
+          onClick={() => push("/discipleship/homeworship")}
+          className="flex items-center gap-2 text-gray-700"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -54,7 +57,12 @@ const HomeWorshipDetail = () => {
             viewBox="0 0 24 24"
             stroke="currentColor"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
           <span className="text-base">뒤로</span>
         </button>
@@ -84,7 +92,9 @@ const HomeWorshipDetail = () => {
                   d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
                 />
               </svg>
-              <span>{data?.date && format(new Date(data.date), "yyyy년 M월 d일", { locale: ko })}</span>
+              <span>
+                {data?.date && format(new Date(data.date), "yyyy년 M월 d일", { locale: ko })}
+              </span>
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-900">
               <svg
@@ -153,7 +163,11 @@ const HomeWorshipDetail = () => {
           <div className="flex flex-col gap-2">
             {data.imageUrls.map((imageUrl) => (
               <div key={imageUrl} className="overflow-hidden rounded-lg border border-gray-300">
-                <img src={imageUrl} alt="예배 이미지" className="h-auto w-full max-w-full object-contain" />
+                <img
+                  src={imageUrl}
+                  alt="예배 이미지"
+                  className="h-auto w-full max-w-full object-contain"
+                />
               </div>
             ))}
           </div>
@@ -165,7 +179,7 @@ const HomeWorshipDetail = () => {
         </div>
 
         {/* 댓글 */}
-        <div className="mt-6">
+        <div className="mt-6 p-40">
           <HomeWorshipDetailComments />
         </div>
       </div>
