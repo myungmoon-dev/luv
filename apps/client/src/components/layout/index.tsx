@@ -15,6 +15,7 @@ import { sermonsInnerMenus } from "@/constants/innerMenus/sermons";
 import { educationInnerMenus } from "@/constants/innerMenus/education";
 import { newsInnerMenus } from "@/constants/innerMenus/news";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
+import MapOfferingSection from "../home/section/mapOffering";
 
 interface LayoutProps {
   children: ReactNode;
@@ -88,6 +89,8 @@ const Layout = ({
         <Header push={push} asPath={asPath} />
         {customBanner ? customBanner : null}
         <div className={cn(hasChildrenPadding && "py-10")}>{children}</div>
+        <div className="h-[8px] w-full bg-[#E6E6E6]" />
+        <MapOfferingSection />
         <Footer push={push} />
       </main>
     </>

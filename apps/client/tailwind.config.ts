@@ -5,4 +5,4 @@ const customConfig = {};
 
 const config: Config = { ...tailwindConfig, ...customConfig };
 
-export default config;
+export default tailwindConfig;

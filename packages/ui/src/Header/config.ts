@@ -9,7 +9,7 @@ export const menus: IDetailMenu[] = [
   { label: "교회안내", path: "/about", key: "/about" },
   { label: "설교•찬양", path: "/sermons", key: "/sermons" },
   { label: "다음세대", path: "/education", key: "/education" },
-  { label: "주보•소식", path: "/news/bulletins", key: "/news" },
+  { label: "명문소식", path: "/news", key: "/news" },
   {
     label: "훈련",
     path: "/discipleship",
@@ -30,7 +30,7 @@ export const favMenus: IDetailMenu[] = [
   },
   {
     label: "주보",
-    path: "/news/bulletins",
+    path: "/news",
     key: "/news",
   },
   {

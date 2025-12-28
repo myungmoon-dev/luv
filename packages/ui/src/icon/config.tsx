@@ -3,6 +3,7 @@ import AboutChurchIcon from "./assets/aboutChurch";
 import BellIcon from "./assets/bell";
 import BibleIcon from "./assets/bible";
 import BulletinIcon from "./assets/bulletin";
+import CaretLeftIcon from "./assets/caretLeft";
 import CaretRightIcon from "./assets/caretRight";
 import ChevronDoubleLeft from "./assets/chevronDoubleLeft";
 import ChevronDoubleRight from "./assets/chevronDoubleRight";
@@ -16,16 +17,22 @@ import HamburgerIcon from "./assets/hamburger";
 import HandHeartIcon from "./assets/handHeart";
 import { ImageUploadIcon } from "./assets/imageUpload";
 import InfoIcon from "./assets/Info";
+import InformationIcon from "./assets/information";
 import { InstagramIcon } from "./assets/instagram";
 import { LogoBlackIcon } from "./assets/logoBlack";
 import { LogoBlueIcon } from "./assets/logoBlue";
+import LeadershipIcon from "./assets/leadership";
 import MapIcon from "./assets/map";
+import MarkerIcon from "./assets/marker";
 import NextGenerationIcon from "./assets/nextGeneration";
 import OpenBookIcon from "./assets/openBook";
 import PrayIcon from "./assets/pray";
+import ShareIcon from "./assets/share";
 import UserIcon from "./assets/user";
+import { VisionIcon } from "./assets/vision";
 import YoutubeIcon from "./assets/youtube";
 import { RealYoutubeIcon } from "./assets/youtube-1";
+import CaretDownIcon from "./assets/caretDown";
 
 export type IconCursorType = `ui-cursor-${CursorType}`;
 
@@ -38,6 +45,7 @@ export interface IIconProps {
   strokeColor?: string;
   sizeNumber?: number;
   cursor?: string;
+  iconClassName?: string;
 }
 
 export const widthSize: Record<IconSizeType, `ui-w-[${string}]`> = {
@@ -76,5 +84,12 @@ export const icons = {
   Bulletin: (props: IIconProps) => <BulletinIcon {...props} />,
   Info: (props: IIconProps) => <InfoIcon {...props} />,
   NextGeneration: (props: IIconProps) => <NextGenerationIcon {...props} />,
+  CaretLeft: (props: IIconProps) => <CaretLeftIcon {...props} />,
   CaretRight: (props: IIconProps) => <CaretRightIcon {...props} />,
+  Share: (props: IIconProps) => <ShareIcon {...props} />,
+  Leadership: (props: IIconProps) => <LeadershipIcon {...props} />,
+  Information: (props: IIconProps) => <InformationIcon {...props} />,
+  Marker: (props: IIconProps) => <MarkerIcon {...props} />,
+  Vision: (props: IIconProps) => <VisionIcon {...props} />,
+  CaretDown: (props: IIconProps) => <CaretDownIcon {...props} />,
 };

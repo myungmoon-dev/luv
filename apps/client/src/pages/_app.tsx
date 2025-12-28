@@ -2,6 +2,7 @@ import type { AppProps } from "next/app";
 import { ToastContainer } from "react-toastify";
 
 import ModalProvider from "@/components/modal/provider";
+import BottomSheetProvider from "@/components/bottomSheet/provider";
 import QueryProvider from "@/query/Provider";
 
 import "@/styles/globals.css";
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Component {...pageProps} />
       <ToastContainer />
       <ModalProvider />
+      <BottomSheetProvider />
     </QueryProvider>
   );
 }
