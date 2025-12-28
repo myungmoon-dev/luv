@@ -5,9 +5,9 @@ import { Spinner } from "ui";
 import CommonAlbumList from "@/components/common/albums";
 import DiscipleshipBannerSection from "@/components/discipleship/bannerSection";
 import FaithMenuSection from "@/components/discipleship/faith/faithMenuSection";
-import DiscipleshipFaithQtIntroduce from "@/components/discipleship/faith/qt/introduce";
+import DiscipleshipFaithPanoramaIntroduce from "@/components/discipleship/faith/panorama/introduce";
 
-const DiscipleshipFaithQtPage = () => {
+const DiscipleshipFaithPanoramaPage = () => {
   return (
     <Suspense
       fallback={
@@ -16,16 +16,16 @@ const DiscipleshipFaithQtPage = () => {
         </div>
       }
     >
-      <DiscipleshipFaithQt />
+      <DiscipleshipFaithPanorama />
     </Suspense>
   );
 };
 
-const DiscipleshipFaithQt = () => {
+const DiscipleshipFaithPanorama = () => {
   return (
     <Layout
-      pageTitle="큐티세미나 안내"
-      title="큐티세미나 안내"
+      pageTitle="성경파노라마 안내"
+      title="성경파노라마 안내"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/banner.jpg"
       innerMenus={discipleshipInnerMenus}
@@ -37,14 +37,14 @@ const DiscipleshipFaithQt = () => {
         {/* 신앙교육 세부 메뉴 */}
         <FaithMenuSection />
 
-        {/* 큐티 세미나 소개 */}
-        <DiscipleshipFaithQtIntroduce />
+        {/* 성경파노라마 소개 */}
+        <DiscipleshipFaithPanoramaIntroduce />
 
         {/* 앨범 */}
-        <CommonAlbumList albumType="qt" albumName="큐티세미나" />
+        <CommonAlbumList albumType="panorama" albumName="성경파노라마" />
       </div>
     </Layout>
   );
 };
 
-export default DiscipleshipFaithQtPage;
+export default DiscipleshipFaithPanoramaPage;

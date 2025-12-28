@@ -2,12 +2,12 @@ import Layout from "@/components/layout";
 import { discipleshipInnerMenus } from "@/constants/innerMenus/discipleship";
 import { Suspense } from "react";
 import { Spinner } from "ui";
-import CommonAlbumList from "@/components/common/albums";
 import DiscipleshipBannerSection from "@/components/discipleship/bannerSection";
 import FaithMenuSection from "@/components/discipleship/faith/faithMenuSection";
-import DiscipleshipFaithQtIntroduce from "@/components/discipleship/faith/qt/introduce";
+import DiscipleshipFaithReadingIntroduce from "@/components/discipleship/faith/readingBible/introduce";
+import DiscipleshipFaithReading from "@/components/discipleship/faith/readingBible";
 
-const DiscipleshipFaithQtPage = () => {
+const DiscipleshipFaithReadingPage = () => {
   return (
     <Suspense
       fallback={
@@ -16,16 +16,16 @@ const DiscipleshipFaithQtPage = () => {
         </div>
       }
     >
-      <DiscipleshipFaithQt />
+      <DiscipleshipFaithReadingContent />
     </Suspense>
   );
 };
 
-const DiscipleshipFaithQt = () => {
+const DiscipleshipFaithReadingContent = () => {
   return (
     <Layout
-      pageTitle="큐티세미나 안내"
-      title="큐티세미나 안내"
+      pageTitle="성경통독 안내"
+      title="성경통독 안내"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/banner.jpg"
       innerMenus={discipleshipInnerMenus}
@@ -37,14 +37,14 @@ const DiscipleshipFaithQt = () => {
         {/* 신앙교육 세부 메뉴 */}
         <FaithMenuSection />
 
-        {/* 큐티 세미나 소개 */}
-        <DiscipleshipFaithQtIntroduce />
+        {/* 성경통독 소개 */}
+        <DiscipleshipFaithReadingIntroduce />
 
-        {/* 앨범 */}
-        <CommonAlbumList albumType="qt" albumName="큐티세미나" />
+        {/* 성경통독 목록 */}
+        <DiscipleshipFaithReading />
       </div>
     </Layout>
   );
 };
 
-export default DiscipleshipFaithQtPage;
+export default DiscipleshipFaithReadingPage;

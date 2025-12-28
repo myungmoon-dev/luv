@@ -25,8 +25,8 @@ const DiscipleshipPage = () => {
 const DiscipleshipMain = () => {
   return (
     <Layout
-      pageTitle="교회 훈련 안내"
-      title="교회 훈련 안내"
+      pageTitle="새가족 안내"
+      title="새가족 안내"
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/banner.jpg"
       innerMenus={discipleshipInnerMenus}
