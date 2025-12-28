@@ -41,7 +41,7 @@ const SLIDES = [
     shortTitle: "신앙교육",
     desc: ['"말씀으로 자라고,', '믿음으로 세워지는 신앙의 여정"'],
     image: "/images/discipleship/bibleBanner.jpg",
-    url: "/discipleship/faith",
+    url: "/discipleship/faith/qt",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path
