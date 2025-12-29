@@ -34,16 +34,8 @@ const staffProfiles = [
     position: "청년부, 미디어위원회, 체육친교위원회",
     tabType: "minister",
     officerType: "associate",
-    greeting: "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청소년들을 주님의 마음으로 섬기겠습니다.",
-  },
-  {
-    name: "정재준",
-    description: "",
-    image: "/images/leader/jae-jun.png",
-    position: "새가족위원회, 선교위원회",
-    tabType: "minister",
-    officerType: "associate",
-    greeting: "명문교회를 찾는 모든 분들과 주님 영광을 함께 나누기를 소망합니다.",
+    greeting:
+      "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청소년들을 주님의 마음으로 섬기겠습니다.",
   },
   {
     name: "장건진",
@@ -52,7 +44,8 @@ const staffProfiles = [
     position: "유초등부, 사회복지위원회",
     tabType: "minister",
     officerType: "associate",
-    greeting: "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
+    greeting:
+      "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
   },
   {
     name: "김규보",
@@ -70,7 +63,8 @@ const staffProfiles = [
     position: "1교구, 신혼부부, 차량위원회",
     tabType: "minister",
     officerType: "evangelist",
-    greeting: "맡겨주신 사역들과 목양을 하나님의 마음을 담아 기쁨과 감사함으로 섬기겠습니다. 사랑하고 축복합니다.",
+    greeting:
+      "맡겨주신 사역들과 목양을 하나님의 마음을 담아 기쁨과 감사함으로 섬기겠습니다. 사랑하고 축복합니다.",
   },
   {
     name: "이능옥",
@@ -333,7 +327,9 @@ const staffProfiles = [
 ];
 const ProfileList = ({ tabType, className }: IProfileListProps) => {
   return (
-    <div className={cn("xl:gap-20 grid grid-cols-1 gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20", className)}>
+    <div
+      className={cn("grid grid-cols-1 gap-9 px-5 sm:px-10 lg:gap-12 lg:pb-20 xl:gap-20", className)}
+    >
       {staffProfiles
         .filter((profile) => tabType === profile.tabType)
         .map((profile) => {
