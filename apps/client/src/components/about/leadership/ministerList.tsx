@@ -22,15 +22,6 @@ const ministerProfiles = [
     greeting: "주님께서 맡겨주신 교회를 사랑하고, 보배로운 청년들을 주님의 마음으로 섬기겠습니다.",
   },
   {
-    name: "정재준",
-    description: "",
-    image: "/images/leader/jae-jun.png",
-    position: "새가족위원회, 선교위원회, 시니어 아카데미",
-    tabType: "minister",
-    officerType: "associate",
-    greeting: "명문교회를 찾는 모든 분들과 주님 영광을 함께 나누기를 소망합니다.",
-  },
-  {
     name: "장건진",
     description: "",
     image: "/images/leader/geon-jin.png",
