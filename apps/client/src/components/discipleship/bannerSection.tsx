@@ -7,9 +7,15 @@ const SLIDES = [
     shortTitle: "새가족훈련",
     desc: ['"처음 오셨나요?', '함께 걸어갈 믿음의 첫걸음을 안내해드립니다."'],
     image: "/images/discipleship/welcome-banner.jpg",
-    url: "/discipleship",
+    url: "/discipleship/newFamilly",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -26,7 +32,13 @@ const SLIDES = [
     image: "/images/home/homeworship.png",
     url: "/discipleship/homeworship",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -43,7 +55,13 @@ const SLIDES = [
     image: "/images/discipleship/bibleBanner.jpg",
     url: "/discipleship/faith/qt",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -60,7 +78,13 @@ const SLIDES = [
     image: "/images/discipleship/discipleship.png",
     url: "/discipleship/training/newlyweds",
     icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-8 w-8"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -93,7 +117,11 @@ const DiscipleshipBannerSection = () => {
                 current === i ? "opacity-100" : "opacity-0"
               }`}
             >
-              <img src={slide.image} alt={slide.title} className="h-full w-full object-cover brightness-50" />
+              <img
+                src={slide.image}
+                alt={slide.title}
+                className="h-full w-full object-cover brightness-50"
+              />
               <div className="absolute inset-0 flex flex-col justify-center gap-2 pl-5 sm:pl-8 md:gap-3 md:pl-12 lg:pl-16">
                 <p className="pb-2 text-xl font-bold text-white sm:pb-3 sm:text-2xl md:text-4xl lg:text-5xl">
                   {slide.title}
@@ -120,7 +148,9 @@ const DiscipleshipBannerSection = () => {
               key={i}
               onClick={() => setCurrent(i)}
               className={`h-2 rounded-full transition-all sm:h-2.5 md:h-3 ${
-                current === i ? "w-6 bg-white sm:w-8 md:w-10" : "w-2 bg-white/50 hover:bg-white/75 sm:w-2.5 md:w-3"
+                current === i
+                  ? "w-6 bg-white sm:w-8 md:w-10"
+                  : "w-2 bg-white/50 hover:bg-white/75 sm:w-2.5 md:w-3"
               }`}
             />
           ))}
@@ -142,7 +172,9 @@ const DiscipleshipBannerSection = () => {
               <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all group-hover:bg-[#001F54] group-hover:text-white sm:h-20 sm:w-20">
                 <div className="scale-75 sm:scale-100">{slide.icon}</div>
               </div>
-              <p className="text-center text-xs font-medium text-gray-900 sm:text-base">{slide.shortTitle}</p>
+              <p className="text-center text-xs font-medium text-gray-900 sm:text-base">
+                {slide.shortTitle}
+              </p>
             </button>
           ))}
         </div>

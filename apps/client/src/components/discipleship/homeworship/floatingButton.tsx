@@ -5,12 +5,12 @@ const HomeworshipFloatingButton = ({ onClick }: IHomeworshipFloatingButtonProps)
   return (
     <button
       onClick={onClick}
-      className="fixed bottom-8 right-8 z-40 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-blue-950 text-white shadow-lg transition-all hover:scale-110 hover:bg-[#2d4a6f]"
+      className="fixed bottom-4 right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-blue-950 text-white shadow-lg transition-all hover:scale-110 hover:bg-[#2d4a6f] sm:bottom-6 sm:right-6 sm:h-14 sm:w-14 md:bottom-8 md:right-8"
       aria-label="예배 인증하기"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
+        className="h-5 w-5 sm:h-6 sm:w-6"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

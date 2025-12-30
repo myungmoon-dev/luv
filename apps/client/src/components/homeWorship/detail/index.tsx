@@ -45,10 +45,10 @@ const HomeWorshipDetail = () => {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       {/* 헤더 */}
-      <div className="flex items-center justify-between border-b border-gray-200 px-4 py-4">
+      <div className="flex items-center justify-between border-b border-gray-200 px-3 py-3 sm:px-4 sm:py-4">
         <button
           onClick={() => push("/discipleship/homeworship")}
-          className="flex items-center gap-2 text-gray-700"
+          className="flex items-center gap-1.5 text-gray-700 sm:gap-2"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -64,23 +64,23 @@ const HomeWorshipDetail = () => {
               d="M15 19l-7-7 7-7"
             />
           </svg>
-          <span className="text-base">뒤로</span>
+          <span className="text-sm sm:text-base">뒤로</span>
         </button>
-        <h1 className="absolute left-1/2 max-w-[60%] -translate-x-1/2 truncate text-lg font-semibold">
+        <h1 className="absolute left-1/2 max-w-[60%] -translate-x-1/2 truncate text-base font-semibold sm:text-lg">
           {data?.title}
         </h1>
-        <div className="w-16"></div>
+        <div className="w-12 sm:w-16"></div>
       </div>
 
       {/* 컨텐츠 */}
-      <div className="flex flex-col gap-4 p-4">
+      <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:p-6">
         {/* 정보 및 버튼 */}
-        <div className="flex flex-col gap-3 border-b border-gray-200 pb-4">
+        <div className="flex flex-col gap-2.5 border-b border-gray-200 pb-3 sm:gap-3 sm:pb-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 text-sm text-gray-500">
+            <div className="flex items-center gap-1.5 text-xs text-gray-500 sm:gap-2 sm:text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -96,10 +96,10 @@ const HomeWorshipDetail = () => {
                 {data?.date && format(new Date(data.date), "yyyy년 M월 d일", { locale: ko })}
               </span>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-900">
+            <div className="flex items-center gap-1.5 text-xs text-gray-900 sm:gap-2 sm:text-sm">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-gray-600"
+                className="h-3.5 w-3.5 text-gray-600 sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -114,14 +114,14 @@ const HomeWorshipDetail = () => {
               <span className="font-semibold">{data?.userName}</span>
             </div>
           </div>
-          <div className="flex gap-2 pt-2">
+          <div className="flex gap-2 pt-1.5 sm:pt-2">
             <button
               onClick={handleClickUpdate}
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-gray-400 hover:bg-gray-50"
+              className="flex flex-1 items-center justify-center gap-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700 shadow-sm transition-all hover:border-gray-400 hover:bg-gray-50 sm:gap-1.5 sm:px-4 sm:py-2.5 sm:text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -137,11 +137,11 @@ const HomeWorshipDetail = () => {
             </button>
             <button
               onClick={handleClickDelete}
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 shadow-sm transition-all hover:border-red-300 hover:bg-red-50 hover:text-red-600"
+              className="flex flex-1 items-center justify-center gap-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-700 shadow-sm transition-all hover:border-red-300 hover:bg-red-50 hover:text-red-600 sm:gap-1.5 sm:px-4 sm:py-2.5 sm:text-sm"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4"
+                className="h-3.5 w-3.5 sm:h-4 sm:w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -160,7 +160,7 @@ const HomeWorshipDetail = () => {
 
         {/* 이미지 */}
         {data?.imageUrls && data.imageUrls.length > 0 && (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 sm:gap-3">
             {data.imageUrls.map((imageUrl) => (
               <div key={imageUrl} className="overflow-hidden rounded-lg border border-gray-300">
                 <img
@@ -174,12 +174,12 @@ const HomeWorshipDetail = () => {
         )}
 
         {/* 내용 */}
-        <div className="prose prose-sm max-w-none break-words">
+        <div className="prose prose-sm max-w-none break-words sm:prose-base">
           <SafeHTML html={data?.content} />
         </div>
 
         {/* 댓글 */}
-        <div className="mt-6 p-40">
+        <div className="mt-4 sm:mt-6 lg:py-20 xl:py-40">
           <HomeWorshipDetailComments />
         </div>
       </div>
