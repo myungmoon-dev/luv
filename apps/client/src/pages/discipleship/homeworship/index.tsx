@@ -13,7 +13,7 @@ const HomeWorshipPage = () => {
   return (
     <Suspense
       fallback={
-        <div className="flex h-full w-full items-center justify-center p-8 text-gray-500">
+        <div className="flex h-full w-full items-center justify-center p-4 text-gray-500 sm:p-8">
           <Spinner />
         </div>
       }
@@ -30,7 +30,7 @@ const HomeworshipMain = () => {
 
   if (isLoading)
     return (
-      <div className="flex h-full w-full items-center justify-center p-8 text-gray-500">
+      <div className="flex h-full w-full items-center justify-center p-4 text-gray-500 sm:p-8">
         <Spinner />
       </div>
     );
@@ -42,7 +42,7 @@ const HomeworshipMain = () => {
       bannerDescription="보라 내가 반드시 길을 내리라!"
       bannerImage="/images/discipleship/banner.jpg"
     >
-      <div className="flex flex-col gap-10 pb-20">
+      <div className="flex flex-col gap-6 pb-16 sm:gap-8 sm:pb-20 md:gap-10">
         {/* 배너 이미지 */}
         <DiscipleshipBannerSection />
 
@@ -54,7 +54,7 @@ const HomeworshipMain = () => {
 
         {/* 페이지네이션 */}
         {data && (
-          <div className="px-5 sm:px-8 md:px-12 lg:px-16">
+          <div className="px-4 sm:px-6 md:px-12 lg:px-16">
             <Pagination
               currentPage={page}
               onSetPage={onSetPaginationQuery}

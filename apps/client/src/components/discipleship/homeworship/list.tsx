@@ -11,7 +11,7 @@ const HomeworshipListSection = ({ data }: IHomeworshipListSectionProps) => {
   const { push } = useRouter();
 
   return (
-    <div className="flex flex-col gap-4 px-5 sm:px-8 md:px-12 lg:px-16">
+    <div className="flex flex-col gap-3 px-4 sm:gap-4 sm:px-6 md:px-12 lg:px-16">
       {data?.homeworships.map((worship: IHomeWorship) => {
         return (
           <HomeworshipListItem

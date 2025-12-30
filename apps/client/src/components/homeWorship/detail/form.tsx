@@ -33,27 +33,25 @@ const HomeWorshipDetailComment = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-3">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2.5 rounded-lg border border-gray-200 bg-white p-2.5 sm:gap-3 sm:p-3">
       <textarea
         {...register("content")}
         placeholder="내용을 입력하세요"
-        className="min-h-[80px] w-full resize-none rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none"
+        className="min-h-[70px] w-full resize-none rounded-md border border-gray-300 px-2.5 py-2 text-xs focus:border-blue-500 focus:outline-none sm:min-h-[80px] sm:px-3 sm:text-sm"
       />
-      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex gap-2">
-          <input
-            {...register("name")}
-            placeholder="이름"
-            className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none sm:w-auto"
-          />
-          <input
-            {...register("password")}
-            type="password"
-            placeholder="비밀번호"
-            className="flex-1 rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:outline-none sm:w-auto"
-          />
-        </div>
-        <button className="rounded-md bg-[#1e3a5f] px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#2d4a6f]">
+      <div className="flex items-center justify-between gap-1.5 sm:justify-end sm:gap-2">
+        <input
+          {...register("name")}
+          placeholder="이름"
+          className="w-16 rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:outline-none sm:w-auto sm:px-3 sm:py-2 sm:text-sm"
+        />
+        <input
+          {...register("password")}
+          type="password"
+          placeholder="비밀번호"
+          className="w-20 rounded-md border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:outline-none sm:w-auto sm:px-3 sm:py-2 sm:text-sm"
+        />
+        <button className="min-w-[80px] rounded-md bg-[#1e3a5f] px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-[#2d4a6f] sm:min-w-0 sm:px-4 sm:py-2 sm:text-sm">
           등록
         </button>
       </div>
