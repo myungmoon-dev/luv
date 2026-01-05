@@ -7,7 +7,7 @@ const AboutDirectionsPage = () => {
     <Layout
       pageTitle="오시는 길"
       title="오시는 길"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}

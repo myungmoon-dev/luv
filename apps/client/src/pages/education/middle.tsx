@@ -7,7 +7,7 @@ const EducationMiddlePage = () => {
     <Layout
       pageTitle="중등부"
       title="중등부"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/education/middle/banner.jpeg"
       bannerImgClass="object-[50%_90%]"
       innerMenus={educationInnerMenus}

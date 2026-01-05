@@ -8,7 +8,7 @@ const History2000sPage = () => {
     <Layout
       pageTitle="연혁"
       title="연혁"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/about/banner3.jpg"
       bannerImgClass="object-[100%_60%]"
       innerMenus={aboutInnerMenus}

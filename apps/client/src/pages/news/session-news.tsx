@@ -7,7 +7,7 @@ const SessionNewsPage = () => {
     <Layout
       pageTitle="당회소식"
       title="당회소식"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/news/banner5.jpg"
       innerMenus={newsInnerMenus}
     >

@@ -25,8 +25,8 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
       <div className="ui-items-center ui-flex ui-h-[70px] ui-pl-[30px] sm:ui-pl-[36px] md:ui-pl-[52px] lg:ui-pl-[84px] ui-justify-between ui-pr-[100px]">
         <img
           onClick={() => push("/")}
-          src="/images/LogoBlue.png"
-          className="ui-cursor-pointer ui-w-[115px] ui-h-[34px]"
+          src="/images/logo-2026.png"
+          className="ui-cursor-pointer ui-w-[115px] ui-h-[35px]"
           alt="myungmoon"
         />
         <nav className="ui-gap-[21px] ui-hidden lg:ui-flex">
@@ -43,7 +43,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
       </div>
       <div className="ui-block lg:ui-hidden ui-relative">
         <div className="ui-flex ui-border-y ui-border-[#E6E6E6]">
-          <div className="ui-overflow-scroll ui-w-full">
+          <div className="ui-overflow-scroll ui-w-full [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:ui-hidden">
             <nav className="ui-flex ui-h-[49px] sm:ui-h-[70px] ui-min-w-max">
               {menus.map((menu) => (
                 <div

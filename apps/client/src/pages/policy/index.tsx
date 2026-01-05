@@ -7,7 +7,7 @@ const PolicyPage = () => {
     <Layout
       pageTitle="홈페이지 정책"
       title="홈페이지 정책"
-      bannerDescription="보라! 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/home/banner2.jpeg"
       bannerImgClass=""
     >

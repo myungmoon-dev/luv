@@ -6,7 +6,7 @@ import { educationInfantsMenus, educationInnerMenus } from "@/constants/innerMen
 
 const EducationInfantsPage = () => {
   return (
-    <Layout pageTitle="영아부" title="영아부" bannerDescription="보라 내가 반드시 길을 내리라!">
+    <Layout pageTitle="영아부" title="영아부" bannerDescription="일어나라 빛을 발하라!">
       <div className="hidden lg:block">
         <EducationMissionSection />
       </div>

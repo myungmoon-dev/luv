@@ -8,6 +8,7 @@ export type OfficerLabel =
   | "retiredElder"
   | "otherElder"
   | "deacon"
+  | "manager"
   | "staff";
 
 export interface IInnerMenu {

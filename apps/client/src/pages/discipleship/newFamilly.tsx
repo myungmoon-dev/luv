@@ -25,7 +25,7 @@ const DiscipleshipNewFamilly = () => {
     <Layout
       pageTitle="새가족 훈련"
       title="새가족 훈련"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/discipleship/banner.jpg"
       innerMenus={discipleshipInnerMenus}
     >

@@ -16,7 +16,7 @@ const Tabs = ({ menus, children }: ITabsProps) => {
         <div className="bg-[#F8F8F8] px-5 py-2 sm:px-7 sm:py-3">
           <p className="text-xs font-medium text-[#888888] sm:text-base md:text-lg">직분</p>
         </div>
-        <div className="flex gap-2.5 overflow-x-scroll px-4 sm:px-7 md:gap-5 lg:justify-center">
+        <div className="flex gap-2.5 overflow-x-auto px-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:px-7 md:gap-5 lg:justify-center [&::-webkit-scrollbar]:hidden">
           {menus.map((menu) => (
             <div
               onClick={() => push(menu.path)}
