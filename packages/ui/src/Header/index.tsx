@@ -25,8 +25,8 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
       <div className="ui-items-center ui-flex ui-h-[70px] ui-pl-[30px] sm:ui-pl-[36px] md:ui-pl-[52px] lg:ui-pl-[84px] ui-justify-between ui-pr-[100px]">
         <img
           onClick={() => push("/")}
-          src="/images/LogoBlue.png"
-          className="ui-cursor-pointer ui-w-[115px] ui-h-[34px]"
+          src="/images/logo-2026.png"
+          className="ui-cursor-pointer ui-w-[115px] ui-h-[35px]"
           alt="myungmoon"
         />
         <nav className="ui-gap-[21px] ui-hidden lg:ui-flex">
