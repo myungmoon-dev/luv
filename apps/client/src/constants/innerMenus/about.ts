@@ -42,6 +42,7 @@ export const officerTypeMap: Record<OfficerLabel, string> = {
   otherElder: "협동장로",
   deacon: "집사",
   staff: "간사",
+  manager: "관리장",
 };
 
 export const aboutHistoryMenus: IInnerMenu[] = [
