@@ -39,7 +39,7 @@ const HomeworshipMain = () => {
     <Layout
       pageTitle="가정예배 안내"
       title="가정예배 안내"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/discipleship/banner.jpg"
     >
       <div className="flex flex-col gap-6 pb-16 sm:gap-8 sm:pb-20 md:gap-10">

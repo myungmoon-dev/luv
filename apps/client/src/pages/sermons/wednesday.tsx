@@ -13,7 +13,7 @@ const SermonsWednesdayPage = () => {
     <Layout
       pageTitle="수요 예배"
       title="수요 예배"
-      bannerDescription="보라 내가 반드시 길을 내리라!"
+      bannerDescription="일어나라 빛을 발하라!"
       bannerImage="/images/sermon/banner2.jpg"
       bannerImgClass="object-[50%_30%]"
       innerMenus={sermonsInnerMenus}
