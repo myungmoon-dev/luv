@@ -43,7 +43,7 @@ export const Header = ({ push, asPath }: IHeaderProps) => {
       </div>
       <div className="ui-block lg:ui-hidden ui-relative">
         <div className="ui-flex ui-border-y ui-border-[#E6E6E6]">
-          <div className="ui-overflow-scroll ui-w-full">
+          <div className="ui-overflow-scroll ui-w-full [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:ui-hidden">
             <nav className="ui-flex ui-h-[49px] sm:ui-h-[70px] ui-min-w-max">
               {menus.map((menu) => (
                 <div
