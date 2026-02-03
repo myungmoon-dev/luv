@@ -32,6 +32,15 @@ const ministerProfiles = [
       "어린이 사역자 장건진 목사입니다. 명문의 다음세대들을 오직 하나님의 말씀으로 양육하겠습니다.",
   },
   {
+    name: "강원규",
+    description: "",
+    image: "/images/leader/won-gyu.png",
+    position: "교구",
+    tabType: "minister",
+    officerType: "associate",
+    greeting: "주님의 마음으로 맡겨진 자리에서 충실히 섬기겠습니다. 사랑하고 축복합니다.",
+  },
+  {
     name: "김규보",
     description: "",
     image: "/images/leader/gyu-bo.png",
