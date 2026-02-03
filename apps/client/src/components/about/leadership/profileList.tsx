@@ -287,7 +287,7 @@ const staffProfiles = [
   {
     name: "조동욱",
     image: "/images/elder/jo_dw1.png",
-    position: "",
+    position: "선교위원회",
     tabType: "elder",
     officerType: "otherElder",
   },
@@ -296,7 +296,7 @@ const staffProfiles = [
     image: "/images/elder/jo_mh.png",
     position: "시설관리",
     tabType: "staff",
-    officerType: "manager",
+    officerType: "elder",
   },
   {
     name: "김해봄",
