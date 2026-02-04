@@ -34,7 +34,7 @@ const ministerProfiles = [
   {
     name: "강원규",
     description: "",
-    image: "/images/leader/won-gyu.png",
+    image: "/images/leader/won-gyu_lr.png",
     position: "교구",
     tabType: "minister",
     officerType: "associate",
