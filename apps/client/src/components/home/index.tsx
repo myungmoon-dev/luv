@@ -35,7 +35,7 @@ const TopHeroYoutube = () => {
     <div className="absolute inset-0 overflow-hidden opacity-70">
       <YoutubeVideo
         videoId={videoId}
-        className="h-full w-full origin-center scale-[1.05] transform-gpu sm:scale-[1.2]"
+        className="h-full w-full origin-center scale-[1.2] transform-gpu"
         autoplay
         mute
         loop
@@ -51,7 +51,7 @@ const HomePage2 = () => {
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-1">
         {/* Video Hero Section - Compact */}
-        <section className="relative z-0 aspect-[2.2] w-full overflow-hidden sm:aspect-[2.95]">
+        <section className="relative z-0 aspect-[2.95] w-full overflow-hidden">
           <div className="absolute inset-0 bg-[#1e2a4a]" />
           <Suspense clientOnly fallback={<div className="absolute inset-0" />}>
             <TopHeroYoutube />
@@ -61,17 +61,17 @@ const HomePage2 = () => {
         {/* Welcome Section */}
         <section className="px-6 pb-24 pt-12 sm:pb-28 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-4">
-            <div className="flex flex-col gap-16">
+            <div className="flex flex-col gap-8 lg:gap-16">
               <div className="flex flex-col gap-4">
-                <h1 className="font-poppins flex flex-col text-3xl font-bold leading-tight text-[#1e2a4a] sm:text-5xl lg:text-6xl">
+                <h1 className="font-poppins flex flex-col text-4xl font-bold leading-tight text-[#1e2a4a] sm:text-5xl lg:text-6xl">
                   <span className="text-[#333333]">LOVE BEGINS,</span>
-                  <span className="">MYUNGMOON CHURCH!</span>
+                  <span className="leading-10">MYUNGMOON CHURCH!</span>
                 </h1>
-                <p className="text-base font-bold text-[#1e2a4a] sm:text-[22px]">
+                <p className="text-lg font-bold text-[#1e2a4a] sm:text-[22px]">
                   사랑의 시작, 명문교회에 오신 것을 환영합니다!
                 </p>
               </div>
-              <div className="flex flex-col gap-4 sm:flex-row">
+              <div className="flex gap-4">
                 <Button className="rounded-none bg-[#1e2a4a] px-6 py-4 text-sm tracking-wider text-white hover:bg-[#2d3a5a] sm:px-8 sm:py-6">
                   <Link href={data?.url || ""} target="_blank">
                     유튜브 라이브
