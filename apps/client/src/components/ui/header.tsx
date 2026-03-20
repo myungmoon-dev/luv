@@ -86,16 +86,14 @@ export function Header() {
         >
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image
-              src="/images/logo.svg"
-              alt="명문교회 로고"
-              width={150}
-              height={150}
+            <div
               className={cn(
-                "origin-center transition-transform duration-300",
+                "relative h-[100px] w-[100px] origin-center transition-transform duration-300 md:h-[150px] md:w-[150px]",
                 scrolled ? "scale-[0.42]" : "scale-100",
               )}
-            />
+            >
+              <Image src="/images/logo.svg" alt="명문교회 로고" fill={true} />
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
