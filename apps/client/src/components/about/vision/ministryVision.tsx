@@ -5,9 +5,15 @@ import CoreValueItem from "./CoreValueItem";
 const AboutMinistryVision = () => {
   return (
     <div className="flex flex-col py-7 md:py-8 lg:pt-20">
-      <p className="mb-5 text-center text-lg font-medium text-[#222222] sm:text-2xl sm:font-bold md:text-3xl md:mb-12 md:text-start md:px-12 lg:px-16">名門(명문)의 의미</p>
-      <div className="mb-16 flex gap-4 overflow-x-scroll px-5 sm:mb-24 sm:px-7 md:mb-32 md:px-12 md:gap-12 lg:flex-col lg:px-16 lg:gap-24">
-        <ImageTextCard imageSrc="/images/about/myungmoon.jpg" imageAlt="사진">
+      <p className="mb-5 text-center text-lg font-medium text-[#222222] sm:text-2xl sm:font-bold md:mb-12 md:px-12 md:text-start md:text-3xl lg:px-16">
+        名門(명문)의 의미
+      </p>
+      <div className="mb-16 flex gap-4 overflow-x-scroll px-5 sm:mb-24 sm:px-7 md:mb-32 md:gap-12 md:px-12 lg:flex-col lg:gap-24 lg:px-16">
+        <ImageTextCard
+          imageSrc="/images/about/vision1.jpg"
+          imageAlt="사진"
+          objectPosition="object-top"
+        >
           지역과 민족을 품고
           <br />
           세계와 열방을 향해 나아가는 명문교회입니다.
@@ -25,7 +31,7 @@ const AboutMinistryVision = () => {
           <br />
           새로운 삶을 얻는 교회라는 의미를 가지고 있습니다.
         </ImageTextCard>
-        <ImageTextCard imageSrc="/images/about/myungmoon.jpg" imageAlt="사진">
+        <ImageTextCard imageSrc="/images/about/vision2.jpg" imageAlt="사진">
           명문의 첫 두글자 영문MM을 형상화하여
           <br />
           만들어졌습니다
@@ -45,7 +51,7 @@ const AboutMinistryVision = () => {
           생명의 이름을 얻고 구원의 길을 가게 됩니다.
         </ImageTextCard>
       </div>
-      <div className="mb-10 flex flex-col gap-4 px-5 sm:mb-24 sm:gap-8 sm:px-7 md:px-12 md:mb-20">
+      <div className="mb-10 flex flex-col gap-4 px-5 sm:mb-24 sm:gap-8 sm:px-7 md:mb-20 md:px-12">
         <PromiseCard>
           <p className="text-[17px] font-medium text-[#222222] sm:text-xl md:text-2xl">
             양을 위하여 목숨을 버리는
@@ -99,7 +105,9 @@ const AboutMinistryVision = () => {
       </div>
       <div className="mb-4 h-[8px] w-full bg-[#E6E6E6] lg:hidden" />
       <div className="flex flex-col gap-4 px-5 sm:mb-20 md:gap-7 lg:gap-20">
-        <p className="text-xl font-bold text-[#001f54] sm:text-2xl md:text-3xl">명문교회 5대 핵심 가치</p>
+        <p className="text-xl font-bold text-[#001f54] sm:text-2xl md:text-3xl">
+          명문교회 5대 핵심 가치
+        </p>
         <div className="flex flex-col">
           <hr className="border-[#747474]" />
           <CoreValueItem title="목자의 심정" subtitle="The Heart of Shepherd">
