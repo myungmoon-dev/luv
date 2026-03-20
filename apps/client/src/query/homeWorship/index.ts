@@ -13,7 +13,8 @@ import homeWorshipKeys from "./keys";
 import usePagination from "@/hooks/usePagination";
 
 const useGetHomeWorships = () => {
-  const { page, size } = usePagination();
+  const { page } = usePagination();
+  const size = 8;
 
   return useQuery({
     placeholderData: (previousData) => previousData,
