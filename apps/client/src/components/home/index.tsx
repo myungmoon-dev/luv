@@ -1,16 +1,155 @@
-import HomeAlbumSection from "./section/album";
-import NavSection from "./section/nav";
+import Image from "next/image";
 import VideosSection from "./section/videos";
+import Link from "next/link";
+import { Button } from "../ui/button";
+import { useGetLive } from "@/query/youtube";
+import { Suspense } from "@suspensive/react";
+import { YoutubeVideo } from "ui";
 
-const HomePage = () => {
+const getYoutubeId = (url?: string) => {
+  if (!url) return null;
+  const trimmed = url.trim();
+  if (trimmed.length === 11) return trimmed;
+
+  const videoRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|shorts\/|live\/|watch\?v=|&v=)([^#&?]*).*/;
+  const playlistRegExp = /[?&]list=([^#&?]+)/;
+
+  const videoMatch = trimmed.match(videoRegExp);
+  const playlistMatch = trimmed.match(playlistRegExp);
+
+  const videoId = videoMatch && videoMatch[2]?.length === 11 ? videoMatch[2] : null;
+  const playlistId = playlistMatch ? playlistMatch[1] : null;
+
+  return videoId || playlistId || null;
+};
+
+const TopHeroYoutube = () => {
+  // const { data } = useGetYoutubeLinkSuspense("main");
+  // const firstVideoUrl = data?.videos?.[0]?.url;
+  const firstVideoUrl = "https://youtu.be/9K0FrEAYQro";
+  const videoId = getYoutubeId(firstVideoUrl);
+
+  if (!videoId) return null;
+
   return (
-    <div className="flex flex-col pb-12 md:pb-20 lg:pb-40">
-      <NavSection />
-      <VideosSection />
-      {/* <div className="h-[8px] w-full bg-[#E6E6E6]" />
-      <HomeAlbumSection /> */}
+    <div className="absolute inset-0 overflow-hidden opacity-70">
+      <YoutubeVideo
+        videoId={videoId}
+        className="h-full w-full origin-center scale-[1.05] transform-gpu sm:scale-[1.2]"
+        autoplay
+        mute
+        loop
+      />
     </div>
   );
 };
 
-export default HomePage;
+const HomePage2 = () => {
+  const { data } = useGetLive();
+
+  return (
+    <div className="flex min-h-screen flex-col bg-white">
+      <main className="flex-1">
+        {/* Video Hero Section - Compact */}
+        <section className="relative z-0 aspect-[2.2] w-full overflow-hidden sm:aspect-[2.95]">
+          <div className="absolute inset-0 bg-[#1e2a4a]" />
+          <Suspense clientOnly fallback={<div className="absolute inset-0" />}>
+            <TopHeroYoutube />
+          </Suspense>
+        </section>
+
+        {/* Welcome Section */}
+        <section className="px-6 pb-24 pt-12 sm:pb-28 sm:pt-16 lg:px-16 lg:pb-36 lg:pt-20">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4">
+            <div className="flex flex-col gap-16">
+              <div className="flex flex-col gap-4">
+                <h1 className="font-poppins flex flex-col text-3xl font-bold leading-tight text-[#1e2a4a] sm:text-5xl lg:text-6xl">
+                  <span className="text-[#333333]">LOVE BEGINS,</span>
+                  <span className="">MYUNGMOON CHURCH!</span>
+                </h1>
+                <p className="text-base font-bold text-[#1e2a4a] sm:text-[22px]">
+                  사랑의 시작, 명문교회에 오신 것을 환영합니다!
+                </p>
+              </div>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <Button className="rounded-none bg-[#1e2a4a] px-6 py-4 text-sm tracking-wider text-white hover:bg-[#2d3a5a] sm:px-8 sm:py-6">
+                  <Link href={data?.url || ""} target="_blank">
+                    유튜브 라이브
+                  </Link>
+                </Button>
+                <Button className="rounded-none bg-[#1e2a4a] px-6 py-4 text-sm tracking-wider text-white hover:bg-[#2d3a5a] sm:px-8 sm:py-6">
+                  <Link href="/discipleship/homeworship">가정 예배</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Plan Your Visit Section */}
+        <section className="px-6 pb-24 lg:px-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-col gap-10 sm:gap-12 md:flex-row md:items-center md:gap-12 lg:gap-24">
+              <div className="relative aspect-video w-full max-w-3xl">
+                <Image
+                  src="/images/main_four_people.jpeg"
+                  alt="명문교회 찬양"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="md:max-w-md">
+                <h2 className="text-nowrap text-3xl font-bold text-[#1e2a4a] sm:text-4xl">
+                  처음오셨나요?
+                </h2>
+                <div className="my-6 h-[2px] w-16 bg-[#1e2a4a]" />
+                <p className="text-lg leading-relaxed text-[#496674]">
+                  여러분의 방문을 진심으로 환영합니다!
+                  <br />
+                  예배 안내와 오시는 방법 등 처음 방문 시
+                  <br />
+                  필요한 모든 정보를 확인해 보세요.
+                </p>
+                <div className="mt-8">
+                  <Button
+                    className="rounded-none bg-[#1e2a4a] px-8 py-6 text-sm tracking-wider text-white hover:bg-[#2d3a5a]"
+                    asChild
+                  >
+                    <Link href="/about/leadership">더 알아보기</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <VideosSection />
+
+        {/* Next Generation Section */}
+        <section className="bg-[#1e2a4a] px-6 py-16 text-white sm:py-20 lg:px-16 lg:py-24">
+          <div className="mx-auto max-w-4xl text-center">
+            <h2 className="text-3xl font-bold sm:text-4xl">Next Generation</h2>
+            <div className="mx-auto my-6 h-[2px] w-16 bg-white" />
+            <p
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-white/80"
+              suppressHydrationWarning
+            >
+              {"영아부부터 청년부까지, 다음 세대를 위한"}
+              <br />
+              {"다양한 프로그램과 예배가 준비되어 있습니다."}
+            </p>
+            <div className="mt-10">
+              <Button
+                className="rounded-none bg-white px-8 py-6 text-sm tracking-wider text-[#1e2a4a] hover:bg-white/90"
+                asChild
+              >
+                <Link href="/education">더 알아보기</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+export default HomePage2;

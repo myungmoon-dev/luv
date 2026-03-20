@@ -1,11 +1,13 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { ReactNode, useEffect } from "react";
-import { Banner, Footer, Header, cn } from "ui";
+import { Banner, cn } from "ui";
 import { BannerImageComponent } from "./bannerImage";
 import BannerIconList from "./bannerIconList";
 import { IBannerIcon } from "@/types/banner/type";
 import AOS from "aos";
+import { Header } from "../ui/header";
+import { Footer } from "../ui/footer";
 
 import "aos/dist/aos.css";
 import useAuth from "@/hooks/useAuth";
@@ -57,7 +59,8 @@ const Layout = ({
   useAuth({ mustLogin });
   const { asPath, push } = useRouter();
 
-  const addKeyToMenus = (menus: IInnerMenu[], key: string) => menus.map((menu) => ({ ...menu, key }));
+  const addKeyToMenus = (menus: IInnerMenu[], key: string) =>
+    menus.map((menu) => ({ ...menu, key }));
 
   const allDetailMenus = [
     ...addKeyToMenus(aboutInnerMenus, "/about"),
@@ -65,7 +68,10 @@ const Layout = ({
     ...addKeyToMenus(educationInnerMenus, "/education"),
     ...addKeyToMenus(newsInnerMenus, "/news"),
     ...addKeyToMenus(discipleshipInnerMenus, "/discipleship"),
-    ...addKeyToMenus([{ label: "맛있는 가정예배", path: "/discipleship/homeworship" }], "/homeworship"),
+    ...addKeyToMenus(
+      [{ label: "맛있는 가정예배", path: "/discipleship/homeworship" }],
+      "/homeworship",
+    ),
   ];
 
   useEffect(() => {
@@ -81,17 +87,20 @@ const Layout = ({
         <meta name="description" content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!" />
         <meta property="og:title" content={`${pageTitle} | 명문교회`} />
         <meta property="og:url" content="https://myungmoon.or.kr/" />
-        <meta property="og:description" content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!" />
+        <meta
+          property="og:description"
+          content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!"
+        />
         <meta property="og:image" content="https://myungmoon.or.kr/images/LogoBlue.png" />
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
-        <Header push={push} asPath={asPath} />
+        <Header />
         {customBanner ? customBanner : null}
-        <div className={cn(hasChildrenPadding && "py-10")}>{children}</div>
+        <div className={cn(hasChildrenPadding && "pt-[100px]")}>{children}</div>
         <div className="h-[8px] w-full bg-[#E6E6E6]" />
-        <MapOfferingSection />
-        <Footer push={push} />
+        {/* <MapOfferingSection /> */}
+        <Footer />
       </main>
     </>
   );
