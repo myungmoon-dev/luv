@@ -3,7 +3,7 @@ import Bulletins from "@/components/news/bulletins";
 
 const BulletinsPage = () => {
   return (
-    <Layout pageTitle="주보" title="주보" customBanner={<></>} hasChildrenPadding={false}>
+    <Layout pageTitle="주보" title="주보" customBanner={<></>} hasChildrenPadding={true}>
       <Bulletins />
     </Layout>
   );

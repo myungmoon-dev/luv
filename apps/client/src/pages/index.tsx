@@ -6,7 +6,7 @@ import Layout from "@/components/layout";
 export default function Home() {
   return (
     <Layout
-      customBanner={<HomeBanner />}
+      customBanner={<></>}
       pageTitle="메인"
       bannerImage="/images/home/section1.png"
       hasChildrenPadding={false}

@@ -7,7 +7,7 @@ const MissionNewsDetailPage = () => {
       pageTitle="선교지 소식"
       title="선교지 소식"
       customBanner={<></>}
-      hasChildrenPadding={false}
+      hasChildrenPadding={true}
     >
       <MissionDetail />
     </Layout>

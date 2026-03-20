@@ -58,7 +58,7 @@ const News = () => {
     <div className="pb-60 pt-8">
       <NewsNavigation />
       <hr className="my-10 border-t-2 border-[#BBBBBB] sm:mx-16 md:mx-24" />
-      <div className="flex flex-col gap-4 px-5 sm:px-16 md:px-24">
+      {/* <div className="flex flex-col gap-4 px-5 sm:px-16 md:px-24">
         <div className="flex items-center gap-2">
           <p className="text-2xl font-bold text-[#001F54] md:text-3xl lg:text-4xl">교우 소식</p>
           <Icon
@@ -83,7 +83,7 @@ const News = () => {
           )}
         </div>
       </div>
-      <hr className="my-10 border-t-2 border-[#BBBBBB] sm:mx-16 md:mx-24" />
+      <hr className="my-10 border-t-2 border-[#BBBBBB] sm:mx-16 md:mx-24" /> */}
       <div className="flex flex-col gap-4 px-5 sm:px-16 md:px-24">
         <div className="flex items-center gap-2">
           <p className="text-2xl font-bold text-[#001F54] md:text-3xl lg:text-4xl">자료함</p>

@@ -9,7 +9,7 @@ const NewsPage = () => {
       title="명문소식"
       innerMenus={newsInnerMenus}
       customBanner={<></>}
-      hasChildrenPadding={false}
+      hasChildrenPadding={true}
     >
       <News />
     </Layout>

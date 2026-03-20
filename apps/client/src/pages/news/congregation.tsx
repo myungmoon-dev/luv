@@ -3,7 +3,7 @@ import CongregationNews from "@/components/news/congregation";
 
 const CongregationNewsPage = () => {
   return (
-    <Layout pageTitle="교회 소식" title="교회 소식" customBanner={<></>} hasChildrenPadding={false}>
+    <Layout pageTitle="교회 소식" title="교회 소식" customBanner={<></>} hasChildrenPadding={true}>
       <CongregationNews />
     </Layout>
   );
