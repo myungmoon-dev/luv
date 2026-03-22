@@ -2,6 +2,7 @@ export type OfficerLabel =
   | "retired"
   | "senior"
   | "associate"
+  | "otherAssociate"
   | "evangelist"
   | "missionary"
   | "elder"
