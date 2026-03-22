@@ -35,6 +35,7 @@ export const officerTypeMap: Record<OfficerLabel, string> = {
   retired: "원로목사",
   senior: "담임목사",
   associate: "목사",
+  otherAssociate: "협동목사",
   evangelist: "전도사",
   missionary: "선교사",
   elder: "장로",
