@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { useDeleteBook, useGetBook } from "@/query/books";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -18,7 +19,6 @@ const BookDetail = () => {
     push(`/books/${bookId}/update`);
   };
   const handleDeleteBook = () => {
-    if (!confirm("삭제하시곘습니까?")) return;
     mutate(
       { bookId },
       {
@@ -51,9 +51,10 @@ const BookDetail = () => {
           <Button variant="outline" onClick={handleUpdateBook}>
             수정
           </Button>
-          <Button variant="destructive" onClick={handleDeleteBook}>
-            삭제
-          </Button>
+          <ConfirmDialog
+            trigger={<Button variant="destructive">삭제</Button>}
+            onConfirm={handleDeleteBook}
+          />
         </div>
       </div>
       <p className="mb-2">작가: {data?.writer}</p>
