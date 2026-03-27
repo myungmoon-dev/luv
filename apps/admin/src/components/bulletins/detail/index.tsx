@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { useDeleteBulletin, useGetBulletin } from "@/query/bulletin";
 import dayjs from "dayjs";
 import Image from "next/image";
@@ -15,7 +17,6 @@ const Bulletin = () => {
   const { mutate } = useDeleteBulletin();
 
   const handleDeleteBulletin = () => {
-    if (!confirm("삭제하시겠습니까?")) return;
     mutate(bulletinId, {
       onSuccess: () => {
         alert("삭제되었습니다.");
@@ -46,9 +47,10 @@ const Bulletin = () => {
             생성일: {dayjs(bulletin?.createdAt).format("YYYY-MM-DD HH:mm:ss")}
           </p>
         </div>
-        <button onClick={handleDeleteBulletin} className="text-red-500">
-          삭제
-        </button>
+        <ConfirmDialog
+          trigger={<Button variant="destructive">삭제</Button>}
+          onConfirm={handleDeleteBulletin}
+        />
       </div>
       <div className="flex flex-col gap-5">
         {bulletin?.imageUrls.map((imageUrl) => (

@@ -1,10 +1,11 @@
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { usePostHomeWorship } from "@/query/homeWorship";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IHomeWorshipForm } from "type";
 import { Spinner } from "ui";
-import { Input } from "../../ui/input";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -85,12 +86,11 @@ const HomeworshipCreate = () => {
         <p className="text-xl font-bold">비밀번호</p>
         <Input className="w-[233px]" type="password" {...register("password")} />
       </label>
-      <button
-        disabled={isPending}
-        className="mt-5 rounded-md bg-blue-500 py-2 font-bold text-white"
-      >
-        공지 올리기
-      </button>
+      <div className="flex justify-end">
+        <Button disabled={isPending} isLoading={isPending}>
+          공지 올리기
+        </Button>
+      </div>
     </form>
   );
 };
