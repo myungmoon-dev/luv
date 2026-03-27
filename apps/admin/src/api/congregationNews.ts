@@ -34,7 +34,7 @@ export const putCongregationNews = async ({
   id: string;
   request: PutCongregationNewsRequest;
 }) => {
-  const { data } = await api.put(`/congregation-news/${id}`, request);
+  const { data } = await api.patch(`/congregation-news/${id}`, request);
 
   return data;
 };

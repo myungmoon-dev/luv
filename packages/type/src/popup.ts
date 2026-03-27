@@ -1,7 +1,7 @@
 export interface IPopup {
-  _id: string;
+  id: string;
   title: string;
-  isShow: boolean;
+  show: boolean;
   imageUrl: string;
   createdAt: number;
 }

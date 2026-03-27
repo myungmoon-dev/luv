@@ -4,10 +4,10 @@ import { deleteBulletin, getBulletin, getBulletins, postBulletin } from "@/api/b
 import bulletinKeys from "./keys";
 import { useParams } from "next/navigation";
 
-const useGetBulletins = () => {
+const useGetBulletins = ({ page = 0 }: { page?: number } = {}) => {
   return useQuery({
-    queryFn: () => getBulletins(),
-    queryKey: bulletinKeys.list(),
+    queryFn: () => getBulletins({ page }),
+    queryKey: bulletinKeys.list(page),
   });
 };
 
