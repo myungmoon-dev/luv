@@ -128,7 +128,7 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-sm font-bold tracking-widest text-[#001F54]">학력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">학력</p>
                 </div>
                 <ul className="space-y-2 text-base md:text-lg text-[#444]">
                   <li className="flex items-center gap-2">
@@ -154,7 +154,7 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-sm font-bold tracking-widest text-[#001F54]">사역 경력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">사역 경력</p>
                 </div>
                 <ul className="space-y-2 text-base md:text-lg text-[#444]">
                   {["강남교회", "시카고아가페장로교회", "Sojourn Community Church", "사랑의교회"].map((item) => (
@@ -170,7 +170,7 @@ const LeadershipPage = () => {
               <div>
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-sm font-bold tracking-widest text-[#001F54]">현재 활동</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">현재 활동</p>
                 </div>
                 <ul className="space-y-2 text-base md:text-lg text-[#444]">
                   {[
@@ -240,11 +240,11 @@ const LeadershipPage = () => {
                   className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
                 >
                   {book.img ? (
-                    <div className="h-16 w-12 shrink-0 overflow-hidden rounded">
+                    <div className="h-28 w-20 shrink-0 overflow-hidden rounded">
                       <img src={book.img} alt={book.title} className="h-full w-full object-cover" />
                     </div>
                   ) : (
-                    <div className="flex h-16 w-12 shrink-0 items-center justify-center rounded bg-[#001F54]/10">
+                    <div className="flex h-28 w-20 shrink-0 items-center justify-center rounded bg-[#001F54]/10">
                       <svg
                         className="size-4 text-[#001F54]"
                         fill="none"
