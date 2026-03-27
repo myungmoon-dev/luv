@@ -91,7 +91,7 @@ const Layout = ({
           property="og:description"
           content="복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!"
         />
-        <meta property="og:image" content="https://myungmoon.or.kr/images/LogoBlue.png" />
+        <meta property="og:image" content="https://myungmoon.or.kr/images/navy_logo.png" />
         <meta property="og:type" content="website" />
       </Head>
       <main className="relative">
