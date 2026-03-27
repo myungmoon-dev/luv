@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { usePostBulletin } from "@/query/bulletin";
 import { useForm } from "react-hook-form";
 import { IBulletinImageForm } from "type";
@@ -34,27 +35,24 @@ const BulletinCreate = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col items-center justify-center gap-3"
-    >
-      <label className="flex items-center gap-2">
-        <p>날짜</p>
-        <input className="p-1 text-black" {...register("date")} placeholder="ex) 2021-01-01" />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="text-xl font-bold">날짜</p>
+        <Input className="w-[233px]" {...register("date")} placeholder="ex) 2021-01-01" />
       </label>
-      <label className="flex items-center gap-2">
-        <p>제목</p>
-        <input
-          className="p-1 text-black"
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="text-xl font-bold">제목</p>
+        <Input
+          className="w-[233px]"
           {...register("title")}
           placeholder="ex) 2021년 1월 첫째주"
         />
       </label>
-      <label className="">
-        <p>이미지</p>
-        <input type="file" accept="image/*" multiple={true} {...register("images")} />
+      <label className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-5">
+        <p className="text-xl font-bold">이미지</p>
+        <Input className="w-[233px]" type="file" accept="image/*" multiple={true} {...register("images")} />
       </label>
-      <div className="mt-2">
+      <div className="flex justify-end">
         <Button disabled={isPending} isLoading={isPending}>
           주보 추가하기
         </Button>

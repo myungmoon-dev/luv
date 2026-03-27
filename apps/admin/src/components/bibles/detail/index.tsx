@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { useDeleteBible, useGetBible } from "@/query/discipleship";
 import dayjs from "dayjs";
 import { useParams } from "next/navigation";
@@ -15,7 +16,6 @@ const BibleDetail = () => {
   const { mutate } = useDeleteBible();
 
   const handleClickDelete = () => {
-    if (!confirm("삭제하시겠습니까?")) return;
     mutate(
       { bibleId },
       {
@@ -44,9 +44,10 @@ const BibleDetail = () => {
         <p className="text-sm text-slate-500">
           생성일: {dayjs(data?.createdAt).format("YYYY-MM-DD HH:mm:ss")}
         </p>
-        <Button variant="destructive" onClick={handleClickDelete}>
-          삭제
-        </Button>
+        <ConfirmDialog
+          trigger={<Button variant="destructive">삭제</Button>}
+          onConfirm={handleClickDelete}
+        />
       </div>
       <div className="mb-10">
         <SafeHTML html={data?.content} />
@@ -56,9 +57,9 @@ const BibleDetail = () => {
           <YoutubeVideo
             isFullLink={false}
             className="h-[250px]"
-            videoId={link.name}
-            key={link.name}
-            isPlaylist={link.isPlaylist}
+            videoId={link.url}
+            key={link.url}
+            isPlaylist={link.playlist}
           />
         ))}
       </div>
