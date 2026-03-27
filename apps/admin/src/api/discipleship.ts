@@ -8,11 +8,15 @@ export const postBible = async (bible: IBibleForm) => {
   return data;
 };
 
-export const getBibles = async ({ yearMonth }: { yearMonth: YearMonthType }) => {
+export const getBibles = async ({
+  yearMonth,
+  page = 0,
+}: {
+  yearMonth: YearMonthType;
+  page?: number;
+}) => {
   const { data } = await api.get<IGetBiblesResponse>("/bibles", {
-    params: {
-      yearMonth,
-    },
+    params: { yearMonth, page },
   });
 
   return data;

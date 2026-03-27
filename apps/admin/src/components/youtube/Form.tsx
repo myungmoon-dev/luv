@@ -38,7 +38,7 @@ const LiveForm = ({ option }: ILiveFormProps) => {
 
       putVideoMutate(
         {
-          videoId: edittingVideo._id,
+          videoId: edittingVideo.id,
           youtubeForm: {
             type: option,
             url: url !== edittingVideo.url ? id! : url,

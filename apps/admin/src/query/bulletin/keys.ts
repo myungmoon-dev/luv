@@ -1,6 +1,6 @@
 const bulletinKeys = {
   all: ["bulletin"],
-  list: () => [...bulletinKeys.all, "list"],
+  list: (page?: number) => [...bulletinKeys.all, "list", page],
   detail: (bulletinId: string) => [...bulletinKeys.all, "detail", bulletinId],
 };
 

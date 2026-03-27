@@ -3,12 +3,12 @@ import { AlbumType } from "type";
 import albumKeys from "./keys";
 import { DeleteAlbum, PostAlbum, getAlbumList } from "@/api/album";
 
-const useGetAlbumList = (type: AlbumType) => {
-  const queryKey = albumKeys[type]();
+const useGetAlbumList = (type: AlbumType, page = 0) => {
+  const queryKey = albumKeys[type](page);
 
   return useQuery({
     queryKey,
-    queryFn: async () => await getAlbumList(type),
+    queryFn: async () => await getAlbumList({ type, page }),
   });
 };
 

@@ -1,12 +1,12 @@
 import { IBoardFormBase } from "./common";
 
 interface ILink {
-  isPlaylist: boolean;
-  name: string;
+  playlist: boolean;
+  url: string;
 }
 
 export interface IBible {
-  _id: string;
+  id: string;
   title: string;
   content: string;
   createdAt: number;

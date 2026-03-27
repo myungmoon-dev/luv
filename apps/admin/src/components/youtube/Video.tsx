@@ -12,7 +12,7 @@ const YoutubeVideoContainer = ({ option }: ILiveVideoProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <YoutubeVideo className="h-[300px] w-[500px]" videoId={youtubeLink?._id} />
+      <YoutubeVideo className="h-[300px] w-[500px]" videoId={youtubeLink?.url} />
       <div className="flex">
         <p>현재 주소 -&nbsp;</p>
         <Link

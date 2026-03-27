@@ -1,8 +1,8 @@
 import { IGetBulletinResponse, IGetBulletinsResponse } from "@/types/bulletin/response";
 import { api } from ".";
 
-export const getBulletins = async () => {
-  const { data } = await api.get<IGetBulletinsResponse>("/bulletins");
+export const getBulletins = async ({ page = 0 }: { page?: number } = {}) => {
+  const { data } = await api.get<IGetBulletinsResponse>("/bulletins", { params: { page } });
 
   return data;
 };
