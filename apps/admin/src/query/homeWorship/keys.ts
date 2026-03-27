@@ -1,6 +1,6 @@
 const homewWorshipKeys = {
   all: ["homeWorship"],
-  list: () => [...homewWorshipKeys.all, "list"],
+  list: (page?: number) => [...homewWorshipKeys.all, "list", page],
 };
 
 export default homewWorshipKeys;

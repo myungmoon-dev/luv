@@ -18,7 +18,7 @@ export const useGetYoutubeLink = (type: YoutubeType) => {
   return useQuery({
     queryKey,
     queryFn: async () => await getYoutube(type),
-    select: (res) => res.videos[0],
+    select: (res) => res[0],
   });
 };
 
@@ -40,7 +40,7 @@ export const useGetLive = () => {
   return useQuery({
     queryKey: youtubeKeys.live(),
     queryFn: () => getLive(),
-    select: (res) => res.live,
+    select: (res) => res,
   });
 };
 

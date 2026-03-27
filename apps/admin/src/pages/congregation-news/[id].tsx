@@ -33,7 +33,7 @@ const CongregationNewsEditPage = () => {
     <Layout title="교우 소식 수정">
       <CongregationNewsForm
         initialData={{
-          _id: data._id,
+          id: data.id,
           type: data.type,
           description: data.description,
         }}

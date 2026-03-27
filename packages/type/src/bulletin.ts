@@ -1,7 +1,7 @@
 import { IFile } from "./common";
 
 export interface IBulletin {
-  _id: string;
+  id: string;
   createdAt: string;
   date: string;
   title: string;

@@ -2,10 +2,10 @@ import { getHomeWorships, postHomeWorship } from "@/api/homeWorship";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import homewWorshipKeys from "./keys";
 
-const useGetHomeWorships = () => {
+const useGetHomeWorships = ({ page = 0 }: { page?: number } = {}) => {
   return useQuery({
-    queryFn: () => getHomeWorships(),
-    queryKey: homewWorshipKeys.list(),
+    queryFn: () => getHomeWorships({ page }),
+    queryKey: homewWorshipKeys.list(page),
   });
 };
 

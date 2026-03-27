@@ -1,8 +1,8 @@
 import { IGetBookResponse, IGetBooksResponse } from "@/types/books/response";
 import { api } from ".";
 
-export const getBooks = async () => {
-  const { data } = await api.get<IGetBooksResponse>("/books");
+export const getBooks = async ({ page = 0 }: { page?: number } = {}) => {
+  const { data } = await api.get<IGetBooksResponse>("/books", { params: { page } });
 
   return data;
 };
@@ -30,7 +30,7 @@ export const deleteBook = async ({ bookId }: { bookId: string }) => {
 };
 
 export const putBook = async ({ id, form }: { id: string; form: FormData }) => {
-  const { data } = await api.put(`/books/${id}`, form, {
+  const { data } = await api.patch(`/books/${id}`, form, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

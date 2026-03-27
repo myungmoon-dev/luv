@@ -8,10 +8,10 @@ import {
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { missionNewsListKeys } from "./keys";
 
-export const useGetMissionNewsList = () => {
+export const useGetMissionNewsList = ({ page = 0 }: { page?: number } = {}) => {
   return useQuery({
-    queryFn: () => getMissionNewsList(),
-    queryKey: missionNewsListKeys.list(),
+    queryFn: () => getMissionNewsList({ page }),
+    queryKey: missionNewsListKeys.list(page),
   });
 };
 
