@@ -128,9 +128,11 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">학력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    학력
+                  </p>
                 </div>
-                <ul className="space-y-2 text-base md:text-lg text-[#444]">
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
                   <li className="flex items-center gap-2">
                     <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
                     고려대, 서울대 대학원: 철학, 영미윤리학
@@ -154,10 +156,17 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">사역 경력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    사역 경력
+                  </p>
                 </div>
-                <ul className="space-y-2 text-base md:text-lg text-[#444]">
-                  {["강남교회", "시카고아가페장로교회", "Sojourn Community Church", "사랑의교회"].map((item) => (
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
+                  {[
+                    "강남교회",
+                    "시카고아가페장로교회",
+                    "Sojourn Community Church",
+                    "사랑의교회",
+                  ].map((item) => (
                     <li key={item} className="flex items-center gap-2">
                       <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
                       {item}
@@ -170,9 +179,11 @@ const LeadershipPage = () => {
               <div>
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">현재 활동</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    현재 활동
+                  </p>
                 </div>
-                <ul className="space-y-2 text-base md:text-lg text-[#444]">
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
                   {[
                     "총신대 목회신학전문대학원 설교학 교수",
                     "Reformed Theological College in Uganda(우간다 개혁신학대학교) 초빙교수",
@@ -204,7 +215,7 @@ const LeadershipPage = () => {
                   sub: "말라기 강해설교",
                   publisher: "마음과마음",
                   year: "2026",
-                  img: null,
+                  img: "/images/about/돌아오라.jpeg",
                 },
                 {
                   title: "마음에서 마음으로",
