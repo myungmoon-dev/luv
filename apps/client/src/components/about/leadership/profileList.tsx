@@ -53,7 +53,7 @@ const staffProfiles = [
     image: "/images/leader/gyu-bo.png",
     position: "상담사역 (총신대 상담학 교수)",
     tabType: "minister",
-    officerType: "associate",
+    officerType: "cooperativePastor",
     greeting: "오직 하나님의 영광만 드러나기를 소망합니다.",
   },
   {
