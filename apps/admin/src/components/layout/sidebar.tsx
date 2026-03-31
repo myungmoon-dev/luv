@@ -40,7 +40,7 @@ const contentMenuItems = [
   { title: "유튜브", icon: Clapperboard, href: "/youtube" },
   { title: "주보", icon: FileText, href: "/bulletins" },
   { title: "성경통독", icon: BookOpen, href: "/bibles" },
-  { title: "가정예배 공지", icon: Home, href: "/homeworship" },
+  { title: "가정예배", icon: Home, href: "/homeworship" },
   { title: "앨범 업로드", icon: Image, href: "/album" },
   { title: "추천 도서", icon: BookMarked, href: "/books" },
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
