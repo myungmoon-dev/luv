@@ -4,7 +4,7 @@ import { useDeleteAlbum, useGetAlbumList } from "@/query/album";
 import dayjs from "dayjs";
 import { useState } from "react";
 import { AlbumType } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { Button } from "../ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { ALBUM_TYPE_OPTIONS } from "./config";

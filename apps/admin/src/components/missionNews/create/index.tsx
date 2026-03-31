@@ -14,7 +14,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { IBookForm, MissionLocation } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { MISSION_LOCATION_OPTIONS } from "../config";
 import { cn } from "@/lib/utils";
 

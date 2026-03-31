@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { YearMonthType } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 const Bibles = () => {
