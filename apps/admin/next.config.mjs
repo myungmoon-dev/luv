@@ -15,6 +15,7 @@ const nextConfig = {
       { protocol: "https", hostname: "www.myungmoon.or.kr" },
       { protocol: "https", hostname: "firebasestorage.googleapis.com" },
       { protocol: "https", hostname: "imagedelivery.net" },
+      { protocol: "https", hostname: "myungmoon-images.s3.ap-northeast-2.amazonaws.com" },
     ],
   },
   reactStrictMode: true,
