@@ -2,8 +2,8 @@ import { IGetHomeWorshipsResponse } from "@/types/homeworship/response";
 import { IHomeWorship } from "type";
 import { api } from ".";
 
-export const getHomeWorships = async ({ page = 0 }: { page?: number } = {}) => {
-  const { data } = await api.get<IGetHomeWorshipsResponse>("/homeworships", { params: { page } });
+export const getHomeWorships = async ({ page = 0, size = 10 }: { page?: number; size?: number } = {}) => {
+  const { data } = await api.get<IGetHomeWorshipsResponse>("/homeworships", { params: { page, size } });
 
   return data;
 };
