@@ -7,7 +7,7 @@ import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { IBookForm } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 
 interface IBookCreateForm extends IBookForm {
   images: FileList;

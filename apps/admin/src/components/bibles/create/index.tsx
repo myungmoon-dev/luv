@@ -5,7 +5,7 @@ import getYoutubeId from "@/utils/getYoutubeId";
 import dynamic from "next/dynamic";
 import { Controller, SubmitHandler, useFieldArray, useForm } from "react-hook-form";
 import { IBibleForm } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
   ssr: false,

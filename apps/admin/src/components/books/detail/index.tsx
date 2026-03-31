@@ -5,7 +5,8 @@ import dayjs from "dayjs";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { SafeHTML, Spinner } from "ui";
+import { SafeHTML } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 
 const BookDetail = () => {
   const { push } = useRouter();

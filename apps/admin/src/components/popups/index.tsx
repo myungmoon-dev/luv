@@ -15,7 +15,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,

@@ -14,7 +14,7 @@ import dayjs from "dayjs";
 import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
