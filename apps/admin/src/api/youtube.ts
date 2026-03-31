@@ -13,9 +13,9 @@ export const putLive = async ({ liveUrl }: { liveUrl: string }) => {
   return data;
 };
 
-export const getYoutube = async (type: YoutubeType) => {
+export const getYoutube = async (type: YoutubeType, page = 0, size = 10) => {
   const { data } = await api.get<IGetYoutubeResponse>("/videos", {
-    params: { type },
+    params: { type, page, size },
   });
   return data;
 };

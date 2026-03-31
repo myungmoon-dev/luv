@@ -28,7 +28,9 @@ export interface IYoutubeForm {
   type: YoutubeType;
 }
 
-export type IGetYoutubeResponse = IYoutube[];
+import { PageResponse } from "./common";
+export type IGetYoutubeResponse = PageResponse<IYoutube>;
+export type { PageResponse };
 
 export type LiveType = {
   url: string;
