@@ -1,6 +1,7 @@
 import { useGetLive } from "@/query/youtube";
 import Link from "next/link";
-import { Spinner, YoutubeVideo } from "ui";
+import { YoutubeVideo } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 
 const LiveVideo = () => {
   const { data } = useGetLive();

@@ -5,7 +5,8 @@ import dayjs from "dayjs";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { toast } from "sonner";
-import { SafeHTML, Spinner, YoutubeVideo } from "ui";
+import { SafeHTML, YoutubeVideo } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 
 const BibleDetail = () => {
   const { push } = useRouter();

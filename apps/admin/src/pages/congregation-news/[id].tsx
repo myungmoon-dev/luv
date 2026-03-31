@@ -2,7 +2,7 @@ import CongregationNewsForm from "@/components/congregation-news/form";
 import Layout from "@/components/layout";
 import { useGetCongregationNews } from "@/query/congregationNews";
 import { useRouter } from "next/router";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 
 const CongregationNewsEditPage = () => {
   const { query } = useRouter();

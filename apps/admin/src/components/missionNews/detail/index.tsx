@@ -6,7 +6,8 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { toast } from "sonner";
-import { SafeHTML, Spinner } from "ui";
+import { SafeHTML } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 import { MISSION_LOCATION_MAP } from "../config";
 
 const MissionNewsDetail = () => {
