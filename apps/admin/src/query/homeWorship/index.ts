@@ -1,4 +1,4 @@
-import { deleteHomeWorship, getHomeWorship, getHomeWorships, postHomeWorship } from "@/api/homeWorship";
+import { deleteComment, deleteHomeWorship, deleteHomeWorships, getHomeWorship, getHomeWorships, patchHomeWorship, postComment, postHomeWorship, putComment } from "@/api/homeWorship";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
 import homewWorshipKeys from "./keys";
@@ -35,4 +35,14 @@ const usePostHomeWorship = () =>
 
 const useDeleteHomeWorship = () => useMutation({ mutationFn: deleteHomeWorship });
 
-export { useGetHomeWorships, useGetHomeWorship, useGetHomeWorshipById, usePostHomeWorship, useDeleteHomeWorship };
+const useDeleteHomeWorships = () => useMutation({ mutationFn: deleteHomeWorships });
+
+const usePatchHomeWorship = () => useMutation({ mutationFn: patchHomeWorship });
+
+const usePostComment = () => useMutation({ mutationFn: postComment });
+
+const usePutComment = () => useMutation({ mutationFn: putComment });
+
+const useDeleteComment = () => useMutation({ mutationFn: deleteComment });
+
+export { useGetHomeWorships, useGetHomeWorship, useGetHomeWorshipById, usePostHomeWorship, usePatchHomeWorship, useDeleteHomeWorship, useDeleteHomeWorships, usePostComment, usePutComment, useDeleteComment };
