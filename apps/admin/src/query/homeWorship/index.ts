@@ -20,6 +20,14 @@ const useGetHomeWorship = () => {
   });
 };
 
+const useGetHomeWorshipById = (id: string) => {
+  return useQuery({
+    queryFn: () => getHomeWorship(id),
+    queryKey: homewWorshipKeys.detail(id),
+    enabled: !!id,
+  });
+};
+
 const usePostHomeWorship = () =>
   useMutation({
     mutationFn: postHomeWorship,
@@ -27,4 +35,4 @@ const usePostHomeWorship = () =>
 
 const useDeleteHomeWorship = () => useMutation({ mutationFn: deleteHomeWorship });
 
-export { useGetHomeWorships, useGetHomeWorship, usePostHomeWorship, useDeleteHomeWorship };
+export { useGetHomeWorships, useGetHomeWorship, useGetHomeWorshipById, usePostHomeWorship, useDeleteHomeWorship };
