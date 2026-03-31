@@ -1,15 +1,9 @@
 import ListPagination from "@/components/common/ListPagination";
-import { useDeleteHomeWorship, useGetHomeWorships } from "@/query/homeWorship";
+import { useDeleteHomeWorship, useDeleteHomeWorships, useGetHomeWorships, usePatchHomeWorship } from "@/query/homeWorship";
+import { IHomeWorship } from "type";
 import { useState } from "react";
 import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,55 +15,116 @@ import {
   AlertDialogTitle,
 } from "../ui/alert-dialog";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Badge } from "../ui/badge";
-import { Eye, MoreHorizontal, Trash2, Plus, Home, Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { Card, CardContent, CardHeader } from "../ui/card";
+import { Trash2, Plus, Loader2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { toast } from "sonner";
-import { useQueryClient } from "@tanstack/react-query";
-import homewWorshipKeys from "@/query/homeWorship/keys";
+import { Checkbox } from "../ui/checkbox";
 import HomeWorshipDetailDialog from "./HomeWorshipDetailDialog";
+import HomeWorshipFormDialog from "./HomeWorshipFormDialog";
 
 const HomeWorship = () => {
-  const { push } = useRouter();
-  const queryClient = useQueryClient();
   const [page, setPage] = useState(0);
-  const [detailId, setDetailId] = useState<string | null>(null);
+  const [formOpen, setFormOpen] = useState(false);
+  const [detailTarget, setDetailTarget] = useState<IHomeWorship | null>(null);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
-  const { data: res, isFetching } = useGetHomeWorships({ page });
+  const { data: res, isFetching, refetch } = useGetHomeWorships({ page });
   const data = res?.content;
   const totalPages = res?.totalPages ?? 0;
 
-  const { mutate, isPending: isDeleting } = useDeleteHomeWorship();
+  const { mutate: deleteSingle, isPending: isDeleting } = useDeleteHomeWorship();
+  const { mutate: deleteBulk, isPending: isBulkDeleting } = useDeleteHomeWorships();
+  const { mutate: patchHW } = usePatchHomeWorship();
+
+  const handlePinChange = (hw: IHomeWorship, value: string) => {
+    const formData = new FormData();
+    formData.append("title", hw.title);
+    formData.append("date", hw.date);
+    formData.append("content", hw.content ?? "");
+    formData.append("userName", hw.userName);
+    formData.append("isPinned", value);
+    formData.append("password", "admin1234");
+    patchHW({ id: hw.id, formData }, {
+      onSuccess: async () => { toast.success("공지 여부가 변경되었습니다."); await refetch(); },
+      onError: () => toast.error("에러가 발생했습니다."),
+    });
+  };
 
   const handleDelete = () => {
     if (!deleteTargetId) return;
-    mutate(deleteTargetId, {
-      onSuccess: () => {
-        toast("삭제되었습니다.");
-        queryClient.invalidateQueries({ queryKey: homewWorshipKeys.all });
+    deleteSingle(deleteTargetId, {
+      onSuccess: async () => {
+        toast.success("삭제되었습니다.");
+        await refetch();
       },
       onError: () => toast.error("에러가 발생했습니다."),
       onSettled: () => setDeleteTargetId(null),
     });
   };
 
+  const handleBulkDelete = () => {
+    const ids = Array.from(selectedIds);
+    deleteBulk(ids, {
+      onSuccess: async () => {
+        toast.success(`${ids.length}개가 삭제되었습니다.`);
+        setSelectedIds(new Set());
+        await refetch();
+      },
+      onError: () => toast.error("에러가 발생했습니다."),
+      onSettled: () => setBulkDeleteOpen(false),
+    });
+  };
+
+  const handleToggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const allSelected = !!data?.length && data.every((h) => selectedIds.has(h.id));
+  const someSelected = !!data?.length && data.some((h) => selectedIds.has(h.id));
+
+  const handleToggleAll = () => {
+    if (allSelected) {
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        data?.forEach((h) => next.delete(h.id));
+        return next;
+      });
+    } else {
+      setSelectedIds((prev) => {
+        const next = new Set(prev);
+        data?.forEach((h) => next.add(h.id));
+        return next;
+      });
+    }
+  };
+
   return (
     <>
       <Card>
         <CardHeader className="pb-3">
-          <CardTitle className="flex items-center justify-between text-sm font-medium">
-            <span className="flex items-center gap-2">
-              <Home className="size-4" />
-              가정예배 공지
-              {data && <Badge variant="secondary">{data.length}개</Badge>}
-            </span>
-            <Button size="sm" onClick={() => push("/homeworship/create")}>
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {selectedIds.size > 0 && (
+                <Button size="sm" variant="destructive" onClick={() => setBulkDeleteOpen(true)}>
+                  <Trash2 className="mr-1.5 size-4" />
+                  {selectedIds.size}개 삭제
+                </Button>
+              )}
+            </div>
+            <Button size="sm" onClick={() => setFormOpen(true)}>
               <Plus className="mr-1.5 size-4" />
-              공지 추가
+              <span className="hidden xs:inline">글 추가</span>
+              <span className="xs:hidden">추가</span>
             </Button>
-          </CardTitle>
+          </div>
         </CardHeader>
         <CardContent className="p-0">
           {isFetching ? (
@@ -78,60 +133,65 @@ const HomeWorship = () => {
             </div>
           ) : !data?.length ? (
             <div className="text-muted-foreground flex h-32 items-center justify-center text-sm">
-              등록된 가정예배 공지가 없습니다.
+              등록된 가정예배 글이 없습니다.
             </div>
           ) : (
-            <Table>
+            <Table className="table-fixed">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-16">공지</TableHead>
-                  <TableHead>날짜</TableHead>
-                  <TableHead>제목</TableHead>
-                  <TableHead className="hidden sm:table-cell">작성자</TableHead>
-                  <TableHead className="w-10"></TableHead>
+                  <TableHead className="w-8 px-2 text-center sm:w-10 sm:px-4">
+                    <Checkbox
+                      checked={allSelected}
+                      data-state={someSelected && !allSelected ? "indeterminate" : undefined}
+                      onCheckedChange={handleToggleAll}
+                      aria-label="전체 선택"
+                    />
+                  </TableHead>
+                  <TableHead className="w-24 px-4 text-center text-xs sm:w-28 sm:text-sm">공지</TableHead>
+                  <TableHead className="hidden w-24 px-4 text-center text-xs sm:table-cell sm:w-32 sm:text-sm">날짜</TableHead>
+                  <TableHead className="w-[40%] text-center text-xs sm:w-[35%] sm:text-sm">제목</TableHead>
+                  <TableHead className="w-24 text-center text-xs sm:table-cell sm:w-28 sm:text-sm">작성자</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {data.map((homeworship) => (
-                  <TableRow key={homeworship.id}>
-                    <TableCell>
-                      {homeworship.isPinned ? (
-                        <Badge variant="secondary">공지</Badge>
-                      ) : (
-                        <span className="text-muted-foreground text-xs">—</span>
-                      )}
+                  <TableRow
+                    key={homeworship.id}
+                    className="group cursor-pointer"
+                    onClick={() => setTimeout(() => setDetailTarget(homeworship), 0)}
+                  >
+                    <TableCell
+                      className="py-3 px-2 text-center sm:px-4"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Checkbox
+                        checked={selectedIds.has(homeworship.id)}
+                        onCheckedChange={() => handleToggleSelect(homeworship.id)}
+                        aria-label="선택"
+                      />
                     </TableCell>
-                    <TableCell className="text-muted-foreground">{homeworship.date || "—"}</TableCell>
-                    <TableCell className="font-medium">
-                      {homeworship.title || <span className="text-muted-foreground">—</span>}
+                    <TableCell className="py-3 px-4 text-center" onClick={(e) => e.stopPropagation()}>
+                      <Select
+                        value={homeworship.isPinned ? "true" : "false"}
+                        onValueChange={(v) => handlePinChange(homeworship, v)}
+                      >
+                        <SelectTrigger className="mx-auto h-7 w-14 px-2 text-xs">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="true" className="text-xs">Y</SelectItem>
+                          <SelectItem value="false" className="text-xs">N</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </TableCell>
-                    <TableCell className="text-muted-foreground hidden sm:table-cell">
-                      {homeworship.userName || "—"}
+                    <TableCell className="text-muted-foreground hidden py-3 px-4 text-center text-xs sm:table-cell sm:text-sm">
+                      {homeworship.date || "—"}
                     </TableCell>
-                    <TableCell>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="size-8">
-                            <MoreHorizontal className="size-4" />
-                          </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem
-                            onClick={() => setTimeout(() => setDetailId(homeworship.id), 0)}
-                          >
-                            <Eye className="mr-2 size-4" />
-                            보기
-                          </DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem
-                            className="text-destructive"
-                            onClick={() => setTimeout(() => setDeleteTargetId(homeworship.id), 0)}
-                          >
-                            <Trash2 className="mr-2 size-4" />
-                            삭제
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                    <TableCell className="overflow-hidden py-3 px-2 text-xs font-medium sm:text-sm">
+                      <p className="truncate text-center">{homeworship.title || <span className="text-muted-foreground">—</span>}</p>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground w-24 py-3 px-2 text-center text-xs sm:w-28 sm:text-sm">
+                      <p className="truncate">{homeworship.userName || "—"}</p>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -142,15 +202,22 @@ const HomeWorship = () => {
       </Card>
       <ListPagination page={page} totalPages={totalPages} onPageChange={setPage} />
 
-      <HomeWorshipDetailDialog id={detailId} onClose={() => setDetailId(null)} />
+      <HomeWorshipFormDialog open={formOpen} onClose={() => setFormOpen(false)} onSuccess={refetch} />
 
+      <HomeWorshipDetailDialog
+        homeworship={detailTarget}
+        onClose={() => setDetailTarget(null)}
+        onSuccess={refetch}
+      />
+
+      {/* 단건 삭제 */}
       <AlertDialog
         open={!!deleteTargetId}
         onOpenChange={(open) => !open && setDeleteTargetId(null)}
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>가정예배 공지를 삭제하시겠습니까?</AlertDialogTitle>
+            <AlertDialogTitle>가정예배 글을 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
@@ -164,6 +231,30 @@ const HomeWorship = () => {
               disabled={isDeleting}
             >
               {isDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
+              삭제
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      {/* 다건 삭제 */}
+      <AlertDialog open={bulkDeleteOpen} onOpenChange={(open) => !open && setBulkDeleteOpen(false)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>{selectedIds.size}개의 글을 삭제하시겠습니까?</AlertDialogTitle>
+            <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={isBulkDeleting}>취소</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={(e) => {
+                e.preventDefault();
+                handleBulkDelete();
+              }}
+              disabled={isBulkDeleting}
+            >
+              {isBulkDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
               삭제
             </AlertDialogAction>
           </AlertDialogFooter>
