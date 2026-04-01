@@ -1,16 +1,14 @@
 export type AlbumType =
-  | "all"
   | "main"
   | "infants"
   | "toddlers"
-  | "elementary"
-  | "middle"
-  | "high"
-  | "2youth"
-  | "1youth"
+  | "children"
+  | "teens"
+  | "youth"
+  | "bridge"
   | "qt"
   | "panorama"
-  | "newFamilly"
+  | "newFamily"
   | "newlyweds"
   | "3040";
 
