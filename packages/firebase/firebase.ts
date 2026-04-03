@@ -1,11 +1,6 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+import { getApps, initializeApp, type FirebaseApp } from "firebase/app";
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
+const envConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -14,5 +9,36 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
-// Initialize Firebase
-export const firebase = initializeApp(firebaseConfig);
+/** next build 등 환경 변수가 없을 때 initializeApp만 통과시키기 위한 자리 표시자(실제 Auth/네트워크 호출은 하지 않음). */
+const BUILD_PLACEHOLDER_CONFIG = {
+  apiKey: "AIzaSy0000000000000000000000000000000",
+  authDomain: "build-placeholder.firebaseapp.com",
+  projectId: "build-placeholder",
+  storageBucket: "build-placeholder.appspot.com",
+  messagingSenderId: "000000000000",
+  appId: "1:000000000000:web:0000000000000000000000",
+} as const;
+
+function resolveConfig() {
+  if (envConfig.apiKey) {
+    return {
+      apiKey: envConfig.apiKey,
+      authDomain: envConfig.authDomain ?? "",
+      projectId: envConfig.projectId ?? "",
+      storageBucket: envConfig.storageBucket,
+      messagingSenderId: envConfig.messagingSenderId,
+      appId: envConfig.appId,
+    };
+  }
+  return { ...BUILD_PLACEHOLDER_CONFIG };
+}
+
+export function getFirebaseApp(): FirebaseApp {
+  const existing = getApps()[0];
+  if (existing) {
+    return existing;
+  }
+  return initializeApp(resolveConfig());
+}
+
+export const firebase = getFirebaseApp();

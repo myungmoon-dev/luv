@@ -22,7 +22,7 @@ export const officerType: IOfficerType[] = [
   { label: "retired", type: "원로목사" },
   { label: "senior", type: "담임목사" },
   { label: "associate", type: "목사" },
-  { label: "cooperativePastor", type: "협동목사" },
+  { label: "otherAssociate", type: "협동목사" },
   { label: "evangelist", type: "전도사" },
   { label: "missionary", type: "선교사" },
   { label: "elder", type: "장로" },
