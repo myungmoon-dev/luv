@@ -1,30 +1,24 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { type ReactNode, useEffect, useRef } from "react";
+import { type ReactNode } from "react";
 
 import { getPopups } from "@/lib/api-popup";
 
+import { PopupOverlay } from "./popup-overlay";
+
 export function PopupProvider({ children }: { children: ReactNode }) {
-  const openedRef = useRef(false);
   const { data: popups } = useQuery({
     queryKey: ["popups", { onlyShow: true }],
     queryFn: getPopups,
   });
 
-  useEffect(() => {
-    if (!popups?.length || openedRef.current) return;
-    openedRef.current = true;
+  const listKey = popups?.map((p) => p.id).join("\0") ?? "";
 
-    popups.forEach((popup) => {
-      if (!popup.show || !popup.imageUrl) return;
-      window.open(
-        `/popup?src=${encodeURIComponent(popup.imageUrl)}`,
-        "_blank",
-        "width=800,height=600",
-      );
-    });
-  }, [popups]);
-
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {popups?.length ? <PopupOverlay key={listKey} popups={popups} /> : null}
+    </>
+  );
 }
