@@ -1,5 +1,5 @@
-import { deleteBook, getBook, getBooks, postBook, putBook } from "@/api/books";
-import { useInfiniteQuery, useMutation, useQuery } from "@tanstack/react-query";
+import { deleteBook, deleteBooks, getBook, getBooks, postBook, putBook } from "@/api/books";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { booksKeys } from "./keys";
 
 export const useGetBooks = ({ page = 0 }: { page?: number } = {}) => {
@@ -20,5 +20,7 @@ export const useGetBook = ({ bookId }: { bookId: string }) => {
 export const usePostBook = () => useMutation({ mutationFn: postBook });
 
 export const useDeleteBook = () => useMutation({ mutationFn: deleteBook });
+
+export const useDeleteBooks = () => useMutation({ mutationFn: deleteBooks });
 
 export const usePutBook = () => useMutation({ mutationFn: putBook });

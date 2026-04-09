@@ -38,3 +38,8 @@ export const putBook = async ({ id, form }: { id: string; form: FormData }) => {
 
   return data;
 };
+
+export const deleteBooks = async (ids: string[]) => {
+  const { data } = await api.delete("/books", { data: ids });
+  return data;
+};
