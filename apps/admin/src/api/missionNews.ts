@@ -1,8 +1,13 @@
 import { IGetMissionNewsListResponse, IGetMissionNewsResponse } from "@/types/missionNews/response";
 import { api } from ".";
 
-export const getMissionNewsList = async ({ page = 0 }: { page?: number } = {}) => {
-  const { data } = await api.get<IGetMissionNewsListResponse>("/mission-news", { params: { page } });
+export const getMissionNewsList = async ({
+  page = 0,
+  location,
+}: { page?: number; location?: string } = {}) => {
+  const { data } = await api.get<IGetMissionNewsListResponse>("/mission-news", {
+    params: { page, ...(location && { location }) },
+  });
 
   return data;
 };
@@ -25,6 +30,12 @@ export const getMissionNews = async ({ missionNewsId }: { missionNewsId: string 
 
 export const deleteMissionNews = async ({ missionNewsId }: { missionNewsId: string }) => {
   const { data } = await api.delete(`/mission-news/${missionNewsId}`);
+
+  return data;
+};
+
+export const deleteMissionNewsList = async (ids: string[]) => {
+  const { data } = await api.delete("/mission-news", { data: ids });
 
   return data;
 };
