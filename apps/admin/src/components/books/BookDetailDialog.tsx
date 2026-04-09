@@ -99,7 +99,11 @@ const BookDetailDialog = ({ book, onClose, onSuccess }: BookDetailDialogProps) =
     formData.append("writer", fd.writer);
     formData.append("date", fd.date);
     formData.append("content", content);
-    if (newImage) formData.append("images", newImage);
+    // 기존 이미지 유지 시 existingImageUrls로 URL 전달, 새 이미지는 newImages로 전달
+    if (keepImage && book.imageUrls?.[0]) {
+      formData.append("existingImageUrls", book.imageUrls[0]);
+    }
+    if (newImage) formData.append("newImages", newImage);
 
     putBook(
       { id: book.id, form: formData },
