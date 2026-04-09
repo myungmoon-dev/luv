@@ -89,8 +89,14 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
 
   const onSubmit = (data: FormValues) => {
     let valid = true;
-    if (!content) { setContentError("내용을 입력해주세요."); valid = false; } else setContentError("");
-    if (imageFiles.length === 0) { setImageError("사진을 최소 1개 업로드해주세요."); valid = false; } else setImageError("");
+    if (!content) {
+      setContentError("내용을 입력해주세요.");
+      valid = false;
+    } else setContentError("");
+    if (imageFiles.length === 0) {
+      setImageError("사진을 최소 1개 업로드해주세요.");
+      valid = false;
+    } else setImageError("");
     if (!selectedDate || !valid) return;
 
     const formData = new FormData();
@@ -115,131 +121,137 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
   return (
     <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
       <DialogContent className="flex max-h-[90dvh] flex-col gap-0 overflow-y-auto p-0 sm:max-w-lg">
-        <DialogHeader className="sticky top-0 z-10 border-b bg-background px-6 pt-6 pb-4">
+        <DialogHeader className="bg-background sticky top-0 z-10 border-b px-6 pb-4 pt-6">
           <DialogTitle>가정예배 등록</DialogTitle>
         </DialogHeader>
 
         <form
           id="hw-form"
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 px-6 pt-4 pb-4"
+          className="flex flex-col gap-4 px-6 pb-4 pt-4"
         >
-            {/* 날짜 */}
-            <FormField label="예배 날짜" required>
-              <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
-                <PopoverTrigger asChild>
-                  <button
-                    type="button"
-                    className={cn(
-                      "border-input flex h-9 w-full items-center gap-2 rounded-md border bg-transparent px-3 py-1 text-left text-sm shadow-sm transition-colors hover:bg-accent",
-                      !selectedDate && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="size-4 shrink-0" />
-                    {selectedDate ? format(selectedDate, "PPP", { locale: ko }) : "날짜를 선택해주세요"}
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0" align="start">
-                  <Calendar
-                    mode="single"
-                    selected={selectedDate}
-                    onSelect={(date) => { setSelectedDate(date); setCalendarOpen(false); }}
-                    initialFocus
-                  />
-                </PopoverContent>
-              </Popover>
-            </FormField>
-
-            {/* 제목 */}
-            <FormField label="제목" required error={errors.title?.message}>
-              <Input
-                {...register("title", { required: "제목을 입력해주세요." })}
-                placeholder="제목을 입력해주세요"
-              />
-            </FormField>
-
-            {/* 작성자 */}
-            <FormField label="작성자" required error={errors.userName?.message}>
-              <Input
-                {...register("userName", { required: "작성자를 입력해주세요." })}
-                placeholder="작성자 이름"
-              />
-            </FormField>
-
-            {/* 사진 */}
-            <FormField label="사진" required error={imageError}>
-              <input
-                id="hw-image-input"
-                type="file"
-                accept="image/*"
-                multiple
-                className="hidden"
-                onChange={handleImageChange}
-                disabled={imageFiles.length >= MAX_IMAGES}
-              />
-              {imageFiles.length < MAX_IMAGES && (
-                <label
-                  htmlFor="hw-image-input"
-                  className="border-input text-muted-foreground hover:bg-muted/50 flex w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed py-5 text-sm transition-colors"
+          {/* 날짜 */}
+          <FormField label="예배 날짜" required>
+            <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
+              <PopoverTrigger asChild>
+                <button
+                  type="button"
+                  className={cn(
+                    "border-input hover:bg-accent flex h-9 w-full items-center gap-2 rounded-md border bg-transparent px-3 py-1 text-left text-sm shadow-sm transition-colors",
+                    !selectedDate && "text-muted-foreground",
+                  )}
                 >
-                  <ImagePlus className="size-5" />
-                  <span>클릭하여 사진을 선택하세요</span>
-                  <span className="text-xs opacity-70">최소 1개 · 최대 {MAX_IMAGES}개 ({imageFiles.length}/{MAX_IMAGES})</span>
-                </label>
-              )}
-              {imagePreviews.length > 0 && (
-                <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-4">
-                  {imagePreviews.map((url, i) => (
-                    <div key={url} className="relative aspect-square">
-                      <img
-                        src={url}
-                        alt={`사진 ${i + 1}`}
-                        className="h-full w-full rounded-md border object-cover"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveImage(i)}
-                        className="absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full bg-destructive text-white shadow"
-                      >
-                        <X className="size-3" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </FormField>
+                  <CalendarIcon className="size-4 shrink-0" />
+                  {selectedDate
+                    ? format(selectedDate, "PPP", { locale: ko })
+                    : "날짜를 선택해주세요"}
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0" align="start">
+                <Calendar
+                  mode="single"
+                  selected={selectedDate}
+                  onSelect={(date) => {
+                    setSelectedDate(date);
+                    setCalendarOpen(false);
+                  }}
+                  initialFocus
+                />
+              </PopoverContent>
+            </Popover>
+          </FormField>
 
-            {/* 내용 */}
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">
-                내용<span className="text-destructive ml-0.5">*</span>
-              </Label>
-              <Editor
-                setValue={(v) => {
-                  setContent(v);
-                  if (v) setContentError("");
-                }}
-              />
-              {contentError && <p className="text-destructive text-xs">{contentError}</p>}
-            </div>
+          {/* 제목 */}
+          <FormField label="제목" required error={errors.title?.message}>
+            <Input
+              {...register("title", { required: "제목을 입력해주세요." })}
+              placeholder="제목을 입력해주세요"
+            />
+          </FormField>
 
-            {/* 공지 */}
-            <div className="flex items-center justify-between rounded-lg border p-3">
-              <div>
-                <p className="text-sm font-medium">공지로 등록</p>
-                <p className="text-muted-foreground text-xs">목록 상단에 고정됩니다</p>
+          {/* 작성자 */}
+          <FormField label="작성자" required error={errors.userName?.message}>
+            <Input
+              {...register("userName", { required: "작성자를 입력해주세요." })}
+              placeholder="작성자 이름"
+            />
+          </FormField>
+
+          {/* 사진 */}
+          <FormField label="사진" required error={imageError}>
+            <input
+              id="hw-image-input"
+              type="file"
+              accept="image/*"
+              multiple
+              className="hidden"
+              onChange={handleImageChange}
+              disabled={imageFiles.length >= MAX_IMAGES}
+            />
+            {imageFiles.length < MAX_IMAGES && (
+              <label
+                htmlFor="hw-image-input"
+                className="border-input text-muted-foreground hover:bg-muted/50 flex w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed py-5 text-sm transition-colors"
+              >
+                <ImagePlus className="size-5" />
+                <span>클릭하여 사진을 선택하세요</span>
+                <span className="text-xs opacity-70">
+                  최소 1개 · 최대 {MAX_IMAGES}개 ({imageFiles.length}/{MAX_IMAGES})
+                </span>
+              </label>
+            )}
+            {imagePreviews.length > 0 && (
+              <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-4">
+                {imagePreviews.map((url, i) => (
+                  <div key={url} className="relative aspect-square">
+                    <img
+                      src={url}
+                      alt={`사진 ${i + 1}`}
+                      className="h-full w-full rounded-md border object-cover"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(i)}
+                      className="bg-destructive absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full text-white shadow"
+                    >
+                      <X className="size-3" />
+                    </button>
+                  </div>
+                ))}
               </div>
-              <Switch checked={isPinned} onCheckedChange={setIsPinned} />
+            )}
+          </FormField>
+
+          {/* 내용 */}
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-sm font-medium">
+              내용<span className="text-destructive ml-0.5">*</span>
+            </Label>
+            <Editor
+              setValue={(v) => {
+                setContent(v);
+                if (v) setContentError("");
+              }}
+            />
+            {contentError && <p className="text-destructive text-xs">{contentError}</p>}
+          </div>
+
+          {/* 공지 */}
+          <div className="flex items-center justify-between rounded-lg border p-3">
+            <div>
+              <p className="text-sm font-medium">공지로 등록</p>
+              <p className="text-muted-foreground text-xs">목록 상단에 고정됩니다</p>
             </div>
+            <Switch checked={isPinned} onCheckedChange={setIsPinned} />
+          </div>
         </form>
 
-        <div className="sticky bottom-0 border-t bg-background px-6 py-4 flex gap-2">
+        <div className="bg-background sticky bottom-0 flex gap-2 border-t px-6 py-4">
           <Button type="button" variant="outline" className="flex-1" onClick={handleClose}>
             취소
           </Button>
           <Button
             form="hw-form"
-            type="submit"
             className="flex-1"
             disabled={isPending || !selectedDate || imageFiles.length === 0}
             isLoading={isPending}
