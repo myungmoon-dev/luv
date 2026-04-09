@@ -8,7 +8,7 @@ interface IEditorProps {
 
 export const Editor = ({ defaultValue, setValue }: IEditorProps) => {
   return (
-    <div className="text-black">
+    <div className="w-full min-w-0 text-black" style={{ width: "100%", minWidth: 0 }}>
       <CKEditor
         editor={ClassicEditor}
         data={defaultValue}

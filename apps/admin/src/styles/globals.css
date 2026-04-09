@@ -107,3 +107,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+[data-radix-scroll-area-viewport] {
+  overflow-x: hidden !important;
+}
+
+.ck.ck-editor,
+.ck.ck-editor__top,
+.ck.ck-sticky-panel,
+.ck.ck-sticky-panel__content,
+.ck.ck-toolbar {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.ck.ck-toolbar__items {
+  flex-wrap: wrap !important;
+}
