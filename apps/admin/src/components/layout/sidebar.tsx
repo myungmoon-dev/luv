@@ -1,9 +1,21 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
-  LayoutDashboard, Radio, Clapperboard, FileText, BookOpen,
-  Home, Image, BookMarked, Globe, Bell, Users, ChevronDown,
-  Settings, LogOut, ChevronUp,
+  LayoutDashboard,
+  Radio,
+  Clapperboard,
+  FileText,
+  BookOpen,
+  Home,
+  Image,
+  BookMarked,
+  Globe,
+  Bell,
+  Users,
+  ChevronDown,
+  Settings,
+  LogOut,
+  ChevronUp,
 } from "lucide-react";
 import {
   Sidebar,
@@ -17,11 +29,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -60,14 +68,19 @@ const AdminSidebar = () => {
   };
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-sidebar-border">
-      <SidebarHeader className="border-b border-sidebar-border p-4">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-semibold">
+    <Sidebar collapsible="icon" className="border-sidebar-border border-r">
+      <SidebarHeader className="border-sidebar-border border-b p-4">
+        <Link href="/" className="flex items-center">
+          <img
+            src="/images/logo/hor_logo(W).svg"
+            alt="명문 로고"
+            className="h-14 w-auto group-data-[collapsible=icon]:hidden"
+          />
+          <span className="text-primary-foreground hidden text-sm font-bold group-data-[collapsible=icon]:block">
             M
-          </div>
-          <span className="font-semibold text-base group-data-[collapsible=icon]:hidden">
-            명문 Admin
+          </span>
+          <span className="pl-4 text-sm font-semibold text-white group-data-[collapsible=icon]:hidden">
+            관리자 페이지
           </span>
         </Link>
       </SidebarHeader>
@@ -103,7 +116,11 @@ const AdminSidebar = () => {
                 <SidebarMenu>
                   {contentMenuItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
                         <Link href={item.href}>
                           <item.icon className="size-4" />
                           <span>{item.title}</span>
@@ -130,7 +147,11 @@ const AdminSidebar = () => {
                 <SidebarMenu>
                   {systemMenuItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
-                      <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
                         <Link href={item.href}>
                           <item.icon className="size-4" />
                           <span>{item.title}</span>
@@ -145,13 +166,13 @@ const AdminSidebar = () => {
         </Collapsible>
       </SidebarContent>
 
-      <SidebarFooter className="border-t border-sidebar-border p-2">
+      <SidebarFooter className="border-sidebar-border border-t p-2">
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton className="w-full">
-                  <div className="flex size-6 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                  <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-full text-xs font-medium">
                     관
                   </div>
                   <span className="truncate">관리자</span>
