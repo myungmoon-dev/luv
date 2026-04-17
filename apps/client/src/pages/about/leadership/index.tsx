@@ -128,32 +128,26 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="font-bold tracking-widest text-[#001F54]">학력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    학력
+                  </p>
                 </div>
-                <ul className="space-y-2 text-sm text-[#444]">
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
                   <li className="flex items-center gap-2">
                     <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                    고려대, 서울대 대학원: 철학과 영미윤리학
+                    고려대, 서울대 대학원: 철학, 영미윤리학
                   </li>
                   <li className="flex items-center gap-2">
                     <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                    총신신대원: 목회학 석사 (M.Div.)
+                    총신대 신학대학원: 목회학(MDiv)
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                    <span>
-                      Trinity Evangelical Divinity School (시카고)
-                      <br />
-                      <span className="text-[#666]">조직신학 석사 (Th.M.)</span>
-                    </span>
+                  <li className="flex items-center gap-2">
+                    <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                    Trinity Evangelical Divinity School: 조직신학(ThM)
                   </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                    <span>
-                      The Southern Baptist Theological Seminary
-                      <br />
-                      <span className="text-[#666]">설교학 박사 (Ph.D.)</span>
-                    </span>
+                  <li className="flex items-center gap-2">
+                    <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                    The Southern Baptist Theological Seminary: 설교학(PhD)
                   </li>
                 </ul>
               </div>
@@ -162,10 +156,17 @@ const LeadershipPage = () => {
               <div className="mb-5">
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="font-bold tracking-widest text-[#001F54]">사역 경력</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    사역 경력
+                  </p>
                 </div>
-                <ul className="space-y-2 text-sm text-[#444]">
-                  {["강남교회", "시카고아가페장로교회", "사랑의교회"].map((item) => (
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
+                  {[
+                    "강남교회",
+                    "시카고아가페장로교회",
+                    "Sojourn Community Church",
+                    "사랑의교회",
+                  ].map((item) => (
                     <li key={item} className="flex items-center gap-2">
                       <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
                       {item}
@@ -178,14 +179,16 @@ const LeadershipPage = () => {
               <div>
                 <div className="mb-2 flex items-center gap-2">
                   <div className="h-px flex-1 bg-[#D0D5E0]" />
-                  <p className="font-bold tracking-widest text-[#001F54]">현재 활동</p>
+                  <p className="text-base font-bold tracking-widest text-[#001F54] md:text-lg">
+                    현재 활동
+                  </p>
                 </div>
-                <ul className="space-y-2 text-sm text-[#444]">
+                <ul className="space-y-2 text-base text-[#444] md:text-lg">
                   {[
-                    "총신대 목회신학전문대학원 교수",
+                    "총신대 목회신학전문대학원 설교학 교수",
+                    "Reformed Theological College in Uganda(우간다 개혁신학대학교) 초빙교수",
                     "농어촌교회사역연구소 연구위원",
                     "한국개혁주의 설교학회 학술부회장",
-                    "GMS 이사",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2">
                       <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
@@ -212,41 +215,62 @@ const LeadershipPage = () => {
                   sub: "말라기 강해설교",
                   publisher: "마음과마음",
                   year: "2026",
+                  img: "/images/about/돌아오라.jpeg",
                 },
                 {
                   title: "마음에서 마음으로",
                   sub: "조나단 에드워즈에게 배우는 설교",
                   publisher: "CLC",
                   year: "2026(예정)",
+                  img: "/images/about/마음에서마음.png",
                 },
-                { title: "스펄전의 설교학교", sub: "", publisher: "새물결플러스", year: "2013" },
+                {
+                  title: "스펄전의 설교학교",
+                  sub: "",
+                  publisher: "새물결플러스",
+                  year: "2013",
+                  img: "/images/about/스펄전.png",
+                },
                 {
                   title: "하나님, 아름다움, 설교",
                   sub: "",
                   publisher: "생명의말씀사",
                   year: "2025",
+                  img: "/images/about/하아설.png",
                 },
-                { title: "설교학과 해석학: 네 관점", sub: "", publisher: "CLC", year: "2026" },
+                {
+                  title: "설교학과 해석학: 네 관점",
+                  sub: "",
+                  publisher: "CLC",
+                  year: "2026",
+                  img: "/images/about/Homiletics.png",
+                },
               ].map((book) => (
                 <div
                   key={book.title}
                   className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10">
-                    <svg
-                      className="size-4 text-[#001F54]"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                      />
-                    </svg>
-                  </div>
+                  {book.img ? (
+                    <div className="h-28 w-20 shrink-0 overflow-hidden rounded">
+                      <img src={book.img} alt={book.title} className="h-full w-full object-cover" />
+                    </div>
+                  ) : (
+                    <div className="flex h-28 w-20 shrink-0 items-center justify-center rounded bg-[#001F54]/10">
+                      <svg
+                        className="size-4 text-[#001F54]"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={1.5}
+                          d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                        />
+                      </svg>
+                    </div>
+                  )}
                   <div>
                     <p className="text-sm font-bold text-[#001F54] sm:text-base">{book.title}</p>
                     {book.sub && <p className="text-xs text-[#6E6E6E] sm:text-sm">{book.sub}</p>}
