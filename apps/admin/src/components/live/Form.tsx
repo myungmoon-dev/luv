@@ -44,7 +44,7 @@ const LiveForm = () => {
 
   return (
     <div className="flex w-full flex-col items-center gap-6">
-      <Card className="w-2/3">
+      <Card className="w-full max-w-2xl">
         <CardHeader className="pb-3 pt-4">
           <CardTitle className="text-base">라이브 URL 변경</CardTitle>
         </CardHeader>
