@@ -1,7 +1,7 @@
 import { IBulletin, IBulletinForm, IBulletinImageForm } from "./bulletin";
 import { YoutubeType, IYoutube, IYoutubeForm, IGetYoutubeResponse } from "./youtube";
 import { IBible, IBibleForm } from "./bible";
-import { IHomeWorship, IHomeWorshipForm } from "./homeWorship";
+import { IHomeWorship, IHomeWorshipForm, IHomeworshipComment } from "./homeWorship";
 import { YearMonthType } from "./date";
 import { IMissionNews, IMissionNewsForm } from "./news";
 import { IUser } from "./user";
@@ -45,6 +45,7 @@ export type {
   IBibleForm,
   IHomeWorship,
   IHomeWorshipForm,
+  IHomeworshipComment,
   YearMonthType,
   IMissionNews,
   IMissionNewsForm,

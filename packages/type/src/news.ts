@@ -3,7 +3,7 @@ import { IBoardFormBase } from "./common";
 export type MissionLocation = "bangladesh" | "bulgaria" | "uk" | "uganda" | "indiaThailand";
 
 export interface IMissionNews {
-  _id: string;
+  id: string;
   title: string;
   content: string;
   userName: string;

@@ -1,7 +1,6 @@
 import { IBulletin } from "type";
+import { PageResponse } from "../common";
 
-export interface IGetBulletinsResponse {
-  bulletins: IBulletin[];
-}
+export type IGetBulletinsResponse = PageResponse<IBulletin>;
 
 export interface IGetBulletinResponse extends IBulletin {}

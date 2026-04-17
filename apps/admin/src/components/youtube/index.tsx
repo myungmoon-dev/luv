@@ -1,7 +1,6 @@
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { IYoutubeDropDownOptions } from "./dropdown";
-import LiveForm from "./Form";
 import YoutubeVideoList from "./List";
 
 const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
@@ -17,7 +16,7 @@ const YOUTUBE_OPTIONS_DATA: IYoutubeDropDownOptions[] = [
 const Youtube = () => {
   return (
     <Tabs defaultValue="shorts" className="flex flex-col gap-5">
-      <TabsList className="w-fit">
+      <TabsList className="w-full overflow-x-auto [&::-webkit-scrollbar]:hidden">
         {YOUTUBE_OPTIONS_DATA.map((option) => (
           <TabsTrigger value={option.type} key={option.type}>
             {option.label}
@@ -26,8 +25,7 @@ const Youtube = () => {
       </TabsList>
       {YOUTUBE_OPTIONS_DATA.map((option) => (
         <TabsContent value={option.type} key={option.type}>
-          <LiveForm option={option.type} />
-          <YoutubeVideoList option={option.type} />
+          <YoutubeVideoList key={option.type} option={option.type} />
         </TabsContent>
       ))}
     </Tabs>

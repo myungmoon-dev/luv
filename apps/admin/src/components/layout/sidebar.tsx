@@ -1,133 +1,202 @@
-import {
-  BookOpen,
-  Church,
-  Earth,
-  House,
-  HousePlus,
-  Images,
-  Library,
-  LucideIcon,
-  Megaphone,
-  MessageCircle,
-  Radio,
-  Video,
-  Users,
-} from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { cn } from "ui";
-import { buttonVariants } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import {
+  LayoutDashboard,
+  Radio,
+  Clapperboard,
+  FileText,
+  BookOpen,
+  Home,
+  Image,
+  BookMarked,
+  Globe,
+  Bell,
+  Users,
+  ChevronDown,
+  Settings,
+  LogOut,
+  ChevronUp,
+} from "lucide-react";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-interface INav {
-  title: string;
-  href: string;
-  tooltip: string;
-  icon: LucideIcon;
-}
-
-const NAV_LIST: INav[] = [
-  {
-    title: "대시보드",
-    href: "/",
-    tooltip: "여러 상태들을 볼 수 있습니다.",
-    icon: House,
-  },
-  {
-    title: "실시간",
-    href: "/live",
-    tooltip: "실시간 유튜브 링크를 등록하고 수정할 수 있습니다.",
-    icon: Radio,
-  },
-  {
-    title: "유튜브",
-    href: "/youtube",
-    tooltip:
-      "주일 예배, 새벽 기도회, 수요 예배, 금요 예배의 유튜브 링크를 등록하고 수정할 수 있습니다.",
-    icon: Video,
-  },
-  {
-    title: "주보",
-    href: "/bulletins",
-    tooltip: "주보를 등록하고 수정, 삭제할 수 있습니다.",
-    icon: BookOpen,
-  },
-  {
-    title: "성경통독",
-    href: "/bibles",
-    tooltip: "성경통독을 위한 글을 작성하고 수정할 수 있습니다.",
-    icon: Church,
-  },
-  {
-    title: "가정예배 공지",
-    href: "/homeworship",
-    tooltip: "가정예배에 필요한 공지글을 작성할 수 있습니다.",
-    icon: HousePlus,
-  },
-  {
-    title: "앨범 업로드",
-    href: "/album",
-    tooltip: "각종 앨범에 사진 업로드가 가능합니다.",
-    icon: Images,
-  },
-  {
-    title: "추천 도서",
-    href: "/books",
-    tooltip: "매월 추천하는 도서를 등록하고 수정할 수 있습니다.",
-    icon: Library,
-  },
-  {
-    title: "선교지 소식",
-    href: "/mission-news",
-    tooltip: "선교지 소식을 등록하고 수정할 수 있습니다.",
-    icon: Earth,
-  },
-  {
-    title: "팝업",
-    href: "/popups",
-    tooltip: "각종 공지와 알림을 팝업으로 띄우도록 관리할 수 있습니다.",
-    icon: Megaphone,
-  },
-  {
-    title: "교우 소식",
-    href: "/congregation-news",
-    tooltip: "교우 소식을 등록하고 수정할 수 있습니다.",
-    icon: Users,
-  },
+const mainMenuItems = [
+  { title: "대시보드", icon: LayoutDashboard, href: "/" },
+  { title: "실시간", icon: Radio, href: "/live" },
 ];
 
-const Sidebar = () => {
+const contentMenuItems = [
+  { title: "유튜브", icon: Clapperboard, href: "/youtube" },
+  { title: "주보", icon: FileText, href: "/bulletins" },
+  { title: "성경통독", icon: BookOpen, href: "/bibles" },
+  { title: "가정예배", icon: Home, href: "/homeworship" },
+  { title: "앨범 업로드", icon: Image, href: "/album" },
+  { title: "추천 도서", icon: BookMarked, href: "/books" },
+  { title: "선교지 소식", icon: Globe, href: "/mission-news" },
+];
+
+const systemMenuItems = [
+  { title: "팝업", icon: Bell, href: "/popups" },
+  { title: "교우 소식", icon: Users, href: "/congregation-news" },
+];
+
+const AdminSidebar = () => {
   const { pathname } = useRouter();
 
-  const getIsCurrentPage = (href: string) => {
-    if (href === "/") return pathname === href;
-    return pathname.includes(href);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname.startsWith(href);
   };
 
   return (
-    <nav className="flex flex-col gap-1">
-      {NAV_LIST.map((nav) => (
-        <Tooltip key={nav.title}>
-          <TooltipTrigger>
-            <Link
-              href={nav.href}
-              className={cn(
-                buttonVariants({
-                  variant: getIsCurrentPage(nav.href) ? "default" : "link",
-                  size: "lg",
-                  className: "flex w-full items-center justify-start gap-4",
-                }),
-              )}
-            >
-              <nav.icon />
-              {nav.title}
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent>{nav.tooltip}</TooltipContent>
-        </Tooltip>
-      ))}
-    </nav>
+    <Sidebar collapsible="icon" className="border-sidebar-border border-r">
+      <SidebarHeader className="border-sidebar-border border-b p-4">
+        <Link href="/" className="flex items-center">
+          <img
+            src="/images/logo/hor_logo(W).svg"
+            alt="명문 로고"
+            className="h-14 w-auto group-data-[collapsible=icon]:hidden"
+          />
+          <span className="text-primary-foreground hidden text-sm font-bold group-data-[collapsible=icon]:block">
+            M
+          </span>
+          <span className="pl-4 text-sm font-semibold text-white group-data-[collapsible=icon]:hidden">
+            관리자 페이지
+          </span>
+        </Link>
+      </SidebarHeader>
+
+      <SidebarContent className="px-2">
+        <SidebarGroup>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              {mainMenuItems.map((item) => (
+                <SidebarMenuItem key={item.href}>
+                  <SidebarMenuButton asChild isActive={isActive(item.href)} tooltip={item.title}>
+                    <Link href={item.href}>
+                      <item.icon className="size-4" />
+                      <span>{item.title}</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger className="flex w-full items-center justify-between">
+                콘텐츠 관리
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {contentMenuItems.map((item) => (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
+                        <Link href={item.href}>
+                          <item.icon className="size-4" />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger className="flex w-full items-center justify-between">
+                시스템
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {systemMenuItems.map((item) => (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
+                        <Link href={item.href}>
+                          <item.icon className="size-4" />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+      </SidebarContent>
+
+      <SidebarFooter className="border-sidebar-border border-t p-2">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton className="w-full">
+                  <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-full text-xs font-medium">
+                    관
+                  </div>
+                  <span className="truncate">관리자</span>
+                  <ChevronUp className="ml-auto size-4" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent side="top" align="start" className="w-48">
+                <DropdownMenuLabel>내 계정</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Settings className="mr-2 size-4" />
+                  설정
+                </DropdownMenuItem>
+                <DropdownMenuItem className="text-destructive">
+                  <LogOut className="mr-2 size-4" />
+                  로그아웃
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
+    </Sidebar>
   );
 };
 
-export default Sidebar;
+export default AdminSidebar;

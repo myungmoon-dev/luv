@@ -5,10 +5,16 @@ import { YearMonthType } from "type";
 
 export const usePostBible = () => useMutation({ mutationFn: postBible });
 
-export const useGetBibles = ({ yearMonth }: { yearMonth: YearMonthType }) => {
+export const useGetBibles = ({
+  yearMonth,
+  page = 0,
+}: {
+  yearMonth: YearMonthType;
+  page?: number;
+}) => {
   return useQuery({
-    queryFn: () => getBibles({ yearMonth }),
-    queryKey: bibleKeys.list(yearMonth),
+    queryFn: () => getBibles({ yearMonth, page }),
+    queryKey: bibleKeys.list(yearMonth, page),
   });
 };
 
