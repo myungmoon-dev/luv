@@ -15,6 +15,7 @@ import { CalendarIcon, ImagePlus, X } from "lucide-react";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { cn } from "@/lib/utils";
+import { processImages } from "@/hooks/useImageCompress";
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
   ssr: false,
@@ -70,15 +71,16 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
     onClose();
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
-    const combined = [...imageFiles, ...files].slice(0, MAX_IMAGES);
+    e.target.value = "";
+    const processed = await processImages(files);
+    const combined = [...imageFiles, ...processed].slice(0, MAX_IMAGES);
     setImageFiles(combined);
     const urls = combined.map((f) => URL.createObjectURL(f));
     imagePreviews.forEach((u) => URL.revokeObjectURL(u));
     setImagePreviews(urls);
     if (combined.length > 0) setImageError("");
-    e.target.value = "";
   };
 
   const handleRemoveImage = (index: number) => {
