@@ -9,7 +9,7 @@ const LiveVideo = () => {
   const { data } = useGetLive();
 
   return (
-    <Card className="w-2/3">
+    <Card className="w-full max-w-2xl">
       <CardHeader className="pb-3 pt-4">
         <CardTitle className="text-base">현재 라이브</CardTitle>
       </CardHeader>
@@ -25,12 +25,12 @@ const LiveVideo = () => {
               videoId={data.url}
               isFullLink
             />
-            <div className="flex items-center gap-1.5 text-sm">
+            <div className="flex flex-wrap items-start gap-1.5 text-sm">
               <span className="text-muted-foreground shrink-0">현재 주소</span>
               <Link
                 target="_blank"
                 href={data.url}
-                className="flex items-center gap-0.5 truncate text-blue-600 hover:underline"
+                className="flex min-w-0 items-center gap-0.5 break-all text-blue-600 hover:underline"
               >
                 {data.url}
                 <ExternalLink className="size-3 shrink-0" />
