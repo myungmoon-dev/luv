@@ -35,23 +35,23 @@ export default function Home() {
         <div className="flex flex-col gap-6 p-6 pt-0">
           <Card>
             <CardHeader className="pb-3">
-              <CardTitle className="text-base font-medium">빠른 작업</CardTitle>
+              {/* FIXME: 추후 적용 <CardTitle className="text-base font-medium">빠른 작업</CardTitle> */}
             </CardHeader>
             <CardContent>
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                {quickActions.map((action) => (
+                {/*FIXME: 추후 적용 {quickActions.map((action) => (
                   <Button
                     key={action.label}
                     variant="outline"
                     className="h-auto justify-start gap-3 p-4"
                     onClick={() => push(action.href)}
                   >
-                    <div className="flex size-8 items-center justify-center rounded-md bg-primary/10">
-                      <action.icon className="size-4 text-primary" />
+                    <div className="bg-primary/10 flex size-8 items-center justify-center rounded-md">
+                      <action.icon className="text-primary size-4" />
                     </div>
                     <span>{action.label}</span>
                   </Button>
-                ))}
+                ))} */}
               </div>
             </CardContent>
           </Card>
