@@ -1,21 +1,24 @@
 "use client";
 
-import { useQueries } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
-import { getYoutube } from "@/lib/api-youtube";
-import {
-  SERMON_CATEGORY_LABEL,
-  SERMON_LIST_TYPES,
-} from "@/lib/sermons/sermon-categories";
+import { getSermonsVideosPage, SERMONS_PAGE_SIZE } from "@/lib/api-videos";
+import { SERMON_CATEGORY_LABEL } from "@/lib/sermons/sermon-categories";
 import { getYoutubeIdFromUrl } from "@/lib/youtube-id";
 import { cn } from "@/lib/utils";
 import type { IYoutube, YoutubeType } from "type";
 
 type Row = IYoutube & { category: YoutubeType; categoryLabel: string };
+
+function categoryLabelFor(type: string): string {
+  return SERMON_CATEGORY_LABEL[type as YoutubeType] ?? type;
+}
 
 function buildWatchUrl(video: IYoutube): string {
   const id = getYoutubeIdFromUrl(video.url);
@@ -24,28 +27,79 @@ function buildWatchUrl(video: IYoutube): string {
   return `https://www.youtube.com/watch?v=${video.url}`;
 }
 
+/** 총 페이지 수가 많을 때 현재 주변 번호만 보여 주고 나머지는 생략 표시 */
+function sermonsPaginationItems(
+  currentPage: number,
+  totalPages: number,
+): Array<number | "ellipsis"> {
+  if (totalPages <= 9) {
+    return Array.from({ length: totalPages }, (_, i) => i + 1);
+  }
+
+  const items: Array<number | "ellipsis"> = [];
+  const pushEllipsis = () => {
+    if (items[items.length - 1] !== "ellipsis") items.push("ellipsis");
+  };
+
+  items.push(1);
+  const windowStart = Math.max(2, currentPage - 1);
+  const windowEnd = Math.min(totalPages - 1, currentPage + 1);
+
+  if (windowStart > 2) pushEllipsis();
+  for (let p = windowStart; p <= windowEnd; p++) items.push(p);
+  if (windowEnd < totalPages - 1) pushEllipsis();
+  items.push(totalPages);
+
+  return items;
+}
+
 export function SermonsBoard() {
-  const queries = useQueries({
-    queries: SERMON_LIST_TYPES.map((type) => ({
-      queryKey: ["youtube", "sermons", type] as const,
-      queryFn: () => getYoutube(type),
-    })),
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const uiPage = Math.max(1, Number(searchParams.get("page")) || 1);
+  const apiPage = uiPage - 1;
+
+  const { data, isPending, isError, isFetching } = useQuery({
+    queryKey: ["videos", "sermons", apiPage, SERMONS_PAGE_SIZE],
+    queryFn: () => getSermonsVideosPage(apiPage),
+    placeholderData: (previousData) => previousData,
   });
 
-  const isLoading = queries.some((q) => q.isPending);
-  const hasAnyError = queries.some((q) => q.isError);
-  const allEmpty = queries.every((q) => !q.data?.videos?.length);
+  const videos = data?.videos;
+  const totalElements = data?.totalElements ?? 0;
+  const totalPages = Math.max(1, Math.ceil(totalElements / SERMONS_PAGE_SIZE));
 
-  const rows: Row[] = SERMON_LIST_TYPES.flatMap((type, i) => {
-    const videos = queries[i].data?.videos;
-    if (!videos?.length) return [];
-    const label = SERMON_CATEGORY_LABEL[type];
-    return videos.map((v) => ({
-      ...v,
-      category: type,
-      categoryLabel: label,
-    }));
-  }).sort((a, b) => b.createdAt - a.createdAt);
+  useEffect(() => {
+    if (data === undefined || totalElements === 0) return;
+    if (uiPage > totalPages) {
+      const q = new URLSearchParams(searchParams.toString());
+      q.set("page", String(totalPages));
+      router.replace(`${pathname}?${q.toString()}`);
+    }
+  }, [data, totalElements, uiPage, totalPages, pathname, router, searchParams]);
+
+  const pageItems = useMemo(() => sermonsPaginationItems(uiPage, totalPages), [uiPage, totalPages]);
+
+  const goToPage = (page: number) => {
+    const next = Math.min(Math.max(1, page), totalPages);
+    const q = new URLSearchParams(searchParams.toString());
+    q.set("page", String(next));
+    router.push(`${pathname}?${q.toString()}`);
+  };
+
+  const isLoading = isPending && !data;
+  const hasAnyError = isError;
+  const allEmpty = totalElements === 0 && !isFetching;
+
+  const rows: Row[] = (videos ?? []).map((v) => ({
+    ...v,
+    category: v.type,
+    categoryLabel: categoryLabelFor(v.type),
+  }));
+
+  const rowNumberBase = (uiPage - 1) * SERMONS_PAGE_SIZE;
 
   return (
     <div className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 sm:pb-20 sm:pt-8 lg:px-8">
@@ -79,19 +133,27 @@ export function SermonsBoard() {
             <Loader2 className="h-10 w-10 animate-spin text-[#1e2a4a]" aria-hidden />
             <p className="text-sm text-[#496674]">목록을 불러오는 중입니다.</p>
           </div>
-        ) : hasAnyError && allEmpty ? (
+        ) : hasAnyError && data === undefined ? (
           <div className="bg-white px-4 py-16 text-center">
             <p className="text-[#496674]">영상 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
             <Button asChild variant="outline" className="mt-6 border-[#1e2a4a] text-[#1e2a4a]">
               <Link href="/">홈으로</Link>
             </Button>
           </div>
-        ) : rows.length === 0 ? (
+        ) : allEmpty ? (
           <div className="bg-white px-4 py-16 text-center text-[#496674]">등록된 영상이 없습니다.</div>
         ) : (
           <>
             {/* 데스크톱: 표 */}
-            <div className="hidden md:block">
+            <div className="relative hidden md:block">
+              {isFetching ? (
+                <div
+                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pt-3 pr-4"
+                  aria-live="polite"
+                >
+                  <Loader2 className="h-6 w-6 animate-spin text-[#1e2a4a]" aria-hidden />
+                </div>
+              ) : null}
               <table className="w-full border-collapse text-left text-sm">
                 <thead>
                   <tr className="border-b border-[#E6E6E6] bg-[#eef1f6] text-[#1e2a4a]">
@@ -112,7 +174,7 @@ export function SermonsBoard() {
                         index % 2 === 0 ? "bg-white" : "bg-[#fafbfc]",
                       )}
                     >
-                      <td className="px-3 py-3 text-center text-[#496674]">{index + 1}</td>
+                      <td className="px-3 py-3 text-center text-[#496674]">{rowNumberBase + index + 1}</td>
                       <td className="px-3 py-3">
                         <span className="inline-block max-w-full truncate rounded border border-[#1e2a4a]/20 bg-white px-2 py-0.5 text-xs font-medium text-[#1e2a4a]">
                           {row.categoryLabel}
@@ -157,54 +219,113 @@ export function SermonsBoard() {
             </div>
 
             {/* 모바일: 카드 리스트 */}
-            <ul className="divide-y divide-[#E6E6E6] bg-white md:hidden">
-              {rows.map((row) => (
-                <li key={`${row._id}-${row.category}-m`} className="px-4 py-4">
-                  <div className="mb-2 flex items-start justify-between gap-2">
-                    <span className="shrink-0 rounded border border-[#1e2a4a]/20 bg-[#f8fafc] px-2 py-0.5 text-[11px] font-semibold text-[#1e2a4a]">
-                      {row.categoryLabel}
+            <div className="relative md:hidden">
+              {isFetching ? (
+                <div
+                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pt-3 pr-4"
+                  aria-live="polite"
+                >
+                  <Loader2 className="h-6 w-6 animate-spin text-[#1e2a4a]" aria-hidden />
+                </div>
+              ) : null}
+              <ul className="divide-y divide-[#E6E6E6] bg-white">
+                {rows.map((row) => (
+                  <li key={`${row._id}-${row.category}-m`} className="px-4 py-4">
+                    <div className="mb-2 flex items-start justify-between gap-2">
+                      <span className="shrink-0 rounded border border-[#1e2a4a]/20 bg-[#f8fafc] px-2 py-0.5 text-[11px] font-semibold text-[#1e2a4a]">
+                        {row.categoryLabel}
+                      </span>
+                      <span className="text-xs text-[#496674]">
+                        {row.date
+                          ? row.date
+                          : row.createdAt
+                            ? dayjs(row.createdAt).format("YYYY.MM.DD")
+                            : ""}
+                      </span>
+                    </div>
+                    <a
+                      href={buildWatchUrl(row)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-base font-semibold leading-snug text-[#1e2a4a] underline-offset-2 hover:underline"
+                    >
+                      {row.title || "(제목 없음)"}
+                    </a>
+                    {row.mainText ? (
+                      <p className="mt-1 text-sm text-[#496674]">{row.mainText}</p>
+                    ) : null}
+                    <p className="mt-2 text-sm text-[#333]">{row.preacher || "—"}</p>
+                    <a
+                      href={buildWatchUrl(row)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#1e2a4a]"
+                    >
+                      유튜브에서 보기
+                      <ExternalLink className="size-3.5" aria-hidden />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {totalPages > 1 ? (
+              <nav
+                className="flex flex-wrap items-center justify-center gap-1 border-t border-[#E6E6E6] bg-white px-3 py-5 sm:gap-2"
+                aria-label="페이지 선택"
+              >
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={uiPage <= 1}
+                  onClick={() => goToPage(uiPage - 1)}
+                  className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
+                >
+                  이전
+                </Button>
+                {pageItems.map((item, idx) =>
+                  item === "ellipsis" ? (
+                    <span
+                      key={`e-${idx}`}
+                      className="flex min-w-9 items-center justify-center px-1 text-sm text-[#496674]"
+                      aria-hidden
+                    >
+                      …
                     </span>
-                    <span className="text-xs text-[#496674]">
-                      {row.date
-                        ? row.date
-                        : row.createdAt
-                          ? dayjs(row.createdAt).format("YYYY.MM.DD")
-                          : ""}
-                    </span>
-                  </div>
-                  <a
-                    href={buildWatchUrl(row)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-base font-semibold leading-snug text-[#1e2a4a] underline-offset-2 hover:underline"
-                  >
-                    {row.title || "(제목 없음)"}
-                  </a>
-                  {row.mainText ? (
-                    <p className="mt-1 text-sm text-[#496674]">{row.mainText}</p>
-                  ) : null}
-                  <p className="mt-2 text-sm text-[#333]">{row.preacher || "—"}</p>
-                  <a
-                    href={buildWatchUrl(row)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#1e2a4a]"
-                  >
-                    유튜브에서 보기
-                    <ExternalLink className="size-3.5" aria-hidden />
-                  </a>
-                </li>
-              ))}
-            </ul>
+                  ) : (
+                    <Button
+                      key={item}
+                      type="button"
+                      variant={item === uiPage ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => goToPage(item)}
+                      className={cn(
+                        "min-w-9 px-2 tabular-nums",
+                        item === uiPage
+                          ? "bg-[#1e2a4a] text-white hover:bg-[#1e2a4a]/90"
+                          : "border-[#1e2a4a]/25 text-[#1e2a4a]",
+                      )}
+                    >
+                      {item}
+                    </Button>
+                  ),
+                )}
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  disabled={uiPage >= totalPages}
+                  onClick={() => goToPage(uiPage + 1)}
+                  className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
+                >
+                  다음
+                </Button>
+              </nav>
+            ) : null}
           </>
         )}
       </div>
-
-      {hasAnyError && !allEmpty ? (
-        <p className="mt-4 text-center text-xs text-[#496674]">
-          일부 목록만 불러왔습니다. 나머지는 잠시 후 다시 열어 주세요.
-        </p>
-      ) : null}
     </div>
   );
 }
