@@ -45,6 +45,18 @@ export function BulletinsSection() {
     router.push(`${pathname}?${p.toString()}`);
   };
 
+  useEffect(() => {
+    if (!listData) return;
+    const total = listData.totalBulletins;
+    const totalPages =
+      total <= 0 ? 1 : Math.max(1, Math.floor((total + PAGE_SIZE - 1) / PAGE_SIZE));
+    if (page > totalPages) {
+      const p = new URLSearchParams(searchParams.toString());
+      p.set("page", String(totalPages));
+      router.replace(`${pathname}?${p.toString()}`);
+    }
+  }, [listData, page, pathname, router, searchParams]);
+
   const openBulletin = (id: string) => {
     setSelectedId(id);
     setOpen(true);

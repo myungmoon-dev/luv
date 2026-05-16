@@ -1,55 +1,53 @@
 import { api } from "@/lib/api";
 import type { IBulletin } from "type";
 
-export type GetBulletinsParams = { page: number; size: number };
-
-type BulletinListResponse = { bulletins: IBulletin[]; totalBulletins: number };
+export type GetBulletinsParams = {
+  /** URL 검색값과 동일, 1부터 */
+  page: number;
+  size: number;
+};
 
 type BulletinDto = {
   id?: string;
   _id?: string;
-  createdAt?: string | number;
   date?: string;
   title?: string;
   imageUrls?: string[];
   image_urls?: string[];
+  createdAt?: string | number;
 };
 
-function isBulletinListResponse(v: unknown): v is BulletinListResponse {
-  return (
-    typeof v === "object" &&
-    v !== null &&
-    "bulletins" in v &&
-    Array.isArray((v as Record<string, unknown>).bulletins) &&
-    "totalBulletins" in v
-  );
+function unwrapPayload(raw: unknown): unknown {
+  if (raw && typeof raw === "object" && !Array.isArray(raw) && "data" in raw) {
+    const inner = (raw as Record<string, unknown>).data;
+    if (inner !== undefined) return inner;
+  }
+  return raw;
 }
 
-function extractPagedList(payload: unknown): { list: unknown[]; total?: number } {
-  if (!payload || typeof payload !== "object") return { list: [] };
-  const o = payload as Record<string, unknown>;
+function parseBulletinList(payload: unknown): { list: unknown[]; total: number } {
+  const data = unwrapPayload(payload);
 
-  // Spring page style: { content: [...], totalElements: n }
-  const content = o.content;
-  if (Array.isArray(content)) {
-    const totalElements = o.totalElements;
-    const total =
-      typeof totalElements === "number"
-        ? totalElements
-        : typeof totalElements === "string"
-          ? Number(totalElements) || undefined
-          : undefined;
-    return { list: content, total };
+  if (Array.isArray(data)) {
+    return { list: data, total: data.length };
   }
 
-  // Generic list + total
-  const items = o.items;
-  if (Array.isArray(items)) {
-    const total = typeof o.total === "number" ? o.total : undefined;
-    return { list: items, total };
+  if (data && typeof data === "object") {
+    const o = data as Record<string, unknown>;
+    const content = o.content;
+    if (Array.isArray(content)) {
+      const te = o.totalElements;
+      const total =
+        typeof te === "number"
+          ? te
+          : typeof te === "string"
+            ? Number(te) || content.length
+            : content.length;
+      return { list: content, total };
+    }
   }
 
-  return { list: [] };
+  return { list: [], total: 0 };
 }
 
 function mapBulletin(dto: BulletinDto): IBulletin | null {
@@ -73,34 +71,27 @@ function mapBulletin(dto: BulletinDto): IBulletin | null {
   };
 }
 
+/** GET /api/bulletins — 서버는 page 0부터, 인자는 URL 기준 1부터 */
 export async function getBulletins({ page, size }: GetBulletinsParams) {
+  const apiPage = Math.max(0, page - 1);
   const { data } = await api.get<unknown>("/bulletins", {
-    params: { page, size },
+    params: { page: apiPage, size },
   });
 
-  if (isBulletinListResponse(data)) return data;
-
-  // 인터셉터 미적용 시 { httpCode, data: ... } 형태
-  const maybeEnvelopeData =
-    data && typeof data === "object" ? (data as Record<string, unknown>).data : undefined;
-  const payload = maybeEnvelopeData !== undefined ? maybeEnvelopeData : data;
-
-  // 서버가 배열만 내려주는 경우 or { content, totalElements } 등
-  const { list, total } = Array.isArray(payload)
-    ? { list: payload as unknown[], total: undefined }
-    : extractPagedList(payload);
+  const { list, total } = parseBulletinList(data);
 
   const bulletins = list
     .map((v) => mapBulletin(v as BulletinDto))
     .filter((b): b is IBulletin => b !== null);
 
-  return { bulletins, totalBulletins: total ?? bulletins.length };
+  return { bulletins, totalBulletins: total };
 }
 
 export async function getBulletin(bulletinId: string) {
   const { data } = await api.get<unknown>(`/bulletins/${bulletinId}`);
-  if (data && typeof data === "object" && !Array.isArray(data)) {
-    const mapped = mapBulletin(data as BulletinDto);
+  const raw = unwrapPayload(data);
+  if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+    const mapped = mapBulletin(raw as BulletinDto);
     if (mapped) return mapped;
   }
   return data as IBulletin;

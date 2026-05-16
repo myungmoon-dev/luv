@@ -1,8 +1,9 @@
 "use client";
 
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useMemo } from "react";
 
 import { Button } from "@/components/ui/button";
+import { paginationPageItems } from "@/lib/pagination-page-items";
 import { cn } from "@/lib/utils";
 
 type NewsPaginationProps = {
@@ -20,39 +21,78 @@ export function NewsPagination({
   onPageChange,
   className,
 }: NewsPaginationProps) {
-  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+  const safeSize = Math.max(1, pageSize);
+  const totalPages =
+    totalItems <= 0 ? 1 : Math.max(1, Math.floor((totalItems + safeSize - 1) / safeSize));
   const canPrev = currentPage > 1;
   const canNext = currentPage < totalPages;
 
+  const pageItems = useMemo(
+    () => paginationPageItems(currentPage, totalPages),
+    [currentPage, totalPages],
+  );
+
   if (totalItems <= pageSize && totalPages <= 1) return null;
 
+  const goToPage = (page: number) => {
+    onPageChange(Math.min(Math.max(1, page), totalPages));
+  };
+
   return (
-    <div className={cn("flex items-center justify-center gap-4 pt-8", className)}>
+    <nav
+      className={cn(
+        "flex flex-wrap items-center justify-center gap-1 pt-8 sm:gap-2",
+        className,
+      )}
+      aria-label="페이지 선택"
+    >
       <Button
         type="button"
         variant="outline"
         size="sm"
         disabled={!canPrev}
-        onClick={() => onPageChange(currentPage - 1)}
-        className="border-[#E6E6E6]"
+        onClick={() => goToPage(currentPage - 1)}
+        className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
       >
-        <ChevronLeft className="size-4" aria-hidden />
         이전
       </Button>
-      <span className="text-sm tabular-nums text-[#496674]">
-        {currentPage} / {totalPages}
-      </span>
+      {pageItems.map((item, idx) =>
+        item === "ellipsis" ? (
+          <span
+            key={`ellipsis-${idx}`}
+            className="flex min-w-9 items-center justify-center px-1 text-sm text-[#496674]"
+            aria-hidden
+          >
+            …
+          </span>
+        ) : (
+          <Button
+            key={item}
+            type="button"
+            variant={item === currentPage ? "default" : "outline"}
+            size="sm"
+            onClick={() => goToPage(item)}
+            className={cn(
+              "min-w-9 px-2 tabular-nums",
+              item === currentPage
+                ? "bg-[#1e2a4a] text-white hover:bg-[#1e2a4a]/90"
+                : "border-[#1e2a4a]/25 text-[#1e2a4a]",
+            )}
+          >
+            {item}
+          </Button>
+        ),
+      )}
       <Button
         type="button"
         variant="outline"
         size="sm"
         disabled={!canNext}
-        onClick={() => onPageChange(currentPage + 1)}
-        className="border-[#E6E6E6]"
+        onClick={() => goToPage(currentPage + 1)}
+        className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
       >
         다음
-        <ChevronRight className="size-4" aria-hidden />
       </Button>
-    </div>
+    </nav>
   );
 }

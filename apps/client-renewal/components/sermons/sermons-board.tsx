@@ -5,8 +5,9 @@ import dayjs from "dayjs";
 import { ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 
+import { NewsPagination } from "@/components/news/news-pagination";
 import { Button } from "@/components/ui/button";
 import { getSermonsVideosPage, SERMONS_PAGE_SIZE } from "@/lib/api-videos";
 import { SERMON_CATEGORY_LABEL } from "@/lib/sermons/sermon-categories";
@@ -25,32 +26,6 @@ function buildWatchUrl(video: IYoutube): string {
   if (id && id.length === 11) return `https://www.youtube.com/watch?v=${id}`;
   if (video.url?.startsWith("http")) return video.url;
   return `https://www.youtube.com/watch?v=${video.url}`;
-}
-
-/** 총 페이지 수가 많을 때 현재 주변 번호만 보여 주고 나머지는 생략 표시 */
-function sermonsPaginationItems(
-  currentPage: number,
-  totalPages: number,
-): Array<number | "ellipsis"> {
-  if (totalPages <= 9) {
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-
-  const items: Array<number | "ellipsis"> = [];
-  const pushEllipsis = () => {
-    if (items[items.length - 1] !== "ellipsis") items.push("ellipsis");
-  };
-
-  items.push(1);
-  const windowStart = Math.max(2, currentPage - 1);
-  const windowEnd = Math.min(totalPages - 1, currentPage + 1);
-
-  if (windowStart > 2) pushEllipsis();
-  for (let p = windowStart; p <= windowEnd; p++) items.push(p);
-  if (windowEnd < totalPages - 1) pushEllipsis();
-  items.push(totalPages);
-
-  return items;
 }
 
 export function SermonsBoard() {
@@ -80,10 +55,8 @@ export function SermonsBoard() {
     }
   }, [data, totalElements, uiPage, totalPages, pathname, router, searchParams]);
 
-  const pageItems = useMemo(() => sermonsPaginationItems(uiPage, totalPages), [uiPage, totalPages]);
-
-  const goToPage = (page: number) => {
-    const next = Math.min(Math.max(1, page), totalPages);
+  const goToPage = (targetPage: number) => {
+    const next = Math.min(Math.max(1, targetPage), totalPages);
     const q = new URLSearchParams(searchParams.toString());
     q.set("page", String(next));
     router.push(`${pathname}?${q.toString()}`);
@@ -270,58 +243,13 @@ export function SermonsBoard() {
             </div>
 
             {totalPages > 1 ? (
-              <nav
-                className="flex flex-wrap items-center justify-center gap-1 border-t border-[#E6E6E6] bg-white px-3 py-5 sm:gap-2"
-                aria-label="페이지 선택"
-              >
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={uiPage <= 1}
-                  onClick={() => goToPage(uiPage - 1)}
-                  className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
-                >
-                  이전
-                </Button>
-                {pageItems.map((item, idx) =>
-                  item === "ellipsis" ? (
-                    <span
-                      key={`e-${idx}`}
-                      className="flex min-w-9 items-center justify-center px-1 text-sm text-[#496674]"
-                      aria-hidden
-                    >
-                      …
-                    </span>
-                  ) : (
-                    <Button
-                      key={item}
-                      type="button"
-                      variant={item === uiPage ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => goToPage(item)}
-                      className={cn(
-                        "min-w-9 px-2 tabular-nums",
-                        item === uiPage
-                          ? "bg-[#1e2a4a] text-white hover:bg-[#1e2a4a]/90"
-                          : "border-[#1e2a4a]/25 text-[#1e2a4a]",
-                      )}
-                    >
-                      {item}
-                    </Button>
-                  ),
-                )}
-                <Button
-                  type="button"
-                  variant="outline"
-                  size="sm"
-                  disabled={uiPage >= totalPages}
-                  onClick={() => goToPage(uiPage + 1)}
-                  className="min-w-16 border-[#1e2a4a]/25 text-[#1e2a4a]"
-                >
-                  다음
-                </Button>
-              </nav>
+              <NewsPagination
+                currentPage={uiPage}
+                totalItems={totalElements}
+                pageSize={SERMONS_PAGE_SIZE}
+                onPageChange={goToPage}
+                className="border-t border-[#E6E6E6] bg-white px-3 py-5 sm:gap-2"
+              />
             ) : null}
           </>
         )}
