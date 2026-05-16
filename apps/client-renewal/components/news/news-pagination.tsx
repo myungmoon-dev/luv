@@ -32,7 +32,8 @@ export function NewsPagination({
     [currentPage, totalPages],
   );
 
-  if (totalItems <= pageSize && totalPages <= 1) return null;
+  /** 전체 0건일 때만 숨김 · 1쪽만 있어도 이전·번호·다음 UI는 그대로 두고 비활성 처리 */
+  if (totalItems < 1) return null;
 
   const goToPage = (page: number) => {
     onPageChange(Math.min(Math.max(1, page), totalPages));

@@ -242,15 +242,13 @@ export function SermonsBoard() {
               </ul>
             </div>
 
-            {totalPages > 1 ? (
-              <NewsPagination
-                currentPage={uiPage}
-                totalItems={totalElements}
-                pageSize={SERMONS_PAGE_SIZE}
-                onPageChange={goToPage}
-                className="border-t border-[#E6E6E6] bg-white px-3 py-5 sm:gap-2"
-              />
-            ) : null}
+            <NewsPagination
+              currentPage={uiPage}
+              totalItems={totalElements}
+              pageSize={SERMONS_PAGE_SIZE}
+              onPageChange={goToPage}
+              className="border-t border-[#E6E6E6] bg-white px-3 py-5 sm:gap-2"
+            />
           </>
         )}
       </div>
