@@ -394,6 +394,12 @@ importers:
 
   apps/client-renewal:
     dependencies:
+      '@ckeditor/ckeditor5-build-classic':
+        specifier: ^41.2.1
+        version: 41.2.1
+      '@ckeditor/ckeditor5-react':
+        specifier: ^6.2.0
+        version: 6.2.0(@ckeditor/ckeditor5-core@41.2.1)(@ckeditor/ckeditor5-editor-multi-root@41.2.1)(@ckeditor/ckeditor5-engine@41.2.1)(@ckeditor/ckeditor5-utils@41.2.1)(@ckeditor/ckeditor5-watchdog@41.2.1)(react@19.2.4)
       '@radix-ui/react-dialog':
         specifier: ^1.1.15
         version: 1.1.15(@types/react-dom@19.2.3)(@types/react@19.2.14)(react-dom@19.2.4)(react@19.2.4)
@@ -1394,6 +1400,26 @@ packages:
       '@ckeditor/ckeditor5-watchdog': 41.2.1
       prop-types: 15.8.1
       react: 18.2.0
+
+  /@ckeditor/ckeditor5-react@6.2.0(@ckeditor/ckeditor5-core@41.2.1)(@ckeditor/ckeditor5-editor-multi-root@41.2.1)(@ckeditor/ckeditor5-engine@41.2.1)(@ckeditor/ckeditor5-utils@41.2.1)(@ckeditor/ckeditor5-watchdog@41.2.1)(react@19.2.4):
+    resolution: {integrity: sha512-i/6OdxJ3iOCU7eiZXS8KYhK645PEAMISs9eFz60c0AFXZX5NTMvNWM68ac/J5sfg+IQ9U6mJ3flSykbJVlf0kA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      '@ckeditor/ckeditor5-core': '>=40.1.0'
+      '@ckeditor/ckeditor5-editor-multi-root': '>=40.1.0'
+      '@ckeditor/ckeditor5-engine': '>=40.1.0'
+      '@ckeditor/ckeditor5-utils': '>=40.1.0'
+      '@ckeditor/ckeditor5-watchdog': '>=40.1.0'
+      react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    dependencies:
+      '@ckeditor/ckeditor5-core': 41.2.1
+      '@ckeditor/ckeditor5-editor-multi-root': 41.2.1
+      '@ckeditor/ckeditor5-engine': 41.2.1
+      '@ckeditor/ckeditor5-utils': 41.2.1
+      '@ckeditor/ckeditor5-watchdog': 41.2.1
+      prop-types: 15.8.1
+      react: 19.2.4
+    dev: false
 
   /@ckeditor/ckeditor5-select-all@41.2.1:
     resolution: {integrity: sha512-7or858oDDshJhGoNtyW8LGjFXlBsHKD+wR/ur1D+0DtKUfsznAWtvWPbKnirgmh3h6O0RZ+1X1GbgVnj0iZtnQ==}
