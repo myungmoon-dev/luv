@@ -2,17 +2,26 @@
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
-import { ArrowLeft, Loader2, PencilLine, Trash2, X } from "lucide-react";
+import { ArrowLeft, Loader2, PencilLine, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { DiscipleshipNavStrip } from "@/components/discipleship/discipleship-section-nav";
 import { deleteHomeWorship, deleteHomeWorshipComment, getHomeWorship, postHomeWorshipComment } from "@/lib/api-homeworship";
-import { cn } from "@/lib/utils";
 
 function HtmlContent({ html }: { html: string }) {
   return <div className="prose prose-sm max-w-none break-words [&_p]:mb-2" dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+function formatDay(value: string | number) {
+  const d = typeof value === "string" && value.trim() ? dayjs(value) : dayjs(value);
+  return d.isValid() ? d.format("YYYY.MM.DD") : "—";
+}
+
+function formatDateTime(ms: number) {
+  const d = dayjs(ms);
+  return d.isValid() ? d.format("YYYY.MM.DD HH:mm") : "—";
 }
 
 export function FamilyWorshipDetail() {
@@ -82,6 +91,7 @@ export function FamilyWorshipDetail() {
         onSuccess: () => {
           alert("추가되었습니다.");
           setCommentContent("");
+          setCommentName("");
           setCommentPassword("");
           queryClient.invalidateQueries({ queryKey: ["homeworship", homeWorshipId] });
         },
@@ -167,7 +177,7 @@ export function FamilyWorshipDetail() {
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-3 text-sm text-gray-600">
                 <span className="rounded-full bg-[#f8fafc] px-3 py-1 text-sm font-medium text-[#496674]">
-                  {data.date ? dayjs(data.date).format("YYYY MM DD") : dayjs(data.createdAt).format("YYYY MM DD")}
+                  {data.date ? formatDay(data.date) : formatDay(data.createdAt)}
                 </span>
                 <span className="font-semibold text-[#1e2a4a]">{data.userName}</span>
               </div>
@@ -256,7 +266,7 @@ export function FamilyWorshipDetail() {
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0 flex flex-col gap-0.5">
                       <p className="truncate text-sm font-medium text-gray-900">{comment.userName}</p>
-                      <p className="text-xs text-gray-500">{dayjs(comment.createdAt).format("YYYY MM DD HH:mm")}</p>
+                      <p className="text-xs text-gray-500">{formatDateTime(comment.createdAt)}</p>
                     </div>
 
                     <div className="flex items-center gap-2">
