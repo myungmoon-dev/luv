@@ -19,7 +19,9 @@ const RowListVideoSeciton = ({ video, title }: IRowListVideoSecitonProps) => {
           {video.title}
         </p>
         <p className="text-xs text-[#666666] sm:text-sm md:text-sm lg:text-base">
-          주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
+          {video.date
+            ? `주후 ${dayjs(video.date).isValid() ? dayjs(video.date).format("YYYY.MM.DD") : video.date}`
+            : "—"}
         </p>
       </div>
     </div>
