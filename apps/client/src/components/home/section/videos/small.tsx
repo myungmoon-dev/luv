@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
 import { IYoutube } from "type";
 import { YoutubeVideo } from "ui";
+import { formatVideoDate } from "@/utils/formatVideoDate";
 
 interface ISmallVideoProps {
   video: IYoutube;
@@ -16,7 +16,7 @@ const SmallVideo = ({ video }: ISmallVideoProps) => {
         </p>
         <p className="text-[15px] font-medium text-[#222222] sm:text-[17px] lg:mb-[4px]">{video.title}</p>
         <p className="text-[12px] text-[#666666] sm:text-[13px] lg:text-[12px]">
-          주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
+          주후 {formatVideoDate(video.date)}
         </p>
       </div>
     </div>

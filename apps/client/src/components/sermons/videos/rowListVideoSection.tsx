@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
 import { IYoutube } from "type";
 import { YoutubeVideo } from "ui";
+import { formatVideoDate } from "@/utils/formatVideoDate";
 
 interface IRowListVideoSecitonProps {
   video: IYoutube;
@@ -19,9 +19,7 @@ const RowListVideoSeciton = ({ video, title }: IRowListVideoSecitonProps) => {
           {video.title}
         </p>
         <p className="text-xs text-[#666666] sm:text-sm md:text-sm lg:text-base">
-          {video.date
-            ? `주후 ${dayjs(video.date).isValid() ? dayjs(video.date).format("YYYY.MM.DD") : video.date}`
-            : "—"}
+          주후 {formatVideoDate(video.date)}
         </p>
       </div>
     </div>
