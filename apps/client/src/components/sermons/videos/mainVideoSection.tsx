@@ -16,7 +16,12 @@ const MainVideoSection = ({ video, title }: IMainVdieoSectionProps) => {
           {video.title}
         </p>
         <p className="border-b border-[#E6E6E6] pb-4 text-xs font-medium text-[#666666] sm:pb-5 sm:text-sm md:text-base lg:pb-6 lg:text-lg">
-          {video.preacher} • 주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
+          {video.preacher} • 주후{" "}
+          {video.date
+            ? dayjs(video.date).isValid()
+              ? dayjs(video.date).format("YYYY.MM.DD")
+              : video.date
+            : "—"}
         </p>
       </div>
     </div>
