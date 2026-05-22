@@ -8,6 +8,7 @@ export const educationInnerMenus: IInnerMenu[] = [
   // { label: "중등부", path: "/education/middle" },
   { label: "중고등부", path: "/education/high" },
   { label: "청년부", path: "/education/youth-adults2" },
+  { label: "브릿지", path: "/education/birdge" },
   // { label: "1청년부", path: "/education/youth-adults1" },
 ];
 
@@ -17,9 +18,16 @@ const commonEducationDetailMenus = (basePath: string): IInnerMenu[] => [
 ];
 
 export const educationInfantsMenus: IInnerMenu[] = commonEducationDetailMenus("/education/infants");
-export const educationToddlersMenus: IInnerMenu[] = commonEducationDetailMenus("/education/toddlers");
-export const educationElementaryMenus: IInnerMenu[] = commonEducationDetailMenus("/education/elementary");
+export const educationToddlersMenus: IInnerMenu[] =
+  commonEducationDetailMenus("/education/toddlers");
+export const educationElementaryMenus: IInnerMenu[] =
+  commonEducationDetailMenus("/education/elementary");
 export const educationMiddleMenus: IInnerMenu[] = commonEducationDetailMenus("/education/middle");
 export const educationHighMenus: IInnerMenu[] = commonEducationDetailMenus("/education/high");
-export const educationYouthAdults2Menus: IInnerMenu[] = commonEducationDetailMenus("/education/youth-adults2");
-export const educationYouthAdults1Menus: IInnerMenu[] = commonEducationDetailMenus("/education/youth-adults1");
+export const educationYouthAdults2Menus: IInnerMenu[] = commonEducationDetailMenus(
+  "/education/youth-adults2",
+);
+export const educationYouthAdults1Menus: IInnerMenu[] = commonEducationDetailMenus(
+  "/education/youth-adults1",
+);
+export const educationBridgeMenus: IInnerMenu[] = commonEducationDetailMenus("/education/bridge");

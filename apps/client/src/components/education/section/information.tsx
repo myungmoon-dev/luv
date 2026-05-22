@@ -8,7 +8,12 @@ interface IEducationInformationSectionProps {
   place: string;
 }
 
-const EducationInformationSection = ({ department, target, time, place }: IEducationInformationSectionProps) => {
+const EducationInformationSection = ({
+  department,
+  target,
+  time,
+  place,
+}: IEducationInformationSectionProps) => {
   const vipsSection = () => {
     switch (department) {
       case "M'embers":
@@ -36,9 +41,13 @@ const EducationInformationSection = ({ department, target, time, place }: IEduca
   return (
     <div className="flex w-full flex-col justify-center gap-10 bg-blue-700 px-10 py-10 2xl:py-20">
       <EducationIntroductionTitle department={department} type="안내" />
-      <div className="grid w-full grid-cols-3 gap-5 self-center md:w-4/6 2xl:w-5/6">
+      <div className={`grid w-full gap-5 self-center md:w-4/6 2xl:w-5/6 ${department === "브릿지" ? "grid-cols-4" : "grid-cols-3"}`}>
         <EducationInformationCard iconName="CircleHeart" title="대상" text={target} />
         <EducationInformationCard iconName="Clock" title="예배시간" text={time} />
+        {department == "브릿지" && (
+          <EducationInformationCard iconName="Clock" title="모임시간" text="13:00 - 14:00" />
+        )}
+
         <EducationInformationCard iconName="Map" title="예배장소" text={place} />
         {vipsSection()}
       </div>
