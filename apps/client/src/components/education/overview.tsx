@@ -267,7 +267,7 @@ const EDUCATION_DATA: IEducationData[] = [
     ],
     introduction:
       "명문교회 청년부는 하나님을 경외하고 사랑하는 청년들이 함께 모여 예배하는 공동체입니다.",
-    target: "20세 이상의 모든 청년",
+    target: "20세 이상 34세 미만의 모든 청년",
     time: "14:00 - 16:30",
     place: "독산동 비전채플 3층",
     coreministry: [
