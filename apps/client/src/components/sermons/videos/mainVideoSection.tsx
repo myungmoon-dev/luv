@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
 import { IYoutube } from "type";
 import { YoutubeVideo } from "ui";
+import { formatVideoDate } from "@/utils/formatVideoDate";
 
 interface IMainVdieoSectionProps {
   video: IYoutube;
@@ -16,12 +16,7 @@ const MainVideoSection = ({ video, title }: IMainVdieoSectionProps) => {
           {video.title}
         </p>
         <p className="border-b border-[#E6E6E6] pb-4 text-xs font-medium text-[#666666] sm:pb-5 sm:text-sm md:text-base lg:pb-6 lg:text-lg">
-          {video.preacher} • 주후{" "}
-          {video.date
-            ? dayjs(video.date).isValid()
-              ? dayjs(video.date).format("YYYY.MM.DD")
-              : video.date
-            : "—"}
+          {video.preacher} • 주후 {formatVideoDate(video.date)}
         </p>
       </div>
     </div>
