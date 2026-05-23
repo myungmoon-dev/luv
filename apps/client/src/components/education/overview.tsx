@@ -5,7 +5,7 @@ import EducationInformationSection from "./section/information";
 import EducationIntroductionSection from "./section/introduction";
 
 interface IEducationOverViewProps {
-  type: "infants" | "toddlers" | "elementary" | "middle" | "high" | "2youth" | "1youth";
+  type: "infants" | "toddlers" | "elementary" | "middle" | "high" | "2youth" | "1youth" | "bridge";
 }
 
 interface IEducationData {
@@ -25,7 +25,11 @@ const EDUCATION_DATA: IEducationData[] = [
   {
     type: "infants",
     department: "영아부",
-    imgs: ["/images/education/infants/1.jpg", "/images/education/infants/2.jpg", "/images/education/infants/3.jpg"],
+    imgs: [
+      "/images/education/infants/1.jpg",
+      "/images/education/infants/2.jpg",
+      "/images/education/infants/3.jpg",
+    ],
     introduction:
       "부모와 교사가 함께 오직 말씀, 기도, 사랑으로\n우리 아이들에게 복음의 씨앗을 심어주어 바른 믿음을 키워주는 부서입니다.",
     target: "만 0세 - 3세",
@@ -59,7 +63,11 @@ const EDUCATION_DATA: IEducationData[] = [
   {
     type: "toddlers",
     department: "유치부",
-    imgs: ["/images/education/toddlers/1.jpg", "/images/education/toddlers/2.jpg", "/images/education/toddlers/3.jpg"],
+    imgs: [
+      "/images/education/toddlers/1.jpg",
+      "/images/education/toddlers/2.jpg",
+      "/images/education/toddlers/3.jpg",
+    ],
     introduction:
       "만 4~5세 유아들이 하나님을 경외하는 사람으로 자라가도록 부모와 교사가 합력하여 하나님의 말씀으로 양육하며, 하나님을 예배하는 공동체입니다.",
     target: "만 4세 - 5세",
@@ -82,7 +90,8 @@ const EDUCATION_DATA: IEducationData[] = [
       },
       {
         id: 3,
-        description: "영상을 활용한 가정 미션, 가족 말씀 암송, 부모초청예배, 교육설명회, 부모 모임 등",
+        description:
+          "영상을 활용한 가정 미션, 가족 말씀 암송, 부모초청예배, 교육설명회, 부모 모임 등",
         titleKr: "가정과의 연계",
         img: "/images/education/toddlers/2.jpg",
         imgClass: "brightness-50 object-[50%_80%]",
@@ -96,7 +105,8 @@ const EDUCATION_DATA: IEducationData[] = [
       },
       {
         id: 5,
-        description: "해피데이(친구초청잔치), 절기와 성경학교에 친구 초청, 선교헌금 드리기, 선교사님을 위한 기도회 등",
+        description:
+          "해피데이(친구초청잔치), 절기와 성경학교에 친구 초청, 선교헌금 드리기, 선교사님을 위한 기도회 등",
         titleKr: "전도 훈련",
         img: "/images/education/toddlers/banner.jpg",
         imgClass: "brightness-50 object-[100%_70%]",
@@ -119,7 +129,8 @@ const EDUCATION_DATA: IEducationData[] = [
     coreministry: [
       {
         id: 1,
-        description: "유초등부 어린이들이 바르게 찬양하고\n기쁘게 예배할 수 있도록 가르치며 양육하고 있습니다.",
+        description:
+          "유초등부 어린이들이 바르게 찬양하고\n기쁘게 예배할 수 있도록 가르치며 양육하고 있습니다.",
         titleKr: "유초등부 율동 찬양팀",
         img: "/images/education/banner.jpg",
         imgClass: "brightness-50 object-[0%_40%]",
@@ -134,14 +145,16 @@ const EDUCATION_DATA: IEducationData[] = [
       },
       {
         id: 3,
-        description: "선생님들이 직접 아이들과 소통하고\n교제하기 위해 교회 바깥에서 모임을 진행합니다.",
+        description:
+          "선생님들이 직접 아이들과 소통하고\n교제하기 위해 교회 바깥에서 모임을 진행합니다.",
         titleKr: "반 목회",
         img: "/images/education/elementary/3.jpg",
         imgClass: "brightness-50 object-[20%_70%]",
       },
       {
         id: 4,
-        description: "어린이들이 직접 선교헌금을 드리며\n다음세대도 선교의 책임이 있다는 것을 배우고 실행합니다.",
+        description:
+          "어린이들이 직접 선교헌금을 드리며\n다음세대도 선교의 책임이 있다는 것을 배우고 실행합니다.",
         titleKr: "선교헌금",
         img: "/images/education/elementary/banner.jpg",
         imgClass: "brightness-50 object-[100%_40%]",
@@ -153,7 +166,11 @@ const EDUCATION_DATA: IEducationData[] = [
   {
     type: "middle",
     department: "중고등부",
-    imgs: ["/images/education/middle/1.jpg", "/images/education/middle/2.jpg", "/images/education/middle/3.jpg"],
+    imgs: [
+      "/images/education/middle/1.jpg",
+      "/images/education/middle/2.jpg",
+      "/images/education/middle/3.jpg",
+    ],
     introduction:
       "중고등학교 청소년들이 모여 예배를 드리고, 말씀을 통해 성경적 세계관을 배우며, 하나님의 자녀로 성장하도록 섬기는 공동체입니다.",
     target: "중고등학생",
@@ -195,7 +212,11 @@ const EDUCATION_DATA: IEducationData[] = [
   {
     type: "high",
     department: "중고등부",
-    imgs: ["/images/education/high/4.jpg", "/images/education/high/2.jpg", "/images/education/high/3.jpg"],
+    imgs: [
+      "/images/education/high/4.jpg",
+      "/images/education/high/2.jpg",
+      "/images/education/high/3.jpg",
+    ],
     introduction:
       "중고등학생 청소년들이 모여 예배를 드리고, 하나님의 비전을 향해 함께 달려가며 부르심을 따라 세상을 섬기고 교회를 섬기는 영적리더를 세우는 공동체입니다.",
     target: "중고등학생",
@@ -239,9 +260,14 @@ const EDUCATION_DATA: IEducationData[] = [
   {
     type: "2youth",
     department: "청년부",
-    imgs: ["/images/education/2youth/1.jpg", "/images/education/2youth/2.jpg", "/images/education/2youth/3.jpg"],
-    introduction: "명문교회 청년부는 하나님을 경외하고 사랑하는 청년들이 함께 모여 예배하는 공동체입니다.",
-    target: "20세 이상의 모든 청년",
+    imgs: [
+      "/images/education/2youth/1.jpg",
+      "/images/education/2youth/2.jpg",
+      "/images/education/2youth/3.jpg",
+    ],
+    introduction:
+      "명문교회 청년부는 하나님을 경외하고 사랑하는 청년들이 함께 모여 예배하는 공동체입니다.",
+    target: "20세 이상 34세 미만의 모든 청년",
     time: "14:00 - 16:30",
     place: "독산동 비전채플 3층",
     coreministry: [
@@ -255,7 +281,8 @@ const EDUCATION_DATA: IEducationData[] = [
       },
       {
         id: 2,
-        description: "각종 모임(순모임, Vip's 모임, 또래모임 등)과 교제를 통해 서로 하나되는 청년부",
+        description:
+          "각종 모임(순모임, Vip's 모임, 또래모임 등)과 교제를 통해 서로 하나되는 청년부",
         titleKr: "나눔 공동체",
         img: "/images/education/2youth/coreMinistry/2.jpg",
         imgClass: "brightness-50 object-[50%_40%]",
@@ -271,10 +298,27 @@ const EDUCATION_DATA: IEducationData[] = [
     mainImg: "/images/education/vision1.jpg",
   },
   {
+    type: "bridge",
+    department: "브릿지",
+    imgs: [],
+    introduction:
+      "명문교회 브릿지는 하나님을 경외하고 사랑하는 미혼 직장인들이 함께 모여 예배하는 공동체입니다.",
+    target: "34세 이상의 모든 청년",
+    time: "명문교회 2,3부 예배",
+    place: "사랑채플 1층 창작 나눔실",
+    coreministry: [],
+    mainImg: "/images/education/vision1.jpg",
+  },
+  {
     type: "1youth",
     department: "1청년부",
-    imgs: ["/images/education/1youth/1.jpg", "/images/education/1youth/2.jpg", "/images/education/1youth/3.jpg"],
-    introduction: "28세 이상의 청년들이\n말씀 앞에서 삶과 신앙의 성숙을 이루어가기 위해 모인 공동체 입니다. ",
+    imgs: [
+      "/images/education/1youth/1.jpg",
+      "/images/education/1youth/2.jpg",
+      "/images/education/1youth/3.jpg",
+    ],
+    introduction:
+      "28세 이상의 청년들이\n말씀 앞에서 삶과 신앙의 성숙을 이루어가기 위해 모인 공동체 입니다. ",
     target: "28세 이상 청년",
     time: "14:00 - 16:30",
     place: "독산동 비전채플 3층",
@@ -307,7 +351,10 @@ const EducationOverView = ({ type }: IEducationOverViewProps) => {
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-16 overflow-x-hidden">
-      <EducationIntroductionSection department={educationData.department} text={educationData.introduction} />
+      <EducationIntroductionSection
+        department={educationData.department}
+        text={educationData.introduction}
+      />
       <EducationImageSection list={educationData.imgs} />
       <EducationInformationSection
         department={educationData.department}
@@ -315,7 +362,10 @@ const EducationOverView = ({ type }: IEducationOverViewProps) => {
         target={educationData.target}
         time={educationData.time}
       />
-      <EducationCoreMinistrySection dataList={educationData.coreministry} department={educationData.department} />
+      <EducationCoreMinistrySection
+        dataList={educationData.coreministry}
+        department={educationData.department}
+      />
       {/* <AlbumList albumType={type} /> */}
     </div>
   );
