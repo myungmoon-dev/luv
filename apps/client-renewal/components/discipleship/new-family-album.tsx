@@ -16,10 +16,10 @@ export function NewFamilyAlbum() {
   const [lightboxUrl, setLightboxUrl] = useState<string | null>(null);
 
   const { data, isPending, isError } = useQuery({
-    queryKey: ["albums", "newFamilly", page],
+    queryKey: ["albums", "newFamily", page],
     queryFn: () =>
       getAlbumList({
-        type: "newFamilly",
+        type: "newFamily",
         page,
         size: PAGE_SIZE,
       }),
