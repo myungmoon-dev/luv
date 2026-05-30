@@ -1,16 +1,9 @@
 import type { Metadata } from "next";
 import React from "react";
-import { Geist_Mono, Poppins } from "next/font/google";
+import { Geist_Mono } from "next/font/google";
 
 import { QueryProvider } from "@/components/providers/query-provider";
 import "./globals.css";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  style: "normal",
-  display: "swap",
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -37,12 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${geistMono.variable} h-full antialiased`}>
-      <body
-        className="min-h-full flex flex-col"
-        style={{
-          fontFamily: `${poppins.style.fontFamily}, "Pretendard", sans-serif`,
-        }}
-      >
+      <body className="flex min-h-full flex-col font-sans">
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

@@ -1,10 +1,11 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
+import { formatVideoDate } from "@/lib/format-video-date";
 import { ChevronRight, Loader2 } from "lucide-react";
+import Link from "next/link";
 
-import { YoutubeVideo } from "@/components/youtube/youtube-video";
+import { YoutubeThumbnailPlayer } from "@/components/youtube/youtube-thumbnail-player";
 import { getYoutube } from "@/lib/api-youtube";
 import { getYoutubeIdFromUrl } from "@/lib/youtube-id";
 import { useMinWidthMd } from "@/hooks/use-media-query";
@@ -14,8 +15,9 @@ function BigVideo({ video }: { video: IYoutube }) {
   const id = getYoutubeIdFromUrl(video.url) ?? video.url;
   return (
     <div className="w-fit border border-[#E6E6E6] bg-white md:w-full lg:border-none lg:bg-[#F6F6F6]">
-      <YoutubeVideo
+      <YoutubeThumbnailPlayer
         videoId={id}
+        title={video.title}
         className="aspect-video w-[325px] sm:w-[373px] md:h-[184px] md:w-full lg:h-[281px]"
       />
       <div className="px-[20px] pb-[13px] pt-[18px] sm:pb-[15px] sm:pt-[16px] lg:pb-[18px] lg:pl-[32px] lg:pt-[20px]">
@@ -26,7 +28,7 @@ function BigVideo({ video }: { video: IYoutube }) {
           {video.title}
         </p>
         <p className="text-[13px] font-medium text-[#666666] lg:text-[16px]">
-          {video.preacher} • 주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
+          {video.preacher} • 주후 {formatVideoDate(video.date)}
         </p>
       </div>
     </div>
@@ -37,8 +39,10 @@ function SmallVideo({ video }: { video: IYoutube }) {
   const id = getYoutubeIdFromUrl(video.url) ?? video.url;
   return (
     <div>
-      <YoutubeVideo
+      <YoutubeThumbnailPlayer
         videoId={id}
+        title={video.title}
+        size="compact"
         className="aspect-video w-[157px] sm:w-[180px] lg:w-[250px]"
       />
       <div className="pt-[6px] sm:px-[12px] sm:pt-[13px] lg:px-0 lg:pt-[10px]">
@@ -47,7 +51,7 @@ function SmallVideo({ video }: { video: IYoutube }) {
         </p>
         <p className="text-[15px] font-medium text-[#222222] sm:text-[17px] lg:mb-[4px]">{video.title}</p>
         <p className="text-[12px] text-[#666666] sm:text-[13px] lg:text-[12px]">
-          주후 {dayjs(video.createdAt).format("YYYY.MM.DD")}
+          주후 {formatVideoDate(video.date)}
         </p>
       </div>
     </div>
@@ -79,8 +83,8 @@ export function VideosSection() {
 
   return (
     <div className="pb-[60px] pl-[22px] pt-[55px] sm:pb-[48px] sm:pl-[35px] md:px-[30px] md:pb-[60px] md:pt-[80px] lg:px-[125px] lg:pb-[70px]">
-      <button
-        type="button"
+      <Link
+        href="/sermons"
         className="mb-[12px] flex items-center gap-[1px] sm:mb-[26px] sm:gap-[12px] md:mb-[48px] md:w-full md:justify-between lg:mb-[40px]"
       >
         <p className="text-[22px] font-bold text-[#222222] sm:text-[25px] lg:text-[30px]">말씀과 찬양</p>
@@ -88,7 +92,7 @@ export function VideosSection() {
           <p className="hidden text-[14px] font-medium md:block">자세히 보기</p>
           <ChevronRight className="size-4 text-[#222222] md:block" aria-hidden />
         </span>
-      </button>
+      </Link>
       <div className="mb-[20px] flex gap-[10px] overflow-scroll sm:mb-[44px] sm:gap-[35px] md:mb-[40px] md:grid md:grid-cols-2 md:gap-[12px] lg:mb-[60px] lg:gap-[30px]">
         {getBigVideos().map((video) => (
           <BigVideo video={video} key={video._id} />
