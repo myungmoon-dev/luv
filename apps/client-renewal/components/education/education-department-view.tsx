@@ -56,33 +56,40 @@ export function EducationDepartmentView({ type }: Props) {
       </section>
 
       {/* 갤러리 */}
-      <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
-          {data.imgs.map((src, idx) => (
-            <div
-              key={src}
-              className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white shadow-sm"
-            >
-              <Image
-                src={src}
-                alt={`${data.department} 소개 이미지 ${idx + 1}`}
-                fill
-                className="object-cover"
-                sizes="(max-width: 640px) 100vw, 33vw"
-              />
-            </div>
-          ))}
-        </div>
-      </section>
+      {data.imgs.length > 0 ? (
+        <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
+            {data.imgs.map((src, idx) => (
+              <div
+                key={src}
+                className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white shadow-sm"
+              >
+                <Image
+                  src={src}
+                  alt={`${data.department} 소개 이미지 ${idx + 1}`}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       {/* 안내 */}
-      <section className="mt-14 sm:mt-16">
+      <section className={cn(data.imgs.length > 0 ? "mt-14 sm:mt-16" : "mt-0")}>
         <div className="bg-[#1e2a4a] px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
           <div className="mx-auto max-w-4xl">
             <h2 className="text-center text-xl font-bold text-white sm:text-2xl">
               {data.department} 안내
             </h2>
-            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3 sm:gap-8">
+            <div
+              className={cn(
+                "mt-10 grid grid-cols-1 gap-6 sm:gap-8",
+                data.meetingTime ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3",
+              )}
+            >
               <div className="flex flex-col items-center rounded-2xl bg-white/10 px-4 py-6 text-center backdrop-blur-sm">
                 <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-white/15 text-white">
                   <Users className="size-6" strokeWidth={1.75} aria-hidden />
@@ -97,6 +104,17 @@ export function EducationDepartmentView({ type }: Props) {
                 <p className="text-sm font-semibold text-white/90">예배 시간</p>
                 <p className="mt-2 break-keep text-sm leading-relaxed text-white/85">{data.time}</p>
               </div>
+              {data.meetingTime ? (
+                <div className="flex flex-col items-center rounded-2xl bg-white/10 px-4 py-6 text-center backdrop-blur-sm">
+                  <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-white/15 text-white">
+                    <Clock className="size-6" strokeWidth={1.75} aria-hidden />
+                  </div>
+                  <p className="text-sm font-semibold text-white/90">모임 시간</p>
+                  <p className="mt-2 break-keep text-sm leading-relaxed text-white/85">
+                    {data.meetingTime}
+                  </p>
+                </div>
+              ) : null}
               <div className="flex flex-col items-center rounded-2xl bg-white/10 px-4 py-6 text-center backdrop-blur-sm">
                 <div className="mb-3 flex size-12 items-center justify-center rounded-full bg-white/15 text-white">
                   <MapPin className="size-6" strokeWidth={1.75} aria-hidden />
@@ -110,42 +128,44 @@ export function EducationDepartmentView({ type }: Props) {
       </section>
 
       {/* 핵심 사역 */}
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">{data.department} 핵심사역</h2>
-          <p className="mt-2 text-sm text-[#496674]">부서별로 세워가는 사역의 방향입니다.</p>
-        </div>
-        <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
-          {data.coreministry.map((item) => (
-            <li
-              key={item.id}
-              className="overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white shadow-sm transition-shadow hover:shadow-md"
-            >
-              <div className="relative aspect-[16/10] w-full">
-                <Image
-                  src={item.img}
-                  alt=""
-                  fill
-                  className={cn("object-cover", item.imgClass)}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute left-3 top-3 flex size-10 items-center justify-center rounded-full bg-[#1e2a4a] text-sm font-bold text-white shadow-md">
-                  {item.id}
+      {data.coreministry.length > 0 ? (
+        <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+          <div className="mb-10 text-center">
+            <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">{data.department} 핵심사역</h2>
+            <p className="mt-2 text-sm text-[#496674]">부서별로 세워가는 사역의 방향입니다.</p>
+          </div>
+          <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:gap-8">
+            {data.coreministry.map((item) => (
+              <li
+                key={item.id}
+                className="overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white shadow-sm transition-shadow hover:shadow-md"
+              >
+                <div className="relative aspect-[16/10] w-full">
+                  <Image
+                    src={item.img}
+                    alt=""
+                    fill
+                    className={cn("object-cover", item.imgClass)}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute left-3 top-3 flex size-10 items-center justify-center rounded-full bg-[#1e2a4a] text-sm font-bold text-white shadow-md">
+                    {item.id}
+                  </div>
                 </div>
-              </div>
-              <div className="p-5 sm:p-6">
-                <h3 className="text-lg font-bold text-[#1e2a4a]">{item.titleKr}</h3>
-                {item.titleEn ? (
-                  <p className="mt-0.5 text-sm font-medium text-[#496674]">{item.titleEn}</p>
-                ) : null}
-                <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[#333]">
-                  {item.description}
-                </p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section>
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-lg font-bold text-[#1e2a4a]">{item.titleKr}</h3>
+                  {item.titleEn ? (
+                    <p className="mt-0.5 text-sm font-medium text-[#496674]">{item.titleEn}</p>
+                  ) : null}
+                  <p className="mt-3 whitespace-pre-wrap text-sm leading-relaxed text-[#333]">
+                    {item.description}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
     </div>
   );
 }

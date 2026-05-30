@@ -11,6 +11,7 @@ export type AlbumType =
   | "qt"
   | "panorama"
   | "newFamilly"
+  | "newFamily"
   | "newlyweds"
   | "3040";
 

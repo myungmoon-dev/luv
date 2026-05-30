@@ -21,7 +21,7 @@ function TopHeroYoutube() {
     <div className="absolute inset-0 overflow-hidden opacity-70">
       <YoutubeVideo
         videoId={videoId}
-        className="h-full w-full origin-center scale-[1.75] transform-gpu md:scale-[1.2]"
+        className="h-full w-full origin-center scale-[1.75] transform-gpu md:scale-[1.55] lg:scale-[1.35]"
         autoplay
         mute
         loop
@@ -40,8 +40,7 @@ export function HomePage() {
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <main className="flex-1">
-        {/* 모바일: 고정 헤더(h-16) 아래에서 영상이 보이도록 pt 확보, 세로 비율은 16:9로 여유 있게 */}
-        <section className="relative z-0 w-full overflow-hidden bg-[#1e2a4a] pt-16 md:pt-0">
+        <section className="relative z-0 w-full overflow-hidden bg-[#1e2a4a]">
           <div className="relative aspect-video w-full md:aspect-[2.95]">
             <div className="absolute inset-0 bg-[#1e2a4a]" />
             <TopHeroYoutube />
@@ -97,7 +96,9 @@ export function HomePage() {
                 />
               </div>
               <div className="md:max-w-md">
-                <h2 className="text-nowrap text-3xl font-bold text-[#1e2a4a] sm:text-4xl">처음오셨나요?</h2>
+                <h2 className="text-nowrap text-3xl font-bold text-[#1e2a4a] sm:text-4xl">
+                  처음오셨나요?
+                </h2>
                 <div className="my-6 h-[2px] w-16 bg-[#1e2a4a]" />
                 <p className="text-lg leading-relaxed text-[#496674]">
                   여러분의 방문을 진심으로 환영합니다!

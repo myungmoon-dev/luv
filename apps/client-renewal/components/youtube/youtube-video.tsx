@@ -12,6 +12,8 @@ type YoutubeVideoProps = {
   autoplay?: boolean;
   mute?: boolean;
   loop?: boolean;
+  /** false면 컨트롤 숨김(기본). 썸네일 클릭 재생 시 true 권장 */
+  controls?: boolean;
 };
 
 export function YoutubeVideo({
@@ -22,14 +24,15 @@ export function YoutubeVideo({
   autoplay = false,
   mute = false,
   loop = false,
+  controls = false,
 }: YoutubeVideoProps) {
   const formattedVideoId = isFullLink ? getYoutubeIdFromUrl(videoId) : videoId;
 
   const playerVars: Record<string, string | number | boolean> = {
     modestbranding: 1,
     rel: 0,
-    controls: 0,
-    fs: 0,
+    controls: controls ? 1 : 0,
+    fs: controls ? 1 : 0,
     showinfo: 0,
     iv_load_policy: 3,
     cc_load_policy: 0,
@@ -49,10 +52,7 @@ export function YoutubeVideo({
     playerVars.list = formattedVideoId;
   }
 
-  const opts =
-    isPlaylist || autoplay || mute || loop
-      ? { playerVars: playerVars as Record<string, unknown> }
-      : {};
+  const opts = { playerVars: playerVars as Record<string, unknown> };
 
   return (
     <div className={cn("relative", className)}>

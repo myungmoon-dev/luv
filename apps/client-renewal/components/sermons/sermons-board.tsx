@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import dayjs from "dayjs";
+import { formatVideoDate } from "@/lib/format-video-date";
 import { ExternalLink, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -168,11 +168,7 @@ export function SermonsBoard() {
                       </td>
                       <td className="px-3 py-3 text-[#333]">{row.preacher || "—"}</td>
                       <td className="whitespace-nowrap px-3 py-3 text-[#496674]">
-                        {row.date
-                          ? row.date
-                          : row.createdAt
-                            ? dayjs(row.createdAt).format("YYYY.MM.DD")
-                            : "—"}
+                        {formatVideoDate(row.date)}
                       </td>
                       <td className="px-3 py-3 text-center">
                         <a
@@ -209,11 +205,7 @@ export function SermonsBoard() {
                         {row.categoryLabel}
                       </span>
                       <span className="text-xs text-[#496674]">
-                        {row.date
-                          ? row.date
-                          : row.createdAt
-                            ? dayjs(row.createdAt).format("YYYY.MM.DD")
-                            : ""}
+                        {formatVideoDate(row.date)}
                       </span>
                     </div>
                     <a

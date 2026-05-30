@@ -1,6 +1,6 @@
-/** `apps/client` overview `EDUCATION_DATA` 중 부서 서브페이지용 (영아·유치·유초등·중고등·청년) */
+/** `apps/client` overview `EDUCATION_DATA` 중 부서 서브페이지용 (영아·유치·유초등·중고등·청년·브릿지) */
 
-export type EducationDeptType = "infants" | "toddlers" | "elementary" | "high" | "2youth";
+export type EducationDeptType = "infants" | "toddlers" | "elementary" | "high" | "2youth" | "bridge";
 
 export type EducationCoreMinistryItem = {
   id: number;
@@ -20,6 +20,8 @@ export type EducationDepartmentData = {
   target: string;
   time: string;
   place: string;
+  /** 브릿지 등 모임 시간이 별도인 부서 */
+  meetingTime?: string;
   imgs: string[];
   coreministry: EducationCoreMinistryItem[];
   heroImage: string;
@@ -32,6 +34,7 @@ export const educationSlugToType: Record<string, EducationDeptType> = {
   elementary: "elementary",
   high: "high",
   "youth-adults2": "2youth",
+  bridge: "bridge",
 };
 
 export const educationDepartmentList: EducationDepartmentData[] = [
@@ -267,6 +270,21 @@ export const educationDepartmentList: EducationDepartmentData[] = [
         imgClass: "brightness-75 object-[100%_40%]",
       },
     ],
+  },
+  {
+    type: "bridge",
+    slug: "bridge",
+    department: "브릿지",
+    heroImage: "/images/education/2youth/banner.jpg",
+    heroImgClass: "object-[center_40%]",
+    imgs: [],
+    introduction:
+      "명문교회 브릿지는 하나님을 경외하고 사랑하는 미혼 직장인들이 함께 모여 예배하는 공동체입니다.",
+    target: "34세 이상의 모든 청년",
+    time: "명문교회 2,3부 예배",
+    meetingTime: "13:00 - 14:00",
+    place: "사랑채플 1층 창작 나눔실",
+    coreministry: [],
   },
 ];
 
