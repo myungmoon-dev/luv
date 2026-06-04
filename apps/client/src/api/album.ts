@@ -3,7 +3,7 @@ import { AlbumType, IGetAlbumListResponse, IGetAlbumRequest, IGetAlbumResponse }
 
 export const getAlbumList = async ({ type, page, size }: { type: AlbumType; page: number; size: number }) => {
   if (!isClientApiConfigured()) {
-    return { albums: [], totalAlbums: 0 };
+    return { content: [], page: 0, size: 0, totalElements: 0, totalPages: 0, isLast: true, isFirst: true };
   }
   const { data } = await api.get<IGetAlbumListResponse>("/albums", {
     params: { type, page, size },
