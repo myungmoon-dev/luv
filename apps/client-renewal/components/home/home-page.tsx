@@ -11,7 +11,7 @@ import { getYoutubeIdFromUrl } from "@/lib/youtube-id";
 import { VideosSection } from "./videos-section";
 import { YoutubeVideo } from "@/components/youtube/youtube-video";
 
-const HERO_VIDEO_URL = "https://youtu.be/9K0FrEAYQro";
+const HERO_VIDEO_URL = "https://youtu.be/HyISG9Xe9XM?si=buD1_pmW8IyAAJOc";
 
 function TopHeroYoutube() {
   const videoId = getYoutubeIdFromUrl(HERO_VIDEO_URL);
@@ -26,6 +26,8 @@ function TopHeroYoutube() {
         mute
         loop
       />
+      {/* 마우스 이벤트 차단 → YouTube 제목/로고 hover 노출 방지 */}
+      <div className="absolute inset-0" />
     </div>
   );
 }
@@ -97,7 +99,9 @@ export function HomePage() {
                 />
               </div>
               <div className="md:max-w-md">
-                <h2 className="text-nowrap text-3xl font-bold text-[#1e2a4a] sm:text-4xl">처음오셨나요?</h2>
+                <h2 className="text-nowrap text-3xl font-bold text-[#1e2a4a] sm:text-4xl">
+                  처음오셨나요?
+                </h2>
                 <div className="my-6 h-[2px] w-16 bg-[#1e2a4a]" />
                 <p className="text-lg leading-relaxed text-[#496674]">
                   여러분의 방문을 진심으로 환영합니다!
