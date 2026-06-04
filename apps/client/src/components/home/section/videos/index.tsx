@@ -25,12 +25,12 @@ const VideosSectionMain = () => {
   const { isMd } = useResponsive();
 
   const getBigVideos = () => {
-    if (isMd) return main.videos.slice(0, 2);
-    return main.videos;
+    if (isMd) return main.content.slice(0, 2);
+    return main.content;
   };
 
   const getSmallVideos = () => {
-    return main.videos;
+    return main.content;
   };
 
   return (
@@ -44,12 +44,12 @@ const VideosSectionMain = () => {
       </button>
       <div className="mb-[20px] flex gap-[10px] overflow-scroll sm:mb-[44px] sm:gap-[35px] md:mb-[40px] md:grid md:grid-cols-2 md:gap-[12px] lg:mb-[60px] lg:gap-[30px]">
         {getBigVideos().map((video) => (
-          <BigVideo video={video} key={video._id} />
+          <BigVideo video={video} key={video.id} />
         ))}
       </div>
       <div className="flex gap-[18px] overflow-scroll sm:gap-[23px] md:gap-[11px] lg:gap-[20px]">
         {getSmallVideos().map((video) => (
-          <SmallVideo video={video} key={video._id} />
+          <SmallVideo video={video} key={video.id} />
         ))}
       </div>
     </div>

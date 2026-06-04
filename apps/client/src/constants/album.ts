@@ -43,7 +43,7 @@ export const AlbumTypeOptions: { label: string; value: AlbumType }[] = [
   },
   {
     label: "새가족",
-    value: "newFamilly",
+    value: "newFamily",
   },
 
   {

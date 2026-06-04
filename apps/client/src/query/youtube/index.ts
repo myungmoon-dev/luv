@@ -30,6 +30,6 @@ export const useGetLive = () => {
   return useQuery({
     queryKey: youtubeKeys.live(),
     queryFn: () => getLive(),
-    select: (res) => res.live,
+    select: (res) => res,
   });
 };

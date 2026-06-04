@@ -39,14 +39,14 @@ const DiscipleshipFaithReadingBible = () => {
       <div className="mt-6 flex flex-col gap-4">
         {data?.bibles.map((bible) => (
           <div
-            key={bible._id}
+            key={bible.id}
             className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
           >
             <div className="flex flex-col gap-3">
               <p className="text-sm text-gray-500">{dayjs(bible.date).format("YYYY.MM.DD")}</p>
               <h3 className="text-lg font-semibold text-gray-900">{bible.title}</h3>
               <button
-                onClick={() => push(`/discipleship/faith/bibleReading/${bible._id}`)}
+                onClick={() => push(`/discipleship/faith/bibleReading/${bible.id}`)}
                 className="mt-2 w-full rounded-md bg-gray-100 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-200"
               >
                 자세히 보기

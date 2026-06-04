@@ -37,7 +37,7 @@ const DiscipleshipNewFamilly = () => {
         <DiscipleshipNewFamillyIntroduce />
 
         {/* 앨범 */}
-        <CommonAlbumList albumType="newFamilly" albumName="새가족" />
+        <CommonAlbumList albumType="newFamily" albumName="새가족" />
       </div>
     </Layout>
   );

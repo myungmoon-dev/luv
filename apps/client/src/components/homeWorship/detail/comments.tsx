@@ -43,7 +43,7 @@ const HomeWorshipDetailComments = () => {
         {comments.map((comment) => (
           <div
             className="flex flex-col gap-1.5 rounded-lg border border-gray-200 bg-gray-50 p-2.5 sm:gap-2 sm:p-3"
-            key={comment._id}
+            key={comment.id}
           >
             <div className="flex items-start justify-between gap-2">
               <div className="flex min-w-0 flex-col gap-0.5 sm:gap-1">
@@ -55,7 +55,7 @@ const HomeWorshipDetailComments = () => {
                 </p>
               </div>
               <button
-                onClick={() => handleClickDelete(comment._id)}
+                onClick={() => handleClickDelete(comment.id)}
                 className="shrink-0 text-[10px] text-red-500 hover:text-red-700 sm:text-xs"
               >
                 삭제

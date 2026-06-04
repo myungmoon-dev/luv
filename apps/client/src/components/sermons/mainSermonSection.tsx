@@ -15,7 +15,7 @@ const MainSermonSection = ({ video, sermonTitle, videoTitle, url }: IMainSermonS
         <SermonTitle title={sermonTitle} url={url} />
       </div>
       <div className="mb-5 flex w-full sm:mb-8 sm:pl-8 md:mx-auto md:mb-10 md:w-full md:max-w-3xl md:px-0 lg:mb-12 lg:max-w-4xl">
-        <MainVideoSection video={video} key={video._id} title={videoTitle} />
+        <MainVideoSection video={video} key={video.id} title={videoTitle} />
       </div>
     </div>
   );

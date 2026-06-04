@@ -31,7 +31,7 @@ const HomeAlbumSectionMain = () => {
   };
 
   const getImages = () => {
-    return main.albums;
+    return main.content;
   };
 
   if (isLg)

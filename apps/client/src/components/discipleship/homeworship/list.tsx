@@ -15,8 +15,8 @@ const HomeworshipListSection = ({ data }: IHomeworshipListSectionProps) => {
       {data?.homeworships.map((worship: IHomeWorship) => {
         return (
           <HomeworshipListItem
-            key={worship._id}
-            onClick={() => push(`/discipleship/homeworship/${worship._id}`)}
+            key={worship.id}
+            onClick={() => push(`/discipleship/homeworship/${worship.id}`)}
             item={worship}
           />
         );

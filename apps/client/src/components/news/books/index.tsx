@@ -29,7 +29,7 @@ const Books = () => {
         ) : (
           <div className="flex flex-col">
             <hr className="border-[#747474]" />
-            {books?.map((book) => <Book key={book._id} book={book} />)}
+            {books?.map((book) => <Book key={book.id} book={book} />)}
           </div>
         )}
         {hasNextPage && (

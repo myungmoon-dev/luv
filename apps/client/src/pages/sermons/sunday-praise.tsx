@@ -19,7 +19,7 @@ const SermonsSundayPraisePage = () => {
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
-        {data && <SermonContainer title="주일오후찬양 예배" list={data.videos} />}
+        {data && <SermonContainer title="주일오후찬양 예배" list={data.content} />}
       </div>
     </Layout>
   );
