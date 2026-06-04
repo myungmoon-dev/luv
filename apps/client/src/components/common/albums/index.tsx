@@ -25,9 +25,9 @@ const CommonAlbumList = ({ albumType, albumName }: ICommonAlbumListProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const prevPageRef = useRef<number>(1);
 
-  const albums = data?.albums || [];
-  const totalAlbums = data?.totalAlbums || 0;
-  const totalPages = Math.ceil(totalAlbums / ITEMS_PER_PAGE);
+  const albums = data?.content || [];
+  const totalAlbums = data?.totalElements || 0;
+  const totalPages = data?.totalPages ?? Math.ceil(totalAlbums / ITEMS_PER_PAGE);
 
   // 현재 페이지에 데이터가 없고 1페이지가 아니면 이전 페이지로 이동
   if (!isFetching && albums.length === 0 && currentPage > 1) {
@@ -54,7 +54,7 @@ const CommonAlbumList = ({ albumType, albumName }: ICommonAlbumListProps) => {
               const imageUrl = album.imageUrls?.[0];
               return (
                 <div
-                  key={album._id}
+                  key={album.id}
                   className="group cursor-pointer overflow-hidden bg-white shadow-md transition-all hover:shadow-xl"
                   onClick={() => imageUrl && setSelectedImage(imageUrl)}
                 >

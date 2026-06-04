@@ -23,13 +23,13 @@ const NewsPhotos = () => {
       ) : (
         <Table
           data={
-            data?.albums.map((album) => ({ id: album._id, date: album.date, title: album.title, writer: "관리자" })) ||
+            data?.content.map((album) => ({ id: album.id, date: album.date, title: album.title, writer: "관리자" })) ||
             []
           }
           onClickRow={handleAlbumClick}
         />
       )}
-      <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data?.totalAlbums || 0} />
+      <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data?.totalElements || 0} />
     </div>
   );
 };

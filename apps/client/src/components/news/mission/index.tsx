@@ -27,9 +27,9 @@ const Mission = () => {
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
             {data.missionNewsList.map((mission) => (
               <MissionItem
-                key={mission._id}
+                key={mission.id}
                 mission={mission}
-                onClick={() => push(`/news/mission-news/${mission._id}`)}
+                onClick={() => push(`/news/mission-news/${mission.id}`)}
               />
             ))}
           </div>

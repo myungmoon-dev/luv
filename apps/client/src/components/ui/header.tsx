@@ -37,7 +37,7 @@ const navigation = [
   },
   {
     name: "훈련",
-    href: "/discipleship/newFamilly",
+    href: "/discipleship/newFamily",
   },
   // {
   //   name: "행정",

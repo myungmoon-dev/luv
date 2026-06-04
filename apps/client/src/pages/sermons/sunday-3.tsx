@@ -18,8 +18,8 @@ const SermonsSunday3Page = () => {
           <p className="text-[22px] font-bold text-[#222222] sm:text-[25px] lg:text-[30px]">지난 예배</p>
         </div>
         <div className="mb-[20px] flex w-full flex-col gap-5">
-          {data.videos.map((video) => (
-            <MainVideoSection video={video} key={video._id} title="주일예배" />
+          {data.content.map((video) => (
+            <MainVideoSection video={video} key={video.id} title="주일예배" />
           ))}
         </div>
       </div>

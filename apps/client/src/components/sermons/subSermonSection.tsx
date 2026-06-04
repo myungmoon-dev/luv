@@ -14,7 +14,7 @@ const SubSermonSection = ({ videos, sermonTitle, videoTitle }: ISubSermonSection
       <SermonTitle title={sermonTitle} />
       <div className="flex gap-4 overflow-scroll sm:gap-6 md:gap-4 lg:gap-6">
         {videos.map((video) => (
-          <RowListVideoSeciton video={video} title={videoTitle} key={video._id} />
+          <RowListVideoSeciton video={video} title={videoTitle} key={video.id} />
         ))}
       </div>
     </div>

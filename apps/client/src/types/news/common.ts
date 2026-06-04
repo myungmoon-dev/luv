@@ -8,7 +8,7 @@ export type CongregationNewsType =
   | "iceCream";
 
 export interface ICongregationNews {
-  _id?: string;
+  id?: string;
   type: CongregationNewsType;
   description: string;
   createdAt: number;

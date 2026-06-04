@@ -19,7 +19,7 @@ const VideosPage = () => {
       innerMenus={sermonsInnerMenus}
     >
       <div className="flex items-center justify-center">
-        {data && <SermonContainer title="명문 영상" list={data.videos} />}
+        {data && <SermonContainer title="명문 영상" list={data.content} />}
       </div>
     </Layout>
   );
