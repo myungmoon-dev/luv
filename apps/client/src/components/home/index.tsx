@@ -26,7 +26,7 @@ const getYoutubeId = (url?: string) => {
 const TopHeroYoutube = () => {
   // const { data } = useGetYoutubeLinkSuspense("main");
   // const firstVideoUrl = data?.videos?.[0]?.url;
-  const firstVideoUrl = "https://youtu.be/9K0FrEAYQro";
+  const firstVideoUrl = "https://youtu.be/HyISG9Xe9XM";
   const videoId = getYoutubeId(firstVideoUrl);
 
   if (!videoId) return null;

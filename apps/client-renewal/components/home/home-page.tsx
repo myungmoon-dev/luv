@@ -11,7 +11,7 @@ import { getYoutubeIdFromUrl } from "@/lib/youtube-id";
 import { VideosSection } from "./videos-section";
 import { YoutubeVideo } from "@/components/youtube/youtube-video";
 
-const HERO_VIDEO_URL = "https://youtu.be/HyISG9Xe9XM?si=buD1_pmW8IyAAJOc";
+const HERO_VIDEO_URL = "https://youtu.be/HyISG9Xe9XM";
 
 function TopHeroYoutube() {
   const videoId = getYoutubeIdFromUrl(HERO_VIDEO_URL);
