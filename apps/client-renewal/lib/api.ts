@@ -3,7 +3,7 @@ import axios from "axios";
 import { isApiEnvelope } from "@/lib/api-types";
 
 /** client-renewal 전용(최우선). 루트 monorepo .env 와 충돌 시 이 값으로 맞춤 */
-const DEFAULT_API_ORIGIN = "http://3.35.140.193:8081";
+const DEFAULT_API_ORIGIN = process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL;
 
 const origin =
   process.env.NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN?.replace(/\/$/, "") ||
