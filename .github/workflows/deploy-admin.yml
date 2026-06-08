@@ -56,5 +56,6 @@ jobs:
             sudo ln -sf /etc/nginx/sites-available/luv /etc/nginx/sites-enabled/luv
             sudo systemctl daemon-reload
             sudo nginx -t && sudo systemctl reload nginx
-            pm2 restart admin || PORT=3001 pm2 start pnpm --name "admin" -- --filter admin start
+            echo "NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL=${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }}" > apps/admin/.env.production.local
+            pm2 restart admin --update-env || NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL=${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }} PORT=3001 pm2 start pnpm --name "admin" -- --filter admin start
             pm2 save
