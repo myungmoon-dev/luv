@@ -6,7 +6,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: `${process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL}/api/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL || "http://localhost:8080"}/api/:path*`,
       },
     ];
   },
