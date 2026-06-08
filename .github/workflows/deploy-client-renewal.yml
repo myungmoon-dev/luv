@@ -58,6 +58,7 @@ jobs:
             pnpm store prune
             sudo cp .github/nginx/luv.conf /etc/nginx/sites-available/luv
             sudo ln -sf /etc/nginx/sites-available/luv /etc/nginx/sites-enabled/luv
+            sudo systemctl daemon-reload
             sudo nginx -t && sudo systemctl reload nginx
-            pm2 restart client-renewal || pm2 start pnpm --name "client-renewal" -- --filter client-renewal start -- -p 3000
+            pm2 restart client-renewal || PORT=3000 pm2 start pnpm --name "client-renewal" -- --filter client-renewal start
             pm2 save
