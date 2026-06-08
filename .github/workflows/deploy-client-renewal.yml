@@ -55,6 +55,7 @@ jobs:
           script: |
             cd ~/luv
             pnpm install --frozen-lockfile
+            pnpm store prune
             sudo cp .github/nginx/luv.conf /etc/nginx/sites-available/luv
             sudo ln -sf /etc/nginx/sites-available/luv /etc/nginx/sites-enabled/luv
             sudo nginx -t && sudo systemctl reload nginx
