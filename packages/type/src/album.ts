@@ -3,29 +3,38 @@ export type AlbumType =
   | "main"
   | "infants"
   | "toddlers"
+  | "children"
   | "elementary"
+  | "teens"
   | "middle"
   | "high"
-  | "2youth"
+  | "youth"
   | "1youth"
+  | "2youth"
+  | "bridge"
   | "qt"
   | "panorama"
-  | "newFamilly"
+  | "newFamily"
   | "newlyweds"
   | "3040";
 
 export interface IAlbum {
-  _id: string;
+  id: string;
   title: string;
   date: string;
-  type: AlbumType;
+  albumType: AlbumType;
   imageUrls: string[];
   createdAt: number;
 }
 
 export interface IGetAlbumListResponse {
-  albums: IAlbum[];
-  totalAlbums: number;
+  content: IAlbum[];
+  page: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
+  isLast: boolean;
+  isFirst: boolean;
 }
 
 export interface IGetAlbumRequest {

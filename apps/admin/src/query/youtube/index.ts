@@ -3,22 +3,22 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { YoutubeType } from "type";
 import youtubeKeys from "./keys";
 
-export const useGetVideos = ({ type }: { type: YoutubeType }) => {
-  const queryKey = youtubeKeys[type]();
+export const useGetVideos = ({ type, page = 0 }: { type: YoutubeType; page?: number }) => {
+  const queryKey = youtubeKeys[type](page);
 
   return useQuery({
     queryKey,
-    queryFn: () => getYoutube(type),
+    queryFn: () => getYoutube(type, page),
   });
 };
 
 export const useGetYoutubeLink = (type: YoutubeType) => {
-  const queryKey = youtubeKeys[type]();
+  const queryKey = youtubeKeys[type](0);
 
   return useQuery({
     queryKey,
-    queryFn: async () => await getYoutube(type),
-    select: (res) => res.videos[0],
+    queryFn: async () => await getYoutube(type, 0, 1),
+    select: (res) => res.content[0],
   });
 };
 
@@ -40,7 +40,7 @@ export const useGetLive = () => {
   return useQuery({
     queryKey: youtubeKeys.live(),
     queryFn: () => getLive(),
-    select: (res) => res.live,
+    select: (res) => res,
   });
 };
 

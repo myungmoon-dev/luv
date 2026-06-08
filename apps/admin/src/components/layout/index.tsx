@@ -1,8 +1,13 @@
 import React, { ReactNode } from "react";
-import Sidebar from "./sidebar";
-import { TooltipProvider } from "../ui/tooltip";
-import Header from "./header";
-import { Separator } from "../ui/separator";
+import { Bell, Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  SidebarInset,
+  SidebarProvider,
+  SidebarTrigger,
+} from "@/components/ui/sidebar";
+import AdminSidebar from "./sidebar";
 
 interface LayoutProps {
   title: string;
@@ -10,28 +15,26 @@ interface LayoutProps {
   titleChildren?: ReactNode;
 }
 
-const Layout = ({ children, title, titleChildren }: LayoutProps) => {
+const Layout = ({ children }: LayoutProps) => {
   return (
-    <TooltipProvider>
-      <div className="flex w-full flex-col gap-10 pb-10">
-        <Header />
-        <div className="flex items-center justify-center px-10">
-          <div className="flex w-full max-w-[1440px] gap-10">
-            <div className="flex gap-10">
-              <Sidebar />
-              <Separator orientation="vertical" className="min-h-[calc(100vh-80px-80px)]" />
+    <SidebarProvider>
+      <AdminSidebar />
+      <SidebarInset>
+        <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4">
+          <SidebarTrigger className="-ml-2" />
+          <div className="flex flex-1 items-center gap-4">
+            <div className="relative w-full max-w-sm">
+              <Search className="absolute left-2.5 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+              <Input placeholder="검색..." className="h-9 border-0 bg-muted/50 pl-8" />
             </div>
-            <main className="flex w-full flex-col gap-10">
-              <div className="flex items-center justify-between">
-                <h1 className="text-4xl font-semibold">{title}</h1>
-                {titleChildren}
-              </div>
-              {children}
-            </main>
           </div>
-        </div>
-      </div>
-    </TooltipProvider>
+          <Button variant="ghost" size="icon" className="relative">
+            <Bell className="size-4" />
+          </Button>
+        </header>
+        <main className="flex-1 overflow-auto">{children}</main>
+      </SidebarInset>
+    </SidebarProvider>
   );
 };
 

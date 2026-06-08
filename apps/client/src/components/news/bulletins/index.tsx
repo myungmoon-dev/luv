@@ -27,7 +27,7 @@ const Bulletins = () => {
           <Table
             data={
               data?.bulletins.map((bulletin) => ({
-                id: bulletin._id,
+                id: bulletin.id,
                 date: bulletin.date,
                 title: bulletin.title,
                 writer: "관리자",

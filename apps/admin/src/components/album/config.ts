@@ -1,6 +1,6 @@
 import { AlbumType } from "type";
 
-export const ALBUM_TYPE_OPTIONS: { label: string; value: AlbumType }[] = [
+export const ALBUM_TYPE_OPTIONS: { label: string; value: AlbumType | "all" }[] = [
   {
     label: "전체",
     value: "all",
@@ -19,23 +19,19 @@ export const ALBUM_TYPE_OPTIONS: { label: string; value: AlbumType }[] = [
   },
   {
     label: "유초등부",
-    value: "elementary",
+    value: "children",
   },
   {
     label: "중고등부",
-    value: "middle",
+    value: "teens",
   },
   {
-    label: "중고등부",
-    value: "high",
+    label: "청년부",
+    value: "youth",
   },
   {
-    label: "2청년부",
-    value: "2youth",
-  },
-  {
-    label: "1청년부",
-    value: "1youth",
+    label: "브릿지",
+    value: "bridge",
   },
   {
     label: "큐티세미나",
@@ -47,7 +43,7 @@ export const ALBUM_TYPE_OPTIONS: { label: string; value: AlbumType }[] = [
   },
   {
     label: "새신자",
-    value: "newFamilly",
+    value: "newFamily",
   },
 
   {

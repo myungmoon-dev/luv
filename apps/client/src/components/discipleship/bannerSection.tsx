@@ -7,7 +7,7 @@ const SLIDES = [
     shortTitle: "새가족훈련",
     desc: ['"처음 오셨나요?', '함께 걸어갈 믿음의 첫걸음을 안내해드립니다."'],
     image: "/images/discipleship/welcome-banner.jpg",
-    url: "/discipleship/newFamilly",
+    url: "/discipleship/newFamily",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

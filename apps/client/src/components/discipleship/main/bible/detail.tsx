@@ -25,7 +25,7 @@ const DiscipleshipMainBibleDetail = () => {
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         {data?.links.map((link) => (
-          <YoutubeVideo className="h-[250px]" videoId={link.name} isPlaylist={link.isPlaylist} key={link.name} />
+          <YoutubeVideo className="h-[250px]" videoId={link.url} isPlaylist={link.playlist} key={link.url} />
         ))}
       </div>
     </div>

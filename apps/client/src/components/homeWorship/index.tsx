@@ -41,8 +41,8 @@ const HomeWorships = () => {
       <div className="flex flex-col gap-4 p-4 pb-24">
         {data?.homeworships.map((homeWorship) => (
           <div
-            key={homeWorship._id}
-            onClick={() => push(`/discipleship/homeworship/${homeWorship._id}`)}
+            key={homeWorship.id}
+            onClick={() => push(`/discipleship/homeworship/${homeWorship.id}`)}
             className="flex cursor-pointer flex-col gap-2 rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
           >
             <div className="flex items-center justify-between">

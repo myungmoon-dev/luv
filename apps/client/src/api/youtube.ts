@@ -8,7 +8,7 @@ export interface IGetYoutbeRequest {
 }
 export const getLive = async () => {
   if (!isClientApiConfigured()) {
-    return { live: { url: "", updatedAt: 0 } };
+    return { url: "", updatedAt: 0 };
   }
   const { data } = await api.get<IGetLiveResponse>("/live");
   return data;
@@ -16,7 +16,7 @@ export const getLive = async () => {
 
 export const getYoutube = async (type: YoutubeType) => {
   if (!isClientApiConfigured()) {
-    return { videos: [], totalVideos: 0 };
+    return { content: [], page: 0, size: 0, totalElements: 0, totalPages: 0, isLast: true, isFirst: true,  };
   }
   const { data } = await api.get<IGetYoutubeResponse>("/videos", {
     params: { type },

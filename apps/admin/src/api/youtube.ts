@@ -9,13 +9,13 @@ export const getLive = async () => {
 };
 
 export const putLive = async ({ liveUrl }: { liveUrl: string }) => {
-  const { data } = await api.put("/live", { url: liveUrl });
+  const { data } = await api.patch("/live", { url: liveUrl });
   return data;
 };
 
-export const getYoutube = async (type: YoutubeType) => {
+export const getYoutube = async (type: YoutubeType, page = 0, size = 10) => {
   const { data } = await api.get<IGetYoutubeResponse>("/videos", {
-    params: { type },
+    params: { type, page, size },
   });
   return data;
 };
@@ -38,7 +38,7 @@ export const putVideo = async ({
   videoId: string;
   youtubeForm: IYoutubeForm;
 }) => {
-  const { data } = await api.put(`/videos/${videoId}`, youtubeForm);
+  const { data } = await api.patch(`/videos/${videoId}`, youtubeForm);
 
   return data;
 };
