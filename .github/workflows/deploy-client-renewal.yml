@@ -39,7 +39,7 @@ jobs:
       - name: Sync to EC2 (node_modules 제외)
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='.env*'
+          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='.env*' --exclude='apps/admin/.next' --exclude='apps/client/.next'
           path: ./
           remote_path: ~/luv
           remote_host: ${{ secrets.EC2_HOST }}
