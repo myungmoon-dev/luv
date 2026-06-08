@@ -1,0 +1,54 @@
+name: deploy-admin
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/admin/**"
+      - "packages/**"
+      - "pnpm-lock.yaml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.10.0
+
+      - name: Install pnpm
+        run: npm install -g pnpm@8.9.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build admin
+        run: pnpm --filter admin build
+
+      - name: Sync to EC2 (node_modules 제외)
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='.env*'
+          path: ./
+          remote_path: ~/luv
+          remote_host: ${{ secrets.EC2_HOST }}
+          remote_user: ${{ secrets.EC2_USER }}
+          remote_key: ${{ secrets.EC2_KEY }}
+
+      - name: Install deps, apply nginx & restart on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd ~/luv
+            pnpm install --frozen-lockfile
+            sudo cp .github/nginx/luv.conf /etc/nginx/sites-available/luv
+            sudo ln -sf /etc/nginx/sites-available/luv /etc/nginx/sites-enabled/luv
+            sudo nginx -t && sudo systemctl reload nginx
+            pm2 restart admin || pm2 start pnpm --name "admin" -- --filter admin start -- -p 3001
+            pm2 save
