@@ -25,6 +25,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Build ui package
+        run: pnpm --filter ui build
+
       - name: Build client-renewal
         env:
           NEXT_PUBLIC_KAKAOMAP_KEY: ${{ secrets.NEXT_PUBLIC_KAKAOMAP_KEY }}
