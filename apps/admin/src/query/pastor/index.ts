@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { deletePastorBook, getPastorBooks, getPastorProfile, postPastorBook, putPastorBook, putPastorProfile } from "@/api/pastor";
+import { deletePastorBook, getPastorBooks, getPastorProfile, patchPastorBook, patchPastorProfile, postPastorBook } from "@/api/pastor";
 import { pastorKeys } from "./keys";
 
 export const useGetPastorBooks = ({ page = 0 }: { page?: number } = {}) =>
@@ -13,10 +13,10 @@ export const usePostPastorBook = () => {
   });
 };
 
-export const usePutPastorBook = () => {
+export const usePatchPastorBook = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: putPastorBook,
+    mutationFn: patchPastorBook,
     onSuccess: () => qc.invalidateQueries({ queryKey: pastorKeys.all }),
   });
 };
@@ -32,10 +32,10 @@ export const useDeletePastorBook = () => {
 export const useGetPastorProfile = () =>
   useQuery({ queryKey: pastorKeys.profile(), queryFn: getPastorProfile });
 
-export const usePutPastorProfile = () => {
+export const usePatchPastorProfile = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: putPastorProfile,
+    mutationFn: patchPastorProfile,
     onSuccess: () => qc.invalidateQueries({ queryKey: pastorKeys.profile() }),
   });
 };

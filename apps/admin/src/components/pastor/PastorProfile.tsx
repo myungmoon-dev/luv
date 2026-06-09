@@ -1,4 +1,4 @@
-import { useGetPastorProfile, usePutPastorProfile } from "@/query/pastor";
+import { useGetPastorProfile, usePatchPastorProfile } from "@/query/pastor";
 import { processImages } from "@/hooks/useImageCompress";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,7 @@ const SLOT_LABEL: Record<ImageSlot, string> = {
 
 const PastorProfile = () => {
   const { data: profile } = useGetPastorProfile();
-  const { mutate: putProfile, isPending } = usePutPastorProfile();
+  const { mutate: putProfile, isPending } = usePatchPastorProfile();
 
   const [previews, setPreviews] = useState<Partial<Record<ImageSlot, string>>>({});
   const [files, setFiles] = useState<Partial<Record<ImageSlot, File>>>({});

@@ -21,7 +21,7 @@ export const postPastorBook = async (form: FormData) => {
   return data;
 };
 
-export const putPastorBook = async ({ id, form }: { id: string; form: FormData }) => {
+export const patchPastorBook = async ({ id, form }: { id: string; form: FormData }) => {
   const { data } = await api.patch(`/pastor/books/${id}`, form, MULTIPART);
   return data;
 };
@@ -36,7 +36,7 @@ export const getPastorProfile = async () => {
   return data;
 };
 
-export const putPastorProfile = async (form: FormData) => {
-  const { data } = await api.put("/pastor/profile", form, MULTIPART);
+export const patchPastorProfile = async (form: FormData) => {
+  const { data } = await api.patch("/pastor/profile", form, MULTIPART);
   return data;
 };

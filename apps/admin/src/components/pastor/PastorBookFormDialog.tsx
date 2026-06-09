@@ -7,7 +7,7 @@ import { ImageIcon, X } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
-import { usePostPastorBook, usePutPastorBook } from "@/query/pastor";
+import { usePatchPastorBook, usePostPastorBook } from "@/query/pastor";
 import { processImages } from "@/hooks/useImageCompress";
 import type { PastorBookForm } from "@/api/pastor";
 import type { IPastorBook } from "type";
@@ -22,7 +22,7 @@ const PastorBookFormDialog = ({ open, onClose, target }: Props) => {
   const isEdit = !!target;
   const { register, handleSubmit, reset, formState: { errors } } = useForm<PastorBookForm>();
   const { mutate: post, isPending: isPosting } = usePostPastorBook();
-  const { mutate: put, isPending: isPutting } = usePutPastorBook();
+  const { mutate: put, isPending: isPutting } = usePatchPastorBook();
   const isPending = isPosting || isPutting;
 
   const [image, setImage] = useState<File | null>(null);
