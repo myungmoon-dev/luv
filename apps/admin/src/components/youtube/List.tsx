@@ -41,10 +41,10 @@ const YoutubeVideoList = ({ option }: IYoutubeVideoListProps) => {
   const [editTarget, setEditTarget] = useState<IYoutube | null>(null);
   const [page, setPage] = useState(0);
 
-
+  const PAGE_SIZE = 10;
   const { data: res, isFetching } = useGetVideos({ type: option, page });
   const data = res?.content;
-  const totalPages = res?.totalPages ?? 0;
+  const totalPages = res?.totalPages ?? Math.ceil((res?.totalElements ?? 0) / PAGE_SIZE);
   const { mutate } = useDeleteVideo();
 
   const handleDeleteVideo = () => {
@@ -89,7 +89,7 @@ const YoutubeVideoList = ({ option }: IYoutubeVideoListProps) => {
             <span className="flex items-center gap-2">
               <ListVideo className="size-4" />
               영상 목록
-              {data && <Badge variant="secondary">{data.length}개</Badge>}
+              {data && <Badge variant="secondary">{res.totalElements}개</Badge>}
             </span>
             <Button size="sm" onClick={handleOpenAdd}>
               <Plus className="mr-1.5 size-4" />

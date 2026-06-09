@@ -16,6 +16,8 @@ import {
   Settings,
   LogOut,
   ChevronUp,
+  BookText,
+  Layout,
 } from "lucide-react";
 import {
   Sidebar,
@@ -45,6 +47,7 @@ const mainMenuItems = [
 ];
 
 const contentMenuItems = [
+  { title: "Home", icon: Layout, href: "/home" },
   { title: "유튜브", icon: Clapperboard, href: "/youtube" },
   { title: "주보", icon: FileText, href: "/bulletins" },
   { title: "성경통독", icon: BookOpen, href: "/bibles" },
@@ -52,6 +55,10 @@ const contentMenuItems = [
   { title: "앨범 업로드", icon: Image, href: "/album" },
   { title: "추천 도서", icon: BookMarked, href: "/books" },
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
+];
+
+const peopleMenuItems = [
+  { title: "담임목사 프로필", icon: BookText, href: "/pastor" },
 ];
 
 const systemMenuItems = [
@@ -115,6 +122,37 @@ const AdminSidebar = () => {
               <SidebarGroupContent>
                 <SidebarMenu>
                   {contentMenuItems.map((item) => (
+                    <SidebarMenuItem key={item.href}>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={isActive(item.href)}
+                        tooltip={item.title}
+                      >
+                        <Link href={item.href}>
+                          <item.icon className="size-4" />
+                          <span>{item.title}</span>
+                        </Link>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  ))}
+                </SidebarMenu>
+              </SidebarGroupContent>
+            </CollapsibleContent>
+          </SidebarGroup>
+        </Collapsible>
+
+        <Collapsible defaultOpen className="group/collapsible">
+          <SidebarGroup>
+            <SidebarGroupLabel asChild>
+              <CollapsibleTrigger className="flex w-full items-center justify-between">
+                섬기는 분들
+                <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+              </CollapsibleTrigger>
+            </SidebarGroupLabel>
+            <CollapsibleContent>
+              <SidebarGroupContent>
+                <SidebarMenu>
+                  {peopleMenuItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
                       <SidebarMenuButton
                         asChild

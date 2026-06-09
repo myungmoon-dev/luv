@@ -2,20 +2,23 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { formatVideoDate } from "@/lib/format-video-date";
-import { ExternalLink, Loader2 } from "lucide-react";
+import { ChevronDown, ChevronUp, ChevronsUpDown, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { NewsPagination } from "@/components/news/news-pagination";
 import { Button } from "@/components/ui/button";
 import { getSermonsVideosPage, SERMONS_PAGE_SIZE } from "@/lib/api-videos";
-import { SERMON_CATEGORY_LABEL } from "@/lib/sermons/sermon-categories";
+import { SERMON_CATEGORY_LABEL, SERMON_LIST_TYPES } from "@/lib/sermons/sermon-categories";
 import { getYoutubeIdFromUrl } from "@/lib/youtube-id";
 import { cn } from "@/lib/utils";
 import type { IYoutube, YoutubeType } from "type";
 
 type Row = IYoutube & { category: YoutubeType; categoryLabel: string };
+
+type SortKey = "categoryLabel" | "preacher" | "date";
+type SortDir = "asc" | "desc";
 
 function categoryLabelFor(type: string): string {
   return SERMON_CATEGORY_LABEL[type as YoutubeType] ?? type;
@@ -28,17 +31,43 @@ function buildWatchUrl(video: IYoutube): string {
   return `https://www.youtube.com/watch?v=${video.url}`;
 }
 
+function getThumbnailUrl(url: string): string | null {
+  const id = getYoutubeIdFromUrl(url);
+  if (!id || id.length !== 11) return null;
+  return `https://img.youtube.com/vi/${id}/mqdefault.jpg`;
+}
+
+function SortIcon({
+  col,
+  sortKey,
+  sortDir,
+}: {
+  col: SortKey;
+  sortKey: SortKey | null;
+  sortDir: SortDir;
+}) {
+  if (sortKey !== col) return <ChevronsUpDown className="ml-1 inline size-3.5 opacity-40" />;
+  return sortDir === "asc" ? (
+    <ChevronUp className="ml-1 inline size-3.5" />
+  ) : (
+    <ChevronDown className="ml-1 inline size-3.5" />
+  );
+}
+
 export function SermonsBoard() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  const [filterType, setFilterType] = useState<YoutubeType | "">("");
+  const [filterPreacher, setFilterPreacher] = useState("");
+
   const uiPage = Math.max(1, Number(searchParams.get("page")) || 1);
   const apiPage = uiPage - 1;
 
   const { data, isPending, isError, isFetching } = useQuery({
-    queryKey: ["videos", "sermons", apiPage, SERMONS_PAGE_SIZE],
-    queryFn: () => getSermonsVideosPage(apiPage),
+    queryKey: ["videos", "sermons", apiPage, SERMONS_PAGE_SIZE, filterType],
+    queryFn: () => getSermonsVideosPage(apiPage, filterType || undefined),
     placeholderData: (previousData) => previousData,
   });
 
@@ -62,15 +91,46 @@ export function SermonsBoard() {
     router.push(`${pathname}?${q.toString()}`);
   };
 
+  const [sortKey, setSortKey] = useState<SortKey | null>(null);
+  const [sortDir, setSortDir] = useState<SortDir>("asc");
+
+  const handleSort = (key: SortKey) => {
+    if (sortKey === key) setSortDir((d) => (d === "asc" ? "desc" : "asc"));
+    else {
+      setSortKey(key);
+      setSortDir("asc");
+    }
+  };
+
+  const handleFilterType = (value: string) => {
+    setFilterType(value as YoutubeType | "");
+    setFilterPreacher("");
+    goToPage(1);
+  };
+
   const isLoading = isPending && !data;
   const hasAnyError = isError;
   const allEmpty = totalElements === 0 && !isFetching;
 
-  const rows: Row[] = (videos ?? []).map((v) => ({
+  const baseRows: Row[] = (videos ?? []).map((v) => ({
     ...v,
     category: v.type,
     categoryLabel: categoryLabelFor(v.type),
   }));
+
+  const preachers = Array.from(new Set(baseRows.map((r) => r.preacher).filter(Boolean)));
+
+  const filteredRows = filterPreacher
+    ? baseRows.filter((r) => r.preacher === filterPreacher)
+    : baseRows;
+
+  const rows: Row[] = sortKey
+    ? [...filteredRows].sort((a, b) => {
+        const av = a[sortKey] ?? "";
+        const bv = b[sortKey] ?? "";
+        return sortDir === "asc" ? av.localeCompare(bv) : bv.localeCompare(av);
+      })
+    : filteredRows;
 
   const rowNumberBase = (uiPage - 1) * SERMONS_PAGE_SIZE;
 
@@ -81,10 +141,11 @@ export function SermonsBoard() {
           <div className="h-[3px] w-10 bg-[#1e2a4a]" aria-hidden />
           <p className="text-sm font-semibold tracking-wide text-[#496674]">명문교회 미디어</p>
         </div>
-        <h1 className="text-2xl font-bold tracking-tight text-[#1e2a4a] sm:text-3xl">설교 &amp; 찬양</h1>
+        <h1 className="text-2xl font-bold tracking-tight text-[#1e2a4a] sm:text-3xl">
+          설교 &amp; 찬양
+        </h1>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#496674] sm:text-base">
-          예배별 최근 영상을 한눈에 보실 수 있습니다. 제목을 누르거나 &quot;보기&quot;로 유튜브에서 재생할 수
-          있습니다.
+          예배별 최근 영상을 한눈에 보실 수 있습니다. 제목을 클릭하면 유튜브에서 재생됩니다.
         </p>
       </header>
 
@@ -101,6 +162,46 @@ export function SermonsBoard() {
           </p>
         </div>
 
+        <div className="flex flex-wrap items-center gap-2 border-b border-[#E6E6E6] bg-white px-4 py-2.5">
+          <select
+            value={filterType}
+            onChange={(e) => handleFilterType(e.target.value)}
+            className="rounded border border-[#1e2a4a]/20 bg-white px-2 py-1 text-sm text-[#1e2a4a] focus:outline-none focus:ring-1 focus:ring-[#1e2a4a]"
+          >
+            <option value="">구분 전체</option>
+            {SERMON_LIST_TYPES.map((t) => (
+              <option key={t} value={t}>
+                {SERMON_CATEGORY_LABEL[t]}
+              </option>
+            ))}
+          </select>
+          <select
+            value={filterPreacher}
+            onChange={(e) => setFilterPreacher(e.target.value)}
+            className="rounded border border-[#1e2a4a]/20 bg-white px-2 py-1 text-sm text-[#1e2a4a] focus:outline-none focus:ring-1 focus:ring-[#1e2a4a]"
+          >
+            <option value="">설교자 전체</option>
+            {preachers.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+          {(filterType || filterPreacher) && (
+            <button
+              type="button"
+              onClick={() => {
+                setFilterType("");
+                setFilterPreacher("");
+                goToPage(1);
+              }}
+              className="text-xs text-[#496674] underline underline-offset-2 hover:text-[#1e2a4a]"
+            >
+              초기화
+            </button>
+          )}
+        </div>
+
         {isLoading ? (
           <div className="flex min-h-[280px] flex-col items-center justify-center gap-3 bg-white py-16">
             <Loader2 className="h-10 w-10 animate-spin text-[#1e2a4a]" aria-hidden />
@@ -108,20 +209,24 @@ export function SermonsBoard() {
           </div>
         ) : hasAnyError && data === undefined ? (
           <div className="bg-white px-4 py-16 text-center">
-            <p className="text-[#496674]">영상 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+            <p className="text-[#496674]">
+              영상 목록을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.
+            </p>
             <Button asChild variant="outline" className="mt-6 border-[#1e2a4a] text-[#1e2a4a]">
               <Link href="/">홈으로</Link>
             </Button>
           </div>
         ) : allEmpty ? (
-          <div className="bg-white px-4 py-16 text-center text-[#496674]">등록된 영상이 없습니다.</div>
+          <div className="bg-white px-4 py-16 text-center text-[#496674]">
+            등록된 영상이 없습니다.
+          </div>
         ) : (
           <>
             {/* 데스크톱: 표 */}
             <div className="relative hidden md:block">
               {isFetching ? (
                 <div
-                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pt-3 pr-4"
+                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pr-4 pt-3"
                   aria-live="polite"
                 >
                   <Loader2 className="h-6 w-6 animate-spin text-[#1e2a4a]" aria-hidden />
@@ -131,11 +236,28 @@ export function SermonsBoard() {
                 <thead>
                   <tr className="border-b border-[#E6E6E6] bg-[#eef1f6] text-[#1e2a4a]">
                     <th className="w-14 px-3 py-3 text-center font-semibold">번호</th>
-                    <th className="w-36 px-3 py-3 font-semibold">구분</th>
+                    <th
+                      className="w-36 cursor-pointer select-none px-3 py-3 font-semibold"
+                      onClick={() => handleSort("categoryLabel")}
+                    >
+                      구분
+                      <SortIcon col="categoryLabel" sortKey={sortKey} sortDir={sortDir} />
+                    </th>
                     <th className="min-w-[200px] px-3 py-3 font-semibold">제목</th>
-                    <th className="w-28 px-3 py-3 font-semibold">설교자</th>
-                    <th className="w-32 px-3 py-3 font-semibold">날짜</th>
-                    <th className="w-24 px-3 py-3 text-center font-semibold">링크</th>
+                    <th
+                      className="w-32 cursor-pointer select-none px-3 py-3 font-semibold"
+                      onClick={() => handleSort("preacher")}
+                    >
+                      설교자
+                      <SortIcon col="preacher" sortKey={sortKey} sortDir={sortDir} />
+                    </th>
+                    <th
+                      className="w-32 cursor-pointer select-none px-3 py-3 font-semibold"
+                      onClick={() => handleSort("date")}
+                    >
+                      날짜
+                      <SortIcon col="date" sortKey={sortKey} sortDir={sortDir} />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -147,7 +269,9 @@ export function SermonsBoard() {
                         index % 2 === 0 ? "bg-white" : "bg-[#fafbfc]",
                       )}
                     >
-                      <td className="px-3 py-3 text-center text-[#496674]">{rowNumberBase + index + 1}</td>
+                      <td className="px-3 py-3 text-center text-[#496674]">
+                        {rowNumberBase + index + 1}
+                      </td>
                       <td className="px-3 py-3">
                         <span className="inline-block max-w-full truncate rounded border border-[#1e2a4a]/20 bg-white px-2 py-0.5 text-xs font-medium text-[#1e2a4a]">
                           {row.categoryLabel}
@@ -158,28 +282,28 @@ export function SermonsBoard() {
                           href={buildWatchUrl(row)}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="font-medium text-[#1e2a4a] underline-offset-2 hover:underline"
+                          className="flex items-center gap-3 font-medium text-[#1e2a4a] underline-offset-2 hover:underline"
                         >
-                          {row.title || "(제목 없음)"}
+                          {getThumbnailUrl(row.url) && (
+                            <img
+                              src={getThumbnailUrl(row.url)!}
+                              alt=""
+                              className="h-12 w-20 shrink-0 rounded object-cover"
+                            />
+                          )}
+                          <span>
+                            {row.title || "(제목 없음)"}
+                            {row.mainText ? (
+                              <span className="mt-1 line-clamp-1 block text-xs font-normal text-[#496674]">
+                                {row.mainText}
+                              </span>
+                            ) : null}
+                          </span>
                         </a>
-                        {row.mainText ? (
-                          <p className="mt-1 line-clamp-1 text-xs text-[#496674]">{row.mainText}</p>
-                        ) : null}
                       </td>
-                      <td className="px-3 py-3 text-[#333]">{row.preacher || "—"}</td>
+                      <td className="px-3 py-3 text-sm text-[#333]">{row.preacher || "—"}</td>
                       <td className="whitespace-nowrap px-3 py-3 text-[#496674]">
                         {formatVideoDate(row.date)}
-                      </td>
-                      <td className="px-3 py-3 text-center">
-                        <a
-                          href={buildWatchUrl(row)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm font-medium text-[#1e2a4a] hover:underline"
-                        >
-                          보기
-                          <ExternalLink className="size-3.5 shrink-0 opacity-70" aria-hidden />
-                        </a>
                       </td>
                     </tr>
                   ))}
@@ -191,7 +315,7 @@ export function SermonsBoard() {
             <div className="relative md:hidden">
               {isFetching ? (
                 <div
-                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pt-3 pr-4"
+                  className="pointer-events-none absolute inset-0 z-[1] flex items-start justify-end bg-white/40 pr-4 pt-3"
                   aria-live="polite"
                 >
                   <Loader2 className="h-6 w-6 animate-spin text-[#1e2a4a]" aria-hidden />
@@ -204,31 +328,27 @@ export function SermonsBoard() {
                       <span className="shrink-0 rounded border border-[#1e2a4a]/20 bg-[#f8fafc] px-2 py-0.5 text-[11px] font-semibold text-[#1e2a4a]">
                         {row.categoryLabel}
                       </span>
-                      <span className="text-xs text-[#496674]">
-                        {formatVideoDate(row.date)}
-                      </span>
+                      <span className="text-xs text-[#496674]">{formatVideoDate(row.date)}</span>
                     </div>
                     <a
                       href={buildWatchUrl(row)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base font-semibold leading-snug text-[#1e2a4a] underline-offset-2 hover:underline"
+                      className="flex items-center gap-3 text-base font-semibold leading-snug text-[#1e2a4a] underline-offset-2 hover:underline"
                     >
+                      {getThumbnailUrl(row.url) && (
+                        <img
+                          src={getThumbnailUrl(row.url)!}
+                          alt=""
+                          className="h-14 w-24 shrink-0 rounded object-cover"
+                        />
+                      )}
                       {row.title || "(제목 없음)"}
                     </a>
                     {row.mainText ? (
                       <p className="mt-1 text-sm text-[#496674]">{row.mainText}</p>
                     ) : null}
                     <p className="mt-2 text-sm text-[#333]">{row.preacher || "—"}</p>
-                    <a
-                      href={buildWatchUrl(row)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3 inline-flex items-center gap-1 text-sm font-medium text-[#1e2a4a]"
-                    >
-                      유튜브에서 보기
-                      <ExternalLink className="size-3.5" aria-hidden />
-                    </a>
                   </li>
                 ))}
               </ul>

@@ -17,7 +17,7 @@ export function MinisterCard({ name, image, position, officer, greeting }: Minis
   return (
     <article className="hover:border-[#1e2a4a]/18 group border border-[#E6E6E6] bg-white p-6 shadow-[0_1px_2px_rgba(30,42,74,0.04)] transition hover:shadow-md sm:p-8">
       <div className="flex flex-col gap-6 md:flex-row md:items-start md:gap-10">
-        <div className="border-[#1e2a4a]/12 relative mx-auto size-[112px] shrink-0 overflow-hidden rounded-full border-2 sm:size-[128px] md:mx-0 md:size-[140px]">
+        <div className="border-[#1e2a4a]/12 relative mx-auto size-[150px] shrink-0 overflow-hidden rounded-full border-2 sm:size-[160px] md:mx-0 md:size-[180px]">
           <Image
             src={image}
             alt={`${name} ${title}`}

@@ -85,13 +85,10 @@ export async function getVideosPage(params: GetVideosPageParams): Promise<{
 /** 설교 목록 페이지 크기 (API `size`와 동일) */
 export const SERMONS_PAGE_SIZE = 10;
 
-/** 설교·찬양 보드: type 없이 페이지네이션 (`apiPage`는 서버 기준 0부터) */
-export async function getSermonsVideosPage(apiPage: number): Promise<{
-  videos: IYoutube[];
-  totalElements: number;
-}> {
-  return getVideosPage({
-    page: apiPage,
-    size: SERMONS_PAGE_SIZE,
-  });
+/** 설교·찬양 보드: type 선택 가능, `apiPage`는 서버 기준 0부터 */
+export async function getSermonsVideosPage(
+  apiPage: number,
+  type?: YoutubeType,
+): Promise<{ videos: IYoutube[]; totalElements: number }> {
+  return getVideosPage({ type, page: apiPage, size: SERMONS_PAGE_SIZE });
 }

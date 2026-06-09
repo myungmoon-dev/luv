@@ -20,7 +20,7 @@ export function LeadershipProfileCard({
 
   return (
     <article className="hover:border-[#1e2a4a]/18 group flex gap-4 border border-[#E6E6E6] bg-white p-4 shadow-[0_1px_2px_rgba(30,42,74,0.04)] transition hover:shadow-md sm:gap-5 sm:p-5">
-      <div className="border-[#1e2a4a]/12 relative size-20 shrink-0 overflow-hidden rounded-full border-2 ring-2 ring-[#1e2a4a]/[0.06] sm:size-[92px]">
+      <div className="border-[#1e2a4a]/12 relative size-32 shrink-0 overflow-hidden rounded-full border-2 ring-2 ring-[#1e2a4a]/[0.06] sm:size-40">
         <Image
           src={image}
           alt={`${name} ${title}`}

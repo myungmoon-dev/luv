@@ -20,13 +20,13 @@ export function NewFamilyAlbum() {
     queryFn: () =>
       getAlbumList({
         type: "newFamily",
-        page,
+        page: page - 1,
         size: PAGE_SIZE,
       }),
   });
 
-  const albums = data?.albums ?? [];
-  const total = data?.totalAlbums ?? 0;
+  const albums = data?.content ?? [];
+  const total = data?.totalElements ?? 0;
 
   return (
     <section className="mt-12 border-t border-[#E6E6E6] pt-10">
@@ -53,7 +53,7 @@ export function NewFamilyAlbum() {
             {albums.map((album) => {
               const cover = album.imageUrls?.[0];
               return (
-                <li key={album._id}>
+                <li key={album.id}>
                   <button
                     type="button"
                     disabled={!cover}

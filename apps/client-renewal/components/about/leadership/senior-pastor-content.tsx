@@ -1,17 +1,35 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
 import { CustomImage } from "@/components/about/custom-image";
+import { getPastorBooks, getPastorProfile } from "@/lib/api-pastor";
 
 export function SeniorPastorContent() {
+  const { data: books = [] } = useQuery({
+    queryKey: ["pastor", "books"],
+    queryFn: getPastorBooks,
+  });
+
+  const { data: profile, isLoading: isProfileLoading } = useQuery({
+    queryKey: ["pastor", "profile"],
+    queryFn: getPastorProfile,
+  });
+
   return (
     <div className="mb-14">
       {/* Hero Section */}
       <div className="relative mb-10 overflow-hidden">
-        <CustomImage
-          className="h-[240px] w-full sm:h-[380px] md:h-[500px] lg:h-[580px]"
-          src="/images/leader/ji-hyuk-preaching.jpg"
-          alt="담임목사 김지혁"
-          imgClass="object-cover object-top"
-          sizes="100vw"
-        />
+        {isProfileLoading ? (
+          <div className="h-[240px] w-full animate-pulse bg-[#1e2a4a]/20 sm:h-[380px] md:h-[500px] lg:h-[580px]" />
+        ) : (
+          <CustomImage
+            className="h-[240px] w-full sm:h-[380px] md:h-[500px] lg:h-[580px]"
+            src={profile?.topImageUrl ?? ""}
+            alt="담임목사 김지혁"
+            imgClass="object-cover object-top"
+            sizes="100vw"
+          />
+        )}
         <div className="absolute inset-0 bg-linear-to-r from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 p-4 sm:p-10 md:p-14">
           <p className="text-sm text-white sm:text-xl md:text-3xl">
@@ -96,13 +114,17 @@ export function SeniorPastorContent() {
       {/* 3. BIOGRAPHY */}
       <div className="mx-auto mb-12 flex max-w-5xl flex-col px-4 sm:px-8 md:flex-row md:items-stretch">
         <div className="w-full shrink-0 md:w-[45%]">
-          <CustomImage
-            className="h-[260px] w-full md:h-full md:min-h-[400px]"
-            src="/images/about/introduce_senior2.jpeg"
-            alt="김지혁 담임목사"
-            imgClass="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 45vw"
-          />
+          {isProfileLoading ? (
+            <div className="h-[260px] w-full animate-pulse bg-[#1e2a4a]/20 md:h-full md:min-h-[400px]" />
+          ) : (
+            <CustomImage
+              className="h-[260px] w-full md:h-full md:min-h-[400px]"
+              src={profile?.bottomImageUrl ?? ""}
+              alt="김지혁 담임목사"
+              imgClass="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 45vw"
+            />
+          )}
         </div>
         <div className="flex flex-1 flex-col px-4 py-8 sm:px-8 sm:py-10 lg:px-10">
           <div className="mb-1 flex justify-end">
@@ -191,48 +213,35 @@ export function SeniorPastorContent() {
           </p>
         </div>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {[
-            {
-              title: "돌아오라 내게로!",
-              sub: "말라기 강해설교",
-              publisher: "마음과마음",
-              year: "2026",
-            },
-            {
-              title: "마음에서 마음으로",
-              sub: "조나단 에드워즈에게 배우는 설교",
-              publisher: "CLC",
-              year: "2026(예정)",
-            },
-            { title: "스펄전의 설교학교", sub: "", publisher: "새물결플러스", year: "2013" },
-            {
-              title: "하나님, 아름다움, 설교",
-              sub: "",
-              publisher: "생명의말씀사",
-              year: "2025",
-            },
-            { title: "설교학과 해석학: 네 관점", sub: "", publisher: "CLC", year: "2026" },
-          ].map((book) => (
+          {books.map((book) => (
             <div
-              key={book.title}
+              key={book.id}
               className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
             >
-              <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10">
-                <svg
-                  className="size-4 text-[#001F54]"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
+              {book.imageUrl ? (
+                <img
+                  src={book.imageUrl}
+                  alt={book.title}
+                  className="size-14 shrink-0 rounded-lg object-cover"
+                />
+              ) : (
+                <div className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10">
+                  <svg
+                    className="size-5 text-[#001F54]"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                    />
+                  </svg>
+                </div>
+              )}
               <div>
                 <p className="text-sm font-bold text-[#001F54] sm:text-base">{book.title}</p>
                 {book.sub && <p className="text-xs text-[#6E6E6E] sm:text-sm">{book.sub}</p>}
