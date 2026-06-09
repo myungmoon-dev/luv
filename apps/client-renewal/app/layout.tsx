@@ -11,12 +11,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "메인 | 명문교회",
-  description: "복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!",
+  title: "명문교회",
+  description: "LOVE BEGINS, MYUNGMOON CHURCH!",
   keywords: "명문교회, 대한예수교장로회 합동, 김지혁 목사, 이덕진 목사",
   openGraph: {
-    title: "메인 | 명문교회",
-    description: "복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!",
+    title: "대한예수교장로회 합동 명문교회",
+    description: "LOVE BEGINS, MYUNGMOON CHURCH!",
     url: "https://myungmoon.or.kr/",
     images: [{ url: "https://myungmoon.or.kr/images/LogoBlue.png" }],
     type: "website",
