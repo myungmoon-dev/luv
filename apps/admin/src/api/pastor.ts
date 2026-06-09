@@ -1,5 +1,5 @@
 import { api } from ".";
-import type { IPastorBook } from "type";
+import type { IPastorBook, IPastorProfile } from "type";
 import type { PageResponse } from "@/types/common";
 
 export type PastorBookForm = {
@@ -28,5 +28,15 @@ export const putPastorBook = async ({ id, form }: { id: string; form: FormData }
 
 export const deletePastorBook = async ({ id }: { id: string }) => {
   const { data } = await api.delete(`/pastor/books/${id}`);
+  return data;
+};
+
+export const getPastorProfile = async () => {
+  const { data } = await api.get<IPastorProfile>("/pastor/profile");
+  return data;
+};
+
+export const putPastorProfile = async (form: FormData) => {
+  const { data } = await api.put("/pastor/profile", form, MULTIPART);
   return data;
 };

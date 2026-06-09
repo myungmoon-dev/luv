@@ -7,3 +7,8 @@ export interface IPastorBook {
   imageUrl: string;
   createdAt?: number;
 }
+
+export interface IPastorProfile {
+  topImageUrl: string;
+  bottomImageUrl: string;
+}

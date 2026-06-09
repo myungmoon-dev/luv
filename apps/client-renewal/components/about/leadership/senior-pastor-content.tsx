@@ -2,7 +2,7 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { CustomImage } from "@/components/about/custom-image";
-import { getPastorBooks } from "@/lib/api-pastor";
+import { getPastorBooks, getPastorProfile } from "@/lib/api-pastor";
 
 export function SeniorPastorContent() {
   const { data: books = [] } = useQuery({
@@ -10,17 +10,26 @@ export function SeniorPastorContent() {
     queryFn: getPastorBooks,
   });
 
+  const { data: profile, isLoading: isProfileLoading } = useQuery({
+    queryKey: ["pastor", "profile"],
+    queryFn: getPastorProfile,
+  });
+
   return (
     <div className="mb-14">
       {/* Hero Section */}
       <div className="relative mb-10 overflow-hidden">
-        <CustomImage
-          className="h-[240px] w-full sm:h-[380px] md:h-[500px] lg:h-[580px]"
-          src="/images/leader/ji-hyuk-preaching.jpg"
-          alt="담임목사 김지혁"
-          imgClass="object-cover object-top"
-          sizes="100vw"
-        />
+        {isProfileLoading ? (
+          <div className="h-[240px] w-full animate-pulse bg-[#1e2a4a]/20 sm:h-[380px] md:h-[500px] lg:h-[580px]" />
+        ) : (
+          <CustomImage
+            className="h-[240px] w-full sm:h-[380px] md:h-[500px] lg:h-[580px]"
+            src={profile?.topImageUrl ?? ""}
+            alt="담임목사 김지혁"
+            imgClass="object-cover object-top"
+            sizes="100vw"
+          />
+        )}
         <div className="absolute inset-0 bg-linear-to-r from-black/60 to-transparent" />
         <div className="absolute bottom-0 left-0 p-4 sm:p-10 md:p-14">
           <p className="text-sm text-white sm:text-xl md:text-3xl">
@@ -105,13 +114,17 @@ export function SeniorPastorContent() {
       {/* 3. BIOGRAPHY */}
       <div className="mx-auto mb-12 flex max-w-5xl flex-col px-4 sm:px-8 md:flex-row md:items-stretch">
         <div className="w-full shrink-0 md:w-[45%]">
-          <CustomImage
-            className="h-[260px] w-full md:h-full md:min-h-[400px]"
-            src="/images/about/introduce_senior2.jpeg"
-            alt="김지혁 담임목사"
-            imgClass="object-cover object-top"
-            sizes="(max-width: 768px) 100vw, 45vw"
-          />
+          {isProfileLoading ? (
+            <div className="h-[260px] w-full animate-pulse bg-[#1e2a4a]/20 md:h-full md:min-h-[400px]" />
+          ) : (
+            <CustomImage
+              className="h-[260px] w-full md:h-full md:min-h-[400px]"
+              src={profile?.bottomImageUrl ?? ""}
+              alt="김지혁 담임목사"
+              imgClass="object-cover object-top"
+              sizes="(max-width: 768px) 100vw, 45vw"
+            />
+          )}
         </div>
         <div className="flex flex-1 flex-col px-4 py-8 sm:px-8 sm:py-10 lg:px-10">
           <div className="mb-1 flex justify-end">

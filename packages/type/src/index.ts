@@ -32,7 +32,7 @@ import {
 import { IBook, IBookForm } from "./book";
 import { IPopup, IPopupForm } from "./popup";
 import { MissionLocation } from "./news";
-import { IPastorBook } from "./pastor";
+import { IPastorBook, IPastorProfile } from "./pastor";
 
 export type {
   IBulletin,
@@ -77,4 +77,5 @@ export type {
   IGetAlbumRequest,
   MissionLocation,
   IPastorBook,
+  IPastorProfile,
 };

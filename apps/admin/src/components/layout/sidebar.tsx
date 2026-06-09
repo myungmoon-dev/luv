@@ -56,7 +56,7 @@ const contentMenuItems = [
 ];
 
 const peopleMenuItems = [
-  { title: "담임목사 저서", icon: BookText, href: "/pastor" },
+  { title: "담임목사 프로필", icon: BookText, href: "/pastor" },
 ];
 
 const systemMenuItems = [
