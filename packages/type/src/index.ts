@@ -33,6 +33,7 @@ import { IBook, IBookForm } from "./book";
 import { IPopup, IPopupForm } from "./popup";
 import { MissionLocation } from "./news";
 import { IPastorBook, IPastorProfile } from "./pastor";
+import { IHomeYoutube, IHomeImage } from "./home";
 
 export type {
   IBulletin,
@@ -78,4 +79,6 @@ export type {
   MissionLocation,
   IPastorBook,
   IPastorProfile,
+  IHomeYoutube,
+  IHomeImage,
 };

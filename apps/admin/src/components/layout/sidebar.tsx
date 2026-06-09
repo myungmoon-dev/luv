@@ -17,6 +17,7 @@ import {
   LogOut,
   ChevronUp,
   BookText,
+  Layout,
 } from "lucide-react";
 import {
   Sidebar,
@@ -46,6 +47,7 @@ const mainMenuItems = [
 ];
 
 const contentMenuItems = [
+  { title: "Home", icon: Layout, href: "/home" },
   { title: "유튜브", icon: Clapperboard, href: "/youtube" },
   { title: "주보", icon: FileText, href: "/bulletins" },
   { title: "성경통독", icon: BookOpen, href: "/bibles" },
