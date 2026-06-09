@@ -12,7 +12,7 @@ const HomeworshipListSection = ({ data }: IHomeworshipListSectionProps) => {
 
   return (
     <div className="grid grid-cols-2 gap-2 px-3 sm:gap-4 sm:px-6 md:grid-cols-3 md:px-12 lg:grid-cols-4 lg:px-16">
-      {data?.homeworships.map((worship: IHomeWorship) => {
+      {data?.content.map((worship: IHomeWorship) => {
         return (
           <HomeworshipListItem
             key={worship.id}

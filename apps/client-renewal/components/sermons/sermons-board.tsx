@@ -141,7 +141,7 @@ export function SermonsBoard() {
                 <tbody>
                   {rows.map((row, index) => (
                     <tr
-                      key={`${row._id}-${row.category}`}
+                      key={`${row.id}-${row.category}`}
                       className={cn(
                         "border-b border-[#E6E6E6] transition-colors hover:bg-[#f8fafc]",
                         index % 2 === 0 ? "bg-white" : "bg-[#fafbfc]",
@@ -203,7 +203,7 @@ export function SermonsBoard() {
               ) : null}
               <ul className="divide-y divide-[#E6E6E6] bg-white">
                 {rows.map((row) => (
-                  <li key={`${row._id}-${row.category}-m`} className="px-4 py-4">
+                  <li key={`${row.id}-${row.category}-m`} className="px-4 py-4">
                     <div className="mb-2 flex items-start justify-between gap-2">
                       <span className="shrink-0 rounded border border-[#1e2a4a]/20 bg-[#f8fafc] px-2 py-0.5 text-[11px] font-semibold text-[#1e2a4a]">
                         {row.categoryLabel}

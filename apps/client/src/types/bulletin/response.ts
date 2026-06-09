@@ -1,8 +1,8 @@
 import { IBulletin } from "type";
 
 export interface IGetBulletinsResponse {
-  bulletins: IBulletin[];
-  totalBulletins: number;
+  content: IBulletin[];
+  totalElements: number;
 }
 
 export interface IGetBulletinResponse extends IBulletin {}

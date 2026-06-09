@@ -23,9 +23,9 @@ const Mission = () => {
           <div className="flex justify-center py-10 sm:py-12 md:py-16">
             <Spinner />
           </div>
-        ) : data?.missionNewsList && data.missionNewsList.length > 0 ? (
+        ) : data?.content && data.content.length > 0 ? (
           <div className="flex flex-col gap-4 sm:gap-6 md:gap-8">
-            {data.missionNewsList.map((mission) => (
+            {data.content.map((mission) => (
               <MissionItem
                 key={mission.id}
                 mission={mission}
@@ -41,7 +41,7 @@ const Mission = () => {
         <Pagination
           currentPage={page}
           onSetPage={onSetPaginationQuery}
-          totalQuantity={data?.totalMissionNewsCount || 0}
+          totalQuantity={data?.totalElements || 0}
         />
       </div>
     </div>

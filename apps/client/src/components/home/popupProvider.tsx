@@ -11,7 +11,7 @@ const PopupProvider = ({ children }: IPopupProviderProps) => {
   useEffect(() => {
     if (!data) return;
 
-    data.popups.forEach((popup) => {
+    data.forEach((popup) => {
       window.open(`/popup?src=${encodeURIComponent(popup.imageUrl)}`, "_blank", "width=800,height=600");
     });
   }, [data]);

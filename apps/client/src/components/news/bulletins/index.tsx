@@ -26,7 +26,7 @@ const Bulletins = () => {
         ) : (
           <Table
             data={
-              data?.bulletins.map((bulletin) => ({
+              data?.content.map((bulletin) => ({
                 id: bulletin.id,
                 date: bulletin.date,
                 title: bulletin.title,
@@ -39,7 +39,7 @@ const Bulletins = () => {
         <Pagination
           currentPage={page}
           onSetPage={onSetPaginationQuery}
-          totalQuantity={data?.totalBulletins || 0}
+          totalQuantity={data?.totalElements || 0}
         />
       </div>
     </div>

@@ -37,7 +37,7 @@ const DiscipleshipFaithReadingBible = () => {
         onClickNext={handleClickNext}
       />
       <div className="mt-6 flex flex-col gap-4">
-        {data?.bibles.map((bible) => (
+        {data?.content.map((bible) => (
           <div
             key={bible.id}
             className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
@@ -55,7 +55,7 @@ const DiscipleshipFaithReadingBible = () => {
           </div>
         ))}
 
-        {data?.bibles.length === 0 && (
+        {data?.content.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <p className="text-base">등록된 성경통독이 없습니다</p>
           </div>

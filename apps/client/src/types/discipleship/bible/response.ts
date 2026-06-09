@@ -1,7 +1,8 @@
 import { IBible } from "type";
 
 export interface IGetBiblesResponse {
-  bibles: IBible[];
+  content: IBible[];
+  totalElements: number;
 }
 
 export interface IGetBibleResponse extends IBible {}

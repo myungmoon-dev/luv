@@ -3,7 +3,7 @@ import { api } from ".";
 import { IGetMissionsRequest, IGetCongregationNewsListRequest } from "@/types/news/request";
 
 export const getMissions = async ({ page, size, location }: IGetMissionsRequest) => {
-  const { data } = await api.get<IGetMissionsResponse>("/mission-news-list", {
+  const { data } = await api.get<IGetMissionsResponse>("/mission-news", {
     params: { page, size, location },
   });
 
@@ -11,7 +11,7 @@ export const getMissions = async ({ page, size, location }: IGetMissionsRequest)
 };
 
 export const getMission = async (missionId: string) => {
-  const { data } = await api.get<IGetMissionResponse>(`/mission-news-list/${missionId}`);
+  const { data } = await api.get<IGetMissionResponse>(`/mission-news/${missionId}`);
 
   return data;
 };

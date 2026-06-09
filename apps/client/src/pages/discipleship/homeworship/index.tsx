@@ -58,7 +58,7 @@ const HomeworshipMain = () => {
             <Pagination
               currentPage={page}
               onSetPage={onSetPaginationQuery}
-              totalQuantity={data.totalHomeworships || 0}
+              totalQuantity={data.totalElements || 0}
             />
           </div>
         )}

@@ -1,8 +1,8 @@
 import { IHomeWorship } from "type";
 
 export interface IGetHomeWorshipsResponse {
-  homeworships: IHomeWorship[];
-  totalHomeworships: number;
+  content: IHomeWorship[];
+  totalElements: number;
 }
 
 export interface IGetHomeWorshipResponse extends IHomeWorship {}
