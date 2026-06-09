@@ -34,6 +34,7 @@ jobs:
           NEXT_PUBLIC_KAKAOMAP_KEY: ${{ secrets.NEXT_PUBLIC_KAKAOMAP_KEY }}
           NEXT_PUBLIC_CLIENT_RENEWAL_API_BASE: ${{ secrets.NEXT_PUBLIC_CLIENT_RENEWAL_API_BASE }}
           NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN: ${{ secrets.NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN }}
+          NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL: ${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }}
         run: pnpm --filter client-renewal build
 
       - name: Sync to EC2 (node_modules 제외)
