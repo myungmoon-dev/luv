@@ -3,7 +3,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowLeft, Loader2, PencilLine, Trash2 } from "lucide-react";
-import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
@@ -204,12 +203,11 @@ export function FamilyWorshipDetail() {
 
             {/* 이미지 */}
             {data.imageUrls?.length ? (
-              <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <div className="mt-5 flex flex-col gap-3 sm:gap-4">
                 {data.imageUrls.map((imageUrl) => (
                   <div key={imageUrl} className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-                    <div className="relative aspect-[4/3] w-full">
-                      <Image src={imageUrl} alt="예배 이미지" fill className="object-contain" unoptimized />
-                    </div>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={imageUrl} alt="예배 이미지" className="h-auto w-full object-contain" />
                   </div>
                 ))}
               </div>

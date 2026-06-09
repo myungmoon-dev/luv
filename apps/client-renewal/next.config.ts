@@ -2,8 +2,6 @@ import type { NextConfig } from "next";
 
 import { getBackendApiOrigin } from "./lib/api-config";
 
-const API_ORIGIN = getBackendApiOrigin();
-
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
@@ -20,7 +18,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: `${process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL || "http://localhost:8080"}/api/:path*`,
+        destination: `${getBackendApiOrigin()}/api/:path*`,
       },
     ];
   },

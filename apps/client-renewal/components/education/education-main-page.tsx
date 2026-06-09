@@ -113,25 +113,15 @@ export function EducationMainPage() {
 
       {/* 사명 */}
       <section className="relative -mt-6 px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#1e2a4a]/10 bg-white shadow-[0_20px_50px_-24px_rgba(30,42,74,0.35)]">
-          <div className="relative aspect-[21/9] min-h-[160px] w-full sm:aspect-[2.4/1] sm:min-h-[200px]">
-            <Image
-              src="/images/education/vision1.jpg"
-              alt=""
-              fill
-              className="object-cover brightness-[0.55]"
-              sizes="(max-width: 896px) 100vw, 896px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1638]/90 via-[#1e2a4a]/45 to-transparent" />
-            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8 md:p-10">
-              <p className="text-xs font-semibold uppercase tracking-widest text-white/80">사명 선언문</p>
-              <p className="mt-2 text-lg font-semibold leading-snug text-white sm:text-xl md:text-2xl">
-                명문교회 교육부서는
-              </p>
-              <p className="mt-1 text-lg font-semibold leading-snug text-white sm:text-xl md:text-2xl">
-                하나님을 경외하는 다음세대를 세우기 위해 존재한다.
-              </p>
-            </div>
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#1e2a4a]/10 bg-[#1e2a4a] shadow-[0_20px_50px_-24px_rgba(30,42,74,0.35)]">
+          <div className="flex min-h-[200px] flex-col justify-center px-6 py-10 sm:min-h-[240px] sm:px-10 sm:py-12 md:min-h-[280px] md:px-12 md:py-14">
+            <p className="text-sm font-semibold uppercase tracking-widest text-white/75 sm:text-base">사명 선언문</p>
+            <p className="mt-4 text-2xl font-bold leading-snug text-white sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
+              명문교회 교육부서는
+            </p>
+            <p className="mt-2 text-2xl font-bold leading-snug text-white sm:text-3xl md:text-4xl lg:text-5xl">
+              하나님을 경외하는 다음세대를 세우기 위해 존재한다.
+            </p>
           </div>
         </div>
       </section>
