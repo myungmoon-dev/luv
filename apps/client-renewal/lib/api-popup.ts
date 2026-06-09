@@ -1,3 +1,4 @@
+import { resolveAssetOrigin } from "@/lib/api-config";
 import { api } from "@/lib/api";
 
 export type Popup = {
@@ -51,10 +52,7 @@ export function resolvePopupImageUrl(imageUrl: string): string {
   const trimmed = imageUrl.trim();
   if (!trimmed) return trimmed;
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  const base =
-    process.env.NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN?.replace(/\/$/, "") ||
-    process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL?.replace(/\/$/, "") ||
-    "";
+  const base = resolveAssetOrigin();
   if (!base) return trimmed;
   const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
   return `${base}${path}`;
