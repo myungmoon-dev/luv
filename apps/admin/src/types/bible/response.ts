@@ -1,7 +1,6 @@
 import { IBible } from "type";
+import { PageResponse } from "../common";
 
-export interface IGetBiblesResponse {
-  bibles: IBible[];
-}
+export type IGetBiblesResponse = PageResponse<IBible>;
 
 export interface IGetBibleResponse extends IBible {}

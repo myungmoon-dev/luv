@@ -1,8 +1,6 @@
 import { IMissionNews } from "type";
+import { PageResponse } from "../common";
 
-export interface IGetMissionNewsListResponse {
-  missionNewsList: IMissionNews[];
-  totalMissionNewsListCount: number;
-}
+export type IGetMissionNewsListResponse = PageResponse<IMissionNews>;
 
 export interface IGetMissionNewsResponse extends IMissionNews {}

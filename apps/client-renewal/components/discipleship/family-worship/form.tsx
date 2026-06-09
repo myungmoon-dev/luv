@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 
 import { FamilyWorshipContentEditor } from "@/components/discipleship/family-worship/content-editor";
 import { DiscipleshipNavStrip } from "@/components/discipleship/discipleship-section-nav";
+import { compressImages } from "@/hooks/use-image-compress";
 import { getHomeWorship, patchHomeWorship, postHomeWorship } from "@/lib/api-homeworship";
 import { isRichTextEmpty } from "@/lib/rich-text";
 
@@ -64,13 +65,18 @@ export function FamilyWorshipForm({ mode }: { mode: Mode }) {
     setImagePreviews([]);
   }, [mode, homeWorship]);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files ?? []);
-    const combined = [...imageFiles, ...files].slice(0, MAX_IMAGES);
-    const urls = combined.map((f) => URL.createObjectURL(f));
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(e.target.files ?? []);
+
+    // 10MB 초과 파일은 업로드 전 자동 압축
+    const compressedFiles = await compressImages(selectedFiles);
+    const mergedFiles = [...imageFiles, ...compressedFiles].slice(0, MAX_IMAGES);
+
+    const previewUrls = mergedFiles.map((f) => URL.createObjectURL(f));
+
     revokePreviews(imagePreviews);
-    setImageFiles(combined);
-    setImagePreviews(urls);
+    setImageFiles(mergedFiles);
+    setImagePreviews(previewUrls);
     e.target.value = "";
   };
 
@@ -117,7 +123,7 @@ export function FamilyWorshipForm({ mode }: { mode: Mode }) {
       return;
     }
 
-    const existingImageUrls = isNewImage ? [] : (homeWorship?.imageUrls ?? []);
+    const existingImageUrls = isNewImage ? [] : homeWorship?.imageUrls ?? [];
     const newImages = isNewImage ? imageFiles : [];
 
     if (existingImageUrls.length === 0 && newImages.length === 0) {

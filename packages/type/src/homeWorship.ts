@@ -1,7 +1,7 @@
 import { IBoardFormBase } from "./common";
 
 export interface IHomeworshipComment {
-  _id: string;
+  id: string;
   userName: string;
   password: string;
   content: string;
@@ -9,7 +9,7 @@ export interface IHomeworshipComment {
 }
 
 export interface IHomeWorship {
-  _id: string;
+  id: string;
   date: string;
   title: string;
   content: string;

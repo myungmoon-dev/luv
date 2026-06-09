@@ -47,7 +47,7 @@ const AlbumListMain = ({ className, albumType }: IAlbumListProps) => {
 
   return (
     <div className={cn("max-w-screen-xl flex w-full flex-col items-center justify-center gap-10 px-10", className)}>
-      {data && data.totalAlbums >= 1 && (
+      {data && data.totalElements >= 1 && (
         <>
           <AlbumTitleSection albumType={albumType} />
           {isFetching ? (
@@ -56,8 +56,8 @@ const AlbumListMain = ({ className, albumType }: IAlbumListProps) => {
             </div>
           ) : (
             <div className="2xl:grid-cols-4 grid w-full grid-cols-1 gap-7 md:grid-cols-3">
-              {data.albums.map((album, idx) => (
-                <AlbumItemSection key={album._id} album={album} onClick={() => showModal(album.imageUrls)} />
+              {data.content.map((album) => (
+                <AlbumItemSection key={album.id} album={album} onClick={() => showModal(album.imageUrls)} />
               ))}
             </div>
           )}

@@ -14,7 +14,8 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AlbumType } from "type";
-import { Icon, Spinner } from "ui";
+import { Icon } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 import { ALBUM_TYPE_OPTIONS } from "../config";
 import { toast } from "sonner";
 

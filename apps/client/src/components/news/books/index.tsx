@@ -7,10 +7,10 @@ import NewsNavigation from "../Navigation";
 const Books = () => {
   const { data, isFetching } = useGetBooks();
 
-  const books = data?.books.map((book) => book).flat();
+  const books = data?.content.map((book) => book).flat();
 
   const { hasNextPage, setNextPage } = useBooksPagination({
-    totalCount: data?.totalBooksCount || 0,
+    totalCount: data?.totalElements || 0,
     pageSize: 5,
   });
 
@@ -29,7 +29,7 @@ const Books = () => {
         ) : (
           <div className="flex flex-col">
             <hr className="border-[#747474]" />
-            {books?.map((book) => <Book key={book._id} book={book} />)}
+            {books?.map((book) => <Book key={book.id} book={book} />)}
           </div>
         )}
         {hasNextPage && (

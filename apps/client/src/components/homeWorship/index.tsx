@@ -39,10 +39,10 @@ const HomeWorships = () => {
 
       {/* 컨텐츠 */}
       <div className="flex flex-col gap-4 p-4 pb-24">
-        {data?.homeworships.map((homeWorship) => (
+        {data?.content.map((homeWorship) => (
           <div
-            key={homeWorship._id}
-            onClick={() => push(`/discipleship/homeworship/${homeWorship._id}`)}
+            key={homeWorship.id}
+            onClick={() => push(`/discipleship/homeworship/${homeWorship.id}`)}
             className="flex cursor-pointer flex-col gap-2 rounded-lg border border-gray-200 p-4 transition-shadow hover:shadow-md"
           >
             <div className="flex items-center justify-between">
@@ -64,7 +64,7 @@ const HomeWorships = () => {
           </div>
         ))}
 
-        {data?.homeworships.length === 0 && (
+        {data?.content.length === 0 && (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -85,9 +85,9 @@ const HomeWorships = () => {
         )}
 
         {/* 페이지네이션 */}
-        {data && data.totalHomeworships > 0 && (
+        {data && data.totalElements > 0 && (
           <div className="mt-4">
-            <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data.totalHomeworships} />
+            <Pagination currentPage={page} onSetPage={onSetPaginationQuery} totalQuantity={data.totalElements} />
           </div>
         )}
       </div>

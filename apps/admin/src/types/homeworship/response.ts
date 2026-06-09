@@ -1,6 +1,4 @@
 import { IHomeWorship } from "type";
+import { PageResponse } from "../common";
 
-export interface IGetHomeWorshipsResponse {
-  homworships: IHomeWorship[];
-  totalHomeworships: number;
-}
+export type IGetHomeWorshipsResponse = PageResponse<IHomeWorship>;

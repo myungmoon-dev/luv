@@ -1,5 +1,6 @@
 import {
   deleteMissionNews,
+  deleteMissionNewsList,
   getMissionNews,
   getMissionNewsList,
   postMissionNews,
@@ -8,10 +9,13 @@ import {
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { missionNewsListKeys } from "./keys";
 
-export const useGetMissionNewsList = () => {
+export const useGetMissionNewsList = ({
+  page = 0,
+  location,
+}: { page?: number; location?: string } = {}) => {
   return useQuery({
-    queryFn: () => getMissionNewsList(),
-    queryKey: missionNewsListKeys.list(),
+    queryFn: () => getMissionNewsList({ page, location }),
+    queryKey: missionNewsListKeys.list(page, location),
   });
 };
 
@@ -26,5 +30,7 @@ export const useGetMissionNews = ({ missionNewsId }: { missionNewsId: string }) 
 export const usePostMissionNews = () => useMutation({ mutationFn: postMissionNews });
 
 export const useDeleteMissionNews = () => useMutation({ mutationFn: deleteMissionNews });
+
+export const useDeleteMissionNewsList = () => useMutation({ mutationFn: deleteMissionNewsList });
 
 export const usePutMissionNews = () => useMutation({ mutationFn: putMissionNews });

@@ -1,11 +1,13 @@
 import { Button } from "@/components/ui/button";
+import ConfirmDialog from "@/components/common/ConfirmDialog";
 import { useDeleteMissionNews, useGetMissionNews } from "@/query/missionNews";
 import dayjs from "dayjs";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 import { toast } from "sonner";
-import { SafeHTML, Spinner } from "ui";
+import { SafeHTML } from "ui"
+import { Spinner } from "@/components/ui/spinner";
 import { MISSION_LOCATION_MAP } from "../config";
 
 const MissionNewsDetail = () => {
@@ -20,7 +22,6 @@ const MissionNewsDetail = () => {
     push(`/mission-news/${missionNewsId}/update`);
   };
   const handleDeleteMissionNews = () => {
-    if (!confirm("삭제하시곘습니까?")) return;
     mutate(
       { missionNewsId },
       {
@@ -56,9 +57,10 @@ const MissionNewsDetail = () => {
           <Button variant="outline" onClick={handleUpdateMissionNews}>
             수정
           </Button>
-          <Button variant="destructive" onClick={handleDeleteMissionNews}>
-            삭제
-          </Button>
+          <ConfirmDialog
+            trigger={<Button variant="destructive">삭제</Button>}
+            onConfirm={handleDeleteMissionNews}
+          />
         </div>
       </div>
       <p className="mb-2">작성자: {data?.userName}</p>

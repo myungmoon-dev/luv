@@ -51,23 +51,23 @@ const SermonsIndexPageSection = () => {
       <div className="flex flex-col gap-5 sm:gap-8 md:gap-10 lg:gap-12">
         <MainSermonSection
           url="/sermons/sunday-3"
-          video={mainQuery.data.videos[0]}
+          video={mainQuery.data.content[0]}
           sermonTitle="주일 예배"
           videoTitle="주일 3부예배"
         />
         <SubSermonSection
-          videos={afternoonQuery.data.videos}
+          videos={afternoonQuery.data.content}
           sermonTitle="오후 찬양 예배"
           videoTitle="오후 찬양 예배"
         />
-        <SubSermonSection videos={wednesdayQuery.data.videos} sermonTitle="수요 예배" videoTitle="수요 예배" />
+        <SubSermonSection videos={wednesdayQuery.data.content} sermonTitle="수요 예배" videoTitle="수요 예배" />
         <SubSermonSection
-          videos={fridayQuery.data.videos}
+          videos={fridayQuery.data.content}
           sermonTitle="미스바 금요 기도회"
           videoTitle="미스바 금요 기도회"
         />
-        <SubSermonSection videos={youthQuery.data.videos} sermonTitle="청년 예배" videoTitle="청년 예배" />
-        <SubSermonSection videos={videoQuery.data.videos} sermonTitle="WITH EL" videoTitle="찬양" />
+        <SubSermonSection videos={youthQuery.data.content} sermonTitle="청년 예배" videoTitle="청년 예배" />
+        <SubSermonSection videos={videoQuery.data.content} sermonTitle="WITH EL" videoTitle="찬양" />
       </div>
     </Layout>
   );

@@ -44,7 +44,7 @@ const MOCK_RESOURCE_LIST: IResource[] = [
 const News = () => {
   const { push } = useRouter();
   const { data, isFetching } = useGetCongregationNewsList();
-  const congregationNewsList = data?.congregationNewsList?.slice(0, 3) || [];
+  const congregationNewsList = data?.content?.slice(0, 3) || [];
 
   const handleClickCongregationNews = () => {
     push("/news/congregation");
@@ -74,7 +74,7 @@ const News = () => {
             </div>
           ) : congregationNewsList.length > 0 ? (
             congregationNewsList.map((news) => (
-              <CongregationNewsItem key={news._id || news.createdAt} news={news} />
+              <CongregationNewsItem key={news.id || news.createdAt} news={news} />
             ))
           ) : (
             <div className="flex items-center justify-center py-10 text-[#666666]">

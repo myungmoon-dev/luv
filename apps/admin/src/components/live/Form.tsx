@@ -5,6 +5,9 @@ import { useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import LiveVideo from "./Video";
 
 interface ILiveForm {
@@ -12,53 +15,60 @@ interface ILiveForm {
 }
 
 const LiveForm = () => {
-  const { register, handleSubmit, reset } = useForm<ILiveForm>();
-  const { mutate } = usePutLive();
-
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ILiveForm>();
+  const { mutate, isPending } = usePutLive();
   const queryClient = useQueryClient();
 
   const onSubmit: SubmitHandler<ILiveForm> = (data) => {
     const { url } = data;
     const id = getYoutubeId({ url });
 
-    if (!id) return alert("유튜브 링크를 다시 확인해주세요.");
+    if (!id) return toast.error("유튜브 링크를 다시 확인해주세요.");
     mutate(
-      {
-        liveUrl: url,
-      },
+      { liveUrl: url },
       {
         onSuccess: () => {
-          reset({
-            url: "",
-          });
+          reset({ url: "" });
           queryClient.invalidateQueries({ queryKey: youtubeKeys.live() });
-          toast("변경되었습니다.");
+          toast.success("변경되었습니다.");
         },
-        onError: (error) => console.log(error),
+        onError: () => toast.error("에러가 발생했습니다."),
       },
     );
   };
 
-  const onInValid = () => {
-    alert("유튜브 링크는 필수입니다. 입력해주세요.");
-  };
-
   return (
-    <div className="flex gap-10">
-      <form onSubmit={handleSubmit(onSubmit, onInValid)} className="mt-4 flex flex-col gap-3">
-        <label className="grid grid-flow-col place-items-center gap-3">
-          <p className="w-20">유튜브 링크</p>
-          <input
-            {...register("url", {
-              required: true,
-            })}
-            placeholder="유튜브 링크를 입력해 주세요."
-            className="rounded border px-4 py-2 text-black"
-          />
-        </label>
-        <Button className="mt-2">등록</Button>
-      </form>
-      <LiveVideo />
+    <div className="flex w-full flex-col items-center gap-6">
+      <Card className="w-full max-w-2xl">
+        <CardHeader className="pb-3 pt-4">
+          <CardTitle className="text-base">라이브 URL 변경</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex flex-col gap-4 sm:flex-row sm:items-end"
+          >
+            <div className="flex flex-1 flex-col gap-1.5">
+              <Label className="text-sm font-medium">유튜브 링크</Label>
+              <Input
+                {...register("url", { required: "유튜브 링크를 입력해주세요." })}
+                placeholder="유튜브 링크를 입력해 주세요."
+              />
+              {errors.url && <p className="text-destructive text-xs">{errors.url.message}</p>}
+            </div>
+            <Button disabled={isPending} isLoading={isPending} className="shrink-0">
+              등록
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+
+      <LiveVideo/>
     </div>
   );
 };

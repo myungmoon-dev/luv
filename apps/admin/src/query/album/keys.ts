@@ -1,19 +1,20 @@
-const albumKeys = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const albumKeys: Record<string, (...args: any[]) => unknown[]> = {
   album: () => ["album"],
-  all: () => [...albumKeys.album(), "all"],
-  main: () => [...albumKeys.album(), "main"],
-  infants: () => [...albumKeys.album(), "infants"],
-  toddlers: () => [...albumKeys.album(), "toddlers"],
-  elementary: () => [...albumKeys.album(), "elementary"],
-  middle: () => [...albumKeys.album(), "middle"],
-  high: () => [...albumKeys.album(), "high"],
-  "2youth": () => [...albumKeys.album(), "2youth"],
-  "1youth": () => [...albumKeys.album(), "1youth"],
-  qt: () => [...albumKeys.album(), "qt"],
-  panorama: () => [...albumKeys.album(), "panorama"],
-  newFamilly: () => [...albumKeys.album(), "newFamilly"],
-  newlyweds: () => [...albumKeys.album(), "newlyweds"],
-  "3040": () => [...albumKeys.album(), "3040"],
+  all: () => ["album", "all"],
+  detail: (id?: string | number) => ["album", "detail", id],
+  main: (page?: number) => ["album", "main", page],
+  infants: (page?: number) => ["album", "infants", page],
+  toddlers: (page?: number) => ["album", "toddlers", page],
+  children: (page?: number) => ["album", "children", page],
+  teens: (page?: number) => ["album", "teens", page],
+  youth: (page?: number) => ["album", "youth", page],
+  bridge: (page?: number) => ["album", "bridge", page],
+  qt: (page?: number) => ["album", "qt", page],
+  panorama: (page?: number) => ["album", "panorama", page],
+  newFamily: (page?: number) => ["album", "newFamily", page],
+  newlyweds: (page?: number) => ["album", "newlyweds", page],
+  "3040": (page?: number) => ["album", "3040", page],
 };
 
 export default albumKeys;

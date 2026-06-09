@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 interface CongregationNewsFormProps {
   initialData?: {
-    _id: string;
+    id: string;
     type: PostCongregationNewsRequest["type"];
     description: string;
   };
@@ -61,7 +61,7 @@ const CongregationNewsForm = ({ initialData }: CongregationNewsFormProps) => {
 
     if (isEditMode && initialData) {
       putCongregationNews(
-        { id: initialData._id, request: data as PutCongregationNewsRequest },
+        { id: initialData.id, request: data as PutCongregationNewsRequest },
         {
           onSuccess: () => {
             push("/congregation-news");

@@ -1,7 +1,17 @@
 import withPlaiceholder from "@plaiceholder/next";
 
 /** @type {import('next').NextConfig} */
+const API_ORIGIN = process.env.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL?.replace(/\/$/, "") ?? "http://localhost:8080";
+
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: `${API_ORIGIN}/api/:path*`,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "www.myungmoon.or.kr" },

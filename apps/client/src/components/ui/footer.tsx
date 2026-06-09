@@ -72,7 +72,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/discipleship/newFamilly"
+                  href="/discipleship/newFamily"
                   className="text-primary-foreground/70 hover:text-primary-foreground text-sm transition"
                 >
                   훈련

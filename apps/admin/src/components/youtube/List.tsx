@@ -1,6 +1,16 @@
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { useDeleteVideo, useGetVideos } from "@/query/youtube";
 import { IYoutube, YoutubeType } from "type";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import {
   DropdownMenu,
@@ -10,11 +20,15 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { Button } from "../ui/button";
-import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Badge } from "../ui/badge";
+import { Edit, MoreHorizontal, Trash2, ListVideo, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
 import youtubeKeys from "@/query/youtube/keys";
-import useVideoStore from "@/store/Video";
+import { useState } from "react";
+import YoutubeFormDialog from "./YoutubeFormDialog";
+import ListPagination from "../common/ListPagination";
 
 interface IYoutubeVideoListProps {
   option: YoutubeType;
@@ -22,88 +36,156 @@ interface IYoutubeVideoListProps {
 
 const YoutubeVideoList = ({ option }: IYoutubeVideoListProps) => {
   const queryClient = useQueryClient();
-  const [setEdit, setEdittingVideo] = useVideoStore((state) => [
-    state.setEdit,
-    state.setEdittingVideo,
-  ]);
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editTarget, setEditTarget] = useState<IYoutube | null>(null);
+  const [page, setPage] = useState(0);
 
-  const { data, isFetching } = useGetVideos({ type: option });
+
+  const { data: res, isFetching } = useGetVideos({ type: option, page });
+  const data = res?.content;
+  const totalPages = res?.totalPages ?? 0;
   const { mutate } = useDeleteVideo();
 
-  const handleDeleteVideo = (id: string) => {
+  const handleDeleteVideo = () => {
+    if (!deleteTargetId) return;
     mutate(
-      { videoId: id },
+      { videoId: deleteTargetId },
       {
         onSuccess: () => {
           toast("삭제되었습니다.");
           queryClient.invalidateQueries({ queryKey: youtubeKeys.all });
         },
-        onError: () => {
-          toast("에러가 발생했습니다.");
-        },
+        onError: () => toast("에러가 발생했습니다."),
+        onSettled: () => setDeleteTargetId(null),
       },
     );
   };
 
-  const handleUpdateEdit = (video: IYoutube) => {
-    setEdit(true);
-    setEdittingVideo(video);
+  const handleOpenEdit = (video: IYoutube) => {
+    setEditTarget(video);
+    setTimeout(() => setDialogOpen(true), 0);
   };
 
-  if (isFetching)
-    return (
-      <div className="flex h-full items-center justify-center">
-        <Spinner />
-      </div>
-    );
+  const handleOpenAdd = () => {
+    setEditTarget(null);
+    setDialogOpen(true);
+  };
+
+  const handleOpenDelete = (id: string) => {
+    setTimeout(() => setDeleteTargetId(id), 0);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+    setEditTarget(null);
+  };
 
   return (
-    <Table>
-      <TableHeader>
-        <TableRow>
-          <TableHead>링크</TableHead>
-          <TableHead>제목</TableHead>
-          <TableHead>날짜</TableHead>
-          <TableHead>본문말씀</TableHead>
-          <TableHead>이름/설교자</TableHead>
-          <TableHead>작업</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {data?.videos.map((video) => (
-          <TableRow key={video._id}>
-            <TableCell>{video.url}</TableCell>
-            <TableCell>{video.title}</TableCell>
-            <TableCell>{video.date}</TableCell>
-            <TableCell>{video.mainText}</TableCell>
-            <TableCell>{video.preacher}</TableCell>
-            <TableCell>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="h-8 w-8">
-                    <MoreHorizontal className="h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => handleUpdateEdit(video)}>
-                    <Edit className="mr-2 h-4 w-4" />
-                    <span>편집</span>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem
-                    className="text-destructive"
-                    onClick={() => handleDeleteVideo(video._id)}
-                  >
-                    <Trash2 className="mr-2 h-4 w-4" />
-                    <span>삭제</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+    <>
+      <Card>
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center justify-between text-sm font-medium">
+            <span className="flex items-center gap-2">
+              <ListVideo className="size-4" />
+              영상 목록
+              {data && <Badge variant="secondary">{data.length}개</Badge>}
+            </span>
+            <Button size="sm" onClick={handleOpenAdd}>
+              <Plus className="mr-1.5 size-4" />
+              영상 업로드
+            </Button>
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          {isFetching ? (
+            <div className="flex h-32 items-center justify-center">
+              <Spinner />
+            </div>
+          ) : !data?.length ? (
+            <div className="text-muted-foreground flex h-32 items-center justify-center text-sm">
+              등록된 영상이 없습니다.
+            </div>
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>제목</TableHead>
+                  <TableHead>날짜</TableHead>
+                  <TableHead>본문말씀</TableHead>
+                  <TableHead>설교자</TableHead>
+                  <TableHead className="w-10"></TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {data.map((video) => (
+                  <TableRow key={video.id}>
+                    <TableCell className="font-medium">
+                      {video.title || <span className="text-muted-foreground">—</span>}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">{video.date || "—"}</TableCell>
+                    <TableCell className="text-muted-foreground">{video.mainText || "—"}</TableCell>
+                    <TableCell className="text-muted-foreground">{video.preacher || "—"}</TableCell>
+                    <TableCell>
+                      <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                          <Button variant="ghost" size="icon" className="size-8">
+                            <MoreHorizontal className="size-4" />
+                          </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end">
+                          <DropdownMenuItem onClick={() => handleOpenEdit(video)}>
+                            <Edit className="mr-2 size-4" />
+                            수정
+                          </DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem
+                            className="text-destructive"
+                            onClick={() => handleOpenDelete(video.id)}
+                          >
+                            <Trash2 className="mr-2 size-4" />
+                            삭제
+                          </DropdownMenuItem>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
+        </CardContent>
+      </Card>
+      <ListPagination page={page} totalPages={totalPages} onPageChange={setPage} />
+
+      <YoutubeFormDialog
+        open={dialogOpen}
+        onClose={handleCloseDialog}
+        option={option}
+        editTarget={editTarget}
+      />
+
+      <AlertDialog
+        open={!!deleteTargetId}
+        onOpenChange={(open) => !open && setDeleteTargetId(null)}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>영상을 삭제하시겠습니까?</AlertDialogTitle>
+            <AlertDialogDescription>삭제된 영상은 복구할 수 없습니다.</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>취소</AlertDialogCancel>
+            <AlertDialogAction
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              onClick={handleDeleteVideo}
+            >
+              삭제
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import CongregationNewsForm from "@/components/congregation-news/form";
 import Layout from "@/components/layout";
 import { useGetCongregationNews } from "@/query/congregationNews";
 import { useRouter } from "next/router";
-import { Spinner } from "ui";
+import { Spinner } from "@/components/ui/spinner";
 
 const CongregationNewsEditPage = () => {
   const { query } = useRouter();
@@ -33,7 +33,7 @@ const CongregationNewsEditPage = () => {
     <Layout title="교우 소식 수정">
       <CongregationNewsForm
         initialData={{
-          _id: data._id,
+          id: data.id,
           type: data.type,
           description: data.description,
         }}
