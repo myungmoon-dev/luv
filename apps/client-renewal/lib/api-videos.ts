@@ -56,7 +56,7 @@ function parseVideoListPayload(payload: unknown): { items: VideoListItemDto[]; t
 
 function mapToIYoutube(v: VideoListItemDto): IYoutube {
   return {
-    _id: v.id,
+    id: v.id,
     url: v.url,
     title: v.title,
     date: v.date,

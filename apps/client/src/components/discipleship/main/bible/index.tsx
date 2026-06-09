@@ -39,7 +39,7 @@ const DiscipleshipMainBible = () => {
       />
       {data && (
         <Table
-          data={data.bibles.map((bible) => ({
+          data={data.content.map((bible) => ({
             id: bible.id,
             date: bible.date,
             title: bible.title,

@@ -20,8 +20,8 @@ const CongregationNews = () => {
             <div className="flex items-center justify-center py-10">
               <Spinner />
             </div>
-          ) : data?.congregationNewsList && data.congregationNewsList.length > 0 ? (
-            data.congregationNewsList.map((news) => (
+          ) : data?.content && data.content.length > 0 ? (
+            data.content.map((news) => (
               <CongregationNewsItem key={news.id || news.createdAt} news={news} />
             ))
           ) : (

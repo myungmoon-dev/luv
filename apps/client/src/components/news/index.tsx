@@ -44,7 +44,7 @@ const MOCK_RESOURCE_LIST: IResource[] = [
 const News = () => {
   const { push } = useRouter();
   const { data, isFetching } = useGetCongregationNewsList();
-  const congregationNewsList = data?.congregationNewsList?.slice(0, 3) || [];
+  const congregationNewsList = data?.content?.slice(0, 3) || [];
 
   const handleClickCongregationNews = () => {
     push("/news/congregation");
