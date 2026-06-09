@@ -219,13 +219,16 @@ export function SeniorPastorContent() {
               className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
             >
               {book.imageUrl ? (
-                <img
-                  src={book.imageUrl}
-                  alt={book.title}
-                  className="size-14 shrink-0 rounded-lg object-cover"
-                />
+                <div className="relative w-16 shrink-0 overflow-hidden rounded-lg bg-[#f4f4f4] aspect-2/3 sm:w-20">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- API 원격 표지 URL */}
+                  <img
+                    src={book.imageUrl}
+                    alt={book.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
               ) : (
-                <div className="flex size-14 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10">
+                <div className="flex w-16 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10 aspect-2/3 sm:w-20">
                   <svg
                     className="size-5 text-[#001F54]"
                     fill="none"
