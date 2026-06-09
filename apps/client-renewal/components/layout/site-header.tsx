@@ -34,11 +34,7 @@ const navigation = [
 
 const MAIN_URL = "/";
 
-type SiteHeaderProps = {
-  navFontClassName?: string;
-};
-
-export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
+export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -58,32 +54,25 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "fixed top-0 z-50 w-full",
-        /* 모바일(햄버거): 첫 프레임부터 축소 바 — 트랜지션 없음 */
-        "max-md:transition-none max-md:bg-[#0A1E51] max-md:shadow-md max-md:pt-0",
-        /* 데스크톱: 메인에서만 스크롤 확장/축소 애니메이션 */
-        isMainPage && "md:transition-all md:duration-300",
-        scrolled ? "md:bg-[#0A1E51] md:shadow-md" : "md:bg-transparent md:pt-5",
+        "fixed top-0 z-50 w-full transition-all duration-300",
+        isMainPage && (scrolled ? "bg-[#0A1E51] shadow-md" : "bg-transparent pt-5"),
+        !isMainPage && "bg-[#0A1E51] shadow-md",
       )}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div
           className={cn(
-            "flex justify-between",
-            "max-md:h-16 max-md:items-center max-md:transition-none",
-            isMainPage && "md:transition-all md:duration-300",
-            scrolled ? "md:h-16 md:items-center lg:h-20" : "md:h-[120px] md:items-start lg:h-[120px]",
+            "flex justify-between transition-all duration-300",
+            isMainPage && (scrolled ? "h-16 items-center lg:h-20" : "h-[120px] items-start lg:h-[120px]"),
+            !isMainPage && "h-16 items-center lg:h-20",
           )}
         >
           <Link href="/" className="flex items-center gap-3">
             <div
               className={cn(
-                "relative origin-center",
-                /* 모바일: 스크롤 축소와 동일한 크기(100×0.42)로 고정, 애니메이션 없음 */
-                "max-md:h-[42px] max-md:w-[42px] max-md:scale-100 max-md:transition-none",
-                "md:h-[150px] md:w-[150px]",
-                isMainPage && "md:transition-transform md:duration-300",
-                scrolled ? "md:scale-[0.42]" : "md:scale-100",
+                "relative h-[100px] w-[100px] origin-center transition-transform duration-300 md:h-[150px] md:w-[150px]",
+                isMainPage && (scrolled ? "scale-[0.42]" : "scale-100"),
+                !isMainPage && "scale-[0.42]",
               )}
             >
               <Image src="/images/logo.svg" alt="명문교회 로고" fill className="object-contain" />
@@ -99,7 +88,6 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                       type="button"
                       className={cn(
                         "group flex items-center gap-1 px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:text-white",
-                        navFontClassName,
                       )}
                     >
                       {item.name}
@@ -129,7 +117,6 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                   href={item.href}
                   className={cn(
                     "px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:text-white",
-                    navFontClassName,
                   )}
                 >
                   {item.name}
@@ -149,7 +136,7 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                 <span className="sr-only">메뉴 열기</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80 bg-white p-0 text-white">
+            <SheetContent side="right" className="w-80 bg-white p-0">
               <div className="flex h-full flex-col">
                 <div className="flex items-center gap-3 border-b bg-[#0A1E51] p-6">
                   <Image
@@ -161,7 +148,7 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                 </div>
                 <nav className="flex-1 overflow-y-auto p-4">
                   {navigation.map((item) => (
-                    <div key={item.name} className="border-b border-white/10">
+                    <div key={item.name} className="border-b border-[#E6E6E6]">
                       {item.children ? (
                         <div className="py-3">
                           <span className="block px-3 py-2 text-xl font-semibold text-[#0A1E51]">
@@ -172,7 +159,7 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                               <SheetClose key={child.name} asChild>
                                 <Link
                                   href={child.href}
-                                  className="block rounded-md px-3 py-2 text-xl text-[#0A1E51] hover:bg-white/10 hover:text-white"
+                                  className="block rounded-md px-3 py-2 text-xl text-[#0A1E51] transition-colors hover:bg-[#eef1f6] hover:text-[#0A1E51] active:bg-[#e8ecf2]"
                                 >
                                   {child.name}
                                 </Link>
@@ -184,7 +171,7 @@ export function SiteHeader({ navFontClassName }: SiteHeaderProps) {
                         <SheetClose asChild>
                           <Link
                             href={item.href}
-                            className="block px-3 py-4 text-xl font-semibold text-[#0A1E51] hover:bg-white/10 hover:text-white"
+                            className="block px-3 py-4 text-xl font-semibold text-[#0A1E51] transition-colors hover:bg-[#eef1f6] hover:text-[#0A1E51] active:bg-[#e8ecf2]"
                           >
                             {item.name}
                           </Link>

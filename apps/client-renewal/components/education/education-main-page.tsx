@@ -8,6 +8,7 @@ import {
   GraduationCap,
   Sparkles,
   Users,
+  Waypoints,
 } from "lucide-react";
 
 import { EducationDepartmentNav } from "@/components/education/education-department-nav";
@@ -42,6 +43,12 @@ const departments = [
     label: "청년부",
     description: "예배와 교제로 하나 되는 청년 공동체",
     Icon: Users,
+  },
+  {
+    href: "/education/bridge",
+    label: "브릿지",
+    description: "미혼 직장인을 위한 예배와 교제 공동체",
+    Icon: Waypoints,
   },
 ] as const;
 

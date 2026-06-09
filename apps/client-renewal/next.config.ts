@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 
+import { getBackendApiOrigin } from "./lib/api-config";
+
+const API_ORIGIN = getBackendApiOrigin();
+
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
