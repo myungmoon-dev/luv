@@ -47,7 +47,7 @@ const mainMenuItems = [
 ];
 
 const contentMenuItems = [
-  { title: "Home", icon: Layout, href: "/home" },
+  { title: "메인페이지", icon: Layout, href: "/home" },
   { title: "유튜브", icon: Clapperboard, href: "/youtube" },
   { title: "주보", icon: FileText, href: "/bulletins" },
   { title: "성경통독", icon: BookOpen, href: "/bibles" },
@@ -57,9 +57,7 @@ const contentMenuItems = [
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
 ];
 
-const peopleMenuItems = [
-  { title: "담임목사 프로필", icon: BookText, href: "/pastor" },
-];
+const peopleMenuItems = [{ title: "담임목사 프로필", icon: BookText, href: "/pastor" }];
 
 const systemMenuItems = [
   { title: "팝업", icon: Bell, href: "/popups" },
