@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { getBackendApiBase } from "@/lib/api-config";
 import { isApiEnvelope } from "@/lib/api-types";
 
 /** Next.js rewrite가 /api/:path* → 백엔드로 프록시 */
