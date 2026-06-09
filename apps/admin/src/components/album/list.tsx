@@ -79,7 +79,9 @@ const AlbumList = ({ type, refetchKey, onRefetch }: IAlbumListProps) => {
     });
   };
 
+  const PAGE_SIZE = 10;
   const content = data?.content ?? [];
+  const totalPages = data?.totalPages ?? Math.ceil((data?.totalElements ?? 0) / PAGE_SIZE);
   const allSelected = !!content.length && content.every((a) => selectedIds.has(a.id));
   const someSelected = !!content.length && content.some((a) => selectedIds.has(a.id));
 
@@ -187,7 +189,7 @@ const AlbumList = ({ type, refetchKey, onRefetch }: IAlbumListProps) => {
         </CardContent>
       </Card>
 
-      <ListPagination page={page} totalPages={data?.totalPages ?? 0} onPageChange={setPage} />
+      <ListPagination page={page} totalPages={totalPages} onPageChange={setPage} />
 
       <AlbumDetailDialog
         album={detailTarget}
