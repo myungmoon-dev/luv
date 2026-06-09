@@ -36,7 +36,6 @@ export function HomePage() {
   const { data: live } = useQuery({
     queryKey: ["youtube", "live"],
     queryFn: getLive,
-    select: (res) => res.live,
   });
 
   return (
