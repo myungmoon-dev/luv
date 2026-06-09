@@ -31,9 +31,10 @@ const HomeWorship = () => {
   const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
 
+  const PAGE_SIZE = 10;
   const { data: res, isFetching, refetch } = useGetHomeWorships({ page });
   const data = res?.content;
-  const totalPages = res?.totalPages ?? 0;
+  const totalPages = res?.totalPages ?? Math.ceil((res?.totalElements ?? 0) / PAGE_SIZE);
 
   const { mutate: deleteSingle, isPending: isDeleting } = useDeleteHomeWorship();
   const { mutate: deleteBulk, isPending: isBulkDeleting } = useDeleteHomeWorships();
