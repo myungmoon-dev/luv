@@ -44,8 +44,9 @@ const Bulletins = () => {
     year: selectedYear !== "all" ? selectedYear : undefined,
     month: selectedMonth !== "all" ? selectedMonth : undefined,
   });
+  const PAGE_SIZE = 10;
   const data = res?.content;
-  const totalPages = res?.totalPages ?? 0;
+  const totalPages = res?.totalPages ?? Math.ceil((res?.totalElements ?? 0) / PAGE_SIZE);
 
   const { mutate: deleteSingle, isPending: isDeleting } = useDeleteBulletin();
   const { mutate: deleteBulk, isPending: isBulkDeleting } = useDeleteBulletins();
