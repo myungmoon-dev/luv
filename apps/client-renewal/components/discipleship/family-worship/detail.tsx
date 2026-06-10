@@ -66,6 +66,7 @@ export function FamilyWorshipDetail() {
       {
         onSuccess: () => {
           alert("삭제되었습니다.");
+          queryClient.invalidateQueries({ queryKey: ["homeworships"] });
           router.push("/discipleship/family-worship");
         },
         onError: () => {
