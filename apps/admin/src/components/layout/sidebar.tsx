@@ -18,6 +18,7 @@ import {
   ChevronUp,
   BookText,
   Layout,
+  UserRound,
 } from "lucide-react";
 import {
   Sidebar,
@@ -57,7 +58,10 @@ const contentMenuItems = [
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
 ];
 
-const peopleMenuItems = [{ title: "담임목사 프로필", icon: BookText, href: "/pastor" }];
+const leadershipMenuItems = [
+  { title: "담임목사 프로필", icon: BookText, href: "/pastor" },
+  { title: "섬기는 분들 관리", icon: UserRound, href: "/leadership" },
+];
 
 const systemMenuItems = [
   { title: "팝업", icon: Bell, href: "/popups" },
@@ -150,7 +154,7 @@ const AdminSidebar = () => {
             <CollapsibleContent>
               <SidebarGroupContent>
                 <SidebarMenu>
-                  {peopleMenuItems.map((item) => (
+                  {leadershipMenuItems.map((item) => (
                     <SidebarMenuItem key={item.href}>
                       <SidebarMenuButton
                         asChild

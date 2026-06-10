@@ -34,6 +34,7 @@ import { IPopup, IPopupForm } from "./popup";
 import { MissionLocation } from "./news";
 import { IPastorBook, IPastorProfile } from "./pastor";
 import { IHomeYoutube, IHomeImage } from "./home";
+import { IMinister, StaffTabType } from "./leadership";
 
 export type {
   IBulletin,
@@ -81,4 +82,6 @@ export type {
   IPastorProfile,
   IHomeYoutube,
   IHomeImage,
+  IMinister,
+  StaffTabType,
 };
