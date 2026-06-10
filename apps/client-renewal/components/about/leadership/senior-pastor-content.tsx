@@ -30,8 +30,8 @@ export function SeniorPastorContent() {
             sizes="100vw"
           />
         )}
-        <div className="absolute inset-0 bg-linear-to-r from-black/60 to-transparent" />
-        <div className="absolute bottom-0 left-0 p-4 sm:p-10 md:p-14">
+        <div className="bg-linear-to-l absolute inset-0 from-black/60 to-transparent" />
+        <div className="absolute bottom-0 right-0 p-4 sm:p-10 md:p-14">
           <p className="text-sm text-white sm:text-xl md:text-3xl">
             <span className="font-light">안녕하세요 </span>
             <span className="font-bold">명문교회 담임목사</span>
@@ -67,8 +67,7 @@ export function SeniorPastorContent() {
               </p>
               <p>
                 명문교회 홈페이지를 방문해 주신 모든 분들을 주님의 이름으로 환영합니다. 평강의
-                하나님께서 여러분과 여러분의 가정에 풍성한 은혜와 평안을 더하여 주시기를
-                바랍니다.
+                하나님께서 여러분과 여러분의 가정에 풍성한 은혜와 평안을 더하여 주시기를 바랍니다.
               </p>
               <p>
                 <span className="font-medium text-[#333]">함께 걸어가는 믿음의 여정</span>
@@ -76,12 +75,12 @@ export function SeniorPastorContent() {
               <p>
                 신앙의 여정은 혼자 걷는 길이 아닙니다. 우리는 함께 주님을 따라가는 믿음의
                 동반자들입니다. 여러분이 어떤 상황에 계시든, 어떤 필요가 있으시든, 명문교회는
-                여러분을 따뜻하게 품고 함께 기도하며 동행하고자 합니다. 이곳에서 참된 위로와
-                소망, 그리고 새로운 힘을 얻으시기를 바랍니다.
+                여러분을 따뜻하게 품고 함께 기도하며 동행하고자 합니다. 이곳에서 참된 위로와 소망,
+                그리고 새로운 힘을 얻으시기를 바랍니다.
               </p>
               <p>
-                앞으로도 명문교회가 지역사회를 섬기고, 복음을 전하며, 하나님 나라의 확장을 위해
-                쓰임 받는 교회가 되도록 여러분의 기도와 동참을 부탁드립니다.
+                앞으로도 명문교회가 지역사회를 섬기고, 복음을 전하며, 하나님 나라의 확장을 위해 쓰임
+                받는 교회가 되도록 여러분의 기도와 동참을 부탁드립니다.
               </p>
               <p className="font-medium text-[#333]">
                 하나님의 크신 사랑과 은혜가 여러분과 함께 하시기를 축복합니다.
@@ -140,20 +139,28 @@ export function SeniorPastorContent() {
               <p className="font-bold tracking-widest text-[#001F54]">학력</p>
             </div>
             <ul className="space-y-2 text-sm text-[#444]">
-              <li className="flex items-center gap-2">
-                <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                고려대, 서울대 대학원: 철학과 영미윤리학
-              </li>
-              <li className="flex items-center gap-2">
-                <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                총신신대원: 목회학 석사 (M.Div.)
+              <li className="flex items-start gap-2">
+                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span>
+                  고려대, 서울대 대학원
+                  <br />
+                  <span className="text-[#666]">철학, 영미윤리학</span>
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
                 <span>
-                  Trinity Evangelical Divinity School (시카고)
+                  총신대 신학대학원
                   <br />
-                  <span className="text-[#666]">조직신학 석사 (Th.M.)</span>
+                  <span className="text-[#666]">목회학(MDiv)</span>
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span>
+                  Trinity Evangelical Divinity School
+                  <br />
+                  <span className="text-[#666]">조직신학(ThM)</span>
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -161,7 +168,7 @@ export function SeniorPastorContent() {
                 <span>
                   The Southern Baptist Theological Seminary
                   <br />
-                  <span className="text-[#666]">설교학 박사 (Ph.D.)</span>
+                  <span className="text-[#666]">설교학(PhD)</span>
                 </span>
               </li>
             </ul>
@@ -189,14 +196,17 @@ export function SeniorPastorContent() {
             </div>
             <ul className="space-y-2 text-sm text-[#444]">
               {[
-                "총신대 목회신학전문대학원 교수",
-                "농어촌교회사역연구소 연구위원",
-                "한국개혁주의 설교학회 학술부회장",
-                "GMS 이사",
+                { text: "총신대 목회신학전문대학원 설교학 교수" },
+                { text: "Reformed Theological College in Uganda(우간대 개혁신학대학교)", sub: "초빙교수" },
+                { text: "농어촌교회사역연구소 연구위원" },
+                { text: "한국개혁주의 설교학회 학술부회장" },
               ].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                  {item}
+                <li key={item.text} className="flex items-start gap-2">
+                  <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                  <span>
+                    {item.text}
+                    {item.sub && <><br /><span className="text-[#666]">{item.sub}</span></>}
+                  </span>
                 </li>
               ))}
             </ul>
@@ -219,7 +229,7 @@ export function SeniorPastorContent() {
               className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
             >
               {book.imageUrl ? (
-                <div className="relative w-16 shrink-0 overflow-hidden rounded-lg bg-[#f4f4f4] aspect-2/3 sm:w-20">
+                <div className="aspect-2/3 relative w-16 shrink-0 overflow-hidden rounded-lg bg-[#f4f4f4] sm:w-20">
                   {/* eslint-disable-next-line @next/next/no-img-element -- API 원격 표지 URL */}
                   <img
                     src={book.imageUrl}
@@ -228,7 +238,7 @@ export function SeniorPastorContent() {
                   />
                 </div>
               ) : (
-                <div className="flex w-16 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10 aspect-2/3 sm:w-20">
+                <div className="aspect-2/3 flex w-16 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10 sm:w-20">
                   <svg
                     className="size-5 text-[#001F54]"
                     fill="none"
