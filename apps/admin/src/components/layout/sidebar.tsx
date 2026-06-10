@@ -130,7 +130,7 @@ const AdminSidebar = () => {
                         isActive={isActive(item.href)}
                         tooltip={item.title}
                       >
-                        <Link href={item.href}>
+                        <Link href={item.href} onClick={(e) => { if (isActive(item.href)) e.preventDefault(); }}>
                           <item.icon className="size-4" />
                           <span>{item.title}</span>
                         </Link>
@@ -161,7 +161,7 @@ const AdminSidebar = () => {
                         isActive={isActive(item.href)}
                         tooltip={item.title}
                       >
-                        <Link href={item.href}>
+                        <Link href={item.href} onClick={(e) => { if (isActive(item.href)) e.preventDefault(); }}>
                           <item.icon className="size-4" />
                           <span>{item.title}</span>
                         </Link>
@@ -192,7 +192,7 @@ const AdminSidebar = () => {
                         isActive={isActive(item.href)}
                         tooltip={item.title}
                       >
-                        <Link href={item.href}>
+                        <Link href={item.href} onClick={(e) => { if (isActive(item.href)) e.preventDefault(); }}>
                           <item.icon className="size-4" />
                           <span>{item.title}</span>
                         </Link>

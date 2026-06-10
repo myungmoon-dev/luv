@@ -11,7 +11,14 @@ import {
 import ListPagination from "@/components/common/ListPagination";
 import { useDeleteMinister, useGetMinisters } from "@/query/minister";
 import { Spinner } from "@/components/ui/spinner";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -23,17 +30,18 @@ import type { IMinister, StaffTabType } from "type";
 
 const TABS: { value: StaffTabType; label: string }[] = [
   { value: "retiredPastor", label: "원로목사" },
-  { value: "minister", label: "목사" },
-  { value: "elder", label: "장로" },
+  { value: "minister", label: "교역자" },
   { value: "missionary", label: "선교사" },
+  { value: "retiredElder", label: "원로장로" },
+  { value: "elder", label: "장로" },
   { value: "staff", label: "직원" },
-  { value: "retiredElder", label: "은퇴장로" },
 ];
 
 const OFFICER_LABEL: Record<string, string> = {
   associate: "목사",
   cooperativePastor: "협동목사",
   evangelist: "전도사",
+  licentiate: "강도사",
   retired: "원로목사",
   elder: "장로",
   otherElder: "협동장로",
@@ -66,14 +74,20 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
     deleteMutation(
       { id: deleteTarget.id },
       {
-        onSuccess: () => { toast.success("삭제되었습니다."); setDeleteTarget(null); },
+        onSuccess: () => {
+          toast.success("삭제되었습니다.");
+          setDeleteTarget(null);
+        },
         onError: () => toast.error("에러가 발생했습니다."),
       },
     );
   };
 
   const handleOpenEdit = (item: IMinister) => {
-    setTimeout(() => { setEditTarget(item); setFormOpen(true); }, 0);
+    setTimeout(() => {
+      setEditTarget(item);
+      setFormOpen(true);
+    }, 0);
   };
 
   const handleOpenDelete = (item: IMinister) => {
@@ -85,7 +99,13 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
       <Card className="overflow-hidden">
         <CardHeader className="pb-3 pt-3">
           <div className="flex items-center justify-end">
-            <Button size="sm" onClick={() => { setEditTarget(null); setFormOpen(true); }}>
+            <Button
+              size="sm"
+              onClick={() => {
+                setEditTarget(null);
+                setFormOpen(true);
+              }}
+            >
               <Plus className="mr-1.5 size-4" />
               추가
             </Button>
@@ -107,6 +127,7 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
                   <TableHead className="w-12 px-4 text-center text-xs">사진</TableHead>
                   <TableHead className="text-xs sm:text-sm">이름 · 직책</TableHead>
                   <TableHead className="hidden text-xs sm:table-cell sm:text-sm">담당</TableHead>
+                  <TableHead className="w-14 text-center text-xs sm:text-sm">순서</TableHead>
                   <TableHead className="w-20 text-center text-xs sm:text-sm">관리</TableHead>
                 </TableRow>
               </TableHeader>
@@ -133,6 +154,9 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
                     <TableCell className="text-muted-foreground hidden py-2 text-xs sm:table-cell sm:text-sm">
                       {item.position || "—"}
                     </TableCell>
+                    <TableCell className="text-muted-foreground py-2 text-center text-xs sm:text-sm">
+                      {item.order ?? "—"}
+                    </TableCell>
                     <TableCell className="py-2 text-center">
                       <div className="flex items-center justify-center gap-1">
                         <Button
@@ -146,7 +170,7 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
                         <Button
                           size="icon"
                           variant="ghost"
-                          className="size-7 text-destructive hover:text-destructive"
+                          className="text-destructive hover:text-destructive size-7"
                           onClick={() => handleOpenDelete(item)}
                         >
                           <Trash2 className="size-3.5" />
@@ -166,7 +190,10 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
       <MinisterFormDialog
         open={formOpen}
         tabType={tabType}
-        onClose={() => { setFormOpen(false); setEditTarget(null); }}
+        onClose={() => {
+          setFormOpen(false);
+          setEditTarget(null);
+        }}
         target={editTarget}
       />
 
@@ -180,7 +207,10 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
             <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
             <AlertDialogAction
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => { e.preventDefault(); handleDelete(); }}
+              onClick={(e) => {
+                e.preventDefault();
+                handleDelete();
+              }}
               disabled={isDeleting}
             >
               삭제
@@ -197,7 +227,9 @@ const Ministers = () => {
     <Tabs defaultValue="minister">
       <TabsList className="flex flex-wrap">
         {TABS.map((tab) => (
-          <TabsTrigger key={tab.value} value={tab.value}>{tab.label}</TabsTrigger>
+          <TabsTrigger key={tab.value} value={tab.value}>
+            {tab.label}
+          </TabsTrigger>
         ))}
       </TabsList>
       {TABS.map((tab) => (

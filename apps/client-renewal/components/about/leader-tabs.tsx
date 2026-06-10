@@ -35,7 +35,7 @@ export function LeaderTabs({ menus, children }: LeaderTabsProps) {
                 type="button"
                 role="tab"
                 aria-selected={active}
-                onClick={() => router.push(menu.path)}
+                onClick={() => router.push(menu.path, { scroll: false })}
                 className={cn(
                   "min-h-11 shrink-0 rounded-none border px-3 py-2.5 text-xs font-medium tracking-wide transition-colors sm:min-h-12 sm:px-5 sm:py-3 sm:text-sm md:text-base",
                   active

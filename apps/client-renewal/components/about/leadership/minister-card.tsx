@@ -22,7 +22,7 @@ export function MinisterCard({ name, image, position, officer, greeting }: Minis
             src={image}
             alt={`${name} ${title}`}
             fill
-            className="object-cover object-[50%_-5%]"
+            className="object-cover object-[50%_-15%]"
             sizes="(max-width: 768px) 112px, 140px"
           />
         </div>

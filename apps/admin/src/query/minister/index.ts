@@ -4,7 +4,12 @@ import { ministerKeys } from "./keys";
 import type { StaffTabType } from "type";
 
 export const useGetMinisters = ({ page = 0, tabType }: { page?: number; tabType?: StaffTabType } = {}) =>
-  useQuery({ queryKey: ministerKeys.list(page, tabType), queryFn: () => getMinisters({ page, tabType }) });
+  useQuery({
+    queryKey: ministerKeys.list(page, tabType),
+    queryFn: () => getMinisters({ page, tabType }),
+    staleTime: Infinity,
+    gcTime: Infinity,
+  });
 
 export const usePostMinister = () => {
   const qc = useQueryClient();

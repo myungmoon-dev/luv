@@ -9,6 +9,7 @@ export type MinisterForm = {
   tabType: StaffTabType;
   greeting?: string;
   description?: string;
+  order?: string;
 };
 
 const MULTIPART = { headers: { "Content-Type": "multipart/form-data" } };
