@@ -136,11 +136,11 @@ export function SeniorPastorContent() {
           <div className="mb-5">
             <div className="mb-2 flex items-center gap-2">
               <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="font-bold tracking-widest text-[#001F54]">학력</p>
+              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">학력</p>
             </div>
-            <ul className="space-y-2 text-sm text-[#444]">
+            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
               <li className="flex items-start gap-2">
-                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
                 <span>
                   고려대, 서울대 대학원
                   <br />
@@ -148,7 +148,7 @@ export function SeniorPastorContent() {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
                 <span>
                   총신대 신학대학원
                   <br />
@@ -156,7 +156,7 @@ export function SeniorPastorContent() {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
                 <span>
                   Trinity Evangelical Divinity School
                   <br />
@@ -164,7 +164,7 @@ export function SeniorPastorContent() {
                 </span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
                 <span>
                   The Southern Baptist Theological Seminary
                   <br />
@@ -177,35 +177,49 @@ export function SeniorPastorContent() {
           <div className="mb-5">
             <div className="mb-2 flex items-center gap-2">
               <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="font-bold tracking-widest text-[#001F54]">사역 경력</p>
+              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">
+                사역 경력
+              </p>
             </div>
-            <ul className="space-y-2 text-sm text-[#444]">
-              {["강남교회", "시카고아가페장로교회", "사랑의교회"].map((item) => (
-                <li key={item} className="flex items-center gap-2">
-                  <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                  {item}
-                </li>
-              ))}
+            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
+              {["강남교회", "시카고아가페장로교회", "Sojourn Community Church", "사랑의교회"].map(
+                (item) => (
+                  <li key={item} className="flex items-center gap-2">
+                    <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                    {item}
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
           <div>
             <div className="mb-2 flex items-center gap-2">
               <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="font-bold tracking-widest text-[#001F54]">현재 활동</p>
+              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">
+                현재 활동
+              </p>
             </div>
-            <ul className="space-y-2 text-sm text-[#444]">
+            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
               {[
                 { text: "총신대 목회신학전문대학원 설교학 교수" },
-                { text: "Reformed Theological College in Uganda(우간대 개혁신학대학교)", sub: "초빙교수" },
+                {
+                  text: "Reformed Theological College in Uganda(우간다 개혁신학대학교)",
+                  sub: "초빙교수",
+                },
                 { text: "농어촌교회사역연구소 연구위원" },
                 { text: "한국개혁주의 설교학회 학술부회장" },
               ].map((item) => (
                 <li key={item.text} className="flex items-start gap-2">
-                  <span className="mt-[9px] size-[5px] shrink-0 rounded-full bg-[#001F54]" />
+                  <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
                   <span>
                     {item.text}
-                    {item.sub && <><br /><span className="text-[#666]">{item.sub}</span></>}
+                    {item.sub && (
+                      <>
+                        <br />
+                        <span className="text-[#666]">{item.sub}</span>
+                      </>
+                    )}
                   </span>
                 </li>
               ))}
