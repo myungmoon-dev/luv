@@ -20,7 +20,7 @@ export function RetiredPastorContent() {
             <img
               src={pastor.imageUrl}
               alt="이덕진 원로목사"
-              className="h-full w-full object-cover object-[50%_18%]"
+              className="h-full w-full object-cover object-[50%_0%]"
             />
           </div>
         )}
