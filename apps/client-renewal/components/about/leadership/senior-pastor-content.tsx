@@ -30,7 +30,7 @@ export function SeniorPastorContent() {
             sizes="100vw"
           />
         )}
-        <div className="bg-linear-to-l absolute inset-0 from-black/60 to-transparent" />
+        {/* 검은색배경그라데이션 <div className="bg-linear-to-l absolute inset-0 from-black/60 to-transparent" /> */}
         <div className="absolute bottom-0 right-0 p-4 sm:p-10 md:p-14">
           <p className="text-sm text-white sm:text-xl md:text-3xl">
             <span className="font-light">안녕하세요 </span>
