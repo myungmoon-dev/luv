@@ -3,12 +3,10 @@
   "private": true,
   "scripts": {
     "build": "turbo build",
-    "build:client": "dotenv -- turbo run build --filter=client",
-    "build:client-renewal": "turbo run build --filter=client-renewal",
+    "build:client": "turbo run build --filter=client-renewal",
     "build:admin": "turbo run build --filter=admin",
     "dev": "turbo dev",
-    "dev:client": "dotenv -- turbo run dev --filter=client",
-    "dev:client-renewal": "dotenv -- turbo run dev --filter=client-renewal",
+    "dev:client": "dotenv -- turbo run dev --filter=client-renewal",
     "dev:admin": "dotenv -- turbo run dev --filter=admin",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
