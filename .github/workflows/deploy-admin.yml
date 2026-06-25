@@ -20,6 +20,8 @@ jobs:
             apps/admin
             apps/client-renewal
             packages
+            package.json
+            pnpm-workspace.yaml
             pnpm-lock.yaml
             .github
           sparse-checkout-cone-mode: false
