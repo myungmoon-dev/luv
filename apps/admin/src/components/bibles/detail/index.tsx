@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { toast } from "sonner";
 import { SafeHTML, YoutubeVideo } from "ui"
 import { Spinner } from "@/components/ui/spinner";
+import axios from "axios";
 
 const BibleDetail = () => {
   const { push } = useRouter();
@@ -24,8 +25,12 @@ const BibleDetail = () => {
           toast("삭제되었습니다.");
           push("/bibles");
         },
-        onError: (err: any) => {
-          alert(err.response.data.result);
+        onError: (err: unknown) => {
+          if (axios.isAxiosError(err)) {
+            alert(err.response?.data?.result ?? "삭제 중 오류가 발생했습니다.");
+          } else {
+            alert("알 수 없는 오류가 발생했습니다.");
+          }
         },
       },
     );

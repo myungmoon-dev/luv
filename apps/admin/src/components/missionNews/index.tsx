@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { IMissionNews, MissionLocation } from "type";
 import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-import { Card, CardContent, CardHeader } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import { Button } from "../ui/button";
 import { Loader2, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
