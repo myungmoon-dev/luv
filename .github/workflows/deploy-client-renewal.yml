@@ -1,4 +1,4 @@
-name: deploy-client-renewal
+name: deploy-client
 
 on:
   push:
@@ -15,13 +15,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            apps/client-renewal
+            apps/admin
+            packages
+            pnpm-lock.yaml
+            .github
+          sparse-checkout-cone-mode: false
+
+      # pnpm CLI를 액션으로 설치 (순서를 setup-node보다 앞으로 이동)
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.9.0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
-
-      - name: Install pnpm
-        run: npm install -g pnpm@8.9.0
+          cache: "pnpm" # pnpm store를 캐싱해서 Install dependencies 단계 단축
 
       - name: Install dependencies
         run: pnpm install
@@ -29,18 +41,28 @@ jobs:
       - name: Build ui package
         run: pnpm --filter ui build
 
+      # Next.js 빌드 캐시 복원/저장 (Build client-renewal 단계 단축 목적)
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            apps/client-renewal/.next/cache
+          key: ${{ runner.os }}-nextjs-client-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('apps/client-renewal/**/*.js', 'apps/client-renewal/**/*.jsx', 'apps/client-renewal/**/*.ts', 'apps/client-renewal/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-client-${{ hashFiles('pnpm-lock.yaml') }}-
+
       - name: Build client-renewal
         env:
           NEXT_PUBLIC_KAKAOMAP_KEY: ${{ secrets.NEXT_PUBLIC_KAKAOMAP_KEY }}
+          # next.config.ts rewrites의 destination(프록시 대상)으로 사용
           NEXT_PUBLIC_CLIENT_RENEWAL_API_BASE: ${{ secrets.NEXT_PUBLIC_CLIENT_RENEWAL_API_BASE }}
           NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN: ${{ secrets.NEXT_PUBLIC_CLIENT_RENEWAL_API_ORIGIN }}
-          NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL: ${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }}
         run: pnpm --filter client-renewal build
 
       - name: Sync to EC2 (node_modules 제외)
         uses: burnett01/rsync-deployments@7.0.1
         with:
-          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='.env*' --exclude='apps/admin/.next' --exclude='apps/client/.next'
+          switches: -avz --delete --exclude='node_modules' --exclude='.git' --exclude='.env*' --exclude='apps/admin/.next'
           path: ./
           remote_path: ~/luv
           remote_host: ${{ secrets.EC2_HOST }}

@@ -15,13 +15,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            apps/admin
+            apps/client-renewal
+            packages
+            pnpm-lock.yaml
+            .github
+          sparse-checkout-cone-mode: false
+
+      # pnpm CLI를 액션으로 설치 (순서를 setup-node보다 앞으로 이동)
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8.9.0
 
       - uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
-
-      - name: Install pnpm
-        run: npm install -g pnpm@8.9.0
+          cache: "pnpm" # pnpm store를 캐싱해서 Install dependencies 단계 단축
 
       - name: Install dependencies
         run: pnpm install
@@ -29,8 +41,19 @@ jobs:
       - name: Build ui package
         run: pnpm --filter ui build
 
+      # Next.js 빌드 캐시 복원/저장 (Build admin 단계 단축 목적)
+      - name: Cache Next.js build
+        uses: actions/cache@v4
+        with:
+          path: |
+            apps/admin/.next/cache
+          key: ${{ runner.os }}-nextjs-admin-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('apps/admin/**/*.js', 'apps/admin/**/*.jsx', 'apps/admin/**/*.ts', 'apps/admin/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-admin-${{ hashFiles('pnpm-lock.yaml') }}-
+
       - name: Build admin
         env:
+          # next.config.mjs rewrites의 destination(프록시 대상)으로 사용
           NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL: ${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }}
         run: pnpm --filter admin build
 
@@ -59,5 +82,5 @@ jobs:
             sudo systemctl daemon-reload
             sudo nginx -t && sudo systemctl reload nginx
             echo "NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL=${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }}" > apps/admin/.env.production.local
-            pm2 restart admin --update-env || NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL=${{ secrets.NEXT_PUBLIC_AXIOS_DEFAULT_BASEURL }} PORT=3001 pm2 start pnpm --name "admin" -- --filter admin start
+            pm2 restart admin --update-env || PORT=3001 pm2 start pnpm --name "admin" -- --filter admin start
             pm2 save
