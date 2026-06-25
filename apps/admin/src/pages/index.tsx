@@ -1,33 +1,8 @@
 import Layout from "@/components/layout";
 import { PageHeader } from "@/components/admin/page-header";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  FileText,
-  BookMarked,
-  HousePlus,
-  Images,
-  BookOpen,
-  Globe,
-  Bell,
-  Users,
-} from "lucide-react";
-import { useRouter } from "next/router";
-
-const quickActions = [
-  { label: "주보 등록", href: "/bulletins", icon: FileText },
-  { label: "성경통독 추가", href: "/bibles/create", icon: BookOpen },
-  { label: "가정예배 추가", href: "/homeworship/create", icon: HousePlus },
-  { label: "앨범 업로드", href: "/album/create", icon: Images },
-  { label: "추천 도서 추가", href: "/books/create", icon: BookMarked },
-  { label: "선교지 소식 추가", href: "/mission-news/create", icon: Globe },
-  { label: "팝업 추가", href: "/popups/create", icon: Bell },
-  { label: "교우 소식 추가", href: "/congregation-news/create", icon: Users },
-];
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function Home() {
-  const { push } = useRouter();
-
   return (
     <Layout title="대시보드">
       <div className="flex flex-col">

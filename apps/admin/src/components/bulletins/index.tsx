@@ -14,7 +14,7 @@ import { IBulletin } from "type";
 import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader } from "../ui/card";
 import { Trash2, Plus, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
