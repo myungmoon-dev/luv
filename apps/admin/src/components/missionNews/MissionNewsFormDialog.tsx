@@ -74,7 +74,7 @@ const MissionNewsFormDialog = ({ open, onClose, onSuccess }: MissionNewsFormDial
     const files = Array.from(e.target.files ?? []);
     e.target.value = "";
     if (files.length === 0) return;
-    const processed = await processImages(files);
+    const processed = await processImages(files, "content");
     setImages((prev) => [...prev, ...processed]);
     setPreviews((prev) => [...prev, ...processed.map((f) => URL.createObjectURL(f))]);
   };

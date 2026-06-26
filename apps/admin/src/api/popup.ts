@@ -1,6 +1,7 @@
 import { IGetPopupsResponse } from "@/types/popup/response";
 import { api } from ".";
 import { IGetPopupsRequest, IPutPopupShowRequest } from "@/types/popup/request";
+import type { IPopup } from "type";
 
 export const getPopups = async ({ onlyShow }: IGetPopupsRequest) => {
   const { data } = await api.get<IGetPopupsResponse>("/popups", {
@@ -26,10 +27,7 @@ export const deletePopup = async ({ id }: { id: string }) => {
   return data;
 };
 
-export const putPopupShow = async ({ id, isShow }: IPutPopupShowRequest) => {
-  const { data } = await api.put(`/popups/${id}/show`, {
-    isShow,
-  });
-
+export const putPopupShow = async ({ id }: IPutPopupShowRequest) => {
+  const { data } = await api.put<IPopup>(`/popups/${id}/show`);
   return data;
 };

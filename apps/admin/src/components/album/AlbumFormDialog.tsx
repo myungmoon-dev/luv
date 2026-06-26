@@ -52,7 +52,7 @@ const AlbumFormDialog = ({ open, onClose, onSuccess }: AlbumFormDialogProps) => 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     e.target.value = "";
-    const processed = await processImages(files);
+    const processed = await processImages(files, "content");
     const merged = [...images, ...processed].slice(0, MAX_IMAGES);
     setImages(merged);
     setPreviews(merged.map((f) => URL.createObjectURL(f)));
