@@ -100,7 +100,7 @@ const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "thumbnail");
     setImage(processed);
     setPreview(URL.createObjectURL(processed));
   };

@@ -34,7 +34,7 @@ const HomeImage = () => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "banner");
     const formData = new FormData();
     formData.append("image", processed);
     postImage(formData, {

@@ -52,7 +52,7 @@ const PopupFormDialog = ({ open, onClose, target }: Props) => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "banner");
     setImage(processed);
     setPreview(URL.createObjectURL(processed));
   };

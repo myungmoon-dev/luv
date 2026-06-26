@@ -83,7 +83,7 @@ const BookDetailDialog = ({ book, onClose, onSuccess }: BookDetailDialogProps) =
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "content");
     setNewImage(processed);
     setNewPreview(URL.createObjectURL(processed));
     setKeepImage(false);
