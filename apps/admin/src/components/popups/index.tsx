@@ -32,20 +32,23 @@ const Popups = () => {
   const { mutate: deletePopup, isPending: isDeleting } = useDeletePopup();
 
   const handleToggleShow = (popup: IPopup) => {
-    queryClient.setQueryData<IPopup[]>(popupKeys.list(null), (old) =>
-      old?.map((p) => (p.id === popup.id ? { ...p, show: !p.show } : p)),
+    queryClient.setQueryData<IPopup[]>(
+      popupKeys.list(null),
+      (old) => old?.map((p) => (p.id === popup.id ? { ...p, show: !p.show } : p)),
     );
     putPopupShow(
       { id: popup.id, isShow: !popup.show },
       {
         onSuccess: (updated) => {
-          queryClient.setQueryData<IPopup[]>(popupKeys.list(null), (old) =>
-            old?.map((p) => (p.id === updated.id ? updated : p)),
+          queryClient.setQueryData<IPopup[]>(
+            popupKeys.list(null),
+            (old) => old?.map((p) => (p.id === updated.id ? updated : p)),
           );
         },
         onError: () => {
-          queryClient.setQueryData<IPopup[]>(popupKeys.list(null), (old) =>
-            old?.map((p) => (p.id === popup.id ? { ...p, show: popup.show } : p)),
+          queryClient.setQueryData<IPopup[]>(
+            popupKeys.list(null),
+            (old) => old?.map((p) => (p.id === popup.id ? { ...p, show: popup.show } : p)),
           );
           toast.error("에러가 발생했습니다.");
         },
@@ -84,7 +87,7 @@ const Popups = () => {
             <TableHead>제목</TableHead>
             <TableHead className="w-24 text-center">공개 여부</TableHead>
             <TableHead className="w-40">생성일</TableHead>
-            <TableHead className="w-20 text-center">작업</TableHead>
+            <TableHead className="w-20 text-center">삭제</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -133,15 +136,10 @@ const Popups = () => {
         onClose={() => setViewTarget(null)}
       />
 
-      <AlertDialog
-        open={!!deleteTarget}
-        onOpenChange={(o) => !o && setDeleteTarget(null)}
-      >
+      <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>
-              {deleteTarget?.title}을(를) 삭제하시겠습니까?
-            </AlertDialogTitle>
+            <AlertDialogTitle>{deleteTarget?.title}을(를) 삭제하시겠습니까?</AlertDialogTitle>
             <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
