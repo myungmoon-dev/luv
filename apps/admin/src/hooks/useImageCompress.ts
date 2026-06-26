@@ -3,18 +3,19 @@ import { toast } from "sonner";
 
 const MAX_SIZE_MB = 10;
 
-const compressImage = async (file: File): Promise<File> => {
-  if (file.size <= MAX_SIZE_MB * 1024 * 1024) return file;
+const convertToWebp = async (file: File): Promise<File> => {
+  if (file.type === "image/gif" || file.type === "image/webp") return file;
 
   const options = {
     maxSizeMB: MAX_SIZE_MB,
     maxWidthOrHeight: 1920,
     useWebWorker: true,
-    fileType: file.type === "image/png" ? "image/png" : "image/jpeg",
+    fileType: "image/webp",
   };
 
   const compressed = await imageCompression(file, options);
-  return new File([compressed], file.name, { type: compressed.type });
+  const newName = file.name.replace(/\.[^/.]+$/, "") + ".webp";
+  return new File([compressed], newName, { type: "image/webp" });
 };
 
 export const processImages = async (
@@ -22,25 +23,25 @@ export const processImages = async (
   {
     onStart,
     onDone,
-  }: { onStart?: () => void; onDone?: () => void } = {}
+  }: { onStart?: () => void; onDone?: () => void } = {},
 ): Promise<File[]> => {
-  const needsCompression = files.some((f) => f.size > MAX_SIZE_MB * 1024 * 1024);
+  const needsConversion = files.some(
+    (f) => f.type !== "image/gif" && f.type !== "image/webp",
+  );
 
-  if (needsCompression) {
-    onStart?.();
-    const toastId = toast.loading("업로드를 위해 이미지를 최적화하고 있습니다…");
-    try {
-      const result = await Promise.all(files.map(compressImage));
-      toast.dismiss(toastId);
-      onDone?.();
-      return result;
-    } catch {
-      toast.dismiss(toastId);
-      toast.error("이미지 최적화 중 오류가 발생했습니다.");
-      onDone?.();
-      return files;
-    }
+  if (!needsConversion) return files;
+
+  onStart?.();
+  const toastId = toast.loading("업로드를 위해 이미지를 최적화하고 있습니다…");
+  try {
+    const result = await Promise.all(files.map(convertToWebp));
+    toast.dismiss(toastId);
+    onDone?.();
+    return result;
+  } catch {
+    toast.dismiss(toastId);
+    toast.error("이미지 최적화 중 오류가 발생했습니다.");
+    onDone?.();
+    return files;
   }
-
-  return files;
 };
