@@ -1,6 +1,6 @@
 /** `apps/client` overview `EDUCATION_DATA` 중 부서 서브페이지용 (영아·유치·유초등·중고등·청년·브릿지) */
 
-export type EducationDeptType = "infants" | "toddlers" | "elementary" | "high" | "2youth" | "bridge";
+export type EducationDeptType = "infants" | "toddlers" | "elementary" | "high" | "youth" | "bridge";
 
 export type EducationCoreMinistryItem = {
   id: number;
@@ -13,7 +13,7 @@ export type EducationCoreMinistryItem = {
 
 export type EducationDepartmentData = {
   type: EducationDeptType;
-  /** URL 세그먼트 (예: youth-adults2) */
+  /** URL 세그먼트 (예: youth) */
   slug: string;
   department: string;
   introduction: string;
@@ -33,7 +33,7 @@ export const educationSlugToType: Record<string, EducationDeptType> = {
   toddlers: "toddlers",
   elementary: "elementary",
   high: "high",
-  "youth-adults2": "2youth",
+  youth: "youth",
   bridge: "bridge",
 };
 
@@ -231,8 +231,8 @@ export const educationDepartmentList: EducationDepartmentData[] = [
     ],
   },
   {
-    type: "2youth",
-    slug: "youth-adults2",
+    type: "youth",
+    slug: "youth",
     department: "청년부",
     heroImage: "/images/education/2youth/banner.jpg",
     heroImgClass: "object-[center_40%]",

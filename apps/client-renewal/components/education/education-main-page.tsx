@@ -1,19 +1,32 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import {
   Baby,
   BookOpen,
   GraduationCap,
+  type LucideIcon,
   Sparkles,
   Users,
   Waypoints,
 } from "lucide-react";
 
 import { EducationDepartmentNav } from "@/components/education/education-department-nav";
+import { getAllEducationDepartments, getEducationHome } from "@/lib/api-education";
+import type { EducationDeptType } from "@/lib/data/education-departments";
 
-const departments = [
+const ICON_BY_TYPE: Record<EducationDeptType, LucideIcon> = {
+  infants: Baby,
+  toddlers: Sparkles,
+  elementary: BookOpen,
+  high: GraduationCap,
+  youth: Users,
+  bridge: Waypoints,
+};
+
+const fallbackDepartments = [
   {
     href: "/education/infants",
     label: "영아부",
@@ -39,7 +52,7 @@ const departments = [
     Icon: GraduationCap,
   },
   {
-    href: "/education/youth-adults2",
+    href: "/education/youth",
     label: "청년부",
     description: "예배와 교제로 하나 되는 청년 공동체",
     Icon: Users,
@@ -52,7 +65,7 @@ const departments = [
   },
 ] as const;
 
-const visions: { lead: string; emphasis: string; bold: string }[] = [
+const fallbackVisions: { lead: string; emphasis: string; bold: string }[] = [
   {
     lead: "하나님을 영화롭게 하며",
     emphasis: "하나님을 깊이 만나는 ",
@@ -75,7 +88,7 @@ const visions: { lead: string; emphasis: string; bold: string }[] = [
   },
 ];
 
-const coreValues = [
+const fallbackCoreValues = [
   { n: "01", title: "영적 변화와 회심이 일어나는 교육" },
   { n: "02", title: "성경의 핵심 진리를 이해하도록 돕는 교육" },
   { n: "03", title: "그리스도인의 삶으로 나아가는 교육" },
@@ -83,6 +96,35 @@ const coreValues = [
 ];
 
 export function EducationMainPage() {
+  // 부서: API 우선, 실패 시 fallback (순서대로 정렬됨)
+  const { data: deptList } = useQuery({
+    queryKey: ["education", "all"],
+    queryFn: getAllEducationDepartments,
+    staleTime: 60 * 1000,
+  });
+  const departments =
+    deptList && deptList.length > 0
+      ? deptList.map((d) => ({
+          href: `/education/${d.slug}`,
+          label: d.department,
+          description: d.introduction.split("\n")[0],
+          Icon: ICON_BY_TYPE[d.type] ?? BookOpen,
+        }))
+      : fallbackDepartments;
+
+  // 홈 콘텐츠: API 우선
+  const { data: home } = useQuery({
+    queryKey: ["education", "home"],
+    queryFn: getEducationHome,
+    staleTime: 60 * 1000,
+  });
+  const visions = home?.visions && home.visions.length > 0 ? home.visions : fallbackVisions;
+  const coreValues = home?.coreValues && home.coreValues.length > 0 ? home.coreValues : fallbackCoreValues;
+  const heroImage = home?.heroImageUrl ?? "/images/education/banner.jpg";
+  const heroImgClass = home?.heroImgClass ?? "object-cover object-[center_35%]";
+  const heroSubtitle = home?.heroSubtitle ?? "일어나라 빛을 발하라!";
+  const missionLine1 = home?.missionLine1 ?? "명문교회 교육부서는";
+  const missionLine2 = home?.missionLine2 ?? "하나님을 경외하는 다음세대를 세우기 위해 존재한다.";
   return (
     <div className="bg-[#fafbfc]">
       <div className="mx-auto max-w-6xl px-4 pt-6 sm:px-6 lg:px-8">
@@ -91,11 +133,11 @@ export function EducationMainPage() {
       {/* 히어로 */}
       <section className="relative min-h-[min(52vh,420px)] w-full overflow-hidden">
         <Image
-          src="/images/education/banner.jpg"
+          src={heroImage}
           alt=""
           fill
           priority
-          className="object-cover object-[center_35%]"
+          className={`object-cover ${heroImgClass}`}
           sizes="100vw"
         />
         <div
@@ -106,7 +148,7 @@ export function EducationMainPage() {
           <p className="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">명문교회 교육</p>
           <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">다음세대</h1>
           <p className="mt-4 max-w-xl text-lg font-medium text-white/95 sm:text-xl md:text-2xl">
-            일어나라 빛을 발하라!
+            {heroSubtitle}
           </p>
         </div>
       </section>
@@ -117,10 +159,10 @@ export function EducationMainPage() {
           <div className="flex min-h-[200px] flex-col justify-center px-6 py-10 sm:min-h-[240px] sm:px-10 sm:py-12 md:min-h-[280px] md:px-12 md:py-14">
             <p className="text-sm font-semibold uppercase tracking-widest text-white/75 sm:text-base">사명 선언문</p>
             <p className="mt-4 text-2xl font-bold leading-snug text-white sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
-              명문교회 교육부서는
+              {missionLine1}
             </p>
             <p className="mt-2 text-2xl font-bold leading-snug text-white sm:text-3xl md:text-4xl lg:text-5xl">
-              하나님을 경외하는 다음세대를 세우기 위해 존재한다.
+              {missionLine2}
             </p>
           </div>
         </div>

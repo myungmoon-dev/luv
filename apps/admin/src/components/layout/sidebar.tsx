@@ -19,6 +19,7 @@ import {
   BookText,
   Layout,
   UserRound,
+  GraduationCap,
 } from "lucide-react";
 import {
   Sidebar,
@@ -56,6 +57,7 @@ const contentMenuItems = [
   { title: "앨범 업로드", icon: Image, href: "/album" },
   { title: "추천 도서", icon: BookMarked, href: "/books" },
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
+  { title: "다음세대", icon: GraduationCap, href: "/education" },
 ];
 
 const leadershipMenuItems = [

@@ -1,5 +1,6 @@
 "use client";
 
+import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { Clock, MapPin, Users } from "lucide-react";
 
@@ -9,6 +10,7 @@ import {
   getEducationDepartment,
   type EducationDeptType,
 } from "@/lib/data/education-departments";
+import { getEducationDepartmentByType } from "@/lib/api-education";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -16,7 +18,13 @@ type Props = {
 };
 
 export function EducationDepartmentView({ type }: Props) {
-  const data = getEducationDepartment(type);
+  const fallback = getEducationDepartment(type);
+  const { data: fromApi } = useQuery({
+    queryKey: ["education", type],
+    queryFn: () => getEducationDepartmentByType(type),
+    staleTime: 60 * 1000,
+  });
+  const data = fromApi ?? fallback;
   const particle = departmentParticle(data.department);
 
   return (
