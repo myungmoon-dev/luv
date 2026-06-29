@@ -1,13 +1,4 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import ListPagination from "@/components/common/ListPagination";
 import { useDeleteMinister, useGetMinisters } from "@/query/minister";
 import { Spinner } from "@/components/ui/spinner";
@@ -124,11 +115,11 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-12 px-4 text-center text-xs">사진</TableHead>
-                  <TableHead className="text-xs sm:text-sm">이름 · 직책</TableHead>
-                  <TableHead className="hidden text-xs sm:table-cell sm:text-sm">담당</TableHead>
-                  <TableHead className="w-14 text-center text-xs sm:text-sm">순서</TableHead>
-                  <TableHead className="w-20 text-center text-xs sm:text-sm">관리</TableHead>
+                  <TableHead className="w-20 whitespace-nowrap px-4 text-center text-xs">사진</TableHead>
+                  <TableHead className="whitespace-nowrap text-xs sm:text-sm">이름 · 직책</TableHead>
+                  <TableHead className="hidden whitespace-nowrap text-xs sm:table-cell sm:text-sm">담당</TableHead>
+                  <TableHead className="w-16 whitespace-nowrap text-center text-xs sm:text-sm">순서</TableHead>
+                  <TableHead className="w-24 whitespace-nowrap text-center text-xs sm:text-sm">관리</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -197,27 +188,13 @@ const TabPanel = ({ tabType }: TabPanelProps) => {
         target={editTarget}
       />
 
-      <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{deleteTarget?.name}을(를) 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleDelete();
-              }}
-              disabled={isDeleting}
-            >
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+        onConfirm={handleDelete}
+        title={`${deleteTarget?.name ?? ""}을(를) 삭제하시겠습니까?`}
+        isPending={isDeleting}
+      />
     </>
   );
 };

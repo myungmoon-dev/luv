@@ -1,13 +1,4 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import { useDeletePopup, useGetPopups, usePutPopupShow } from "@/query/popup";
 import popupKeys from "@/query/popup/keys";
 import { IPopup } from "type";
@@ -136,27 +127,13 @@ const Popups = () => {
         onClose={() => setViewTarget(null)}
       />
 
-      <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{deleteTarget?.title}을(를) 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleConfirmDelete();
-              }}
-              disabled={isDeleting}
-            >
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+        onConfirm={handleConfirmDelete}
+        title={`${deleteTarget?.title ?? ""}을(를) 삭제하시겠습니까?`}
+        isPending={isDeleting}
+      />
     </>
   );
 };

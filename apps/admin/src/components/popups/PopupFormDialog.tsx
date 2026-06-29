@@ -1,15 +1,14 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { ImageIcon, X } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { usePostPopup } from "@/query/popup";
 import { processImages } from "@/hooks/useImageCompress";
+import FormDialog from "@/components/common/FormDialog";
+import ImageUpload from "@/components/common/ImageUpload";
 import dayjs from "dayjs";
 import type { IPopup } from "type";
 
@@ -23,6 +22,8 @@ interface Props {
   onClose: () => void;
   target?: IPopup | null;
 }
+
+const FORM_ID = "popup-form";
 
 const PopupFormDialog = ({ open, onClose, target }: Props) => {
   const isView = !!target;
@@ -63,6 +64,11 @@ const PopupFormDialog = ({ open, onClose, target }: Props) => {
     onClose();
   };
 
+  const removeImage = () => {
+    setImage(null);
+    setPreview(null);
+  };
+
   const onSubmit = (form: PopupForm) => {
     if (isView) return;
     if (!image) return toast.error("이미지를 업로드해주세요.");
@@ -82,122 +88,88 @@ const PopupFormDialog = ({ open, onClose, target }: Props) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="flex h-[90dvh] max-h-[90dvh] flex-col gap-0 p-0 sm:max-w-lg">
-        <DialogHeader className="shrink-0 border-b px-6 py-4">
-          <DialogTitle>{isView ? "팝업 상세" : "팝업 추가"}</DialogTitle>
-        </DialogHeader>
+    <FormDialog
+      open={open}
+      onClose={handleClose}
+      title={isView ? "팝업 상세" : "팝업 추가"}
+      footer={
+        isView ? (
+          <Button type="button" variant="outline" className="w-full" onClick={handleClose}>
+            닫기
+          </Button>
+        ) : (
+          <Button
+            type="submit"
+            form={FORM_ID}
+            className="w-full"
+            disabled={isPending}
+            isLoading={isPending}
+          >
+            추가
+          </Button>
+        )
+      }
+    >
+      {isView ? (
+        <PopupDetailView popup={target} />
+      ) : (
+        <form id={FORM_ID} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-sm font-medium">제목 *</Label>
+            <Input
+              placeholder="팝업 제목을 입력해주세요."
+              {...register("title", { required: "제목을 입력해주세요." })}
+            />
+            {errors.title && (
+              <p className="text-destructive text-xs">{errors.title.message}</p>
+            )}
+          </div>
 
-        <ScrollArea className="min-h-0 flex-1">
-          {isView ? (
-            <div className="flex flex-col gap-5 px-6 py-5">
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">제목</Label>
-                <p className="text-sm">{target.title}</p>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">공개 여부</Label>
-                <p className="text-sm">{target.show ? "공개" : "비공개"}</p>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">생성일</Label>
-                <p className="text-sm">
-                  {dayjs(target.createdAt).format("YYYY-MM-DD HH:mm")}
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">이미지</Label>
-                <div className="w-full overflow-hidden rounded-lg border">
-                  <img src={target.imageUrl} alt={target.title} className="w-full object-contain" />
-                </div>
-              </div>
-            </div>
-          ) : (
-            <form
-              id="popup-form"
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-5 px-6 py-5"
-            >
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">제목 *</Label>
-                <Input
-                  placeholder="팝업 제목을 입력해주세요."
-                  {...register("title", { required: "제목을 입력해주세요." })}
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-medium">공개 여부</Label>
+            <Controller
+              name="isShow"
+              control={control}
+              render={({ field }) => (
+                <Switch
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-300"
                 />
-                {errors.title && (
-                  <p className="text-destructive text-xs">{errors.title.message}</p>
-                )}
-              </div>
+              )}
+            />
+          </div>
 
-              <div className="flex items-center justify-between">
-                <Label className="text-sm font-medium">공개 여부</Label>
-                <Controller
-                  name="isShow"
-                  control={control}
-                  render={({ field }) => (
-                    <Switch
-                      checked={field.value}
-                      onCheckedChange={field.onChange}
-                      className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-300"
-                    />
-                  )}
-                />
-              </div>
-
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">이미지 *</Label>
-                {preview ? (
-                  <div className="relative w-full overflow-hidden rounded-lg border">
-                    <img src={preview} alt="미리보기" className="w-full object-contain" />
-                    <button
-                      type="button"
-                      onClick={() => { setImage(null); setPreview(null); }}
-                      className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                    >
-                      <X className="size-3.5" />
-                    </button>
-                  </div>
-                ) : (
-                  <label className="border-muted-foreground/25 hover:border-muted-foreground/50 hover:bg-muted/30 flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed p-6 text-center transition-colors">
-                    <ImageIcon className="text-muted-foreground/50 size-6" />
-                    <span className="text-muted-foreground text-sm">클릭하여 이미지 업로드</span>
-                    <span className="text-muted-foreground/70 text-xs">1장 · 10MB 이하 (초과 시 자동 압축)</span>
-                    <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
-                  </label>
-                )}
-              </div>
-            </form>
-          )}
-        </ScrollArea>
-
-        <div className="bg-background shrink-0 border-t px-6 py-4">
-          {isView ? (
-            <Button
-              type="button"
-              onClick={handleClose}
-              className="w-full"
-              variant="outline"
-            >
-              닫기
-            </Button>
-          ) : (
-            <Button
-              type="submit"
-              form="popup-form"
-              className="w-full"
-              disabled={isPending}
-              isLoading={isPending}
-            >
-              추가
-            </Button>
-          )}
-        </div>
-      </DialogContent>
-    </Dialog>
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-sm font-medium">이미지 *</Label>
+            <ImageUpload preview={preview} onChange={handleImageChange} onRemove={removeImage} />
+          </div>
+        </form>
+      )}
+    </FormDialog>
   );
 };
+
+const PopupDetailView = ({ popup }: { popup: IPopup }) => (
+  <div className="flex flex-col gap-5">
+    <DetailField label="제목" value={popup.title} />
+    <DetailField label="공개 여부" value={popup.show ? "공개" : "비공개"} />
+    <DetailField label="생성일" value={dayjs(popup.createdAt).format("YYYY-MM-DD HH:mm")} />
+    <div className="flex flex-col gap-1.5">
+      <Label className="text-sm font-medium">이미지</Label>
+      <div className="w-full overflow-hidden rounded-lg border">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={popup.imageUrl} alt={popup.title} className="w-full object-contain" />
+      </div>
+    </div>
+  </div>
+);
+
+const DetailField = ({ label, value }: { label: string; value: string }) => (
+  <div className="flex flex-col gap-1.5">
+    <Label className="text-sm font-medium">{label}</Label>
+    <p className="text-sm">{value}</p>
+  </div>
+);
 
 export default PopupFormDialog;

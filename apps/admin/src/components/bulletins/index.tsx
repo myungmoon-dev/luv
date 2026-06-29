@@ -1,13 +1,4 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import ListPagination from "@/components/common/ListPagination";
 import { useDeleteBulletin, useDeleteBulletins, useGetAvailableDates, useGetBulletins } from "@/query/bulletin";
 import { IBulletin } from "type";
@@ -15,7 +6,7 @@ import { Spinner } from "@/components/ui/spinner";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Trash2, Plus, Loader2 } from "lucide-react";
+import { Trash2, Plus } from "lucide-react";
 import { toast } from "sonner";
 import { useState } from "react";
 import BulletinFormDialog from "./BulletinFormDialog";
@@ -247,56 +238,23 @@ const Bulletins = () => {
 
       <BulletinDetailDialog bulletin={detailTarget} onClose={() => setDetailTarget(null)} onSuccess={refetch} />
 
-      {/* Single delete */}
-      <AlertDialog
+      <DeleteConfirmDialog
         open={!!deleteTargetId}
-        onOpenChange={(open) => !open && setDeleteTargetId(null)}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>주보를 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 주보는 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleDelete();
-              }}
-              disabled={isDeleting}
-            >
-              {isDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+        onOpenChange={(o) => !o && setDeleteTargetId(null)}
+        onConfirm={handleDelete}
+        title="주보를 삭제하시겠습니까?"
+        description="삭제된 주보는 복구할 수 없습니다."
+        isPending={isDeleting}
+      />
 
-      {/* Bulk delete */}
-      <AlertDialog open={bulkDeleteOpen} onOpenChange={(open) => !open && setBulkDeleteOpen(false)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{selectedIds.size}개의 주보를 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 주보는 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isBulkDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleBulkDelete();
-              }}
-              disabled={isBulkDeleting}
-            >
-              {isBulkDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={bulkDeleteOpen}
+        onOpenChange={(o) => !o && setBulkDeleteOpen(false)}
+        onConfirm={handleBulkDelete}
+        title={`${selectedIds.size}개의 주보를 삭제하시겠습니까?`}
+        description="삭제된 주보는 복구할 수 없습니다."
+        isPending={isBulkDeleting}
+      />
     </>
   );
 };

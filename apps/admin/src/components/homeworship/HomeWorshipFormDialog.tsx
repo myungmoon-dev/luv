@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
 import { Spinner } from "@/components/ui/spinner";
@@ -11,11 +10,13 @@ import { toast } from "sonner";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
 import { Input } from "../ui/input";
-import { CalendarIcon, ImagePlus, X } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { cn } from "@/lib/utils";
 import { processImages } from "@/hooks/useImageCompress";
+import FormDialog from "@/components/common/FormDialog";
+import ImageListUpload from "@/components/common/ImageListUpload";
 
 const Editor = dynamic(() => import("@/components/common/editor").then((mod) => mod.Editor), {
   ssr: false,
@@ -121,17 +122,28 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="flex max-h-[90dvh] flex-col gap-0 overflow-y-auto p-0 sm:max-w-lg">
-        <DialogHeader className="bg-background sticky top-0 z-10 border-b px-6 pb-4 pt-6">
-          <DialogTitle>가정예배 등록</DialogTitle>
-        </DialogHeader>
-
-        <form
-          id="hw-form"
-          onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 px-6 pb-4 pt-4"
-        >
+    <FormDialog
+      open={open}
+      onClose={handleClose}
+      title="가정예배 등록"
+      footer={
+        <div className="flex gap-2">
+          <Button type="button" variant="outline" className="flex-1" onClick={handleClose}>
+            취소
+          </Button>
+          <Button
+            form="hw-form"
+            type="submit"
+            className="flex-1"
+            disabled={isPending || !selectedDate || imageFiles.length === 0}
+            isLoading={isPending}
+          >
+            등록
+          </Button>
+        </div>
+      }
+    >
+        <form id="hw-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           {/* 날짜 */}
           <FormField label="예배 날짜" required>
             <Popover open={calendarOpen} onOpenChange={setCalendarOpen}>
@@ -181,47 +193,12 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
 
           {/* 사진 */}
           <FormField label="사진" required error={imageError}>
-            <input
-              id="hw-image-input"
-              type="file"
-              accept="image/*"
-              multiple
-              className="hidden"
+            <ImageListUpload
+              previews={imagePreviews}
               onChange={handleImageChange}
-              disabled={imageFiles.length >= MAX_IMAGES}
+              onRemove={handleRemoveImage}
+              maxImages={MAX_IMAGES}
             />
-            {imageFiles.length < MAX_IMAGES && (
-              <label
-                htmlFor="hw-image-input"
-                className="border-input text-muted-foreground hover:bg-muted/50 flex w-full cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed py-5 text-sm transition-colors"
-              >
-                <ImagePlus className="size-5" />
-                <span>클릭하여 사진을 선택하세요</span>
-                <span className="text-xs opacity-70">
-                  최소 1개 · 최대 {MAX_IMAGES}개 ({imageFiles.length}/{MAX_IMAGES})
-                </span>
-              </label>
-            )}
-            {imagePreviews.length > 0 && (
-              <div className="mt-2 grid grid-cols-3 gap-2 sm:grid-cols-4">
-                {imagePreviews.map((url, i) => (
-                  <div key={url} className="relative aspect-square">
-                    <img
-                      src={url}
-                      alt={`사진 ${i + 1}`}
-                      className="h-full w-full rounded-md border object-cover"
-                    />
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveImage(i)}
-                      className="bg-destructive absolute -right-1.5 -top-1.5 flex size-5 items-center justify-center rounded-full text-white shadow"
-                    >
-                      <X className="size-3" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
           </FormField>
 
           {/* 내용 */}
@@ -247,22 +224,7 @@ const HomeWorshipFormDialog = ({ open, onClose, onSuccess }: HomeWorshipFormDial
             <Switch checked={isPinned} onCheckedChange={setIsPinned} />
           </div>
         </form>
-
-        <div className="bg-background sticky bottom-0 flex gap-2 border-t px-6 py-4">
-          <Button type="button" variant="outline" className="flex-1" onClick={handleClose}>
-            취소
-          </Button>
-          <Button
-            form="hw-form"
-            className="flex-1"
-            disabled={isPending || !selectedDate || imageFiles.length === 0}
-            isLoading={isPending}
-          >
-            등록
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+    </FormDialog>
   );
 };
 
