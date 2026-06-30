@@ -1,3 +1,4 @@
+import Image from "next/image";
 import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import { useDeletePopup, useGetPopups, usePutPopupShow } from "@/query/popup";
 import popupKeys from "@/query/popup/keys";
@@ -89,9 +90,11 @@ const Popups = () => {
               onClick={() => setViewTarget(popup)}
             >
               <TableCell className="py-2 text-center">
-                <img
+                <Image
                   src={popup.imageUrl}
                   alt={popup.title}
+                  width={40}
+                  height={40}
                   className="mx-auto h-10 w-10 rounded object-cover"
                 />
               </TableCell>

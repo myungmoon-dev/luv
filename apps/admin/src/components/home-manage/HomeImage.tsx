@@ -1,3 +1,4 @@
+import NextImage from "next/image";
 import { useDeleteHomeImage, useGetHomeImages, usePostHomeImage } from "@/query/home";
 import { processImages } from "@/hooks/useImageCompress";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -70,8 +71,17 @@ const HomeImage = () => {
           ) : (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
               {images.map((img) => (
-                <div key={img.id} className="group relative overflow-hidden rounded-lg border">
-                  <img src={img.imageUrl} alt="" className="aspect-video w-full object-cover" />
+                <div
+                  key={img.id}
+                  className="group relative aspect-video overflow-hidden rounded-lg border"
+                >
+                  <NextImage
+                    src={img.imageUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                    className="object-cover"
+                  />
                   <button
                     type="button"
                     onClick={() => setDeleteTarget(img)}

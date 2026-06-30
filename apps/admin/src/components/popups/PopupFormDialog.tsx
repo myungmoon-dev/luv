@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -157,9 +158,14 @@ const PopupDetailView = ({ popup }: { popup: IPopup }) => (
     <DetailField label="생성일" value={dayjs(popup.createdAt).format("YYYY-MM-DD HH:mm")} />
     <div className="flex flex-col gap-1.5">
       <Label className="text-sm font-medium">이미지</Label>
-      <div className="w-full overflow-hidden rounded-lg border">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={popup.imageUrl} alt={popup.title} className="w-full object-contain" />
+      <div className="relative aspect-video w-full overflow-hidden rounded-lg border">
+        <Image
+          src={popup.imageUrl}
+          alt={popup.title}
+          fill
+          sizes="(max-width: 640px) 100vw, 512px"
+          className="object-contain"
+        />
       </div>
     </div>
   </div>
