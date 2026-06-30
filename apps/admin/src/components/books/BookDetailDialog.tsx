@@ -5,7 +5,8 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Badge } from "../ui/badge";
-import { ImageIcon, Pencil, X } from "lucide-react";
+import { Pencil, X } from "lucide-react";
+import ImageUpload from "@/components/common/ImageUpload";
 import { useEffect, useState } from "react";
 import { useController, useForm } from "react-hook-form";
 import { useGetBook, usePutBook } from "@/query/books";
@@ -83,7 +84,7 @@ const BookDetailDialog = ({ book, onClose, onSuccess }: BookDetailDialogProps) =
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "content");
     setNewImage(processed);
     setNewPreview(URL.createObjectURL(processed));
     setKeepImage(false);
@@ -193,46 +194,21 @@ const BookDetailDialog = ({ book, onClose, onSuccess }: BookDetailDialogProps) =
 
                 <div className="flex flex-col gap-1.5">
                   <Label className="text-sm font-medium">표지 이미지</Label>
-                  {keepImage && book?.imageUrls?.[0] ? (
-                    <div className="relative w-full overflow-hidden rounded-lg border">
-                      <img src={book.imageUrls[0]} alt="표지" className="w-full object-contain" />
-                      <button
-                        type="button"
-                        onClick={() => setKeepImage(false)}
-                        className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                      >
-                        <X className="size-3.5" />
-                      </button>
-                    </div>
-                  ) : newPreview ? (
-                    <div className="relative w-full overflow-hidden rounded-lg border">
-                      <img src={newPreview} alt="새 표지" className="w-full object-contain" />
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setNewImage(null);
-                          setNewPreview(null);
-                        }}
-                        className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                      >
-                        <X className="size-3.5" />
-                      </button>
-                    </div>
-                  ) : (
-                    <label className="border-muted-foreground/25 hover:border-muted-foreground/50 hover:bg-muted/30 flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed p-6 text-center transition-colors">
-                      <ImageIcon className="text-muted-foreground/50 size-6" />
-                      <span className="text-muted-foreground text-sm">클릭하여 이미지 교체</span>
-                      <span className="text-muted-foreground/70 text-xs">
-                        10MB 이하 (초과 시 자동 압축)
-                      </span>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleImageChange}
-                      />
-                    </label>
-                  )}
+                  <ImageUpload
+                    preview={
+                      keepImage ? (book?.imageUrls?.[0] ?? null) : newPreview
+                    }
+                    onChange={handleImageChange}
+                    onRemove={() => {
+                      if (keepImage) {
+                        setKeepImage(false);
+                      } else {
+                        setNewImage(null);
+                        setNewPreview(null);
+                      }
+                    }}
+                    alt="표지"
+                  />
                 </div>
 
                 <div className="flex flex-col gap-1.5">

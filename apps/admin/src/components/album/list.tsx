@@ -7,19 +7,10 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from ".
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { ALBUM_TYPE_OPTIONS } from "./config";
 import { toast } from "sonner";
-import { Trash2, Loader2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "../ui/alert-dialog";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import AlbumDetailDialog from "./AlbumDetailDialog";
 
 interface IAlbumListProps {
@@ -130,7 +121,7 @@ const AlbumList = ({ type, refetchKey, onRefetch }: IAlbumListProps) => {
                   <TableHead className="hidden w-24 text-center text-xs sm:table-cell sm:text-sm">행사일</TableHead>
                   <TableHead className="px-3 text-center text-xs sm:text-sm">제목</TableHead>
                   <TableHead className="hidden w-28 text-center text-xs sm:table-cell sm:text-sm">생성일</TableHead>
-                  <TableHead className="w-8 px-2 sm:w-10"></TableHead>
+                  <TableHead className="w-12 px-2 sm:w-14 sm:px-3"></TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -173,9 +164,9 @@ const AlbumList = ({ type, refetchKey, onRefetch }: IAlbumListProps) => {
                       <TableCell className="text-muted-foreground hidden py-3 text-center text-xs sm:table-cell sm:text-sm">
                         {album.createdAt ? new Date(album.createdAt).toLocaleDateString("ko-KR") : "—"}
                       </TableCell>
-                      <TableCell className="py-3 px-2 sm:px-4" onClick={(e) => e.stopPropagation()}>
+                      <TableCell className="px-2 py-3 sm:px-3" onClick={(e) => e.stopPropagation()}>
                         <button
-                          className="flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive sm:size-8"
+                          className="mx-auto flex size-7 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-destructive/10 hover:text-destructive sm:size-8"
                           onClick={() => setTimeout(() => setDeleteTargetId(album.id), 0)}
                         >
                           <Trash2 className="size-3.5 sm:size-4" />
@@ -202,47 +193,21 @@ const AlbumList = ({ type, refetchKey, onRefetch }: IAlbumListProps) => {
         }}
       />
 
-      {/* 단건 삭제 */}
-      <AlertDialog open={!!deleteTargetId} onOpenChange={(o) => !o && setDeleteTargetId(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>앨범을 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => { e.preventDefault(); handleDelete(); }}
-              disabled={isDeleting}
-            >
-              {isDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={!!deleteTargetId}
+        onOpenChange={(o) => !o && setDeleteTargetId(null)}
+        onConfirm={handleDelete}
+        title="앨범을 삭제하시겠습니까?"
+        isPending={isDeleting}
+      />
 
-      {/* 다건 삭제 */}
-      <AlertDialog open={bulkDeleteOpen} onOpenChange={(o) => !o && setBulkDeleteOpen(false)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>{selectedIds.size}개의 앨범을 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 내용은 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isBulkDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => { e.preventDefault(); handleBulkDelete(); }}
-              disabled={isBulkDeleting}
-            >
-              {isBulkDeleting && <Loader2 className="mr-2 size-4 animate-spin" />}
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={bulkDeleteOpen}
+        onOpenChange={(o) => !o && setBulkDeleteOpen(false)}
+        onConfirm={handleBulkDelete}
+        title={`${selectedIds.size}개의 앨범을 삭제하시겠습니까?`}
+        isPending={isBulkDeleting}
+      />
     </>
   );
 };

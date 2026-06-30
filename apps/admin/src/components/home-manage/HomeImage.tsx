@@ -1,3 +1,4 @@
+import NextImage from "next/image";
 import { useDeleteHomeImage, useGetHomeImages, usePostHomeImage } from "@/query/home";
 import { processImages } from "@/hooks/useImageCompress";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -7,16 +8,7 @@ import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
 import ListPagination from "@/components/common/ListPagination";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import type { IHomeImage } from "type";
 
 const HomeImage = () => {
@@ -34,7 +26,7 @@ const HomeImage = () => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "banner");
     const formData = new FormData();
     formData.append("image", processed);
     postImage(formData, {
@@ -79,8 +71,17 @@ const HomeImage = () => {
           ) : (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
               {images.map((img) => (
-                <div key={img.id} className="group relative overflow-hidden rounded-lg border">
-                  <img src={img.imageUrl} alt="" className="aspect-video w-full object-cover" />
+                <div
+                  key={img.id}
+                  className="group relative aspect-video overflow-hidden rounded-lg border"
+                >
+                  <NextImage
+                    src={img.imageUrl}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 33vw, 25vw"
+                    className="object-cover"
+                  />
                   <button
                     type="button"
                     onClick={() => setDeleteTarget(img)}
@@ -97,24 +98,14 @@ const HomeImage = () => {
 
       <ListPagination page={page} totalPages={data?.totalPages ?? 0} onPageChange={setPage} />
 
-      <AlertDialog open={!!deleteTarget} onOpenChange={(o) => !o && setDeleteTarget(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>이미지를 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>삭제된 이미지는 복구할 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel disabled={isDeleting}>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={(e) => { e.preventDefault(); handleDelete(); }}
-              disabled={isDeleting}
-            >
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+        onConfirm={handleDelete}
+        title="이미지를 삭제하시겠습니까?"
+        description="삭제된 이미지는 복구할 수 없습니다."
+        isPending={isDeleting}
+      />
     </>
   );
 };

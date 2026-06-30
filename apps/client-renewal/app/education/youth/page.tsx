@@ -7,6 +7,6 @@ export const metadata: Metadata = {
   description: "복음으로! 오직 성령의 능력으로! 회복을 넘어 부흥으로!",
 };
 
-export default function EducationYouthAdults2Page() {
-  return <EducationDepartmentView type="2youth" />;
+export default function EducationYouthPage() {
+  return <EducationDepartmentView type="youth" />;
 }

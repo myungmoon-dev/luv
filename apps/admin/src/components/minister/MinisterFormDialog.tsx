@@ -1,9 +1,7 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
@@ -11,12 +9,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { ImageIcon, X } from "lucide-react";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 import { useEffect, useState } from "react";
 import { usePatchMinister, usePostMinister } from "@/query/minister";
 import { processImages } from "@/hooks/useImageCompress";
+import FormDialog from "@/components/common/FormDialog";
+import ImageUpload from "@/components/common/ImageUpload";
 import type { MinisterForm } from "@/api/minister";
 import type { IMinister, StaffTabType } from "type";
 
@@ -41,6 +40,8 @@ const OFFICER_OPTIONS: Record<StaffTabType, { value: string; label: string }[]> 
   retiredElder: [{ value: "retiredElder", label: "원로장로" }],
 };
 
+const FORM_ID = "minister-form";
+
 interface Props {
   open: boolean;
   onClose: () => void;
@@ -51,6 +52,8 @@ interface Props {
 const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
   const isEdit = !!target;
   const isRetiredPastor = tabType === "retiredPastor";
+  const showGreeting = tabType === "minister";
+  const officerOptions = OFFICER_OPTIONS[tabType] ?? [];
 
   const {
     register,
@@ -65,9 +68,6 @@ const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
 
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
-
-  const showGreeting = tabType === "minister";
-  const officerOptions = OFFICER_OPTIONS[tabType] ?? [];
 
   useEffect(() => {
     if (open && target) {
@@ -100,15 +100,25 @@ const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "thumbnail");
     setImage(processed);
     setPreview(URL.createObjectURL(processed));
   };
 
-  const handleClose = () => {
+  const removeImage = () => {
     setImage(null);
     setPreview(null);
+  };
+
+  const handleClose = () => {
+    removeImage();
     onClose();
+  };
+
+  const handleError = (err: unknown) => {
+    const status = (err as { response?: { status?: number } })?.response?.status;
+    if (status === 409) return toast.error("이미 같은 순서 번호가 존재합니다.");
+    toast.error("에러가 발생했습니다.");
   };
 
   const onSubmit = (form: MinisterForm) => {
@@ -128,12 +138,6 @@ const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
     }
     if (form.order) formData.append("order", form.order);
     if (image) formData.append("image", image);
-
-    const handleError = (err: unknown) => {
-      const status = (err as { response?: { status?: number } })?.response?.status;
-      if (status === 409) return toast.error("이미 같은 순서 번호가 존재합니다.");
-      toast.error("에러가 발생했습니다.");
-    };
 
     if (isEdit) {
       patch(
@@ -158,149 +162,111 @@ const MinisterFormDialog = ({ open, onClose, tabType, target }: Props) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="flex h-[90dvh] max-h-[90dvh] flex-col gap-0 p-0 sm:max-w-lg">
-        <DialogHeader className="shrink-0 border-b px-6 py-4">
-          <DialogTitle>{isEdit ? "수정" : "추가"}</DialogTitle>
-        </DialogHeader>
-
-        <ScrollArea className="min-h-0 flex-1">
-          <form
-            id="minister-form"
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex flex-col gap-5 px-6 py-5"
-          >
-            {!isRetiredPastor && (
-              <>
-                <div className="flex flex-col gap-1.5">
-                  <Label className="text-sm font-medium">이름 *</Label>
-                  <Input
-                    placeholder="홍길동"
-                    {...register("name", { required: "이름을 입력해주세요." })}
-                  />
-                  {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label className="text-sm font-medium">직책 *</Label>
-                  <Controller
-                    name="officerType"
-                    control={control}
-                    rules={{ required: "직책을 선택해주세요." }}
-                    render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="직책 선택" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          {officerOptions.map((o) => (
-                            <SelectItem key={o.value} value={o.value}>
-                              {o.label}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    )}
-                  />
-                  {errors.officerType && (
-                    <p className="text-destructive text-xs">{errors.officerType.message}</p>
-                  )}
-                </div>
-
-                <div className="flex flex-col gap-1.5">
-                  <Label className="text-sm font-medium">담당 사역 / 직위</Label>
-                  <Input
-                    placeholder={
-                      tabType === "missionary" ? "방글라데시 선교사" : "교구, 예배위원회"
-                    }
-                    {...register("position")}
-                  />
-                </div>
-
-                {showGreeting && (
-                  <div className="flex flex-col gap-1.5">
-                    <Label className="text-sm font-medium">인사말 *</Label>
-                    <Textarea
-                      placeholder="한 줄 인사말을 입력해주세요."
-                      rows={3}
-                      className="resize-none"
-                      {...register("greeting", { required: "인사말을 입력해주세요." })}
-                    />
-                    {errors.greeting && (
-                      <p className="text-destructive text-xs">{errors.greeting.message}</p>
-                    )}
-                  </div>
-                )}
-              </>
-            )}
-
-            {isRetiredPastor && (
-              <div className="flex flex-col gap-1.5">
-                <Label className="text-sm font-medium">설명</Label>
-                <Textarea
-                  placeholder="대한예수교장로회(합동) GMS 명예선교사, 꿈을꾸는세계선교회 대표"
-                  rows={3}
-                  className="resize-none"
-                  {...register("description")}
-                />
-              </div>
-            )}
-
+    <FormDialog
+      open={open}
+      onClose={handleClose}
+      title={isEdit ? "수정" : "추가"}
+      footer={
+        <Button
+          form={FORM_ID}
+          type="submit"
+          className="w-full"
+          disabled={isPending}
+          isLoading={isPending}
+        >
+          {isEdit ? "수정" : "추가"}
+        </Button>
+      }
+    >
+      <form id={FORM_ID} onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+        {!isRetiredPastor && (
+          <>
             <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">순서</Label>
-              <Input type="number" min={1} placeholder="순서 번호 (선택)" {...register("order")} />
-              <p className="text-muted-foreground text-xs">
-                같은 탭 내 중복 불가, 비워두면 순서 미지정
-              </p>
+              <Label className="text-sm font-medium">이름 *</Label>
+              <Input
+                placeholder="홍길동"
+                {...register("name", { required: "이름을 입력해주세요." })}
+              />
+              {errors.name && <p className="text-destructive text-xs">{errors.name.message}</p>}
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">사진 {!isEdit && "*"}</Label>
-              {preview ? (
-                <div className="relative w-full overflow-hidden rounded-lg border">
-                  <img src={preview} alt="사진" className="w-full object-contain" />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setImage(null);
-                      setPreview(null);
-                    }}
-                    className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                  >
-                    <X className="size-3.5" />
-                  </button>
-                </div>
-              ) : (
-                <label className="border-muted-foreground/25 hover:border-muted-foreground/50 hover:bg-muted/30 flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed p-6 text-center transition-colors">
-                  <ImageIcon className="text-muted-foreground/50 size-6" />
-                  <span className="text-muted-foreground text-sm">클릭하여 이미지 업로드</span>
-                  <span className="text-muted-foreground/70 text-xs">
-                    1장 · 10MB 이하 (초과 시 자동 압축)
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleImageChange}
-                  />
-                </label>
+              <Label className="text-sm font-medium">직책 *</Label>
+              <Controller
+                name="officerType"
+                control={control}
+                rules={{ required: "직책을 선택해주세요." }}
+                render={({ field }) => (
+                  <Select value={field.value} onValueChange={field.onChange}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="직책 선택" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {officerOptions.map((o) => (
+                        <SelectItem key={o.value} value={o.value}>
+                          {o.label}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                )}
+              />
+              {errors.officerType && (
+                <p className="text-destructive text-xs">{errors.officerType.message}</p>
               )}
             </div>
-          </form>
-        </ScrollArea>
 
-        <div className="bg-background shrink-0 border-t px-6 py-4">
-          <Button
-            form="minister-form"
-            className="w-full"
-            disabled={isPending}
-            isLoading={isPending}
-          >
-            {isEdit ? "수정" : "추가"}
-          </Button>
+            <div className="flex flex-col gap-1.5">
+              <Label className="text-sm font-medium">담당 사역 / 직위</Label>
+              <Input
+                placeholder={tabType === "missionary" ? "방글라데시 선교사" : "교구, 예배위원회"}
+                {...register("position")}
+              />
+            </div>
+
+            {showGreeting && (
+              <div className="flex flex-col gap-1.5">
+                <Label className="text-sm font-medium">인사말 *</Label>
+                <Textarea
+                  placeholder="한 줄 인사말을 입력해주세요."
+                  rows={3}
+                  className="resize-none"
+                  {...register("greeting", { required: "인사말을 입력해주세요." })}
+                />
+                {errors.greeting && (
+                  <p className="text-destructive text-xs">{errors.greeting.message}</p>
+                )}
+              </div>
+            )}
+          </>
+        )}
+
+        {isRetiredPastor && (
+          <div className="flex flex-col gap-1.5">
+            <Label className="text-sm font-medium">설명</Label>
+            <Textarea
+              placeholder="대한예수교장로회(합동) GMS 명예선교사, 꿈을꾸는세계선교회 대표"
+              rows={3}
+              className="resize-none"
+              {...register("description")}
+            />
+          </div>
+        )}
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">순서</Label>
+          <Input type="number" min={1} placeholder="순서 번호 (선택)" {...register("order")} />
+          <p className="text-muted-foreground text-xs">
+            같은 탭 내 중복 불가, 비워두면 순서 미지정
+          </p>
         </div>
-      </DialogContent>
-    </Dialog>
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">사진 {!isEdit && "*"}</Label>
+          <ImageUpload preview={preview} onChange={handleImageChange} onRemove={removeImage} />
+        </div>
+      </form>
+    </FormDialog>
   );
 };
 

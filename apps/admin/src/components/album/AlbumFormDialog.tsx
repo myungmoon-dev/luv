@@ -1,11 +1,10 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Calendar } from "../ui/calendar";
-import { CalendarIcon, X } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -14,9 +13,10 @@ import { useForm } from "react-hook-form";
 import { usePostAlbum } from "@/query/album";
 import { AlbumType } from "type";
 import { toast } from "sonner";
-import Image from "next/image";
 import { ALBUM_TYPE_OPTIONS } from "./config";
 import { processImages } from "@/hooks/useImageCompress";
+import FormDialog from "@/components/common/FormDialog";
+import ImageListUpload from "@/components/common/ImageListUpload";
 
 const MAX_IMAGES = 5;
 
@@ -52,7 +52,7 @@ const AlbumFormDialog = ({ open, onClose, onSuccess }: AlbumFormDialogProps) => 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files ?? []);
     e.target.value = "";
-    const processed = await processImages(files);
+    const processed = await processImages(files, "content");
     const merged = [...images, ...processed].slice(0, MAX_IMAGES);
     setImages(merged);
     setPreviews(merged.map((f) => URL.createObjectURL(f)));
@@ -83,13 +83,28 @@ const AlbumFormDialog = ({ open, onClose, onSuccess }: AlbumFormDialogProps) => 
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="flex max-h-[90dvh] flex-col gap-0 overflow-y-auto p-0 sm:max-w-lg">
-        <DialogHeader className="sticky top-0 z-10 border-b bg-background px-6 pb-4 pt-6">
-          <DialogTitle>앨범 등록</DialogTitle>
-        </DialogHeader>
-
-        <form id="album-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4 px-6 py-5">
+    <FormDialog
+      open={open}
+      onClose={handleClose}
+      title="앨범 등록"
+      footer={
+        <div className="flex gap-2">
+          <Button type="button" variant="outline" className="flex-1" onClick={handleClose}>
+            취소
+          </Button>
+          <Button
+            form="album-form"
+            type="submit"
+            className="flex-1"
+            disabled={isPending || !selectedType || !date || images.length === 0}
+            isLoading={isPending}
+          >
+            등록
+          </Button>
+        </div>
+      }
+    >
+        <form id="album-form" onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           {/* 타입 */}
           <div className="flex flex-col gap-1.5">
             <Label className="text-sm font-medium">앨범 타입</Label>
@@ -140,54 +155,18 @@ const AlbumFormDialog = ({ open, onClose, onSuccess }: AlbumFormDialogProps) => 
             <Label className="text-sm font-medium">
               이미지 ({images.length}/{MAX_IMAGES})
             </Label>
-            {images.length < MAX_IMAGES && (
-              <label className="flex cursor-pointer items-center justify-center gap-2 rounded-md border-2 border-dashed border-muted-foreground/30 p-4 text-sm text-muted-foreground transition-colors hover:border-muted-foreground/60">
-                <span>클릭하여 이미지 추가 (최대 {MAX_IMAGES}개)</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="hidden"
-                  onChange={handleImageChange}
-                />
-              </label>
-            )}
-            {previews.length > 0 && (
-              <div className="grid grid-cols-3 gap-2">
-                {previews.map((src, i) => (
-                  <div key={i} className="relative aspect-square rounded-md overflow-hidden">
-                    <Image src={src} fill alt={`미리보기 ${i + 1}`} className="object-cover" />
-                    <button
-                      type="button"
-                      onClick={() => removeImage(i)}
-                      className="absolute right-1 top-1 flex size-5 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                    >
-                      <X className="size-3" />
-                    </button>
-                  </div>
-                ))}
-              </div>
-            )}
+            <ImageListUpload
+              previews={previews}
+              onChange={handleImageChange}
+              onRemove={removeImage}
+              maxImages={MAX_IMAGES}
+            />
             {images.length === 0 && (
               <p className="text-xs text-muted-foreground">이미지를 최소 1개 이상 업로드해주세요.</p>
             )}
           </div>
         </form>
-
-        <div className="sticky bottom-0 flex gap-2 border-t bg-background px-6 py-4">
-          <Button type="button" variant="outline" className="flex-1" onClick={handleClose}>취소</Button>
-          <Button
-            form="album-form"
-            type="submit"
-            className="flex-1"
-            disabled={isPending || !selectedType || !date || images.length === 0}
-            isLoading={isPending}
-          >
-            등록
-          </Button>
-        </div>
-      </DialogContent>
-    </Dialog>
+    </FormDialog>
   );
 };
 

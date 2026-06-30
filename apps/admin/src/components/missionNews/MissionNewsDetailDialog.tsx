@@ -94,7 +94,7 @@ const MissionNewsDetailDialog = ({
     const files = Array.from(e.target.files ?? []);
     e.target.value = "";
     if (files.length === 0) return;
-    const processed = await processImages(files);
+    const processed = await processImages(files, "content");
     setNewImages((prev) => [...prev, ...processed]);
     setNewPreviews((prev) => [...prev, ...processed.map((f) => URL.createObjectURL(f))]);
     setKeepImages(false);

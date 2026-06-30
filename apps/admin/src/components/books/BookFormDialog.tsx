@@ -1,17 +1,16 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "../ui/dialog";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { ImageIcon, X } from "lucide-react";
 import { useState } from "react";
 import { useController, useForm } from "react-hook-form";
 import { usePostBook } from "@/query/books";
 import { toast } from "sonner";
-import { ScrollArea } from "../ui/scroll-area";
 import dynamic from "next/dynamic";
 import { Spinner } from "../ui/spinner";
 import { processImages } from "@/hooks/useImageCompress";
 import { MonthPicker } from "@/components/common/MonthPicker";
+import FormDialog from "@/components/common/FormDialog";
+import ImageUpload from "@/components/common/ImageUpload";
 
 const Editor = dynamic(() => import("@/components/common/editor").then((m) => m.Editor), {
   ssr: false,
@@ -21,6 +20,8 @@ const Editor = dynamic(() => import("@/components/common/editor").then((m) => m.
     </div>
   ),
 });
+
+const FORM_ID = "book-form";
 
 interface BookFormDialogProps {
   open: boolean;
@@ -54,11 +55,15 @@ const BookFormDialog = ({ open, onClose, onSuccess }: BookFormDialogProps) => {
     rules: { required: "날짜를 입력해주세요." },
   });
 
+  const removeImage = () => {
+    setImage(null);
+    setPreview(null);
+  };
+
   const handleClose = () => {
     reset();
     setContent("");
-    setImage(null);
-    setPreview(null);
+    removeImage();
     onClose();
   };
 
@@ -66,7 +71,7 @@ const BookFormDialog = ({ open, onClose, onSuccess }: BookFormDialogProps) => {
     const file = e.target.files?.[0];
     e.target.value = "";
     if (!file) return;
-    const [processed] = await processImages([file]);
+    const [processed] = await processImages([file], "content");
     setImage(processed);
     setPreview(URL.createObjectURL(processed));
   };
@@ -93,91 +98,69 @@ const BookFormDialog = ({ open, onClose, onSuccess }: BookFormDialogProps) => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={(o) => !o && handleClose()}>
-      <DialogContent className="flex h-[90dvh] max-h-[90dvh] flex-col gap-0 p-0 sm:max-w-lg">
-        <DialogHeader className="shrink-0 border-b px-6 py-4">
-          <DialogTitle>추천도서 등록</DialogTitle>
-        </DialogHeader>
-
-        <ScrollArea className="min-h-0 flex-1">
-          <form
-            id="book-form"
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex w-full min-w-0 flex-col gap-5 px-6 py-5"
-          >
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">추천 날짜</Label>
-              <MonthPicker value={dateField.value} onChange={dateField.onChange} />
-              {dateState.error && (
-                <p className="text-destructive text-xs">{dateState.error.message}</p>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">제목</Label>
-              <Input
-                placeholder="도서 제목"
-                {...register("title", { required: "제목을 입력해주세요." })}
-              />
-              {errors.title && <p className="text-destructive text-xs">{errors.title.message}</p>}
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">작가</Label>
-              <Input
-                placeholder="작가명"
-                {...register("writer", { required: "작가를 입력해주세요." })}
-              />
-              {errors.writer && <p className="text-destructive text-xs">{errors.writer.message}</p>}
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">표지 이미지</Label>
-              {preview ? (
-                <div className="relative w-full overflow-hidden rounded-lg border">
-                  <img src={preview} alt="표지" className="w-full object-contain" />
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setImage(null);
-                      setPreview(null);
-                    }}
-                    className="absolute right-2 top-2 flex size-6 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/80"
-                  >
-                    <X className="size-3.5" />
-                  </button>
-                </div>
-              ) : (
-                <label className="border-muted-foreground/25 hover:border-muted-foreground/50 hover:bg-muted/30 flex cursor-pointer flex-col items-center justify-center gap-1.5 rounded-lg border-2 border-dashed p-6 text-center transition-colors">
-                  <ImageIcon className="text-muted-foreground/50 size-6" />
-                  <span className="text-muted-foreground text-sm">클릭하여 이미지 업로드</span>
-                  <span className="text-muted-foreground/70 text-xs">
-                    1장 · 10MB 이하 (초과 시 자동 압축)
-                  </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleImageChange}
-                  />
-                </label>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <Label className="text-sm font-medium">내용</Label>
-              <Editor setValue={setContent} />
-            </div>
-          </form>
-        </ScrollArea>
-
-        <div className="bg-background shrink-0 border-t px-6 py-4">
-          <Button form="book-form" className="w-full" disabled={isPending} isLoading={isPending}>
-            등록
-          </Button>
+    <FormDialog
+      open={open}
+      onClose={handleClose}
+      title="추천도서 등록"
+      footer={
+        <Button
+          form={FORM_ID}
+          type="submit"
+          className="w-full"
+          disabled={isPending}
+          isLoading={isPending}
+        >
+          등록
+        </Button>
+      }
+    >
+      <form
+        id={FORM_ID}
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex w-full min-w-0 flex-col gap-5"
+      >
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">추천 날짜</Label>
+          <MonthPicker value={dateField.value} onChange={dateField.onChange} />
+          {dateState.error && (
+            <p className="text-destructive text-xs">{dateState.error.message}</p>
+          )}
         </div>
-      </DialogContent>
-    </Dialog>
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">제목</Label>
+          <Input
+            placeholder="도서 제목"
+            {...register("title", { required: "제목을 입력해주세요." })}
+          />
+          {errors.title && <p className="text-destructive text-xs">{errors.title.message}</p>}
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">작가</Label>
+          <Input
+            placeholder="작가명"
+            {...register("writer", { required: "작가를 입력해주세요." })}
+          />
+          {errors.writer && <p className="text-destructive text-xs">{errors.writer.message}</p>}
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">표지 이미지</Label>
+          <ImageUpload
+            preview={preview}
+            onChange={handleImageChange}
+            onRemove={removeImage}
+            alt="표지"
+          />
+        </div>
+
+        <div className="flex flex-col gap-1.5">
+          <Label className="text-sm font-medium">내용</Label>
+          <Editor setValue={setContent} />
+        </div>
+      </form>
+    </FormDialog>
   );
 };
 

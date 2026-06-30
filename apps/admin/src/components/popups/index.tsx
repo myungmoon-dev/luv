@@ -1,77 +1,71 @@
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
+import Image from "next/image";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
 import { useDeletePopup, useGetPopups, usePutPopupShow } from "@/query/popup";
 import popupKeys from "@/query/popup/keys";
 import { IPopup } from "type";
 import { useQueryClient } from "@tanstack/react-query";
-import { Edit, MoreHorizontal, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Spinner } from "@/components/ui/spinner";
+import { Switch } from "@/components/ui/switch";
 import { Button } from "../ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
-
-type DialogState =
-  | { type: "delete"; popup: IPopup }
-  | { type: "toggle"; popup: IPopup }
-  | null;
+import PopupFormDialog from "./PopupFormDialog";
+import dayjs from "dayjs";
 
 const Popups = () => {
   const queryClient = useQueryClient();
   const { data, isFetching } = useGetPopups({ onlyShow: null });
-  const [dialog, setDialog] = useState<DialogState>(null);
+  const [deleteTarget, setDeleteTarget] = useState<IPopup | null>(null);
+  const [viewTarget, setViewTarget] = useState<IPopup | null>(null);
 
   const { mutate: putPopupShow } = usePutPopupShow();
-  const { mutate: deletePopup } = useDeletePopup();
+  const { mutate: deletePopup, isPending: isDeleting } = useDeletePopup();
 
-  const handleConfirmToggle = () => {
-    if (!dialog || dialog.type !== "toggle") return;
+  const handleToggleShow = (popup: IPopup) => {
+    queryClient.setQueryData<IPopup[]>(
+      popupKeys.list(null),
+      (old) => old?.map((p) => (p.id === popup.id ? { ...p, show: !p.show } : p)),
+    );
     putPopupShow(
-      { id: dialog.popup.id, isShow: !dialog.popup.show },
+      { id: popup.id, isShow: !popup.show },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: popupKeys.all });
-          toast("수정되었습니다.");
+        onSuccess: (updated) => {
+          queryClient.setQueryData<IPopup[]>(
+            popupKeys.list(null),
+            (old) => old?.map((p) => (p.id === updated.id ? updated : p)),
+          );
         },
-        onError: () => toast("에러가 발생했습니다. 잠시 후 다시 시도해 주세요."),
-        onSettled: () => setDialog(null),
+        onError: () => {
+          queryClient.setQueryData<IPopup[]>(
+            popupKeys.list(null),
+            (old) => old?.map((p) => (p.id === popup.id ? { ...p, show: popup.show } : p)),
+          );
+          toast.error("에러가 발생했습니다.");
+        },
       },
     );
   };
 
   const handleConfirmDelete = () => {
-    if (!dialog || dialog.type !== "delete") return;
+    if (!deleteTarget) return;
     deletePopup(
-      { id: dialog.popup.id },
+      { id: deleteTarget.id },
       {
         onSuccess: () => {
           queryClient.invalidateQueries({ queryKey: popupKeys.all });
-          toast("삭제되었습니다.");
+          toast.success("삭제되었습니다.");
         },
-        onError: () => toast("에러가 발생했습니다. 잠시 후 다시 시도해 주세요."),
-        onSettled: () => setDialog(null),
+        onError: () => toast.error("에러가 발생했습니다."),
+        onSettled: () => setDeleteTarget(null),
       },
     );
   };
 
   if (isFetching)
     return (
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-32 items-center justify-center">
         <Spinner />
       </div>
     );
@@ -81,99 +75,68 @@ const Popups = () => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>이미지</TableHead>
+            <TableHead className="w-20 text-center">이미지</TableHead>
             <TableHead>제목</TableHead>
-            <TableHead>공개 여부</TableHead>
-            <TableHead>생성일</TableHead>
-            <TableHead>작업</TableHead>
+            <TableHead className="w-24 text-center">공개 여부</TableHead>
+            <TableHead className="w-40">생성일</TableHead>
+            <TableHead className="w-20 text-center">삭제</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {data?.map((popup) => (
-            <TableRow key={popup.id}>
-              <TableCell>
-                <p className="line-clamp-1 w-[200px] text-blue-600">
-                  <a href={popup.imageUrl} target="_blank">
-                    {popup.imageUrl}
-                  </a>
-                </p>
+            <TableRow
+              key={popup.id}
+              className="hover:bg-muted/50 cursor-pointer"
+              onClick={() => setViewTarget(popup)}
+            >
+              <TableCell className="py-2 text-center">
+                <Image
+                  src={popup.imageUrl}
+                  alt={popup.title}
+                  width={40}
+                  height={40}
+                  className="mx-auto h-10 w-10 rounded object-cover"
+                />
               </TableCell>
-              <TableCell>{popup.title}</TableCell>
-              <TableCell>{popup.show ? "공개" : "비공개"}</TableCell>
-              <TableCell>{popup.createdAt}</TableCell>
-              <TableCell>
-                <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" size="icon" className="h-8 w-8">
-                      <MoreHorizontal className="h-4 w-4" />
-                    </Button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuItem onClick={() => setDialog({ type: "toggle", popup })}>
-                      <Edit className="mr-2 h-4 w-4" />
-                      <span>공개 여부 변경</span>
-                    </DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem
-                      className="text-destructive"
-                      onClick={() => setDialog({ type: "delete", popup })}
-                    >
-                      <Trash2 className="mr-2 h-4 w-4" />
-                      <span>삭제</span>
-                    </DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
+              <TableCell className="text-sm font-medium">{popup.title}</TableCell>
+              <TableCell className="text-center" onClick={(e) => e.stopPropagation()}>
+                <Switch
+                  checked={popup.show}
+                  onCheckedChange={() => handleToggleShow(popup)}
+                  className="data-[state=checked]:bg-green-500 data-[state=unchecked]:bg-gray-300"
+                />
+              </TableCell>
+              <TableCell className="text-muted-foreground text-xs">
+                {dayjs(popup.createdAt).format("YYYY-MM-DD HH:mm")}
+              </TableCell>
+              <TableCell className="text-center" onClick={(e) => e.stopPropagation()}>
+                <Button
+                  size="icon"
+                  variant="ghost"
+                  className="text-destructive hover:text-destructive size-7"
+                  onClick={() => setDeleteTarget(popup)}
+                >
+                  <Trash2 className="size-3.5" />
+                </Button>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
 
-      {/* 공개 여부 변경 다이얼로그 */}
-      <AlertDialog
-        open={dialog?.type === "toggle"}
-        onOpenChange={(open) => !open && setDialog(null)}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>공개 여부를 변경하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>
-              {dialog?.type === "toggle" && (
-                <>
-                  <strong>{dialog.popup.show ? "공개" : "비공개"}</strong> →{" "}
-                  <strong>{dialog.popup.show ? "비공개" : "공개"}</strong>로 변경됩니다.
-                </>
-              )}
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction onClick={handleConfirmToggle}>확인</AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <PopupFormDialog
+        open={!!viewTarget}
+        target={viewTarget}
+        onClose={() => setViewTarget(null)}
+      />
 
-      {/* 삭제 다이얼로그 */}
-      <AlertDialog
-        open={dialog?.type === "delete"}
-        onOpenChange={(open) => !open && setDialog(null)}
-      >
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>정말 삭제하시겠습니까?</AlertDialogTitle>
-            <AlertDialogDescription>이 작업은 되돌릴 수 없습니다.</AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>취소</AlertDialogCancel>
-            <AlertDialogAction
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-              onClick={handleConfirmDelete}
-            >
-              삭제
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+        onConfirm={handleConfirmDelete}
+        title={`${deleteTarget?.title ?? ""}을(를) 삭제하시겠습니까?`}
+        isPending={isDeleting}
+      />
     </>
   );
 };
