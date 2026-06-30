@@ -19,12 +19,14 @@ type Props = {
 
 export function EducationDepartmentView({ type }: Props) {
   const fallback = getEducationDepartment(type);
-  const { data: fromApi } = useQuery({
+  const { data: fromApi, isFetched } = useQuery({
     queryKey: ["education", type],
     queryFn: () => getEducationDepartmentByType(type),
     staleTime: 60 * 1000,
   });
+  // API 응답 후 데이터 확정 — 이미지는 한 번만 다운로드
   const data = fromApi ?? fallback;
+  const showImages = isFetched;
   const particle = departmentParticle(data.department);
 
   return (
@@ -34,15 +36,17 @@ export function EducationDepartmentView({ type }: Props) {
       </div>
 
       {/* 히어로 */}
-      <section className="relative min-h-[200px] w-full sm:min-h-[260px] lg:min-h-[300px]">
-        <Image
-          src={data.heroImage}
-          alt=""
-          fill
-          priority
-          className={cn("object-cover", data.heroImgClass)}
-          sizes="100vw"
-        />
+      <section className="relative min-h-[200px] w-full bg-[#1e2a4a] sm:min-h-[260px] lg:min-h-[300px]">
+        {showImages && (
+          <Image
+            src={data.heroImage}
+            alt=""
+            fill
+            priority
+            className={cn("object-cover", data.heroImgClass)}
+            sizes="100vw"
+          />
+        )}
         <div
           className="absolute inset-0 bg-gradient-to-t from-[#0a1638]/90 via-[#1e2a4a]/55 to-transparent"
           aria-hidden
@@ -64,7 +68,7 @@ export function EducationDepartmentView({ type }: Props) {
       </section>
 
       {/* 갤러리 */}
-      {data.imgs.length > 0 ? (
+      {showImages && data.imgs.length > 0 ? (
         <section className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-5">
             {data.imgs.map((src, idx) => (
@@ -136,7 +140,7 @@ export function EducationDepartmentView({ type }: Props) {
       </section>
 
       {/* 핵심 사역 */}
-      {data.coreministry.length > 0 ? (
+      {showImages && data.coreministry.length > 0 ? (
         <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="mb-10 text-center">
             <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">{data.department} 핵심사역</h2>
@@ -148,7 +152,7 @@ export function EducationDepartmentView({ type }: Props) {
                 key={item.id}
                 className="overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="relative aspect-[16/10] w-full">
+                <div className="relative aspect-[16/10] w-full bg-[#1e2a4a]/10">
                   <Image
                     src={item.img}
                     alt=""

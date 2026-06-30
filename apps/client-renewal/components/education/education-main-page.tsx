@@ -26,6 +26,15 @@ const ICON_BY_TYPE: Record<EducationDeptType, LucideIcon> = {
   bridge: Waypoints,
 };
 
+const SHORT_DESC_BY_TYPE: Record<EducationDeptType, string> = {
+  infants: "말씀·기도·사랑으로 복음의 씨앗을 심습니다",
+  toddlers: "하나님을 경외하며 자라는 유아 공동체",
+  elementary: "찬양과 예배를 배우며 세워지는 아이들",
+  high: "말씀 안에서 세계관을 세우는 청소년",
+  youth: "예배와 교제로 하나 되는 청년 공동체",
+  bridge: "미혼 직장인을 위한 예배와 교제 공동체",
+};
+
 const fallbackDepartments = [
   {
     href: "/education/infants",
@@ -97,7 +106,7 @@ const fallbackCoreValues = [
 
 export function EducationMainPage() {
   // 부서: API 우선, 실패 시 fallback (순서대로 정렬됨)
-  const { data: deptList } = useQuery({
+  const { data: deptList, isFetched: deptFetched } = useQuery({
     queryKey: ["education", "all"],
     queryFn: getAllEducationDepartments,
     staleTime: 60 * 1000,
@@ -107,19 +116,21 @@ export function EducationMainPage() {
       ? deptList.map((d) => ({
           href: `/education/${d.slug}`,
           label: d.department,
-          description: d.introduction.split("\n")[0],
+          description: SHORT_DESC_BY_TYPE[d.type] ?? d.introduction.split("\n")[0],
           Icon: ICON_BY_TYPE[d.type] ?? BookOpen,
         }))
       : fallbackDepartments;
 
   // 홈 콘텐츠: API 우선
-  const { data: home } = useQuery({
+  const { data: home, isFetched: homeFetched } = useQuery({
     queryKey: ["education", "home"],
     queryFn: getEducationHome,
     staleTime: 60 * 1000,
   });
+  const showHero = homeFetched;
   const visions = home?.visions && home.visions.length > 0 ? home.visions : fallbackVisions;
-  const coreValues = home?.coreValues && home.coreValues.length > 0 ? home.coreValues : fallbackCoreValues;
+  const coreValues =
+    home?.coreValues && home.coreValues.length > 0 ? home.coreValues : fallbackCoreValues;
   const heroImage = home?.heroImageUrl ?? "/images/education/banner.jpg";
   const heroImgClass = home?.heroImgClass ?? "object-cover object-[center_35%]";
   const heroSubtitle = home?.heroSubtitle ?? "일어나라 빛을 발하라!";
@@ -131,22 +142,28 @@ export function EducationMainPage() {
         <EducationDepartmentNav />
       </div>
       {/* 히어로 */}
-      <section className="relative min-h-[min(52vh,420px)] w-full overflow-hidden">
-        <Image
-          src={heroImage}
-          alt=""
-          fill
-          priority
-          className={`object-cover ${heroImgClass}`}
-          sizes="100vw"
-        />
+      <section className="relative min-h-[min(52vh,420px)] w-full overflow-hidden bg-[#1e2a4a]">
+        {showHero && (
+          <Image
+            src={heroImage}
+            alt=""
+            fill
+            priority
+            className={`object-cover ${heroImgClass}`}
+            sizes="100vw"
+          />
+        )}
         <div
-          className="absolute inset-0 bg-gradient-to-br from-[#0a1638]/88 via-[#1e2a4a]/75 to-[#1e2a4a]/55"
+          className="from-[#0a1638]/88 absolute inset-0 bg-gradient-to-br via-[#1e2a4a]/75 to-[#1e2a4a]/55"
           aria-hidden
         />
         <div className="relative mx-auto flex min-h-[min(52vh,420px)] max-w-5xl flex-col justify-end px-4 pb-12 pt-24 sm:px-6 sm:pb-16 lg:px-8">
-          <p className="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">명문교회 교육</p>
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">다음세대</h1>
+          <p className="mb-2 text-sm font-medium uppercase tracking-[0.2em] text-white/80">
+            명문교회 교육
+          </p>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+            다음세대
+          </h1>
           <p className="mt-4 max-w-xl text-lg font-medium text-white/95 sm:text-xl md:text-2xl">
             {heroSubtitle}
           </p>
@@ -157,11 +174,13 @@ export function EducationMainPage() {
       <section className="relative -mt-6 px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl border border-[#1e2a4a]/10 bg-[#1e2a4a] shadow-[0_20px_50px_-24px_rgba(30,42,74,0.35)]">
           <div className="flex min-h-[200px] flex-col justify-center px-6 py-10 sm:min-h-[240px] sm:px-10 sm:py-12 md:min-h-[280px] md:px-12 md:py-14">
-            <p className="text-sm font-semibold uppercase tracking-widest text-white/75 sm:text-base">사명 선언문</p>
-            <p className="mt-4 text-2xl font-bold leading-snug text-white sm:mt-5 sm:text-3xl md:text-4xl lg:text-5xl">
+            <p className="text-sm font-semibold uppercase tracking-widest text-white/75 sm:text-base">
+              사명 선언문
+            </p>
+            <p className="mt-4 text-xl font-bold leading-snug text-white sm:mt-5 md:text-2xl lg:text-3xl">
               {missionLine1}
             </p>
-            <p className="mt-2 text-2xl font-bold leading-snug text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            <p className="mt-2 text-xl font-bold leading-snug text-white md:text-2xl lg:text-3xl">
               {missionLine2}
             </p>
           </div>
@@ -208,7 +227,9 @@ export function EducationMainPage() {
       <section className="border-y border-[#E6E6E6] bg-white py-14 md:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
-            <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">명문교회 다음세대 비전</h2>
+            <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">
+              명문교회 다음세대 비전
+            </h2>
             <p className="mt-2 text-sm text-[#496674]">하나님 앞에서 세워가는 네 가지 방향</p>
           </div>
           <ol className="space-y-4">
@@ -217,8 +238,12 @@ export function EducationMainPage() {
                 key={v.bold}
                 className="rounded-2xl border border-[#E6E6E6] bg-[#fafbfc] px-5 py-5 sm:px-7 sm:py-6"
               >
-                <span className="text-xs font-bold text-[#1e2a4a]/50">VISION {String(i + 1).padStart(2, "0")}</span>
-                <p className="mt-3 text-[15px] leading-relaxed text-[#333] sm:text-base">{v.lead}</p>
+                <span className="text-xs font-bold text-[#1e2a4a]/50">
+                  VISION {String(i + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-3 text-[15px] leading-relaxed text-[#333] sm:text-base">
+                  {v.lead}
+                </p>
                 <p className="mt-2 text-[15px] leading-relaxed text-[#333] sm:text-base">
                   {v.emphasis}
                   <span className="font-semibold text-[#1e2a4a]">{v.bold}</span>
@@ -231,23 +256,45 @@ export function EducationMainPage() {
 
       {/* 핵심가치 */}
       <section className="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:py-16 lg:px-8">
-        <div className="mb-10 text-center">
-          <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">명문교회 다음세대 핵심가치</h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {coreValues.map((item) => (
-            <div
-              key={item.n}
-              className="relative overflow-hidden rounded-2xl border border-[#1e2a4a]/12 bg-gradient-to-br from-white to-[#f0f4fa] p-6 shadow-sm"
+        <header className="mb-10 text-center sm:mb-12">
+          <div className="mb-3 inline-flex items-center gap-2">
+            <span className="h-px w-8 bg-[#1e2a4a]" aria-hidden />
+            <span className="text-sm font-semibold tracking-wide text-[#496674]">Core Values</span>
+            <span className="h-px w-8 bg-[#1e2a4a]" aria-hidden />
+          </div>
+          <h2 className="text-2xl font-bold text-[#1e2a4a] sm:text-3xl">
+            명문교회 다음세대 핵심가치
+          </h2>
+        </header>
+
+        <ul className="grid gap-5 sm:grid-cols-2 lg:gap-6">
+          {coreValues.map((item, idx) => (
+            <li
+              key={`${item.n}-${idx}`}
+              className="group relative flex items-start gap-5 overflow-hidden rounded-2xl border border-[#E6E6E6] bg-white p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#1e2a4a]/30 hover:shadow-lg sm:p-7"
             >
-              <span className="absolute right-4 top-4 text-4xl font-black tabular-nums text-[#1e2a4a]/[0.07]">
+              <span
+                className="pointer-events-none absolute right-5 top-4 text-5xl font-black leading-none tracking-tighter text-[#1e2a4a]/[0.06] sm:text-6xl"
+                aria-hidden
+              >
                 {item.n}
               </span>
-              <p className="relative text-sm font-semibold uppercase tracking-wider text-[#496674]">Value {item.n}</p>
-              <p className="relative mt-3 text-base font-medium leading-snug text-[#1e2a4a] sm:text-lg">{item.title}</p>
-            </div>
+
+              <div className="relative flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#1e2a4a] text-white shadow-sm transition-colors group-hover:bg-[#0a1638] sm:size-14">
+                <span className="text-base font-bold tabular-nums sm:text-lg">{item.n}</span>
+              </div>
+
+              <div className="relative flex flex-col gap-1.5 pt-1">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1e2a4a]/60">
+                  Value {item.n}
+                </p>
+                <p className="text-base font-semibold leading-relaxed text-[#1e2a4a] sm:text-lg">
+                  {item.title}
+                </p>
+              </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </div>
   );
