@@ -11,12 +11,12 @@ import {
   type IEducationHomeCoreValue,
   type IEducationHomeVision,
 } from "@/api/education-home";
-import { useGetEducationHome, usePutEducationHome } from "@/query/education-home";
+import { useGetEducationHome, usePatchEducationHome } from "@/query/education-home";
 import { processImages } from "@/hooks/useImageCompress";
 
 const EducationHomeForm = () => {
   const { data, isFetching } = useGetEducationHome();
-  const { mutate, isPending } = usePutEducationHome();
+  const { mutate, isPending } = usePatchEducationHome();
 
   const [heroImage, setHeroImage] = useState<File | null>(null);
   const [heroPreview, setHeroPreview] = useState<string | null>(null);

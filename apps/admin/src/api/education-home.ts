@@ -29,7 +29,7 @@ export const getEducationHome = async () => {
   return data;
 };
 
-export const putEducationHome = async (form: FormData) => {
-  const { data } = await api.put<IEducationHome>("/education-home", form, MULTIPART);
+export const patchEducationHome = async (form: FormData) => {
+  const { data } = await api.patch<IEducationHome>("/education-home", form, MULTIPART);
   return data;
 };

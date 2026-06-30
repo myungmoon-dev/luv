@@ -1,15 +1,15 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getEducationHome, putEducationHome } from "@/api/education-home";
+import { getEducationHome, patchEducationHome } from "@/api/education-home";
 
 const KEY = ["education-home"];
 
 export const useGetEducationHome = () =>
   useQuery({ queryKey: KEY, queryFn: getEducationHome });
 
-export const usePutEducationHome = () => {
+export const usePatchEducationHome = () => {
   const qc = useQueryClient();
   return useMutation({
-    mutationFn: putEducationHome,
+    mutationFn: patchEducationHome,
     onSuccess: () => qc.invalidateQueries({ queryKey: KEY }),
   });
 };
