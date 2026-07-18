@@ -1,13 +1,9 @@
 name: deploy-client
 
+# [비활성화] client-renewal은 Vercel로 이전됨 (Vercel이 push 시 자동 배포).
+# EC2 배포는 중단. 필요 시 Actions 탭에서 수동 실행(Run workflow).
 on:
-  push:
-    branches: [main]
-    paths:
-      - "apps/client-renewal/**"
-      - "packages/**"
-      - "pnpm-lock.yaml"
-      - ".github/**"
+  workflow_dispatch:
 
 jobs:
   deploy:
