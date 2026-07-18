@@ -7,6 +7,11 @@ import { cn } from "@/lib/utils";
 
 const items = [
   { href: "/news", label: "소식 홈", match: (p: string) => p === "/news" },
+  {
+    href: "/news/boards?type=invitation&page=1",
+    label: "청빙게시판",
+    match: (p: string) => p.startsWith("/news/boards"),
+  },
   { href: "/news/bulletins", label: "주보", match: (p: string) => p.startsWith("/news/bulletins") },
   {
     href: "/news/mission-news",
@@ -14,7 +19,11 @@ const items = [
     match: (p: string) => p.startsWith("/news/mission-news"),
   },
   { href: "/news/books", label: "추천 도서", match: (p: string) => p.startsWith("/news/books") },
-  { href: "/news/resources", label: "자료함", match: (p: string) => p.startsWith("/news/resources") },
+  {
+    href: "/news/resources",
+    label: "자료함",
+    match: (p: string) => p.startsWith("/news/resources"),
+  },
 ];
 
 /** `EducationDepartmentNav`와 동일 — 상단 칩 줄의 폭·패딩·하단 여백 */

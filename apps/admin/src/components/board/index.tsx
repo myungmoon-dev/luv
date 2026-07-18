@@ -1,0 +1,283 @@
+import ListPagination from "@/components/common/ListPagination";
+import { useDeleteBoard, useDeleteBoardList, useGetBoardList } from "@/query/board";
+import dayjs from "dayjs";
+import { useEffect, useState } from "react";
+import { BoardType, IBoard } from "type";
+import { Spinner } from "@/components/ui/spinner";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
+import { Card, CardContent } from "../ui/card";
+import { Button } from "../ui/button";
+import { Paperclip, Plus, Trash2 } from "lucide-react";
+import { toast } from "sonner";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
+import { Checkbox } from "../ui/checkbox";
+import DeleteConfirmDialog from "@/components/common/DeleteConfirmDialog";
+import BoardFormDialog from "./BoardFormDialog";
+import BoardDetailDialog from "./BoardDetailDialog";
+import { BOARD_TYPE_MAP, BOARD_TYPE_OPTIONS } from "./config";
+import { BOARD_PAGE_SIZE } from "@/api/board";
+
+const TAB_OPTIONS = [{ value: "all", label: "전체" }, ...BOARD_TYPE_OPTIONS];
+
+interface BoardTableProps {
+  boardType?: BoardType;
+  onDetail: (item: IBoard) => void;
+  onDelete: (item: IBoard) => void;
+  onRefetch: (refetch: () => void) => void;
+  selectedIds: Set<string>;
+  onToggleSelect: (id: string) => void;
+  onToggleAll: (ids: string[], allSelected: boolean) => void;
+}
+
+const BoardTable = ({
+  boardType,
+  onDetail,
+  onDelete,
+  onRefetch,
+  selectedIds,
+  onToggleSelect,
+  onToggleAll,
+}: BoardTableProps) => {
+  const [page, setPage] = useState(0);
+  const { data, isFetching, refetch } = useGetBoardList({ page, boardType });
+  const content = data?.content ?? [];
+  const totalPages = Math.ceil((data?.totalElements ?? 0) / BOARD_PAGE_SIZE);
+
+  const allSelected = !!content.length && content.every((b) => selectedIds.has(b.id));
+  const someSelected = content.some((b) => selectedIds.has(b.id));
+
+  useEffect(() => {
+    onRefetch(refetch);
+  }, [refetch]);
+
+  return (
+    <>
+      <Card className="overflow-hidden">
+        <CardContent className="p-0">
+          <Table className="table-fixed">
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-8 px-2 text-center sm:w-10">
+                  <Checkbox
+                    checked={allSelected}
+                    data-state={someSelected && !allSelected ? "indeterminate" : undefined}
+                    onCheckedChange={() => onToggleAll(content.map((b) => b.id), allSelected)}
+                    aria-label="전체 선택"
+                  />
+                </TableHead>
+                <TableHead className="hidden w-24 text-center text-xs sm:table-cell sm:text-sm">
+                  타입
+                </TableHead>
+                <TableHead className="px-3 text-center text-xs sm:text-sm">제목</TableHead>
+                <TableHead className="hidden w-24 text-center text-xs sm:table-cell sm:text-sm">
+                  작성자
+                </TableHead>
+                <TableHead className="hidden w-14 text-center text-xs sm:table-cell sm:text-sm">
+                  첨부
+                </TableHead>
+                <TableHead className="hidden w-28 text-center text-xs sm:table-cell sm:text-sm">
+                  작성일
+                </TableHead>
+                <TableHead className="w-16 text-center text-xs sm:text-sm">삭제</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {isFetching ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="h-32 text-center">
+                    <Spinner className="mx-auto" />
+                  </TableCell>
+                </TableRow>
+              ) : !content.length ? (
+                <TableRow>
+                  <TableCell colSpan={7} className="text-muted-foreground h-32 text-center text-sm">
+                    등록된 게시글이 없습니다.
+                  </TableCell>
+                </TableRow>
+              ) : (
+                content.map((item) => (
+                  <TableRow key={item.id} className="cursor-pointer" onClick={() => onDetail(item)}>
+                    <TableCell className="px-2 text-center" onClick={(e) => e.stopPropagation()}>
+                      <Checkbox
+                        checked={selectedIds.has(item.id)}
+                        onCheckedChange={() => onToggleSelect(item.id)}
+                        aria-label="선택"
+                      />
+                    </TableCell>
+                    <TableCell className="text-muted-foreground hidden py-3 text-center text-xs sm:table-cell sm:text-sm">
+                      {BOARD_TYPE_MAP[item.type]}
+                    </TableCell>
+                    <TableCell className="px-3 py-3 text-center text-xs font-medium sm:text-sm">
+                      <p className="truncate">{item.title}</p>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground hidden py-3 text-center text-xs sm:table-cell sm:text-sm">
+                      <p className="truncate">{item.writer}</p>
+                    </TableCell>
+                    <TableCell className="text-muted-foreground hidden py-3 text-center text-xs sm:table-cell sm:text-sm">
+                      {item.fileUrls?.length ? (
+                        <span className="inline-flex items-center gap-0.5">
+                          <Paperclip className="size-3" />
+                          {item.fileUrls.length}
+                        </span>
+                      ) : (
+                        "-"
+                      )}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground hidden py-3 text-center text-xs sm:table-cell sm:text-sm">
+                      {item.createdAt && dayjs(item.createdAt).format("YYYY.MM.DD")}
+                    </TableCell>
+                    <TableCell className="py-3 text-center" onClick={(e) => e.stopPropagation()}>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        className="text-destructive hover:text-destructive h-7 w-7 p-0"
+                        onClick={() => onDelete(item)}
+                      >
+                        <Trash2 className="size-3.5" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
+      <ListPagination page={page} totalPages={totalPages} onPageChange={setPage} />
+    </>
+  );
+};
+
+const BoardList = () => {
+  const [formOpen, setFormOpen] = useState(false);
+  const [detailTarget, setDetailTarget] = useState<IBoard | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<IBoard | null>(null);
+  const [bulkDeleteOpen, setBulkDeleteOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [activeRefetch, setActiveRefetch] = useState<(() => void) | null>(null);
+
+  const { mutate: deleteBoard, isPending: isDeleting } = useDeleteBoard();
+  const { mutate: deleteBulk, isPending: isBulkDeleting } = useDeleteBoardList();
+
+  const handleToggleSelect = (id: string) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
+  const handleToggleAll = (ids: string[], allSelected: boolean) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (allSelected) ids.forEach((id) => next.delete(id));
+      else ids.forEach((id) => next.add(id));
+      return next;
+    });
+  };
+
+  const handleBulkDelete = () => {
+    const ids = Array.from(selectedIds);
+    deleteBulk(ids, {
+      onSuccess: () => {
+        toast.success(`${ids.length}개의 게시글이 삭제되었습니다.`);
+        setSelectedIds(new Set());
+        setBulkDeleteOpen(false);
+        activeRefetch?.();
+      },
+      onError: () => toast.error("에러가 발생했습니다."),
+    });
+  };
+
+  const handleDelete = () => {
+    if (!deleteTarget) return;
+    deleteBoard(
+      { boardId: deleteTarget.id },
+      {
+        onSuccess: () => {
+          toast.success("삭제되었습니다.");
+          setDeleteTarget(null);
+          activeRefetch?.();
+        },
+        onError: () => toast.error("에러가 발생했습니다."),
+      },
+    );
+  };
+
+  return (
+    <>
+      <div className="flex items-center justify-between">
+        <div>
+          {selectedIds.size > 0 && (
+            <Button size="sm" variant="destructive" onClick={() => setBulkDeleteOpen(true)}>
+              <Trash2 className="mr-1.5 size-4" />
+              {selectedIds.size}개 삭제
+            </Button>
+          )}
+        </div>
+        <Button size="sm" onClick={() => setFormOpen(true)}>
+          <Plus className="mr-1.5 size-4" />
+          게시글 추가
+        </Button>
+      </div>
+
+      <Tabs defaultValue="all" className="flex flex-col gap-4">
+        <TabsList className="bg-muted flex h-auto flex-wrap justify-start gap-1 p-1">
+          {TAB_OPTIONS.map((opt) => (
+            <TabsTrigger key={opt.value} value={opt.value} className="shrink-0">
+              {opt.label}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+
+        {TAB_OPTIONS.map((opt) => (
+          <TabsContent key={opt.value} value={opt.value} className="flex flex-col gap-4">
+            <BoardTable
+              boardType={opt.value === "all" ? undefined : (opt.value as BoardType)}
+              onDetail={setDetailTarget}
+              onDelete={setDeleteTarget}
+              onRefetch={(fn) => setActiveRefetch(() => fn)}
+              selectedIds={selectedIds}
+              onToggleSelect={handleToggleSelect}
+              onToggleAll={handleToggleAll}
+            />
+          </TabsContent>
+        ))}
+      </Tabs>
+
+      <BoardFormDialog
+        open={formOpen}
+        onClose={() => setFormOpen(false)}
+        onSuccess={() => activeRefetch?.()}
+      />
+
+      <BoardDetailDialog
+        board={detailTarget}
+        onClose={() => setDetailTarget(null)}
+        onSuccess={async () => {
+          activeRefetch?.();
+          setDetailTarget(null);
+        }}
+      />
+
+      <DeleteConfirmDialog
+        open={bulkDeleteOpen}
+        onOpenChange={(o) => !o && setBulkDeleteOpen(false)}
+        onConfirm={handleBulkDelete}
+        title={`${selectedIds.size}개의 게시글을 삭제하시겠습니까?`}
+        isPending={isBulkDeleting}
+      />
+
+      <DeleteConfirmDialog
+        open={!!deleteTarget}
+        onOpenChange={(o) => !o && setDeleteTarget(null)}
+        onConfirm={handleDelete}
+        title="게시글을 삭제하시겠습니까?"
+        isPending={isDeleting}
+      />
+    </>
+  );
+};
+
+export default BoardList;
