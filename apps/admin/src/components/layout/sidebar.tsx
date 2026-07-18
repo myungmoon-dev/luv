@@ -21,6 +21,7 @@ import {
   Layout,
   UserRound,
   GraduationCap,
+  NotebookText,
 } from "lucide-react";
 import {
   Sidebar,
@@ -64,6 +65,7 @@ const contentMenuItems = [
   { title: "앨범 업로드", icon: Image, href: "/album" },
   { title: "가정예배", icon: Home, href: "/homeworship" },
   { title: "선교지 소식", icon: Globe, href: "/mission-news" },
+  { title: "게시글", icon: NotebookText, href: "/boards" },
 ];
 
 const newMenuItems = [

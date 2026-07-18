@@ -7,12 +7,6 @@ import { ChevronDown, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
@@ -27,9 +21,39 @@ const navigation = [
     ],
   },
   { name: "설교 & 찬양", href: "/sermons" },
-  { name: "다음세대", href: "/education" },
-  { name: "명문소식", href: "/news" },
-  { name: "훈련", href: "/discipleship" },
+  {
+    name: "다음세대",
+    href: "/education",
+    children: [
+      { name: "영아부", href: "/education/infants" },
+      { name: "유치부", href: "/education/toddlers" },
+      { name: "유초등부", href: "/education/elementary" },
+      { name: "중고등부", href: "/education/high" },
+      { name: "청년부", href: "/education/youth" },
+      { name: "브릿지", href: "/education/bridge" },
+    ],
+  },
+  {
+    name: "명문소식",
+    href: "/news",
+    children: [
+      { name: "청빙게시판", href: "/news/boards?type=invitation&page=1" },
+      { name: "주보", href: "/news/bulletins" },
+      { name: "선교지 소식", href: "/news/mission-news" },
+      { name: "추천 도서", href: "/news/books" },
+      { name: "자료함", href: "/news/resources" },
+    ],
+  },
+  {
+    name: "훈련",
+    href: "/discipleship",
+    children: [
+      { name: "새가족", href: "/discipleship/new-family" },
+      { name: "맛있는 가정예배", href: "/discipleship/family-worship" },
+      { name: "신앙교육", href: "/discipleship/faith-education" },
+      { name: "공동체훈련", href: "/discipleship/community-training" },
+    ],
+  },
 ];
 
 const MAIN_URL = "/";
@@ -63,7 +87,8 @@ export function SiteHeader() {
         <div
           className={cn(
             "flex justify-between transition-all duration-300",
-            isMainPage && (scrolled ? "h-16 items-center lg:h-20" : "h-[120px] items-start lg:h-[120px]"),
+            isMainPage &&
+              (scrolled ? "h-16 items-center lg:h-20" : "h-[120px] items-start lg:h-[120px]"),
             !isMainPage && "h-16 items-center lg:h-20",
           )}
         >
@@ -82,41 +107,38 @@ export function SiteHeader() {
           <nav className="hidden items-center md:flex">
             {navigation.map((item) =>
               item.children ? (
-                <DropdownMenu key={item.name}>
-                  <DropdownMenuTrigger asChild>
-                    <button
-                      type="button"
-                      className={cn(
-                        "group flex items-center gap-1 px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:text-white",
-                      )}
-                    >
-                      {item.name}
-                      <ChevronDown className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-                    </button>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent
-                    align="center"
-                    className="min-w-[160px] rounded-none border-transparent bg-[#0A1E51] p-1 text-white"
+                <div key={item.name} className="group relative">
+                  {/* 부모: 클릭하면 홈으로 이동 / hover 시 아래 드롭다운 노출 */}
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      "flex items-center gap-1 rounded-md px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:bg-white/10 hover:text-white group-hover:bg-white/10 group-hover:text-white",
+                    )}
                   >
-                    {item.children.map((child) => (
-                      <DropdownMenuItem
-                        key={child.name}
-                        asChild
-                        className="rounded-none text-white focus:bg-[#0A1E51] focus:text-white"
-                      >
-                        <Link href={child.href} className="w-full cursor-pointer">
+                    {item.name}
+                    <ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
+                  </Link>
+                  {/* pt-2: 링크와 패널 사이 hover 끊김 방지용 투명 브릿지 */}
+                  <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2 opacity-0 transition-opacity duration-150 group-hover:visible group-hover:opacity-100">
+                    <div className="min-w-[168px] bg-[#0A1E51] p-1 shadow-md">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.name}
+                          href={child.href}
+                          className="block whitespace-nowrap px-4 py-2 text-[17px] font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-white"
+                        >
                           {child.name}
                         </Link>
-                      </DropdownMenuItem>
-                    ))}
-                  </DropdownMenuContent>
-                </DropdownMenu>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               ) : (
                 <Link
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:text-white",
+                    "rounded-md px-5 py-2 text-[20px] font-bold text-white/90 transition-colors hover:bg-white/10 hover:text-white",
                   )}
                 >
                   {item.name}

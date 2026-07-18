@@ -4,6 +4,7 @@ import { IBible, IBibleForm } from "./bible";
 import { IHomeWorship, IHomeWorshipForm, IHomeworshipComment } from "./homeWorship";
 import { YearMonthType } from "./date";
 import { IMissionNews, IMissionNewsForm } from "./news";
+import { IBoard, IBoardForm, BoardType } from "./board";
 import { IUser } from "./user";
 import {
   Generation3040Type,
@@ -52,6 +53,9 @@ export type {
   YearMonthType,
   IMissionNews,
   IMissionNewsForm,
+  IBoard,
+  IBoardForm,
+  BoardType,
   IUser,
   Generation3040Type,
   I3040Data,
