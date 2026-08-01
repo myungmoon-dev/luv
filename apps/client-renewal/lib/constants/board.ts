@@ -10,8 +10,8 @@ export const BOARD_TYPE_MAP: Record<BoardType | "all", string> = {
 
 export const BOARD_TYPE_FILTERS: { value: BoardType | "all"; label: string }[] = [
   { value: "all", label: BOARD_TYPE_MAP.all },
-  { value: "notice", label: BOARD_TYPE_MAP.notice },
-  { value: "news", label: BOARD_TYPE_MAP.news },
-  { value: "free", label: BOARD_TYPE_MAP.free },
+  // { value: "notice", label: BOARD_TYPE_MAP.notice },
+  // { value: "news", label: BOARD_TYPE_MAP.news },
+  // { value: "free", label: BOARD_TYPE_MAP.free },
   { value: "invitation", label: BOARD_TYPE_MAP.invitation },
 ];
