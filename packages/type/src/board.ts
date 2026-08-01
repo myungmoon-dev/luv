@@ -1,6 +1,5 @@
 /** 게시글 타입 (게시판 종류) — 값은 자유롭게 수정 가능 */
-// export type BoardType = "notice" | "news" | "free" | "invitation";
-export type BoardType = "invitation";
+export type BoardType = "notice" | "news" | "free" | "invitation";
 
 export interface IBoard {
   id: string;

@@ -2,9 +2,9 @@ import type { BoardType } from "type";
 
 export const BOARD_TYPE_MAP: Record<BoardType | "all", string> = {
   all: "전체",
-  // notice: "공지사항",
-  // news: "교회소식",
-  // free: "자유게시판",
+  notice: "공지사항",
+  news: "교회소식",
+  free: "자유게시판",
   invitation: "청빙게시판",
 };
 
