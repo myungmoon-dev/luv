@@ -39,7 +39,7 @@ export function SiteFooter() {
             <ul className="mt-6 space-y-3">
               {[
                 ["/about/vision", "교회비전"],
-                ["/about/leadership", "섬기는 분들"],
+                ["/about/leadership/retired", "섬기는 분들"],
                 ["/sermons", "설교 & 찬양"],
                 ["/news", "명문소식"],
                 ["/discipleship", "훈련"],
