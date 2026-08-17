@@ -16,7 +16,7 @@ const navigation = [
     href: "/about",
     children: [
       { name: "교회비전", href: "/about/vision" },
-      { name: "섬기는 분들", href: "/about/leadership" },
+      { name: "섬기는 분들", href: "/about/leadership/retired" },
       { name: "예배정보", href: "/about/services" },
     ],
   },
