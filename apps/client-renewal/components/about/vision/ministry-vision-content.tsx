@@ -16,7 +16,7 @@ export function MinistryVisionContent() {
 
       <div className="mb-14 flex flex-col gap-12 px-4 sm:mb-20 sm:gap-14 sm:px-6 md:mb-24 md:gap-16 md:px-10 lg:gap-20">
         <ImageTextCard
-          imageSrc="/images/about/vision1.jpg"
+          imageSrc="/images/education/banner.jpg"
           imageAlt="명문교회 비전 이미지"
           objectPosition="object-top"
         >
@@ -36,12 +36,14 @@ export function MinistryVisionContent() {
             <br />
             야곱이 이스라엘로 새 이름을 얻어서
             <br />
-            <span className="font-medium text-[#1e2a4a]">새로운 삶을 얻는 교회</span>라는 의미를 가지고 있습니다.
+            <span className="font-medium text-[#1e2a4a]">새로운 삶을 얻는 교회</span>라는 의미를
+            가지고 있습니다.
           </p>
         </ImageTextCard>
         <ImageTextCard reverse imageSrc="/images/about/vision2.jpg" imageAlt="명문교회 로고 이미지">
           <p className="text-base font-medium leading-relaxed text-[#496674] sm:text-lg">
-            명문의 첫 두글자 영문 <span className="font-semibold text-[#1e2a4a]">MM</span>을 형상화하여
+            명문의 첫 두글자 영문 <span className="font-semibold text-[#1e2a4a]">MM</span>을
+            형상화하여
             <br />
             만들어졌습니다
           </p>
@@ -55,7 +57,8 @@ export function MinistryVisionContent() {
           <p className="text-sm leading-relaxed text-[#496674] sm:text-base">
             생명의 문은 열려진 상태이며,
             <br />
-            누구든지 <span className="font-medium text-[#333]">하나님의 은혜</span> 앞에 나오는 사람은
+            누구든지 <span className="font-medium text-[#333]">하나님의 은혜</span> 앞에 나오는
+            사람은
             <br />
             생명의 이름을 얻고 구원의 길을 가게 됩니다.
           </p>
@@ -64,7 +67,9 @@ export function MinistryVisionContent() {
 
       <div className="mb-10 flex flex-col gap-4 px-4 sm:mb-16 sm:gap-6 sm:px-6 md:mb-20 md:px-10">
         <PromiseCard>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#496674]">목회 서원</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#496674]">
+            목회 서원
+          </p>
           <p className="text-xl font-bold leading-tight text-[#1e2a4a] sm:text-2xl md:text-[1.65rem]">
             양을 위하여 목숨을 버리는
           </p>
@@ -127,7 +132,9 @@ export function MinistryVisionContent() {
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:gap-4">
           <div className="h-[3px] w-8 shrink-0 bg-[#1e2a4a]" aria-hidden />
           <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#496674]">Core values</p>
+            <p className="text-xs font-semibold uppercase tracking-wider text-[#496674]">
+              Core values
+            </p>
             <h2 className="text-2xl font-bold tracking-tight text-[#1e2a4a] sm:text-3xl md:text-4xl">
               명문교회 5대 핵심 가치
             </h2>
@@ -162,9 +169,7 @@ export function MinistryVisionContent() {
               <br />
               손의 능숙함으로 사명을 감당한 것처럼,
             </p>
-            <p className="text-base font-semibold text-[#1e2a4a]">
-              최고 수준의 사역을 추구합니다.
-            </p>
+            <p className="text-base font-semibold text-[#1e2a4a]">최고 수준의 사역을 추구합니다.</p>
           </CoreValueItem>
           <CoreValueItem title="한 영혼의 소중함" subtitle="The Importance of Individual">
             <p className="text-base font-medium text-[#333]">

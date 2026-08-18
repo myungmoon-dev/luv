@@ -7,12 +7,17 @@ import { ClipboardList, Eye, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const aboutSectionNavItems = [
-  { href: "/about/vision", label: "교회 비전", icon: Eye, match: (p: string) => p.startsWith("/about/vision") },
   {
-    href: "/about/leadership",
+    href: "/about/vision",
+    label: "교회 비전",
+    icon: Eye,
+    match: (p: string) => p.startsWith("/about/vision"),
+  },
+  {
+    href: "/about/leadership/retired",
     label: "섬기는 분들",
     icon: Users,
-    match: (p: string) => p.startsWith("/about/leadership"),
+    match: (p: string) => p.startsWith("/about/leadership/retired"),
   },
   {
     href: "/about/services",
@@ -37,9 +42,7 @@ export function AboutNavigation() {
               href={href}
               className={cn(
                 "group relative flex flex-1 flex-col items-center gap-4 px-6 py-8 transition-colors sm:py-10",
-                active
-                  ? "bg-[#1e2a4a]/6"
-                  : "hover:bg-[#f8fafc]",
+                active ? "bg-[#1e2a4a]/6" : "hover:bg-[#f8fafc]",
               )}
             >
               <span
