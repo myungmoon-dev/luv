@@ -36,7 +36,10 @@ function HomeImageCarousel({ images }: { images: { id: string; imageUrl: string 
   const [index, setIndex] = useState(0);
   const safeIndex = images.length > 0 ? index % images.length : 0;
 
-  const prev = useCallback(() => setIndex((i) => (i - 1 + images.length) % images.length), [images.length]);
+  const prev = useCallback(
+    () => setIndex((i) => (i - 1 + images.length) % images.length),
+    [images.length],
+  );
   const next = useCallback(() => setIndex((i) => (i + 1) % images.length), [images.length]);
 
   useEffect(() => {
@@ -91,7 +94,9 @@ function HomeImageCarousel({ images }: { images: { id: string; imageUrl: string 
                     key={img.id}
                     type="button"
                     onClick={() => setIndex(i)}
-                    className={`size-2 rounded-full transition ${i === safeIndex ? "bg-white" : "bg-white/50"}`}
+                    className={`size-2 rounded-full transition ${
+                      i === safeIndex ? "bg-white" : "bg-white/50"
+                    }`}
                     aria-label={`이미지 ${i + 1}`}
                   />
                 ))}
@@ -188,7 +193,7 @@ export function HomePage() {
                     asChild
                     className="rounded-none border-0 bg-[#1e2a4a] px-8 py-6 text-sm tracking-wider text-white hover:bg-[#2d3a5a]"
                   >
-                    <Link href="/about/leadership">더 알아보기</Link>
+                    <Link href="/about/leadership/retired">더 알아보기</Link>
                   </Button>
                 </div>
               </div>

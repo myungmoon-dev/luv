@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "명문교회",
   description: "LOVE BEGINS, MYUNGMOON CHURCH!",
-  keywords: "명문교회, 대한예수교장로회 합동, 김지혁 목사, 이덕진 목사",
+  keywords: "명문교회, 대한예수교장로회 합동, 이덕진 원로목사",
   openGraph: {
     title: "대한예수교장로회 합동 명문교회",
     description: "LOVE BEGINS, MYUNGMOON CHURCH!",
