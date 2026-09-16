@@ -54,7 +54,7 @@ const mainMenuItems = [
 const aboutMenuItems = [
   // { title: "교회비전 관리", icon: UserRound, href: "/vision" },
   { title: "담임목사 프로필", icon: BookText, href: "/pastor" },
-  { title: "섬기는 분들 관리", icon: UserRound, href: "/leadership/retired" },
+  { title: "섬기는 분들 관리", icon: UserRound, href: "/leadership" },
 ];
 
 const educationMenuItems = [{ title: "다음세대", icon: GraduationCap, href: "/education" }];
