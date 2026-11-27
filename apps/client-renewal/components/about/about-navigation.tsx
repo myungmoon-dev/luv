@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ClipboardList, Eye, Users } from "lucide-react";
+import { Church, ClipboardList, Users } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ export const aboutSectionNavItems = [
   {
     href: "/about/vision",
     label: "교회 비전",
-    icon: Eye,
+    icon: Church,
     match: (p: string) => p.startsWith("/about/vision"),
   },
   {
