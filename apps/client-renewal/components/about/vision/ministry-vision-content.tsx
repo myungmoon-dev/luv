@@ -1,200 +1,204 @@
-import { CoreValueItem } from "@/components/about/vision/core-value-item";
-import { ImageTextCard } from "@/components/about/vision/image-text-card";
-import { PromiseCard } from "@/components/about/vision/promise-card";
+import Image from "next/image";
+
+import { FadeIn } from "@/components/about/fade-in";
+import { Eyebrow, GRAY_BG, NAVY_BG, SECTION_BODY, SECTION_H2 } from "@/components/about/section-ui";
+import { cn } from "@/lib/utils";
+
+const PROMISES = [
+  {
+    label: "목회 서원",
+    title: ["양을 위하여 목숨을 버리는", "목자의 심정으로 목회하겠습니다."],
+    body: "영혼을 구원하기 위해 성육신하신 예수님의 마음을 본받아, 명문교회 모든 성도님들을 위한 한 알의 밀알이 되어 일사각오로 성도님들을 사랑하며 섬기겠습니다.",
+  },
+  {
+    label: "강단",
+    title: ["생명을 걸고 설교 준비를 하고,", "삶으로 설교하겠습니다."],
+    body: "명문의 강단이 푸른 감람나무 같고 물댄 동산 같아서 매주일 생명의 말씀이 선포되도록 하겠습니다. 설교자의 삶과 인격이 설교를 통해 흘러갈 수 있도록 겸손하게 은혜를 구하며 말씀을 전하겠습니다.",
+  },
+  {
+    label: "기도",
+    title: ["기도하기를 쉬는 죄를 범하지 않고,", "눈물과 무릎으로 목회하겠습니다."],
+    body: "사람의 능력이 아니라, 하나님의 능력으로 목회하겠습니다. 무릎으로 교회를 세우고, 성도님들을 위해 간절한 눈물로 기도하겠습니다.",
+  },
+];
+
+const CORE_VALUES = [
+  {
+    title: "목자의 심정",
+    subtitle: "The Heart of Shepherd",
+    lead: "‘내 양을 치라’고 하신 주님의 명령에 순종하여,",
+    body: "모든 것을 헌신하는 마음으로 성도를 목양하고 돌봅니다.",
+  },
+  {
+    title: "선교적 교회",
+    lead: "제자들의 발을 씻겨 주신 예수님의 겸손한 모범을 따라",
+    body: "예수님처럼 교회와 세상을 섬깁니다.",
+  },
+  {
+    title: "치유하는 교회",
+    lead: "다윗이 그 마음 완전함과 손의 능숙함으로 사명을 감당한 것처럼,",
+    body: "최고 수준의 사역을 추구합니다.",
+  },
+  {
+    title: "한 영혼의 소중함",
+    subtitle: "The Importance of Individual",
+    lead: "천하보다 귀한 한 영혼을 하나님의 마음으로 품고",
+    body: "목양의 사각지대가 없는 돌봄과 사랑의 공동체를 꿈꿉니다.",
+  },
+  {
+    title: "지상명령",
+    subtitle: "The Great Commission",
+    lead: "주님 다시 오시는 날까지 세계와 열방을 품고 치유하는",
+    body: "선교공동체로 나아갑니다.",
+  },
+];
 
 export function MinistryVisionContent() {
   return (
-    <div className="mx-auto flex max-w-7xl flex-col pb-14 pt-6 sm:pt-8 md:pb-20 lg:px-16 lg:pt-16">
-      <div className="mb-8 px-4 sm:mb-12 sm:px-6 md:mb-16 md:px-10">
-        <div className="mb-5 flex flex-col items-center gap-3 sm:mb-8 md:flex-row md:items-end md:gap-4">
-          <div className="h-[3px] w-8 bg-[#1e2a4a]" aria-hidden />
-          <p className="text-center text-2xl font-bold tracking-tight text-[#1e2a4a] sm:text-3xl md:text-start md:text-4xl">
-            名門(명문)의 의미
-          </p>
-        </div>
-      </div>
-
-      <div className="mb-14 flex flex-col gap-12 px-4 sm:mb-20 sm:gap-14 sm:px-6 md:mb-24 md:gap-16 md:px-10 lg:gap-20">
-        <ImageTextCard
-          imageSrc="/images/education/banner.jpg"
-          imageAlt="명문교회 비전 이미지"
-          objectPosition="object-top"
-        >
-          <p className="text-lg font-semibold leading-snug text-[#1e2a4a] sm:text-xl md:text-2xl">
+    <div className="break-keep bg-white text-[#191F28] antialiased">
+      {/* 1. Hero */}
+      <section className="max-w-285 mx-auto px-6 pb-16 pt-20 text-center sm:pb-20 sm:pt-28 lg:pt-36">
+        <FadeIn>
+          <Eyebrow className="mb-6">名門(명문)의 의미</Eyebrow>
+          <h2 className="text-[2rem] font-extrabold leading-[1.25] tracking-[-0.035em] sm:text-5xl lg:text-[64px]">
             지역과 민족을 품고
             <br />
-            세계와 열방을 향해 나아가는 명문교회입니다.
-          </p>
-          <p className="text-sm leading-relaxed text-[#496674] sm:text-base">
-            대한예수교장로회(합동)에 속하였으며,
+            세계와 열방을 향해 나아가는
             <br />
-            이 문을 들어오는 자마다
+            명문교회입니다
+          </h2>
+        </FadeIn>
+      </section>
+
+      <FadeIn className="max-w-285 mx-auto px-6">
+        <div className="aspect-4/3 relative w-full overflow-hidden rounded-[28px] bg-[#F4F6F9] sm:aspect-video">
+          <Image
+            src="/images/education/banner.jpg"
+            alt="명문교회 비전 이미지"
+            fill
+            priority
+            className="object-cover object-top"
+            sizes="(max-width: 1140px) 100vw, 1140px"
+          />
+        </div>
+      </FadeIn>
+
+      {/* 2. 이름의 의미 */}
+      <section className="max-w-285 mx-auto flex flex-col gap-8 px-6 py-24 sm:py-32 md:flex-row md:gap-16 lg:gap-24 lg:py-40">
+        <FadeIn className="md:flex-[1_1_380px]">
+          <h3 className={SECTION_H2}>
+            새로운 삶을
             <br />
-            어린양의 생명책에 이름이 기록되며,
-            <br />
-            아브람이 아브라함으로,
-            <br />
-            야곱이 이스라엘로 새 이름을 얻어서
-            <br />
-            <span className="font-medium text-[#1e2a4a]">새로운 삶을 얻는 교회</span>라는 의미를
+            얻는 교회
+          </h3>
+        </FadeIn>
+        <FadeIn delay={150} className={cn(SECTION_BODY, "md:flex-[1_1_480px]")}>
+          <p>
+            대한예수교장로회(합동)에 속하였으며, 이 문을 들어오는 자마다 어린양의 생명책에 이름이
+            기록되며, 아브람이 아브라함으로, 야곱이 이스라엘로 새 이름을 얻어서{" "}
+            <strong className="font-bold text-[#191F28]">새로운 삶을 얻는 교회</strong>라는 의미를
             가지고 있습니다.
           </p>
-        </ImageTextCard>
-        <ImageTextCard reverse imageSrc="/images/about/vision2.jpg" imageAlt="명문교회 로고 이미지">
-          <p className="text-base font-medium leading-relaxed text-[#496674] sm:text-lg">
-            명문의 첫 두글자 영문 <span className="font-semibold text-[#1e2a4a]">MM</span>을
-            형상화하여
-            <br />
-            만들어졌습니다
-          </p>
-          <p className="text-lg font-semibold leading-snug text-[#1e2a4a] sm:text-xl">
-            성부, 성자, 성령을 의미하는 세 개의 기둥으로
-            <br />
-            세워진 문을 통해 생명의 이름을 얻게 되는
-            <br />
-            명문교회 설립의도가 나타나 있습니다.
-          </p>
-          <p className="text-sm leading-relaxed text-[#496674] sm:text-base">
-            생명의 문은 열려진 상태이며,
-            <br />
-            누구든지 <span className="font-medium text-[#333]">하나님의 은혜</span> 앞에 나오는
-            사람은
-            <br />
-            생명의 이름을 얻고 구원의 길을 가게 됩니다.
-          </p>
-        </ImageTextCard>
-      </div>
+        </FadeIn>
+      </section>
 
-      <div className="mb-10 flex flex-col gap-4 px-4 sm:mb-16 sm:gap-6 sm:px-6 md:mb-20 md:px-10">
-        <PromiseCard>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#496674]">
-            목회 서원
-          </p>
-          <p className="text-xl font-bold leading-tight text-[#1e2a4a] sm:text-2xl md:text-[1.65rem]">
-            양을 위하여 목숨을 버리는
-          </p>
-          <p className="-mt-0.5 text-lg font-semibold text-[#1e2a4a]/95 sm:text-xl">
-            목자의 심정으로 목회하겠습니다.
-          </p>
-          <p className="border-t border-[#1e2a4a]/10 pt-4 text-sm leading-[1.8] text-[#496674] sm:text-base">
-            영혼을 구원하기 위해 성육신하신
-            <br />
-            <span className="font-medium text-[#333]">예수님의 마음</span>을 본받아,
-            <br />
-            명문교회 모든 성도님들을 위한 한 알의 밀알이 되어
-            <br />
-            일사각오로 성도님들을 사랑하며 섬기겠습니다.
-          </p>
-        </PromiseCard>
-        <PromiseCard>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#496674]">강단</p>
-          <p className="text-xl font-bold leading-tight text-[#1e2a4a] sm:text-2xl md:text-[1.65rem]">
-            생명을 걸고 설교 준비를 하고,
-          </p>
-          <p className="-mt-0.5 text-lg font-semibold text-[#1e2a4a]/95 sm:text-xl">
-            삶으로 설교하겠습니다.
-          </p>
-          <p className="border-t border-[#1e2a4a]/10 pt-4 text-sm leading-[1.8] text-[#496674] sm:text-base">
-            명문의 강단이 푸른 감람나무 같고
-            <br />
-            물댄 동산 같아서 매주일 <span className="font-medium text-[#333]">생명의 말씀</span>이
-            <br />
-            선포되도록 하겠습니다. 설교자의 삶과 인격이
-            <br />
-            설교를 통해 흘러갈 수 있도록 겸손하게 은혜를 구하며
-            <br />
-            말씀을 전하겠습니다.
-          </p>
-        </PromiseCard>
-        <PromiseCard>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#496674]">기도</p>
-          <p className="text-xl font-bold leading-tight text-[#1e2a4a] sm:text-2xl md:text-[1.65rem]">
-            기도하기를 쉬는 죄를 범하지 않고,
-          </p>
-          <p className="-mt-0.5 text-lg font-semibold text-[#1e2a4a]/95 sm:text-xl">
-            눈물과 무릎으로 목회하겠습니다.
-          </p>
-          <p className="border-t border-[#1e2a4a]/10 pt-4 text-sm leading-[1.8] text-[#496674] sm:text-base">
-            사람의 능력이 아니라,
-            <br />
-            <span className="font-medium text-[#333]">하나님의 능력</span>으로 목회하겠습니다.
-            <br />
-            무릎으로 교회를 세우고,
-            <br />
-            성도님들을 위해 간절한 눈물로 기도하겠습니다.
-          </p>
-        </PromiseCard>
-      </div>
-
-      <div className="mb-6 h-2 w-full bg-[#E6E6E6] lg:hidden" aria-hidden />
-
-      <div className="flex flex-col gap-5 px-4 sm:gap-8 sm:px-6 md:gap-10 md:px-10 lg:gap-12">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:gap-4">
-          <div className="h-[3px] w-8 shrink-0 bg-[#1e2a4a]" aria-hidden />
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider text-[#496674]">
-              Core values
-            </p>
-            <h2 className="text-2xl font-bold tracking-tight text-[#1e2a4a] sm:text-3xl md:text-4xl">
-              명문교회 5대 핵심 가치
-            </h2>
-          </div>
+      {/* 3. 로고 */}
+      <section className={GRAY_BG}>
+        <div className="max-w-285 mx-auto flex flex-col gap-10 px-6 py-24 sm:py-32 md:flex-row md:items-center md:gap-16 lg:gap-24 lg:py-40">
+          <FadeIn className="md:flex-[1_1_440px]">
+            <div className="aspect-4/3 relative w-full overflow-hidden rounded-[28px]">
+              <Image
+                src="/images/about/vision2.jpg"
+                alt="예배에 모인 명문교회 성도들"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </FadeIn>
+          <FadeIn delay={150} className="md:flex-[1_1_440px]">
+            <Eyebrow>로고에 담긴 의미</Eyebrow>
+            <h3 className="text-2xl font-extrabold leading-[1.4] tracking-[-0.03em] sm:text-[32px]">
+              성부, 성자, 성령을 의미하는 세 개의 기둥으로 세워진 문
+            </h3>
+            <div className={cn(SECTION_BODY, "mt-7 space-y-5")}>
+              <p>
+                명문의 첫 두글자 영문 <strong className="font-bold text-[#191F28]">MM</strong>을
+                형상화하여 만들어졌습니다. 성부, 성자, 성령을 의미하는 세 개의 기둥으로 세워진 문을
+                통해 생명의 이름을 얻게 되는 명문교회 설립의도가 나타나 있습니다.
+              </p>
+              <p>
+                생명의 문은 열려진 상태이며, 누구든지{" "}
+                <strong className="font-bold text-[#191F28]">하나님의 은혜</strong> 앞에 나오는
+                사람은 생명의 이름을 얻고 구원의 길을 가게 됩니다.
+              </p>
+            </div>
+          </FadeIn>
         </div>
-        <div className="flex flex-col border-t border-[#747474]">
-          <CoreValueItem title="목자의 심정" subtitle="The Heart of Shepherd">
-            <p className="text-base font-medium text-[#333]">
-              ‘내 양을 치라’고 하신
-              <br />
-              주님의 명령에 순종하여,
-            </p>
-            <p className="text-sm text-[#496674] sm:text-base">
-              모든 것을 헌신하는 마음으로
-              <br />
-              성도를 목양하고 돌봅니다.
-            </p>
-          </CoreValueItem>
-          <CoreValueItem title="선교적 교회">
-            <p className="text-base font-medium italic text-[#333] sm:text-lg">
-              제자들의 발을 씻겨 주신
-              <br />
-              예수님의 겸손한 모범을 따라
-            </p>
-            <p className="text-sm text-[#496674] sm:text-base">
-              예수님처럼 교회와 세상을 섬깁니다.
-            </p>
-          </CoreValueItem>
-          <CoreValueItem title="치유하는 교회">
-            <p className="text-sm text-[#496674] sm:text-base">
-              다윗이 그 마음 완전함과
-              <br />
-              손의 능숙함으로 사명을 감당한 것처럼,
-            </p>
-            <p className="text-base font-semibold text-[#1e2a4a]">최고 수준의 사역을 추구합니다.</p>
-          </CoreValueItem>
-          <CoreValueItem title="한 영혼의 소중함" subtitle="The Importance of Individual">
-            <p className="text-base font-medium text-[#333]">
-              천하보다 귀한 한 영혼을
-              <br />
-              하나님의 마음으로 품고
-            </p>
-            <p className="text-sm leading-relaxed text-[#496674] sm:text-base">
-              목양의 사각지대가 없는
-              <br />
-              돌봄과 사랑의 공동체를 꿈꿉니다.
-            </p>
-          </CoreValueItem>
-          <CoreValueItem title="지상명령" subtitle="The Great Commission">
-            <p className="text-sm text-[#496674] sm:text-base">
-              주님 다시 오시는 날까지
-              <br />
-              세계와 열방을 품고 치유하는
-            </p>
-            <p className="text-base font-semibold text-[#1e2a4a] sm:text-lg">
-              선교공동체로 나아갑니다.
-            </p>
-          </CoreValueItem>
+      </section>
+
+      {/* 4. 목회 서원 (네이비) */}
+      <section className={cn(NAVY_BG, "text-white")}>
+        <ul className="max-w-285 mx-auto px-6 py-16 sm:py-24 lg:py-28">
+          {PROMISES.map((item, i) => (
+            <li
+              key={item.label}
+              className={cn("py-12 sm:py-16", i > 0 && "border-t border-white/15")}
+            >
+              <FadeIn className="flex flex-col gap-6 md:flex-row md:gap-16 lg:gap-24">
+                <div className="md:flex-[1_1_380px]">
+                  <p className="mb-4 text-[15px] font-bold text-[#9DB8FF] sm:text-[17px]">
+                    {item.label}
+                  </p>
+                  <h3 className="text-2xl font-extrabold leading-[1.4] tracking-[-0.03em] sm:text-[32px]">
+                    {item.title[0]}
+                    <br />
+                    {item.title[1]}
+                  </h3>
+                </div>
+                <p className={cn(SECTION_BODY, "text-[#C3CCDB] md:flex-[1_1_480px] md:pt-10")}>
+                  {item.body}
+                </p>
+              </FadeIn>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      {/* 5. 5대 핵심 가치 */}
+      <section className={GRAY_BG}>
+        <div className="max-w-285 lg:py-38 mx-auto px-6 py-24 sm:py-32">
+          <FadeIn>
+            <Eyebrow>Core values</Eyebrow>
+            <h3 className={SECTION_H2}>명문교회 5대 핵심 가치</h3>
+          </FadeIn>
+          <ul className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {CORE_VALUES.map((item, i) => (
+              <li key={item.title}>
+                <FadeIn
+                  delay={(i % 3) * 100}
+                  className="flex h-full flex-col gap-3.5 rounded-3xl bg-white px-8 pb-10 pt-9"
+                >
+                  <span className="text-[15px] font-extrabold text-[#2453C9]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h4 className="text-[22px] font-extrabold leading-[1.35] tracking-[-0.02em] sm:text-2xl">
+                      {item.title}
+                    </h4>
+                    {item.subtitle && (
+                      <p className="mt-1 text-sm font-medium text-[#8B95A1]">{item.subtitle}</p>
+                    )}
+                  </div>
+                  <p className="text-base leading-[1.7] text-[#4E5968] sm:text-[17px]">
+                    {item.lead} <span className="font-semibold text-[#191F28]">{item.body}</span>
+                  </p>
+                </FadeIn>
+              </li>
+            ))}
+          </ul>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
