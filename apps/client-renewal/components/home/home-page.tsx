@@ -193,7 +193,7 @@ export function HomePage() {
                     asChild
                     className="rounded-none border-0 bg-[#1e2a4a] px-8 py-6 text-sm tracking-wider text-white hover:bg-[#2d3a5a]"
                   >
-                    <Link href="/about/leadership/retired">더 알아보기</Link>
+                    <Link href="/about/leadership">더 알아보기</Link>
                   </Button>
                 </div>
               </div>

@@ -14,10 +14,10 @@ export const aboutSectionNavItems = [
     match: (p: string) => p.startsWith("/about/vision"),
   },
   {
-    href: "/about/leadership/retired",
+    href: "/about/leadership",
     label: "섬기는 분들",
     icon: Users,
-    match: (p: string) => p.startsWith("/about/leadership/retired"),
+    match: (p: string) => p.startsWith("/about/leadership"),
   },
   {
     href: "/about/services",
