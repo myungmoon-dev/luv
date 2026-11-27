@@ -1,4 +1,4 @@
-import { merge } from "lodash";
+import merge from "lodash/merge";
 import type { Config } from "tailwindcss";
 import { tailwindConfig } from "theme";
 // eslint-disable-next-line @typescript-eslint/no-require-imports
