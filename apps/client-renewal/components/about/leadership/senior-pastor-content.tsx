@@ -2,286 +2,200 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { CustomImage } from "@/components/about/custom-image";
-import { getPastorBooks, getPastorProfile } from "@/lib/api-pastor";
+import { FadeIn } from "@/components/about/fade-in";
+import { Eyebrow, SECTION_BODY, SECTION_H2 } from "@/components/about/section-ui";
+import { getPastorProfile } from "@/lib/api-pastor";
+import { cn } from "@/lib/utils";
+
+const PASTOR_NAME = "이대식";
+
+// 제목 + PDF 원문 문장
+const CHURCH_IDENTITIES = [
+  { title: "하나님의 주권", desc: "하나님의 주권을 선포하는 교회입니다." },
+  { title: "예배의 영광", desc: "예배의 영광을 회복하는 교회입니다." },
+  { title: "주의 사랑", desc: "주의 사랑으로 사랑하는 교회입니다." },
+  { title: "제자훈련", desc: "제자훈련으로 평신도를 세우는 교회입니다." },
+  { title: "다음 세대", desc: "주의 사랑으로 다음 세대를 세우는 교회입니다." },
+  { title: "사랑의 실천", desc: "세상 속에 사랑을 실천함으로 복음을 전하는 교회입니다." },
+];
+
+const H2 = SECTION_H2;
+const BODY = SECTION_BODY;
 
 export function SeniorPastorContent() {
-  const { data: books = [] } = useQuery({
-    queryKey: ["pastor", "books"],
-    queryFn: getPastorBooks,
-  });
-
   const { data: profile, isLoading: isProfileLoading } = useQuery({
     queryKey: ["pastor", "profile"],
     queryFn: getPastorProfile,
   });
+  const photoUrl = profile?.bottomImageUrl ?? "";
 
   return (
-    <div className="mb-14">
-      {/* Hero Section */}
-      <div className="relative mb-10 overflow-hidden">
-        {isProfileLoading ? (
-          <div className="h-[240px] w-full animate-pulse bg-[#1e2a4a]/20 sm:h-[380px] md:h-[500px] lg:h-[580px]" />
-        ) : (
-          <CustomImage
-            className="h-[240px] w-full sm:h-[380px] md:h-[500px] lg:h-[580px]"
-            src={profile?.topImageUrl ?? ""}
-            alt="담임목사 김지혁"
-            imgClass="object-cover object-top"
-            sizes="100vw"
-          />
-        )}
-        {/* 검은색배경그라데이션 <div className="bg-linear-to-l absolute inset-0 from-black/60 to-transparent" /> */}
-        <div className="absolute bottom-0 right-0 p-4 sm:p-10 md:p-14">
-          <p className="text-sm text-white sm:text-xl md:text-3xl">
-            <span className="font-light">안녕하세요 </span>
-            <span className="font-bold">명문교회 담임목사</span>
+    // -mb / lg:-mx: 부모 LeaderTabs의 하단·좌우 패딩을 상쇄해 배경을 화면 끝까지 채움
+    <div className="-mb-12 break-keep bg-white text-[#191F28] antialiased sm:-mb-14 lg:-mx-12">
+      {/* 1. Hero */}
+      <section className="max-w-285 mx-auto px-6 pb-10 pt-16 text-center sm:pb-14 sm:pt-24 lg:pb-16 lg:pt-28">
+        <FadeIn>
+          <Eyebrow className="mb-6">인사말</Eyebrow>
+          <h2 className="text-[2.375rem] font-extrabold leading-[1.22] tracking-[-0.035em] sm:text-6xl lg:text-[76px]">
+            이 땅의 유일한 소망은
+            <br />
+            예수 그리스도이십니다
+          </h2>
+        </FadeIn>
+        <FadeIn delay={180}>
+          <p className="mt-7 text-lg leading-relaxed text-[#4E5968] sm:text-[22px]">
+            그리고 그분의 몸 된 교회는
+            <br />이 세상을 향한 하나님의 희망입니다.
           </p>
-          <p className="mt-1 font-bold text-white">
-            <span className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl">김지혁</span>
-            <span className="text-xl sm:text-3xl md:text-4xl lg:text-5xl">입니다</span>
+        </FadeIn>
+      </section>
+
+      {/* 2. 환영합니다 — 히어로 부제보다 한 단계 낮은 회색 문단(진하기가 위→아래로 내려가도록) */}
+      <section className="max-w-240 mx-auto px-6 pb-24 text-center sm:pb-32 lg:pb-40">
+        <FadeIn>
+          <p className="text-[17px] font-semibold leading-[1.9] tracking-[-0.02em] text-[#1E3A8A] sm:text-xl">
+            명문교회 홈페이지를 찾아주신 모든 분을 진심으로 환영합니다.
+            <br />
+            <span className="font-normal text-[#6B7684]">
+              이 공간을 통하여 예수 그리스도 안에 있는 사랑과 행복을 경험하길 소망합니다.
+            </span>
           </p>
-        </div>
-      </div>
+        </FadeIn>
+      </section>
 
-      {/* 본문 컨테이너 */}
-      <div className="mx-auto max-w-5xl lg:px-0">
-        {/* 1. 인사말 */}
-        <div className="mb-12 px-4 sm:px-8 md:px-10">
-          <div className="flex flex-col gap-6 md:flex-row md:gap-12">
-            <div className="shrink-0 md:w-[45%]">
-              <div className="mb-2 h-[3px] w-8 bg-[#001F54]" />
-              <p className="text-3xl font-[1000] leading-tight text-[#001F54] sm:text-4xl md:text-5xl lg:text-6xl">
-                NICE TO
+      {/* 3. 말씀 (요 13:34) — 헤더 nav(#0A1E51)보다 한 톤 밝은 네이비: 스크롤 시 헤더와 경계가 보이도록 */}
+      <section className="bg-[#102A63] text-white">
+        <FadeIn className="max-w-240 mx-auto px-6 py-20 text-center sm:py-24 lg:py-28">
+          <blockquote>
+            {/* 큰 따옴표를 문구 위·아래에 장식으로 배치, 출처는 따옴표 안쪽 */}
+            <span
+              aria-hidden
+              className="block h-10 font-serif text-7xl font-black leading-none text-[#5B7FC7] sm:h-14 sm:text-8xl"
+            >
+              “
+            </span>
+            <div className="mt-4 sm:mt-6">
+              <p className="text-[1.625rem] font-bold leading-normal tracking-[-0.025em] sm:text-[32px] lg:text-[40px]">
+                새 계명을 너희에게 주노니 서로 사랑하라
+                <br />
+                내가 너희를 사랑한 것 같이
+                <br />
+                너희도 서로 사랑하라
               </p>
-              <p className="text-3xl font-[1000] leading-tight text-[#001F54] sm:text-4xl md:text-5xl lg:text-6xl">
-                MEET YOU!
-              </p>
+              <cite className="mt-5 block text-base font-medium not-italic text-white/75 sm:mt-6 sm:text-lg">
+                요한복음 13:34
+              </cite>
             </div>
-            <div className="flex-1 space-y-4 text-sm leading-relaxed text-[#6E6E6E] sm:text-base md:pt-4">
-              <p>
-                <span className="font-medium text-[#333]">
-                  사랑하는 성도 여러분,
-                  <br />
-                  그리고 명문교회를 찾아 주신 모든 분들에게!
-                </span>
-              </p>
-              <p>
-                명문교회 홈페이지를 방문해 주신 모든 분들을 주님의 이름으로 환영합니다. 평강의
-                하나님께서 여러분과 여러분의 가정에 풍성한 은혜와 평안을 더하여 주시기를 바랍니다.
-              </p>
-              <p>
-                <span className="font-medium text-[#333]">함께 걸어가는 믿음의 여정</span>
-              </p>
-              <p>
-                신앙의 여정은 혼자 걷는 길이 아닙니다. 우리는 함께 주님을 따라가는 믿음의
-                동반자들입니다. 여러분이 어떤 상황에 계시든, 어떤 필요가 있으시든, 명문교회는
-                여러분을 따뜻하게 품고 함께 기도하며 동행하고자 합니다. 이곳에서 참된 위로와 소망,
-                그리고 새로운 힘을 얻으시기를 바랍니다.
-              </p>
-              <p>
-                앞으로도 명문교회가 지역사회를 섬기고, 복음을 전하며, 하나님 나라의 확장을 위해 쓰임
-                받는 교회가 되도록 여러분의 기도와 동참을 부탁드립니다.
-              </p>
-              <p className="font-medium text-[#333]">
-                하나님의 크신 사랑과 은혜가 여러분과 함께 하시기를 축복합니다.
-              </p>
-            </div>
-          </div>
-          <div className="mt-8 h-[2px] bg-[#E6E6E6]" />
-        </div>
+            <span
+              aria-hidden
+              className="mt-4 block h-10 font-serif text-7xl font-black leading-none text-[#5B7FC7] sm:mt-6 sm:h-14 sm:text-8xl"
+            >
+              ”
+            </span>
+          </blockquote>
+        </FadeIn>
+      </section>
 
-        {/* 2. FAMILY */}
-        <div className="mb-12 w-full bg-[#F0F0F0] px-4 py-8 sm:px-8 sm:py-12 lg:px-10">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:gap-12">
-            <div className="shrink-0 md:w-[45%]">
-              <div className="mb-1 h-[3px] w-8 bg-[#001F54]" />
-              <p className="text-2xl font-[1000] leading-none text-[#001F54] sm:text-4xl md:text-6xl">
-                FAMILY
+      {/* 4. 본문 — 담임목사 사진 + 목회 메시지 */}
+      <section>
+        <div className="max-w-285 mx-auto flex flex-col gap-10 px-6 py-24 sm:py-32 md:flex-row md:items-center md:gap-16 lg:gap-24 lg:py-40">
+          {/* 담임목사 사진 — 관리자 "프로필 이미지"(bottomImageUrl) */}
+          <FadeIn className="w-full md:w-[42%] md:shrink-0">
+            {isProfileLoading ? (
+              <div className="aspect-4/5 w-full animate-pulse rounded-[28px] bg-[#F4F6F9]" />
+            ) : (
+              <CustomImage
+                className="aspect-4/5 w-full overflow-hidden rounded-[28px] bg-[#F4F6F9]"
+                src={photoUrl}
+                alt={`강단에서 말씀을 전하는 ${PASTOR_NAME} 담임목사`}
+                imgClass="object-cover object-[50%_70%]"
+                sizes="(max-width: 768px) 100vw, 480px"
+              />
+            )}
+          </FadeIn>
+          <FadeIn delay={150} className="flex-1">
+            <h3 className={H2}>
+              사랑은 우리의 힘에서
+              <br />
+              나오지 않습니다
+            </h3>
+            <div className={cn(BODY, "mt-8 flex flex-col gap-6 sm:mt-10")}>
+              <p>
+                주님께서는 제자들에게 “내가 너희를 사랑한 것 같이” 서로 사랑하라고 하셨습니다.
+                사랑은 우리의 힘에서 나오지 않습니다.{" "}
+                <strong className="font-bold text-[#191F28]">
+                  먼저 우리를 사랑하신 주님의 사랑에서 시작됩니다.
+                </strong>
               </p>
-              <p className="text-base font-bold text-[#001F54] sm:text-2xl md:text-[1.68rem]">
-                HUSBAND &amp; DAD
+              <p>
+                그래서 명문교회는 죽기까지 우리를 사랑하신 예수 그리스도의 사랑을 기억하며 하나님을
+                사랑하고 이웃을 사랑하는 교회, 주의 사랑으로 사랑하며 살아가는 교회가 되기를
+                소망합니다.
+              </p>
+              <p>
+                명문교회의 행복은 주의 사랑으로 사랑하는 목회자와 성도가 함께 있다는 것입니다. 이
+                사랑 안에서 우리는 이 비전을 향해 함께 달려갑니다.
               </p>
             </div>
-            <p className="flex-1 break-keep text-sm leading-relaxed text-[#444] sm:text-base">
-              사역의 여정 속에서 가장 따뜻한 쉼표가 되어주는 아내 정지영 사모와, 그리고 기쁨으로
-              자라나는 두 아들 성재와 은재와 함께 행복한 믿음의 가정을 일구어가고 있습니다.
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* 5. 비전 — 회색 배경 위 흰 카드 */}
+      <section className="bg-[#F4F6F9]">
+        <div className="max-w-285 lg:py-38 mx-auto px-6 py-24 sm:py-32">
+          <FadeIn>
+            <Eyebrow>비전</Eyebrow>
+            <h3 className={H2}>명문교회는</h3>
+          </FadeIn>
+          <ul className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+            {CHURCH_IDENTITIES.map((item, i) => (
+              <li key={item.title}>
+                <FadeIn
+                  delay={(i % 3) * 100}
+                  className="flex h-full flex-col gap-3.5 rounded-3xl bg-white px-8 pb-10 pt-9"
+                >
+                  <span className="text-[15px] font-extrabold text-[#2453C9]">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h4 className="text-[22px] font-extrabold leading-[1.35] tracking-[-0.02em] sm:text-2xl">
+                    {item.title}
+                  </h4>
+                  <p className="text-base leading-[1.7] text-[#4E5968] sm:text-[17px]">
+                    {item.desc}
+                  </p>
+                </FadeIn>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 6. 초대 — 한 단 구성: 인용·맺음말 → 초대 문구 → 우측 서명 (스타일은 페이지 톤 유지) */}
+      <section className="max-w-285 mx-auto px-6 py-24 sm:py-32 lg:py-40">
+        <FadeIn>
+          <blockquote className="text-lg font-bold leading-[1.6] tracking-[-0.02em] sm:text-[22px]">
+            “너희가 서로 사랑하면 이로써 모든 사람이 너희가 내 제자인 줄 알리라”
+            <cite className="mt-2 block text-sm font-semibold not-italic text-[#2453C9] sm:text-base">
+              요한복음 13:35
+            </cite>
+          </blockquote>
+          <p className={cn(BODY, "mt-8")}>
+            교회가 세상의 희망이 되는 길은 화려함에 있지 않고, 주님께 받은 사랑으로 서로 사랑하는 데
+            있습니다. <br />그 사랑을 통해 세상이 예수 그리스도를 보게 될 것입니다.
+            <br /> 명문교회는 이 사랑으로 주님의 제자 됨을 나타내는 교회가 되겠습니다.
+          </p>
+        </FadeIn>
+        <FadeIn delay={150}>
+          <h3 className={cn(H2, "mt-16 sm:mt-20")}>그 사랑의 자리에 여러분을 초대합니다</h3>
+          <div className="mt-12 flex items-center justify-end gap-4 border-t border-[#E5E8EB] pt-8">
+            <p className="flex items-baseline gap-2.5">
+              <span className="text-sm text-[#6B7684] sm:text-[15px]">명문교회 담임목사</span>
+              <span className="text-lg font-bold sm:text-xl">{PASTOR_NAME}</span>
             </p>
           </div>
-        </div>
-      </div>
-
-      {/* 3. BIOGRAPHY */}
-      <div className="mx-auto mb-12 flex max-w-5xl flex-col px-4 sm:px-8 md:flex-row md:items-stretch">
-        <div className="w-full shrink-0 md:w-[45%]">
-          {isProfileLoading ? (
-            <div className="h-[260px] w-full animate-pulse bg-[#1e2a4a]/20 md:h-full md:min-h-[400px]" />
-          ) : (
-            <CustomImage
-              className="h-[260px] w-full md:h-full md:min-h-[400px]"
-              src={profile?.bottomImageUrl ?? ""}
-              alt="김지혁 담임목사"
-              imgClass="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 45vw"
-            />
-          )}
-        </div>
-        <div className="flex flex-1 flex-col px-4 py-8 sm:px-8 sm:py-10 lg:px-10">
-          <div className="mb-1 flex justify-end">
-            <div className="h-[3px] w-8 bg-[#001F54]" />
-          </div>
-          <p className="mb-6 text-right text-3xl font-black text-[#001F54] sm:text-4xl md:text-6xl">
-            BIOGRAPHY
-          </p>
-
-          <div className="mb-5">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">학력</p>
-            </div>
-            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
-              <li className="flex items-start gap-2">
-                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
-                <span>
-                  고려대, 서울대 대학원
-                  <br />
-                  <span className="text-[#666]">철학, 영미윤리학</span>
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
-                <span>
-                  총신대 신학대학원
-                  <br />
-                  <span className="text-[#666]">목회학(MDiv)</span>
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
-                <span>
-                  Trinity Evangelical Divinity School
-                  <br />
-                  <span className="text-[#666]">조직신학(ThM)</span>
-                </span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
-                <span>
-                  The Southern Baptist Theological Seminary
-                  <br />
-                  <span className="text-[#666]">설교학(PhD)</span>
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div className="mb-5">
-            <div className="mb-2 flex items-center gap-2">
-              <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">
-                사역 경력
-              </p>
-            </div>
-            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
-              {["강남교회", "시카고아가페장로교회", "Sojourn Community Church", "사랑의교회"].map(
-                (item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <span className="size-[5px] shrink-0 rounded-full bg-[#001F54]" />
-                    {item}
-                  </li>
-                ),
-              )}
-            </ul>
-          </div>
-
-          <div>
-            <div className="mb-2 flex items-center gap-2">
-              <div className="h-px flex-1 bg-[#D0D5E0]" />
-              <p className="text-base font-bold tracking-widest text-[#001F54] sm:text-lg">
-                현재 활동
-              </p>
-            </div>
-            <ul className="space-y-2 text-base text-[#444] sm:text-lg">
-              {[
-                { text: "총신대 목회신학전문대학원 설교학 교수" },
-                {
-                  text: "Reformed Theological College in Uganda(우간다 개혁신학대학교)",
-                  sub: "초빙교수",
-                },
-                { text: "농어촌교회사역연구소 연구위원" },
-                { text: "한국개혁주의 설교학회 학술부회장" },
-              ].map((item) => (
-                <li key={item.text} className="flex items-start gap-2">
-                  <span className="mt-2.5 size-[5px] shrink-0 rounded-full bg-[#001F54] sm:mt-3" />
-                  <span>
-                    {item.text}
-                    {item.sub && (
-                      <>
-                        <br />
-                        <span className="text-[#666]">{item.sub}</span>
-                      </>
-                    )}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* 4. BOOKS */}
-      <div className="mx-auto mb-12 max-w-5xl px-4 sm:px-8 md:pt-10 lg:px-0">
-        <div className="mb-6">
-          <div className="mb-2 h-[3px] w-8 bg-[#001F54]" />
-          <p className="text-3xl font-[1000] leading-tight text-[#001F54] sm:text-4xl md:text-5xl lg:text-6xl">
-            BOOKS
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {books.map((book) => (
-            <div
-              key={book.id}
-              className="flex items-start gap-3 rounded-xl border border-[#E6E6E6] p-4"
-            >
-              {book.imageUrl ? (
-                <div className="aspect-2/3 relative w-16 shrink-0 overflow-hidden rounded-lg bg-[#f4f4f4] sm:w-20">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- API 원격 표지 URL */}
-                  <img
-                    src={book.imageUrl}
-                    alt={book.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-              ) : (
-                <div className="aspect-2/3 flex w-16 shrink-0 items-center justify-center rounded-lg bg-[#001F54]/10 sm:w-20">
-                  <svg
-                    className="size-5 text-[#001F54]"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    aria-hidden
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={1.5}
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    />
-                  </svg>
-                </div>
-              )}
-              <div>
-                <p className="text-sm font-bold text-[#001F54] sm:text-base">{book.title}</p>
-                {book.sub && <p className="text-xs text-[#6E6E6E] sm:text-sm">{book.sub}</p>}
-                <p className="mt-1 text-xs text-[#999] sm:text-sm">
-                  {book.publisher} · {book.year}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <hr className="border-[#BBBBBB]" />
+        </FadeIn>
+      </section>
     </div>
   );
 }
