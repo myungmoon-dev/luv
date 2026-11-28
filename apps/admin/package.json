@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "engines": {
+    "node": "26.x"
+  },
   "dependencies": {
     "@hookform/error-message": "^2.0.1",
     "@plaiceholder/next": "^3.0.0",

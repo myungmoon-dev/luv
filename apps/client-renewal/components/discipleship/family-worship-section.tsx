@@ -3,7 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { Loader2 } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 import { DiscipleshipSubPage } from "@/components/discipleship/discipleship-sub-page";
@@ -14,30 +15,35 @@ import { getHomeWorships } from "@/lib/api-homeworship";
 
 const PAGE_SIZE = 8;
 
-function HomeWorshipListItem({ item, onClick }: { item: IHomeWorship; onClick: () => void }) {
+function HomeWorshipListItem({ item }: { item: IHomeWorship }) {
   const imageUrl = item.imageUrls?.[0] ?? "/images/home/homeworship.png";
-  const date = item.date ? dayjs(item.date).format("YYYY MM DD") : dayjs(item.createdAt).format("YYYY MM DD");
+  const date = item.date
+    ? dayjs(item.date).format("YYYY MM DD")
+    : dayjs(item.createdAt).format("YYYY MM DD");
 
   return (
-    <div
-      onClick={onClick}
-      className="relative group cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") onClick();
-      }}
+    // <Link>: 뷰포트에 보이면 상세 페이지를 미리 받아(prefetch) 클릭 즉시 이동
+    <Link
+      href={`/discipleship/family-worship/${item._id}`}
+      className="group relative block overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-gray-100">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        {/* next/image: S3 원본(수 MB) 대신 카드 크기에 맞게 리사이즈·webp 변환된 이미지를 받음 */}
+        <Image
           src={imageUrl}
           alt={item.title || "가정예배 이미지"}
-          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 260px"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
         {item.comments?.length > 0 ? (
           <div className="absolute bottom-1.5 right-1.5 flex items-center gap-0.5 rounded-full bg-black/60 px-1.5 py-0.5 text-white sm:bottom-2 sm:right-2 sm:gap-1 sm:px-3 sm:py-1">
-            <svg className="size-3.5 sm:size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="size-3.5 sm:size-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -69,12 +75,11 @@ function HomeWorshipListItem({ item, onClick }: { item: IHomeWorship; onClick: (
           고정
         </div>
       ) : null}
-    </div>
+    </Link>
   );
 }
 
 export function FamilyWorshipSection() {
-  const router = useRouter();
   const [page, setPage] = useState(1);
 
   const { data, isPending } = useQuery({
@@ -94,14 +99,15 @@ export function FamilyWorshipSection() {
         {/* 헤더 */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
-            <h2 className="break-keep text-xl font-bold text-[#111111] sm:text-2xl">맛있는 가정예배</h2>
-            <button
-              type="button"
-              onClick={() => router.push("/discipleship/family-worship/create")}
+            <h2 className="break-keep text-xl font-bold text-[#111111] sm:text-2xl">
+              맛있는 가정예배
+            </h2>
+            <Link
+              href="/discipleship/family-worship/create"
               className="shrink-0 rounded-full bg-[#1e3a5f] px-5 py-2 text-xs font-medium text-white transition-colors hover:bg-[#2d4a6f] sm:px-6 sm:py-2.5 sm:text-sm md:px-8 md:py-3 md:text-base"
             >
               예배 인증하기
-            </button>
+            </Link>
           </div>
 
           <div className="flex flex-col gap-2 sm:gap-3">
@@ -109,8 +115,8 @@ export function FamilyWorshipSection() {
               예배의 갈등, 나눔의 기쁨을 함께해 주세요!
             </p>
             <p className="break-keep text-xs leading-relaxed text-blue-950 sm:text-sm md:text-base">
-              가정예배 후, 그 은혜로운 순간을 사진과 함께 나누어 주세요. 맛있는 식탁, 단란한 예배의 모습,
-              은혜로운 간증 등 자유롭게 올려주시면 다른 성도들에게도 큰 은혜와 도전이 됩니다.
+              가정예배 후, 그 은혜로운 순간을 사진과 함께 나누어 주세요. 맛있는 식탁, 단란한 예배의
+              모습, 은혜로운 간증 등 자유롭게 올려주시면 다른 성도들에게도 큰 은혜와 도전이 됩니다.
             </p>
           </div>
         </div>
@@ -125,9 +131,9 @@ export function FamilyWorshipSection() {
             <p className="text-sm font-medium text-[#496674]">아직 작성된 예배 인증이 없습니다</p>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-2 sm:gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4">
             {list.map((item) => (
-              <HomeWorshipListItem key={item._id} item={item} onClick={() => router.push(`/discipleship/family-worship/${item._id}`)} />
+              <HomeWorshipListItem key={item._id} item={item} />
             ))}
           </div>
         )}
@@ -144,17 +150,26 @@ export function FamilyWorshipSection() {
       </div>
 
       {/* 플로팅 버튼 */}
-      <button
-        type="button"
-        onClick={() => router.push("/discipleship/family-worship/create")}
+      <Link
+        href="/discipleship/family-worship/create"
         className="fixed bottom-4 right-4 z-40 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-blue-950 text-white shadow-lg transition-all hover:scale-110 hover:bg-[#2d4a6f] sm:bottom-6 sm:right-6 sm:h-14 sm:w-14 md:bottom-8 md:right-8"
         aria-label="예배 인증하기"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5 sm:h-6 sm:w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+          />
         </svg>
-      </button>
+      </Link>
     </DiscipleshipSubPage>
   );
 }
-

@@ -174,7 +174,7 @@ const YoutubeFormDialog = ({ open, onClose, option, editTarget }: YoutubeFormDia
                     required: `${option === "video" ? "이름" : "설교자"}을 입력해주세요.`,
                   })}
                   placeholder={
-                    option === "video" ? "ex) WITH EL(위드엘 주일찬양팀)" : "ex) 김지혁 담임목사"
+                    option === "video" ? "ex) WITH EL(위드엘 주일찬양팀)" : "ex) 이대식 담임목사"
                   }
                 />
               </FormField>

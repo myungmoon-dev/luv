@@ -3,14 +3,25 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import { ArrowLeft, Loader2, PencilLine, Trash2 } from "lucide-react";
+import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 
 import { DiscipleshipNavStrip } from "@/components/discipleship/discipleship-section-nav";
-import { deleteHomeWorship, deleteHomeWorshipComment, getHomeWorship, postHomeWorshipComment } from "@/lib/api-homeworship";
+import {
+  deleteHomeWorship,
+  deleteHomeWorshipComment,
+  getHomeWorship,
+  postHomeWorshipComment,
+} from "@/lib/api-homeworship";
 
 function HtmlContent({ html }: { html: string }) {
-  return <div className="prose prose-sm max-w-none break-words [&_p]:mb-2" dangerouslySetInnerHTML={{ __html: html }} />;
+  return (
+    <div
+      className="prose prose-sm max-w-none break-words [&_p]:mb-2"
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
+  );
 }
 
 function formatDay(value: string | number) {
@@ -78,7 +89,8 @@ export function FamilyWorshipDetail() {
 
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!commentContent || !commentName || !commentPassword) return alert("모든 정보를 입력해 주세요.");
+    if (!commentContent || !commentName || !commentPassword)
+      return alert("모든 정보를 입력해 주세요.");
 
     commentMutation.mutate(
       {
@@ -125,7 +137,11 @@ export function FamilyWorshipDetail() {
     if (!target) return;
 
     try {
-      await commentDeleteMutation.mutateAsync({ homeWorshipId, commentId: editingCommentId, password });
+      await commentDeleteMutation.mutateAsync({
+        homeWorshipId,
+        commentId: editingCommentId,
+        password,
+      });
       await commentMutation.mutateAsync({
         homeWorshipId,
         content: editingCommentContent,
@@ -166,7 +182,9 @@ export function FamilyWorshipDetail() {
               <ArrowLeft className="size-5" aria-hidden />
               <span className="text-sm sm:text-base">뒤로</span>
             </button>
-            <h1 className="line-clamp-1 text-base font-semibold text-gray-900 sm:text-lg">{data.title}</h1>
+            <h1 className="line-clamp-1 text-base font-semibold text-gray-900 sm:text-lg">
+              {data.title}
+            </h1>
             <div className="w-10" />
           </div>
         </div>
@@ -206,9 +224,19 @@ export function FamilyWorshipDetail() {
             {data.imageUrls?.length ? (
               <div className="mt-5 flex flex-col gap-3 sm:gap-4">
                 {data.imageUrls.map((imageUrl) => (
-                  <div key={imageUrl} className="overflow-hidden rounded-lg border border-gray-200 bg-white">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={imageUrl} alt="예배 이미지" className="h-auto w-full object-contain" />
+                  <div
+                    key={imageUrl}
+                    className="overflow-hidden rounded-lg border border-gray-200 bg-white"
+                  >
+                    {/* next/image: 원본 비율 유지(h-auto), 화면 폭에 맞게 리사이즈된 이미지 수신 */}
+                    <Image
+                      src={imageUrl}
+                      alt="예배 이미지"
+                      width={1600}
+                      height={1600}
+                      sizes="(max-width: 1024px) 100vw, 960px"
+                      className="h-auto w-full object-contain"
+                    />
                   </div>
                 ))}
               </div>
@@ -223,10 +251,15 @@ export function FamilyWorshipDetail() {
           {/* 댓글 */}
           <div className="rounded-2xl border border-[#E6E6E6] bg-white p-5 shadow-sm sm:p-6">
             <div className="border-t border-[#E6E6E6] pt-4">
-              <p className="text-base font-semibold text-gray-900 sm:text-lg">댓글 {comments.length}</p>
+              <p className="text-base font-semibold text-gray-900 sm:text-lg">
+                댓글 {comments.length}
+              </p>
             </div>
 
-            <form onSubmit={handleSubmitComment} className="mt-4 flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-3 sm:p-4">
+            <form
+              onSubmit={handleSubmitComment}
+              className="mt-4 flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-3 sm:p-4"
+            >
               <textarea
                 value={commentContent}
                 onChange={(e) => setCommentContent(e.target.value)}
@@ -263,8 +296,10 @@ export function FamilyWorshipDetail() {
                   className="flex flex-col gap-2 rounded-lg border border-gray-200 bg-gray-50 p-3"
                 >
                   <div className="flex items-start justify-between gap-2">
-                    <div className="min-w-0 flex flex-col gap-0.5">
-                      <p className="truncate text-sm font-medium text-gray-900">{comment.userName}</p>
+                    <div className="flex min-w-0 flex-col gap-0.5">
+                      <p className="truncate text-sm font-medium text-gray-900">
+                        {comment.userName}
+                      </p>
                       <p className="text-xs text-gray-500">{formatDateTime(comment.createdAt)}</p>
                     </div>
 
@@ -319,7 +354,9 @@ export function FamilyWorshipDetail() {
                       </div>
                     </div>
                   ) : (
-                    <p className="whitespace-pre-wrap break-keep text-sm text-gray-700">{comment.content}</p>
+                    <p className="whitespace-pre-wrap break-keep text-sm text-gray-700">
+                      {comment.content}
+                    </p>
                   )}
                 </div>
               ))}
@@ -330,4 +367,3 @@ export function FamilyWorshipDetail() {
     </>
   );
 }
-
