@@ -1,26 +1,45 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { CustomImage } from "@/components/about/custom-image";
 import { FadeIn } from "@/components/about/fade-in";
-import { Eyebrow, SECTION_BODY, SECTION_H2 } from "@/components/about/section-ui";
 import { getPastorProfile } from "@/lib/api-pastor";
-import { cn } from "@/lib/utils";
 
 const PASTOR_NAME = "이대식";
 
-// 제목 + PDF 원문 문장
-const CHURCH_IDENTITIES = [
-  { title: "하나님의 주권", desc: "하나님의 주권을 선포하는 교회입니다." },
-  { title: "예배의 영광", desc: "예배의 영광을 회복하는 교회입니다." },
-  { title: "주의 사랑", desc: "주의 사랑으로 사랑하는 교회입니다." },
-  { title: "제자훈련", desc: "제자훈련으로 평신도를 세우는 교회입니다." },
-  { title: "다음 세대", desc: "주의 사랑으로 다음 세대를 세우는 교회입니다." },
-  { title: "사랑의 실천", desc: "세상 속에 사랑을 실천함으로 복음을 전하는 교회입니다." },
+/** PDF 시안 색상 */
+const NAVY = "text-[#1E3A8A]";
+const BAND_BG = "bg-[#EFF3FA]";
+
+/** 강조 키워드 */
+function K({ children }: { children: ReactNode }) {
+  return <strong className={`font-bold ${NAVY}`}>{children}</strong>;
+}
+
+// PDF "명문교회는" 목록 (키워드 강조 위치까지 원문 그대로)
+const CHURCH_IDENTITIES: ReactNode[] = [
+  <>
+    <K>하나님의 주권</K>을 선포하는 교회입니다.
+  </>,
+  <>
+    <K>예배의 영광</K>을 회복하는 교회입니다.
+  </>,
+  <>
+    <K>주의 사랑</K>으로 사랑하는 교회입니다.
+  </>,
+  <>
+    <K>제자훈련</K>으로 <K>평신도를 세우는</K> 교회입니다.
+  </>,
+  <>
+    주의 사랑으로 <K>다음 세대</K>를 세우는 교회입니다.
+  </>,
+  <>
+    세상 속에 <K>사랑을 실천함</K>으로 <K>복음</K>을 전하는 교회입니다.
+  </>,
 ];
 
-const H2 = SECTION_H2;
-const BODY = SECTION_BODY;
+const BODY = "text-[15px] leading-[1.85] text-[#4E5968] sm:text-[17px]";
 
 export function SeniorPastorContent() {
   const { data: profile, isLoading: isProfileLoading } = useQuery({
@@ -32,168 +51,138 @@ export function SeniorPastorContent() {
   return (
     // -mb / lg:-mx: 부모 LeaderTabs의 하단·좌우 패딩을 상쇄해 배경을 화면 끝까지 채움
     <div className="-mb-12 break-keep bg-white text-[#191F28] antialiased sm:-mb-14 lg:-mx-12">
-      {/* 1. Hero */}
-      <section className="max-w-285 mx-auto px-6 pb-10 pt-16 text-center sm:pb-14 sm:pt-24 lg:pb-16 lg:pt-28">
-        <FadeIn>
-          <Eyebrow className="mb-6">인사말</Eyebrow>
-          <h2 className="text-[2.375rem] font-extrabold leading-[1.22] tracking-[-0.035em] sm:text-6xl lg:text-[76px]">
-            이 땅의 유일한 소망은
-            <br />
-            예수 그리스도이십니다
-          </h2>
-        </FadeIn>
-        <FadeIn delay={180}>
-          <p className="mt-7 text-lg leading-relaxed text-[#4E5968] sm:text-[22px]">
-            그리고 그분의 몸 된 교회는
-            <br />이 세상을 향한 하나님의 희망입니다.
-          </p>
-        </FadeIn>
-      </section>
-
-      {/* 2. 환영합니다 — 히어로 부제보다 한 단계 낮은 회색 문단(진하기가 위→아래로 내려가도록) */}
-      <section className="max-w-240 mx-auto px-6 pb-24 text-center sm:pb-32 lg:pb-40">
-        <FadeIn>
-          <p className="text-[17px] font-semibold leading-[1.9] tracking-[-0.02em] text-[#1E3A8A] sm:text-xl">
-            명문교회 홈페이지를 찾아주신 모든 분을 진심으로 환영합니다.
-            <br />
-            <span className="font-normal text-[#6B7684]">
-              이 공간을 통하여 예수 그리스도 안에 있는 사랑과 행복을 경험하길 소망합니다.
-            </span>
-          </p>
-        </FadeIn>
-      </section>
-
-      {/* 3. 말씀 (요 13:34) — 헤더 nav(#0A1E51)보다 한 톤 밝은 네이비: 스크롤 시 헤더와 경계가 보이도록 */}
-      <section className="bg-[#102A63] text-white">
-        <FadeIn className="max-w-240 mx-auto px-6 py-20 text-center sm:py-24 lg:py-28">
-          <blockquote>
-            {/* 큰 따옴표를 문구 위·아래에 장식으로 배치, 출처는 따옴표 안쪽 */}
+      {/* 1. 상단 문구 (연파랑 띠) — 따옴표는 제목만 감싸도록 첫 글자 왼쪽 위 / 마지막 글자 오른쪽 아래 */}
+      <section className={BAND_BG}>
+        <FadeIn className="max-w-285 mx-auto px-6 py-12 text-center sm:py-16 lg:py-20">
+          <h2 className="text-2xl font-bold leading-snug tracking-[-0.03em] text-[#D6142E] sm:text-[32px] lg:text-[36px]">
             <span
               aria-hidden
-              className="block h-10 font-serif text-7xl font-black leading-none text-[#5B7FC7] sm:h-14 sm:text-8xl"
+              className="mr-2 inline-block h-[0.6em] -translate-y-[0.05em] align-top font-serif text-[2.1em] font-black leading-none text-[#1E3A8A]/40 sm:mr-3"
             >
               “
             </span>
-            <div className="mt-4 sm:mt-6">
-              <p className="text-[1.625rem] font-bold leading-normal tracking-[-0.025em] sm:text-[32px] lg:text-[40px]">
-                새 계명을 너희에게 주노니 서로 사랑하라
-                <br />
-                내가 너희를 사랑한 것 같이
-                <br />
-                너희도 서로 사랑하라
-              </p>
-              <cite className="mt-5 block text-base font-medium not-italic text-white/75 sm:mt-6 sm:text-lg">
-                요한복음 13:34
-              </cite>
-            </div>
+            이 땅의 유일한 소망은 예수 그리스도이십니다.
             <span
               aria-hidden
-              className="mt-4 block h-10 font-serif text-7xl font-black leading-none text-[#5B7FC7] sm:mt-6 sm:h-14 sm:text-8xl"
+              className="ml-2 inline-block h-[0.6em] translate-y-[0.05em] align-bottom font-serif text-[2.1em] font-black leading-none text-[#1E3A8A]/40 sm:ml-3"
             >
               ”
             </span>
-          </blockquote>
-        </FadeIn>
-      </section>
-
-      {/* 4. 본문 — 담임목사 사진 + 목회 메시지 */}
-      <section>
-        <div className="max-w-285 mx-auto flex flex-col gap-10 px-6 py-24 sm:py-32 md:flex-row md:items-center md:gap-16 lg:gap-24 lg:py-40">
-          {/* 담임목사 사진 — 관리자 "프로필 이미지"(bottomImageUrl) */}
-          <FadeIn className="w-full md:w-[42%] md:shrink-0">
-            {isProfileLoading ? (
-              <div className="aspect-4/5 w-full animate-pulse rounded-[28px] bg-[#F4F6F9]" />
-            ) : (
-              <CustomImage
-                className="aspect-4/5 w-full overflow-hidden rounded-[28px] bg-[#F4F6F9]"
-                src={photoUrl}
-                alt={`강단에서 말씀을 전하는 ${PASTOR_NAME} 담임목사`}
-                imgClass="object-cover object-[50%_70%]"
-                sizes="(max-width: 768px) 100vw, 480px"
-              />
-            )}
-          </FadeIn>
-          <FadeIn delay={150} className="flex-1">
-            <h3 className={H2}>
-              사랑은 우리의 힘에서
-              <br />
-              나오지 않습니다
-            </h3>
-            <div className={cn(BODY, "mt-8 flex flex-col gap-6 sm:mt-10")}>
-              <p>
-                주님께서는 제자들에게 “내가 너희를 사랑한 것 같이” 서로 사랑하라고 하셨습니다.
-                사랑은 우리의 힘에서 나오지 않습니다.{" "}
-                <strong className="font-bold text-[#191F28]">
-                  먼저 우리를 사랑하신 주님의 사랑에서 시작됩니다.
-                </strong>
-              </p>
-              <p>
-                그래서 명문교회는 죽기까지 우리를 사랑하신 예수 그리스도의 사랑을 기억하며 하나님을
-                사랑하고 이웃을 사랑하는 교회, 주의 사랑으로 사랑하며 살아가는 교회가 되기를
-                소망합니다.
-              </p>
-              <p>
-                명문교회의 행복은 주의 사랑으로 사랑하는 목회자와 성도가 함께 있다는 것입니다. 이
-                사랑 안에서 우리는 이 비전을 향해 함께 달려갑니다.
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* 5. 비전 — 회색 배경 위 흰 카드 */}
-      <section className="bg-[#F4F6F9]">
-        <div className="max-w-285 lg:py-38 mx-auto px-6 py-24 sm:py-32">
-          <FadeIn>
-            <Eyebrow>비전</Eyebrow>
-            <h3 className={H2}>명문교회는</h3>
-          </FadeIn>
-          <ul className="mt-12 grid grid-cols-1 gap-4 sm:mt-14 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
-            {CHURCH_IDENTITIES.map((item, i) => (
-              <li key={item.title}>
-                <FadeIn
-                  delay={(i % 3) * 100}
-                  className="flex h-full flex-col gap-3.5 rounded-3xl bg-white px-8 pb-10 pt-9"
-                >
-                  <span className="text-[15px] font-extrabold text-[#2453C9]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h4 className="text-[22px] font-extrabold leading-[1.35] tracking-[-0.02em] sm:text-2xl">
-                    {item.title}
-                  </h4>
-                  <p className="text-base leading-[1.7] text-[#4E5968] sm:text-[17px]">
-                    {item.desc}
-                  </p>
-                </FadeIn>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* 6. 초대 — 한 단 구성: 인용·맺음말 → 초대 문구 → 우측 서명 (스타일은 페이지 톤 유지) */}
-      <section className="max-w-285 mx-auto px-6 py-24 sm:py-32 lg:py-40">
-        <FadeIn>
-          <blockquote className="text-lg font-bold leading-[1.6] tracking-[-0.02em] sm:text-[22px]">
-            “너희가 서로 사랑하면 이로써 모든 사람이 너희가 내 제자인 줄 알리라”
-            <cite className="mt-2 block text-sm font-semibold not-italic text-[#2453C9] sm:text-base">
-              요한복음 13:35
-            </cite>
-          </blockquote>
-          <p className={cn(BODY, "mt-8")}>
-            교회가 세상의 희망이 되는 길은 화려함에 있지 않고, 주님께 받은 사랑으로 서로 사랑하는 데
-            있습니다. <br />그 사랑을 통해 세상이 예수 그리스도를 보게 될 것입니다.
-            <br /> 명문교회는 이 사랑으로 주님의 제자 됨을 나타내는 교회가 되겠습니다.
+          </h2>
+          <p className={`mt-4 text-base sm:mt-5 sm:text-xl ${NAVY}`}>
+            그리고 그분의 몸 된 교회는 이 세상을 향한 하나님의 희망입니다.
           </p>
         </FadeIn>
-        <FadeIn delay={150}>
-          <h3 className={cn(H2, "mt-16 sm:mt-20")}>그 사랑의 자리에 여러분을 초대합니다</h3>
-          <div className="mt-12 flex items-center justify-end gap-4 border-t border-[#E5E8EB] pt-8">
-            <p className="flex items-baseline gap-2.5">
-              <span className="text-sm text-[#6B7684] sm:text-[15px]">명문교회 담임목사</span>
-              <span className="text-lg font-bold sm:text-xl">{PASTOR_NAME}</span>
+      </section>
+
+      {/* 2. 사진 + 환영 인사·말씀·본문 */}
+      <section className="max-w-285 mx-auto flex flex-col gap-10 px-6 py-16 sm:py-20 md:flex-row md:gap-12 lg:gap-16 lg:py-24">
+        <FadeIn className="w-full md:w-[40%] md:shrink-0">
+          {isProfileLoading ? (
+            <div className="aspect-4/5 w-full animate-pulse bg-[#F4F6F9]" />
+          ) : (
+            <CustomImage
+              className="aspect-4/5 w-full overflow-hidden bg-[#F4F6F9]"
+              src={photoUrl}
+              alt={`강단에서 말씀을 전하는 ${PASTOR_NAME} 담임목사`}
+              imgClass="object-cover object-[50%_70%]"
+              sizes="(max-width: 768px) 100vw, 460px"
+            />
+          )}
+        </FadeIn>
+        <FadeIn delay={120} className="flex-1">
+          <h3 className={`text-xl font-bold leading-normal tracking-[-0.02em] sm:text-2xl ${NAVY}`}>
+            명문교회 홈페이지를 찾아주신 모든 분을 진심으로 환영합니다.
+          </h3>
+          <p className={`mt-4 ${BODY}`}>
+            이 공간을 통하여 예수 그리스도 안에 있는 사랑과 행복을 경험하길 소망합니다.
+          </p>
+
+          {/* 요 13:34 — 왼쪽 네이비 세로선 */}
+          <blockquote className="mt-8 border-l-[3px] border-[#1E3A8A]/30 py-1 pl-5 sm:pl-6">
+            <p className="text-base font-medium leading-[1.75] text-[#333D4B] sm:text-lg">
+              새 계명을 너희에게 주노니 서로 사랑하라
+              <br className="hidden sm:block" /> 내가 너희를 사랑한 것 같이 너희도 서로 사랑하라
+            </p>
+            <cite className={`mt-1.5 block text-sm font-semibold not-italic ${NAVY}`}>
+              요한복음 13:34
+            </cite>
+          </blockquote>
+
+          <div className={`mt-8 flex flex-col gap-5 ${BODY}`}>
+            <p>
+              주님께서는 제자들에게 “내가 너희를 사랑한 것 같이” 서로 사랑하라고 하셨습니다. 사랑은
+              우리의 힘에서 나오지 않습니다. 먼저 우리를 사랑하신 주님의 사랑에서 시작됩니다.
+            </p>
+            <p>
+              그래서 명문교회는 죽기까지 우리를 사랑하신 예수 그리스도의 사랑을 기억하며 하나님을
+              사랑하고 이웃을 사랑하는 교회, 주의 사랑으로 사랑하며 살아가는 교회가 되기를
+              소망합니다.
+            </p>
+            <p>
+              명문교회의 행복은 주의 사랑으로 사랑하는 목회자와 성도가 함께 있다는 것입니다. <br />
+              이 사랑 안에서 우리는 이 비전을 향해 함께 달려갑니다.
             </p>
           </div>
+        </FadeIn>
+      </section>
+
+      {/* 3. 명문교회는 (연파랑 띠, 좌 제목 / 우 목록) */}
+      <section className={BAND_BG}>
+        <div className="max-w-285 mx-auto flex flex-col gap-8 px-6 py-16 sm:py-20 md:flex-row md:gap-12 lg:gap-16 lg:py-24">
+          <FadeIn className="md:w-[40%] md:shrink-0">
+            <h3 className={`text-2xl font-bold tracking-[-0.02em] sm:text-[28px] ${NAVY}`}>
+              명문교회는
+            </h3>
+          </FadeIn>
+          <FadeIn delay={120} className="flex-1">
+            <ul className="border-t-2 border-[#1E3A8A]">
+              {CHURCH_IDENTITIES.map((item, i) => (
+                <li
+                  key={i}
+                  className="border-b border-[#D9E0EC] py-4 text-[15px] text-[#333D4B] sm:py-5 sm:text-[17px]"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* 4. 맺음말 + 서명 — 좌 제목이 짧아 이 섹션만 왼쪽 칼럼 30%로 좁힘 */}
+      <section className="max-w-285 mx-auto flex flex-col gap-8 px-6 py-16 sm:py-20 md:flex-row md:gap-12 lg:gap-16 lg:py-24">
+        <FadeIn className="md:w-[30%] md:shrink-0">
+          <h3
+            className={`text-2xl font-bold leading-snug tracking-[-0.02em] sm:text-[28px] ${NAVY}`}
+          >
+            그 사랑의 자리에
+            <br />
+            여러분을 초대합니다.
+          </h3>
+        </FadeIn>
+        <FadeIn delay={120} className="flex-1">
+          <p className={`text-pretty ${BODY}`}>
+            주님은{" "}
+            <span className="text-[#6B7684]">
+              “너희가 서로 사랑하면 이로써 모든 사람이 너희가 내 제자인 줄 알리라”
+            </span>
+            {/* 붙여 쓴 ”( 사이에서도 줄바꿈 허용(break-keep 때문에 덩어리로 넘어가는 것 방지) */}
+            <wbr />
+            {/* 출처와 조사 "고"만 붙여서 줄바꿈 시 "고"가 떨어지지 않도록 */}
+            <span className="whitespace-nowrap">
+              <span className="text-[#6B7684]">(요 13:35)</span>고
+            </span>{" "}
+            말씀하셨습니다. 교회가 세상의 희망이 되는 길은 화려함에 있지 않고, 주님께 받은 사랑으로
+            서로 사랑하는 데 있습니다. 그 사랑을 통해 세상이 예수 그리스도를 보게 될 것입니다.
+            명문교회는 이 사랑으로 주님의 제자 됨을 나타내는 교회가 되겠습니다.
+          </p>
+          <p className="mt-8 flex items-baseline justify-end gap-3 sm:mt-10">
+            <span className="text-sm text-[#6B7684] sm:text-base">명문교회 담임목사</span>
+            <span className={`text-2xl font-extrabold tracking-[0.12em] sm:text-[28px] ${NAVY}`}>
+              {PASTOR_NAME}
+            </span>
+          </p>
         </FadeIn>
       </section>
     </div>
